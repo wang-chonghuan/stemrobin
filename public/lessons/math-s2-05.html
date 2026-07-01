@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>同类项 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap");
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 第 2 阶段</div>
+    <h1 class="sr-l-title">同类项</h1>
+    <div class="sr-l-concept">怎样判断两个项是不是"同一类"——只看字母指纹，不看系数。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">同类项</span>
+      <span class="sr-chip">字母部分</span>
+      <span class="sr-chip green">前置：单项式与系数</span>
+    </div>
+  </header>
+
+  <!-- 1 / 为什么学这个（引子问题） -->
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+    <p>上一阶段我们学会了把字母和数写成一个式子，比如 $3x^2y$。可真实的式子往往不止一项，而是好几项用加减号连起来，又长又乱：</p>
+    <p>$$3x^2y - 5x^2y + 7 + 2x^2y$$</p>
+    <p>看到这样一串项，人本能地想把它整理得短一点、清爽一点。但整理之前得先回答一件事：这些项里，<strong>到底谁和谁能放到一起？</strong>$3x^2y$ 和 $-5x^2y$ 像是一路的，$7$ 好像自己一伙——可凭什么这么说？总得有个说得清的标准，不能靠感觉。</p>
+    <div class="sr-note"><b>本节的驱动问题：</b> 给一串项，怎么<strong>看出谁和谁是"同一类"</strong>、能放到一起？</div>
+    <p>这节课就专门解决"看出同类"这一步：先把"谁和谁是一类"判准。至于把同类项真正合到一起，是下一节课的事——这一课<strong>只判断、只分类，不合并</strong>。带着上面这个问题往下读。</p>
+  </section>
+
+  <!-- 2 / 讲解 -->
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <h3>先把一个项拆成两半</h3>
+    <p>看式子 $3x^2y - 5x^2y + 7$。它由三个部分组成，每个部分（连同它前面的符号）叫一个<span class="sr-term">项</span>。这里有三项：$3x^2y$、$-5x^2y$、$7$。</p>
+    <p>像 $3x^2y$ 这样只由数和字母相乘、中间不带加减号的式子，叫一个<span class="sr-term">单项式</span>。每个单项式都能拆成<strong>两半</strong>：</p>
+    <p>前面那个数 $3$，叫这个单项式的<span class="sr-term">系数</span>；后面那一串字母 $x^2y$，叫它的<span class="sr-term">字母部分</span>。也就是说，一个单项式 = 系数 $\times$ 字母部分。</p>
+    <ul class="sr-links" style="margin:8px 0;">
+      <li>$3x^2y$：系数是 $3$，字母部分是 $x^2y$。</li>
+      <li>$-5x^2y$：系数是 $-5$（负号算进系数里），字母部分是 $x^2y$。</li>
+      <li>$7$：没有字母，它叫<span class="sr-term">常数项</span>，字母部分是空的。</li>
+    </ul>
+
+    <h3>关键：字母部分才是"指纹"</h3>
+    <p>我们想知道 $3x^2y$ 和 $-5x^2y$ 算不算同一类。把它们各自拆成两半看：</p>
+    <p>系数一个是 $3$、一个是 $-5$，不一样；但字母部分都是 $x^2y$，<strong>完全一样</strong>——都是"一个 $x$ 的平方，再乘一个 $y$"。</p>
+    <p>这个一样的字母部分，就像一个人的<strong>指纹</strong>：它记录了"用到哪些字母、每个字母是几次方"。系数可以随便换，指纹不变。我们就用这个指纹来分类。</p>
+
+    <div class="sr-note"><b>字母指纹由两件事决定：</b>（1）用到了哪些字母；（2）每个字母的<span class="sr-term">指数</span>（也就是几次方）是几。两件事都对上，才算同一个指纹。</div>
+
+    <h3>正式定义</h3>
+    <p>到这里就能给出标准说法了。</p>
+    <p><span class="sr-term">同类项</span>：所含的字母<strong>相同</strong>，并且相同字母的指数（次数）也<strong>分别相同</strong>的项，叫做同类项。另外，几个常数项（不含字母的项）之间也都是同类项。</p>
+    <p>读这句定义时盯住两个"相同"：字母要相同，每个字母的指数也要分别相同。两条都满足，就是同类项；只要有一条不满足，就不是。<strong>系数是大是小、是正是负，完全不参与判断。</strong></p>
+
+    <div class="sr-note"><b>为什么字母顺序无所谓？</b> $xy$ 和 $yx$ 写法不同，但乘法可以交换，$xy = yx$，它们用到的字母和指数完全一样，指纹相同，所以是同类项。判断前可以先把字母按字母表排好，再比指纹。</div>
+
+    <h3>把一堆项分箱</h3>
+    <p>判断"是不是同类"只是第一步。真正有用的是：拿到一长串项，按指纹把它们<strong>分成几组</strong>，每组内部彼此都是同类项。下面这张图就是一次分箱。</p>
+
+    <figure class="sr-fig">
+      <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="把六个项按字母指纹分进三个箱子">
+        <!-- title row: the six terms before sorting -->
+        <text x="20" y="28" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600" fill="#15201F">待分类的项：</text>
+        <text x="120" y="28" font-family="JetBrains Mono, monospace" font-size="14" fill="#8A9795">2x²y  ·  4xy  ·  −x²y  ·  9  ·  7xy  ·  −3</text>
+
+        <!-- arrow hint -->
+        <text x="20" y="58" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#8A9795">按字母指纹归箱：</text>
+
+        <!-- box 1: x^2 y -->
+        <rect x="20" y="72" width="200" height="200" rx="10" fill="#FFFFFF" stroke="#0E7C9B" stroke-width="2"/>
+        <rect x="20" y="72" width="200" height="34" rx="10" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+        <text x="120" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600" fill="#0A5E76">指纹 x²y</text>
+        <text x="120" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">2x²y</text>
+        <text x="120" y="184" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">−x²y</text>
+        <text x="120" y="240" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="11" fill="#8A9795">x 出现两次、y 出现一次</text>
+        <text x="120" y="256" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="11" fill="#8A9795">x 二次、y 一次</text>
+
+        <!-- box 2: x y -->
+        <rect x="240" y="72" width="200" height="200" rx="10" fill="#FFFFFF" stroke="#15A06A" stroke-width="2"/>
+        <rect x="240" y="72" width="200" height="34" rx="10" fill="#E4F6EE" stroke="#15A06A" stroke-width="2"/>
+        <text x="340" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600" fill="#0F7D52">指纹 xy</text>
+        <text x="340" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">4xy</text>
+        <text x="340" y="184" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">7xy</text>
+        <text x="340" y="248" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="11" fill="#8A9795">x 一次、y 一次</text>
+
+        <!-- box 3: constants -->
+        <rect x="460" y="72" width="200" height="200" rx="10" fill="#FFFFFF" stroke="#8A9795" stroke-width="2"/>
+        <rect x="460" y="72" width="200" height="34" rx="10" fill="#F5F9F9" stroke="#8A9795" stroke-width="2"/>
+        <text x="560" y="94" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600" fill="#4C5A58">常数项（无字母）</text>
+        <text x="560" y="150" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">9</text>
+        <text x="560" y="184" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">−3</text>
+        <text x="560" y="248" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="11" fill="#8A9795">没有字母，彼此同类</text>
+      </svg>
+      <figcaption>同一个箱子里的项指纹相同（系数不同没关系），就是一组同类项。</figcaption>
+    </figure>
+
+    <p>看图里的蓝箱：$2x^2y$ 和 $-x^2y$ 系数一个是 $2$、一个是 $-1$，差得很远，但指纹都是 $x^2y$，所以同箱。绿箱的 $4xy$ 和 $7xy$ 同理。$9$ 和 $-3$ 都没有字母，按定义也是同类项，放进灰箱。</p>
+
+    <div class="sr-pitfall">
+      <b>三个最常踩的坑：</b><br>
+      （1）<b>以为系数相同才同类。</b> 错。$3x^2y$ 和 $-5x^2y$ 系数完全不同，照样是同类项——判断时根本不看系数。<br>
+      （2）<b>以为指数不同也行。</b> 错。$x^2$ 和 $x^3$ 字母都是 $x$，但一个二次、一个三次，指数不同，指纹就不同，<strong>不是</strong>同类项。<br>
+      （3）<b>以为字母顺序会改变结果。</b> 不会。$xy$ 和 $yx$ 是同类项，因为 $xy = yx$，指纹一样。顺序只是写法，不影响指纹。
+    </div>
+
+    <p>把这节课压成一句话：<strong>系数是可变的，字母指纹是不变量；按字母指纹分类，得到的每一组就是同类项。</strong>正因为同一组里"字母这部分一模一样"，下一节课才能把它们的系数加到一起——那是后话。</p>
+  </section>
+
+  <!-- 3 / 例题 -->
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　$5ab$ 和 $-2ab$ 是同类项吗？</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>拆两半。$5ab$：系数 $5$，字母部分 $ab$。$-2ab$：系数 $-2$，字母部分 $ab$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>只比字母部分。两个都是 $ab$（$a$ 一次、$b$ 一次），字母相同、指数分别相同，指纹一致。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>系数 $5$ 和 $-2$ 不一样，但不参与判断。所以它们<strong>是</strong>同类项。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2　$4x^2$ 和 $4x^3$ 是同类项吗？</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>字母部分分别是 $x^2$ 和 $x^3$，字母都是 $x$，看起来很像。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>比指数：一个是 $2$ 次方，一个是 $3$ 次方，<strong>不分别相同</strong>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>定义要求"相同字母的指数也分别相同"，这条没满足。系数都是 $4$ 也没用——它们<strong>不是</strong>同类项。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　$3xy$ 和 $-7yx$ 是同类项吗？</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>第二个写成了 $yx$。先把字母按顺序排好：$yx = xy$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>现在两个字母部分都是 $xy$（$x$ 一次、$y$ 一次），指纹相同。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>字母顺序只是写法，不影响指纹。所以它们<strong>是</strong>同类项。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4　把 $6m^2 + 2mn - m^2 + 5 - 4mn - 1$ 的各项分成几组同类项。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>先连符号列出所有项：$6m^2$、$+2mn$、$-m^2$、$+5$、$-4mn$、$-1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>给每项标指纹：$6m^2$→$m^2$；$2mn$→$mn$；$-m^2$→$m^2$；$5$→无字母；$-4mn$→$mn$；$-1$→无字母。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>同指纹归一组：<br>　指纹 $m^2$：$6m^2$、$-m^2$；<br>　指纹 $mn$：$2mn$、$-4mn$；<br>　常数项：$5$、$-1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>共三组同类项。注意 $m^2$ 组和 $mn$ 组不能混——一个用了 $m,m$，一个用了 $m,n$，字母不同。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 5　有人说"$2a^2b$ 和 $2ab^2$ 是同类项，因为系数都是 2，字母也都是 $a$ 和 $b$"。请解释这个理由错在哪。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>同类项的判断<strong>不靠系数</strong>，所以"系数都是 2"这条理由本身就没意义。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>"字母都是 $a$ 和 $b$"只对了一半：定义不只要求字母相同，还要求<strong>每个字母的指数分别相同</strong>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>比指数：$2a^2b$ 里 $a$ 是二次、$b$ 是一次；$2ab^2$ 里 $a$ 是一次、$b$ 是二次。$a$ 的指数（$2$ 对 $1$）和 $b$ 的指数（$1$ 对 $2$）都对不上。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>指纹不同，所以它们<strong>不是</strong>同类项。原话的毛病：用了无关的系数当理由，又漏看了指数必须分别相同。</span></div>
+    </div>
+  </section>
+
+  <!-- 4 / 与其他知识点的联系 -->
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>往回看（这节课站在什么上面）：</b>它直接用到前面"用字母表示数"——字母能像数一样参与乘法和写式子；也用到"单项式与系数"——每个单项式拆成系数与字母部分；还用到"代数式的读法"——能把一个式子拆成一项一项。没有这三样，今天的"拆两半、看指纹"就无从下手。</li>
+      <li><b>往前看（这节课通向哪里）：</b>下一节"合并同类项"会做今天故意不做的那一步——同一组里字母部分相同，于是可以把系数加到一起，比如 $2x^2y$ 和 $-x^2y$ 合成 $x^2y$。能合并的前提，正是今天的"先判出同类"。再往后，"去括号"和"整式加减"都要先把同类项找出来再合并。</li>
+      <li><b>贯穿的抽象主线：</b>把项按字母指纹分类 → 同一类里字母不变、只有系数能变 → 所以能把系数合起来。这条"分类→可合并"的主线会一路撑起整个整式运算：今天只走到"分类"这一步，把不变量（字母指纹）和可变量（系数）分清楚，是后面所有合并、化简的地基。</li>
+    </ul>
+  </section>
+
+  <!-- 5 / 练习 -->
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">练习</span></div>
+    <ol class="sr-practice">
+
+      <li><span class="sr-ptype">辨认</span>$7xy$ 和 $-xy$ 是同类项吗？为什么？
+        <details class="sr-answer"><summary>答案</summary><div>是。字母部分都是 $xy$（$x$ 一次、$y$ 一次），指纹相同；系数 $7$ 和 $-1$ 不参与判断。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨认</span>$5a^2$ 和 $5a$ 是同类项吗？为什么？
+        <details class="sr-answer"><summary>答案</summary><div>不是。字母都是 $a$，但一个是 $a^2$（二次）、一个是 $a$（一次），指数不分别相同，指纹不同。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨认</span>下面三项里，哪两项是同类项：$3x^2y$、$\ -8xy^2$、$\ \tfrac{1}{2}x^2y$？
+        <details class="sr-answer"><summary>答案</summary><div>$3x^2y$ 和 $\tfrac{1}{2}x^2y$ 是同类项，指纹都是 $x^2y$。$-8xy^2$ 的指纹是 $xy^2$，$x$ 与 $y$ 的指数与前两项对不上，不同类。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">表示</span>写出一个和 $-4m^2n$ 同类的项，并写出它的系数和字母部分。
+        <details class="sr-answer"><summary>答案</summary><div>例如 $9m^2n$（答案不唯一，只要指纹是 $m^2n$ 即可）。系数 $9$，字母部分 $m^2n$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">表示</span>用文字说出 $-6a^3$ 这个项的指纹（用到哪些字母、各几次方），再举一个同类的项。
+        <details class="sr-answer"><summary>答案</summary><div>指纹：只用字母 $a$，$a$ 是三次方。同类项如 $a^3$ 或 $5a^3$（指纹同为 $a^3$ 即可）。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>把这些项分成几组同类项：$2p$、$\ 5q$、$\ -p$、$\ 3$、$\ 4q$、$\ -2$。
+        <details class="sr-answer"><summary>答案</summary><div>三组：指纹 $p$ 的 $\{2p,\,-p\}$；指纹 $q$ 的 $\{5q,\,4q\}$；常数项 $\{3,\,-2\}$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>把这些项分成几组同类项：$x^2$、$\ 3xy$、$\ -2x^2$、$\ yx$、$\ 5$、$\ y^2$。
+        <details class="sr-answer"><summary>答案</summary><div>先把 $yx$ 排成 $xy$。四组：$\{x^2,\,-2x^2\}$（指纹 $x^2$）；$\{3xy,\,yx\}$（指纹 $xy$）；$\{y^2\}$（指纹 $y^2$，只有一个）；$\{5\}$（常数项）。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>判断 $\dfrac{a b}{3}$（即 $\tfrac{1}{3}ab$）和 $-5ab$ 是不是同类项。
+        <details class="sr-answer"><summary>答案</summary><div>是。$\tfrac{1}{3}ab$ 的系数是 $\tfrac{1}{3}$，字母部分 $ab$；$-5ab$ 字母部分也是 $ab$，指纹相同。系数是分数也不影响判断。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">反推</span>已知某项和 $7x^3y$ 是同类项，且系数是 $-2$，写出这个项。
+        <details class="sr-answer"><summary>答案</summary><div>$-2x^3y$。同类要求指纹与 $7x^3y$ 相同，即 $x^3y$；系数按题意取 $-2$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">反推</span>$kx^2$ 与 $3x^n$ 是同类项。$n$ 必须是几？$k$ 可以是任何数吗？
+        <details class="sr-answer"><summary>答案</summary><div>$n$ 必须是 $2$（指数要分别相同）。$k$ 可以是任何数（系数不参与同类判断，只要 $k\neq 0$ 这一项仍带字母即可）。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">反推</span>$-3x^{a}y^{b}$ 与 $5x^2y^4$ 是同类项，求 $a$ 与 $b$。
+        <details class="sr-answer"><summary>答案</summary><div>指纹要相同：$a=2$，$b=4$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>小明说"$4x$ 和 $4y$ 是同类项，因为系数都是 4"。错在哪？
+        <details class="sr-answer"><summary>答案</summary><div>同类靠字母指纹，不靠系数。$4x$ 用字母 $x$，$4y$ 用字母 $y$，所含字母都不相同，根本不是同类项。系数相同纯属巧合。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>小红说"$2x^2$ 和 $3x^3$ 是同类项，因为字母都是 $x$"。错在哪？
+        <details class="sr-answer"><summary>答案</summary><div>只看了"字母相同"，漏了"指数也要分别相同"。$x^2$ 是二次、$x^3$ 是三次，指数不同，指纹不同，不是同类项。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>小刚把 $5$ 和 $5x$ 归成一组，理由是"数字都是 5"。错在哪？
+        <details class="sr-answer"><summary>答案</summary><div>$5$ 是常数项（无字母），$5x$ 带字母 $x$，字母部分一个空、一个是 $x$，指纹不同，不能归一组。常数项只和别的常数项同类。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>有人把 $ab$ 和 $ba$ 判成"不同类，因为写法不一样"。这个判断对吗？请说理由。
+        <details class="sr-answer"><summary>答案</summary><div>不对。$ab=ba$，用到的字母和指数完全相同，指纹一样，是同类项。字母顺序只是书写差别，不改变指纹。</div></details>
+      </li>
+
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

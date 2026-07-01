@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>合并同类项 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap");
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 第 2 阶段</div>
+    <h1 class="sr-l-title">合并同类项</h1>
+    <div class="sr-l-concept">把同类项的系数加到一起、字母部分不变——让一个长式子变短，而它代表的数始终不变。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">合并同类项</span>
+      <span class="sr-chip">分配律</span>
+      <span class="sr-chip green">前置：同类项</span>
+    </div>
+  </header>
+
+  <!-- 1 / 为什么学这个（引子问题） -->
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+    <p>上一节课，我们学会了在一串项里看出"谁和谁是同一类"——只比字母指纹，不看系数。但我们当时<strong>故意停住了</strong>：找出了同类项，却没有把它们合到一起。</p>
+    <p>现在来看一个真实的式子：</p>
+    <p>$$6m^2 + 2mn - m^2 + 5 - 4mn - 1$$</p>
+    <p>它一共有六项，又长又笨。可你只要瞄一眼就会发现：$6m^2$ 和 $-m^2$ 是一类，$2mn$ 和 $-4mn$ 是一类，$5$ 和 $-1$ 又是一类。既然每一类里的项"长得几乎一样"，把它们各自凑到一起，式子是不是就能写得短很多？</p>
+    <p>但这里藏着一个必须先回答的疑问：式子代表的是一个<strong>数</strong>（给 $m$、$n$ 各代一个具体值它就有一个值）。如果我随手把它改短，会不会一不小心就把这个数也改掉了？短了却算错了，那就没意义。</p>
+    <div class="sr-note"><b>本节的驱动问题：</b> 能不能把这样一个长式子改写得更短，<strong>而它所代表的数始终不变</strong>？</div>
+    <p>这一步叫<strong>化简</strong>。它现在才出现得正是时候：我们已经会用字母写式子、会判同类项，就差"把同类项真正合起来"这最后一步。带着上面这个问题往下读。</p>
+  </section>
+
+  <!-- 2 / 讲解 -->
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <h3>规则：只加系数，字母部分原样不动</h3>
+    <p>先把标准说法摆出来，再讲清它为什么成立。</p>
+    <p><span class="sr-term">合并同类项</span>：把同类项的<span class="sr-term">系数</span>相加，字母部分保持不变，写成一个项。不是同类项的，<strong>不能</strong>合并，原样保留。</p>
+    <p>比如 $3x^2$ 和 $5x^2$ 是同类项（指纹都是 $x^2$），合并就是把系数 $3$ 和 $5$ 加起来：$3x^2 + 5x^2 = 8x^2$。注意结果是 $8x^2$，字母部分还是 $x^2$，一点没变。</p>
+
+    <h3>为什么能这样合？——靠分配律</h3>
+    <p>这条规则不是规定出来的，它有理由，理由就是<span class="sr-term">分配律</span>。</p>
+    <p>分配律说：$ax + bx = (a+b)x$。也就是说，如果两项有一个<strong>公因子</strong> $x$，就可以把 $x$ 提出来，让两个系数 $a$、$b$ 先加起来。</p>
+    <p>同类项恰好满足这个条件：它们的<strong>字母部分完全相同</strong>——那相同的字母部分，正是那个可以提出来的公因子。于是：</p>
+    <p>$$3x^2 + 5x^2 = (3+5)\,x^2 = 8x^2$$</p>
+    <p>看清这里谁变了、谁没变：</p>
+    <ul class="sr-links" style="margin:8px 0;">
+      <li><b>不变的</b>是字母部分 $x^2$（连同它的指数 $2$）——它是公因子，被原封不动地提出来。</li>
+      <li><b>变的</b>只有系数：$3$ 和 $5$ 相加成 $8$。</li>
+    </ul>
+    <p>这正好接上一课那句话：<strong>字母指纹是不变量，系数才是可变量。</strong>上一课我们用"字母部分相同"把项分了类；这一课就靠"字母部分相同"把它当公因子提出去，把系数加起来。</p>
+
+    <div class="sr-note"><b>为什么合并以后代表的数不变？</b> 因为 $3x^2 + 5x^2 = (3+5)x^2$ 只是分配律的<strong>逆用</strong>，是一个恒等式——不管 $x$ 取什么数，等号两边都相等。验一下：令 $x=2$，左边 $3\times4 + 5\times4 = 12+20 = 32$，右边 $8\times4 = 32$，确实一样。所以"变短"和"值不变"可以同时做到，这就回答了第 1 节的问题。</div>
+
+    <h3>记号与读法</h3>
+    <p>合并写出来常带一个中间步骤：$7a - 2a = (7-2)a = 5a$。中间的 $(7-2)a$ 把"系数在相加、字母 $a$ 被提出来"显式地写了出来，熟练后可以直接写 $5a$。这里的减号要连着系数一起算：$-2a$ 的系数是 $-2$，所以是 $7 + (-2) = 5$。</p>
+
+    <div class="sr-pitfall">
+      <b>三个最常踩的坑：</b><br>
+      （1）<b>把不是同类项的也合了。</b> $3x + 2y$ 不能合成 $5xy$——$x$ 和 $y$ 不是同一个字母，没有公因子，分配律用不上，只能原样保留。$x^2 + x^3$ 也不能合，指数不同就不是同类项。<br>
+      （2）<b>合并时连指数也加了。</b> $3x^2 + 5x^2 = 8x^2$，<strong>不是</strong> $8x^4$。相加的只有系数 $3+5=8$；字母部分和指数都是被提出来的公因子，原样不动。<br>
+      （3）<b>漏看符号。</b> 系数前的正负号要带着算：$-4mn + 2mn = (-4+2)mn = -2mn$，不是 $-6mn$、也不是 $2mn$。
+    </div>
+
+    <h3>把它画出来</h3>
+    <p>合并就像把同样的方块数到一堆：系数相加，方块上的标签（字母部分）不变；标签不同的方块凑不到一起。</p>
+    <figure class="sr-fig">
+      <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="用方块模型展示合并同类项：系数相加、字母部分不变；不同指纹不能合">
+        <!-- ===== 左：3 个 x^2 + 5 个 x^2 = 8 个 x^2 ===== -->
+        <text x="20" y="28" font-family="Hanken Grotesk, sans-serif" font-size="13" font-weight="600" fill="#15201F">同类可合并：系数相加，字母部分不变</text>
+
+        <!-- 3 个 x^2 方块 -->
+        <g>
+          <rect x="20" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="33" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="50" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="63" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="80" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="93" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+        </g>
+        <text x="63" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#15201F">3x²</text>
+
+        <text x="118" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#8A9795">+</text>
+
+        <!-- 5 个 x^2 方块 -->
+        <g>
+          <rect x="132" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="145" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="162" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="175" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="192" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="205" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="222" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="235" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="252" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="265" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+        </g>
+        <text x="205" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#15201F">5x²</text>
+
+        <text x="298" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#8A9795">=</text>
+
+        <!-- 8 个 x^2 方块 -->
+        <g>
+          <rect x="318" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="331" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="348" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="361" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="378" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="391" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="408" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="421" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="438" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="451" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="468" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="481" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="498" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="511" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+          <rect x="528" y="44" width="26" height="26" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+          <text x="541" y="62" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#0A5E76">x²</text>
+        </g>
+        <text x="436" y="88" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#15201F">8x²　(系数 3+5=8，仍是 x²，不是 x⁴)</text>
+
+        <!-- 分配律标注 -->
+        <text x="20" y="118" font-family="JetBrains Mono, monospace" font-size="13" fill="#0A5E76">3x² + 5x² = (3+5)x² = 8x²　← 公因子 x² 提出，只有系数相加</text>
+
+        <!-- 分隔线 -->
+        <line x1="20" y1="138" x2="560" y2="138" stroke="#E3EAE9" stroke-width="1.5"/>
+
+        <!-- ===== 右下：x^2 与 x^3 不能合并 ===== -->
+        <text x="20" y="168" font-family="Hanken Grotesk, sans-serif" font-size="13" font-weight="600" fill="#15201F">不同指纹，不能合并</text>
+
+        <rect x="20" y="184" width="34" height="34" rx="4" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+        <text x="37" y="206" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#0A5E76">x²</text>
+        <text x="37" y="236" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="11" fill="#8A9795">x 二次</text>
+
+        <text x="78" y="206" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#8A9795">+</text>
+
+        <rect x="100" y="184" width="34" height="34" rx="4" fill="#E4F6EE" stroke="#15A06A" stroke-width="2"/>
+        <text x="117" y="206" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="#0F7D52">x³</text>
+        <text x="117" y="236" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="11" fill="#8A9795">x 三次</text>
+
+        <text x="158" y="206" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" fill="#8A9795">=</text>
+
+        <text x="182" y="206" font-family="JetBrains Mono, monospace" font-size="14" fill="#15201F">x² + x³　（指纹不同，没有公因子，只能原样保留）</text>
+
+        <!-- 右下：3x + 2y 不能合并 -->
+        <text x="20" y="270" font-family="JetBrains Mono, monospace" font-size="14" fill="#15201F">3x + 2y</text>
+        <text x="100" y="270" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#8A9795">字母不同（x 与 y），不能合成 5xy</text>
+      </svg>
+      <figcaption>合并就是把同样的方块数到一起：系数相加，方块上的标签（字母部分含指数）不变。指纹不同的方块——如 x² 与 x³、x 与 y——凑不到一起。</figcaption>
+    </figure>
+  </section>
+
+  <!-- 3 / 例题 -->
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　合并 $3x^2 + 5x^2$。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>先确认是不是同类项：两项字母部分都是 $x^2$，指纹相同，可以合并。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>把相同的字母部分 $x^2$ 当公因子提出来（这就是分配律）：$3x^2 + 5x^2 = (3+5)x^2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>只把系数加起来：$(3+5)x^2 = 8x^2$。字母部分仍是 $x^2$，结果是 $8x^2$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2　合并 $-4mn + 2mn$。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>两项指纹都是 $mn$，是同类项。系数分别是 $-4$ 和 $2$（负号算进系数）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>提出公因子 $mn$，系数相加：$-4mn + 2mn = (-4+2)mn$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>$-4+2 = -2$，所以结果是 $-2mn$。注意符号别丢。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　化简 $6m^2 + 2mn - m^2 + 5 - 4mn - 1$（即第 1 节那个长式子）。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>先按指纹分组（这一步是上一课学的）：<br>　指纹 $m^2$：$6m^2$、$-m^2$；<br>　指纹 $mn$：$2mn$、$-4mn$；<br>　常数项：$5$、$-1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>每组各自合并，系数相加、字母部分不变：<br>　$6m^2 - m^2 = (6-1)m^2 = 5m^2$；<br>　$2mn - 4mn = (2-4)mn = -2mn$；<br>　$5 - 1 = 4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>把三组结果连起来（不同类的之间不能再合，原样保留）：$5m^2 - 2mn + 4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>六项缩成了三项，又短又整齐。这就是"分类 → 合并"的接力：先分箱，再把每箱的系数加起来。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4　化简 $7a + 3b - 2a$，并解释：哪两项能合、为什么；$3b$ 为什么不能动。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>分组：$7a$ 和 $-2a$ 指纹都是 $a$，是同类项；$3b$ 指纹是 $b$，自己一组。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>$7a$ 和 $-2a$ 能合，<strong>因为</strong>它们有公因子 $a$，分配律给出 $7a - 2a = (7-2)a = 5a$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>$3b$ <strong>不能</strong>和它们合，<strong>因为</strong>它的字母是 $b$，和 $a$ 不是同一个字母，没有公因子，分配律用不上，只能原样留着。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>结果：$5a + 3b$。它已经最简——再没有两项是同类项了。</span></div>
+    </div>
+  </section>
+
+  <!-- 4 / 与其他知识点的联系 -->
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>往回看（这节课站在什么上面）：</b>它直接接着上一课的<strong>同类项</strong>——必须先判出"谁和谁同类"，才谈得上合并；还用到<strong>用字母表示数</strong>（式子代表的是一个数，所以才要求合并后值不变）；而合并合法的<strong>依据</strong>是更早的<strong>分配律</strong> $ax+bx=(a+b)x$，公因子就是那相同的字母部分。</li>
+      <li><b>往前看（这节课通向哪里）：</b>下一课<strong>去括号</strong>会先把括号拆开，拆完往往冒出一堆同类项，要靠合并收尾；再下一课<strong>整式加减</strong>，本质就是"把两个式子的项放在一起、反复合并同类项"。再往后到第三阶段解方程，移项之后两边也都要合并同类项，才能解出未知数。合并同类项是这一串运算反复用到的基本动作。</li>
+      <li><b>贯穿的抽象主线：</b><strong>分类 → 合并（系数相加、字母不变）→ 化简</strong>。上一课把项按字母指纹分了类，分清了不变量（字母部分）和可变量（系数）；这一课就利用"同类项有公因子"，用分配律把每一类的系数加起来，让式子变短而值不变。这条主线会一路撑起整个整式运算。</li>
+    </ul>
+  </section>
+
+  <!-- 5 / 练习 -->
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">练习</span></div>
+    <ol class="sr-practice">
+
+      <li><span class="sr-ptype">辨认</span>$5x^2$ 和 $-3x^2$ 这两项能不能合并？$5x^2$ 和 $5x^3$ 呢？
+        <details class="sr-answer"><summary>答案</summary><div>$5x^2$ 和 $-3x^2$ 能合并（指纹都是 $x^2$，是同类项）。$5x^2$ 和 $5x^3$ 不能（指数一个是 $2$、一个是 $3$，不是同类项）。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨认</span>$4ab$ 和 $4ba$ 能不能合并？为什么？
+        <details class="sr-answer"><summary>答案</summary><div>能。$ab = ba$，两项指纹相同、是同类项，公因子 $ab$ 可以提出来：$4ab + 4ba = (4+4)ab = 8ab$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">表示</span>把 $9y - 2y$ 的合并过程用 $(a+b)x$ 的形式写出来，再得最简结果。
+        <details class="sr-answer"><summary>答案</summary><div>$9y - 2y = (9-2)y = 7y$。先提出公因子 $y$，再把系数 $9$ 与 $-2$ 相加。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">表示</span>用一句话说明：合并 $8c^2 + c^2$ 时，"加"的是什么、"不变"的是什么，并写出结果。
+        <details class="sr-answer"><summary>答案</summary><div>相加的是系数 $8$ 和 $1$（$c^2$ 的系数是 $1$），不变的是字母部分 $c^2$。结果 $8c^2 + c^2 = (8+1)c^2 = 9c^2$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>计算 $12mn - 5mn$。
+        <details class="sr-answer"><summary>答案</summary><div>$12mn - 5mn = (12-5)mn = 7mn$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>计算 $-6a + 10a - a$。
+        <details class="sr-answer"><summary>答案</summary><div>三项都是指纹 $a$ 的同类项：$(-6+10-1)a = 3a$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>化简 $4x^2 + 3x - x^2 + 2x$。
+        <details class="sr-answer"><summary>答案</summary><div>分两组：$x^2$ 组 $4x^2 - x^2 = 3x^2$；$x$ 组 $3x + 2x = 5x$。结果 $3x^2 + 5x$（两项不同类，不能再合）。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">操作</span>化简 $7p + 2q - 3p + 6 - 5q - 1$。
+        <details class="sr-answer"><summary>答案</summary><div>$p$ 组 $7p-3p=4p$；$q$ 组 $2q-5q=-3q$；常数项 $6-1=5$。结果 $4p - 3q + 5$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">反推</span>某两个同类项合并后得 $5x^2$，其中一项是 $8x^2$，另一项是什么？
+        <details class="sr-answer"><summary>答案</summary><div>设另一项系数为 $b$，则 $8 + b = 5$，得 $b = -3$，另一项是 $-3x^2$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">反推</span>$3a^2 + k a^2 = 10a^2$，求 $k$。
+        <details class="sr-answer"><summary>答案</summary><div>系数相加：$3 + k = 10$，所以 $k = 7$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">反推</span>已知 $7mn - \square = 2mn$，方框里应填哪个项？
+        <details class="sr-answer"><summary>答案</summary><div>设填 $c\cdot mn$，则 $7 - c = 2$，$c = 5$，方框填 $5mn$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>有人写 $2x^2 + 3x^2 = 5x^4$。错在哪？正确结果是什么？
+        <details class="sr-answer"><summary>答案</summary><div>错在把指数也加了。合并只把系数相加（$2+3=5$），字母部分 $x^2$ 是公因子、原样不动。正确结果 $5x^2$。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>有人写 $3x + 2y = 5xy$。错在哪？
+        <details class="sr-answer"><summary>答案</summary><div>$3x$ 和 $2y$ 不是同类项（字母一个是 $x$、一个是 $y$），没有公因子，分配律用不上，不能合并。$3x + 2y$ 已经最简，原样保留。</div></details>
+      </li>
+
+      <li><span class="sr-ptype">辨错</span>有人写 $-4mn + 2mn = -6mn$。错在哪？
+        <details class="sr-answer"><summary>答案</summary><div>漏看了符号。系数相加是 $-4 + 2 = -2$，不是 $-6$。正确结果 $-2mn$。</div></details>
+      </li>
+
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>
