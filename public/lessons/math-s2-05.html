@@ -12,6 +12,7 @@
   onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
   /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
      the frontend can load directly (it does not inherit the app's app.css). */
   :root {
@@ -21,11 +22,10 @@
     --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
     --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
     --sr-radius:10px; --sr-radius-sm:8px;
-    --sr-display:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
-    --sr-body:"Hanken Grotesk",system-ui,sans-serif;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
     --sr-mono:"JetBrains Mono",ui-monospace,monospace;
   }
-  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap");
 
   * { box-sizing:border-box; }
   body {
@@ -88,6 +88,58 @@
 
 
   @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  .sr-eg { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: inline-flex; align-items: baseline; gap: 6px; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
 </style>
 </head>
 <body>
@@ -138,6 +190,12 @@
     <h3>正式定义</h3>
     <p>到这里就能给出标准说法了。</p>
     <p><span class="sr-term">同类项</span>：所含的字母<strong>相同</strong>，并且相同字母的指数（次数）也<strong>分别相同</strong>的项，叫做同类项。另外，几个常数项（不含字母的项）之间也都是同类项。</p>
+    <div class="sr-eg">
+      <span class="yes">$3x^2y$ 与 $-5x^2y$（指纹都是 $x^2y$）</span>
+      <span class="yes">$7$ 与 $-3$（都是常数项）</span>
+      <span class="no">$x^2$ 与 $x^3$（指数不同）</span>
+      <span class="no">$3x$ 与 $2y$（字母不同）</span>
+    </div>
     <p>读这句定义时盯住两个"相同"：字母要相同，每个字母的指数也要分别相同。两条都满足，就是同类项；只要有一条不满足，就不是。<strong>系数是大是小、是正是负，完全不参与判断。</strong></p>
 
     <div class="sr-note"><b>为什么字母顺序无所谓？</b> $xy$ 和 $yx$ 写法不同，但乘法可以交换，$xy = yx$，它们用到的字母和指数完全一样，指纹相同，所以是同类项。判断前可以先把字母按字母表排好，再比指纹。</div>
@@ -246,69 +304,92 @@
     </ul>
   </section>
 
-  <!-- 5 / 练习 -->
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    <p>下面几个问题不用算，只用一句话答出来，检查你是不是真的"懂"了。<strong>先自己答；答不上来，就回到上面「讲解」里找——这些概念课文里都讲过。</strong></p>
+    <ol class="sr-oral">
+      <li>什么叫<strong>同类项</strong>？用一句话说清楚。
+        <div class="sr-answer">所含字母相同、并且相同字母的指数也分别相同的项，就是同类项；几个常数项之间也算同类项。</div>
+      </li>
+      <li>什么是一个单项式的<strong>字母部分（指纹）</strong>？
+        <div class="sr-answer">就是把系数去掉后剩下的那串字母，连同每个字母的指数——它记录"用了哪些字母、各几次方"。</div>
+      </li>
+      <li>什么叫<strong>常数项</strong>？两个常数项是同类项吗？
+        <div class="sr-answer">不含字母的项就是常数项（如 $7$、$-3$）。任意两个常数项都是同类项。</div>
+      </li>
+      <li>判断两项是不是同类，为什么<strong>不看系数</strong>？
+        <div class="sr-answer">同类只由字母指纹决定，系数是几、正还是负都无关；$3x^2y$ 和 $-5x^2y$ 系数不同，照样是同类项。</div>
+      </li>
+      <li>$xy$ 和 $yx$ 是同类项吗？为什么？
+        <div class="sr-answer">是。$xy=yx$，用到的字母和指数完全一样，指纹相同；字母顺序只是写法。</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 6 / 练习 -->
   <section data-sr-section="practice">
-    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">练习</span></div>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
     <ol class="sr-practice">
 
       <li><span class="sr-ptype">辨认</span>$7xy$ 和 $-xy$ 是同类项吗？为什么？
-        <details class="sr-answer"><summary>答案</summary><div>是。字母部分都是 $xy$（$x$ 一次、$y$ 一次），指纹相同；系数 $7$ 和 $-1$ 不参与判断。</div></details>
+        <div class="sr-answer">是。字母部分都是 $xy$（$x$ 一次、$y$ 一次），指纹相同；系数 $7$ 和 $-1$ 不参与判断。</div>
       </li>
 
       <li><span class="sr-ptype">辨认</span>$5a^2$ 和 $5a$ 是同类项吗？为什么？
-        <details class="sr-answer"><summary>答案</summary><div>不是。字母都是 $a$，但一个是 $a^2$（二次）、一个是 $a$（一次），指数不分别相同，指纹不同。</div></details>
+        <div class="sr-answer">不是。字母都是 $a$，但一个是 $a^2$（二次）、一个是 $a$（一次），指数不分别相同，指纹不同。</div>
       </li>
 
       <li><span class="sr-ptype">辨认</span>下面三项里，哪两项是同类项：$3x^2y$、$\ -8xy^2$、$\ \tfrac{1}{2}x^2y$？
-        <details class="sr-answer"><summary>答案</summary><div>$3x^2y$ 和 $\tfrac{1}{2}x^2y$ 是同类项，指纹都是 $x^2y$。$-8xy^2$ 的指纹是 $xy^2$，$x$ 与 $y$ 的指数与前两项对不上，不同类。</div></details>
+        <div class="sr-answer">$3x^2y$ 和 $\tfrac{1}{2}x^2y$ 是同类项，指纹都是 $x^2y$。$-8xy^2$ 的指纹是 $xy^2$，$x$ 与 $y$ 的指数与前两项对不上，不同类。</div>
       </li>
 
       <li><span class="sr-ptype">表示</span>写出一个和 $-4m^2n$ 同类的项，并写出它的系数和字母部分。
-        <details class="sr-answer"><summary>答案</summary><div>例如 $9m^2n$（答案不唯一，只要指纹是 $m^2n$ 即可）。系数 $9$，字母部分 $m^2n$。</div></details>
+        <div class="sr-answer">例如 $9m^2n$（答案不唯一，只要指纹是 $m^2n$ 即可）。系数 $9$，字母部分 $m^2n$。</div>
       </li>
 
       <li><span class="sr-ptype">表示</span>用文字说出 $-6a^3$ 这个项的指纹（用到哪些字母、各几次方），再举一个同类的项。
-        <details class="sr-answer"><summary>答案</summary><div>指纹：只用字母 $a$，$a$ 是三次方。同类项如 $a^3$ 或 $5a^3$（指纹同为 $a^3$ 即可）。</div></details>
+        <div class="sr-answer">指纹：只用字母 $a$，$a$ 是三次方。同类项如 $a^3$ 或 $5a^3$（指纹同为 $a^3$ 即可）。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>把这些项分成几组同类项：$2p$、$\ 5q$、$\ -p$、$\ 3$、$\ 4q$、$\ -2$。
-        <details class="sr-answer"><summary>答案</summary><div>三组：指纹 $p$ 的 $\{2p,\,-p\}$；指纹 $q$ 的 $\{5q,\,4q\}$；常数项 $\{3,\,-2\}$。</div></details>
+        <div class="sr-answer">三组：指纹 $p$ 的 $\{2p,\,-p\}$；指纹 $q$ 的 $\{5q,\,4q\}$；常数项 $\{3,\,-2\}$。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>把这些项分成几组同类项：$x^2$、$\ 3xy$、$\ -2x^2$、$\ yx$、$\ 5$、$\ y^2$。
-        <details class="sr-answer"><summary>答案</summary><div>先把 $yx$ 排成 $xy$。四组：$\{x^2,\,-2x^2\}$（指纹 $x^2$）；$\{3xy,\,yx\}$（指纹 $xy$）；$\{y^2\}$（指纹 $y^2$，只有一个）；$\{5\}$（常数项）。</div></details>
+        <div class="sr-answer">先把 $yx$ 排成 $xy$。四组：$\{x^2,\,-2x^2\}$（指纹 $x^2$）；$\{3xy,\,yx\}$（指纹 $xy$）；$\{y^2\}$（指纹 $y^2$，只有一个）；$\{5\}$（常数项）。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>判断 $\dfrac{a b}{3}$（即 $\tfrac{1}{3}ab$）和 $-5ab$ 是不是同类项。
-        <details class="sr-answer"><summary>答案</summary><div>是。$\tfrac{1}{3}ab$ 的系数是 $\tfrac{1}{3}$，字母部分 $ab$；$-5ab$ 字母部分也是 $ab$，指纹相同。系数是分数也不影响判断。</div></details>
+        <div class="sr-answer">是。$\tfrac{1}{3}ab$ 的系数是 $\tfrac{1}{3}$，字母部分 $ab$；$-5ab$ 字母部分也是 $ab$，指纹相同。系数是分数也不影响判断。</div>
       </li>
 
       <li><span class="sr-ptype">反推</span>已知某项和 $7x^3y$ 是同类项，且系数是 $-2$，写出这个项。
-        <details class="sr-answer"><summary>答案</summary><div>$-2x^3y$。同类要求指纹与 $7x^3y$ 相同，即 $x^3y$；系数按题意取 $-2$。</div></details>
+        <div class="sr-answer">$-2x^3y$。同类要求指纹与 $7x^3y$ 相同，即 $x^3y$；系数按题意取 $-2$。</div>
       </li>
 
       <li><span class="sr-ptype">反推</span>$kx^2$ 与 $3x^n$ 是同类项。$n$ 必须是几？$k$ 可以是任何数吗？
-        <details class="sr-answer"><summary>答案</summary><div>$n$ 必须是 $2$（指数要分别相同）。$k$ 可以是任何数（系数不参与同类判断，只要 $k\neq 0$ 这一项仍带字母即可）。</div></details>
+        <div class="sr-answer">$n$ 必须是 $2$（指数要分别相同）。$k$ 可以是任何数（系数不参与同类判断，只要 $k\neq 0$ 这一项仍带字母即可）。</div>
       </li>
 
       <li><span class="sr-ptype">反推</span>$-3x^{a}y^{b}$ 与 $5x^2y^4$ 是同类项，求 $a$ 与 $b$。
-        <details class="sr-answer"><summary>答案</summary><div>指纹要相同：$a=2$，$b=4$。</div></details>
+        <div class="sr-answer">指纹要相同：$a=2$，$b=4$。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>小明说"$4x$ 和 $4y$ 是同类项，因为系数都是 4"。错在哪？
-        <details class="sr-answer"><summary>答案</summary><div>同类靠字母指纹，不靠系数。$4x$ 用字母 $x$，$4y$ 用字母 $y$，所含字母都不相同，根本不是同类项。系数相同纯属巧合。</div></details>
+        <div class="sr-answer">同类靠字母指纹，不靠系数。$4x$ 用字母 $x$，$4y$ 用字母 $y$，所含字母都不相同，根本不是同类项。系数相同纯属巧合。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>小红说"$2x^2$ 和 $3x^3$ 是同类项，因为字母都是 $x$"。错在哪？
-        <details class="sr-answer"><summary>答案</summary><div>只看了"字母相同"，漏了"指数也要分别相同"。$x^2$ 是二次、$x^3$ 是三次，指数不同，指纹不同，不是同类项。</div></details>
+        <div class="sr-answer">只看了"字母相同"，漏了"指数也要分别相同"。$x^2$ 是二次、$x^3$ 是三次，指数不同，指纹不同，不是同类项。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>小刚把 $5$ 和 $5x$ 归成一组，理由是"数字都是 5"。错在哪？
-        <details class="sr-answer"><summary>答案</summary><div>$5$ 是常数项（无字母），$5x$ 带字母 $x$，字母部分一个空、一个是 $x$，指纹不同，不能归一组。常数项只和别的常数项同类。</div></details>
+        <div class="sr-answer">$5$ 是常数项（无字母），$5x$ 带字母 $x$，字母部分一个空、一个是 $x$，指纹不同，不能归一组。常数项只和别的常数项同类。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>有人把 $ab$ 和 $ba$ 判成"不同类，因为写法不一样"。这个判断对吗？请说理由。
-        <details class="sr-answer"><summary>答案</summary><div>不对。$ab=ba$，用到的字母和指数完全相同，指纹一样，是同类项。字母顺序只是书写差别，不改变指纹。</div></details>
+        <div class="sr-answer">不对。$ab=ba$，用到的字母和指数完全相同，指纹一样，是同类项。字母顺序只是书写差别，不改变指纹。</div>
       </li>
 
     </ol>

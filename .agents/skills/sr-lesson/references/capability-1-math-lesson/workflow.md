@@ -12,12 +12,12 @@ Read `references/common/lesson-contract.md` first — it is the SSOT for structu
 
 2. **Gather grounding.** Skim the relevant stage in `docs/course-gen-guide-math.md` and the 掌握标准/禁止事项 in `docs/course-gen-guide-common.md`. Decide: the **motivating question** that makes this topic necessary (what limit/gap in the prior lessons it resolves, posed inside the math system); the abstract structure this lesson must install (the invariant/relationship under the surface); the symbols to introduce; the misconception to surface; and which figures need an SVG.
 
-3. **Author the five sections.** Write the inner HTML for `motivation / explain / examples / connections / practice` (练习 is LAST) per the contract. Section 1 poses the lead-in question (why this topic, what it solves, situated in the math system) — not a list of objectives. Math as KaTeX (`$...$`, `$$...$$`); figures as hand-authored inline `<svg>` with labels. Keep one concept, formal terms always landed, 深入浅出.
+3. **Author the six sections.** Write the inner HTML for `motivation / explain / examples / connections / oral / practice` (概念口试 is section 5, 练习 is LAST) per the contract. Section 1 poses the lead-in question (why this topic, what it solves, situated in the math system) — not a list of objectives. Math as KaTeX (`$...$`, `$$...$$`); figures as hand-authored inline `<svg>` with labels. Keep one concept, formal terms always landed, 深入浅出.
 
 4. **Assemble the HTML.** Start from `assets/lesson-template.html`. Replace every `{{...}}` placeholder:
    - `{{EYEBROW}}` e.g. `数学 · 第 <stage> 阶段`; `{{TITLE}}`, `{{CONCEPT}}`.
    - `{{CHIPS}}` a few `<span class="sr-chip">` (e.g. concept tag) and optionally a green chip for the prerequisite.
-   - `{{MOTIVATION}} {{EXPLAIN}} {{EXAMPLES}} {{CONNECTIONS}} {{PRACTICE}}`.
+   - `{{MOTIVATION}} {{EXPLAIN}} {{EXAMPLES}} {{CONNECTIONS}} {{ORAL}} {{PRACTICE}}`.
    Leave no `{{` placeholder behind. Write the result to `public/lessons/<id>.html` (create `public/lessons/` if missing).
 
 5. **Self-check the core question** (the lesson-contract first cause): could a learner read this and still not understand the concept or its abstract structure, because something is vague, wrong, dumbed-down, or missing? Fix obvious gaps before the gate.

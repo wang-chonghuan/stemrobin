@@ -12,6 +12,7 @@
   onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
   /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
      the frontend can load directly (it does not inherit the app's app.css). */
   :root {
@@ -21,11 +22,10 @@
     --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
     --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
     --sr-radius:10px; --sr-radius-sm:8px;
-    --sr-display:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
-    --sr-body:"Hanken Grotesk",system-ui,sans-serif;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
     --sr-mono:"JetBrains Mono",ui-monospace,monospace;
   }
-  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap");
 
   * { box-sizing:border-box; }
   body {
@@ -88,6 +88,58 @@
 
 
   @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  .sr-eg { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: inline-flex; align-items: baseline; gap: 6px; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
 </style>
 </head>
 <body>
@@ -124,9 +176,15 @@
     {{CONNECTIONS}}
   </section>
 
-  <!-- 5 / 练习 -->
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    {{ORAL}}
+  </section>
+
+  <!-- 6 / 练习 -->
   <section data-sr-section="practice">
-    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">练习</span></div>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
     {{PRACTICE}}
   </section>
 

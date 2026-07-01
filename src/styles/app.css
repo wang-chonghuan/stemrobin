@@ -379,6 +379,36 @@ a.sr-out-lesson.ready:hover {
   color: var(--sr-ink);
 }
 
+/* header icon button (下载 PDF) — right side of the lesson header */
+.sr-icontool {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--sr-line);
+  border-radius: 9px;
+  background: var(--sr-card);
+  color: var(--sr-ink-soft);
+  cursor: pointer;
+}
+.sr-icontool:hover {
+  background: var(--sr-panel);
+  color: var(--sr-ink);
+}
+.sr-icontool:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.sr-spin {
+  animation: sr-spin 0.9s linear infinite;
+}
+@keyframes sr-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* scrim behind the mobile catalog drawer */
 .sr-scrim {
   display: none;

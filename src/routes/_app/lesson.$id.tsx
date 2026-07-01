@@ -1,32 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Menu } from 'lucide-react'
+import { ArrowLeft, Download, Menu } from 'lucide-react'
 
-import { getLesson } from '~/lib/lessons'
+import { getLessonLabel } from '~/lib/curriculum'
 import { useLayoutStore } from '~/lib/layout-store'
 
 export const Route = createFileRoute('/_app/lesson/$id')({
   component: LessonView,
-  loader: async ({ params }) => {
-    const meta = await getLesson({ data: params.id })
-    return { id: params.id, meta }
-  },
+  loader: async ({ params }) => ({ id: params.id }),
 })
 
 function LessonView() {
-  const { id, meta } = Route.useLoaderData()
+  const { id } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const label = getLessonLabel(id)
   const src = `/lessons/${id}.html`
 
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
-        <button
-          className="sr-navtoggle"
-          aria-label="打开目录"
-          type="button"
-          onClick={() => setDrawer(true)}
-        >
+        <button className="sr-navtoggle" aria-label="打开目录" type="button" onClick={() => setDrawer(true)}>
           <Menu size={18} />
         </button>
         <Link
@@ -36,40 +30,53 @@ function LessonView() {
         >
           <ArrowLeft size={16} /> 返回
         </Link>
-        <span className="sr-d-title">{meta?.title ?? id}</span>
-        {meta?.status === 'draft' && <span className="sr-tag" style={{ marginLeft: 'auto' }}>草稿</span>}
+        <span className="sr-d-title">{label}</span>
+        <div style={{ marginLeft: 'auto' }}>
+          <a
+            className="sr-icontool"
+            href={`/lessons/${id}.pdf`}
+            download={`${label}.pdf`}
+            aria-label="下载 PDF"
+            title="下载 PDF"
+          >
+            <Download size={17} />
+          </a>
+        </div>
       </div>
       <div className="sr-d-scroll" style={{ padding: 0 }}>
-        <LessonFrame src={src} title={meta?.title ?? id} />
+        <LessonFrame frameRef={iframeRef} src={src} title={label} />
       </div>
     </main>
   )
 }
 
-function LessonFrame({ src, title }: { src: string; title: string }) {
-  const ref = useRef<HTMLIFrameElement>(null)
+function LessonFrame({
+  frameRef,
+  src,
+  title,
+}: {
+  frameRef: React.RefObject<HTMLIFrameElement | null>
+  src: string
+  title: string
+}) {
   const [height, setHeight] = useState(600)
 
   useEffect(() => {
-    const iframe = ref.current
+    const iframe = frameRef.current
     if (!iframe) return
 
     let observer: ResizeObserver | null = null
     const timers: ReturnType<typeof setTimeout>[] = []
 
     const measure = () => {
-      // Measure body.scrollHeight, NOT documentElement.scrollHeight: the latter is
-      // clamped to max(content, iframe viewport), so once the iframe grows (e.g. a
-      // learner opens an answer) it can never shrink back — leaving blank space.
-      // body height is content-driven, so it shrinks correctly when answers close.
+      // body.scrollHeight (content-driven), NOT documentElement.scrollHeight
+      // (clamped to the iframe viewport, so it could never shrink back).
       const h = iframe.contentDocument?.body?.scrollHeight
       if (h && h > 0) setHeight(h)
     }
 
     const setup = () => {
       measure()
-      // KaTeX renders asynchronously after its deferred scripts run, which reflows
-      // the document. Track the body so the iframe grows to the final height.
       const body = iframe.contentDocument?.body
       if (body && 'ResizeObserver' in window) {
         observer?.disconnect()
@@ -80,8 +87,6 @@ function LessonFrame({ src, title }: { src: string; title: string }) {
     }
 
     iframe.addEventListener('load', setup)
-    // Guard the race where the iframe (cached/fast) already fired `load` before
-    // this effect attached the listener — set up immediately if it's done.
     if (iframe.contentDocument?.readyState === 'complete') setup()
 
     return () => {
@@ -89,14 +94,14 @@ function LessonFrame({ src, title }: { src: string; title: string }) {
       observer?.disconnect()
       timers.forEach(clearTimeout)
     }
-  }, [src])
+  }, [frameRef, src])
 
   return (
     <iframe
-      ref={ref}
+      ref={frameRef}
       src={src}
       title={title}
-      sandbox="allow-scripts allow-same-origin"
+      sandbox="allow-scripts allow-same-origin allow-modals"
       style={{ width: '100%', height, border: 0, display: 'block' }}
     />
   )

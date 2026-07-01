@@ -23,7 +23,9 @@ If yes, the gate fails — regardless of how polished the HTML looks.
 
 ## Hard Checks (mechanical — the saver enforces these too)
 
-- All five `data-sr-section` anchors present, in order: motivation, explain, examples, connections, practice (练习 last).
+- All six `data-sr-section` anchors present, in order: motivation, explain, examples, connections, oral, practice (概念口试 then 练习 last).
+- Each definition in 讲解 is immediately followed by a `<div class="sr-eg">` with 正例/反例.
+- 概念口试 asks 4–6 conceptual (non-computational) questions covering this lesson's terms/definitions.
 - No leftover `{{...}}` placeholder.
 - KaTeX is wired (the template `<script>` for auto-render is intact) and math uses `$`/`$$` delimiters.
 - At least one `<figure class="sr-fig"><svg ...>` when the concept is spatial/graphical (number line, coordinate, geometry, function) — and each figure has `<text>` labels.

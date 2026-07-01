@@ -42,7 +42,7 @@ if (!existsSync(htmlSrc)) fail(`html file not found: ${args.html}`)
 const html = readFileSync(htmlSrc, 'utf8')
 
 const problems = []
-for (const sec of ['motivation', 'explain', 'examples', 'connections', 'practice']) {
+for (const sec of ['motivation', 'explain', 'examples', 'connections', 'oral', 'practice']) {
   if (!html.includes(`data-sr-section="${sec}"`)) problems.push(`missing section anchor: ${sec}`)
 }
 if (!/katex/i.test(html)) problems.push('KaTeX not wired (no katex reference)')
@@ -57,6 +57,39 @@ const dest = join(repoRoot, 'public', htmlPathRel)
 mkdirSync(dirname(dest), { recursive: true })
 if (resolve(dest) !== resolve(htmlSrc)) copyFileSync(htmlSrc, dest)
 console.log(`✓ static file: public/${htmlPathRel}`)
+
+// --- pre-render a print-ready PDF (headless Chromium) next to the HTML ---
+// Done here, at authoring time, so the deployed app serves a STATIC pdf and never
+// needs a browser at runtime. Uses the Playwright-managed Chromium, falling back
+// to the system Chrome. A CJK web font (in the lesson CSS) makes Chinese embed.
+const pdfPathRel = `lessons/${args.id}.pdf`
+try {
+  const { chromium } = await import('playwright-core')
+  let browser
+  try {
+    browser = await chromium.launch()
+  } catch {
+    browser = await chromium.launch({ channel: 'chrome' })
+  }
+  try {
+    const page = await browser.newPage()
+    await page.setContent(html, { waitUntil: 'networkidle' })
+    await page
+      .waitForFunction(() => window.katex && document.querySelectorAll('.katex').length > 0, null, { timeout: 6000 })
+      .catch(() => {})
+    await page.evaluate(() => document.fonts.ready.then(() => true)) // wait for the CJK web font
+    await page.waitForTimeout(400)
+    await page.emulateMedia({ media: 'print' })
+    const pdf = await page.pdf({ printBackground: true, preferCSSPageSize: true })
+    writeFileSync(join(repoRoot, 'public', pdfPathRel), pdf)
+    console.log(`✓ pdf: public/${pdfPathRel} (${Math.round(pdf.length / 1024)} KB)`)
+  } finally {
+    await browser.close()
+  }
+} catch (e) {
+  // Non-fatal: HTML + DB still persist even if no browser is available here.
+  console.error(`! PDF not generated (${(e && e.message) || e}). Install a browser to enable it.`)
+}
 
 // --- DB connection from .env ---
 const envPath = join(repoRoot, '.env')

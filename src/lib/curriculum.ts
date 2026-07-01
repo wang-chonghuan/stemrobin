@@ -34,7 +34,8 @@ export const CURRICULUM: OutlineSubject[] = [
           { title: '代数式的值', id: 'math-s2-04' },
           { title: '同类项', id: 'math-s2-05' },
           { title: '合并同类项', id: 'math-s2-06' },
-          { title: '去括号' }, { title: '整式加减' },
+          { title: '去括号', id: 'math-s2-07' },
+          { title: '整式加减' },
         ],
       },
       {
@@ -143,6 +144,19 @@ export const CURRICULUM: OutlineSubject[] = [
     ],
   },
 ]
+
+// "2.4 代数式的值" — stage.order from the id + title from the outline. Used as the
+// lesson-view header (no raw id shown). Falls back to the id if not found.
+export function getLessonLabel(id: string): string {
+  const m = id.match(/^(?:math|physics)-s(\d+)-(\d+)$/)
+  for (const s of CURRICULUM) {
+    for (const st of s.stages) {
+      const l = st.lessons.find((x) => x.id === id)
+      if (l) return m ? `${Number(m[1])}.${Number(m[2])} ${l.title}` : l.title
+    }
+  }
+  return m ? `${Number(m[1])}.${Number(m[2])}` : id
+}
 
 // Flat list of lessons that actually have a page (clickable).
 export const AVAILABLE_LESSONS: { id: string; title: string; subject: string }[] =

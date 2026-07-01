@@ -26,9 +26,19 @@ Three colours carry the identity — teal-blue, green, pure white — over the n
 
 - One lesson renders inside `.sr-lesson` (max-width **760px**, centered). Content padding is a fixed, deliberate **`24px 22px 40px`** (top / sides / bottom). The bottom (40px) is intentional — enough that the last item isn't jammed, short enough not to look like a gap. Do not change it per-lesson.
 - Header: `.sr-l-eyebrow` (e.g. `数学 · 第 2 阶段`) · `.sr-l-title` · `.sr-l-concept`.
-- Five sections, in order, each a `.sr-sec-label` (a `.sr-sec-num` badge + `.sr-sec-name`) then content:
-  1. **为什么学这个** (引子问题) 2. **讲解** 3. **例题** 4. **与其他知识点的联系** 5. **练习**.
-- **练习 is the last section (5)** — the structured part (exercises); sections 1–4 are 课文.
+- Six sections, in order, each a `.sr-sec-label` (a `.sr-sec-num` badge + `.sr-sec-name`) then content:
+  1. **为什么学这个** (引子问题) 2. **讲解** 3. **例题** 4. **与其他知识点的联系** 5. **概念口试** 6. **练习**.
+- **概念口试 (5)** = `<ol class="sr-oral">` of 4–6 short conceptual Q&A (builds the concept network, not calculation). **练习 (6, last)** = the exercises. In both, each answer is a hidden `<div class="sr-answer">` — **not revealable by the learner** (no `<details>` toggle).
+
+## Runtime features (v2)
+
+Every lesson carries these; the app's lesson view drives the two buttons.
+
+- **Responsive math** — a math line must never overflow the phone width; keep expressions short. Long display math scrolls inside its own box (`.katex-display { overflow-x:auto }`), never the page.
+- **定义正例/反例** — right after each definition in 讲解, a `<div class="sr-eg">` with `<span class="yes">正例…</span>` / `<span class="no">反例…</span>` (2–4 short items) illustrates it. Not worked examples.
+- **答案对学生完全隐藏、不可点开** — each answer is a `<div class="sr-answer">…</div>` (NOT `<details>` — no toggle, the learner cannot reveal it). CSS keeps `.sr-answer { display:none }`; only a backend signal (`body.sr-reveal-answers`) unlocks them for teacher/answer-key. Never shown in the PDF.
+- **下载 PDF** — the PDF is **pre-generated at save time** by `scripts/save-lesson.mjs` (headless Chromium via playwright-core, at authoring/build time only) into a static `public/lessons/<id>.pdf`. The download button is a plain `<a href="/lessons/<id>.pdf" download>` — instant, no print dialog, and the deployed app needs **no browser at runtime**. Page size **A4**; print rules: 练习 starts on a new page (`page-break-before`), each practice `<li>` gets full-width rules above/below with writing space (groundwork for machine-reading handwritten work), answers hidden.
+- **Fonts (critical for the PDF)** — the Google-Fonts `@import` (Bricolage / Hanken / JetBrains Mono / **Noto Sans SC**) MUST be the **first line inside `<style>`, before `:root`** — an `@import` after any rule is invalid per spec and silently dropped (this once made web fonts fail and Chinese vanish from the PDF). **Noto Sans SC** must be in the `--sr-body` / `--sr-display` stacks so Chinese has a real, embeddable font (headless-Chromium PDF does not apply the system CJK fallback).
 
 ## Inline styling — bold, colored terms, highlighted sentences
 

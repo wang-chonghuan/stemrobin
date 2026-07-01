@@ -12,6 +12,7 @@
   onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
 
 <style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
   /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
      the frontend can load directly (it does not inherit the app's app.css). */
   :root {
@@ -21,11 +22,10 @@
     --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
     --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
     --sr-radius:10px; --sr-radius-sm:8px;
-    --sr-display:"Bricolage Grotesque","Hanken Grotesk",system-ui,sans-serif;
-    --sr-body:"Hanken Grotesk",system-ui,sans-serif;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
     --sr-mono:"JetBrains Mono",ui-monospace,monospace;
   }
-  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap");
 
   * { box-sizing:border-box; }
   body {
@@ -88,6 +88,58 @@
 
 
   @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  .sr-eg { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: inline-flex; align-items: baseline; gap: 6px; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
 </style>
 </head>
 <body>
@@ -122,6 +174,10 @@
     <p>代入以后，式子里就再没有字母了，只剩数和运算，按运算算出来的那个数，就叫这个式子的<span class="sr-term">代数式的值</span>。写出来是这样：</p>
     <div class="sr-mathblock">$$\text{当 } a=3 \text{ 时，}\quad 2a+3 = 2\times 3 + 3 = 6 + 3 = 9.$$</div>
     <p>所以“当 $a=3$ 时，$2a+3$ 的值是 $9$”。整件事就两步：<strong>先代入（把字母换成数），再按运算算出那个数。</strong></p>
+    <div class="sr-eg">
+      <span class="yes">“当 $a=3$ 时 $2a+3=9$”里的 $9$，是一个算出来的数——它是值</span>
+      <span class="no">$2a+3$ 本身还带着字母、没定下来，不是“值”</span>
+    </div>
 
     <h3>换个数，值就变了</h3>
     <p>把 $a$ 换成别的数，再算一遍。式子一个字没改，但算出来的值不一样：</p>
@@ -237,69 +293,92 @@
     </ul>
   </section>
 
-  <!-- 5 / 练习 -->
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    <p>下面几个问题不用算，只用一句话答出来，检查你是不是真的"懂"了。<strong>先自己答；答不上来，就回到上面「讲解」里找——这些概念课文里都讲过。</strong></p>
+    <ol class="sr-oral">
+      <li>什么叫<strong>代入</strong>？用一句话说清楚。
+        <div class="sr-answer">把代数式里的每个字母换成给定的具体的数，这个动作就叫代入。</div>
+      </li>
+      <li>"代数式的值"是一个式子，还是一个数？
+        <div class="sr-answer">是一个数——把字母代入具体数、按运算算出来的那个结果。式子是规则，值是这条规则对某个输入给出的输出。</div>
+      </li>
+      <li>同一个式子 $2a+3$，为什么 $a=3$ 和 $a=0$ 算出的值不一样？
+        <div class="sr-answer">式子这条规则没变，变的是代入的数。规则对不同输入给出不同输出，所以值会变。</div>
+      </li>
+      <li>代负数时为什么要加括号？
+        <div class="sr-answer">不加括号会把符号算错：$a=-2$ 时 $a^2$ 应是 $(-2)^2=4$，写成 $-2^2$ 就成了 $-4$，意思完全不同。</div>
+      </li>
+      <li>式子里有两个字母（如 $3x+2y$），求值时能只代一个吗？
+        <div class="sr-answer">不能。每个字母都要代入它给定的数，漏掉一个就算错。</div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 6 / 练习 -->
   <section data-sr-section="practice">
-    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">练习</span></div>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
     <ol class="sr-practice">
 
       <li><span class="sr-ptype">辨认</span>“代数式的值”是靠什么定下来的？换句话说，$2a+3$ 的值取决于什么？
-        <details class="sr-answer"><summary>答案</summary><div>取决于代入的数（$a$ 取几）。式子这条规则不变，代入的输入不同，算出的值一般就不同；不给 $a$ 一个具体的数，式子就没有确定的值。</div></details>
+        <div class="sr-answer">取决于代入的数（$a$ 取几）。式子这条规则不变，代入的输入不同，算出的值一般就不同；不给 $a$ 一个具体的数，式子就没有确定的值。</div>
       </li>
 
       <li><span class="sr-ptype">辨认</span>下面哪一步叫“代入”：把 $3x$ 里的 $x$ 换成 $4$ 写成 $3\times 4$，还是把 $3\times 4$ 算成 $12$？
-        <details class="sr-answer"><summary>答案</summary><div>把 $x$ 换成 $4$、写成 $3\times 4$ 这一步叫代入；后面把 $3\times 4$ 算成 $12$ 是“按运算算出值”。求值 = 先代入，再计算。</div></details>
+        <div class="sr-answer">把 $x$ 换成 $4$、写成 $3\times 4$ 这一步叫代入；后面把 $3\times 4$ 算成 $12$ 是“按运算算出值”。求值 = 先代入，再计算。</div>
       </li>
 
       <li><span class="sr-ptype">表示</span>把“当 $a=5$ 时求 $2a-1$ 的值”写成完整的代入与计算过程。
-        <details class="sr-answer"><summary>答案</summary><div>$2a-1 = 2\times 5 - 1 = 10 - 1 = 9$。当 $a=5$ 时值是 $9$。</div></details>
+        <div class="sr-answer">$2a-1 = 2\times 5 - 1 = 10 - 1 = 9$。当 $a=5$ 时值是 $9$。</div>
       </li>
 
       <li><span class="sr-ptype">表示</span>用“输入 / 规则 / 输出”这三个词，说清楚“求 $4b$ 在 $b=3$ 时的值”是在做什么。
-        <details class="sr-answer"><summary>答案</summary><div>规则是“把输入乘 $4$”，输入是 $b=3$，把它喂进规则得到输出 $4\times 3 = 12$，$12$ 就是这个式子在 $b=3$ 时的值。</div></details>
+        <div class="sr-answer">规则是“把输入乘 $4$”，输入是 $b=3$，把它喂进规则得到输出 $4\times 3 = 12$，$12$ 就是这个式子在 $b=3$ 时的值。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>当 $a=6$ 时，求 $3a-4$ 的值。
-        <details class="sr-answer"><summary>答案</summary><div>$3\times 6 - 4 = 18 - 4 = 14$。</div></details>
+        <div class="sr-answer">$3\times 6 - 4 = 18 - 4 = 14$。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>当 $a=-3$ 时，求 $a^2+2$ 的值。（注意负数加括号）
-        <details class="sr-answer"><summary>答案</summary><div>$(-3)^2 + 2 = 9 + 2 = 11$。先算 $(-3)^2=9$（负负得正），再加 $2$。</div></details>
+        <div class="sr-answer">$(-3)^2 + 2 = 9 + 2 = 11$。先算 $(-3)^2=9$（负负得正），再加 $2$。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>当 $x=2,\ y=5$ 时，求 $3x+2y$ 的值。
-        <details class="sr-answer"><summary>答案</summary><div>$3\times 2 + 2\times 5 = 6 + 10 = 16$。两个字母都要代入。</div></details>
+        <div class="sr-answer">$3\times 2 + 2\times 5 = 6 + 10 = 16$。两个字母都要代入。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>当 $a=4$ 时，求 $\dfrac{a+2}{3}$ 的值。
-        <details class="sr-answer"><summary>答案</summary><div>$\dfrac{4+2}{3} = \dfrac{6}{3} = 2$。先算分数线上面的 $4+2=6$，再除以 $3$。</div></details>
+        <div class="sr-answer">$\dfrac{4+2}{3} = \dfrac{6}{3} = 2$。先算分数线上面的 $4+2=6$，再除以 $3$。</div>
       </li>
 
       <li><span class="sr-ptype">操作</span>当 $a=-1$ 时，求 $2a^2-a$ 的值。
-        <details class="sr-answer"><summary>答案</summary><div>$2\times(-1)^2 - (-1) = 2\times 1 + 1 = 2 + 1 = 3$。先算 $(-1)^2=1$，再乘 $2$；减 $(-1)$ 等于加 $1$。</div></details>
+        <div class="sr-answer">$2\times(-1)^2 - (-1) = 2\times 1 + 1 = 2 + 1 = 3$。先算 $(-1)^2=1$，再乘 $2$；减 $(-1)$ 等于加 $1$。</div>
       </li>
 
       <li><span class="sr-ptype">反推</span>当 $a$ 取几时，$a+3$ 的值等于 $7$？
-        <details class="sr-answer"><summary>答案</summary><div>$a=4$。因为要让“输入 $+3$”得到 $7$，输入必须是 $4$（$4+3=7$）。这是从输出倒推输入。</div></details>
+        <div class="sr-answer">$a=4$。因为要让“输入 $+3$”得到 $7$，输入必须是 $4$（$4+3=7$）。这是从输出倒推输入。</div>
       </li>
 
       <li><span class="sr-ptype">反推</span>已知 $2a=10$，$a$ 取几？
-        <details class="sr-answer"><summary>答案</summary><div>$a=5$。要让“输入乘 $2$”得到 $10$，输入必须是 $5$（$2\times 5=10$）。</div></details>
+        <div class="sr-answer">$a=5$。要让“输入乘 $2$”得到 $10$，输入必须是 $5$（$2\times 5=10$）。</div>
       </li>
 
       <li><span class="sr-ptype">反推</span>某个式子是 $3x$。要让它的值等于 $0$，$x$ 该取几？取别的数还能得 $0$ 吗？
-        <details class="sr-answer"><summary>答案</summary><div>$x=0$（$3\times 0 = 0$）。取别的数不行：只要 $x\neq 0$，$3x$ 就不等于 $0$。</div></details>
+        <div class="sr-answer">$x=0$（$3\times 0 = 0$）。取别的数不行：只要 $x\neq 0$，$3x$ 就不等于 $0$。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>小华算“当 $a=-2$ 时 $a^2$”，写成 $a^2=-2^2=-4$。错在哪？正确是多少？
-        <details class="sr-answer"><summary>答案</summary><div>错在代负数没加括号。应写 $(-2)^2=(-2)\times(-2)=4$，负负得正。$-2^2$ 表示的是 $-(2^2)=-4$，和 $(-2)^2$ 不是一回事。正确值是 $4$。</div></details>
+        <div class="sr-answer">错在代负数没加括号。应写 $(-2)^2=(-2)\times(-2)=4$，负负得正。$-2^2$ 表示的是 $-(2^2)=-4$，和 $(-2)^2$ 不是一回事。正确值是 $4$。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>小丽求“当 $x=2,\ y=5$ 时 $3x+2y$”，只写了 $3\times 2 = 6$ 就说值是 $6$。错在哪？
-        <details class="sr-answer"><summary>答案</summary><div>漏代了字母 $y$。式子有两个字母，$x$ 和 $y$ 都要代入。正确是 $3\times 2 + 2\times 5 = 6 + 10 = 16$。</div></details>
+        <div class="sr-answer">漏代了字母 $y$。式子有两个字母，$x$ 和 $y$ 都要代入。正确是 $3\times 2 + 2\times 5 = 6 + 10 = 16$。</div>
       </li>
 
       <li><span class="sr-ptype">辨错</span>小刚求“当 $a=3$ 时 $2a+3$”，从左往右算成 $2a+3 = 2\times(3+3) = 12$。错在哪？
-        <details class="sr-answer"><summary>答案</summary><div>错在运算顺序。代入后是 $2\times 3 + 3$，要先乘后加：$2\times 3 = 6$，再 $6+3=9$，不能先把 $3+3$ 加起来。正确值是 $9$。</div></details>
+        <div class="sr-answer">错在运算顺序。代入后是 $2\times 3 + 3$，要先乘后加：$2\times 3 = 6$，再 $6+3=9$，不能先把 $3+3$ 加起来。正确值是 $9$。</div>
       </li>
 
     </ol>
