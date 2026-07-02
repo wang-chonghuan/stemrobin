@@ -35,7 +35,7 @@ export const CURRICULUM: OutlineSubject[] = [
           { title: '同类项', id: 'math-s2-05' },
           { title: '合并同类项', id: 'math-s2-06' },
           { title: '去括号', id: 'math-s2-07' },
-          { title: '整式加减' },
+          { title: '整式加减', id: 'math-s2-08' },
         ],
       },
       {
