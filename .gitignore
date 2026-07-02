@@ -141,3 +141,7 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# n-im / local agent scratch
+.tmp/
+.getagoal/
