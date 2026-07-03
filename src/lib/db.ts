@@ -15,6 +15,12 @@ export function sql(): ReturnType<typeof postgres> {
   _sql = postgres(url, {
     ssl: 'require',
     max: 5,
+    // Recycle idle/old connections so we never issue a query on a socket that
+    // Azure Postgres already closed after the app sat idle (which otherwise made
+    // the first request after a pause fail).
+    idle_timeout: 20,
+    max_lifetime: 60 * 30,
+    connect_timeout: 15,
     // Quoted because the schema name contains a hyphen.
     connection: { search_path: '"stemrobin-schema"' },
   })

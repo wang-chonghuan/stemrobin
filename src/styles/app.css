@@ -738,3 +738,8 @@ a.sr-out-lesson.ready:hover {
 }
 .sr-login-field input:focus { outline: 2px solid var(--sr-blue); outline-offset: 1px; border-color: var(--sr-blue); }
 .sr-login-error { color: var(--sr-green-deep); font-size: 13px; }
+.sr-quiz-err {
+  margin-top: 12px; padding: 8px 10px; font-size: 13px;
+  color: var(--sr-ink); background: var(--sr-panel);
+  border: 1px solid var(--sr-line); border-radius: var(--sr-radius-sm);
+}

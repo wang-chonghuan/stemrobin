@@ -39,6 +39,7 @@ export function QuizDrawer({
   const [idx, setIdx] = useState(0)
   const [results, setResults] = useState<Record<number, Verdict>>({})
   const [picking, setPicking] = useState<number | null>(null) // optimistic click
+  const [err, setErr] = useState<string | null>(null)
   const qRef = useRef<HTMLDivElement>(null) // prompt + options (typeset once/card)
   const answerRef = useRef<HTMLDivElement>(null) // revealed answer (typeset on result)
 
@@ -47,6 +48,7 @@ export function QuizDrawer({
     setIdx(0)
     setResults({})
     setPicking(null)
+    setErr(null)
     getCurrentUser().then((u) => setLoggedIn(!!u))
     getLessonQuestions({ data: lessonId }).then(setQuestions)
   }, [open, lessonId])
@@ -74,6 +76,7 @@ export function QuizDrawer({
 
   async function choose(optIndex: number) {
     if (!q || picking != null || results[q.id]) return
+    setErr(null)
     setPicking(optIndex) // highlight the click immediately
     try {
       const r = await recordAnswer({
@@ -81,9 +84,14 @@ export function QuizDrawer({
       })
       if ('error' in r) {
         if (r.error.includes('登录')) setLoggedIn(false)
+        else setErr(r.error)
       } else {
         setResults((m) => ({ ...m, [q.id]: { ...r, chosen: optIndex } }))
       }
+    } catch {
+      // Network / cold-start / transient backend error — surface it so the tap
+      // isn't a silent no-op; the option stays clickable to retry.
+      setErr('网络不太顺，请再点一次这个选项重试。')
     } finally {
       setPicking(null)
     }
@@ -187,6 +195,8 @@ export function QuizDrawer({
                 )}
               </div>
 
+              {err && <div className="sr-quiz-err">{err}</div>}
+
               {result && (
                 <div className="sr-quiz-feedback">
                   <div className="sr-quiz-answer" ref={answerRef}>
@@ -204,7 +214,10 @@ export function QuizDrawer({
               type="button"
               className="sr-btn ghost"
               disabled={idx === 0}
-              onClick={() => setIdx((i) => Math.max(0, i - 1))}
+              onClick={() => {
+                setErr(null)
+                setIdx((i) => Math.max(0, i - 1))
+              }}
             >
               上一题
             </button>
@@ -212,7 +225,10 @@ export function QuizDrawer({
               type="button"
               className="sr-btn"
               disabled={idx >= questions.length - 1}
-              onClick={() => setIdx((i) => Math.min(questions.length - 1, i + 1))}
+              onClick={() => {
+                setErr(null)
+                setIdx((i) => Math.min(questions.length - 1, i + 1))
+              }}
             >
               下一题
             </button>
