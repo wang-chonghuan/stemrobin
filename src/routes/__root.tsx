@@ -18,7 +18,23 @@ export const Route = createRootRoute({
       },
       { title: 'StemRobin' },
     ],
-    links: [{ rel: 'stylesheet', href: appCss }],
+    links: [
+      { rel: 'stylesheet', href: appCss },
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
+      },
+    ],
+    scripts: [
+      {
+        src: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js',
+        defer: true,
+      },
+      {
+        src: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js',
+        defer: true,
+      },
+    ],
   }),
   component: RootComponent,
 })

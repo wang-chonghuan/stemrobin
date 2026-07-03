@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as AppLoginRouteImport } from './routes/_app/login'
 import { Route as AppLessonIdRouteImport } from './routes/_app/lesson.$id'
 
 const AppRoute = AppRouteImport.update({
@@ -22,6 +23,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AppRoute,
 } as any)
+const AppLoginRoute = AppLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppLessonIdRoute = AppLessonIdRouteImport.update({
   id: '/lesson/$id',
   path: '/lesson/$id',
@@ -30,24 +36,27 @@ const AppLessonIdRoute = AppLessonIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
+  '/login': typeof AppLoginRoute
   '/lesson/$id': typeof AppLessonIdRoute
 }
 export interface FileRoutesByTo {
+  '/login': typeof AppLoginRoute
   '/': typeof AppIndexRoute
   '/lesson/$id': typeof AppLessonIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
+  '/_app/login': typeof AppLoginRoute
   '/_app/': typeof AppIndexRoute
   '/_app/lesson/$id': typeof AppLessonIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/lesson/$id'
+  fullPaths: '/' | '/login' | '/lesson/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/lesson/$id'
-  id: '__root__' | '/_app' | '/_app/' | '/_app/lesson/$id'
+  to: '/login' | '/' | '/lesson/$id'
+  id: '__root__' | '/_app' | '/_app/login' | '/_app/' | '/_app/lesson/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -70,6 +79,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/login': {
+      id: '/_app/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof AppLoginRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/lesson/$id': {
       id: '/_app/lesson/$id'
       path: '/lesson/$id'
@@ -81,11 +97,13 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppLoginRoute: typeof AppLoginRoute
   AppIndexRoute: typeof AppIndexRoute
   AppLessonIdRoute: typeof AppLessonIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppLoginRoute: AppLoginRoute,
   AppIndexRoute: AppIndexRoute,
   AppLessonIdRoute: AppLessonIdRoute,
 }

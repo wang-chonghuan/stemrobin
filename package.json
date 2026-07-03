@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.9",
-    "@supabase/supabase-js": "^2.108.2",
     "@tailwindcss/vite": "^4.3.1",
     "@tanstack/react-router": "latest",
     "@tanstack/react-start": "latest",
     "@vitejs/plugin-react": "latest",
     "lucide-react": "^1.21.0",
+    "postgres": "^3.4.9",
     "react": "latest",
     "react-dom": "latest",
     "tailwindcss": "^4.3.1",
@@ -25,10 +25,10 @@
   },
   "devDependencies": {
     "@types/node": "^26.0.1",
-    "playwright-core": "^1.60.0",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "nitro": "^3.0.260610-beta",
+    "playwright-core": "^1.60.0",
     "shadcn": "^4.11.0",
     "typescript": "latest",
     "vitest": "^2.1.9"
