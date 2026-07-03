@@ -26,12 +26,31 @@ function Overview() {
       </div>
 
       <div className="sr-d-scroll">
-        {/* Hero — the brand statement */}
-        <section className="sr-hero">
-          <div className="sr-eyebrow accent">StemRobin · 知更</div>
-          <h1 className="sr-hero-title">
-            帮助未来的<span className="sr-hero-hl green">创造者</span>，积累科学与工程知识。
-          </h1>
+        {/* Progress (mockup — wire to sr_answer_events / sr_progress later) */}
+        <section className="sr-progress">
+          <div className="sr-progress-top">
+            <span className="sr-progress-title">学习进度</span>
+            <span className="sr-progress-pct">
+              8<span> / 96 课</span>
+            </span>
+          </div>
+          <div className="sr-progress-bar">
+            <span style={{ width: '8.3%' }} />
+          </div>
+          <div className="sr-progress-stats">
+            <div className="sr-progress-stat">
+              <b>8</b>
+              <span>已学课程</span>
+            </div>
+            <div className="sr-progress-stat">
+              <b>104</b>
+              <span>已练题目</span>
+            </div>
+            <div className="sr-progress-stat">
+              <b>5</b>
+              <span>连续天数</span>
+            </div>
+          </div>
         </section>
 
         {/* Two pillars */}
