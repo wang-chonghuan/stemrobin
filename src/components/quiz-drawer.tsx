@@ -22,7 +22,8 @@ function renderMath(el: HTMLElement | null) {
   }
 }
 
-type Result = AnswerResult | null
+// Local result also remembers which option the learner picked.
+type Verdict = (AnswerResult & { chosen: number }) | null
 
 export function QuizDrawer({
   lessonId,
@@ -36,32 +37,44 @@ export function QuizDrawer({
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null)
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [idx, setIdx] = useState(0)
-  const [results, setResults] = useState<Record<number, Result>>({})
-  const [pending, setPending] = useState(false)
-  const cardRef = useRef<HTMLDivElement>(null)
+  const [results, setResults] = useState<Record<number, Verdict>>({})
+  const [picking, setPicking] = useState<number | null>(null) // optimistic click
+  const qRef = useRef<HTMLDivElement>(null) // prompt + options (typeset once/card)
+  const answerRef = useRef<HTMLDivElement>(null) // revealed answer (typeset on result)
 
   useEffect(() => {
     if (!open) return
     setIdx(0)
     setResults({})
+    setPicking(null)
     getCurrentUser().then((u) => setLoggedIn(!!u))
     getLessonQuestions({ data: lessonId }).then(setQuestions)
   }, [open, lessonId])
 
   const q = questions[idx]
+  const result = q ? results[q.id] ?? null : null
+
+  // Typeset the question + options ONCE when the visible card changes — NOT when
+  // the answer arrives (re-typesetting the options reflowed the list and jumped
+  // the scroll to the top).
   useEffect(() => {
-    // Re-typeset whenever the visible card or its revealed answer changes.
-    const t = setTimeout(() => renderMath(cardRef.current), 0)
+    const t = setTimeout(() => renderMath(qRef.current), 0)
     return () => clearTimeout(t)
-  }, [idx, questions, results, open, loggedIn])
+  }, [idx, questions, open, loggedIn])
+
+  // Typeset only the revealed answer, separately, when it appears.
+  useEffect(() => {
+    if (result) {
+      const t = setTimeout(() => renderMath(answerRef.current), 0)
+      return () => clearTimeout(t)
+    }
+  }, [result])
 
   if (!open) return null
 
-  const result = q ? results[q.id] ?? null : null
-
   async function choose(optIndex: number) {
-    if (!q || pending || results[q.id]) return
-    setPending(true)
+    if (!q || picking != null || results[q.id]) return
+    setPicking(optIndex) // highlight the click immediately
     try {
       const r = await recordAnswer({
         data: { questionId: q.id, chosen: optIndex },
@@ -69,10 +82,10 @@ export function QuizDrawer({
       if ('error' in r) {
         if (r.error.includes('登录')) setLoggedIn(false)
       } else {
-        setResults((m) => ({ ...m, [q.id]: r }))
+        setResults((m) => ({ ...m, [q.id]: { ...r, chosen: optIndex } }))
       }
     } finally {
-      setPending(false)
+      setPicking(null)
     }
   }
 
@@ -101,7 +114,7 @@ export function QuizDrawer({
           </button>
         </header>
 
-        <div className="sr-quiz-body" ref={cardRef}>
+        <div className="sr-quiz-body">
           {loggedIn === false ? (
             <div className="sr-quiz-login">
               <p>答题需要先登录，用于保存你的作答记录。</p>
@@ -113,54 +126,72 @@ export function QuizDrawer({
             <p className="sr-quiz-empty">这一课还没有练习题。</p>
           ) : (
             <div className="sr-quiz-card">
-              <div className="sr-quiz-ptype">{q.type}</div>
-              <div className="sr-quiz-prompt">{q.prompt}</div>
-
-              {q.answerMode === 'work' ? (
-                <div className="sr-quiz-work">
-                  <Camera size={26} />
-                  <span>需要写步骤，拍照上传（即将支持）</span>
+              {/* verdict pinned above the card so it's seen immediately */}
+              {result && (
+                <div
+                  className={
+                    'sr-quiz-verdict' + (result.isCorrect ? ' ok' : ' bad')
+                  }
+                >
+                  {result.isCorrect ? (
+                    <>
+                      <Check size={16} /> 答对了
+                    </>
+                  ) : (
+                    <>
+                      <X size={16} /> 答错了 · 正确答案已标出
+                    </>
+                  )}
                 </div>
-              ) : (
-                <ul className="sr-quiz-options">
-                  {(q.options ?? []).map((opt, i) => {
-                    const answered = !!result
-                    const isCorrect = answered && i === result!.correctIndex
-                    const isChosenWrong =
-                      answered &&
-                      !result!.isCorrect &&
-                      i !== result!.correctIndex
-                    return (
-                      <li key={i}>
-                        <button
-                          type="button"
-                          className={
-                            'sr-quiz-opt' +
-                            (isCorrect ? ' correct' : '') +
-                            (isChosenWrong ? ' dim' : '')
-                          }
-                          disabled={answered || pending}
-                          onClick={() => choose(i)}
-                        >
-                          <span className="sr-quiz-opt-text">{opt}</span>
-                          {isCorrect && <Check size={16} />}
-                        </button>
-                      </li>
-                    )
-                  })}
-                </ul>
               )}
+
+              <div ref={qRef}>
+                <div className="sr-quiz-ptype">{q.type}</div>
+                <div className="sr-quiz-prompt">{q.prompt}</div>
+
+                {q.answerMode === 'work' ? (
+                  <div className="sr-quiz-work">
+                    <Camera size={26} />
+                    <span>需要写步骤，拍照上传（即将支持）</span>
+                  </div>
+                ) : (
+                  <ul className="sr-quiz-options">
+                    {(q.options ?? []).map((opt, i) => {
+                      const answered = !!result
+                      const isCorrect = answered && i === result!.correctIndex
+                      const isWrongPick =
+                        answered && i === result!.chosen && !result!.isCorrect
+                      const isPicking = picking === i && !answered
+                      return (
+                        <li key={i}>
+                          <button
+                            type="button"
+                            className={
+                              'sr-quiz-opt' +
+                              (isCorrect ? ' correct' : '') +
+                              (isWrongPick ? ' wrong' : '') +
+                              (isPicking ? ' picking' : '') +
+                              (answered && !isCorrect && !isWrongPick ? ' dim' : '')
+                            }
+                            disabled={answered || picking != null}
+                            onClick={() => choose(i)}
+                          >
+                            <span className="sr-quiz-opt-text">{opt}</span>
+                            {isCorrect && <Check size={16} />}
+                            {isWrongPick && <X size={16} />}
+                          </button>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                )}
+              </div>
 
               {result && (
                 <div className="sr-quiz-feedback">
-                  <div
-                    className={
-                      'sr-quiz-verdict' + (result.isCorrect ? ' ok' : '')
-                    }
-                  >
-                    {result.isCorrect ? '答对了' : '再想想 · 正确答案已标出'}
+                  <div className="sr-quiz-answer" ref={answerRef}>
+                    {result.answer}
                   </div>
-                  <div className="sr-quiz-answer">{result.answer}</div>
                 </div>
               )}
             </div>
