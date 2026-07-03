@@ -30,12 +30,8 @@ function Overview() {
         <section className="sr-hero">
           <div className="sr-eyebrow accent">StemRobin · 知更</div>
           <h1 className="sr-hero-title">
-            不培养<span className="sr-hero-dim">做题家</span>，
-            培养<span className="sr-hero-hl green">创造者</span>。
+            帮助未来的<span className="sr-hero-hl green">创造者</span>，积累科学与工程知识。
           </h1>
-          <p className="sr-hero-sub">
-            帮助未来的创造者，积累科学与工程知识。
-          </p>
         </section>
 
         {/* Two pillars */}

@@ -26,7 +26,7 @@ export function CatalogSidebar({
           <span className="sr-brand-name">
             知<b>更</b>
           </span>
-          <span className="sr-tagline">不培养做题家，培养创造者</span>
+          <span className="sr-tagline">培养未来的创造者</span>
         </div>
       </div>
 
