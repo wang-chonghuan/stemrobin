@@ -1,0 +1,119 @@
+[
+  {
+    "ord": 1,
+    "type": "辨认",
+    "prompt": "由 $3x=12$ 得到 $x=4$，这一步用的是哪条性质？",
+    "answer_mode": "choice",
+    "options": ["等式两边同乘同除", "等式两边同加同减", "合并同类项", "去括号"],
+    "correct_index": 0,
+    "answer": "两边同时除以 $3$：$\\dfrac{3x}{3}=\\dfrac{12}{3}$，得 $x=4$，用的是等式两边同乘同除。"
+  },
+  {
+    "ord": 2,
+    "type": "辨认",
+    "prompt": "下面哪一步是合法的等式变形？",
+    "answer_mode": "choice",
+    "options": ["由 $2x=8$ 两边同除以 $2$ 得 $x=4$", "由 $2x=8$ 只把左边除以 $2$ 得 $x=8$", "由 $2x=8$ 两边同除以 $0$", "由 $2x=8$ 左边乘 $2$、右边乘 $3$"],
+    "correct_index": 0,
+    "answer": "只有第一项合法：两边同除以 $2$，$\\dfrac{2x}{2}=\\dfrac{8}{2}$，得 $x=4$。其余分别是只改一边、除以 $0$、两边乘的数不同，都不成立。"
+  },
+  {
+    "ord": 3,
+    "type": "辨认",
+    "prompt": "为什么等式两边可以同乘任意数，却只能同除以不为 $0$ 的数？",
+    "answer_mode": "choice",
+    "options": ["因为除以 $0$ 没有意义", "因为乘法比除法简单", "因为乘 $0$ 也不行", "因为除法会改变符号"],
+    "correct_index": 0,
+    "answer": "除以 $0$ 在数学里没有意义，所以除数必须不为 $0$；而乘以任何数（包括 $0$）都是有意义的运算，故乘没有这个限制。"
+  },
+  {
+    "ord": 4,
+    "type": "表示",
+    "prompt": "把\"等式 $a=b$ 的两边同时乘以 $c$\"写成一个等式，正确的是？",
+    "answer_mode": "choice",
+    "options": ["$ac=bc$", "$a+c=b+c$", "$\\dfrac{a}{c}=\\dfrac{b}{c}$", "$ac=b$"],
+    "correct_index": 0,
+    "answer": "两边同乘 $c$：$ac=bc$。"
+  },
+  {
+    "ord": 5,
+    "type": "表示",
+    "prompt": "天平两边平衡，现在把两边的重量都变成原来的一半。用等式变形把这句话写出来（设两边为 $a$、$b$）。",
+    "answer_mode": "work",
+    "options": null,
+    "correct_index": null,
+    "answer": "把两边都变成一半，就是两边同除以 $2$（$2\\neq 0$）：若 $a=b$，则 $\\dfrac{a}{2}=\\dfrac{b}{2}$。"
+  },
+  {
+    "ord": 6,
+    "type": "操作",
+    "prompt": "解方程 $5x=35$。",
+    "answer_mode": "choice",
+    "options": ["$x=7$", "$x=35$", "$x=30$", "$x=175$"],
+    "correct_index": 0,
+    "answer": "两边同除以 $5$：$\\dfrac{5x}{5}=\\dfrac{35}{5}$，得 $x=7$。"
+  },
+  {
+    "ord": 7,
+    "type": "操作",
+    "prompt": "解方程 $\\dfrac{x}{3}=6$。",
+    "answer_mode": "choice",
+    "options": ["$x=18$", "$x=2$", "$x=9$", "$x=3$"],
+    "correct_index": 0,
+    "answer": "两边同乘 $3$：$\\dfrac{x}{3}\\times 3 = 6\\times 3$，得 $x=18$。"
+  },
+  {
+    "ord": 8,
+    "type": "操作",
+    "prompt": "解方程 $-2x=10$。",
+    "answer_mode": "choice",
+    "options": ["$x=-5$", "$x=5$", "$x=-8$", "$x=-20$"],
+    "correct_index": 0,
+    "answer": "两边同除以 $-2$：$\\dfrac{-2x}{-2}=\\dfrac{10}{-2}$，得 $x=-5$。"
+  },
+  {
+    "ord": 9,
+    "type": "操作",
+    "prompt": "对等式 $m=8$ 两边同时除以 $4$，新的等式是？",
+    "answer_mode": "choice",
+    "options": ["$\\dfrac{m}{4}=2$", "$\\dfrac{m}{4}=8$", "$4m=32$", "$\\dfrac{m}{4}=32$"],
+    "correct_index": 0,
+    "answer": "两边同除以 $4$：$\\dfrac{m}{4}=\\dfrac{8}{4}$，即 $\\dfrac{m}{4}=2$。"
+  },
+  {
+    "ord": 10,
+    "type": "反推",
+    "prompt": "某人把 $6x=18$ 变成了 $x=3$。他对两边做了什么？",
+    "answer_mode": "choice",
+    "options": ["两边同时除以 $6$", "两边同时减去 $6$", "两边同时乘以 $6$", "两边同时除以 $3$"],
+    "correct_index": 0,
+    "answer": "两边同时除以 $6$：$\\dfrac{6x}{6}=\\dfrac{18}{6}$，得 $x=3$。"
+  },
+  {
+    "ord": 11,
+    "type": "反推",
+    "prompt": "变形前是 $\\dfrac{x}{5}=2$，变形后是 $x=10$。中间做了什么操作？",
+    "answer_mode": "choice",
+    "options": ["两边同时乘以 $5$", "两边同时除以 $5$", "两边同时加上 $5$", "两边同时乘以 $2$"],
+    "correct_index": 0,
+    "answer": "两边同时乘以 $5$：$\\dfrac{x}{5}\\times 5 = 2\\times 5$，得 $x=10$。"
+  },
+  {
+    "ord": 12,
+    "type": "辨错",
+    "prompt": "小红由 $4x=20$ 直接写出 $x=20$，说\"把左边的 $4$ 去掉就行\"。指出错在哪、为什么错，并给出正确结果。",
+    "answer_mode": "work",
+    "options": null,
+    "correct_index": null,
+    "answer": "错在只把左边除以 $4$，右边 $20$ 没除，只改了一边，破坏了平衡。正确做法：两边同除以 $4$，$\\dfrac{4x}{4}=\\dfrac{20}{4}$，得 $x=5$。"
+  },
+  {
+    "ord": 13,
+    "type": "辨错",
+    "prompt": "有人由 $2x=8$ 说\"两边同除以 $0$ 也能保持等式成立\"。这个说法对吗？",
+    "answer_mode": "choice",
+    "options": ["不对，除数不能为 $0$", "对，$0$ 也是一个数", "对，除以 $0$ 得 $0$", "不对，应该同除以 $8$"],
+    "correct_index": 0,
+    "answer": "不对。除以 $0$ 没有意义，等式两边同除时除数必须不为 $0$，所以这一步根本不能做。"
+  }
+]

@@ -43,8 +43,9 @@ export const CURRICULUM: OutlineSubject[] = [
         lessons: [
           { title: '未知数是什么', id: 'math-s3-01' },
           { title: '等式两边同加同减', id: 'math-s3-02' },
+          { title: '等式两边同乘同除', id: 'math-s3-03' },
           ...L(
-            '等式两边同乘同除', '解一元一次方程',
+            '解一元一次方程',
             '去括号解方程', '去分母解方程', '不等式表示范围', '一元一次不等式', '不等式组',
           ),
         ],

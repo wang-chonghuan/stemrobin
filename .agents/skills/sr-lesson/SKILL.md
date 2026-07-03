@@ -17,7 +17,10 @@ Default language: **Chinese**. Subject: **math only** this stage.
 
 ## Capabilities
 
-- **Capability 1 — generate one math lesson** → `references/capability-1-math-lesson/workflow.md`. Gated by `references/gate-1-math-lesson/gate.md`.
+- **Capability 1 — generate one math lesson's 課文** → `references/capability-1-math-lesson/workflow.md`. Gated by `references/gate-1-math-lesson/gate.md`. Produces ONLY the 課文 (five sections: motivation/explain/examples/connections/oral — no practice) and saves it to `stemrobin.sr_lessons` (html + pre-rendered PDF) in the Azure easy-app Postgres via `scripts/save-lesson.mjs`.
+- **Capability 2 — generate a lesson's structured exercises** from its 課文 → produces `stemrobin.sr_questions` rows (per item: type, prompt, answer_mode `choice`|`work`, options + correct_index for choice, hidden answer) and persists them via `scripts/save-lesson.mjs --questions <json>`. The card-quiz UI consumes these. Author in an independent subagent; gate before persisting; choice distractors grounded in the taught misconceptions.
+
+Lessons + exercises are stored in the Azure easy-app Postgres (no static `public/lessons/*` files). Persistence is always via `scripts/save-lesson.mjs`, never hand-written DB rows.
 
 Before reading any capability, read `references/common/lesson-contract.md` — the SSOT for the five-section template, pedagogy, formula/SVG rules, id/path convention, and persistence — and `lesson-design-system-v1.md`, the visual + structural contract (tokens, section layout, callouts, examples, exercises, figures, inline marks/colors) every lesson must follow.
 

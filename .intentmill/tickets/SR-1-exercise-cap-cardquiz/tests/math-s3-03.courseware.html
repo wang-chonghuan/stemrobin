@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>等式两边同乘同除 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  .sr-eg { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: inline-flex; align-items: baseline; gap: 6px; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 第 3 阶段</div>
+    <h1 class="sr-l-title">等式两边同乘同除</h1>
+    <div class="sr-l-concept">等式两边同时乘以同一个数，或同时除以同一个非零数，等式仍然成立——这是"系数化为 1"、把未知数彻底解出来的依据。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">等式的性质（乘除）</span>
+      <span class="sr-chip">天平模型</span>
+      <span class="sr-chip green">上一课：等式两边同加同减</span>
+    </div>
+  </header>
+
+  <!-- 1 / 为什么学这个（引子问题） -->
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+
+    <p>上一课我们学了一条变形规则：等式两边同加同减。它能把 $x+3=8$ 里多出来的 $+3$ 去掉，得到 $x=5$。这一招管的是"搬走加号、减号"。</p>
+
+    <p>可是遇到这样的方程就卡住了：$3x=12$。这里 $x$ 前面不是加了一个数，而是<strong>乘了一个 $3$</strong>——它是 $3$ 个 $x$ 的意思。你去两边同减 $3$，得到 $3x-3=9$，$x$ 还是没单独站出来。加减这一招，对"倍数"没用。</p>
+
+    <p>我们缺的是另一半规则：怎样合法地把 $x$ 前面的那个 $3$ <strong>约掉</strong>，让 $3x$ 变成 $1x$，也就是 $x$ 本身？</p>
+
+    <p>还是回到天平。天平两边一样重，就像等式 $\text{左边}=\text{右边}$。这一次我们不拿走砝码，而是问：如果把两边的东西都<strong>变成原来的 $3$ 倍</strong>，或者都<strong>只取原来的一半</strong>，天平还平衡吗？</p>
+
+    <figure class="sr-fig">
+      <svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg">
+        <!-- 支柱 + 横梁：平衡 -->
+        <line x1="230" y1="42" x2="230" y2="152" stroke="#15201F" stroke-width="2"/>
+        <polygon points="210,177 250,177 230,152" fill="#8A9795"/>
+        <line x1="80" y1="57" x2="380" y2="57" stroke="#0E7C9B" stroke-width="3"/>
+        <circle cx="230" cy="57" r="4" fill="#0A5E76"/>
+        <!-- 吊绳 -->
+        <line x1="80" y1="57" x2="80" y2="97" stroke="#8A9795" stroke-width="1.5"/>
+        <line x1="380" y1="57" x2="380" y2="97" stroke="#8A9795" stroke-width="1.5"/>
+        <!-- 左盘 -->
+        <path d="M50 97 h60 l-10 24 h-40 z" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="1.5"/>
+        <!-- 右盘 -->
+        <path d="M350 97 h60 l-10 24 h-40 z" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="1.5"/>
+        <!-- 左盘内容 3x：三个小方块 -->
+        <rect x="55" y="74" width="15" height="15" rx="3" fill="#15A06A"/>
+        <rect x="72" y="74" width="15" height="15" rx="3" fill="#15A06A"/>
+        <rect x="89" y="74" width="15" height="15" rx="3" fill="#15A06A"/>
+        <!-- 右盘内容 12 -->
+        <text x="380" y="87" font-family="'JetBrains Mono',monospace" font-size="15" fill="#15201F" text-anchor="middle">12</text>
+        <!-- 标签 -->
+        <text x="80" y="147" font-size="12" fill="#0A5E76" text-anchor="middle">左边 = 3x</text>
+        <text x="380" y="147" font-size="12" fill="#0A5E76" text-anchor="middle">右边 = 12</text>
+        <text x="230" y="205" font-size="12" fill="#8A9795" text-anchor="middle">两边一样重，天平平衡 —— 就像 3x = 12</text>
+      </svg>
+      <figcaption>把 $3x=12$ 看成一架平衡的天平：左边是 3 个 x，右边是 12。</figcaption>
+    </figure>
+
+    <p>直觉会告诉你：只要两边都变成同样的倍数，天平仍然平衡。要是把两边都平分成 3 份、各取一份，左边就从 $3x$ 变回 $x$，右边就从 $12$ 变回 $4$——$x$ 就出来了。这一步能不能这么做、为什么能，就是今天要立起来的规则。</p>
+
+    <div class="sr-note sr-callout question">
+      <p><b>驱动问题：</b>当未知数前面乘了一个数（像 $3x$），怎样合法地把这个倍数约掉、让未知数单独等于一个数？</p>
+    </div>
+  </section>
+
+  <!-- 2 / 讲解 -->
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <p>先把天平的直觉升成一句严谨的话。等式 $a=b$ 说的是：<strong>左边和右边是同一个数</strong>。既然它们本就是同一个数，那么把这个数乘以 $3$，两边的结果当然还相等；把这个数除以 $2$，两边的结果也还相等——只要两边做的是<strong>完全一样</strong>的乘或除。</p>
+
+    <p>这就是本课的性质。</p>
+
+    <p><span class="sr-term">等式的性质（乘除）</span>，也叫<span class="sr-term">等式两边同乘同除</span>：等式两边同时乘以同一个数，等式仍然成立；等式两边同时除以同一个<strong>不为 0</strong> 的数，等式仍然成立。</p>
+
+    <p>写成符号，是两条短式子：</p>
+    <div class="sr-mathblock">$$ a=b \;\Rightarrow\; ac=bc $$</div>
+    <div class="sr-mathblock">$$ a=b,\ c\neq 0 \;\Rightarrow\; \dfrac{a}{c}=\dfrac{b}{c} $$</div>
+
+    <p>这里 $a$、$b$ 是等式的两边，$c$ 是两边<strong>同时</strong>乘或除的那个数。乘的时候 $c$ 是几都行；但<strong>除</strong>的时候必须写上 $c\neq 0$，因为除以 $0$ 是没有意义的。$ac$ 读作"$a$ 乘 $c$"，$\dfrac{a}{c}$ 读作"$a$ 除以 $c$"。要点还是那个词：$c$ 必须是<strong>同一个</strong>。</p>
+
+    <div class="sr-eg">
+      <span class="yes">由 $3x=12$，两边同除以 $3$，得 $x=4$。</span>
+      <span class="yes">由 $\dfrac{x}{2}=5$，两边同乘 $2$，得 $x=10$。</span>
+      <span class="no">由 $3x=12$，只把左边除以 $3$，写成 $x=12$。右边没除，等式被改错。</span>
+      <span class="no">由 $2x=8$，说"两边同除以 $0$"。除以 $0$ 没有意义，这一步不成立。</span>
+    </div>
+
+    <p>再看它怎么"解出未知数"。天平左边是 $3x$，右边是 $12$。$3x$ 是 $3$ 个 $x$，我想让 $x$ 单独留下，就把两边<strong>同时除以 $3$</strong>：</p>
+    <div class="sr-mathblock">$$ \dfrac{3x}{3}=\dfrac{12}{3} $$</div>
+    <p>左边 $3$ 个 $x$ 平分成 $3$ 份、每份是 $1$ 个 $x$，即 $x$；右边 $12\div 3=4$。于是 $x=4$。把未知数前面的系数变成 $1$，这一步就叫<strong>系数化为 1</strong>，靠的正是本课的乘除性质。</p>
+
+    <div class="sr-pitfall sr-callout pitfall">
+      <p><b>两个最常见的错。</b>一，<b>只改一边</b>：由 $3x=12$ 直接写 $x=12$，只把左边除了 $3$，右边没除，天平立刻歪。二，<b>除以 0</b>：除数不能是 $0$，"两边同除以 $0$"是不允许的。<b>记住：要乘就两边乘同一个数，要除就两边除同一个非 0 的数。</b></p>
+    </div>
+
+    <p>补一句：这条乘除性质和上一课的加减性质，合起来就是解一元一次方程的<strong>两半</strong>——加减负责搬走加项、减项，乘除负责把系数化为 $1$。下节课就会把它们连起来用。</p>
+  </section>
+
+  <!-- 3 / 例题 -->
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　对等式两边同乘一个数</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>已知等式 $m=6$，两边同时乘以 $4$，写出新的等式。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>用性质：$a=b \Rightarrow ac=bc$，这里 $c=4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>两边各乘 $4$：$m\times 4 = 6\times 4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>$4m=24$。（新等式仍然成立。）</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2　用"同除"把方程解出来</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解方程 $3x=12$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>$x$ 前面乘了 $3$，要把系数化为 $1$，两边<strong>同除以 $3$</strong>（$3\neq 0$）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>$\dfrac{3x}{3}=\dfrac{12}{3}$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>左边约掉 $3$ 得 $x$；右边 $12\div 3=4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>$x=4$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　用"同乘"把方程解出来</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解方程 $\dfrac{x}{2}=5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>$x$ 被除以了 $2$，要抵消它，两边<strong>同乘 $2$</strong>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>$\dfrac{x}{2}\times 2 = 5\times 2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>左边 $\div 2$ 再 $\times 2$ 抵消得 $x$；右边 $5\times 2=10$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>$x=10$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4　负系数：两边同除以负数</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解方程 $-4x=20$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>系数是 $-4$，两边<strong>同除以 $-4$</strong>（$-4\neq 0$）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>$\dfrac{-4x}{-4}=\dfrac{20}{-4}$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>左边约掉得 $x$；右边 $20\div(-4)=-5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>$x=-5$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 5　判断一步变形对不对，并说理</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>小明由 $5x=20$ 写出 $x=20$。这一步对吗？为什么？</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>他想把系数 $5$ 去掉，于是只在左边除以 $5$：$\dfrac{5x}{5}=x$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>但右边 $20$ 没有除以 $5$。<strong>只改了一边</strong>，破坏了平衡。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>正确做法：两边同除以 $5$，$\dfrac{5x}{5}=\dfrac{20}{5}$，得 $x=4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>不对。必须两边同时除以 $5$，正确结果是 $x=4$，不是 $x=20$。</span></div>
+    </div>
+  </section>
+
+  <!-- 4 / 与其他知识点的联系 -->
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+
+    <ul class="sr-links">
+      <li><b>往前——上一课"等式两边同加同减"：</b>那是平衡性质的<strong>另一半</strong>。加减负责搬走加项、减项；乘除负责把系数化为 $1$。两半合起来才能解各种一元一次方程。</li>
+      <li><b>往前——乘除与倍数的含义：</b>$3x$ 是"$3$ 个 $x$"，同除以 $3$ 就是把它平分成 $3$ 份取一份。本课把这个直觉升成"保持相等的合法变形"。</li>
+      <li><b>为什么除数不能为 0：</b>更早学除法时就有"$0$ 不能作除数"。本课这条边界不是新规定，而是那条老规则在等式变形里的延续。</li>
+      <li><b>往后——下一课"解一元一次方程"：</b>会先用加减把常数项搬到一边，再用本课的乘除把系数化为 $1$。本课是那一步的直接依据。</li>
+      <li><b>抽象主线：</b>相等是一种<strong>断言</strong> → 对两边做对称的乘除能<strong>保持相等</strong> → 靠它把系数化为 $1$，就能<strong>解出未知数</strong>。这条线会一直用到方程与不等式的学习里（不等式两边同乘除还要多留意符号，这是后话）。</li>
+    </ul>
+  </section>
+
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+
+    <p>先自己开口答一遍，别急着往下看。答不上来，就回到上面的"讲解"里找依据——这一节考的全是概念，不用算。</p>
+
+    <ol class="sr-oral">
+      <li>等式两边同时乘以（或除以）同一个数，等式为什么仍然成立？
+        <div class="sr-answer">因为等式说的是"两边是同一个数"，对这个数做完全一样的乘或除，两边仍然是同一个数，相等不变。</div>
+      </li>
+      <li>为什么"除"的时候一定要强调除数不能为 0？
+        <div class="sr-answer">因为除以 $0$ 在数学里没有意义，两边同除以 $0$ 这一步根本不成立；乘则没有这个限制。</div>
+      </li>
+      <li>只把等式的一边除以一个数，另一边不动，行不行？为什么？
+        <div class="sr-answer">不行。只改一边就破坏了"两边相等"，就像只把天平一个盘里的东西取走一部分，天平会歪。</div>
+      </li>
+      <li>"系数化为 1"是什么意思？靠哪条性质完成？
+        <div class="sr-answer">把未知数前面的系数变成 $1$（即让未知数单独等于一个数），靠的是等式两边同乘同除这条性质。</div>
+      </li>
+      <li>解 $3x=12$ 时，为什么两边同除以 $3$，而不是同减 $3$？
+        <div class="sr-answer">因为 $3x$ 是 $3$ 乘 $x$（倍数关系），要约掉倍数得用除；同减 $3$ 得到 $3x-3=9$，$x$ 仍没单独出来。</div>
+      </li>
+      <li>本课的乘除性质和上一课的加减性质是什么关系？
+        <div class="sr-answer">它们是解一元一次方程的两半：加减搬走加项、减项，乘除把系数化为 $1$，合起来才能解方程。</div>
+      </li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>
