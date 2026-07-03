@@ -758,7 +758,7 @@ a.sr-out-lesson.ready:hover {
 .sr-hero-hl.green { color: var(--sr-green-deep); }
 .sr-hero-sub { max-width: 44ch; color: var(--sr-ink-soft); font-size: 14.5px; line-height: 1.6; }
 
-.sr-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 10px; }
+.sr-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
 .sr-pillar {
   display: flex; gap: 12px; align-items: flex-start;
   background: var(--sr-card); border: 1px solid var(--sr-line);

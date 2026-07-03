@@ -26,7 +26,7 @@ export function CatalogSidebar({
           <span className="sr-brand-name">
             知<b>更</b>
           </span>
-          <span className="sr-tagline">培养未来的创造者</span>
+          <span className="sr-tagline">随时随地学理科</span>
         </div>
       </div>
 

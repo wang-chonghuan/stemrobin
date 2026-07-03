@@ -36,7 +36,6 @@ function Overview() {
 
         {/* Two pillars */}
         <section className="sr-section-gap">
-          <div className="sr-eyebrow">两根支柱</div>
           <div className="sr-pillars">
             <div className="sr-pillar">
               <span className="sr-pillar-ico blue"><Atom size={20} /></span>
