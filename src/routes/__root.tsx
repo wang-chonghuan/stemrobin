@@ -17,7 +17,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       { title: '知更 · StemRobin' },
-      { name: 'description', content: '不培养做题家，培养创造者。' },
+      { name: 'description', content: '帮助未来的创造者，积累科学与工程知识。' },
     ],
     links: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
