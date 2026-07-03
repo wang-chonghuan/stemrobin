@@ -168,10 +168,10 @@ body {
 .sr-brand-name {
   display: block;
   font-family: var(--sr-display);
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
 }
 
 .sr-brand-name b {
@@ -743,3 +743,50 @@ a.sr-out-lesson.ready:hover {
   color: var(--sr-ink); background: var(--sr-panel);
   border: 1px solid var(--sr-line); border-radius: var(--sr-radius-sm);
 }
+
+/* ── Homepage: hero + multi-card ── */
+.sr-hero { padding: 4px 0 2px; margin-bottom: 22px; }
+.sr-hero-title {
+  margin: 8px 0 10px; max-width: 30ch;
+  font-family: var(--sr-display);
+  font-size: 27px; line-height: 1.25; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--sr-ink);
+}
+.sr-hero-strike { color: var(--sr-ink-dim); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.sr-hero-dim { color: var(--sr-ink-dim); }
+.sr-hero-hl { color: var(--sr-blue-deep); }
+.sr-hero-hl.green { color: var(--sr-green-deep); }
+.sr-hero-sub { max-width: 44ch; color: var(--sr-ink-soft); font-size: 14.5px; line-height: 1.6; }
+
+.sr-pillars { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin-top: 10px; }
+.sr-pillar {
+  display: flex; gap: 12px; align-items: flex-start;
+  background: var(--sr-card); border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius); padding: 15px;
+}
+.sr-pillar-ico { width: 40px; height: 40px; flex: none; display: grid; place-items: center; border-radius: 10px; }
+.sr-pillar-ico.blue { background: var(--sr-blue-tint); color: var(--sr-blue-deep); }
+.sr-pillar-ico.green { background: var(--sr-green-tint); color: var(--sr-green-deep); }
+.sr-pillar-title { font-family: var(--sr-display); font-size: 15px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.sr-pillar-desc { margin: 5px 0 0; color: var(--sr-ink-soft); font-size: 13.5px; line-height: 1.55; }
+.sr-pillar .sr-tag {
+  border: 1px solid var(--sr-line); border-radius: 999px; padding: 0 7px;
+  background: var(--sr-panel); color: var(--sr-ink-dim); font-size: 10px; font-weight: 700;
+}
+
+/* lesson cards in the grid */
+.sr-lesson-card {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; color: inherit;
+}
+.sr-lesson-card:hover { border-color: var(--sr-blue); }
+.sr-lesson-card-ico {
+  width: 34px; height: 34px; flex: none; display: grid; place-items: center;
+  border-radius: 8px; background: var(--sr-blue-tint); color: var(--sr-blue-deep);
+}
+.sr-lesson-card-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.sr-lesson-card-body .sr-card-title { margin: 0; }
+
+/* Brand logo image (raster) — corners rounded here in-app; the master PNG is a
+   full-bleed gradient square with no baked-in rounding. */
+.sr-brand-img { width: 44px; height: 44px; flex: none; border-radius: 10px; display: block; }

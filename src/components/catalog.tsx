@@ -1,5 +1,4 @@
 import { Link } from '@tanstack/react-router'
-import { GraduationCap } from 'lucide-react'
 
 import { CURRICULUM, type OutlineSubject } from '~/lib/curriculum'
 
@@ -16,14 +15,18 @@ export function CatalogSidebar({
   return (
     <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`}>
       <div className="sr-cat-head">
-        <div className="sr-brand-mark">
-          <GraduationCap size={17} />
-        </div>
+        <img
+          className="sr-brand-img"
+          src="/logo-mark.png"
+          alt="知更"
+          width={44}
+          height={44}
+        />
         <div>
           <span className="sr-brand-name">
-            Stem<b>Robin</b>
+            知<b>更</b>
           </span>
-          <span className="sr-tagline">初中标准 · 儿童入口</span>
+          <span className="sr-tagline">不培养做题家，培养创造者</span>
         </div>
       </div>
 

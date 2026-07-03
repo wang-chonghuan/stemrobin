@@ -10,7 +10,7 @@
 
 export type OutlineLesson = { title: string; id?: string }
 export type OutlineStage = { title: string; lessons: OutlineLesson[] }
-export type OutlineSubject = { subject: 'math' | 'physics'; label: string; stages: OutlineStage[] }
+export type OutlineSubject = { subject: 'math' | 'physics' | 'robot'; label: string; stages: OutlineStage[] }
 
 const L = (...titles: string[]): OutlineLesson[] => titles.map((title) => ({ title }))
 
@@ -147,6 +147,11 @@ export const CURRICULUM: OutlineSubject[] = [
         ),
       },
     ],
+  },
+  {
+    subject: 'robot',
+    label: '机器人',
+    stages: [],
   },
 ]
 
