@@ -42,6 +42,24 @@ export function QuizDrawer({
   const [err, setErr] = useState<string | null>(null)
   const qRef = useRef<HTMLDivElement>(null) // prompt + options (typeset once/card)
   const answerRef = useRef<HTMLDivElement>(null) // revealed answer (typeset on result)
+  // Display order per question: a random permutation of the ORIGINAL option indices,
+  // so the correct answer isn't always in the same slot. The DB's correct_index is
+  // untouched — we only shuffle presentation and map the pick back to the original
+  // index. Stable within one showing (kept in a ref); reshuffled on reopen.
+  const ordersRef = useRef<Record<number, number[]>>({})
+
+  function displayOrder(qq: QuizQuestion): number[] {
+    if (!ordersRef.current[qq.id]) {
+      const n = qq.options?.length ?? 0
+      const perm = Array.from({ length: n }, (_, k) => k)
+      for (let i = n - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[perm[i], perm[j]] = [perm[j], perm[i]]
+      }
+      ordersRef.current[qq.id] = perm
+    }
+    return ordersRef.current[qq.id]
+  }
 
   useEffect(() => {
     if (!open) return
@@ -49,6 +67,7 @@ export function QuizDrawer({
     setResults({})
     setPicking(null)
     setErr(null)
+    ordersRef.current = {} // reshuffle option order each time the quiz is opened
     getCurrentUser().then((u) => setLoggedIn(!!u))
     getLessonQuestions({ data: lessonId }).then(setQuestions)
   }, [open, lessonId])
@@ -164,14 +183,16 @@ export function QuizDrawer({
                   </div>
                 ) : (
                   <ul className="sr-quiz-options">
-                    {(q.options ?? []).map((opt, i) => {
+                    {displayOrder(q).map((o) => {
+                      // o = original option index; rendered in shuffled display order.
+                      const opt = q.options![o]
                       const answered = !!result
-                      const isCorrect = answered && i === result!.correctIndex
+                      const isCorrect = answered && o === result!.correctIndex
                       const isWrongPick =
-                        answered && i === result!.chosen && !result!.isCorrect
-                      const isPicking = picking === i && !answered
+                        answered && o === result!.chosen && !result!.isCorrect
+                      const isPicking = picking === o && !answered
                       return (
-                        <li key={i}>
+                        <li key={o}>
                           <button
                             type="button"
                             className={
@@ -182,7 +203,7 @@ export function QuizDrawer({
                               (answered && !isCorrect && !isWrongPick ? ' dim' : '')
                             }
                             disabled={answered || picking != null}
-                            onClick={() => choose(i)}
+                            onClick={() => choose(o)}
                           >
                             <span className="sr-quiz-opt-text">{opt}</span>
                             {isCorrect && <Check size={16} />}
