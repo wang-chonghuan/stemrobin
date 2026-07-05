@@ -15,6 +15,7 @@
     "@tanstack/react-start": "latest",
     "@vitejs/plugin-react": "latest",
     "lucide-react": "^1.21.0",
+    "marked": "^18.0.5",
     "postgres": "^3.4.9",
     "react": "latest",
     "react-dom": "latest",

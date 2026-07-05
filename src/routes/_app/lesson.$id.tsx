@@ -4,6 +4,7 @@ import { ArrowLeft, Download, Layers, Menu } from 'lucide-react'
 
 import { getLessonLabel } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf } from '~/lib/lessons'
+import { getLessonQuestions, recordAnswer } from '~/lib/quiz'
 import { useLayoutStore } from '~/lib/layout-store'
 import { QuizDrawer } from '~/components/quiz-drawer'
 
@@ -75,7 +76,13 @@ function LessonView() {
           <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>课程内容尚未生成。</p>
         )}
       </div>
-      <QuizDrawer lessonId={id} open={quizOpen} onClose={() => setQuizOpen(false)} />
+      <QuizDrawer
+        contentId={id}
+        open={quizOpen}
+        onClose={() => setQuizOpen(false)}
+        fetchQuestions={getLessonQuestions}
+        record={recordAnswer}
+      />
     </main>
   )
 }

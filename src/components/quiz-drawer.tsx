@@ -3,8 +3,17 @@ import { Link } from '@tanstack/react-router'
 import { Camera, Check, X } from 'lucide-react'
 
 import { getCurrentUser } from '~/lib/session'
-import { getLessonQuestions, recordAnswer } from '~/lib/quiz'
 import type { QuizQuestion, AnswerResult } from '~/lib/quiz'
+
+// Injected data source so the same drawer serves both lessons (getLessonQuestions
+// / recordAnswer over sr_questions / sr_answer_events) and 名人传记 chapters
+// (getStoryQuestions / recordStoryAnswer over sr_story_questions /
+// sr_story_answer_events). Both fetch WITHOUT the correct option; correctness is
+// computed server-side by the record fn.
+type FetchQuestions = (opts: { data: string }) => Promise<QuizQuestion[]>
+type RecordAnswer = (opts: {
+  data: { questionId: number; chosen: number }
+}) => Promise<AnswerResult | { error: string }>
 
 // Render KaTeX ($…$ / $$…$$) inside a node, using the CDN auto-render loaded in
 // the root document. No-ops until the script is ready.
@@ -26,13 +35,17 @@ function renderMath(el: HTMLElement | null) {
 type Verdict = (AnswerResult & { chosen: number }) | null
 
 export function QuizDrawer({
-  lessonId,
+  contentId,
   open,
   onClose,
+  fetchQuestions,
+  record,
 }: {
-  lessonId: string
+  contentId: string
   open: boolean
   onClose: () => void
+  fetchQuestions: FetchQuestions
+  record: RecordAnswer
 }) {
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null)
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
@@ -69,8 +82,8 @@ export function QuizDrawer({
     setErr(null)
     ordersRef.current = {} // reshuffle option order each time the quiz is opened
     getCurrentUser().then((u) => setLoggedIn(!!u))
-    getLessonQuestions({ data: lessonId }).then(setQuestions)
-  }, [open, lessonId])
+    fetchQuestions({ data: contentId }).then(setQuestions)
+  }, [open, contentId, fetchQuestions])
 
   const q = questions[idx]
   const result = q ? results[q.id] ?? null : null
@@ -98,7 +111,7 @@ export function QuizDrawer({
     setErr(null)
     setPicking(optIndex) // highlight the click immediately
     try {
-      const r = await recordAnswer({
+      const r = await record({
         data: { questionId: q.id, chosen: optIndex },
       })
       if ('error' in r) {

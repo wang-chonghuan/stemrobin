@@ -1,14 +1,17 @@
 import { Link } from '@tanstack/react-router'
 
 import { CURRICULUM, type OutlineSubject } from '~/lib/curriculum'
+import type { StoryCatalogEntry } from '~/lib/stories'
 
 // The persistent left catalog: the full curriculum outline (math + physics),
 // collapsible by subject and stage. Lives in the _app layout so it stays mounted
 // across navigation (outline open/closed state survives opening a lesson).
 export function CatalogSidebar({
+  stories,
   drawerOpen,
   onNavigate,
 }: {
+  stories: StoryCatalogEntry[]
   drawerOpen: boolean
   onNavigate: () => void
 }) {
@@ -40,8 +43,56 @@ export function CatalogSidebar({
             onNavigate={onNavigate}
           />
         ))}
+
+        {stories.length > 0 && (
+          <>
+            <div className="sr-cat-group">名人传记</div>
+            {stories.map((story) => (
+              <StoryOutline key={story.id} story={story} onNavigate={onNavigate} />
+            ))}
+          </>
+        )}
       </div>
     </aside>
+  )
+}
+
+function StoryOutline({
+  story,
+  onNavigate,
+}: {
+  story: StoryCatalogEntry
+  onNavigate: () => void
+}) {
+  return (
+    <details className="sr-out-subject" open>
+      <summary>
+        <span className="sr-out-caret" aria-hidden />
+        <span className="sr-out-subject-name">{story.title}</span>
+        <span className="sr-count">{story.chapters.length}</span>
+      </summary>
+      <ul className="sr-out-lessons">
+        {story.chapters.map((c) => (
+          <li key={c.id}>
+            <Link
+              to="/story/$id"
+              params={{ id: c.id }}
+              className="sr-out-lesson ready"
+              activeProps={{ className: 'sr-out-lesson ready active' }}
+              onClick={onNavigate}
+            >
+              <span className="sr-out-dot" aria-hidden />
+              {c.ord}. {c.title}
+              {c.status === 'draft' && (
+                <span className="sr-tag" style={{ marginLeft: 6 }}>
+                  草稿
+                </span>
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </details>
   )
 }
 
