@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 // sr-story — deterministic 正文 length check for a chapter Markdown file.
-// Counts Chinese characters (CJK Unified Ideographs) in the narrative, which
-// excludes the English public-domain excerpt automatically. The floor is 2000
-// (~10 minutes of reading). Used by the gate and by save-story.mjs.
+// Counts Chinese characters (CJK Unified Ideographs) in the narrative. The floor
+// is 2000 (~10 minutes of reading). Used by the gate and by save-story.mjs.
 //
 // Usage:  node .agents/skills/sr-story/scripts/wordcount.mjs <chapter.md> [min]
 import { existsSync, readFileSync } from 'node:fs'

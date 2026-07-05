@@ -21,7 +21,7 @@ Capability numbers are stable user-facing shortcuts. Do not renumber.
 
 1. `capability-1-book-to-md`: convert a public-domain book (PDF/EPUB/HTML) to clean markdown with Microsoft **markitdown**. → `references/capability-1-book-to-md/convert.md`, `scripts/book-to-md.mjs`.
 2. `capability-2-outline`: from a book's markdown, author a chapter **outline** adapted for a young gifted learner (not the raw TOC). → `references/capability-2-outline/outline.md`.
-3. `capability-3-chapter`: from the book markdown + outline, author **one chapter as a narrative Markdown story** (linear factual prose, 12–16-year-old, one verbatim public-domain excerpt, ≥2000 汉字, no bullet lists, minimal 说教). Gated by `references/gate-3-chapter/gate.md`; length checked by `scripts/wordcount.mjs`. → `references/capability-3-chapter/chapter.md`.
+3. `capability-3-chapter`: from the book markdown + outline, author **one chapter as a narrative Markdown story** (linear factual prose in the author's own words, 12–16-year-old, ≥2000 汉字, no bullet lists, no quotes/blockquotes, minimal 说教). Gated by `references/gate-3-chapter/gate.md`; length checked by `scripts/wordcount.mjs`. → `references/capability-3-chapter/chapter.md`.
 4. `capability-4-questions`: from a chapter, author **questions** — mostly choice for story details, plus **≥2 open `work` 口试 items** carrying the 说教/思辨 the narrative deliberately left out. → `references/capability-4-questions/questions.md`.
 5. `capability-5-persist`: **persist** a chapter (Markdown → `md` column) + its questions into `stemrobin.sr_stories` / `sr_story_chapters` / `sr_story_questions`. → `references/capability-5-persist/persist.md`, `scripts/save-story.mjs`.
 
@@ -33,7 +33,7 @@ cap3 produces a persisted, learner-facing artifact, so it **must pass `gate-3` b
 
 ## Hard rules
 
-- **Public domain only.** Source books must be out of US copyright (Gutenberg / pre-1929 Internet Archive). Record the source URL. Excerpts are quoted from public-domain text; never paste copyrighted modern biographies.
-- Chinese for the learner-facing narrative; primary-source excerpts stay in the original English with a short Chinese gloss.
+- **Public domain only.** Source books must be out of US copyright (Gutenberg / pre-1929 Internet Archive). Record the source URL. Never base a chapter on a copyrighted modern biography.
+- Chinese narration throughout, in the author's own words. **No quotes/excerpts** — paraphrase the source's facts into plain prose; never quote the person (in any language).
 - id: story `<slug>` (e.g. `franklin`); chapter `<story>-c<order2>` (e.g. `franklin-c01`). Paths repo-relative; run from repo root (`git rev-parse --show-toplevel`).
 - New chapters are `status='draft'` until promoted to `published`.
