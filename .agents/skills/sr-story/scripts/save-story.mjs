@@ -39,13 +39,9 @@ if (!existsSync(mdPath)) fail(`md not found: ${args.md}`)
 const md = readFileSync(mdPath, 'utf8')
 const problems = []
 if (!/^#\s+\S/m.test(md)) problems.push('missing a Markdown H1 title (# …)')
-const blockquoteLines = (md.match(/^\s*>/gm) || []).length
-if (blockquoteLines === 0) problems.push('missing the public-domain excerpt (a `> …` blockquote)')
-// the quote must be in Chinese, not English
-const quoteText = md.split('\n').filter((l) => /^\s*>/.test(l)).map((l) => l.replace(/^\s*>\s?/, '')).join(' ')
-if (blockquoteLines > 0 && !/[一-鿿]/.test(quoteText)) problems.push('the excerpt quote must be Chinese (no Han characters in the blockquote)')
-if (/[A-Za-z]{3,}(?:\s+[A-Za-z]{2,}){3,}/.test(quoteText)) problems.push('the excerpt quote must be Chinese, not English (found an English sentence in the blockquote)')
-// no bullet/numbered list blocks in the body (the excerpt uses `>`, not `-`/`*`/`1.`)
+// no quotes/blockquotes: the story is told in plain prose
+if (/^\s*>/m.test(md)) problems.push('no quotes/blockquotes allowed — tell the story in plain prose (found a `>` blockquote)')
+// no bullet/numbered list blocks in the body
 const listLine = md.split('\n').find((l) => /^\s*([-*]\s|\d+\.\s)/.test(l))
 if (listLine) problems.push(`body must be continuous prose — no list items (found: ${listLine.trim().slice(0, 40)})`)
 if (/<\/?[a-z][\s\S]*?>/i.test(md)) problems.push('chapter must be Markdown, not HTML (found an HTML tag)')

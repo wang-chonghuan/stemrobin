@@ -19,7 +19,7 @@ The story tables live in `ssot-schemas/db-schemas/stemrobin.sql` and are applied
      --questions <scratch>/ford-c01.questions.json
    ```
 
-   The saver validates the chapter Markdown (has an H1, one `>` excerpt blockquote, **no bullet/numbered lists**, no HTML tags, no leftover `{{}}`, and **正文 ≥ 2000 汉字** via `wordcount.mjs`); validates the questions shape (choice items have options + one in-range `correct_index`; every item has `answer`; **≥2 open `work` 口试 items**); upserts `sr_stories` + `sr_story_chapters`; and replaces `sr_story_questions`. Only run it after `gate-3` passed.
+   The saver validates the chapter Markdown (has an H1, **no `>` blockquotes/quotes**, **no bullet/numbered lists**, no HTML tags, no leftover `{{}}`, and **正文 ≥ 2000 汉字** via `wordcount.mjs`); validates the questions shape (choice items have options + one in-range `correct_index`; every item has `answer`; **≥2 open `work` 口试 items**); upserts `sr_stories` + `sr_story_chapters`; and replaces `sr_story_questions`. Only run it after `gate-3` passed.
 2. **Report** the story id, chapter id, 汉字 count, question count, and status. Chapters are `draft` until promoted to `published`.
 
 ## Rules
