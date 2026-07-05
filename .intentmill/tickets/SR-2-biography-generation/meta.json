@@ -1,0 +1,17 @@
+{
+  "ticket_key": "SR-2-biography-generation",
+  "ticket_id": "SR-2",
+  "ticket_prefix": "SR",
+  "ticket_number": 2,
+  "ticket_slug": "biography-generation",
+  "branch": "SR-2-biography-generation",
+  "worktree_path": "/Users/yong/work/stemrobin-ws/stemrobin--SR-2-biography-generation",
+  "created_at": "2026-07-03T18:57:29Z",
+  "intent_path": ".intentmill/tickets/SR-2-biography-generation/intent.md",
+  "pr_url": "https://github.com/wang-chonghuan/stemrobin/pull/2",
+  "pr_created_at": "2026-07-05T12:43:33Z",
+  "pr_number": 2,
+  "pr_base_branch": "main",
+  "pr_head_branch": "SR-2-biography-generation",
+  "pr_title": "SR-2-biography-generation"
+}
