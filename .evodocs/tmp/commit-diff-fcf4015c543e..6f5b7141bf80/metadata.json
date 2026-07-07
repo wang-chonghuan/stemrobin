@@ -1,0 +1,16 @@
+{
+  "provider": "git",
+  "event": "commit_range",
+  "base_branch": "main",
+  "checkout_ref": "main",
+  "base_sha": "fcf4015c543e9190d42901dedc598812518a8436",
+  "head_sha": "6f5b7141bf8084b1c7790d87bc696eef601a0406",
+  "target_commit": "6f5b7141bf8084b1c7790d87bc696eef601a0406",
+  "base_subject": "lesson template: fix 正例/反例 block wrapping on narrow screens",
+  "target_subject": "SR-3-lesson-nav (#3)",
+  "generated_at": "2026-07-07T17:25:33+00:00",
+  "meta_path": ".evodocs/meta.json",
+  "excluded_pathspecs": [
+    ":(exclude).evodocs/**"
+  ]
+}
