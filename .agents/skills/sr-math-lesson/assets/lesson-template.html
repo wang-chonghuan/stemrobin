@@ -101,12 +101,14 @@
   ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
 
   /* item 3 — 定义正例 / 反例 */
-  .sr-eg { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
-  .sr-eg > span { display: inline-flex; align-items: baseline; gap: 6px; }
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
   .sr-eg .yes { color: var(--sr-green-deep); }
   .sr-eg .no  { color: #C0492B; }
-  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); }
-  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
 
 
   /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
