@@ -608,6 +608,31 @@ a.sr-out-lesson.ready:hover {
   background: var(--sr-panel);
 }
 
+/* lesson footer nav (SR-3): prev left / next right, after the lesson content.
+   The lesson page's .sr-d-scroll runs with padding 0, so the row pads itself. */
+.sr-lesson-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 20px 20px;
+  border-top: 1px solid var(--sr-line-soft);
+}
+.sr-lesson-nav .sr-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  text-decoration: none;
+}
+.sr-lesson-nav .sr-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.sr-lesson-nav .sr-btn:disabled:hover {
+  background: transparent;
+}
+
 /* ---- empty state ---- */
 .sr-empty {
   display: grid;

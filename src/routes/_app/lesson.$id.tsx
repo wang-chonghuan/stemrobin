@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Download, Layers, Menu } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Menu } from 'lucide-react'
 
-import { getLessonLabel } from '~/lib/curriculum'
+import { getLessonLabel, getLessonNav } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf } from '~/lib/lessons'
 import { getLessonQuestions, recordAnswer } from '~/lib/quiz'
 import { useLayoutStore } from '~/lib/layout-store'
@@ -75,6 +75,7 @@ function LessonView() {
         ) : (
           <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>课程内容尚未生成。</p>
         )}
+        <LessonNavFooter id={id} />
       </div>
       <QuizDrawer
         contentId={id}
@@ -84,6 +85,36 @@ function LessonView() {
         record={recordAnswer}
       />
     </main>
+  )
+}
+
+// Bottom prev/next navigation between lessons that have pages, in CURRICULUM
+// order (SR-3). Unknown ids (no page) render no nav; at the first/last page the
+// corresponding side is disabled (kept in layout) instead of hidden.
+function LessonNavFooter({ id }: { id: string }) {
+  const { prev, next } = getLessonNav(id)
+  if (!prev && !next) return null
+  return (
+    <nav className="sr-lesson-nav" aria-label="课程导航">
+      {prev ? (
+        <Link to="/lesson/$id" params={{ id: prev.id }} className="sr-btn ghost">
+          <ChevronLeft size={16} /> 上一课 · {getLessonLabel(prev.id)}
+        </Link>
+      ) : (
+        <button type="button" className="sr-btn ghost" disabled>
+          <ChevronLeft size={16} /> 上一课
+        </button>
+      )}
+      {next ? (
+        <Link to="/lesson/$id" params={{ id: next.id }} className="sr-btn ghost">
+          下一课 · {getLessonLabel(next.id)} <ChevronRight size={16} />
+        </Link>
+      ) : (
+        <button type="button" className="sr-btn ghost" disabled>
+          下一课 <ChevronRight size={16} />
+        </button>
+      )}
+    </nav>
   )
 }
 
