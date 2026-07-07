@@ -1,0 +1,20 @@
+{
+  "ticket_system": "plane",
+  "plane": {
+    "project_id": "556c9df8-f5ac-435a-8abd-53bc522dd8a7",
+    "identifier": "STEMROBIN",
+    "gap_register": "04e87c36-063f-4c5a-8f66-85933362bfca",
+    "labels": {
+      "story": "c45e8dc7-8e2f-4ce5-abc9-f93b6a151143",
+      "enabler": "6384782f-dfac-49a0-8009-9aa18f4f9a48",
+      "fix": "771c4673-7a2c-4689-9db3-553e725152dc"
+    },
+    "states": {
+      "queued": "416229c9-c13a-4973-b61b-b53aba1939b4",
+      "in_progress": "c964bceb-9833-468e-8bf9-2d3591cc0af8",
+      "done": "44bdf30d-9f36-4a27-9299-c519a40e99c7",
+      "cancelled": "f2056184-bbcb-4327-89ae-1b4fdf377995",
+      "backlog": "1f9c7511-dd3b-4121-becd-4a24c68b529c"
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "branch": "main",
-  "commit_id": "b06517dcff0eed39ca454ac8542568037f05f748",
-  "updated_at": "2026-07-02T15:59:30+00:00",
+  "commit_id": "fcf4015c543e9190d42901dedc598812518a8436",
+  "updated_at": "2026-07-07T16:54:49+00:00",
   "readme": "Evodocs are repo-local project understanding documents for coding agents. Start with .evodocs/index.json to identify the relevant project modules, then read the matching .evodocs/mod--<module>.md files, including parent, child, or neighboring module docs when a change crosses boundaries. Use those docs to understand responsibilities, flows, relationships, constraints, and known limits; inspect the actual code when more detail or verification is needed. Only after collecting enough context from the index, module docs, and necessary code should you analyze the project, design a plan, or modify code."
 }
