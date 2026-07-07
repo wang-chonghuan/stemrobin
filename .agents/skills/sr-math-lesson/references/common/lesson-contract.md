@@ -71,7 +71,7 @@ Self-contained HTML from `assets/lesson-template.html` (head/style shell + heade
 Both genres:
 - **Vocabulary contract**: every technical term used must be either introduced in THIS lesson or present in an earlier lesson's `introduces`/`assumed`. On first use of a consumed term, a one-line reminder is welcome ("还记得吗：项是按加减切出来的块"). `check-ledger.mjs --vocab` greps the HTML for later-lesson terms; the gate hunts wild jargon.
 - 深入浅出, school-serious tone (DESIGN.md), no encouragement filler, no cartoon metaphors that will have to be unlearned. The tree/layer language IS the metaphor and it is the real structure.
-- No `practice` section in the HTML — practice lives in the deck (DB). The old embedded-practice section is retired.
+- **Authors never write a `practice` section** — the deck is the SSOT. The saver (cap4 deck path) GENERATES a `practice` section from the deck and embeds it into the stored 課文: prompts + choice options only (the answer key — `answer`/`correct_index`/`accept` — never enters the html; checking happens in the card-quiz). On screen the learner sees every question while reading; in the printed PDF the practice starts on its own page with full-width rules between items (pen-writing room). A hand-authored practice section fails gate-2.
 - KaTeX `$...$`/`$$...$$`; inline SVG for figures (viewBox, labeled, template palette); never images.
 
 ## Exercise deck (cap3 → `sr_questions`)

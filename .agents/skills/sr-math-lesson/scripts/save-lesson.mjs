@@ -41,6 +41,78 @@ const ANCHORS = {
   练习课: ['motivation'], // short orientation only — the deck is the substance
 }
 
+// ---------------------------------------------------------------------------
+// Practice section — GENERATED from the deck (single source of truth) and
+// embedded into the lesson html so the learner sees all questions while
+// reading, and the printed PDF carries them on their own page with full-width
+// rules between items (room to write by pen). Prompts + options ONLY — the
+// answer key (answer/correct_index/accept) never enters the html.
+// ---------------------------------------------------------------------------
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const OPT_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+
+function renderPractice(items, html) {
+  const secCount = (html.match(/<section data-sr-section=/g) || []).length
+  const lis = items
+    .map((q) => {
+      const tags = `<span class="sr-ptype">${esc(q.type)}</span>` +
+        (q.layer === '复习' ? `<span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span>` : '')
+      const opts = q.answer_mode === 'choice' && Array.isArray(q.options)
+        ? `<div class="sr-p-opts">${q.options.map((o, k) => `<span class="sr-p-opt"><b>${OPT_LETTERS[k]}.</b> ${esc(o)}</span>`).join('')}</div>`
+        : ''
+      return `      <li>${tags} ${esc(q.prompt)}${opts}</li>`
+    })
+    .join('\n')
+  return `
+  <section data-sr-section="practice">
+    <style>
+      /* injected with the deck — screen extras + print layout (self-contained) */
+      .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+      .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
+      .sr-p-opt { font-size: 14px; }
+      .sr-p-opt b { font-family: var(--sr-mono); font-weight: 600; color: var(--sr-ink-soft); margin-right: 3px; }
+      @media print {
+        section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+        ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; break-inside: avoid; }
+        ol.sr-practice > li::before { top: 16px; }
+      }
+    </style>
+    <div class="sr-sec-label"><span class="sr-sec-num">${secCount + 1}</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">可以边读边想，也可以打印出来用笔写。做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+${lis}
+    </ol>
+  </section>`
+}
+
+// Remove a previously injected practice section (idempotent re-saves).
+function stripPractice(html) {
+  return html.replace(/\n?\s*<section data-sr-section="practice">[\s\S]*?<\/section>/g, '')
+}
+
+// Render the print PDF for a full lesson html (best effort).
+async function renderPdf(html) {
+  try {
+    const { chromium } = await import('playwright-core')
+    let browser
+    try { browser = await chromium.launch() } catch { browser = await chromium.launch({ channel: 'chrome' }) }
+    try {
+      const page = await browser.newPage()
+      await page.setContent(html, { waitUntil: 'networkidle' })
+      await page.waitForFunction(() => window.katex && document.querySelectorAll('.katex').length > 0, null, { timeout: 6000 }).catch(() => {})
+      await page.evaluate(() => document.fonts.ready.then(() => true))
+      await page.waitForTimeout(400)
+      await page.emulateMedia({ media: 'print' })
+      const buf = await page.pdf({ printBackground: true, preferCSSPageSize: true })
+      console.log(`✓ pdf rendered (${Math.round(buf.length / 1024)} KB)`)
+      return buf
+    } finally { await browser.close() }
+  } catch (e) {
+    console.error(`! PDF not generated (${(e && e.message) || e})`)
+    return null
+  }
+}
+
 async function main() {
   // ===== deck path =====
   if (args.questions) {
@@ -63,8 +135,24 @@ async function main() {
         if (!Array.isArray(q.accept) || !q.accept.length) fail(`question ${i}: input needs accept[]`)
       }
     })
-    const rows = await sql`select 1 from sr_lessons where id = ${args.id}`
+    const rows = await sql`select html from sr_lessons where id = ${args.id}`
     if (!rows.length) fail(`lesson ${args.id} not found — save the 課文 first`)
+    if (!rows[0].html) fail(`lesson ${args.id} has no 課文 html — save it first`)
+
+    // Embed the deck-rendered practice section (prompts + options only) into the
+    // 課文 so reading shows every question, then re-render the print PDF (the
+    // practice starts on its own page with full-width write-in rules).
+    const sorted = [...items].sort((a, b) => (a.ord ?? 0) - (b.ord ?? 0))
+    const base = stripPractice(rows[0].html)
+    const withPractice = base.replace(/<\/article>/, `${renderPractice(sorted, base)}\n\n</article>`)
+    if (!withPractice.includes('data-sr-section="practice"')) fail('failed to inject practice section (no </article> in stored html?)')
+    const pdfBuf = await renderPdf(withPractice)
+
+    await sql`
+      update sr_lessons set html = ${withPractice},
+        pdf = coalesce(${pdfBuf ? Buffer.from(pdfBuf) : null}, pdf), updated_at = now()
+      where id = ${args.id}
+    `
     await sql`delete from sr_questions where lesson_id = ${args.id}`
     let n = 0
     for (let i = 0; i < items.length; i++) {
@@ -79,7 +167,7 @@ async function main() {
       `
       n++
     }
-    console.log(`✓ sr_questions replaced for ${args.id}: ${n} items`)
+    console.log(`✓ sr_questions replaced for ${args.id}: ${n} items · practice section embedded into 課文`)
     await sql.end()
     return
   }
@@ -106,24 +194,7 @@ async function main() {
   if (problems.length) fail(`HTML validation failed:\n  - ${problems.join('\n  - ')}`)
 
   // --- pre-render print PDF (best effort) ---
-  let pdfBuf = null
-  try {
-    const { chromium } = await import('playwright-core')
-    let browser
-    try { browser = await chromium.launch() } catch { browser = await chromium.launch({ channel: 'chrome' }) }
-    try {
-      const page = await browser.newPage()
-      await page.setContent(html, { waitUntil: 'networkidle' })
-      await page.waitForFunction(() => window.katex && document.querySelectorAll('.katex').length > 0, null, { timeout: 6000 }).catch(() => {})
-      await page.evaluate(() => document.fonts.ready.then(() => true))
-      await page.waitForTimeout(400)
-      await page.emulateMedia({ media: 'print' })
-      pdfBuf = await page.pdf({ printBackground: true, preferCSSPageSize: true })
-      console.log(`✓ pdf rendered (${Math.round(pdfBuf.length / 1024)} KB)`)
-    } finally { await browser.close() }
-  } catch (e) {
-    console.error(`! PDF not generated (${(e && e.message) || e}); saving 課文 without PDF`)
-  }
+  const pdfBuf = await renderPdf(html)
 
   await sql`
     insert into sr_lessons (id, subject, stage, lesson_order, title, concept, html, pdf, status, updated_at)
@@ -135,6 +206,10 @@ async function main() {
       pdf=coalesce(excluded.pdf, sr_lessons.pdf), status=excluded.status, updated_at=now()
   `
   console.log(`✓ sr_lessons upserted: ${args.id} (${args.genre}) status=${status}`)
+  // Re-saving the 課文 replaces the html wholesale, dropping any deck-injected
+  // practice section — remind the operator to re-run the deck save after it.
+  const qn = await sql`select count(*)::int as n from sr_questions where lesson_id = ${args.id}`
+  if (qn[0].n > 0) console.log(`! this lesson has ${qn[0].n} questions — re-run the deck save (--questions) to re-embed the practice section + refresh the PDF`)
   await sql.end()
 }
 
