@@ -175,3 +175,15 @@ export const AVAILABLE_LESSONS: { id: string; title: string; subject: string }[]
       st.lessons.filter((l) => l.id).map((l) => ({ id: l.id!, title: l.title, subject: s.label })),
     ),
   )
+
+// Prev/next lesson (pages only, CURRICULUM order) for the lesson-view footer nav.
+// Derived from AVAILABLE_LESSONS — the single source of the sequence. Unknown ids
+// (no page) get neither, so outline-only lessons never participate in navigation.
+export function getLessonNav(id: string): {
+  prev?: (typeof AVAILABLE_LESSONS)[number]
+  next?: (typeof AVAILABLE_LESSONS)[number]
+} {
+  const i = AVAILABLE_LESSONS.findIndex((l) => l.id === id)
+  if (i === -1) return {}
+  return { prev: AVAILABLE_LESSONS[i - 1], next: AVAILABLE_LESSONS[i + 1] }
+}
