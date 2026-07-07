@@ -136,12 +136,12 @@ function SubjectOutline({
                       onClick={onNavigate}
                     >
                       <span className="sr-out-dot" aria-hidden />
-                      {j + 1}. {l.title}
+                      {i + 1}.{j + 1} {l.title}
                     </Link>
                   </li>
                 ) : (
                   <li key={l.title} className="sr-out-lesson">
-                    {j + 1}. {l.title}
+                    {i + 1}.{j + 1} {l.title}
                   </li>
                 ),
               )}

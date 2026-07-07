@@ -38,6 +38,7 @@ const sql = postgres(env.EASYAPP_DATABASE_URL, { ssl: 'require', max: 3, connect
 const ANCHORS = {
   概念课: ['motivation', 'model', 'anatomy', 'boundary', 'connections', 'oral'],
   方法课: ['motivation', 'explain', 'examples', 'connections', 'oral'],
+  练习课: ['motivation'], // short orientation only — the deck is the substance
 }
 
 async function main() {
@@ -87,7 +88,7 @@ async function main() {
   for (const k of ['subject', 'stage', 'order', 'title', 'genre', 'html']) if (!args[k]) fail(`missing --${k}`)
   if (args.subject !== 'math') fail('only --subject math is supported by sr-math-lesson')
   const anchors = ANCHORS[args.genre]
-  if (!anchors) fail(`--genre must be 概念课|方法课 (练习课 has no 課文)`)
+  if (!anchors) fail(`--genre must be 概念课|方法课|练习课`)
   const status = args.status || 'draft'
   if (!['draft', 'published'].includes(status)) fail('--status must be draft|published')
 
