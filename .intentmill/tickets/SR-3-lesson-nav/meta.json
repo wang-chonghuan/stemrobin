@@ -7,5 +7,11 @@
   "branch": "SR-3-lesson-nav",
   "worktree_path": "/Users/yong/work/stemrobin-ws/stemrobin--SR-3-lesson-nav",
   "created_at": "2026-07-07T17:03:29Z",
-  "intent_path": ".intentmill/tickets/SR-3-lesson-nav/intent.md"
+  "intent_path": ".intentmill/tickets/SR-3-lesson-nav/intent.md",
+  "pr_url": "https://github.com/wang-chonghuan/stemrobin/pull/3",
+  "pr_number": 3,
+  "pr_created_at": "2026-07-07T17:24:49.820694+00:00",
+  "pr_base_branch": "main",
+  "pr_head_branch": "SR-3-lesson-nav",
+  "pr_title": "SR-3-lesson-nav"
 }
