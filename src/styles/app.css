@@ -767,10 +767,21 @@ a.sr-out-lesson.ready:hover {
 .sr-quiz-answer { font-size: 14px; line-height: 1.55; color: var(--sr-ink-soft);
   border-left: 2px solid var(--sr-green); padding-left: 10px; }
 .sr-quiz-work {
-  display: flex; flex-direction: column; align-items: center; gap: 8px;
-  padding: 26px 12px; color: var(--sr-ink-dim); text-align: center; font-size: 13px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  padding: 22px 12px; color: var(--sr-ink-soft); text-align: center; font-size: 13.5px;
   border: 1px dashed var(--sr-line); border-radius: var(--sr-radius-sm);
 }
+
+/* ── input-mode answer (type the answer — recall, not recognition) ── */
+.sr-quiz-input { display: flex; gap: 8px; margin-top: 12px; }
+.sr-quiz-input-field {
+  flex: 1; min-width: 0; padding: 10px 12px; font-size: 15px;
+  font-family: var(--sr-mono); color: var(--sr-ink);
+  background: var(--sr-white); border: 1px solid var(--sr-line); border-radius: var(--sr-radius-sm);
+}
+.sr-quiz-input-field:focus { outline: 2px solid var(--sr-blue); outline-offset: 1px; border-color: var(--sr-blue); }
+.sr-quiz-input-field.correct { border-color: var(--sr-green); background: var(--sr-green-tint); }
+.sr-quiz-input-field.wrong { border-color: var(--sr-ink-dim); background: var(--sr-panel); }
 .sr-quiz-login, .sr-quiz-empty { padding: 20px 6px; color: var(--sr-ink-soft); font-size: 14px; }
 .sr-quiz-login p { margin-bottom: 12px; }
 .sr-quiz-foot {

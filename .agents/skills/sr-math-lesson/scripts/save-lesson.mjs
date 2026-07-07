@@ -1,0 +1,145 @@
+#!/usr/bin/env node
+// sr-math-lesson cap4 — deterministic persistence into the Azure easy-app Postgres
+// (schema stemrobin-schema). Two paths:
+//   1) 課文: validate genre-specific section anchors, pre-render a print PDF
+//      (playwright-core when available), upsert sr_lessons (html + pdf).
+//   2) deck (--questions): validate item shape (choice/input/work incl. accept),
+//      replace sr_questions (with layer/review_of/accept columns).
+// Composition rules are check-exercises.mjs's job (run before the gate).
+// DB creds from repo-root .env (EASYAPP_DATABASE_URL). Never echoes secrets.
+//
+// 課文:  node save-lesson.mjs --id math-s2-03 --subject math --stage 2 --order 3 \
+//          --genre 概念课 --title "…" --concept "…" --status draft --html <file>
+// deck:  node save-lesson.mjs --id math-s2-03 --questions <deck.json>
+import { execFileSync } from 'node:child_process'
+import { existsSync, readFileSync } from 'node:fs'
+import { join, resolve } from 'node:path'
+import postgres from 'postgres'
+
+function fail(msg) { console.error(`✗ ${msg}`); process.exit(1) }
+
+let repoRoot
+try { repoRoot = execFileSync('git', ['rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim() }
+catch { fail('not inside a git repo') }
+
+const args = {}
+const argv = process.argv.slice(2)
+for (let i = 0; i < argv.length; i++) { const a = argv[i]; if (a.startsWith('--')) { args[a.slice(2)] = argv[i + 1]; i++ } }
+if (!args.id) fail('missing --id')
+if (!/^math-s\d+-\d{2}$/.test(args.id)) fail(`--id must look like math-s2-03 (got ${args.id})`)
+
+const envPath = join(repoRoot, '.env')
+if (!existsSync(envPath)) fail('.env not found at repo root')
+const env = {}
+for (const line of readFileSync(envPath, 'utf8').split('\n')) { const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m) env[m[1]] = m[2] }
+if (!env.EASYAPP_DATABASE_URL) fail('no EASYAPP_DATABASE_URL in .env')
+const sql = postgres(env.EASYAPP_DATABASE_URL, { ssl: 'require', max: 3, connection: { search_path: '"stemrobin-schema"' } })
+
+const ANCHORS = {
+  概念课: ['motivation', 'model', 'anatomy', 'boundary', 'connections', 'oral'],
+  方法课: ['motivation', 'explain', 'examples', 'connections', 'oral'],
+}
+
+async function main() {
+  // ===== deck path =====
+  if (args.questions) {
+    const qPath = resolve(process.cwd(), args.questions)
+    if (!existsSync(qPath)) fail(`questions file not found: ${args.questions}`)
+    let items
+    try { items = JSON.parse(readFileSync(qPath, 'utf8')) } catch (e) { fail(`questions JSON parse error: ${e.message}`) }
+    if (!Array.isArray(items) || !items.length) fail('questions JSON must be a non-empty array')
+    items.forEach((q, i) => {
+      if (!q.prompt || !q.type || !q.answer) fail(`question ${i}: prompt/type/answer required`)
+      if (!['choice', 'work', 'input'].includes(q.answer_mode)) fail(`question ${i}: answer_mode must be choice|work|input`)
+      if (!q.layer) fail(`question ${i}: layer required`)
+      if (q.layer === '复习' && !q.review_of) fail(`question ${i}: 复习 needs review_of`)
+      if (q.answer_mode === 'choice') {
+        if (!Array.isArray(q.options) || q.options.length < 3) fail(`question ${i}: choice needs >=3 options`)
+        if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
+          fail(`question ${i}: correct_index out of range`)
+      }
+      if (q.answer_mode === 'input') {
+        if (!Array.isArray(q.accept) || !q.accept.length) fail(`question ${i}: input needs accept[]`)
+      }
+    })
+    const rows = await sql`select 1 from sr_lessons where id = ${args.id}`
+    if (!rows.length) fail(`lesson ${args.id} not found — save the 課文 first`)
+    await sql`delete from sr_questions where lesson_id = ${args.id}`
+    let n = 0
+    for (let i = 0; i < items.length; i++) {
+      const q = items[i]
+      await sql`
+        insert into sr_questions (lesson_id, ord, type, prompt, answer_mode, options, correct_index, accept, layer, review_of, answer)
+        values (${args.id}, ${q.ord ?? i + 1}, ${q.type}, ${q.prompt}, ${q.answer_mode},
+                ${q.answer_mode === 'choice' ? sql.json(q.options) : null},
+                ${q.answer_mode === 'choice' ? q.correct_index : null},
+                ${q.answer_mode === 'input' ? sql.json(q.accept) : null},
+                ${q.layer}, ${q.review_of ?? null}, ${q.answer})
+      `
+      n++
+    }
+    console.log(`✓ sr_questions replaced for ${args.id}: ${n} items`)
+    await sql.end()
+    return
+  }
+
+  // ===== 課文 path =====
+  for (const k of ['subject', 'stage', 'order', 'title', 'genre', 'html']) if (!args[k]) fail(`missing --${k}`)
+  if (args.subject !== 'math') fail('only --subject math is supported by sr-math-lesson')
+  const anchors = ANCHORS[args.genre]
+  if (!anchors) fail(`--genre must be 概念课|方法课 (练习课 has no 課文)`)
+  const status = args.status || 'draft'
+  if (!['draft', 'published'].includes(status)) fail('--status must be draft|published')
+
+  const htmlSrc = resolve(process.cwd(), args.html)
+  if (!existsSync(htmlSrc)) fail(`html file not found: ${args.html}`)
+  const html = readFileSync(htmlSrc, 'utf8')
+
+  const problems = []
+  for (const sec of anchors) if (!html.includes(`data-sr-section="${sec}"`)) problems.push(`missing section anchor: ${sec}`)
+  if (html.includes('<section data-sr-section="practice"')) problems.push('課文 must NOT contain a practice section (the deck is the practice)')
+  if (!/katex/i.test(html)) problems.push('KaTeX not wired')
+  if (!html.includes('--sr-')) problems.push('DESIGN tokens missing')
+  if (/\{\{[A-Z_]+\}\}/.test(html)) problems.push('leftover {{PLACEHOLDER}}')
+  if (html.length < 1500) problems.push(`html suspiciously short (${html.length} bytes)`)
+  if (problems.length) fail(`HTML validation failed:\n  - ${problems.join('\n  - ')}`)
+
+  // --- pre-render print PDF (best effort) ---
+  let pdfBuf = null
+  try {
+    const { chromium } = await import('playwright-core')
+    let browser
+    try { browser = await chromium.launch() } catch { browser = await chromium.launch({ channel: 'chrome' }) }
+    try {
+      const page = await browser.newPage()
+      await page.setContent(html, { waitUntil: 'networkidle' })
+      await page.waitForFunction(() => window.katex && document.querySelectorAll('.katex').length > 0, null, { timeout: 6000 }).catch(() => {})
+      await page.evaluate(() => document.fonts.ready.then(() => true))
+      await page.waitForTimeout(400)
+      await page.emulateMedia({ media: 'print' })
+      pdfBuf = await page.pdf({ printBackground: true, preferCSSPageSize: true })
+      console.log(`✓ pdf rendered (${Math.round(pdfBuf.length / 1024)} KB)`)
+    } finally { await browser.close() }
+  } catch (e) {
+    console.error(`! PDF not generated (${(e && e.message) || e}); saving 課文 without PDF`)
+  }
+
+  await sql`
+    insert into sr_lessons (id, subject, stage, lesson_order, title, concept, html, pdf, status, updated_at)
+    values (${args.id}, ${args.subject}, ${parseInt(args.stage, 10)}, ${parseInt(args.order, 10)},
+            ${args.title}, ${args.concept || ''}, ${html}, ${pdfBuf ? Buffer.from(pdfBuf) : null}, ${status}, now())
+    on conflict (id) do update set
+      subject=excluded.subject, stage=excluded.stage, lesson_order=excluded.lesson_order,
+      title=excluded.title, concept=excluded.concept, html=excluded.html,
+      pdf=coalesce(excluded.pdf, sr_lessons.pdf), status=excluded.status, updated_at=now()
+  `
+  console.log(`✓ sr_lessons upserted: ${args.id} (${args.genre}) status=${status}`)
+  await sql.end()
+}
+
+main().catch((e) => {
+  if (/column .* does not exist/i.test(String(e && e.message))) {
+    console.error('✗ sr_questions is missing the new columns (accept/layer/review_of) — apply ssot-schemas/db-schemas/stemrobin.sql')
+  } else console.error(e)
+  process.exit(1)
+})

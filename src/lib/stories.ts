@@ -89,11 +89,12 @@ export const getStoryQuestions = createServerFn({ method: 'GET' })
     }))
   })
 
-// Record one choice answer for a story question (requires a logged-in learner).
-// Correctness is computed server-side from sr_story_questions.correct_index; the
-// event is written to sr_story_answer_events. Mirrors recordAnswer.
+// Record one answer for a story question (requires a logged-in learner).
+// Choice: correctness computed server-side from sr_story_questions.correct_index.
+// Work (口试/品格): ungraded — records the attempt and returns the reference
+// answer for self-check. Mirrors recordAnswer.
 export const recordStoryAnswer = createServerFn({ method: 'POST' })
-  .validator((d: { questionId: number; chosen: number }) => d)
+  .validator((d: { questionId: number; chosen?: number; text?: string }) => d)
   .handler(async ({ data }): Promise<AnswerResult | { error: string }> => {
     const uid = await currentUserId()
     if (uid == null) return { error: '请先登录' }
@@ -102,7 +103,15 @@ export const recordStoryAnswer = createServerFn({ method: 'POST' })
       from sr_story_questions where id = ${data.questionId}
     `
     if (!rows.length) return { error: '题目不存在' }
-    if (rows[0].answer_mode !== 'choice') return { error: '该题不是选择题' }
+    if (rows[0].answer_mode === 'work') {
+      await sql()`
+        insert into sr_story_answer_events (user_id, question_id, is_correct)
+        values (${uid}, ${data.questionId}, ${null})
+      `
+      return { isCorrect: null, correctIndex: null, answer: rows[0].answer }
+    }
+    if (rows[0].answer_mode !== 'choice') return { error: '该题不支持在线作答' }
+    if (typeof data.chosen !== 'number') return { error: '缺少选项' }
     const correctIndex = rows[0].correct_index as number
     const isCorrect = data.chosen === correctIndex
     await sql()`

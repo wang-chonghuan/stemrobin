@@ -28,27 +28,27 @@ export const CURRICULUM: OutlineSubject[] = [
         ),
       },
       {
+        // Stage 2 mirrors docs/math-ledger/stage-2.json (the sr-math-lesson ledger):
+        // anatomy 概念课 (项/因数, 系数/次数) placed BEFORE the 方法课 that consume them.
         title: '字母和代数式',
         lessons: [
-          { title: '用字母表示一个数' }, { title: '用字母表示变化的数' }, { title: '代数式的读法' },
-          { title: '代数式的值', id: 'math-s2-04' },
-          { title: '同类项', id: 'math-s2-05' },
-          { title: '合并同类项', id: 'math-s2-06' },
-          { title: '去括号', id: 'math-s2-07' },
-          { title: '整式加减', id: 'math-s2-08' },
+          { title: '用字母表示数' },
+          { title: '代数式与求值' },
+          { title: '式子的两层：项与因数', id: 'math-s2-03' },
+          { title: '项的身份证：系数与次数', id: 'math-s2-04' },
+          { title: '同类项与合并', id: 'math-s2-05' },
+          { title: '去括号', id: 'math-s2-06' },
+          { title: '整式加减', id: 'math-s2-07' },
+          { title: '化简综合练武场' },
         ],
       },
       {
+        // Stage 3 lessons will be regenerated with sr-math-lesson (old ones retired).
         title: '方程和不等式',
-        lessons: [
-          { title: '未知数是什么', id: 'math-s3-01' },
-          { title: '等式两边同加同减', id: 'math-s3-02' },
-          { title: '等式两边同乘同除', id: 'math-s3-03' },
-          ...L(
-            '解一元一次方程',
-            '去括号解方程', '去分母解方程', '不等式表示范围', '一元一次不等式', '不等式组',
-          ),
-        ],
+        lessons: L(
+          '未知数是什么', '等式两边同加同减', '等式两边同乘同除', '解一元一次方程',
+          '去括号解方程', '去分母解方程', '不等式表示范围', '一元一次不等式', '不等式组',
+        ),
       },
       {
         title: '基础几何',

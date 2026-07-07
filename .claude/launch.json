@@ -6,6 +6,23 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "sr2-worktree-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/yong/work/stemrobin-ws/stemrobin--SR-2-biography-generation",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "3100",
+        "--host",
+        "127.0.0.1"
+      ],
+      "port": 3100,
+      "autoPort": false
     }
   ]
 }
