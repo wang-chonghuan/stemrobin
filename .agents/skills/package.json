@@ -1,0 +1,9 @@
+{
+  "name": "sr-skills-deps",
+  "private": true,
+  "type": "module",
+  "description": "Runtime deps for the content-generation skill scripts (sr-story, sr-math-lesson, sr-lesson). Kept here so the skills resolve their npm deps from .agents/skills/node_modules — independent of the app's own install in app/.",
+  "dependencies": {
+    "postgres": "^3.4.9"
+  }
+}

@@ -1,11 +1,13 @@
+.git
 node_modules
 app/node_modules
-.git
-.env
-.env.*
+.agents/skills/node_modules
 dist
 app/dist
 .output
 app/.output
 app/.tanstack
+# secrets — never into the image (matches .env and the app/.env symlink at any depth)
+**/.env
+**/.env.*
 npm-debug.log
