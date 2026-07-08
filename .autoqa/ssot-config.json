@@ -1,0 +1,67 @@
+{
+  "defaultCreateEnvironment": "local",
+  "defaultRunEnvironment": "local",
+  "defaultProject": "chrome",
+  "environments": {
+    "local": {
+      "baseURL": "http://localhost:3000",
+      "allowGeneration": true,
+      "allowRegressionRun": true
+    }
+  },
+  "auth": {
+    "provider": "app-local",
+    "email": "REPLACE-TEST-ACCOUNT-EMAIL",
+    "password": "REPLACE-TEST-ACCOUNT-PASSWORD",
+    "defaultReturnTo": "/"
+  },
+  "run": {
+    "headedFlag": "--headed",
+    "regCasesPath": ".autoqa/rg-cases",
+    "ticketsPath": ".autoqa/tickets"
+  },
+  "semanticCheck": {
+    "baseURL": "https://finleyswedencentralinstance.openai.azure.com/openai/v1",
+    "envKey": "AZURE_OPENAI_API_KEY",
+    "model": "gpt-5.4",
+    "reasoningEffort": "medium"
+  },
+  "db": {
+    "stack": "ts",
+    "constitutionPath": ".evodocs/constitution.md",
+    "backendRoot": ".",
+    "connectionModule": "src/lib/db.ts",
+    "envFile": ".env",
+    "envKeys": {
+      "local": "EASYAPP_DATABASE_URL",
+      "deployed": "DATABASE_URL"
+    },
+    "schema": {
+      "default": "stemrobin-schema"
+    },
+    "ssot": {
+      "ddlPath": "ssot-schemas/db-schemas/stemrobin.sql"
+    },
+    "fixtureScripts": {
+      "workingDirectory": ".",
+      "tmpDirectory": ".autoqa/run-artifacts/tmp",
+      "idempotentRequired": true,
+      "canonicalAccessRequired": true
+    },
+    "writePolicy": {
+      "defaultEnvironment": "local",
+      "allowedEnvironments": [
+        "local"
+      ],
+      "deniedEnvironments": [
+        "prod"
+      ],
+      "requiresManifestAllowResetEnvironment": true
+    }
+  },
+  "policy": {
+    "generateTestsAgainst": "local",
+    "doNotHardcodeEnvironmentUrlsInSpecs": true,
+    "storeTestAccountCredentialsInSsotConfig": true
+  }
+}

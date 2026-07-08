@@ -7,7 +7,7 @@ All commands run from the repo root.
 - `npm run dev` — vite dev server (default http://localhost:3000; check terminal output for the actual port)
 
 ## Test / Build
-> Regression floor note (autoqa gap): n-autoqa cannot initialize on this TS stack yet (see Gap Register STEMROBIN-1). Until unblocked, `npm run test` (vitest) is the full-regression floor; RG cases are skipped.
+> Regression: `.autoqa/` initialized (n-autoqa TS-stack support, 2026-07-07). RG cases accumulate per ticket via n-autoqa; `npm run test` (vitest) remains the unit floor. Run RG suite: n-autoqa cap3.
 
 - `npm run test` — vitest run
 - `npm run build` — production build

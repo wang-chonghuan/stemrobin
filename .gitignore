@@ -145,3 +145,16 @@ vite.config.ts.timestamp-*
 # n-im / local agent scratch
 .tmp/
 .getagoal/
+
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# AutoQA
+.autoqa/.auth/
+.autoqa/test-results/
+.autoqa/playwright-report/
+.autoqa/blob-report/

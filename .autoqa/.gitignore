@@ -1,0 +1,6 @@
+.auth/
+test-results/
+playwright-report/
+blob-report/
+run-artifacts/
+*.trace.zip
