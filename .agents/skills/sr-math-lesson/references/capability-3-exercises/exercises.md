@@ -19,5 +19,5 @@ From the ledger + the lesson's 課文, author the deck JSON the card-quiz render
 1. Read the ledger entry (introduces/boundary_cases) + earlier entries (review targets) + the 課文.
 2. Draft 16–24 items across the layers per the composition rules; set `type` tags (辨认/表示/操作/反推/辨错/说理) as the learner-facing label.
 3. For `input` items: enumerate `accept` variants (order variants, with/without `*`); keep answers short-form-unique; exponents `x^2`.
-4. Run `node .agents/skills/sr-math-lesson/scripts/check-exercises.mjs <deck.json> --ledger docs/math-ledger/stage-<n>.json --id <lesson-id>` — must pass.
+4. Run `node .agents/skills/sr-math-lesson/scripts/check-exercises.mjs <deck.json> --ledger resources/content/math-ledger/stage-<n>.json --id <lesson-id>` — must pass.
 5. Write to `<scratch>/<id>.questions.json`. Report: item count, layer/mode split, boundary coverage, review targets.

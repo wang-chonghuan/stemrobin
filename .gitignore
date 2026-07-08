@@ -158,3 +158,6 @@ vite.config.ts.timestamp-*
 .autoqa/test-results/
 .autoqa/playwright-report/
 .autoqa/blob-report/
+
+# macOS
+.DS_Store

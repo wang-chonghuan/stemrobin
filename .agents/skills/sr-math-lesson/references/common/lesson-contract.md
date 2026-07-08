@@ -8,7 +8,7 @@ A lesson exists so the learner ends up with a **working mental model plus the la
 
 ## The ledger (概念台账)
 
-`docs/math-ledger/stage-<n>.json` — machine-readable stage outline, the SSOT for lesson order, terms, and review scheduling.
+`resources/content/math-ledger/stage-<n>.json` — machine-readable stage outline, the SSOT for lesson order, terms, and review scheduling.
 
 ```json
 {
@@ -70,7 +70,7 @@ Self-contained HTML from `assets/lesson-template.html` (head/style shell + heade
 
 Both genres:
 - **Vocabulary contract**: every technical term used must be either introduced in THIS lesson or present in an earlier lesson's `introduces`/`assumed`. On first use of a consumed term, a one-line reminder is welcome ("还记得吗：项是按加减切出来的块"). `check-ledger.mjs --vocab` greps the HTML for later-lesson terms; the gate hunts wild jargon.
-- 深入浅出, school-serious tone (DESIGN.md), no encouragement filler, no cartoon metaphors that will have to be unlearned. The tree/layer language IS the metaphor and it is the real structure.
+- 深入浅出, school-serious tone (resources/reference/DESIGN.md), no encouragement filler, no cartoon metaphors that will have to be unlearned. The tree/layer language IS the metaphor and it is the real structure.
 - **Authors never write a `practice` section** — the deck is the SSOT. The saver (cap4 deck path) GENERATES a `practice` section from the deck and embeds it into the stored 課文: prompts + choice options only (the answer key — `answer`/`correct_index`/`accept` — never enters the html; checking happens in the card-quiz). On screen the learner sees every question while reading; in the printed PDF the practice starts on its own page with full-width rules between items (pen-writing room). A hand-authored practice section fails gate-2.
 - KaTeX `$...$`/`$$...$$`; inline SVG for figures (viewBox, labeled, template palette); never images.
 

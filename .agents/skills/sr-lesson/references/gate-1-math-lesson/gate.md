@@ -19,7 +19,7 @@ If yes, the gate fails — regardless of how polished the HTML looks.
 - **Practice**: 8–15 items spanning 辨认 / 表示 / 操作 / 反推 / 辨错; answers present; no word problems.
 - **Connections**: substantive prerequisite→next through-line, not bare titles.
 - **Tone**: no science-story fluff, no encouragement filler (docs 禁止事项).
-- **Grounding**: matches the concept and altitude of this section in `docs/course-gen-guide-math.md`.
+- **Grounding**: matches the concept and altitude of this section in `resources/content/course-gen-guide-math.md`.
 
 ## Hard Checks (mechanical — the saver enforces these too)
 

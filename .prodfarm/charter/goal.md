@@ -1,6 +1,6 @@
 # Product Goal
 
-> DRAFT derived from docs/intent.md — AWAITING HUMAN CONFIRMATION.
+> DRAFT derived from resources/content/intent.md — AWAITING HUMAN CONFIRMATION.
 
 为一名 8 岁、理解力强的孩子提供**初中数学/物理**的自学课程产品。核心原则:**内容按初中标准(2022 版义务教育课标),解释按儿童认知,训练按严肃教材**——不阉割概念,重排入口与坡度。
 

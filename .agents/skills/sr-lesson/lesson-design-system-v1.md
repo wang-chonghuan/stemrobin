@@ -1,6 +1,6 @@
 # Lesson Design System v1
 
-The visual + structural contract every StemRobin lesson follows. Captured from the 合并同类项 (`math-s2-06`) lesson — that look is the baseline. Storage-format-agnostic: it applies whether a lesson's 课文 is authored as an HTML fragment or its exercises are rendered from JSON. It shares the app palette in `DESIGN.md` but owns the **content** components (sections, callouts, examples, exercises, figures, inline marks).
+The visual + structural contract every StemRobin lesson follows. Captured from the 合并同类项 (`math-s2-06`) lesson — that look is the baseline. Storage-format-agnostic: it applies whether a lesson's 课文 is authored as an HTML fragment or its exercises are rendered from JSON. It shares the app palette in `resources/reference/DESIGN.md` but owns the **content** components (sections, callouts, examples, exercises, figures, inline marks).
 
 **Conformance:** lessons use only these tokens and classes. Colours come from tokens, never hard-coded in content. Content carries semantic classes only — **no inline styles** — so the stylesheet is the single place to restyle. Add a new component here and in the stylesheet together; do not invent ad-hoc classes in a lesson.
 

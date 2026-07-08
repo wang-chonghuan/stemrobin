@@ -1,6 +1,6 @@
 # Capability 1 — Author a stage's concept ledger
 
-Produce or revise `docs/math-ledger/stage-<n>.json` — the machine-readable outline that everything else builds on. Read `references/common/lesson-contract.md` (The ledger) first.
+Produce or revise `resources/content/math-ledger/stage-<n>.json` — the machine-readable outline that everything else builds on. Read `references/common/lesson-contract.md` (The ledger) first.
 
 **Execution:** an independent subagent authors the ledger (given the stage's raw material: official guideline docs under `docs/`, the learner's known state, and the contract). The orchestrator runs `scripts/check-ledger.mjs`, then gate-1, then commits the file.
 
@@ -15,8 +15,8 @@ Produce or revise `docs/math-ledger/stage-<n>.json` — the machine-readable out
 
 ## Output & checks
 
-- Write the JSON to `docs/math-ledger/stage-<n>.json` (create the dir if needed).
-- Run `node .agents/skills/sr-math-lesson/scripts/check-ledger.mjs docs/math-ledger/stage-<n>.json` — must pass (schema + closure + uniqueness).
+- Write the JSON to `resources/content/math-ledger/stage-<n>.json` (create the dir if needed).
+- Run `node .agents/skills/sr-math-lesson/scripts/check-ledger.mjs resources/content/math-ledger/stage-<n>.json` — must pass (schema + closure + uniqueness).
 - Then gate-1 (independent reviewer). After it passes, note that `app/src/lib/curriculum.ts` needs a matching update (report it; the orchestrator edits the app).
 
 Revising an existing ledger (adding/renaming lessons) follows the same path; ids of already-generated lessons must not be reused for different content unless those lessons' rows are deliberately replaced.

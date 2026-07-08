@@ -1,4 +1,4 @@
-Read `DESIGN.guide.md` before reading, writing, or using this `DESIGN.md`.
+Read `resources/reference/DESIGN.guide.md` before reading, writing, or using this `resources/reference/DESIGN.md`.
 
 # StemRobin Design System
 
@@ -85,5 +85,5 @@ Exercise types map to quiet category tags, not colorful badges: 辨认 / 表示 
 ## Content Tone
 
 - Copy is direct, concrete, and serious — the tone of a good teacher, not a cartoon. Chinese UI copy.
-- Do not write encouragement filler or science-story fluff (mirrors `docs/course-gen-guide-common.md` 禁止事项).
+- Do not write encouragement filler or science-story fluff (mirrors `resources/content/course-gen-guide-common.md` 禁止事项).
 - Always land on formal terms; intuitive phrasing is an entry ramp, never a replacement for the definition.

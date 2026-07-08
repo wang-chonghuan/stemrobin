@@ -24,7 +24,7 @@ Read the routed file directly; don't duplicate its content here.
 | Batch archives (story list, grill, report) | `.prodfarm/batches/` |
 | Machine-current module facts (reverse-engineered) | `.evodocs/modules/` |
 | Ticket spec / test basis | the ticket in the backend (plane) + its `refs/` |
-| UI design tokens & rules | `DESIGN.md` (+ `DESIGN.guide.md`) |
+| UI design tokens & rules | `resources/reference/DESIGN.md` (+ `resources/reference/DESIGN.guide.md`) |
 | Content-generation skills | `.agents/skills/` (`sr-math-lesson`, `sr-story`) |
 
 ## Frozen directories

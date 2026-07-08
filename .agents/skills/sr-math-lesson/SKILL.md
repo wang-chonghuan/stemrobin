@@ -28,7 +28,7 @@ The fix is structural, not stylistic. Read `references/common/lesson-contract.md
 
 Capability numbers are stable user-facing shortcuts. Do not renumber.
 
-1. `capability-1-stage-ledger`: author or revise ONE stage's outline as a concept ledger (`docs/math-ledger/stage-<n>.json`). → `references/capability-1-stage-ledger/ledger.md`, gate `references/gate-1-ledger/gate.md`, script `scripts/check-ledger.mjs`.
+1. `capability-1-stage-ledger`: author or revise ONE stage's outline as a concept ledger (`resources/content/math-ledger/stage-<n>.json`). → `references/capability-1-stage-ledger/ledger.md`, gate `references/gate-1-ledger/gate.md`, script `scripts/check-ledger.mjs`.
 2. `capability-2-lesson-html`: author ONE lesson's 課文 HTML from its ledger entry, using the genre-specific section structure. → `references/capability-2-lesson-html/lesson.md`, gate `references/gate-2-lesson/gate.md`, template `assets/lesson-template.html`.
 3. `capability-3-exercises`: author ONE lesson's exercise deck JSON (layers, modes, review tail) from the ledger + 課文. → `references/capability-3-exercises/exercises.md`, gate `references/gate-3-exercises/gate.md`, script `scripts/check-exercises.mjs`.
 4. `capability-4-persist`: deterministically persist 課文 (+print PDF) and deck into `sr_lessons` / `sr_questions`. → `references/capability-4-persist/persist.md`, script `scripts/save-lesson.mjs`.

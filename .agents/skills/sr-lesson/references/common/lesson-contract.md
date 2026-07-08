@@ -9,9 +9,9 @@ A lesson exists to make one mathematical concept genuinely understood — its de
 The lesson's **visual + structural styling** is governed by `lesson-design-system-v1.md` (skill root) — tokens, section layout, callouts, examples, exercises, figures, inline marks/colors. Author content with those classes; do not invent styling.
 
 Authoritative pedagogy lives in the repo docs; read them, do not restate them:
-- `docs/course-gen-guide-common.md` — 掌握标准、禁止事项.
-- `docs/course-gen-guide-math.md` — math-specific rules, the stage/lesson outline, exercise categories.
-- `DESIGN.md` — visual language (the template already encodes the tokens).
+- `resources/content/course-gen-guide-common.md` — 掌握标准、禁止事项.
+- `resources/content/course-gen-guide-math.md` — math-specific rules, the stage/lesson outline, exercise categories.
+- `resources/reference/DESIGN.md` — visual language (the template already encodes the tokens).
 
 ## Fixed five-section template
 

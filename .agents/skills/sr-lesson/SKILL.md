@@ -1,6 +1,6 @@
 ---
 name: sr-lesson
-description: Load when the user asks to generate or author a StemRobin lesson from the math outline — phrases like "用 sr-lesson 生成这节课", "sr-lesson cap1", "生成数学第一阶段第1节", "根据大纲做'数轴上的位置'这一课", "create the lesson for <math topic>". Math only for now. Produces one self-contained lesson HTML (KaTeX + inline SVG, DESIGN.md styling), saved under public/lessons/ and upserted into stemrobin.sr_lessons. Do not load for non-math subjects, app/UI code, or raw DB tasks.
+description: Load when the user asks to generate or author a StemRobin lesson from the math outline — phrases like "用 sr-lesson 生成这节课", "sr-lesson cap1", "生成数学第一阶段第1节", "根据大纲做'数轴上的位置'这一课", "create the lesson for <math topic>". Math only for now. Produces one self-contained lesson HTML (KaTeX + inline SVG, resources/reference/DESIGN.md styling), saved under public/lessons/ and upserted into stemrobin.sr_lessons. Do not load for non-math subjects, app/UI code, or raw DB tasks.
 ---
 
 # sr-lesson

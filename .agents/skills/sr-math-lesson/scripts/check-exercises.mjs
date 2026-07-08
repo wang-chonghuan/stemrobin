@@ -4,7 +4,7 @@
 // targets against the ledger. The gate judges meaning; this guards shape.
 //
 // Usage:
-//   node check-exercises.mjs <deck.json> --ledger docs/math-ledger/stage-2.json --id math-s2-05
+//   node check-exercises.mjs <deck.json> --ledger resources/content/math-ledger/stage-2.json --id math-s2-05
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 

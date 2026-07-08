@@ -1,9 +1,9 @@
 // Curriculum outline (the course guidelines) shown in the left catalog.
 // Stages 1–5 (math) and all physics stages are the lesson-level lists from
-// docs/course-gen-guide-math.md / course-gen-guide-physics.md verbatim
+// resources/content/course-gen-guide-math.md / course-gen-guide-physics.md verbatim
 // (应用题 / 综合实践 omitted per project decision). Math stages 6–11 expand the
 // guide's "后续模块" stub into lesson-level items, grounded in the official
-// 义务教育课程标准 topics (docs/official-guidelines.md).
+// 义务教育课程标准 topics (resources/content/official-guidelines.md).
 //
 // A lesson gets an `id` ONLY when its page exists (public/lessons/<id>.html +
 // /lesson/<id> route). Those are clickable; the rest are outline entries.
@@ -28,7 +28,7 @@ export const CURRICULUM: OutlineSubject[] = [
         ),
       },
       {
-        // Stage 2 mirrors docs/math-ledger/stage-2.json (the sr-math-lesson ledger):
+        // Stage 2 mirrors resources/content/math-ledger/stage-2.json (the sr-math-lesson ledger):
         // anatomy 概念课 (项/因数, 系数/次数) placed BEFORE the 方法课 that consume them.
         title: '字母和代数式',
         lessons: [

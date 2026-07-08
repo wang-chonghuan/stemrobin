@@ -5,8 +5,8 @@
 // terms owned by LATER lessons (a mechanical slice of the vocabulary contract).
 //
 // Usage:
-//   node check-ledger.mjs docs/math-ledger/stage-2.json
-//   node check-ledger.mjs docs/math-ledger/stage-2.json --vocab <lesson.html> --id math-s2-05
+//   node check-ledger.mjs resources/content/math-ledger/stage-2.json
+//   node check-ledger.mjs resources/content/math-ledger/stage-2.json --vocab <lesson.html> --id math-s2-05
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 

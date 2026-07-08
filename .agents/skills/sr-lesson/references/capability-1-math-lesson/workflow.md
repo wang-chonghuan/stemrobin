@@ -1,6 +1,6 @@
 # Capability 1 — Generate one math lesson
 
-Input: one section of the math outline (`docs/course-gen-guide-math.md` 课程顺序), identified by stage + order, or by title. Output: one self-contained lesson HTML written to `public/lessons/<id>.html` and upserted into `stemrobin.sr_lessons`, after passing `gate-1`.
+Input: one section of the math outline (`resources/content/course-gen-guide-math.md` 课程顺序), identified by stage + order, or by title. Output: one self-contained lesson HTML written to `public/lessons/<id>.html` and upserted into `stemrobin.sr_lessons`, after passing `gate-1`.
 
 Read `references/common/lesson-contract.md` first — it is the SSOT for structure, pedagogy, formulas, SVG, ids, and persistence.
 
@@ -8,9 +8,9 @@ Read `references/common/lesson-contract.md` first — it is the SSOT for structu
 
 ## Steps
 
-1. **Resolve the section.** From the user's request, pin down: subject (`math`), stage, order within stage, title, and the one core concept. Cross-check against the outline in `docs/course-gen-guide-math.md`. Derive `id = math-s<stage>-<order2>`. If the section is ambiguous or not in the outline, ask one short question; do not invent a lesson outside the curriculum.
+1. **Resolve the section.** From the user's request, pin down: subject (`math`), stage, order within stage, title, and the one core concept. Cross-check against the outline in `resources/content/course-gen-guide-math.md`. Derive `id = math-s<stage>-<order2>`. If the section is ambiguous or not in the outline, ask one short question; do not invent a lesson outside the curriculum.
 
-2. **Gather grounding.** Skim the relevant stage in `docs/course-gen-guide-math.md` and the 掌握标准/禁止事项 in `docs/course-gen-guide-common.md`. Decide: the **motivating question** that makes this topic necessary (what limit/gap in the prior lessons it resolves, posed inside the math system); the abstract structure this lesson must install (the invariant/relationship under the surface); the symbols to introduce; the misconception to surface; and which figures need an SVG.
+2. **Gather grounding.** Skim the relevant stage in `resources/content/course-gen-guide-math.md` and the 掌握标准/禁止事项 in `resources/content/course-gen-guide-common.md`. Decide: the **motivating question** that makes this topic necessary (what limit/gap in the prior lessons it resolves, posed inside the math system); the abstract structure this lesson must install (the invariant/relationship under the surface); the symbols to introduce; the misconception to surface; and which figures need an SVG.
 
 3. **Author the six sections.** Write the inner HTML for `motivation / explain / examples / connections / oral / practice` (概念口试 is section 5, 练习 is LAST) per the contract. Section 1 poses the lead-in question (why this topic, what it solves, situated in the math system) — not a list of objectives. Math as KaTeX (`$...$`, `$$...$$`); figures as hand-authored inline `<svg>` with labels. Keep one concept, formal terms always landed, 深入浅出.
 
