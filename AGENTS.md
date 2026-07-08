@@ -1,78 +1,32 @@
-# AGENTS.md - AI Agent Rules
+# AGENTS.md — router
 
-This file is the entry point for AI coding agents. It defines baseline project rules for future work in this repository.
+Entry point for AI coding agents on this repo. This is a **thin router**: it holds no
+knowledge itself, only behavioral guidelines + where each kind of knowledge lives.
+Read the routed file directly; don't duplicate its content here.
 
-## 1. Think Before Coding
+## Behavioral baseline
 
-**Don't assume. Don't hide confusion. Surface tradeoffs.**
+- Follow the engineering rules in `.prodfarm/charter/engineering-rules.md` (think-before-coding, simplicity, surgical changes, goal-driven verification, SSOT).
+- This repo runs the **n-prodfarm** product-autonomy loop: human decides at batch boundaries; the machine executes inside a batch. The `.prodfarm/charter/` is **frozen inside a batch** — propose charter changes as boundary settlement, never edit mid-batch.
+- Verify by actually running the product (browser / runbook commands), never by imagining from code.
 
-Before implementing:
+## Where knowledge lives
 
-- State your assumptions explicitly. If uncertain, ask.
-- If multiple interpretations exist, present them; don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
-- If something is unclear, stop. Name what's confusing. Ask.
+| Question | Home |
+|---|---|
+| Product goal / north star | `.prodfarm/charter/goal.md` (human-only) |
+| Hard boundaries needing human approval | `.prodfarm/charter/redlines.md` |
+| Engineering norms a coder must obey | `.prodfarm/charter/engineering-rules.md` |
+| Architecture decisions + stack & constraints | `.prodfarm/charter/architecture.md` |
+| Dev / build / test / deploy / ops commands | `.prodfarm/charter/runbook.md` |
+| What the product currently has (feature registry) | `.prodfarm/features/` |
+| What happened (dev timeline) | `.prodfarm/timeline/` |
+| Batch archives (story list, grill, report) | `.prodfarm/batches/` |
+| Machine-current module facts (reverse-engineered) | `.evodocs/modules/` |
+| Ticket spec / test basis | the ticket in the backend (plane) + its `refs/` |
+| UI design tokens & rules | `DESIGN.md` (+ `DESIGN.guide.md`) |
+| Content-generation skills | `.agents/skills/` (`sr-math-lesson`, `sr-story`) |
 
-## 2. Simplicity First
+## Frozen directories
 
-**Minimum code that solves the problem. Nothing speculative.**
-
-- No features beyond what was asked.
-- No abstractions for single-use code.
-- No flexibility or configurability that wasn't requested.
-- No error handling for impossible scenarios.
-- If you write 200 lines and it could be 50, rewrite it.
-
-Ask yourself: "Would a senior engineer say this is overcomplicated?" If yes, simplify.
-
-## 3. Surgical Changes
-
-**Touch only what you must. Clean up only your own mess.**
-
-When editing existing code:
-
-- Don't improve adjacent code, comments, or formatting.
-- Don't refactor things that aren't broken.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated dead code, mention it; don't delete it.
-
-When your changes create orphans:
-
-- Remove imports, variables, and functions that your changes made unused.
-- Don't remove pre-existing dead code unless asked.
-
-Every changed line should trace directly to the user's request.
-
-## 4. Goal-Driven Execution
-
-**Define success criteria. Loop until verified.**
-
-Transform tasks into verifiable goals:
-
-- "Add validation" becomes "Write tests for invalid inputs, then make them pass."
-- "Fix the bug" becomes "Write a test that reproduces it, then make it pass."
-- "Refactor X" becomes "Ensure tests pass before and after."
-
-For multi-step tasks, state a brief plan:
-
-```text
-1. [Step] -> verify: [check]
-2. [Step] -> verify: [check]
-3. [Step] -> verify: [check]
-```
-
-Strong success criteria let you loop independently. Weak criteria require clarification.
-
-## 5. SSOT and One Way Only
-
-**A system should have one source of truth, one canonical way to perform each operation, and no fallback for states that should be impossible.**
-
-Before changing design, schema, workflow, or control flow:
-
-- Keep exactly one source of truth for each important contract, schema, or decision.
-- Do not create parallel definitions, duplicate configs, shadow workflows, or competing entry points.
-- For each operation, keep one canonical implementation path instead of multiple partially overlapping ways.
-- For states that should be impossible, do not add fallback behavior just to keep the system running.
-- If the source of truth is missing, inconsistent, or violated, fail fast and surface the error directly.
-
-Ask yourself: "Am I introducing a second source of truth, a second execution path, or a fallback that hides an impossible state?" If yes, stop and redesign it.
+None currently. (If a legacy doc tree is later superseded by the charter/modules layout, it is declared frozen here: kept in place, read-only history, no new dependencies — route content questions to the charter/modules homes instead.)

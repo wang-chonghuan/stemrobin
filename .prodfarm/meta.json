@@ -16,5 +16,21 @@
       "cancelled": "f2056184-bbcb-4327-89ae-1b4fdf377995",
       "backlog": "1f9c7511-dd3b-4121-becd-4a24c68b529c"
     }
+  },
+  "governance": {
+    "charter/goal.md": "human · any time (product north star; never machine-modified)",
+    "charter/redlines.md": "human · boundary settlement (cap3); lookup-only in batch",
+    "charter/engineering-rules.md": "human · boundary settlement (cap3)",
+    "charter/architecture.md": "human · boundary settlement (cap3); evodocs cap8 may propose drift",
+    "charter/runbook.md": "human · boundary settlement (cap3); out-of-date → note, not edit",
+    "batches/<id>/story-list.md": "cap3 · frozen once written",
+    "batches/<id>/grill.md": "cap3",
+    "batches/<id>/status.json": "cap3 creates, cap4 advances",
+    "batches/<id>/report.md": "cap4 at closeout",
+    "timeline/ batch entries": "cap3 · append-only",
+    "timeline/ tkt entries": "cap6 · append-only",
+    "timeline/ note entries": "anyone · append-only",
+    "features/": "cap6 at closure (brownfield: cap2 pre-register once)",
+    "meta.json": "cap2 · merge ticket_system + governance only"
   }
 }
