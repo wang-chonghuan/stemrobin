@@ -1,7 +1,11 @@
 node_modules
+app/node_modules
 .git
 .env
 .env.*
 dist
+app/dist
 .output
+app/.output
+app/.tanstack
 npm-debug.log
