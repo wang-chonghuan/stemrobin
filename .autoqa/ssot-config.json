@@ -30,7 +30,7 @@
     "stack": "ts",
     "constitutionPath": ".evodocs/constitution.md",
     "backendRoot": ".",
-    "connectionModule": "src/lib/db.ts",
+    "connectionModule": "app/src/lib/db.ts",
     "envFile": ".env",
     "envKeys": {
       "local": "EASYAPP_DATABASE_URL",

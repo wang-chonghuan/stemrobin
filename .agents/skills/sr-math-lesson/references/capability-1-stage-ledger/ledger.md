@@ -17,6 +17,6 @@ Produce or revise `docs/math-ledger/stage-<n>.json` — the machine-readable out
 
 - Write the JSON to `docs/math-ledger/stage-<n>.json` (create the dir if needed).
 - Run `node .agents/skills/sr-math-lesson/scripts/check-ledger.mjs docs/math-ledger/stage-<n>.json` — must pass (schema + closure + uniqueness).
-- Then gate-1 (independent reviewer). After it passes, note that `src/lib/curriculum.ts` needs a matching update (report it; the orchestrator edits the app).
+- Then gate-1 (independent reviewer). After it passes, note that `app/src/lib/curriculum.ts` needs a matching update (report it; the orchestrator edits the app).
 
 Revising an existing ledger (adding/renaming lessons) follows the same path; ids of already-generated lessons must not be reused for different content unless those lessons' rows are deliberately replaced.

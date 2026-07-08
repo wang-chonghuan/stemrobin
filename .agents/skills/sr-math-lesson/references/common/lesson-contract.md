@@ -116,4 +116,4 @@ A deck is a JSON array of 16–24 items. Item shape:
 - Lesson id `math-s<stage>-<order2>`; persistence ONLY via `scripts/save-lesson.mjs` (validates 課文 anchors per genre, deck shape, renders print PDF via playwright-core when available, upserts).
 - Tables (SSOT `ssot-schemas/db-schemas/stemrobin.sql`): `sr_lessons(id, subject, stage, lesson_order, title, concept, html, pdf, status)`; `sr_questions(id, lesson_id, ord, type, prompt, answer_mode ∈ choice|work|input, options, correct_index, accept, layer, review_of, answer)`; `sr_answer_events(…, chosen, answer_text, …)`.
 - **Answer-key secrecy**: `accept`, `correct_index`, `answer` never reach the client before answering; the server (`recordAnswer`) normalizes and judges.
-- The app sidebar outline (`src/lib/curriculum.ts`) must be kept in sync with the ledger's lesson list when a ledger changes (manual step, noted by cap1).
+- The app sidebar outline (`app/src/lib/curriculum.ts`) must be kept in sync with the ledger's lesson list when a ledger changes (manual step, noted by cap1).

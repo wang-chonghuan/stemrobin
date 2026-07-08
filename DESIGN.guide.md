@@ -31,7 +31,7 @@ When these links do not answer the question, do additional targeted research and
 ## How To Use DESIGN.md
 
 - Read `DESIGN.md` before changing StemRobin UI.
-- Treat the implemented tokens in `src/styles/app.css` (the `--sr-*` variables) as the CSS source of truth when values conflict.
+- Treat the implemented tokens in `app/src/styles/app.css` (the `--sr-*` variables) as the CSS source of truth when values conflict.
 - Use `DESIGN.md` to preserve visual language; do not use it to add product scope.
 - When a ticket changes layout or design rules, update `DESIGN.md` in the same ticket.
 

@@ -34,7 +34,7 @@ layout:
   app_shell_height: "100dvh"
 ```
 
-Tokens are implemented as `--sr-*` CSS variables in `src/styles/app.css` — that file is the source of truth when values conflict. The shadcn `--primary` token is also mapped to the teal-blue so default `Button` components match.
+Tokens are implemented as `--sr-*` CSS variables in `app/src/styles/app.css` — that file is the source of truth when values conflict. The shadcn `--primary` token is also mapped to the teal-blue so default `Button` components match.
 
 ## Typography
 
@@ -64,7 +64,7 @@ Tokens are implemented as `--sr-*` CSS variables in `src/styles/app.css` — tha
 
 ## Lesson Rendering
 
-A lesson is four sections plus a typed exercise set (see `src/lib/lessons.ts`). Label the four sections by subject:
+A lesson is four sections plus a typed exercise set (see `app/src/lib/lessons.ts`). Label the four sections by subject:
 
 - Math: 今天学什么 · 讲清楚 · 做几个 · 自己试
 - Physics: 看到什么 · 怎么测 · 讲清楚 · 自己试

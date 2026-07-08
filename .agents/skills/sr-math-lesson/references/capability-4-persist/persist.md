@@ -37,4 +37,4 @@ Consequences:
 - Persist only after gate-2 (課文) and gate-3 (deck) passed. The saver guards shape; the gates guard meaning.
 - Composition rules are `check-exercises.mjs`'s job — run it before the gate, not after persist.
 - Re-running for the same id overwrites (idempotent). New lessons stay `draft` until promoted.
-- After persisting a new/renamed lesson set, sync `src/lib/curriculum.ts` (app sidebar) with the ledger.
+- After persisting a new/renamed lesson set, sync `app/src/lib/curriculum.ts` (app sidebar) with the ledger.
