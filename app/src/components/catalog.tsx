@@ -81,11 +81,6 @@ function StoryChapterLink({
             {c.sectionEnd !== c.sectionStart && `–${c.sectionEnd}`}
           </span>
         )}
-        {c.status === 'draft' && (
-          <span className="sr-tag" style={{ marginLeft: 6 }}>
-            草稿
-          </span>
-        )}
       </Link>
     </li>
   )

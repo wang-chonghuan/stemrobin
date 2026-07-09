@@ -55,7 +55,7 @@ function StoryView() {
         >
           <ArrowLeft size={16} /> 返回
         </Link>
-        <span className="sr-d-title">{label}</span>
+        {/* no title in the top bar (matches the lesson page); `label` is kept for the PDF filename */}
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
           <button
             type="button"
