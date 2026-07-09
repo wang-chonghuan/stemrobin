@@ -1,8 +1,13 @@
 import { useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Layers, Menu } from 'lucide-react'
+import { ArrowLeft, Download, Layers, Menu } from 'lucide-react'
 
-import { getChapterView, getStoryQuestions, recordStoryAnswer } from '~/lib/stories'
+import {
+  getChapterView,
+  getStoryPdf,
+  getStoryQuestions,
+  recordStoryAnswer,
+} from '~/lib/stories'
 import { useLayoutStore } from '~/lib/layout-store'
 import { QuizDrawer } from '~/components/quiz-drawer'
 
@@ -23,6 +28,19 @@ function StoryView() {
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [quizOpen, setQuizOpen] = useState(false)
   const label = view ? `${view.storyTitle} · ${view.title}` : id
+
+  // Download the pre-rendered per-chapter print PDF (same as the math lesson page).
+  async function downloadPdf() {
+    const b64 = await getStoryPdf({ data: id })
+    if (!b64) return
+    const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0))
+    const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }))
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${label}.pdf`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
 
   return (
     <main className="sr-detail">
@@ -46,6 +64,15 @@ function StoryView() {
             onClick={() => setQuizOpen(true)}
           >
             <Layers size={16} /> 卡片答题
+          </button>
+          <button
+            type="button"
+            className="sr-icontool"
+            onClick={downloadPdf}
+            aria-label="下载 PDF"
+            title="下载 PDF"
+          >
+            <Download size={18} />
           </button>
         </div>
       </div>
