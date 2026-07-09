@@ -115,6 +115,14 @@ CREATE TABLE IF NOT EXISTS sr_story_chapters (
   title       TEXT NOT NULL,
   md          TEXT,                             -- chapter body as Markdown (app renders md → html)
   status      TEXT NOT NULL DEFAULT 'draft' CHECK (status IN ('draft','published')),
+  -- staged/section structure (batch 0002): chapters group into named 阶段 (stage),
+  -- each chapter divides into numbered 节 whose numbers are GLOBALLY CONTINUOUS across
+  -- the whole biography (a reader can cite "§N" and locate it fast).
+  stage         TEXT,                           -- 阶段 label, e.g. '少年与机械'; NULL = ungrouped
+  stage_ord     INT,                            -- stage order for grouping/sorting
+  section_start INT,                            -- global number of this chapter's first 节
+  section_end   INT,                            -- global number of this chapter's last 节
+  pdf         BYTEA,                             -- pre-rendered print PDF (like sr_lessons.pdf)
   created_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (story_id, ord)

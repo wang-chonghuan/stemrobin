@@ -16,6 +16,10 @@ export type StoryChapterMeta = {
   ord: number
   title: string
   status: 'draft' | 'published'
+  stage: string | null
+  stageOrd: number | null
+  sectionStart: number | null
+  sectionEnd: number | null
 }
 export type StoryCatalogEntry = {
   id: string
@@ -32,7 +36,7 @@ export const getStoryCatalog = createServerFn({ method: 'GET' }).handler(
       select id, title, person from sr_stories order by title
     `
     const chapters = await sql()`
-      select id, story_id, ord, title, status
+      select id, story_id, ord, title, status, stage, stage_ord, section_start, section_end
       from sr_story_chapters order by story_id, ord
     `
     return stories.map((s) => ({
@@ -41,10 +45,29 @@ export const getStoryCatalog = createServerFn({ method: 'GET' }).handler(
       person: s.person,
       chapters: chapters
         .filter((c) => c.story_id === s.id)
-        .map((c) => ({ id: c.id, ord: c.ord, title: c.title, status: c.status })),
+        .map((c) => ({
+          id: c.id,
+          ord: c.ord,
+          title: c.title,
+          status: c.status,
+          stage: c.stage ?? null,
+          stageOrd: c.stage_ord ?? null,
+          sectionStart: c.section_start ?? null,
+          sectionEnd: c.section_end ?? null,
+        })),
     }))
   },
 )
+
+// One chapter's pre-rendered print PDF as base64, or null. Mirrors getLessonPdf so
+// the story reader can offer a "download PDF" the same way math lessons do.
+export const getStoryPdf = createServerFn({ method: 'GET' })
+  .validator((chapterId: string) => chapterId)
+  .handler(async ({ data: chapterId }): Promise<string | null> => {
+    const rows = await sql()`select pdf from sr_story_chapters where id = ${chapterId}`
+    if (!rows.length || !rows[0].pdf) return null
+    return Buffer.from(rows[0].pdf).toString('base64')
+  })
 
 export type ChapterView = { html: string; title: string; storyTitle: string }
 

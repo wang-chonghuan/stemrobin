@@ -334,6 +334,14 @@ a.sr-out-lesson.ready {
 a.sr-out-lesson.ready:hover {
   background: var(--sr-blue-tint);
 }
+/* section-range chip in the catalog (e.g. §5–§9) for quick citation/location */
+.sr-out-sec {
+  margin-left: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--sr-ink-dim);
+  font-variant-numeric: tabular-nums;
+}
 .sr-out-dot {
   flex: none;
   width: 6px;
@@ -546,10 +554,18 @@ a.sr-out-lesson.ready:hover {
   letter-spacing: -0.01em;
   margin: 2px 0 20px;
 }
+/* Numbered 节 headings (## <global-num> <title>) — the reader can cite "§N". */
 .sr-reading h2 {
   font-size: 19px;
   font-weight: 700;
-  margin: 28px 0 10px;
+  color: var(--sr-teal, #0f766e);
+  margin: 30px 0 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--sr-line-soft, #e6e2da);
+}
+.sr-reading h2:first-of-type {
+  border-top: none;
+  padding-top: 0;
 }
 .sr-reading p {
   margin: 0 0 16px;

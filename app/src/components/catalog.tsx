@@ -57,6 +57,40 @@ export function CatalogSidebar({
   )
 }
 
+function StoryChapterLink({
+  c,
+  onNavigate,
+}: {
+  c: StoryCatalogEntry['chapters'][number]
+  onNavigate: () => void
+}) {
+  return (
+    <li key={c.id}>
+      <Link
+        to="/story/$id"
+        params={{ id: c.id }}
+        className="sr-out-lesson ready"
+        activeProps={{ className: 'sr-out-lesson ready active' }}
+        onClick={onNavigate}
+      >
+        <span className="sr-out-dot" aria-hidden />
+        {c.ord}. {c.title}
+        {c.sectionStart != null && c.sectionEnd != null && (
+          <span className="sr-out-sec">
+            §{c.sectionStart}
+            {c.sectionEnd !== c.sectionStart && `–${c.sectionEnd}`}
+          </span>
+        )}
+        {c.status === 'draft' && (
+          <span className="sr-tag" style={{ marginLeft: 6 }}>
+            草稿
+          </span>
+        )}
+      </Link>
+    </li>
+  )
+}
+
 function StoryOutline({
   story,
   onNavigate,
@@ -64,6 +98,17 @@ function StoryOutline({
   story: StoryCatalogEntry
   onNavigate: () => void
 }) {
+  // Group chapters into 阶段 (stage). Chapters with a stage nest under it; if no
+  // chapter has a stage, fall back to a flat chapter list.
+  const staged = story.chapters.some((c) => c.stage)
+  const stages = staged
+    ? [...new Map(
+        story.chapters
+          .filter((c) => c.stage)
+          .map((c) => [c.stage as string, { name: c.stage as string, ord: c.stageOrd ?? 0 }]),
+      ).values()].sort((a, b) => a.ord - b.ord)
+    : []
+
   return (
     <details className="sr-out-subject" open>
       <summary>
@@ -71,27 +116,29 @@ function StoryOutline({
         <span className="sr-out-subject-name">{story.title}</span>
         <span className="sr-count">{story.chapters.length}</span>
       </summary>
-      <ul className="sr-out-lessons">
-        {story.chapters.map((c) => (
-          <li key={c.id}>
-            <Link
-              to="/story/$id"
-              params={{ id: c.id }}
-              className="sr-out-lesson ready"
-              activeProps={{ className: 'sr-out-lesson ready active' }}
-              onClick={onNavigate}
-            >
-              <span className="sr-out-dot" aria-hidden />
-              {c.ord}. {c.title}
-              {c.status === 'draft' && (
-                <span className="sr-tag" style={{ marginLeft: 6 }}>
-                  草稿
-                </span>
-              )}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {staged ? (
+        stages.map((st) => (
+          <details key={st.name} className="sr-out-stage" open>
+            <summary>
+              <span className="sr-out-caret" aria-hidden />
+              <span className="sr-out-stage-name">{st.name}</span>
+            </summary>
+            <ul className="sr-out-lessons">
+              {story.chapters
+                .filter((c) => c.stage === st.name)
+                .map((c) => (
+                  <StoryChapterLink key={c.id} c={c} onNavigate={onNavigate} />
+                ))}
+            </ul>
+          </details>
+        ))
+      ) : (
+        <ul className="sr-out-lessons">
+          {story.chapters.map((c) => (
+            <StoryChapterLink key={c.id} c={c} onNavigate={onNavigate} />
+          ))}
+        </ul>
+      )}
     </details>
   )
 }
