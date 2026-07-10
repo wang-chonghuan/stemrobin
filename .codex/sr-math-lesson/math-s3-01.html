@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.1 未知数与方程的解 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; overflow-wrap:break-word; }
+
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+  .katex-display { overflow-x:auto; overflow-y:hidden; max-width:100%; padding:2px 0 4px; }
+  ol.sr-oral { padding-left:0; list-style:none; counter-reset:o; margin:6px 0 0; }
+  ol.sr-oral > li { counter-increment:o; position:relative; padding:10px 0 10px 42px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-oral > li:first-child { border-top:0; }
+  ol.sr-oral > li::before { content:"问" counter(o); position:absolute; left:0; top:10px; padding:1px 7px; border-radius:6px; background:var(--sr-green-tint); color:var(--sr-green-deep); font:700 11px var(--sr-mono); }
+  .sr-eg { margin:8px 0; padding:9px 12px; border-radius:8px; background:var(--sr-panel); font-size:14px; }
+  .sr-eg > span { display:block; margin:4px 0; line-height:1.7; overflow-wrap:break-word; }
+  .sr-eg .yes { color:var(--sr-green-deep); }
+  .sr-eg .no { color:#C0492B; }
+  .sr-eg .yes::before { content:"正例"; font:700 10.5px var(--sr-body); margin-right:6px; }
+  .sr-eg .no::before { content:"反例"; font:700 10.5px var(--sr-body); margin-right:6px; }
+  .sr-answer { display:none; }
+  body.sr-reveal-answers .sr-answer { display:block; margin-top:5px; color:var(--sr-ink-soft); font-size:14px; border-left:2px solid var(--sr-green); padding-left:10px; }
+
+  @page { size:A4; margin:14mm; }
+  @media print {
+    html, body { overflow:visible !important; height:auto !important; }
+    .sr-answer { display:none !important; }
+    figure.sr-fig, .sr-example, ol.sr-oral > li { break-inside:avoid; }
+    .sr-lesson { max-width:100% !important; padding:0 !important; }
+  }
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 方程和不&#x7B49;式 · 概念课</div>
+    <h1 class="sr-l-title">3.1 未知数与方程的解</h1>
+    <div class="sr-l-concept"><span class="sr-term">方程</span>是带<span class="sr-term">未知数</span>的<span class="sr-term">等式</span>：用<span class="sr-term">等号</span>隔开<span class="sr-term">方程左边</span>和<span class="sr-term">方程右边</span>，再用代入判断<span class="sr-term">方程的解</span>。</div>
+    <div class="sr-l-chips"><span class="sr-chip">概念命名</span><span class="sr-chip">左右指认</span><span class="sr-chip green">代入求值</span></div>
+  </header>
+
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要这个名字</span></div>
+    <p>看两个写法：$x+3$ 和 $x+3=7$。它们都用了字母，也都能在代入后求值，但它们在说的事不一样。</p>
+    <p>$x+3$ 只是一个代数式：给 $x$ 一个数，它就能算出一个值。$x+3=7$ 多了一条“左右相等”的要求：给 $x$ 的数必须让左边算出的值和右边的值相同。</p>
+    <p>如果没有今天这些名字，容易把“一个代数式”和“一个要求左右相等的句子”混在一起，也容易只凭眼睛猜答案。名字的作用，是让你能指着每一部分说清楚：哪边、哪个字母、哪个数真的合适。</p>
+  </section>
+
+  <section data-sr-section="model">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">建立概念</span></div>
+    <p><strong>等号</strong>写作 $=$，放在两个对象中间，意思是：左边的值和右边的值相等。</p>
+    <p><strong>等式</strong>是带等号的句子，例如 $3+4=7$。等号左、右可以是数，也可以是能求值的代数式。</p>
+    <p><strong>未知数</strong>是在句子里等待确定数值的字母。带未知数的等式，叫<strong>方程</strong>。</p>
+    <p>在一个方程里，等号左边的代数式叫<strong>方程左边</strong>，等号右边的代数式或数叫<strong>方程右边</strong>。一个数如果代入原来的方程后，让方程左边和方程右边的值相等，这个数就是这个<strong>方程的解</strong>。</p>
+    <div class="sr-eg">
+      <span class="yes">$x+3=7$ 是方程：它有等号，也有未知数 $x$。</span>
+      <span class="yes">$x=4$ 是方程：它有等号，也有未知数 $x$。</span>
+      <span class="no">$x+3$ 不是方程：它是代数式，没有等号。</span>
+      <span class="no">$3+4=7$ 不是方程：它是等式，但没有未知数。</span>
+    </div>
+    <figure class="sr-fig">
+      <svg viewBox="0 0 680 300" role="img" aria-label="x加3等于7的方程结构图">
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#0E7C9B"></path>
+          </marker>
+        </defs>
+        <rect x="34" y="34" width="612" height="222" rx="8" fill="#F5F9F9" stroke="#E3EAE9"></rect>
+        <rect x="86" y="102" width="198" height="76" rx="8" fill="#FFFFFF" stroke="#0E7C9B" stroke-width="2"></rect>
+        <rect x="396" y="102" width="198" height="76" rx="8" fill="#FFFFFF" stroke="#15A06A" stroke-width="2"></rect>
+        <text x="185" y="147" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#15201F">x + 3</text>
+        <text x="340" y="149" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="34" fill="#0A5E76">=</text>
+        <text x="495" y="147" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="28" fill="#15201F">7</text>
+        <text x="185" y="79" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="16" font-weight="700" fill="#0A5E76">方程左边</text>
+        <text x="495" y="79" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="16" font-weight="700" fill="#0F7D52">方程右边</text>
+        <text x="340" y="205" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="16" font-weight="700" fill="#0A5E76">等号：要求左右相等</text>
+        <path d="M230 188 C245 232, 430 232, 450 188" fill="none" stroke="#0E7C9B" stroke-width="2" marker-end="url(#arrow)"></path>
+        <text x="340" y="246" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="15" fill="#4C5A58">把数代入 x，再分别求左、右的值</text>
+      </svg>
+      <figcaption>$x+3=7$ 的结构：等号把方程分成左边和右边，未知数在左边的代数式里。</figcaption>
+    </figure>
+  </section>
+
+  <section data-sr-section="anatomy">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">拆给你看</span></div>
+    <div class="sr-example">
+      <div class="sr-example-h">例 1：$x+3=7$</div>
+      <div class="sr-step"><span class="sr-step-n">看</span><span>这是方程：它有等号，也有未知数 $x$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">分</span><span>方程左边是 $x+3$，方程右边是 $7$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">试</span><span>把 $x=4$ 代入：左边 $4+3=7$，右边还是 $7$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">说</span><span>左右相等，所以 $4$ 是这个方程的解。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2：$2a=10$</div>
+      <div class="sr-step"><span class="sr-step-n">看</span><span>这是方程：未知数是 $a$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">分</span><span>方程左边是 $2a$，方程右边是 $10$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">试</span><span>把 $a=5$ 代入：左边 $2\times5=10$，右边是 $10$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">说</span><span>左右相等，所以 $5$ 是这个方程的解。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3：$y-1=6$</div>
+      <div class="sr-step"><span class="sr-step-n">看</span><span>这是方程：未知数是 $y$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">分</span><span>方程左边是 $y-1$，方程右边是 $6$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">试</span><span>把 $y=5$ 代入：左边 $5-1=4$，右边是 $6$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">说</span><span>左右不相等，所以 $5$ 不是这个方程的解。</span></div>
+    </div>
+  </section>
+
+  <section data-sr-section="boundary">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">边界与陷阱</span></div>
+    <div class="sr-pitfall">
+      <b>$x+3$ 不是方程，$x+3=7$ 才是方程。</b>
+      $x+3$ 只有一个代数式；它能求值，但没有说“要和谁相等”。$x+3=7$ 有等号，才把左边和右边连成一个等式；里面又有未知数，所以它是方程。
+    </div>
+    <div class="sr-pitfall">
+      <b>$3+4=7$ 是等式，但不是方程。</b>
+      它有等号，左右也相等；可是里面没有等待确定数值的字母。没有未知数，就不能叫方程。
+    </div>
+    <div class="sr-pitfall">
+      <b>$x=4$ 本身也是方程。</b>
+      它有等号，也有未知数 $x$。这个方程很短，但结构完整：方程左边是 $x$，方程右边是 $4$；它还直接说出让左右相等的数。
+    </div>
+    <div class="sr-pitfall">
+      <b>判断一个数是不是方程的解，必须代入原来的方程。</b>
+      不能只看一个数“像不像”。例如对 $2a=10$，把 $a=4$ 代入原来的方程：方程左边 $2\times4=8$，方程右边 $10$，左右不相等，所以 $4$ 不是这个方程的解。
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>向前接：</b>你已经会用字母表示数，也会对代数式代入、求值。今天只是把“带等号的句子”拆成左右两边，再看代入后的值是否相等。</li>
+      <li><b>本课核心：</b>先认出等式，再看有没有未知数；有未知数的等式才叫方程。再把方程左边、方程右边分别说清。</li>
+      <li><b>向后接：</b>后面的课会继续使用等号、等式、方程、方程左边、方程右边和方程的解这些名字，说明怎样从一个方程找到合适的数。</li>
+    </ul>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">概念口试</span></div>
+    <ol class="sr-oral">
+      <li>指着 $x+3=7$ 说：方程左边是什么？方程右边是什么？
+        <div class="sr-answer">方程左边是 $x+3$，方程右边是 $7$。</div>
+      </li>
+      <li>$x+3$ 是方程吗？为什么？
+        <div class="sr-answer">不是。它是代数式，没有等号，没有分成左右相等的句子。</div>
+      </li>
+      <li>$3+4=7$ 是等式吗？是方程吗？
+        <div class="sr-answer">它是等式，因为有等号且左右相等；它不是方程，因为没有未知数。</div>
+      </li>
+      <li>$x=4$ 为什么也是方程？
+        <div class="sr-answer">它有等号，也有未知数 $x$；方程左边是 $x$，方程右边是 $4$。</div>
+      </li>
+      <li>判断 $5$ 是不是 $2a=10$ 的方程的解，要说哪两件事？
+        <div class="sr-answer">先把 $a=5$ 代入方程左边和方程右边分别求值；再看左右是否相等。</div>
+      </li>
+      <li>把 $y=5$ 代入 $y-1=6$，为什么 $5$ 不是这个方程的解？
+        <div class="sr-answer">方程左边变成 $5-1=4$，方程右边是 $6$；左右不相等，所以 $5$ 不是这个方程的解。</div>
+      </li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

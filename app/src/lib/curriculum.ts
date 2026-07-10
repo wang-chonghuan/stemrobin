@@ -43,12 +43,22 @@ export const CURRICULUM: OutlineSubject[] = [
         ],
       },
       {
-        // Stage 3 lessons will be regenerated with sr-math-lesson (old ones retired).
+        // Stage 3 mirrors resources/content/math-ledger/stage-3.json (the sr-math-lesson ledger):
+        // equation anatomy concepts placed BEFORE the method lessons that consume them.
         title: '方程和不等式',
-        lessons: L(
-          '未知数是什么', '等式两边同加同减', '等式两边同乘同除', '解一元一次方程',
-          '去括号解方程', '去分母解方程', '不等式表示范围', '一元一次不等式', '不等式组',
-        ),
+        lessons: [
+          { title: '未知数与方程的解', id: 'math-s3-01' },
+          { title: '等式两边同加同减' },
+          { title: '等式两边同乘同除' },
+          { title: '一元一次方程的形状' },
+          { title: '解一元一次方程' },
+          { title: '去括号解方程' },
+          { title: '去分母解方程' },
+          { title: '方程应用题只做数量关系' },
+          { title: '不等式表示范围' },
+          { title: '一元一次不等式' },
+          { title: '不等式组' },
+        ],
       },
       {
         title: '基础几何',
