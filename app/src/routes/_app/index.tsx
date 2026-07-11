@@ -1,15 +1,19 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Atom, BookOpen, FileText, Menu, Rocket } from 'lucide-react'
 
-import { AVAILABLE_LESSONS } from '~/lib/curriculum'
+import { getAvailableLessons } from '~/lib/curriculum'
+import { listLessonIds } from '~/lib/lessons'
 import { useLayoutStore } from '~/lib/layout-store'
 
 export const Route = createFileRoute('/_app/')({
   component: Overview,
+  loader: async () => ({ lessonIds: await listLessonIds() }),
 })
 
 function Overview() {
+  const { lessonIds } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
+  const availableLessons = getAvailableLessons(lessonIds)
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
@@ -81,9 +85,9 @@ function Overview() {
 
         {/* Live lessons */}
         <section className="sr-section-gap">
-          <div className="sr-eyebrow">新上线课程（{AVAILABLE_LESSONS.length}）</div>
+          <div className="sr-eyebrow">新上线课程（{availableLessons.length}）</div>
           <div className="sr-grid">
-            {AVAILABLE_LESSONS.map((l) => (
+            {availableLessons.map((l) => (
               <Link
                 key={l.id}
                 to="/lesson/$id"

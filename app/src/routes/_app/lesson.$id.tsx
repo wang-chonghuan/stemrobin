@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Menu } from 'lucide-react'
 
-import { getLessonLabel, getLessonNav } from '~/lib/curriculum'
-import { getLessonHtml, getLessonPdf } from '~/lib/lessons'
+import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
+import { getLessonHtml, getLessonPdf, listLessonIds } from '~/lib/lessons'
 import { getLessonQuestions, recordAnswer } from '~/lib/quiz'
 import { useLayoutStore } from '~/lib/layout-store'
 import { QuizDrawer } from '~/components/quiz-drawer'
@@ -13,11 +13,12 @@ export const Route = createFileRoute('/_app/lesson/$id')({
   loader: async ({ params }) => ({
     id: params.id,
     html: await getLessonHtml({ data: params.id }),
+    lessonIds: await listLessonIds(),
   }),
 })
 
 function LessonView() {
-  const { id, html } = Route.useLoaderData()
+  const { id, html, lessonIds } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [quizOpen, setQuizOpen] = useState(false)
@@ -75,7 +76,7 @@ function LessonView() {
         ) : (
           <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>课程内容尚未生成。</p>
         )}
-        <LessonNavFooter id={id} />
+        <LessonNavFooter id={id} lessonIds={lessonIds} />
       </div>
       <QuizDrawer
         contentId={id}
@@ -91,8 +92,8 @@ function LessonView() {
 // Bottom prev/next navigation between lessons that have pages, in CURRICULUM
 // order (SR-3). Unknown ids (no page) render no nav; at the first/last page the
 // corresponding side is disabled (kept in layout) instead of hidden.
-function LessonNavFooter({ id }: { id: string }) {
-  const { prev, next } = getLessonNav(id)
+function LessonNavFooter({ id, lessonIds }: { id: string; lessonIds: string[] }) {
+  const { prev, next } = getLessonNavForIds(id, lessonIds)
   if (!prev && !next) return null
   return (
     <nav className="sr-lesson-nav" aria-label="课程导航">
