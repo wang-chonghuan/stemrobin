@@ -36,7 +36,8 @@ Consequences:
 
 ## Rules
 
-- Persist only after gate-2 (課文) and gate-3 (deck) passed. The saver guards ledger metadata + shape; the gates guard meaning.
+- Persist only after gate-2 passes for the 課文 and gate-3's fast deterministic deck check passes. The saver guards ledger metadata + shape; gate-2 guards the teaching content.
 - `--ledger` is mandatory. Before any DB work, the saver runs `check-outline.mjs` against `resources/content/course-gen-guide-math.md` (or `--outline`) and rejects ids, stage/order/title/genre/core idea that disagree with the checked outline/ledger; deck saves run `check-exercises.mjs` before DB mutation.
 - Re-running for the same id overwrites (idempotent). New lessons stay `draft` until promoted.
 - After persisting a new lesson, its deterministic id automatically activates the matching catalog item. Keep `app/src/lib/curriculum.ts` aligned with the human course guide's titles/order, but do not hand-edit lesson availability ids.
+- For a multi-lesson request, save every approved HTML page first, then every deck, and run one browser session after the final save. Visit every requested lesson and confirm its title, generated practice section, PDF, and a representative answer flow; use desktop and mobile viewports in that single session. Do not duplicate these checks in cap2 or gate-3.

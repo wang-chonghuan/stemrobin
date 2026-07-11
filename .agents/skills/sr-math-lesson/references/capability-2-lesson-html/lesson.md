@@ -2,7 +2,7 @@
 
 From the ledger entry, author ONE lesson as self-contained HTML. Read `references/common/lesson-contract.md` (Lesson genres) first — it defines the section anchors per genre and the vocabulary contract.
 
-**Execution:** an independent subagent authors, given: the ledger JSON (its own entry + all earlier entries, so it knows exactly which terms are speakable), the contract, and `assets/lesson-template.html`. The orchestrator runs gate-2, then persists via cap4.
+**Execution:** an independent subagent authors, given: the ledger JSON (its own entry + all earlier entries, so it knows exactly which terms are speakable), the contract, and `assets/lesson-template.html`. The orchestrator runs gate-2 before cap3/cap4. For a group of lessons, one author owns each page and authors run in parallel; one separate reviewer may gate the complete group, with a verdict for each page.
 
 ## Steps
 
@@ -14,3 +14,5 @@ From the ledger entry, author ONE lesson as self-contained HTML. Read `reference
 6. Self-check against the first cause: after this text, can the learner name parts fast, do the move, and say why? Is any paragraph a lecture with no instance? Is anything defined once and never shown?
 
 Write to a scratch path (`<scratch>/<id>.html`). Do not author exercises here (cap3). Report: sections present, terms introduced/consumed used, boundary cases covered.
+
+Run `check-ledger.mjs --vocab` before handing the page to gate-2. Do not run browser visual QA here: the single final cap4 verification owns rendered KaTeX, PDF, and responsive layout after the stored lesson is complete.

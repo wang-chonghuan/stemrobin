@@ -1,0 +1,1244 @@
+- article [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]: 数学 · 方程和不等式 · 方法课
+    - heading "3.3 等式两边同乘同除" [level=1] [ref=e5]
+    - generic [ref=e6]: 等式两边同时乘以同一个数，或同时除以同一个非零数，左右仍然相等；这一步用来去掉未知数前的系数。
+    - generic [ref=e7]:
+      - generic [ref=e8]: 等式
+      - generic [ref=e9]: 系数
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]: "1"
+      - generic [ref=e13]: 为什么学这个
+    - paragraph [ref=e14]:
+      - text: 方程
+      - generic [ref=e16]:
+        - math [ref=e18]:
+          - generic [ref=e20]:
+            - generic [ref=e21]: "3"
+            - generic [ref=e22]: x
+            - generic [ref=e23]: =
+            - generic [ref=e24]: "12"
+        - generic [ref=e25]:
+          - generic [ref=e26]: 3x =
+          - generic [ref=e27]: "12"
+      - text: 已经把未知数和一个数连在一起。这里的
+      - generic [ref=e29]:
+        - math [ref=e31]:
+          - generic [ref=e34]: "3"
+        - generic [ref=e36]: "3"
+      - text: 是
+      - generic [ref=e38]:
+        - math [ref=e40]:
+          - generic [ref=e43]: x
+        - generic [ref=e45]: x
+      - text: 的系数：
+      - generic [ref=e47]:
+        - math [ref=e49]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: "3"
+            - generic [ref=e53]: x
+        - generic [ref=e55]: 3x
+      - text: 表示
+      - generic [ref=e57]:
+        - math [ref=e59]:
+          - generic [ref=e62]: "3"
+        - generic [ref=e64]: "3"
+      - text: 与
+      - generic [ref=e66]:
+        - math [ref=e68]:
+          - generic [ref=e71]: x
+        - generic [ref=e73]: x
+      - text: 相乘。要知道
+      - generic [ref=e75]:
+        - math [ref=e77]:
+          - generic [ref=e80]: x
+        - generic [ref=e82]: x
+      - text: 的值，必须把这个系数去掉。
+    - paragraph [ref=e83]:
+      - text: 但不能只把左边的
+      - generic [ref=e85]:
+        - math [ref=e87]:
+          - generic [ref=e90]: "3"
+        - generic [ref=e92]: "3"
+      - text: 擦掉。等号表示左右两个代数式的值相等；只改一边，原来的相等关系就可能被破坏。我们需要一种能同时处理等式两边、又不改变原方程的解的动作。
+  - generic [ref=e93]:
+    - generic [ref=e94]:
+      - generic [ref=e95]: "2"
+      - generic [ref=e96]: 讲解
+    - heading "相等的两个数，做同样的乘除仍然相等" [level=3] [ref=e97]
+    - paragraph [ref=e98]:
+      - text: 如果
+      - generic [ref=e100]:
+        - math [ref=e102]:
+          - generic [ref=e104]:
+            - generic [ref=e105]: a
+            - generic [ref=e106]: =
+            - generic [ref=e107]: b
+        - generic [ref=e108]:
+          - generic [ref=e109]: a =
+          - generic [ref=e110]: b
+      - text: ，那么
+      - generic [ref=e112]:
+        - math [ref=e114]:
+          - generic [ref=e117]: a
+        - generic [ref=e119]: a
+      - text: 与
+      - generic [ref=e121]:
+        - math [ref=e123]:
+          - generic [ref=e126]: b
+        - generic [ref=e128]: b
+      - text: 表示同一个数。把这个数的两份表示都乘以同一个数
+      - generic [ref=e130]:
+        - math [ref=e132]:
+          - generic [ref=e135]: c
+        - generic [ref=e137]: c
+      - text: ，结果仍相等：
+    - paragraph [ref=e138]:
+      - generic [ref=e141]:
+        - math [ref=e143]:
+          - generic [ref=e145]:
+            - generic [ref=e146]: a
+            - generic [ref=e147]: =
+            - generic [ref=e148]: b
+            - generic [ref=e149]: ⟹
+            - generic [ref=e150]: a
+            - generic [ref=e151]: c
+            - generic [ref=e152]: =
+            - generic [ref=e153]: b
+            - generic [ref=e154]: c
+        - generic [ref=e155]:
+          - generic [ref=e156]: a =
+          - generic [ref=e157]: b ⟹
+          - generic [ref=e158]: ac =
+          - generic [ref=e159]: bc
+    - paragraph [ref=e160]:
+      - text: 如果
+      - generic [ref=e162]:
+        - math [ref=e164]:
+          - generic [ref=e166]:
+            - generic [ref=e167]: c
+            - generic [ref=e168]: ≠
+            - generic [ref=e169]: "0"
+        - generic [ref=e170]:
+          - generic [ref=e171]:
+            - text: c
+            - generic [ref=e172]:
+              - generic [ref=e174]: 
+              - text: =
+          - generic [ref=e175]: "0"
+      - text: ，两边同时除以
+      - generic [ref=e177]:
+        - math [ref=e179]:
+          - generic [ref=e182]: c
+        - generic [ref=e184]: c
+      - text: ，所得结果也仍相等：
+    - paragraph [ref=e185]:
+      - generic [ref=e188]:
+        - math [ref=e190]:
+          - generic [ref=e192]:
+            - generic [ref=e193]: a
+            - generic [ref=e194]: =
+            - generic [ref=e195]: b
+            - generic [ref=e196]: ⟹
+            - generic [ref=e197]:
+              - generic [ref=e198]: a
+              - generic [ref=e199]: c
+            - generic [ref=e200]: =
+            - generic [ref=e201]:
+              - generic [ref=e202]: b
+              - generic [ref=e203]: c
+            - generic [ref=e204]: (
+            - generic [ref=e205]: c
+            - generic [ref=e206]: ≠
+            - generic [ref=e207]: "0"
+            - generic [ref=e208]: )
+        - generic [ref=e209]:
+          - generic [ref=e210]: a =
+          - generic [ref=e211]: b ⟹
+          - generic [ref=e212]:
+            - generic [ref=e217]:
+              - generic [ref=e218]: c
+              - generic [ref=e220]: a
+            - text: =
+          - generic [ref=e224]:
+            - generic [ref=e229]:
+              - generic [ref=e230]: c
+              - generic [ref=e232]: b
+            - text: (c
+            - generic [ref=e236]:
+              - generic [ref=e238]: 
+              - text: =
+          - generic [ref=e239]: 0)
+    - paragraph [ref=e240]: 这条保持等式成立的规则叫作等式性质二。
+    - generic [ref=e241]:
+      - generic [ref=e242]:
+        - text: 正例
+        - generic [ref=e244]:
+          - math [ref=e246]:
+            - generic [ref=e248]:
+              - generic [ref=e249]: "8"
+              - generic [ref=e250]: =
+              - generic [ref=e251]: "8"
+          - generic [ref=e252]:
+            - generic [ref=e253]: 8 =
+            - generic [ref=e254]: "8"
+        - text: ，两边同乘
+        - generic [ref=e256]:
+          - math [ref=e258]:
+            - generic [ref=e260]:
+              - generic [ref=e261]: −
+              - generic [ref=e262]: "3"
+          - generic [ref=e264]: −3
+        - text: 后，
+        - generic [ref=e266]:
+          - math [ref=e268]:
+            - generic [ref=e270]:
+              - generic [ref=e271]: −
+              - generic [ref=e272]: "24"
+              - generic [ref=e273]: =
+              - generic [ref=e274]: −
+              - generic [ref=e275]: "24"
+          - generic [ref=e276]:
+            - generic [ref=e277]: −24 =
+            - generic [ref=e278]: −24
+        - text: ；
+        - generic [ref=e280]:
+          - math [ref=e282]:
+            - generic [ref=e284]:
+              - generic [ref=e285]: "12"
+              - generic [ref=e286]: =
+              - generic [ref=e287]: "12"
+          - generic [ref=e288]:
+            - generic [ref=e289]: 12 =
+            - generic [ref=e290]: "12"
+        - text: ，两边同除以
+        - generic [ref=e292]:
+          - math [ref=e294]:
+            - generic [ref=e297]: "4"
+          - generic [ref=e299]: "4"
+        - text: 后，
+        - generic [ref=e301]:
+          - math [ref=e303]:
+            - generic [ref=e305]:
+              - generic [ref=e306]: "3"
+              - generic [ref=e307]: =
+              - generic [ref=e308]: "3"
+          - generic [ref=e309]:
+            - generic [ref=e310]: 3 =
+            - generic [ref=e311]: "3"
+        - text: 。
+      - generic [ref=e312]:
+        - text: 反例
+        - generic [ref=e314]:
+          - math [ref=e316]:
+            - generic [ref=e318]:
+              - generic [ref=e319]: "8"
+              - generic [ref=e320]: =
+              - generic [ref=e321]: "8"
+          - generic [ref=e322]:
+            - generic [ref=e323]: 8 =
+            - generic [ref=e324]: "8"
+        - text: 不能写成
+        - generic [ref=e326]:
+          - math [ref=e328]:
+            - generic [ref=e330]:
+              - generic [ref=e331]: "8"
+              - generic [ref=e332]: ÷
+              - generic [ref=e333]: "0"
+              - generic [ref=e334]: =
+              - generic [ref=e335]: "8"
+              - generic [ref=e336]: ÷
+              - generic [ref=e337]: "0"
+          - generic [ref=e338]:
+            - generic [ref=e339]: 8 ÷
+            - generic [ref=e340]: 0 =
+            - generic [ref=e341]: 8 ÷
+            - generic [ref=e342]: "0"
+        - text: ，因为除以
+        - generic [ref=e344]:
+          - math [ref=e346]:
+            - generic [ref=e349]: "0"
+          - generic [ref=e351]: "0"
+        - text: 没有意义。
+    - heading "把规则用在方程两边" [level=3] [ref=e352]
+    - paragraph [ref=e353]: 在方程两边同时乘以同一个数，或同时除以同一个非零数，这套动作叫作两边同乘同除。用非零数做这一步时，能从新方程回到原方程，所以原方程的解不改变，它是等价变形。
+    - generic [ref=e354]:
+      - generic [ref=e355]:
+        - text: 正例
+        - generic [ref=e357]:
+          - math [ref=e359]:
+            - generic [ref=e361]:
+              - generic [ref=e362]: "3"
+              - generic [ref=e363]: x
+              - generic [ref=e364]: =
+              - generic [ref=e365]: "12"
+          - generic [ref=e366]:
+            - generic [ref=e367]: 3x =
+            - generic [ref=e368]: "12"
+        - text: 的两边同时除以
+        - generic [ref=e370]:
+          - math [ref=e372]:
+            - generic [ref=e375]: "3"
+          - generic [ref=e377]: "3"
+        - text: ，得到
+        - generic [ref=e379]:
+          - math [ref=e381]:
+            - generic [ref=e383]:
+              - generic [ref=e384]: x
+              - generic [ref=e385]: =
+              - generic [ref=e386]: "4"
+          - generic [ref=e387]:
+            - generic [ref=e388]: x =
+            - generic [ref=e389]: "4"
+        - text: 。
+      - generic [ref=e390]:
+        - text: 反例
+        - generic [ref=e392]:
+          - math [ref=e394]:
+            - generic [ref=e396]:
+              - generic [ref=e397]: "3"
+              - generic [ref=e398]: x
+              - generic [ref=e399]: =
+              - generic [ref=e400]: "12"
+          - generic [ref=e401]:
+            - generic [ref=e402]: 3x =
+            - generic [ref=e403]: "12"
+        - text: 只把左边除以
+        - generic [ref=e405]:
+          - math [ref=e407]:
+            - generic [ref=e410]: "3"
+          - generic [ref=e412]: "3"
+        - text: ，却让右边仍是
+        - generic [ref=e414]:
+          - math [ref=e416]:
+            - generic [ref=e419]: "12"
+          - generic [ref=e421]: "12"
+        - text: ；两边没有做同一个动作。
+    - paragraph [ref=e422]:
+      - text: 在
+      - generic [ref=e424]:
+        - math [ref=e426]:
+          - generic [ref=e428]:
+            - generic [ref=e429]: c
+            - generic [ref=e430]: x
+            - generic [ref=e431]: =
+            - generic [ref=e432]: d
+        - generic [ref=e433]:
+          - generic [ref=e434]: cx =
+          - generic [ref=e435]: d
+      - text: 中，
+      - generic [ref=e437]:
+        - math [ref=e439]:
+          - generic [ref=e442]: c
+        - generic [ref=e444]: c
+      - text: 是未知数
+      - generic [ref=e446]:
+        - math [ref=e448]:
+          - generic [ref=e451]: x
+        - generic [ref=e453]: x
+      - text: 的系数。若
+      - generic [ref=e455]:
+        - math [ref=e457]:
+          - generic [ref=e459]:
+            - generic [ref=e460]: c
+            - generic [ref=e461]: ≠
+            - generic [ref=e462]: "0"
+        - generic [ref=e463]:
+          - generic [ref=e464]:
+            - text: c
+            - generic [ref=e465]:
+              - generic [ref=e467]: 
+              - text: =
+          - generic [ref=e468]: "0"
+      - text: ，两边同除以
+      - generic [ref=e470]:
+        - math [ref=e472]:
+          - generic [ref=e475]: c
+        - generic [ref=e477]: c
+      - text: ：
+    - paragraph [ref=e478]:
+      - generic [ref=e481]:
+        - math [ref=e483]:
+          - generic [ref=e485]:
+            - generic [ref=e486]: c
+            - generic [ref=e487]: x
+            - generic [ref=e488]: =
+            - generic [ref=e489]: d
+            - generic [ref=e490]: ⟹
+            - generic [ref=e491]:
+              - generic [ref=e492]:
+                - generic [ref=e493]: c
+                - generic [ref=e494]: x
+              - generic [ref=e495]: c
+            - generic [ref=e496]: =
+            - generic [ref=e497]:
+              - generic [ref=e498]: d
+              - generic [ref=e499]: c
+            - generic [ref=e500]: ⟹
+            - generic [ref=e501]: x
+            - generic [ref=e502]: =
+            - generic [ref=e503]:
+              - generic [ref=e504]: d
+              - generic [ref=e505]: c
+        - generic [ref=e506]:
+          - generic [ref=e507]: cx =
+          - generic [ref=e508]: d ⟹
+          - generic [ref=e509]:
+            - generic [ref=e514]:
+              - generic [ref=e515]: c
+              - generic [ref=e517]: cx
+            - text: =
+          - generic [ref=e521]:
+            - generic [ref=e526]:
+              - generic [ref=e527]: c
+              - generic [ref=e529]: d
+            - text: ⟹
+          - generic [ref=e533]: x =
+          - generic [ref=e539]:
+            - generic [ref=e540]: c
+            - generic [ref=e542]: d
+    - paragraph [ref=e546]: 用两边同除去掉未知数前的非零系数，这个动作叫作除系数。
+    - generic [ref=e547]:
+      - generic [ref=e548]:
+        - text: 正例
+        - generic [ref=e550]:
+          - math [ref=e552]:
+            - generic [ref=e554]:
+              - generic [ref=e555]: −
+              - generic [ref=e556]: "5"
+              - generic [ref=e557]: x
+              - generic [ref=e558]: =
+              - generic [ref=e559]: "20"
+          - generic [ref=e560]:
+            - generic [ref=e561]: −5x =
+            - generic [ref=e562]: "20"
+        - text: 两边同除以
+        - generic [ref=e564]:
+          - math [ref=e566]:
+            - generic [ref=e568]:
+              - generic [ref=e569]: −
+              - generic [ref=e570]: "5"
+          - generic [ref=e572]: −5
+        - text: ，得到
+        - generic [ref=e574]:
+          - math [ref=e576]:
+            - generic [ref=e578]:
+              - generic [ref=e579]: x
+              - generic [ref=e580]: =
+              - generic [ref=e581]: −
+              - generic [ref=e582]: "4"
+          - generic [ref=e583]:
+            - generic [ref=e584]: x =
+            - generic [ref=e585]: −4
+        - text: 。
+      - generic [ref=e586]:
+        - text: 反例
+        - generic [ref=e588]:
+          - math [ref=e590]:
+            - generic [ref=e592]:
+              - generic [ref=e593]: −
+              - generic [ref=e594]: "5"
+              - generic [ref=e595]: x
+              - generic [ref=e596]: =
+              - generic [ref=e597]: "20"
+          - generic [ref=e598]:
+            - generic [ref=e599]: −5x =
+            - generic [ref=e600]: "20"
+        - text: 直接擦去
+        - generic [ref=e602]:
+          - math [ref=e604]:
+            - generic [ref=e606]:
+              - generic [ref=e607]: −
+              - generic [ref=e608]: "5"
+          - generic [ref=e610]: −5
+        - text: ，却不处理右边；这不是除系数。
+    - generic [ref=e611]:
+      - generic [ref=e612]:
+        - text: 边界一：不能除以
+        - generic [ref=e614]:
+          - math [ref=e616]:
+            - generic [ref=e619]: "0"
+          - generic [ref=e621]: "0"
+        - text: 。
+      - text: 两边同除的数必须是非零数。
+      - generic [ref=e623]:
+        - math [ref=e625]:
+          - generic [ref=e627]:
+            - generic [ref=e628]: "0"
+            - generic [ref=e629]: x
+            - generic [ref=e630]: =
+            - generic [ref=e631]: "0"
+        - generic [ref=e632]:
+          - generic [ref=e633]: 0x =
+          - generic [ref=e634]: "0"
+      - text: 不能两边同除以
+      - generic [ref=e636]:
+        - math [ref=e638]:
+          - generic [ref=e641]: "0"
+        - generic [ref=e643]: "0"
+      - text: ，因为“除以
+      - generic [ref=e645]:
+        - math [ref=e647]:
+          - generic [ref=e650]: "0"
+        - generic [ref=e652]: "0"
+      - text: ”没有意义。
+    - generic [ref=e653]:
+      - text: 边界二：不是把系数擦掉。 从
+      - generic [ref=e655]:
+        - math [ref=e657]:
+          - generic [ref=e659]:
+            - generic [ref=e660]: "3"
+            - generic [ref=e661]: x
+            - generic [ref=e662]: =
+            - generic [ref=e663]: "12"
+        - generic [ref=e664]:
+          - generic [ref=e665]: 3x =
+          - generic [ref=e666]: "12"
+      - text: 到
+      - generic [ref=e668]:
+        - math [ref=e670]:
+          - generic [ref=e672]:
+            - generic [ref=e673]: x
+            - generic [ref=e674]: =
+            - generic [ref=e675]: "4"
+        - generic [ref=e676]:
+          - generic [ref=e677]: x =
+          - generic [ref=e678]: "4"
+      - text: ，完整动作是两边都除以
+      - generic [ref=e680]:
+        - math [ref=e682]:
+          - generic [ref=e685]: "3"
+        - generic [ref=e687]: "3"
+      - text: ：左边的
+      - generic [ref=e689]:
+        - math [ref=e691]:
+          - generic [ref=e693]:
+            - generic [ref=e694]: "3"
+            - generic [ref=e695]: x
+            - generic [ref=e696]: ÷
+            - generic [ref=e697]: "3"
+            - generic [ref=e698]: =
+            - generic [ref=e699]: x
+        - generic [ref=e700]:
+          - generic [ref=e701]: 3x ÷
+          - generic [ref=e702]: 3 =
+          - generic [ref=e703]: x
+      - text: ，右边的
+      - generic [ref=e705]:
+        - math [ref=e707]:
+          - generic [ref=e709]:
+            - generic [ref=e710]: "12"
+            - generic [ref=e711]: ÷
+            - generic [ref=e712]: "3"
+            - generic [ref=e713]: =
+            - generic [ref=e714]: "4"
+        - generic [ref=e715]:
+          - generic [ref=e716]: 12 ÷
+          - generic [ref=e717]: 3 =
+          - generic [ref=e718]: "4"
+      - text: 。
+    - generic [ref=e719]:
+      - text: 边界三：分数系数可以用同乘去掉。
+      - generic [ref=e721]:
+        - math [ref=e723]:
+          - generic [ref=e725]:
+            - generic [ref=e726]:
+              - generic [ref=e727]: x
+              - generic [ref=e728]: "4"
+            - generic [ref=e729]: =
+            - generic [ref=e730]: "5"
+        - generic [ref=e731]:
+          - generic [ref=e732]:
+            - generic [ref=e737]:
+              - generic [ref=e739]: "4"
+              - generic [ref=e742]: x
+            - text: =
+          - generic [ref=e746]: "5"
+      - text: 也可以写成
+      - generic [ref=e748]:
+        - math [ref=e750]:
+          - generic [ref=e752]:
+            - generic [ref=e753]:
+              - generic [ref=e754]: "1"
+              - generic [ref=e755]: "4"
+            - generic [ref=e756]: x
+            - generic [ref=e757]: =
+            - generic [ref=e758]: "5"
+        - generic [ref=e759]:
+          - generic [ref=e760]:
+            - generic [ref=e765]:
+              - generic [ref=e767]: "4"
+              - generic [ref=e770]: "1"
+            - text: x =
+          - generic [ref=e774]: "5"
+      - text: 。两边同乘
+      - generic [ref=e776]:
+        - math [ref=e778]:
+          - generic [ref=e781]: "4"
+        - generic [ref=e783]: "4"
+      - text: 得到
+      - generic [ref=e785]:
+        - math [ref=e787]:
+          - generic [ref=e789]:
+            - generic [ref=e790]: x
+            - generic [ref=e791]: =
+            - generic [ref=e792]: "20"
+        - generic [ref=e793]:
+          - generic [ref=e794]: x =
+          - generic [ref=e795]: "20"
+      - text: ；这与两边同除以系数
+      - generic [ref=e797]:
+        - math [ref=e799]:
+          - generic [ref=e802]:
+            - generic [ref=e803]: "1"
+            - generic [ref=e804]: "4"
+        - generic [ref=e811]:
+          - generic [ref=e813]: "4"
+          - generic [ref=e816]: "1"
+      - text: 是同一件事。
+    - generic [ref=e820]:
+      - text: 边界四：乘除负数不改变等号。
+      - generic [ref=e822]:
+        - math [ref=e824]:
+          - generic [ref=e826]:
+            - generic [ref=e827]: −
+            - generic [ref=e828]: "2"
+            - generic [ref=e829]: x
+            - generic [ref=e830]: =
+            - generic [ref=e831]: "6"
+        - generic [ref=e832]:
+          - generic [ref=e833]: −2x =
+          - generic [ref=e834]: "6"
+      - text: 两边同除以
+      - generic [ref=e836]:
+        - math [ref=e838]:
+          - generic [ref=e840]:
+            - generic [ref=e841]: −
+            - generic [ref=e842]: "2"
+        - generic [ref=e844]: −2
+      - text: 得到
+      - generic [ref=e846]:
+        - math [ref=e848]:
+          - generic [ref=e850]:
+            - generic [ref=e851]: x
+            - generic [ref=e852]: =
+            - generic [ref=e853]: −
+            - generic [ref=e854]: "3"
+        - generic [ref=e855]:
+          - generic [ref=e856]: x =
+          - generic [ref=e857]: −3
+      - text: 。等号只记录左右相等，没有需要改变的方向。
+    - generic [ref=e858]:
+      - generic [ref=e859]:
+        - text: 乘以
+        - generic [ref=e861]:
+          - math [ref=e863]:
+            - generic [ref=e866]: "0"
+          - generic [ref=e868]: "0"
+        - text: 要分清两件事。
+      - text: 一个已经成立的等式两边同乘
+      - generic [ref=e870]:
+        - math [ref=e872]:
+          - generic [ref=e875]: "0"
+        - generic [ref=e877]: "0"
+      - text: ，仍会得到成立的
+      - generic [ref=e879]:
+        - math [ref=e881]:
+          - generic [ref=e883]:
+            - generic [ref=e884]: "0"
+            - generic [ref=e885]: =
+            - generic [ref=e886]: "0"
+        - generic [ref=e887]:
+          - generic [ref=e888]: 0 =
+          - generic [ref=e889]: "0"
+      - text: ；但解方程时这样做会丢掉原来的条件。例如
+      - generic [ref=e891]:
+        - math [ref=e893]:
+          - generic [ref=e895]:
+            - generic [ref=e896]: x
+            - generic [ref=e897]: =
+            - generic [ref=e898]: "2"
+        - generic [ref=e899]:
+          - generic [ref=e900]: x =
+          - generic [ref=e901]: "2"
+      - text: 两边同乘
+      - generic [ref=e903]:
+        - math [ref=e905]:
+          - generic [ref=e908]: "0"
+        - generic [ref=e910]: "0"
+      - text: 后变成
+      - generic [ref=e912]:
+        - math [ref=e914]:
+          - generic [ref=e916]:
+            - generic [ref=e917]: "0"
+            - generic [ref=e918]: =
+            - generic [ref=e919]: "0"
+        - generic [ref=e920]:
+          - generic [ref=e921]: 0 =
+          - generic [ref=e922]: "0"
+      - text: ，此时
+      - generic [ref=e924]:
+        - math [ref=e926]:
+          - generic [ref=e928]:
+            - generic [ref=e929]: x
+            - generic [ref=e930]: =
+            - generic [ref=e931]: "7"
+        - generic [ref=e932]:
+          - generic [ref=e933]: x =
+          - generic [ref=e934]: "7"
+      - text: 也能让新方程成立，却不是原方程的解。因此，解方程时用同乘做等价变形，也应乘非零数。
+  - generic [ref=e935]:
+    - generic [ref=e936]:
+      - generic [ref=e937]: "3"
+      - generic [ref=e938]: 例题
+    - generic [ref=e939]:
+      - generic [ref=e940]: 例 1：正数系数
+      - generic [ref=e941]:
+        - generic [ref=e942]: "01"
+        - generic [ref=e943]:
+          - generic [ref=e945]:
+            - math [ref=e947]:
+              - generic [ref=e949]:
+                - generic [ref=e950]: "3"
+                - generic [ref=e951]: x
+                - generic [ref=e952]: =
+                - generic [ref=e953]: "12"
+            - generic [ref=e954]:
+              - generic [ref=e955]: 3x =
+              - generic [ref=e956]: "12"
+          - text: ，
+          - generic [ref=e958]:
+            - math [ref=e960]:
+              - generic [ref=e963]: x
+            - generic [ref=e965]: x
+          - text: 的系数是
+          - generic [ref=e967]:
+            - math [ref=e969]:
+              - generic [ref=e972]: "3"
+            - generic [ref=e974]: "3"
+          - text: 。
+      - generic [ref=e975]:
+        - generic [ref=e976]: "02"
+        - generic [ref=e977]:
+          - text: 两边同除以
+          - generic [ref=e979]:
+            - math [ref=e981]:
+              - generic [ref=e984]: "3"
+            - generic [ref=e986]: "3"
+          - text: ：
+          - generic [ref=e988]:
+            - math [ref=e990]:
+              - generic [ref=e992]:
+                - generic [ref=e993]:
+                  - generic [ref=e994]:
+                    - generic [ref=e995]: "3"
+                    - generic [ref=e996]: x
+                  - generic [ref=e997]: "3"
+                - generic [ref=e998]: =
+                - generic [ref=e999]:
+                  - generic [ref=e1000]: "12"
+                  - generic [ref=e1001]: "3"
+            - generic [ref=e1002]:
+              - generic [ref=e1003]:
+                - generic [ref=e1008]:
+                  - generic [ref=e1010]: "3"
+                  - generic [ref=e1013]: 3x
+                - text: =
+              - generic [ref=e1022]:
+                - generic [ref=e1024]: "3"
+                - generic [ref=e1027]: "12"
+          - text: 。
+      - generic [ref=e1031]:
+        - generic [ref=e1032]: "03"
+        - generic [ref=e1033]:
+          - text: 得到
+          - generic [ref=e1035]:
+            - math [ref=e1037]:
+              - generic [ref=e1039]:
+                - generic [ref=e1040]: x
+                - generic [ref=e1041]: =
+                - generic [ref=e1042]: "4"
+            - generic [ref=e1043]:
+              - generic [ref=e1044]: x =
+              - generic [ref=e1045]: "4"
+          - text: 。把
+          - generic [ref=e1047]:
+            - math [ref=e1049]:
+              - generic [ref=e1052]: "4"
+            - generic [ref=e1054]: "4"
+          - text: 代入原方程，
+          - generic [ref=e1056]:
+            - math [ref=e1058]:
+              - generic [ref=e1060]:
+                - generic [ref=e1061]: "3"
+                - generic [ref=e1062]: ×
+                - generic [ref=e1063]: "4"
+                - generic [ref=e1064]: =
+                - generic [ref=e1065]: "12"
+            - generic [ref=e1066]:
+              - generic [ref=e1067]: 3 ×
+              - generic [ref=e1068]: 4 =
+              - generic [ref=e1069]: "12"
+          - text: 。
+    - generic [ref=e1070]:
+      - generic [ref=e1071]: 例 2：负数系数
+      - generic [ref=e1072]:
+        - generic [ref=e1073]: "01"
+        - generic [ref=e1074]:
+          - generic [ref=e1076]:
+            - math [ref=e1078]:
+              - generic [ref=e1080]:
+                - generic [ref=e1081]: −
+                - generic [ref=e1082]: "5"
+                - generic [ref=e1083]: x
+                - generic [ref=e1084]: =
+                - generic [ref=e1085]: "20"
+            - generic [ref=e1086]:
+              - generic [ref=e1087]: −5x =
+              - generic [ref=e1088]: "20"
+          - text: ，系数是
+          - generic [ref=e1090]:
+            - math [ref=e1092]:
+              - generic [ref=e1094]:
+                - generic [ref=e1095]: −
+                - generic [ref=e1096]: "5"
+            - generic [ref=e1098]: −5
+          - text: 。
+      - generic [ref=e1099]:
+        - generic [ref=e1100]: "02"
+        - generic [ref=e1101]:
+          - text: 两边同除以
+          - generic [ref=e1103]:
+            - math [ref=e1105]:
+              - generic [ref=e1107]:
+                - generic [ref=e1108]: −
+                - generic [ref=e1109]: "5"
+            - generic [ref=e1111]: −5
+          - text: ：
+          - generic [ref=e1113]:
+            - math [ref=e1115]:
+              - generic [ref=e1117]:
+                - generic [ref=e1118]:
+                  - generic [ref=e1119]:
+                    - generic [ref=e1120]: −
+                    - generic [ref=e1121]: "5"
+                    - generic [ref=e1122]: x
+                  - generic [ref=e1123]:
+                    - generic [ref=e1124]: −
+                    - generic [ref=e1125]: "5"
+                - generic [ref=e1126]: =
+                - generic [ref=e1127]:
+                  - generic [ref=e1128]: "20"
+                  - generic [ref=e1129]:
+                    - generic [ref=e1130]: −
+                    - generic [ref=e1131]: "5"
+            - generic [ref=e1132]:
+              - generic [ref=e1133]:
+                - generic [ref=e1138]:
+                  - generic [ref=e1140]: −5
+                  - generic [ref=e1143]: −5x
+                - text: =
+              - generic [ref=e1152]:
+                - generic [ref=e1154]: −5
+                - generic [ref=e1157]: "20"
+          - text: 。
+      - generic [ref=e1161]:
+        - generic [ref=e1162]: "03"
+        - generic [ref=e1163]:
+          - text: 得到
+          - generic [ref=e1165]:
+            - math [ref=e1167]:
+              - generic [ref=e1169]:
+                - generic [ref=e1170]: x
+                - generic [ref=e1171]: =
+                - generic [ref=e1172]: −
+                - generic [ref=e1173]: "4"
+            - generic [ref=e1174]:
+              - generic [ref=e1175]: x =
+              - generic [ref=e1176]: −4
+          - text: 。除数是负数，等号仍是等号。
+    - generic [ref=e1177]:
+      - generic [ref=e1178]: 例 3：未知数被除以一个数
+      - generic [ref=e1179]:
+        - generic [ref=e1180]: "01"
+        - generic [ref=e1181]:
+          - generic [ref=e1183]:
+            - math [ref=e1185]:
+              - generic [ref=e1187]:
+                - generic [ref=e1188]:
+                  - generic [ref=e1189]: x
+                  - generic [ref=e1190]: "4"
+                - generic [ref=e1191]: =
+                - generic [ref=e1192]: "5"
+            - generic [ref=e1193]:
+              - generic [ref=e1194]:
+                - generic [ref=e1199]:
+                  - generic [ref=e1201]: "4"
+                  - generic [ref=e1204]: x
+                - text: =
+              - generic [ref=e1208]: "5"
+          - text: ，也就是
+          - generic [ref=e1210]:
+            - math [ref=e1212]:
+              - generic [ref=e1214]:
+                - generic [ref=e1215]:
+                  - generic [ref=e1216]: "1"
+                  - generic [ref=e1217]: "4"
+                - generic [ref=e1218]: x
+                - generic [ref=e1219]: =
+                - generic [ref=e1220]: "5"
+            - generic [ref=e1221]:
+              - generic [ref=e1222]:
+                - generic [ref=e1227]:
+                  - generic [ref=e1229]: "4"
+                  - generic [ref=e1232]: "1"
+                - text: x =
+              - generic [ref=e1236]: "5"
+          - text: 。
+      - generic [ref=e1237]:
+        - generic [ref=e1238]: "02"
+        - generic [ref=e1239]:
+          - text: 两边同乘
+          - generic [ref=e1241]:
+            - math [ref=e1243]:
+              - generic [ref=e1246]: "4"
+            - generic [ref=e1248]: "4"
+          - text: ：
+          - generic [ref=e1250]:
+            - math [ref=e1252]:
+              - generic [ref=e1254]:
+                - generic [ref=e1255]: "4"
+                - generic [ref=e1256]: ⋅
+                - generic [ref=e1257]:
+                  - generic [ref=e1258]: x
+                  - generic [ref=e1259]: "4"
+                - generic [ref=e1260]: =
+                - generic [ref=e1261]: "4"
+                - generic [ref=e1262]: ⋅
+                - generic [ref=e1263]: "5"
+            - generic [ref=e1264]:
+              - generic [ref=e1265]: 4 ⋅
+              - generic [ref=e1266]:
+                - generic [ref=e1271]:
+                  - generic [ref=e1273]: "4"
+                  - generic [ref=e1276]: x
+                - text: =
+              - generic [ref=e1280]: 4 ⋅
+              - generic [ref=e1281]: "5"
+          - text: 。
+      - generic [ref=e1282]:
+        - generic [ref=e1283]: "03"
+        - generic [ref=e1284]:
+          - text: 得到
+          - generic [ref=e1286]:
+            - math [ref=e1288]:
+              - generic [ref=e1290]:
+                - generic [ref=e1291]: x
+                - generic [ref=e1292]: =
+                - generic [ref=e1293]: "20"
+            - generic [ref=e1294]:
+              - generic [ref=e1295]: x =
+              - generic [ref=e1296]: "20"
+          - text: 。左边乘
+          - generic [ref=e1298]:
+            - math [ref=e1300]:
+              - generic [ref=e1303]: "4"
+            - generic [ref=e1305]: "4"
+          - text: 与除以系数
+          - generic [ref=e1307]:
+            - math [ref=e1309]:
+              - generic [ref=e1312]:
+                - generic [ref=e1313]: "1"
+                - generic [ref=e1314]: "4"
+            - generic [ref=e1321]:
+              - generic [ref=e1323]: "4"
+              - generic [ref=e1326]: "1"
+          - text: 的结果相同。
+    - generic [ref=e1330]:
+      - generic [ref=e1331]: 例 4：分数系数
+      - generic [ref=e1332]:
+        - generic [ref=e1333]: "01"
+        - generic [ref=e1334]:
+          - generic [ref=e1336]:
+            - math [ref=e1338]:
+              - generic [ref=e1340]:
+                - generic [ref=e1341]:
+                  - generic [ref=e1342]: "2"
+                  - generic [ref=e1343]: "3"
+                - generic [ref=e1344]: x
+                - generic [ref=e1345]: =
+                - generic [ref=e1346]: −
+                - generic [ref=e1347]: "8"
+            - generic [ref=e1348]:
+              - generic [ref=e1349]:
+                - generic [ref=e1354]:
+                  - generic [ref=e1356]: "3"
+                  - generic [ref=e1359]: "2"
+                - text: x =
+              - generic [ref=e1363]: −8
+          - text: ，系数是
+          - generic [ref=e1365]:
+            - math [ref=e1367]:
+              - generic [ref=e1370]:
+                - generic [ref=e1371]: "2"
+                - generic [ref=e1372]: "3"
+            - generic [ref=e1379]:
+              - generic [ref=e1381]: "3"
+              - generic [ref=e1384]: "2"
+          - text: 。
+      - generic [ref=e1388]:
+        - generic [ref=e1389]: "02"
+        - generic [ref=e1390]:
+          - text: 两边同除以
+          - generic [ref=e1392]:
+            - math [ref=e1394]:
+              - generic [ref=e1397]:
+                - generic [ref=e1398]: "2"
+                - generic [ref=e1399]: "3"
+            - generic [ref=e1406]:
+              - generic [ref=e1408]: "3"
+              - generic [ref=e1411]: "2"
+          - text: ：
+          - generic [ref=e1416]:
+            - math [ref=e1418]:
+              - generic [ref=e1420]:
+                - generic [ref=e1421]: x
+                - generic [ref=e1422]: =
+                - generic [ref=e1423]: −
+                - generic [ref=e1424]: "8"
+                - generic [ref=e1425]: ÷
+                - generic [ref=e1426]:
+                  - generic [ref=e1427]: "2"
+                  - generic [ref=e1428]: "3"
+            - generic [ref=e1429]:
+              - generic [ref=e1430]: x =
+              - generic [ref=e1431]: −8 ÷
+              - generic [ref=e1437]:
+                - generic [ref=e1439]: "3"
+                - generic [ref=e1442]: "2"
+          - text: 。
+      - generic [ref=e1446]:
+        - generic [ref=e1447]: "03"
+        - generic [ref=e1448]:
+          - text: 按分数除法计算，得到
+          - generic [ref=e1450]:
+            - math [ref=e1452]:
+              - generic [ref=e1454]:
+                - generic [ref=e1455]: x
+                - generic [ref=e1456]: =
+                - generic [ref=e1457]: −
+                - generic [ref=e1458]: "12"
+            - generic [ref=e1459]:
+              - generic [ref=e1460]: x =
+              - generic [ref=e1461]: −12
+          - text: 。
+    - generic [ref=e1462]:
+      - generic [ref=e1463]: 例 5：说理——为什么要分两步
+      - generic [ref=e1464]:
+        - generic [ref=e1465]: "01"
+        - generic [ref=e1466]:
+          - text: 方程
+          - generic [ref=e1468]:
+            - math [ref=e1470]:
+              - generic [ref=e1472]:
+                - generic [ref=e1473]: "4"
+                - generic [ref=e1474]: x
+                - generic [ref=e1475]: +
+                - generic [ref=e1476]: "7"
+                - generic [ref=e1477]: =
+                - generic [ref=e1478]: "19"
+            - generic [ref=e1479]:
+              - generic [ref=e1480]: 4x +
+              - generic [ref=e1481]: 7 =
+              - generic [ref=e1482]: "19"
+          - text: 中，先用等式性质一，两边同时减
+          - generic [ref=e1484]:
+            - math [ref=e1486]:
+              - generic [ref=e1489]: "7"
+            - generic [ref=e1491]: "7"
+          - text: ，得到
+          - generic [ref=e1493]:
+            - math [ref=e1495]:
+              - generic [ref=e1497]:
+                - generic [ref=e1498]: "4"
+                - generic [ref=e1499]: x
+                - generic [ref=e1500]: =
+                - generic [ref=e1501]: "12"
+            - generic [ref=e1502]:
+              - generic [ref=e1503]: 4x =
+              - generic [ref=e1504]: "12"
+          - text: 。
+      - generic [ref=e1505]:
+        - generic [ref=e1506]: "02"
+        - generic [ref=e1507]:
+          - text: 再用等式性质二，两边同时除以
+          - generic [ref=e1509]:
+            - math [ref=e1511]:
+              - generic [ref=e1514]: "4"
+            - generic [ref=e1516]: "4"
+          - text: ，得到
+          - generic [ref=e1518]:
+            - math [ref=e1520]:
+              - generic [ref=e1522]:
+                - generic [ref=e1523]: x
+                - generic [ref=e1524]: =
+                - generic [ref=e1525]: "3"
+            - generic [ref=e1526]:
+              - generic [ref=e1527]: x =
+              - generic [ref=e1528]: "3"
+          - text: 。
+      - generic [ref=e1529]:
+        - generic [ref=e1530]: "03"
+        - generic [ref=e1531]:
+          - text: 理由：第一步去掉与
+          - generic [ref=e1533]:
+            - math [ref=e1535]:
+              - generic [ref=e1537]:
+                - generic [ref=e1538]: "4"
+                - generic [ref=e1539]: x
+            - generic [ref=e1541]: 4x
+          - text: 相加的
+          - generic [ref=e1543]:
+            - math [ref=e1545]:
+              - generic [ref=e1548]: "7"
+            - generic [ref=e1550]: "7"
+          - text: ，第二步去掉
+          - generic [ref=e1552]:
+            - math [ref=e1554]:
+              - generic [ref=e1557]: x
+            - generic [ref=e1559]: x
+          - text: 前的系数
+          - generic [ref=e1561]:
+            - math [ref=e1563]:
+              - generic [ref=e1566]: "4"
+            - generic [ref=e1568]: "4"
+          - text: ；每一步都让两边做同一个合法动作，所以方程的解不改变。
+  - generic [ref=e1569]:
+    - generic [ref=e1570]:
+      - generic [ref=e1571]: "4"
+      - generic [ref=e1572]: 与其他知识点的联系
+    - list [ref=e1573]:
+      - listitem [ref=e1574]: 向前连接 3.1：方程用等号把左右两个代数式连起来；本课的每一步都必须同时作用在等式两边。
+      - listitem [ref=e1575]: 向前连接 3.2：两边同加同减用来去掉相加或相减的部分；本课的两边同乘同除用来去掉相乘或相除的部分。它们都是等价变形。
+      - listitem [ref=e1576]: 向后连接：到 3.5，会把移项、合并同类项和除系数按需要接在一起，逐步让未知数单独留下。
+  - generic [ref=e1577]:
+    - generic [ref=e1578]:
+      - generic [ref=e1579]: "5"
+      - generic [ref=e1580]: 概念口试
+    - list [ref=e1581]:
+      - listitem [ref=e1582]:
+        - text: 已知
+        - generic [ref=e1584]:
+          - math [ref=e1586]:
+            - generic [ref=e1588]:
+              - generic [ref=e1589]: a
+              - generic [ref=e1590]: =
+              - generic [ref=e1591]: b
+          - generic [ref=e1592]:
+            - generic [ref=e1593]: a =
+            - generic [ref=e1594]: b
+        - text: 。要把两边同时除以
+        - generic [ref=e1596]:
+          - math [ref=e1598]:
+            - generic [ref=e1601]: c
+          - generic [ref=e1603]: c
+        - text: ，必须先说明什么？
+      - listitem [ref=e1604]:
+        - text: 为什么从
+        - generic [ref=e1606]:
+          - math [ref=e1608]:
+            - generic [ref=e1610]:
+              - generic [ref=e1611]: "3"
+              - generic [ref=e1612]: x
+              - generic [ref=e1613]: =
+              - generic [ref=e1614]: "12"
+          - generic [ref=e1615]:
+            - generic [ref=e1616]: 3x =
+            - generic [ref=e1617]: "12"
+        - text: 到
+        - generic [ref=e1619]:
+          - math [ref=e1621]:
+            - generic [ref=e1623]:
+              - generic [ref=e1624]: x
+              - generic [ref=e1625]: =
+              - generic [ref=e1626]: "4"
+          - generic [ref=e1627]:
+            - generic [ref=e1628]: x =
+            - generic [ref=e1629]: "4"
+        - text: 不能说“把
+        - generic [ref=e1631]:
+          - math [ref=e1633]:
+            - generic [ref=e1636]: "3"
+          - generic [ref=e1638]: "3"
+        - text: 擦掉了”？
+      - listitem [ref=e1639]:
+        - text: 对
+        - generic [ref=e1641]:
+          - math [ref=e1643]:
+            - generic [ref=e1645]:
+              - generic [ref=e1646]:
+                - generic [ref=e1647]: x
+                - generic [ref=e1648]: "4"
+              - generic [ref=e1649]: =
+              - generic [ref=e1650]: "5"
+          - generic [ref=e1651]:
+            - generic [ref=e1652]:
+              - generic [ref=e1657]:
+                - generic [ref=e1659]: "4"
+                - generic [ref=e1662]: x
+              - text: =
+            - generic [ref=e1666]: "5"
+        - text: ，应当让两边做什么？它为什么能去掉
+        - generic [ref=e1668]:
+          - math [ref=e1670]:
+            - generic [ref=e1673]: x
+          - generic [ref=e1675]: x
+        - text: 前的系数？
+      - listitem [ref=e1676]:
+        - generic [ref=e1678]:
+          - math [ref=e1680]:
+            - generic [ref=e1682]:
+              - generic [ref=e1683]: −
+              - generic [ref=e1684]: "2"
+              - generic [ref=e1685]: x
+              - generic [ref=e1686]: =
+              - generic [ref=e1687]: "6"
+          - generic [ref=e1688]:
+            - generic [ref=e1689]: −2x =
+            - generic [ref=e1690]: "6"
+        - text: 两边同除以
+        - generic [ref=e1692]:
+          - math [ref=e1694]:
+            - generic [ref=e1696]:
+              - generic [ref=e1697]: −
+              - generic [ref=e1698]: "2"
+          - generic [ref=e1700]: −2
+        - text: 后，等号要不要改变？为什么？
+      - listitem [ref=e1701]:
+        - text: 有人把
+        - generic [ref=e1703]:
+          - math [ref=e1705]:
+            - generic [ref=e1707]:
+              - generic [ref=e1708]: x
+              - generic [ref=e1709]: =
+              - generic [ref=e1710]: "2"
+          - generic [ref=e1711]:
+            - generic [ref=e1712]: x =
+            - generic [ref=e1713]: "2"
+        - text: 两边同乘
+        - generic [ref=e1715]:
+          - math [ref=e1717]:
+            - generic [ref=e1720]: "0"
+          - generic [ref=e1722]: "0"
+        - text: ，得到
+        - generic [ref=e1724]:
+          - math [ref=e1726]:
+            - generic [ref=e1728]:
+              - generic [ref=e1729]: "0"
+              - generic [ref=e1730]: =
+              - generic [ref=e1731]: "0"
+          - generic [ref=e1732]:
+            - generic [ref=e1733]: 0 =
+            - generic [ref=e1734]: "0"
+        - text: ，然后说这是等价变形。错在哪里？

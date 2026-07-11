@@ -145,6 +145,7 @@ vite.config.ts.timestamp-*
 # n-im / local agent scratch
 .tmp/
 .getagoal/
+.evodocs/tmp/
 
 # Playwright
 /test-results/
