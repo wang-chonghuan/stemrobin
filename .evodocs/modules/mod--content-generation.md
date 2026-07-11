@@ -48,9 +48,12 @@ The math child is structured around a human outline followed by a
 machine-readable concept ledger. The ledger records a stage model, prior assumed
 knowledge, each lesson's introduced and consumed terms, genre, boundary cases,
 and review targets. From it, separate authoring steps produce lesson HTML and
-structured exercise data. Independent gates evaluate ledger pedagogy, lesson
-clarity, and deck quality. Deterministic checks validate outline fidelity,
-prerequisite closure, exercise composition, metadata, and persistence shape.
+structured exercise data. Independent gates evaluate ledger pedagogy and lesson
+clarity. Decks use deterministic composition validation plus author answer-key
+self-check by default; a separate semantic deck audit is reserved for explicit
+requests, answer-quality incidents, or unusual answer formats. Deterministic
+checks validate outline fidelity, prerequisite closure, exercise composition,
+metadata, and persistence shape.
 The saver writes the lesson, deck, and printable representation.
 
 The biography child is structured around provenance and narrative. It converts a
@@ -91,14 +94,17 @@ preferred for short answers; choice is reserved for diagnostic distinctions; wor
 captures explanation. A deck's review items target earlier ledger terms, making
 spacing a property of generated content rather than a runtime scheduler.
 
-After independent gates pass, the math saver validates the id against the human
-outline and ledger, validates the lesson's appropriate section anchors, and
-upserts the lesson HTML, metadata, and a best-effort PDF. The deck save validates
-question shape and composition, replaces all question rows for that lesson, and
-regenerates a prompt-only practice section inside stored lesson HTML. It then
-re-renders the PDF. Re-saving lesson HTML later removes that injected section,
-so a deck save must follow it to restore the learner-visible practice and final
-print output.
+After an independent lesson-content gate and the deck's deterministic check
+pass, the math saver validates the id against the human outline and ledger,
+validates the lesson's appropriate section anchors, and upserts the lesson HTML,
+metadata, and a best-effort PDF. The deck save validates question shape and
+composition, replaces all question rows for that lesson, and regenerates a
+prompt-only practice section inside stored lesson HTML. It then re-renders the
+PDF. Re-saving lesson HTML later removes that injected section, so a deck save
+must follow it to restore the learner-visible practice and final print output.
+For a group of lessons, one browser session after the final save checks every
+lesson's rendered content, practice, PDF, responsive layout, and representative
+answer flow.
 
 Biography work begins with a source that is out of US copyright. The source is
 converted into working Markdown by a deterministic wrapper around `markitdown`;
@@ -152,11 +158,11 @@ parallel current workflow.
 
 Final content persistence is database-only and occurs only through the
 deterministic saver scripts. Do not hand-write `sr_*` rows, edit a saved course
-artifact in place, or create a second publishing path. Persist only after the
-specified independent gate has passed. New content defaults to `draft`; the
-current application reads those fields without status filtering, so the
-promotion policy must be treated as an operational decision rather than assumed
-to be enforced by the reader.
+artifact in place, or create a second publishing path. Persist math content only
+after the independent lesson-content gate and the deck's deterministic check
+have passed. New content defaults to `draft`; the current application reads
+those fields without status filtering, so the promotion policy must be treated
+as an operational decision rather than assumed to be enforced by the reader.
 
 The root environment file and database secret are server-side operational
 inputs. The skills must retain their separate dependency package and must not

@@ -15,4 +15,4 @@ From the ledger entry, author ONE lesson as self-contained HTML. Read `reference
 
 Write to a scratch path (`<scratch>/<id>.html`). Do not author exercises here (cap3). Report: sections present, terms introduced/consumed used, boundary cases covered.
 
-Run `check-ledger.mjs --vocab` before handing the page to gate-2. Do not run browser visual QA here: the single final cap4 verification owns rendered KaTeX, PDF, and responsive layout after the stored lesson is complete.
+Run `node .agents/skills/sr-math-lesson/scripts/check-ledger.mjs <stage-ledger> --vocab <scratch>/<id>.html --id <lesson-id>` before handing the page to gate-2. Do not run browser visual QA here: the single final cap4 verification owns rendered KaTeX, PDF, and responsive layout after the stored lesson is complete.

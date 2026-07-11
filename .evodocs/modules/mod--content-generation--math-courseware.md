@@ -128,11 +128,11 @@ not depend on a separate runtime scheduler.
 The exercise checker enforces the item count, contiguous order, permitted
 types and layers, minimum identification and operation shares, at least two
 error-diagnosis and two reasoning items, recall share, valid choice and input
-shape, and valid review targets. The semantic gate then solves every question,
-tests each claimed boundary case, checks whether distractors diagnose a real
-misconception, and verifies that each feedback answer teaches rather than merely
-states a result. Those responsibilities cannot be substituted with JSON
-validation.
+shape, and valid review targets. Before saving, the deck author solves every
+input and choice item, checks each answer key or accepted form, and confirms
+that feedback teaches why. A separate semantic deck audit is not part of normal
+generation; it is reserved for an explicit request, an answer-quality incident,
+or an unusual answer format that the deterministic contract cannot validate.
 
 Persistence is deliberately two-step. The HTML save first checks the lesson
 against the ledger and human outline, stores its self-contained HTML and an
@@ -142,9 +142,10 @@ deletes all old questions and their cascading answer events, inserts the
 supplied complete deck, removes any old injected practice area, produces a new
 one from the entire deck, and re-renders the PDF. Re-saving an HTML lesson after
 the deck has been saved removes that generated practice, so the deck must be
-saved again. The entire process writes through the server-only PostgreSQL
-connection; a direct row edit would leave lesson, practice, PDF, deck, and
-learner-history state out of sync.
+saved again. For a multi-lesson request, the browser checks run once after the
+final save rather than once per lesson or deck. The entire process writes
+through the server-only PostgreSQL connection; a direct row edit would leave
+lesson, practice, PDF, deck, and learner-history state out of sync.
 
 At runtime, the application treats the database as the lesson source. It
 delivers stored HTML into a sandboxed iframe, serves the saved PDF for download,
