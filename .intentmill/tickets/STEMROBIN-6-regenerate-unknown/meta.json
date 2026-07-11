@@ -7,5 +7,11 @@
   "branch": "STEMROBIN-6-regenerate-unknown",
   "worktree_path": "/Users/yong/work/stemrobin-ws/stemrobin--STEMROBIN-6-regenerate-unknown",
   "created_at": "2026-07-11T10:09:28Z",
-  "intent_path": ".intentmill/tickets/STEMROBIN-6-regenerate-unknown/intent.md"
+  "intent_path": ".intentmill/tickets/STEMROBIN-6-regenerate-unknown/intent.md",
+  "pr_url": "https://github.com/wang-chonghuan/stemrobin/pull/4",
+  "pr_created_at": "2026-07-11T11:02:26Z",
+  "pr_number": 4,
+  "pr_base_branch": "main",
+  "pr_head_branch": "STEMROBIN-6-regenerate-unknown",
+  "pr_title": "STEMROBIN-6-regenerate-unknown"
 }
