@@ -1,0 +1,39 @@
+{
+  "modules": {
+    "app": {
+      "description": "TanStack Start learning application for catalog, lesson, biography, authentication, and practice workflows.",
+      "paths": [
+        "app"
+      ],
+      "children": {
+        "domain": {
+          "description": "Server-side content access, curriculum navigation, authentication, grading, and PostgreSQL persistence behavior.",
+          "paths": [
+            "app/src/lib"
+          ]
+        },
+        "experience": {
+          "description": "Responsive learner-facing routes, catalog navigation, lesson and story readers, and shared quiz interactions.",
+          "paths": [
+            "app/src/routes",
+            "app/src/components",
+            "app/src/styles"
+          ]
+        }
+      }
+    },
+    "math-authoring": {
+      "description": "Math lesson ledger, authoring, validation, PDF generation, exercise-deck, and database persistence workflows.",
+      "paths": [
+        ".agents/skills/sr-math-lesson",
+        ".agents/skills/sr-lesson"
+      ]
+    },
+    "story-authoring": {
+      "description": "Public-domain biography conversion, outlining, chapter and question authoring, validation, and persistence workflows.",
+      "paths": [
+        ".agents/skills/sr-story"
+      ]
+    }
+  }
+}
