@@ -28,7 +28,7 @@
   },
   "db": {
     "stack": "ts",
-    "constitutionPath": ".evodocs/constitution.md",
+    "engineeringRulesPath": ".prodfarm/charter/engineering-rules.md",
     "backendRoot": ".",
     "connectionModule": "app/src/lib/db.ts",
     "envFile": ".env",

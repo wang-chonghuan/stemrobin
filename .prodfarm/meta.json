@@ -7,7 +7,9 @@
     "labels": {
       "story": "c45e8dc7-8e2f-4ce5-abc9-f93b6a151143",
       "enabler": "6384782f-dfac-49a0-8009-9aa18f4f9a48",
-      "fix": "771c4673-7a2c-4689-9db3-553e725152dc"
+      "fix": "771c4673-7a2c-4689-9db3-553e725152dc",
+      "chore": "ba50c90a-1991-4258-9c8a-1097a7101455",
+      "seed": "7b7bcaf7-dc80-43e9-9351-9aac95aeda6d"
     },
     "states": {
       "queued": "416229c9-c13a-4973-b61b-b53aba1939b4",

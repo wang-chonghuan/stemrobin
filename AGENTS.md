@@ -29,4 +29,4 @@ Read the routed file directly; don't duplicate its content here.
 
 ## Frozen directories
 
-None currently. (If a legacy doc tree is later superseded by the charter/modules layout, it is declared frozen here: kept in place, read-only history, no new dependencies — route content questions to the charter/modules homes instead.)
+- `.evodocs/constitution.md` and `.evodocs/index.json` are legacy read-only history. Add no new dependencies on them; route persistent intent to `.prodfarm/charter/` and machine-current module facts to `.evodocs/modules/`.
