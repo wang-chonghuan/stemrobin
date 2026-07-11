@@ -8,7 +8,7 @@ A lesson exists so the learner ends up with a **working mental model plus the la
 
 ## The ledger (概念台账)
 
-`resources/content/math-ledger/stage-<n>.json` — machine-readable stage outline, the SSOT for lesson order, terms, and review scheduling.
+`resources/content/course-gen-guide-math.md` is the human outline source for the stage's lesson titles, order, and instructional direction. `resources/content/math-ledger/stage-<n>.json` is the downstream machine-readable stage outline and SSOT for lesson metadata, terms, and review scheduling.
 
 ```json
 {
@@ -37,6 +37,7 @@ A lesson exists so the learner ends up with a **working mental model plus the la
 ```
 
 Rules:
+- **Outline fidelity**: cap1 starts from the matching stage in `resources/content/course-gen-guide-math.md`. Preserve lesson title/order/direction in the ledger unless a human explicitly changes the human outline first. The ledger may add prerequisite anatomy detail, but it may not silently replace or reorder an outline lesson. `scripts/check-outline.mjs` mechanically verifies that every guide lesson remains exactly once and in order.
 - **Prerequisite closure (mechanical, `scripts/check-ledger.mjs`)**: every term in a lesson's `consumes` must appear in an earlier lesson's `introduces` or in `assumed`. No exceptions. If a real gap exists (e.g. the previous stage never taught 乘方), record it in `assumed` with `"from": "GAP"` and a note — visible debt, never silent.
 - Terms are unique across `introduces` (one lesson owns each term).
 - `genre` ∈ 概念课 | 方法课 | 练习课. A stage should give heavy-vocabulary clusters their own 概念课 rather than smuggling definitions into 方法课.
@@ -113,7 +114,7 @@ A deck is a JSON array of 16–24 items. Item shape:
 
 ## Ids & DB (persistence contract)
 
-- Lesson id `math-s<stage>-<order2>`; persistence ONLY via `scripts/save-lesson.mjs` (validates 課文 anchors per genre, deck shape, renders print PDF via playwright-core when available, upserts).
+- Lesson id `math-s<stage>-<order2>`; persistence ONLY via `scripts/save-lesson.mjs --ledger <stage-ledger>` (automatically validates human outline fidelity and ledger metadata, then validates 課文 anchors and deck shape/composition, renders print PDF via playwright-core when available, upserts).
 - Tables (SSOT `ssot-schemas/db-schemas/stemrobin.sql`): `sr_lessons(id, subject, stage, lesson_order, title, concept, html, pdf, status)`; `sr_questions(id, lesson_id, ord, type, prompt, answer_mode ∈ choice|work|input, options, correct_index, accept, layer, review_of, answer)`; `sr_answer_events(…, chosen, answer_text, …)`.
 - **Answer-key secrecy**: `accept`, `correct_index`, `answer` never reach the client before answering; the server (`recordAnswer`) normalizes and judges.
-- The app sidebar outline (`app/src/lib/curriculum.ts`) must be kept in sync with the ledger's lesson list when a ledger changes (manual step, noted by cap1).
+- The app sidebar title/order outline (`app/src/lib/curriculum.ts`) must match the human course guide. Its clickable availability is automatically derived from ids present in `sr_lessons`; cap4 does not hand-edit catalog links.

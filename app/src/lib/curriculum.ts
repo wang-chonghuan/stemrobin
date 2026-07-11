@@ -5,12 +5,14 @@
 // guide's "后续模块" stub into lesson-level items, grounded in the official
 // 义务教育课程标准 topics (resources/content/official-guidelines.md).
 //
-// A lesson gets an `id` ONLY when its page exists (public/lessons/<id>.html +
-// /lesson/<id> route). Those are clickable; the rest are outline entries.
+// The outline is the title/order source. Lesson availability is DB-driven:
+// if sr_lessons contains the deterministic id for an outline item, that item
+// becomes clickable without editing this file.
 
 export type OutlineLesson = { title: string; id?: string }
 export type OutlineStage = { title: string; lessons: OutlineLesson[] }
 export type OutlineSubject = { subject: 'math' | 'physics' | 'robot'; label: string; stages: OutlineStage[] }
+export type AvailableLesson = { id: string; title: string; subject: string }
 
 const L = (...titles: string[]): OutlineLesson[] => titles.map((title) => ({ title }))
 
@@ -34,12 +36,12 @@ export const CURRICULUM: OutlineSubject[] = [
         lessons: [
           { title: '用字母表示数' },
           { title: '代数式与求值' },
-          { title: '式子的两层：项与因数', id: 'math-s2-03' },
-          { title: '项的身份证：系数与次数', id: 'math-s2-04' },
-          { title: '同类项与合并', id: 'math-s2-05' },
-          { title: '去括号', id: 'math-s2-06' },
-          { title: '整式加减', id: 'math-s2-07' },
-          { title: '化简综合练武场', id: 'math-s2-08' },
+          { title: '式子的两层：项与因数' },
+          { title: '项的身份证：系数与次数' },
+          { title: '同类项与合并' },
+          { title: '去括号' },
+          { title: '整式加减' },
+          { title: '化简综合练武场' },
         ],
       },
       {
@@ -47,7 +49,7 @@ export const CURRICULUM: OutlineSubject[] = [
         // equation anatomy concepts placed BEFORE the method lessons that consume them.
         title: '方程和不等式',
         lessons: [
-          { title: '未知数与方程的解', id: 'math-s3-01' },
+          { title: '未知数是什么' },
           { title: '等式两边同加同减' },
           { title: '等式两边同乘同除' },
           { title: '一元一次方程的形状' },
@@ -170,30 +172,58 @@ export const CURRICULUM: OutlineSubject[] = [
 export function getLessonLabel(id: string): string {
   const m = id.match(/^(?:math|physics)-s(\d+)-(\d+)$/)
   for (const s of CURRICULUM) {
-    for (const st of s.stages) {
-      const l = st.lessons.find((x) => x.id === id)
-      if (l) return m ? `${Number(m[1])}.${Number(m[2])} ${l.title}` : l.title
+    for (let si = 0; si < s.stages.length; si++) {
+      const st = s.stages[si]
+      for (let li = 0; li < st.lessons.length; li++) {
+        if (getOutlineLessonId(s.subject, si, li) === id) {
+          return m ? `${Number(m[1])}.${Number(m[2])} ${st.lessons[li].title}` : st.lessons[li].title
+        }
+      }
     }
   }
   return m ? `${Number(m[1])}.${Number(m[2])}` : id
 }
 
-// Flat list of lessons that actually have a page (clickable).
-export const AVAILABLE_LESSONS: { id: string; title: string; subject: string }[] =
-  CURRICULUM.flatMap((s) =>
-    s.stages.flatMap((st) =>
-      st.lessons.filter((l) => l.id).map((l) => ({ id: l.id!, title: l.title, subject: s.label })),
+export function getOutlineLessonId(subject: OutlineSubject['subject'], stageIndex: number, lessonIndex: number): string | null {
+  if (subject === 'robot') return null
+  return `${subject}-s${stageIndex + 1}-${String(lessonIndex + 1).padStart(2, '0')}`
+}
+
+export function getAvailableLessons(lessonIds: readonly string[]): AvailableLesson[] {
+  const available = new Set(lessonIds)
+  return CURRICULUM.flatMap((s) =>
+    s.stages.flatMap((st, si) =>
+      st.lessons.flatMap((l, li) => {
+        const id = getOutlineLessonId(s.subject, si, li)
+        return id && available.has(id) ? [{ id, title: l.title, subject: s.label }] : []
+      }),
     ),
   )
+}
+
+export function withAvailableLessonIds(lessonIds: readonly string[]): OutlineSubject[] {
+  const available = new Set(lessonIds)
+  return CURRICULUM.map((s) => ({
+    ...s,
+    stages: s.stages.map((st, si) => ({
+      ...st,
+      lessons: st.lessons.map((l, li) => {
+        const id = getOutlineLessonId(s.subject, si, li)
+        return id && available.has(id) ? { ...l, id } : { title: l.title }
+      }),
+    })),
+  }))
+}
 
 // Prev/next lesson (pages only, CURRICULUM order) for the lesson-view footer nav.
-// Derived from AVAILABLE_LESSONS — the single source of the sequence. Unknown ids
-// (no page) get neither, so outline-only lessons never participate in navigation.
-export function getLessonNav(id: string): {
-  prev?: (typeof AVAILABLE_LESSONS)[number]
-  next?: (typeof AVAILABLE_LESSONS)[number]
+// Derived from the DB-filtered outline. Unknown ids (no page) get neither, so
+// outline-only lessons never participate in navigation.
+export function getLessonNavForIds(id: string, lessonIds: readonly string[]): {
+  prev?: AvailableLesson
+  next?: AvailableLesson
 } {
-  const i = AVAILABLE_LESSONS.findIndex((l) => l.id === id)
+  const availableLessons = getAvailableLessons(lessonIds)
+  const i = availableLessons.findIndex((l) => l.id === id)
   if (i === -1) return {}
-  return { prev: AVAILABLE_LESSONS[i - 1], next: AVAILABLE_LESSONS[i + 1] }
+  return { prev: availableLessons[i - 1], next: availableLessons[i + 1] }
 }

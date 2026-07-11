@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { CURRICULUM, type OutlineSubject } from '~/lib/curriculum'
+import { type OutlineSubject, withAvailableLessonIds } from '~/lib/curriculum'
 import type { StoryCatalogEntry } from '~/lib/stories'
 
 // The persistent left catalog: the full curriculum outline (math + physics),
@@ -8,13 +8,16 @@ import type { StoryCatalogEntry } from '~/lib/stories'
 // across navigation (outline open/closed state survives opening a lesson).
 export function CatalogSidebar({
   stories,
+  lessonIds,
   drawerOpen,
   onNavigate,
 }: {
   stories: StoryCatalogEntry[]
+  lessonIds: string[]
   drawerOpen: boolean
   onNavigate: () => void
 }) {
+  const curriculum = withAvailableLessonIds(lessonIds)
   return (
     <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`}>
       <div className="sr-cat-head">
@@ -35,7 +38,7 @@ export function CatalogSidebar({
 
       <div className="sr-cat-scroll">
         <div className="sr-cat-group">课程大纲</div>
-        {CURRICULUM.map((subj) => (
+        {curriculum.map((subj) => (
           <SubjectOutline
             key={subj.subject}
             subj={subj}

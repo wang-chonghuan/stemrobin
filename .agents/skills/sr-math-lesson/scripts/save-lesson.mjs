@@ -9,11 +9,16 @@
 // DB creds from repo-root .env (EASYAPP_DATABASE_URL). Never echoes secrets.
 //
 // 課文:  node save-lesson.mjs --id math-s2-03 --subject math --stage 2 --order 3 \
-//          --genre 概念课 --title "…" --concept "…" --status draft --html <file>
-// deck:  node save-lesson.mjs --id math-s2-03 --questions <deck.json>
+//          --genre 概念课 --title "…" --concept "…" --status draft --html <file> \
+//          --ledger resources/content/math-ledger/stage-2.json \
+//          [--outline resources/content/course-gen-guide-math.md]
+// deck:  node save-lesson.mjs --id math-s2-03 --questions <deck.json> \
+//          --ledger resources/content/math-ledger/stage-2.json \
+//          [--outline resources/content/course-gen-guide-math.md]
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import postgres from 'postgres'
 
 function fail(msg) { console.error(`✗ ${msg}`); process.exit(1) }
@@ -27,6 +32,50 @@ const argv = process.argv.slice(2)
 for (let i = 0; i < argv.length; i++) { const a = argv[i]; if (a.startsWith('--')) { args[a.slice(2)] = argv[i + 1]; i++ } }
 if (!args.id) fail('missing --id')
 if (!/^math-s\d+-\d{2}$/.test(args.id)) fail(`--id must look like math-s2-03 (got ${args.id})`)
+if (!args.ledger) fail('missing --ledger (the math ledger is the lesson metadata SSOT)')
+
+const scriptDir = dirname(fileURLToPath(import.meta.url))
+const idParts = args.id.match(/^math-s(\d+)-(\d{2})$/)
+const idStage = Number(idParts[1])
+const idOrder = Number(idParts[2])
+
+function readJson(path, label) {
+  try { return JSON.parse(readFileSync(path, 'utf8')) } catch (e) { fail(`${label} JSON parse error: ${e.message}`) }
+}
+
+function loadLedgerEntry() {
+  const ledgerPath = resolve(process.cwd(), args.ledger)
+  if (!existsSync(ledgerPath)) fail(`ledger file not found: ${args.ledger}`)
+  const ledger = readJson(ledgerPath, 'ledger')
+  const entry = Array.isArray(ledger.lessons) ? ledger.lessons.find((l) => l.id === args.id) : null
+  const problems = []
+  if (ledger.subject !== 'math') problems.push(`ledger subject must be math (got ${ledger.subject ?? 'missing'})`)
+  if (Number(ledger.stage) !== idStage) problems.push(`ledger stage ${ledger.stage ?? 'missing'} does not match id stage ${idStage}`)
+  if (!entry) problems.push(`lesson ${args.id} is not in ledger ${args.ledger}`)
+  else if (Number(entry.order) !== idOrder) problems.push(`ledger order ${entry.order} does not match id order ${idOrder}`)
+  if (problems.length) fail(`Ledger validation failed:\n  - ${problems.join('\n  - ')}`)
+  return { ledgerPath, ledger, entry }
+}
+
+const ledgerCtx = loadLedgerEntry()
+
+function runOutlineCheck() {
+  const outlinePath = args.outline || join(repoRoot, 'resources/content/course-gen-guide-math.md')
+  try {
+    execFileSync(process.execPath, [
+      join(scriptDir, 'check-outline.mjs'),
+      outlinePath,
+      '--ledger',
+      ledgerCtx.ledgerPath,
+      '--id',
+      args.id,
+    ], { stdio: 'inherit' })
+  } catch (error) {
+    process.exit(typeof error.status === 'number' ? error.status : 1)
+  }
+}
+
+runOutlineCheck()
 
 const envPath = join(repoRoot, '.env')
 if (!existsSync(envPath)) fail('.env not found at repo root')
@@ -39,6 +88,38 @@ const ANCHORS = {
   概念课: ['motivation', 'model', 'anatomy', 'boundary', 'connections', 'oral'],
   方法课: ['motivation', 'explain', 'examples', 'connections', 'oral'],
   练习课: ['motivation'], // short orientation only — the deck is the substance
+}
+
+function checkArgEquals(problems, name, got, expected) {
+  if (String(got).trim() !== String(expected).trim()) problems.push(`--${name} "${got}" does not match ledger "${expected}"`)
+}
+
+function validateLessonMetadata(entry) {
+  const problems = []
+  checkArgEquals(problems, 'subject', args.subject, ledgerCtx.ledger.subject)
+  if (Number(args.stage) !== Number(ledgerCtx.ledger.stage)) problems.push(`--stage ${args.stage} does not match ledger stage ${ledgerCtx.ledger.stage}`)
+  if (Number(args.order) !== Number(entry.order)) problems.push(`--order ${args.order} does not match ledger order ${entry.order}`)
+  checkArgEquals(problems, 'title', args.title, entry.title)
+  checkArgEquals(problems, 'genre', args.genre, entry.genre)
+  if (args.concept && String(args.concept).trim() !== String(entry.core_idea).trim()) {
+    problems.push(`--concept does not match ledger core_idea`)
+  }
+  if (problems.length) fail(`Lesson metadata does not match the ledger:\n  - ${problems.join('\n  - ')}`)
+}
+
+function runDeckCompositionCheck(qPath) {
+  try {
+    execFileSync(process.execPath, [
+      join(scriptDir, 'check-exercises.mjs'),
+      qPath,
+      '--ledger',
+      ledgerCtx.ledgerPath,
+      '--id',
+      args.id,
+    ], { stdio: 'inherit' })
+  } catch (e) {
+    process.exit(typeof e.status === 'number' ? e.status : 1)
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -67,6 +148,11 @@ function renderPractice(items, html) {
   <section data-sr-section="practice">
     <style>
       /* injected with the deck — screen extras + print layout (self-contained) */
+      ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+      ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+      ol.sr-practice > li:first-child { border-top:0; }
+      ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+      .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
       .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
       .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
       .sr-p-opt { font-size: 14px; }
@@ -135,6 +221,7 @@ async function main() {
         if (!Array.isArray(q.accept) || !q.accept.length) fail(`question ${i}: input needs accept[]`)
       }
     })
+    runDeckCompositionCheck(qPath)
     const rows = await sql`select html from sr_lessons where id = ${args.id}`
     if (!rows.length) fail(`lesson ${args.id} not found — save the 課文 first`)
     if (!rows[0].html) fail(`lesson ${args.id} has no 課文 html — save it first`)
@@ -175,6 +262,7 @@ async function main() {
   // ===== 課文 path =====
   for (const k of ['subject', 'stage', 'order', 'title', 'genre', 'html']) if (!args[k]) fail(`missing --${k}`)
   if (args.subject !== 'math') fail('only --subject math is supported by sr-math-lesson')
+  validateLessonMetadata(ledgerCtx.entry)
   const anchors = ANCHORS[args.genre]
   if (!anchors) fail(`--genre must be 概念课|方法课|练习课`)
   const status = args.status || 'draft'
@@ -199,7 +287,7 @@ async function main() {
   await sql`
     insert into sr_lessons (id, subject, stage, lesson_order, title, concept, html, pdf, status, updated_at)
     values (${args.id}, ${args.subject}, ${parseInt(args.stage, 10)}, ${parseInt(args.order, 10)},
-            ${args.title}, ${args.concept || ''}, ${html}, ${pdfBuf ? Buffer.from(pdfBuf) : null}, ${status}, now())
+            ${args.title}, ${ledgerCtx.entry.core_idea || args.concept || ''}, ${html}, ${pdfBuf ? Buffer.from(pdfBuf) : null}, ${status}, now())
     on conflict (id) do update set
       subject=excluded.subject, stage=excluded.stage, lesson_order=excluded.lesson_order,
       title=excluded.title, concept=excluded.concept, html=excluded.html,

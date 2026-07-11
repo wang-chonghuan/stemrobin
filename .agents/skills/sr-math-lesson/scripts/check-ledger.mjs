@@ -86,11 +86,19 @@ if (opt.vocab) {
   const hp = resolve(process.cwd(), opt.vocab)
   if (!existsSync(hp)) fail([`vocab html not found: ${opt.vocab}`])
   const html = readFileSync(hp, 'utf8')
+  // The header necessarily names the stage theme, which may mention a later
+  // concept (for example "方程和不等式"). Check learner-facing lesson body only.
+  const lessonBody = html.replace(/<header class="sr-l-head">[\s\S]*?<\/header>/, '')
   const idx = ledger.lessons.findIndex((l) => l.id === opt.id)
   if (idx === -1) fail([`--id ${opt.id} not in ledger`])
   for (const later of ledger.lessons.slice(idx + 1)) {
     for (const intro of later.introduces || []) {
-      if (intro.term && html.includes(intro.term))
+      // A one-character term such as "元" is too ambiguous for raw Chinese
+      // substring matching ("6 元" is money, not the equation concept).
+      const appears = intro.term?.length === 1
+        ? lessonBody.includes(`<span class="sr-term">${intro.term}</span>`)
+        : lessonBody.includes(intro.term)
+      if (appears)
         problems.push(`vocab: "${intro.term}" belongs to LATER lesson ${later.id} but appears in ${opt.id}'s html`)
     }
   }

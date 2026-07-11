@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { CatalogSidebar } from '~/components/catalog'
+import { listLessonIds } from '~/lib/lessons'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getStoryCatalog } from '~/lib/stories'
 
 export const Route = createFileRoute('/_app')({
   component: AppShell,
-  // Story list is DB-driven (chapters are authored into the DB, not hardcoded like
-  // the lesson curriculum), so the persistent sidebar loads it here.
-  loader: async () => ({ stories: await getStoryCatalog() }),
+  loader: async () => ({
+    lessonIds: await listLessonIds(),
+    stories: await getStoryCatalog(),
+  }),
 })
 
 // Three-column-style app shell (catalog + detail), ported from houserobin's
@@ -17,7 +19,7 @@ export const Route = createFileRoute('/_app')({
 // scrim below 1200px. The catalog is persistent — the detail pane swaps via
 // <Outlet /> for the overview and lesson routes, so the sidebar is always shown.
 function AppShell() {
-  const { stories } = Route.useLoaderData()
+  const { lessonIds, stories } = Route.useLoaderData()
   const drawerOpen = useLayoutStore((s) => s.drawerOpen)
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [isMobile, setIsMobile] = useState(false)
@@ -43,6 +45,7 @@ function AppShell() {
       />
       <CatalogSidebar
         stories={stories}
+        lessonIds={lessonIds}
         drawerOpen={drawerOpen}
         onNavigate={() => isMobile && setDrawer(false)}
       />

@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>
+    window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] } }
+  </script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+  <style>
+    :root {
+      --sr-blue: #0E7C9B; --sr-blue-deep: #0A5E76; --sr-blue-tint: #E1F1F5;
+      --sr-green: #15A06A; --sr-green-deep: #0F7D52; --sr-green-tint: #E4F6EE;
+      --sr-ink: #15201F; --sr-ink-soft: #4C5A58; --sr-ink-dim: #8A9795;
+      --sr-line: #E3EAE9; --sr-line-soft: #EEF3F2; --sr-panel: #F5F9F9;
+      --sr-display: "Bricolage Grotesque", "Geist Variable", sans-serif;
+      --sr-body: "Hanken Grotesk", "Geist Variable", sans-serif;
+      --sr-mono: "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--sr-ink); background: #fff; font-family: var(--sr-body); line-height: 1.65; }
+    article.sr-lesson { max-width: 780px; margin: 0 auto; padding: 34px 30px 54px; }
+    .sr-l-head { border-bottom: 1px solid var(--sr-line); padding-bottom: 20px; }
+    .sr-l-eyebrow { color: var(--sr-blue-deep); font-size: 12px; font-weight: 700; }
+    .sr-l-title { margin: 5px 0 8px; font: 650 31px/1.15 var(--sr-display); }
+    .sr-l-concept { color: var(--sr-ink-soft); font-size: 15px; }
+    .sr-l-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
+    .sr-chip { border-radius: 999px; background: var(--sr-blue-tint); color: var(--sr-blue-deep); padding: 2px 9px; font-size: 12px; font-weight: 700; }
+    .sr-chip.green { background: var(--sr-green-tint); color: var(--sr-green-deep); }
+    section { margin-top: 28px; }
+    .sr-sec-label { display: flex; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+    .sr-sec-num { border-radius: 6px; background: var(--sr-blue); color: #fff; padding: 1px 8px; font: 600 13px var(--sr-mono); }
+    .sr-sec-name { font: 600 19px var(--sr-display); }
+    section p { margin: 10px 0; font-size: 15px; }
+    .sr-eg { border-left: 3px solid var(--sr-blue); background: var(--sr-panel); padding: 12px 14px; margin: 12px 0; }
+    .sr-eg strong { color: var(--sr-blue-deep); }
+    .sr-term { color: var(--sr-blue-deep); font-weight: 700; }
+    .sr-example { border: 1px solid var(--sr-line); border-radius: 8px; padding: 14px 16px; margin: 12px 0; }
+    .sr-example h3 { margin: 0 0 8px; font: 600 15px var(--sr-display); }
+    .sr-step { display: flex; gap: 10px; margin: 6px 0; font-size: 14.5px; }
+    .sr-step-n { color: var(--sr-blue-deep); flex: none; font: 600 12px var(--sr-mono); }
+    .sr-pitfall { border-left: 3px solid var(--sr-green); background: var(--sr-green-tint); padding: 11px 13px; margin: 11px 0; }
+    .sr-pitfall b { color: var(--sr-green-deep); }
+    .sr-oral { padding-left: 22px; }
+    .sr-oral li { margin: 10px 0; }
+    details.sr-answer { margin-top: 4px; }
+    details.sr-answer summary { color: var(--sr-blue-deep); cursor: pointer; font-size: 13px; font-weight: 700; }
+    details.sr-answer div { color: var(--sr-ink-soft); font-size: 14px; margin-top: 4px; }
+    .sr-map { width: 100%; margin: 14px 0 4px; border: 1px solid var(--sr-line); border-radius: 8px; background: #fff; }
+    .sr-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+    .sr-table th, .sr-table td { border: 1px solid var(--sr-line); padding: 8px 10px; text-align: left; vertical-align: top; }
+    .sr-table th { background: var(--sr-panel); color: var(--sr-ink-soft); font-weight: 700; }
+    @media (max-width: 560px) { article.sr-lesson { padding: 25px 18px 42px; } .sr-l-title { font-size: 27px; } }
+    @page { size: A4; margin: 14mm; }
+    @media print { article.sr-lesson { max-width: none; padding: 0; } details.sr-answer { display: none !important; } .sr-example, .sr-pitfall { break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<article class="sr-lesson">
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 方程和不等式 · 概念课</div>
+    <h1 class="sr-l-title">3.1 未知数是什么</h1>
+    <div class="sr-l-concept">有一个数还不知道时，先给它一个名字。名字可以写成字母；真正要找的是那个数的值。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">未知数</span>
+      <span class="sr-chip">字母表示</span>
+      <span class="sr-chip green">检查条件</span>
+    </div>
+  </header>
+
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">先把“不知道”放到桌上</span></div>
+    <p>盒子里有一些棋子。拿走 $3$ 枚后，正好剩 $8$ 枚。盒子里原来有多少枚？</p>
+    <p>我们还不知道原来的数量，但这个数量不是不存在。它是一个确定的数，只是题目暂时没有把它告诉我们。数学里，像这样<strong>暂时不知道、需要找出来的量</strong>叫 <span class="sr-term">未知数</span>。</p>
+    <div class="sr-eg">
+      <strong>先占位，再求值。</strong><br>
+      可以先写成 $x-3=8$。这里 $x$ 不是答案；$x$ 只是替那盒棋子的原来数量占了一个位置。
+    </div>
+  </section>
+
+  <section data-sr-section="model">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">把未知的量放进一个条件</span></div>
+    <p>本阶段会把两个代数式放在等号两边，形成一个必须成立的条件。像 $x-3=8$：左边是 $x-3$，右边是 $8$。$x$ 代表的量还不知道；以后我们会在等号两边同步变形，让它单独站出来。</p>
+    <p>今天先认清这个条件里的三个对象：未知的量、写在纸上的字母标签、以及最后让左右两边相等的数值。</p>
+    <svg class="sr-map" viewBox="0 0 720 250" role="img" aria-label="未知数、字母和数值的关系图">
+      <rect x="36" y="42" width="188" height="156" rx="12" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+      <text x="130" y="84" text-anchor="middle" font-size="18" font-weight="700" fill="#0A5E76">题目里的量</text>
+      <text x="130" y="122" text-anchor="middle" font-size="19" fill="#15201F">原来有多少枚？</text>
+      <text x="130" y="158" text-anchor="middle" font-size="15" fill="#4C5A58">现在还不知道</text>
+      <path d="M225 120 H318" stroke="#0E7C9B" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="324" y="42" width="160" height="156" rx="12" fill="#F5F9F9" stroke="#0E7C9B" stroke-width="2"/>
+      <text x="404" y="84" text-anchor="middle" font-size="18" font-weight="700" fill="#0A5E76">纸上的标签</text>
+      <text x="404" y="134" text-anchor="middle" font-size="42" font-family="monospace" fill="#15201F">x</text>
+      <text x="404" y="170" text-anchor="middle" font-size="14" fill="#4C5A58">表示未知数的字母</text>
+      <path d="M485 120 H578" stroke="#15A06A" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="584" y="42" width="100" height="156" rx="12" fill="#E4F6EE" stroke="#15A06A" stroke-width="2"/>
+      <text x="634" y="84" text-anchor="middle" font-size="17" font-weight="700" fill="#0F7D52">找到后</text>
+      <text x="634" y="134" text-anchor="middle" font-size="42" font-family="monospace" fill="#15201F">11</text>
+      <text x="634" y="170" text-anchor="middle" font-size="14" fill="#4C5A58">未知数的值</text>
+      <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0E7C9B"/></marker></defs>
+    </svg>
+    <table class="sr-table">
+      <thead><tr><th>要分清的对象</th><th>在 $x-3=8$ 里</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sr-term">未知数</span></td><td>盒子里原来有多少枚这个量。</td></tr>
+        <tr><td><span class="sr-term">表示未知数的字母</span></td><td>写在纸上的 $x$。</td></tr>
+        <tr><td><span class="sr-term">未知数的值</span></td><td>最后找到的 $11$，因为 $11-3=8$。</td></tr>
+      </tbody>
+    </table>
+    <div class="sr-eg">
+      <strong>正例：</strong>$x-3=8$ 既有等号，也有表示未知量的 $x$；它说的是一个需要满足的条件。<br>
+      <strong>反例：</strong>$3+8=11$ 有等号，却没有未知量；$x-3$ 有未知量，却没有等号。两者都还不能告诉我们“哪个数会让这个条件成立”。
+    </div>
+    <p>字母可以是 $x$，也可以是 $n$、$a$ 或别的字母。关键不是字母长什么样，而是你有没有先说清它代表哪个未知的量。</p>
+  </section>
+
+  <section data-sr-section="anatomy">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">把几个例子拆开看</span></div>
+    <div class="sr-example">
+      <h3>例 1：找一段路有多长</h3>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>一段路剪去 $4$ 米后还剩 $9$ 米。原来长多少米？</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>设原来长 $m$ 米。这里未知数是“原来的长度”，$m$ 是表示它的字母。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>条件写成 $m-4=9$。试 $m=13$：$13-4=9$，成立，所以未知数的值是 $13$。</span></div>
+    </div>
+    <div class="sr-example">
+      <h3>例 2：不是所有字母都在找答案</h3>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>“每本笔记本 $p$ 元，买 $3$ 本要 $3p$ 元。”</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>这里还没有告诉我们具体买哪一种笔记本，也没有给出必须满足的条件。$p$ 可以先表示价格，但此刻没有一个唯一的值要找。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>若再说“$3p=18$”，才有一个需要检查的未知数；$p=6$ 会让等式成立。</span></div>
+    </div>
+    <div class="sr-example">
+      <h3>例 3：用等号把条件说完整</h3>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>$n+5$ 只是一个代数式，像一句没有说完的话。</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>$n+5=12$ 有 <span class="sr-term">等号</span>，两边分别叫 <span class="sr-term">方程左边</span> 和 <span class="sr-term">方程右边</span>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>这种带未知数的等式叫 <span class="sr-term">方程</span>。$n=7$ 时左右同为 $12$，所以 $7$ 是这个方程的 <span class="sr-term">方程的解</span>，也就是未知数的值。</span></div>
+    </div>
+  </section>
+
+  <section data-sr-section="boundary">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">别把名字、数量和猜测混在一起</span></div>
+    <div class="sr-pitfall"><b>陷阱 1：</b>“$x$ 就是未知数。”不够准确。$x$ 是写在纸上的标签；未知数是它所代表的、还不知道的量。</div>
+    <div class="sr-pitfall"><b>陷阱 2：</b>“题目里的每个数都是未知数。”不对。题目已经给出的 $3$、$8$、$18$ 是已知条件，不需要再找。</div>
+    <div class="sr-pitfall"><b>陷阱 3：</b>“我觉得 $x=5$，所以答案就是 $5$。”不够。必须放回原条件检查。例如在 $x+3=8$ 中，$5+3=8$，才说明猜对了。</div>
+    <div class="sr-pitfall"><b>陷阱 4：</b>“只有 $x$ 能表示未知数。”不对。$n-2=6$ 里的 $n$ 也可以表示未知数；先声明“设这个数为 $n$”即可。</div>
+    <div class="sr-pitfall"><b>陷阱 5：</b>$3+4=7$ 是等式，但没有未知数；$x+3$ 含有未知数，却没有等号。它们都不是“带未知数的等式”。</div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">这件事接到哪里去</span></div>
+    <p>前一阶段里，你已经用字母表示数、写代数式、代入求值。现在多了一种角色：字母可以暂时替一个<strong>尚未知道但要找出的量</strong>站位。</p>
+    <p>下一课会研究：当一个方程两边同时加上或减去同一个东西，为什么原来的未知数的值不变。那时我们会真正开始移动条件；今天先把“到底在找谁”认准。</p>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">概念口试</span></div>
+    <ol class="sr-oral">
+      <li>“一根绳子剪去 $6$ 厘米后还剩 $10$ 厘米。”这里未知的量是什么？
+        <details class="sr-answer"><summary>回答</summary><div>绳子原来的长度。可以用一个字母，例如 $l$，来表示它。</div></details>
+      </li>
+      <li>在 $a+2=9$ 中，$a$、未知数和未知数的值分别是什么？
+        <details class="sr-answer"><summary>回答</summary><div>$a$ 是表示未知数的字母；未知数是还不知道的那个数；它的值是 $7$。</div></details>
+      </li>
+      <li>为什么不能只说“我猜 $n=4$”就结束？
+        <details class="sr-answer"><summary>回答</summary><div>因为要把 $4$ 放回原条件检查；只有原条件成立，$4$ 才是这个未知数的值。</div></details>
+      </li>
+      <li>$b+1$ 是方程吗？$b+1=6$ 呢？
+        <details class="sr-answer"><summary>回答</summary><div>$b+1$ 只有代数式，没有等号；$b+1=6$ 是带未知数的等式，所以是方程。</div></details>
+      </li>
+      <li>能不能用 $q$ 表示未知数？为什么？
+        <details class="sr-answer"><summary>回答</summary><div>能。字母只是标签；只要先说明 $q$ 代表哪个未知的量即可。</div></details>
+      </li>
+    </ol>
+  </section>
+</article>
+</body>
+</html>
