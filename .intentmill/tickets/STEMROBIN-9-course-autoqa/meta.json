@@ -1,0 +1,11 @@
+{
+  "ticket_key": "STEMROBIN-9-course-autoqa",
+  "ticket_id": "STEMROBIN-9",
+  "ticket_prefix": "STEMROBIN",
+  "ticket_number": 9,
+  "ticket_slug": "course-autoqa",
+  "branch": "STEMROBIN-9-course-autoqa",
+  "worktree_path": "/Users/yong/work/stemrobin-ws/stemrobin--STEMROBIN-9-course-autoqa",
+  "created_at": "2026-07-11T14:53:45Z",
+  "intent_path": ".intentmill/tickets/STEMROBIN-9-course-autoqa/intent.md"
+}
