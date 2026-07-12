@@ -9,7 +9,7 @@ The deck must be structurally valid enough for the saver and quiz to represent i
 ## Pass Conditions
 
 - `check-exercises.mjs` passes for this lesson id and ledger.
-- The author reports the item count, layer/mode split, boundary-case coverage, review targets, and that every input/choice key was self-checked.
+- The author reports the item count, layer split, boundary-case coverage, review targets, and that every choice key was self-checked.
 - The JSON has no parse error and the saver accepts its required item shape.
 
 ## Escalation

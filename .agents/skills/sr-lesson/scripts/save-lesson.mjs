@@ -63,12 +63,13 @@ async function main() {
     // validate shape
     items.forEach((q, i) => {
       if (!q.prompt || !q.type || !q.answer) fail(`question ${i}: prompt/type/answer required`)
-      if (!['choice', 'work'].includes(q.answer_mode)) fail(`question ${i}: answer_mode must be choice|work`)
-      if (q.answer_mode === 'choice') {
-        if (!Array.isArray(q.options) || q.options.length < 2) fail(`question ${i}: choice needs >=2 options`)
-        if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
-          fail(`question ${i}: correct_index out of range`)
-      }
+      if (q.answer_mode !== 'choice') fail(`question ${i}: answer_mode must be choice`)
+      if (!Array.isArray(q.options) || q.options.length < 3) fail(`question ${i}: choice needs >=3 options`)
+      const normalized = q.options.map((option) => String(option).trim())
+      if (normalized.some((option) => !option)) fail(`question ${i}: choice options must be non-empty`)
+      if (new Set(normalized).size !== normalized.length) fail(`question ${i}: choice options must be unique`)
+      if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
+        fail(`question ${i}: correct_index out of range`)
     })
     const rows = await sql`select 1 from sr_lessons where id = ${args.id}`
     if (!rows.length) fail(`lesson ${args.id} not found — save the 課文 first`)

@@ -3,8 +3,8 @@
 // (schema stemrobin-schema). Two paths:
 //   1) 課文: validate genre-specific section anchors, pre-render a print PDF
 //      (playwright-core when available), upsert sr_lessons (html + pdf).
-//   2) deck (--questions): validate item shape (choice/input/work incl. accept),
-//      replace sr_questions (with layer/review_of/accept columns).
+//   2) deck (--questions): validate choice-only item shape and replace
+//      sr_questions (with layer/review_of/accept columns).
 // Composition rules are check-exercises.mjs's job (run before the gate).
 // DB creds from repo-root .env (EASYAPP_DATABASE_URL). Never echoes secrets.
 //
@@ -38,6 +38,7 @@ const scriptDir = dirname(fileURLToPath(import.meta.url))
 const idParts = args.id.match(/^math-s(\d+)-(\d{2})$/)
 const idStage = Number(idParts[1])
 const idOrder = Number(idParts[2])
+const existingDeck = args['existing-deck'] === 'true'
 
 function readJson(path, label) {
   try { return JSON.parse(readFileSync(path, 'utf8')) } catch (e) { fail(`${label} JSON parse error: ${e.message}`) }
@@ -75,7 +76,8 @@ function runOutlineCheck() {
   }
 }
 
-runOutlineCheck()
+if (!existingDeck) runOutlineCheck()
+else if (!args.questions) fail('--existing-deck is only valid with --questions')
 
 const envPath = join(repoRoot, '.env')
 if (!existsSync(envPath)) fail('.env not found at repo root')
@@ -130,7 +132,15 @@ function runDeckCompositionCheck(qPath) {
 // answer key (answer/correct_index/accept) never enters the html.
 // ---------------------------------------------------------------------------
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-const OPT_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F']
+function optionLabel(index) {
+  let n = index
+  let label = ''
+  do {
+    label = String.fromCharCode(65 + (n % 26)) + label
+    n = Math.floor(n / 26) - 1
+  } while (n >= 0)
+  return label
+}
 
 function renderPractice(items, html) {
   const secCount = (html.match(/<section data-sr-section=/g) || []).length
@@ -139,7 +149,7 @@ function renderPractice(items, html) {
       const tags = `<span class="sr-ptype">${esc(q.type)}</span>` +
         (q.layer === '复习' ? `<span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span>` : '')
       const opts = q.answer_mode === 'choice' && Array.isArray(q.options)
-        ? `<div class="sr-p-opts">${q.options.map((o, k) => `<span class="sr-p-opt"><b>${OPT_LETTERS[k]}.</b> ${esc(o)}</span>`).join('')}</div>`
+        ? `<div class="sr-p-opts">${q.options.map((o, k) => `<span class="sr-p-opt"><b>${optionLabel(k)}.</b> ${esc(o)}</span>`).join('')}</div>`
         : ''
       return `      <li>${tags} ${esc(q.prompt)}${opts}</li>`
     })
@@ -209,22 +219,41 @@ async function main() {
     if (!Array.isArray(items) || !items.length) fail('questions JSON must be a non-empty array')
     items.forEach((q, i) => {
       if (!q.prompt || !q.type || !q.answer) fail(`question ${i}: prompt/type/answer required`)
-      if (!['choice', 'work', 'input'].includes(q.answer_mode)) fail(`question ${i}: answer_mode must be choice|work|input`)
+      if (q.answer_mode !== 'choice') fail(`question ${i}: answer_mode must be choice`)
       if (!q.layer) fail(`question ${i}: layer required`)
       if (q.layer === '复习' && !q.review_of) fail(`question ${i}: 复习 needs review_of`)
-      if (q.answer_mode === 'choice') {
-        if (!Array.isArray(q.options) || q.options.length < 3) fail(`question ${i}: choice needs >=3 options`)
-        if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
-          fail(`question ${i}: correct_index out of range`)
-      }
-      if (q.answer_mode === 'input') {
-        if (!Array.isArray(q.accept) || !q.accept.length) fail(`question ${i}: input needs accept[]`)
-      }
+      if (!Array.isArray(q.options) || q.options.length < 3) fail(`question ${i}: choice needs >=3 options`)
+      const normalized = q.options.map((option) => String(option).trim())
+      if (normalized.some((option) => !option)) fail(`question ${i}: choice options must be non-empty`)
+      if (new Set(normalized).size !== normalized.length) fail(`question ${i}: choice options must be unique`)
+      if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
+        fail(`question ${i}: correct_index out of range`)
+      if (q.accept != null) fail(`question ${i}: choice must not carry accept`)
     })
     runDeckCompositionCheck(qPath)
     const rows = await sql`select html from sr_lessons where id = ${args.id}`
     if (!rows.length) fail(`lesson ${args.id} not found — save the 課文 first`)
     if (!rows[0].html) fail(`lesson ${args.id} has no 課文 html — save it first`)
+    if (existingDeck) {
+      const stored = await sql`
+        select ord, prompt, type, layer, review_of, answer
+        from sr_questions where lesson_id = ${args.id} order by ord
+      `
+      const sortedItems = [...items].sort((a, b) => (a.ord ?? 0) - (b.ord ?? 0))
+      if (stored.length !== sortedItems.length) fail('--existing-deck requires the same question count')
+      for (let i = 0; i < stored.length; i++) {
+        const before = stored[i]
+        const after = sortedItems[i]
+        if (
+          before.ord !== after.ord ||
+          before.prompt !== after.prompt ||
+          before.type !== after.type ||
+          (before.layer ?? null) !== (after.layer ?? null) ||
+          (before.review_of ?? null) !== (after.review_of ?? null) ||
+          before.answer !== after.answer
+        ) fail(`--existing-deck may not change question ${i + 1} prompt, order, type, layer, review target, or answer`)
+      }
+    }
 
     // Embed the deck-rendered practice section (prompts + options only) into the
     // 課文 so reading shows every question, then re-render the print PDF (the
@@ -249,7 +278,7 @@ async function main() {
         values (${args.id}, ${q.ord ?? i + 1}, ${q.type}, ${q.prompt}, ${q.answer_mode},
                 ${q.answer_mode === 'choice' ? sql.json(q.options) : null},
                 ${q.answer_mode === 'choice' ? q.correct_index : null},
-                ${q.answer_mode === 'input' ? sql.json(q.accept) : null},
+                null,
                 ${q.layer}, ${q.review_of ?? null}, ${q.answer})
       `
       n++
