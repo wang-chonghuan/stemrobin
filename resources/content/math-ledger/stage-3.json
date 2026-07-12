@@ -269,7 +269,7 @@
       "order": 4,
       "title": "一元一次方程的形状",
       "genre": "概念课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "一元一次方程是只含一个未知数、未知数最高次数是 1 的整式方程；它的基本形状是 ax+b=0 且 a 不能为 0。",
       "introduces": [
         {
@@ -314,7 +314,7 @@
       "order": 5,
       "title": "解一元一次方程",
       "genre": "方法课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "解一元一次方程的目标是让未知数孤立；先合并与移项，再除系数，最后代入原方程检验。",
       "introduces": [
         {
