@@ -4,7 +4,14 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Menu } from 'lu
 
 import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf, listLessonIds } from '~/lib/lessons'
-import { getLessonQuestions, recordAnswer } from '~/lib/quiz'
+import {
+  getLessonQuestions,
+  recordAnswer,
+  getLatestScore,
+  getOpenAttempt,
+  startAttempt,
+  endAttempt,
+} from '~/lib/quiz'
 import { useLayoutStore } from '~/lib/layout-store'
 import { QuizDrawer } from '~/components/quiz-drawer'
 
@@ -84,6 +91,12 @@ function LessonView() {
         onClose={() => setQuizOpen(false)}
         fetchQuestions={getLessonQuestions}
         record={recordAnswer}
+        attempts={{
+          fetchScore: getLatestScore,
+          fetchOpenAttempt: getOpenAttempt,
+          startAttempt,
+          endAttempt,
+        }}
       />
     </main>
   )

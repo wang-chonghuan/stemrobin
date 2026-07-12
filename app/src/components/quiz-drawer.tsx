@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Camera, Check, X } from 'lucide-react'
+import { Camera, Check, Flag, Play, RotateCcw, X } from 'lucide-react'
 
 import { getCurrentUser } from '~/lib/session'
-import type { QuizQuestion, AnswerResult } from '~/lib/quiz'
+import type {
+  QuizQuestion,
+  AnswerResult,
+  ScoreSummary,
+  OpenAttempt,
+} from '~/lib/quiz'
 
 // Injected data source so the same drawer serves both lessons (getLessonQuestions
 // / recordAnswer over sr_questions / sr_answer_events) and 名人传记 chapters
@@ -12,8 +17,20 @@ import type { QuizQuestion, AnswerResult } from '~/lib/quiz'
 // computed server-side by the record fn.
 type FetchQuestions = (opts: { data: string }) => Promise<QuizQuestion[]>
 type RecordAnswer = (opts: {
-  data: { questionId: number; chosen?: number; text?: string }
+  data: { questionId: number; attemptId?: number; chosen?: number; text?: string }
 }) => Promise<AnswerResult | { error: string }>
+
+// Optional 答题记录 API. When provided (lessons), the drawer runs the
+// start → quiz → result flow with scoring, 继续/重新开始, and 结束本课答题.
+// When absent (story chapters), the drawer behaves as a plain answer-through deck.
+export type AttemptApi = {
+  fetchScore: (opts: { data: string }) => Promise<ScoreSummary | null>
+  fetchOpenAttempt: (opts: { data: string }) => Promise<OpenAttempt | null>
+  startAttempt: (opts: { data: string }) => Promise<{ attemptId: number } | { error: string }>
+  endAttempt: (opts: {
+    data: { attemptId: number; lessonId: string }
+  }) => Promise<ScoreSummary | { error: string }>
+}
 
 // Render KaTeX ($…$ / $$…$$) inside a node, using the CDN auto-render loaded in
 // the root document. No-ops until the script is ready.
@@ -34,27 +51,37 @@ function renderMath(el: HTMLElement | null) {
 // Local result also remembers what the learner did (picked option or typed text).
 type Verdict = (AnswerResult & { chosen?: number; typed?: string }) | null
 
+type Phase = 'start' | 'quiz' | 'result'
+
 export function QuizDrawer({
   contentId,
   open,
   onClose,
   fetchQuestions,
   record,
+  attempts,
 }: {
   contentId: string
   open: boolean
   onClose: () => void
   fetchQuestions: FetchQuestions
   record: RecordAnswer
+  attempts?: AttemptApi
 }) {
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [phase, setPhase] = useState<Phase>('quiz')
   const [questions, setQuestions] = useState<QuizQuestion[]>([])
   const [idx, setIdx] = useState(0)
   const [results, setResults] = useState<Record<number, Verdict>>({})
   const [picking, setPicking] = useState<number | null>(null) // optimistic click
   const [typedVal, setTypedVal] = useState('') // input-mode draft answer
   const [submitting, setSubmitting] = useState(false)
+  const [busy, setBusy] = useState(false) // start/end/restart in flight
   const [err, setErr] = useState<string | null>(null)
+  const [attemptId, setAttemptId] = useState<number | null>(null)
+  const [score, setScore] = useState<ScoreSummary | null>(null) // latest ended / just-ended
+  const [openAttempt, setOpenAttempt] = useState<OpenAttempt | null>(null)
   const qRef = useRef<HTMLDivElement>(null) // prompt + options (typeset once/card)
   const answerRef = useRef<HTMLDivElement>(null) // revealed answer (typeset on result)
   // Display order per question: a random permutation of the ORIGINAL option indices,
@@ -76,20 +103,85 @@ export function QuizDrawer({
     return ordersRef.current[qq.id]
   }
 
+  // Rebuild the local results map from a resumed attempt's answered items.
+  function hydrateResults(answered: OpenAttempt['answered']): Record<number, Verdict> {
+    const map: Record<number, Verdict> = {}
+    for (const a of answered) {
+      map[a.questionId] = {
+        isCorrect: a.isCorrect,
+        correctIndex: a.correctIndex,
+        answer: a.answer,
+        chosen: a.chosen ?? undefined,
+        typed: a.typed ?? undefined,
+      }
+    }
+    return map
+  }
+
   useEffect(() => {
     if (!open) return
+    let cancelled = false
     setIdx(0)
     setResults({})
     setPicking(null)
     setTypedVal('')
     setSubmitting(false)
+    setBusy(false)
     setErr(null)
+    setAttemptId(null)
+    setScore(null)
+    setOpenAttempt(null)
+    setLoading(true)
     ordersRef.current = {} // reshuffle option order each time the quiz is opened
-    getCurrentUser().then((u) => setLoggedIn(!!u))
-    fetchQuestions({ data: contentId }).then(setQuestions)
-  }, [open, contentId, fetchQuestions])
 
-  const q = questions[idx]
+    ;(async () => {
+      const user = await getCurrentUser()
+      if (cancelled) return
+      const isIn = !!user
+      setLoggedIn(isIn)
+      const qs = await fetchQuestions({ data: contentId })
+      if (cancelled) return
+      setQuestions(qs)
+
+      // Story quizzes (no attempt API) or a logged-out learner: plain quiz phase.
+      if (!attempts || !isIn) {
+        setPhase('quiz')
+        setLoading(false)
+        return
+      }
+
+      const [sc, oa] = await Promise.all([
+        attempts.fetchScore({ data: contentId }),
+        attempts.fetchOpenAttempt({ data: contentId }),
+      ])
+      if (cancelled) return
+      setScore(sc)
+      setOpenAttempt(oa)
+
+      if (sc || oa) {
+        setPhase('start') // show the last score and/or a resumable attempt
+        setLoading(false)
+      } else {
+        // No history at all → start a fresh attempt straight into the quiz.
+        const r = await attempts.startAttempt({ data: contentId })
+        if (cancelled) return
+        if ('error' in r) {
+          if (r.error.includes('登录')) setLoggedIn(false)
+          else setErr(r.error)
+        } else {
+          setAttemptId(r.attemptId)
+          setPhase('quiz')
+        }
+        setLoading(false)
+      }
+    })()
+
+    return () => {
+      cancelled = true
+    }
+  }, [open, contentId, fetchQuestions, attempts])
+
+  const q = phase === 'quiz' ? questions[idx] : undefined
   const result = q ? results[q.id] ?? null : null
 
   // Typeset the question + options ONCE when the visible card changes — NOT when
@@ -98,7 +190,7 @@ export function QuizDrawer({
   useEffect(() => {
     const t = setTimeout(() => renderMath(qRef.current), 0)
     return () => clearTimeout(t)
-  }, [idx, questions, open, loggedIn])
+  }, [idx, questions, open, loggedIn, phase])
 
   // Typeset only the revealed answer, separately, when it appears.
   useEffect(() => {
@@ -116,7 +208,7 @@ export function QuizDrawer({
     setPicking(optIndex) // highlight the click immediately
     try {
       const r = await record({
-        data: { questionId: q.id, chosen: optIndex },
+        data: { questionId: q.id, attemptId: attemptId ?? undefined, chosen: optIndex },
       })
       if ('error' in r) {
         if (r.error.includes('登录')) setLoggedIn(false)
@@ -138,7 +230,9 @@ export function QuizDrawer({
     setErr(null)
     setSubmitting(true)
     try {
-      const r = await record({ data: { questionId: q.id, text: typedVal } })
+      const r = await record({
+        data: { questionId: q.id, attemptId: attemptId ?? undefined, text: typedVal },
+      })
       if ('error' in r) {
         if (r.error.includes('登录')) setLoggedIn(false)
         else setErr(r.error)
@@ -153,6 +247,66 @@ export function QuizDrawer({
     }
   }
 
+  // ── 答题记录 actions (lessons only) ────────────────────────────────────────
+  function beginContinue() {
+    if (!openAttempt) return
+    setErr(null)
+    setAttemptId(openAttempt.attemptId)
+    setResults(hydrateResults(openAttempt.answered))
+    const answeredIds = new Set(openAttempt.answered.map((a) => a.questionId))
+    const firstUnanswered = questions.findIndex((qq) => !answeredIds.has(qq.id))
+    setIdx(firstUnanswered === -1 ? Math.max(0, questions.length - 1) : firstUnanswered)
+    setPhase('quiz')
+  }
+
+  async function beginRestart() {
+    if (!attempts || busy) return
+    setErr(null)
+    setBusy(true)
+    try {
+      const r = await attempts.startAttempt({ data: contentId })
+      if ('error' in r) {
+        if (r.error.includes('登录')) setLoggedIn(false)
+        else setErr(r.error)
+        return
+      }
+      setAttemptId(r.attemptId)
+      setResults({})
+      setIdx(0)
+      setTypedVal('')
+      ordersRef.current = {}
+      setOpenAttempt(null)
+      setPhase('quiz')
+    } catch {
+      setErr('网络不太顺，请再试一次。')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function endQuiz() {
+    if (!attempts || attemptId == null || busy) return
+    setErr(null)
+    setBusy(true)
+    try {
+      const r = await attempts.endAttempt({ data: { attemptId, lessonId: contentId } })
+      if ('error' in r) {
+        if (r.error.includes('登录')) setLoggedIn(false)
+        else setErr(r.error)
+        return
+      }
+      setScore(r)
+      setOpenAttempt(null)
+      setPhase('result')
+    } catch {
+      setErr('网络不太顺，请再试一次。')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const total = questions.length
+
   return (
     <div className="sr-quiz-scrim" onClick={onClose}>
       <section
@@ -163,9 +317,9 @@ export function QuizDrawer({
       >
         <header className="sr-quiz-head">
           <span className="sr-quiz-title">卡片答题</span>
-          {questions.length > 0 && (
+          {phase === 'quiz' && total > 0 && (
             <span className="sr-quiz-count">
-              {idx + 1} / {questions.length}
+              {idx + 1} / {total}
             </span>
           )}
           <button
@@ -185,6 +339,49 @@ export function QuizDrawer({
               <Link to="/login" className="sr-btn" onClick={onClose}>
                 去登录
               </Link>
+            </div>
+          ) : loading ? (
+            <p className="sr-quiz-empty">正在载入…</p>
+          ) : total === 0 ? (
+            <p className="sr-quiz-empty">这一课还没有练习题。</p>
+          ) : phase === 'start' ? (
+            <div className="sr-quiz-gate">
+              {score ? (
+                <ScoreCard score={score} title="上一次成绩" />
+              ) : (
+                <p className="sr-quiz-gate-note">
+                  你上次有一份还没答完的记录，可以继续，或重新开始一份。
+                </p>
+              )}
+              {err && <div className="sr-quiz-err">{err}</div>}
+              <div className="sr-quiz-gate-actions">
+                {openAttempt && (
+                  <button type="button" className="sr-btn" disabled={busy} onClick={beginContinue}>
+                    <Play size={15} /> 继续上一次
+                  </button>
+                )}
+                <button
+                  type="button"
+                  className={openAttempt ? 'sr-btn ghost' : 'sr-btn'}
+                  disabled={busy}
+                  onClick={beginRestart}
+                >
+                  <RotateCcw size={15} /> 重新开始
+                </button>
+              </div>
+            </div>
+          ) : phase === 'result' && score ? (
+            <div className="sr-quiz-gate">
+              <ScoreCard score={score} title="本次成绩" />
+              {err && <div className="sr-quiz-err">{err}</div>}
+              <div className="sr-quiz-gate-actions">
+                <button type="button" className="sr-btn" disabled={busy} onClick={beginRestart}>
+                  <RotateCcw size={15} /> 再做一遍
+                </button>
+                <button type="button" className="sr-btn ghost" onClick={onClose}>
+                  关闭
+                </button>
+              </div>
             </div>
           ) : !q ? (
             <p className="sr-quiz-empty">这一课还没有练习题。</p>
@@ -230,7 +427,9 @@ export function QuizDrawer({
                           setErr(null)
                           setSubmitting(true)
                           try {
-                            const r = await record({ data: { questionId: q.id } })
+                            const r = await record({
+                              data: { questionId: q.id, attemptId: attemptId ?? undefined },
+                            })
                             if ('error' in r) {
                               if (r.error.includes('登录')) setLoggedIn(false)
                               else setErr(r.error)
@@ -325,7 +524,7 @@ export function QuizDrawer({
           )}
         </div>
 
-        {q && loggedIn !== false && (
+        {phase === 'quiz' && q && loggedIn !== false && (
           <footer className="sr-quiz-foot">
             <button
               type="button"
@@ -339,14 +538,25 @@ export function QuizDrawer({
             >
               上一题
             </button>
+            {attempts && attemptId != null && (
+              <button
+                type="button"
+                className="sr-btn ghost sr-quiz-end"
+                disabled={busy}
+                onClick={endQuiz}
+                title="结束本课答题并查看成绩"
+              >
+                <Flag size={15} /> 结束本课答题
+              </button>
+            )}
             <button
               type="button"
               className="sr-btn"
-              disabled={idx >= questions.length - 1}
+              disabled={idx >= total - 1}
               onClick={() => {
                 setErr(null)
                 setTypedVal('')
-                setIdx((i) => Math.min(questions.length - 1, i + 1))
+                setIdx((i) => Math.min(total - 1, i + 1))
               }}
             >
               下一题
@@ -354,6 +564,50 @@ export function QuizDrawer({
           </footer>
         )}
       </section>
+    </div>
+  )
+}
+
+// The scorecard: correct count, ratio X/N, percentage (both shown), the wrong
+// questions by 题号, plus unanswered and 说理 (self-checked, excluded) counts.
+function ScoreCard({ score, title }: { score: ScoreSummary; title: string }) {
+  const pct =
+    score.gradableTotal > 0
+      ? Math.round((score.correct / score.gradableTotal) * 100)
+      : 0
+  return (
+    <div className="sr-score">
+      <div className="sr-score-title">{title}</div>
+      <div className="sr-score-hero">
+        <span className="sr-score-pct">{pct}%</span>
+        <span className="sr-score-ratio">
+          答对 {score.correct} / {score.gradableTotal} 题
+        </span>
+      </div>
+      <div className="sr-score-lines">
+        {score.unanswered > 0 && (
+          <div className="sr-score-line">未作答 {score.unanswered} 题（未得分）</div>
+        )}
+        {score.workTotal > 0 && (
+          <div className="sr-score-line">
+            说理 {score.workDone} / {score.workTotal} 题已完成（自评，不计入比例）
+          </div>
+        )}
+        <div className="sr-score-line">
+          {score.wrongOrds.length > 0 ? (
+            <>
+              答错的题：
+              <span className="sr-score-wrong">
+                {score.wrongOrds.map((o) => `第 ${o} 题`).join('、')}
+              </span>
+            </>
+          ) : score.correct + score.unanswered > 0 && score.unanswered === 0 ? (
+            '全部答对，太棒了。'
+          ) : (
+            '这一份没有答错的题。'
+          )}
+        </div>
+      </div>
     </div>
   )
 }
