@@ -40,13 +40,17 @@ export type AnswerResult = {
 
 // Record one answer (requires a logged-in learner). Choice sends `chosen`;
 // input sends `text`, judged server-side against the hidden accept list (the
-// key never reaches the client). Returns the verdict + the reveal answer.
+// key never reaches the client). `attemptId` groups the event into a 答题 pass
+// (optional — story quizzes send none). Returns the verdict + the reveal answer.
 export const recordAnswer = createServerFn({ method: 'POST' })
-  .validator((d: { questionId: number; chosen?: number; text?: string }) => d)
+  .validator(
+    (d: { questionId: number; attemptId?: number; chosen?: number; text?: string }) => d,
+  )
   .handler(
     async ({ data }): Promise<AnswerResult | { error: string }> => {
-      const uid = await currentUserId()
+      const uid = currentUserId()
       if (uid == null) return { error: '请先登录' }
+      const attemptId = data.attemptId ?? null
       const rows = await sql()`
         select correct_index, answer, answer_mode, accept
         from sr_questions where id = ${data.questionId}
@@ -59,8 +63,8 @@ export const recordAnswer = createServerFn({ method: 'POST' })
         const correctIndex = rows[0].correct_index as number
         const isCorrect = data.chosen === correctIndex
         await sql()`
-          insert into sr_answer_events (user_id, question_id, is_correct, chosen)
-          values (${uid}, ${data.questionId}, ${isCorrect}, ${data.chosen})
+          insert into sr_answer_events (user_id, question_id, attempt_id, is_correct, chosen)
+          values (${uid}, ${data.questionId}, ${attemptId}, ${isCorrect}, ${data.chosen})
         `
         return { isCorrect, correctIndex, answer: rows[0].answer }
       }
@@ -71,8 +75,8 @@ export const recordAnswer = createServerFn({ method: 'POST' })
         const typed = normalizeMathAnswer(data.text)
         const isCorrect = accept.some((a) => normalizeMathAnswer(a) === typed)
         await sql()`
-          insert into sr_answer_events (user_id, question_id, is_correct, answer_text)
-          values (${uid}, ${data.questionId}, ${isCorrect}, ${data.text.trim()})
+          insert into sr_answer_events (user_id, question_id, attempt_id, is_correct, answer_text)
+          values (${uid}, ${data.questionId}, ${attemptId}, ${isCorrect}, ${data.text.trim()})
         `
         return { isCorrect, correctIndex: null, answer: rows[0].answer }
       }
@@ -82,8 +86,8 @@ export const recordAnswer = createServerFn({ method: 'POST' })
         // reference answer. We record the attempt (ungraded) and return the
         // reveal — the reference stays server-side until this moment.
         await sql()`
-          insert into sr_answer_events (user_id, question_id, is_correct)
-          values (${uid}, ${data.questionId}, ${null})
+          insert into sr_answer_events (user_id, question_id, attempt_id, is_correct)
+          values (${uid}, ${data.questionId}, ${attemptId}, ${null})
         `
         return { isCorrect: null, correctIndex: null, answer: rows[0].answer }
       }
@@ -91,3 +95,175 @@ export const recordAnswer = createServerFn({ method: 'POST' })
       return { error: '该题不支持在线作答' }
     },
   )
+
+// ── 答题记录 (attempts) ──────────────────────────────────────────────────────
+// A 答题 is one pass through a lesson's deck. Scoring counts only gradable items
+// (choice + input); 说理/work items are self-checked and excluded from the ratio,
+// reported separately. Unanswered gradable items stay in the denominator (they
+// lower the percentage), so ending early honestly reflects completion.
+
+export type ScoreSummary = {
+  correct: number // gradable items answered correctly
+  gradableTotal: number // denominator N = count of choice+input items in the lesson
+  unanswered: number // gradable items not yet answered when the attempt ended
+  wrongOrds: number[] // ords of gradable items answered incorrectly (ascending)
+  workDone: number // 说理 items completed (excluded from the ratio)
+  workTotal: number // total 说理 items in the lesson
+  endedAt: string // ISO timestamp the attempt was ended
+}
+
+// One answered item, enough to re-hydrate the drawer card on 继续上一次.
+export type AnsweredItem = {
+  questionId: number
+  ord: number
+  isCorrect: boolean | null
+  chosen: number | null // choice: original option index picked
+  typed: string | null // input: text typed
+  correctIndex: number | null // choice: correct option index (already revealed once answered)
+  answer: string // reveal explanation
+}
+
+export type OpenAttempt = { attemptId: number; answered: AnsweredItem[] }
+
+// Summarize one attempt against its lesson's deck. Server-only helper.
+async function summarizeAttempt(
+  lessonId: string,
+  attemptId: number,
+  endedAt: Date | string,
+): Promise<ScoreSummary> {
+  const questions = await sql()`
+    select id, ord, answer_mode from sr_questions where lesson_id = ${lessonId}
+  `
+  const events = await sql()`
+    select question_id, is_correct from sr_answer_events where attempt_id = ${attemptId}
+  `
+  const verdictByQ = new Map<number, boolean | null>()
+  for (const e of events) verdictByQ.set(Number(e.question_id), e.is_correct)
+
+  let gradableTotal = 0
+  let workTotal = 0
+  let correct = 0
+  let answeredGradable = 0
+  let workDone = 0
+  const wrongOrds: number[] = []
+  for (const row of questions) {
+    if (row.answer_mode === 'work') {
+      workTotal++
+      if (verdictByQ.has(Number(row.id))) workDone++
+      continue
+    }
+    gradableTotal++
+    if (!verdictByQ.has(Number(row.id))) continue // unanswered gradable
+    answeredGradable++
+    if (verdictByQ.get(Number(row.id)) === true) correct++
+    else wrongOrds.push(row.ord)
+  }
+  wrongOrds.sort((a, b) => a - b)
+  return {
+    correct,
+    gradableTotal,
+    unanswered: gradableTotal - answeredGradable,
+    wrongOrds,
+    workDone,
+    workTotal,
+    endedAt: (endedAt instanceof Date ? endedAt : new Date(endedAt)).toISOString(),
+  }
+}
+
+// Latest ENDED attempt's scorecard for this learner+lesson (null if none / logged out).
+export const getLatestScore = createServerFn({ method: 'GET' })
+  .validator((lessonId: string) => lessonId)
+  .handler(async ({ data: lessonId }): Promise<ScoreSummary | null> => {
+    const uid = currentUserId()
+    if (uid == null) return null
+    const att = await sql()`
+      select id, ended_at from sr_quiz_attempts
+      where user_id = ${uid} and lesson_id = ${lessonId} and ended_at is not null
+      order by ended_at desc limit 1
+    `
+    if (!att.length) return null
+    return summarizeAttempt(lessonId, Number(att[0].id), att[0].ended_at)
+  })
+
+// The learner's still-open attempt for this lesson, with its answered items so
+// the drawer can resume from the first unanswered question (null if none).
+export const getOpenAttempt = createServerFn({ method: 'GET' })
+  .validator((lessonId: string) => lessonId)
+  .handler(async ({ data: lessonId }): Promise<OpenAttempt | null> => {
+    const uid = currentUserId()
+    if (uid == null) return null
+    const att = await sql()`
+      select id from sr_quiz_attempts
+      where user_id = ${uid} and lesson_id = ${lessonId} and ended_at is null
+      order by started_at desc limit 1
+    `
+    if (!att.length) return null
+    const attemptId = Number(att[0].id)
+    const rows = await sql()`
+      select e.id, e.question_id, e.is_correct, e.chosen, e.answer_text,
+             q.ord, q.correct_index, q.answer
+      from sr_answer_events e join sr_questions q on q.id = e.question_id
+      where e.attempt_id = ${attemptId}
+      order by e.id
+    `
+    // Keep the latest event per question (max e.id via ascending overwrite).
+    const byQ = new Map<number, AnsweredItem>()
+    for (const r of rows) {
+      byQ.set(Number(r.question_id), {
+        questionId: Number(r.question_id),
+        ord: r.ord,
+        isCorrect: r.is_correct,
+        chosen: r.chosen,
+        typed: r.answer_text,
+        correctIndex: r.correct_index,
+        answer: r.answer,
+      })
+    }
+    const answered = [...byQ.values()].sort((a, b) => a.ord - b.ord)
+    return { attemptId, answered }
+  })
+
+// Start a fresh attempt (重新开始 / first open). At most one open attempt per
+// learner+lesson: any existing open one (and its events, via cascade) is dropped.
+export const startAttempt = createServerFn({ method: 'POST' })
+  .validator((lessonId: string) => lessonId)
+  .handler(async ({ data: lessonId }): Promise<{ attemptId: number } | { error: string }> => {
+    const uid = currentUserId()
+    if (uid == null) return { error: '请先登录' }
+    await sql()`
+      delete from sr_quiz_attempts
+      where user_id = ${uid} and lesson_id = ${lessonId} and ended_at is null
+    `
+    const ins = await sql()`
+      insert into sr_quiz_attempts (user_id, lesson_id) values (${uid}, ${lessonId})
+      returning id
+    `
+    return { attemptId: Number(ins[0].id) }
+  })
+
+// End the current attempt (结束本课答题) and return its scorecard. The newest
+// ended attempt is what getLatestScore reads, so ending refreshes the card.
+export const endAttempt = createServerFn({ method: 'POST' })
+  .validator((d: { attemptId: number; lessonId: string }) => d)
+  .handler(async ({ data }): Promise<ScoreSummary | { error: string }> => {
+    const uid = currentUserId()
+    if (uid == null) return { error: '请先登录' }
+    const upd = await sql()`
+      update sr_quiz_attempts set ended_at = now()
+      where id = ${data.attemptId} and user_id = ${uid} and ended_at is null
+      returning ended_at
+    `
+    // If it was already ended (or missing), still summarize its frozen state.
+    let endedAt: Date | string
+    if (upd.length) {
+      endedAt = upd[0].ended_at
+    } else {
+      const existing = await sql()`
+        select ended_at from sr_quiz_attempts
+        where id = ${data.attemptId} and user_id = ${uid}
+      `
+      if (!existing.length) return { error: '答题记录不存在' }
+      endedAt = existing[0].ended_at ?? new Date()
+    }
+    return summarizeAttempt(data.lessonId, data.attemptId, endedAt)
+  })

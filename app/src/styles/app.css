@@ -826,9 +826,36 @@ a.sr-out-lesson.ready:hover {
 .sr-quiz-login, .sr-quiz-empty { padding: 20px 6px; color: var(--sr-ink-soft); font-size: 14px; }
 .sr-quiz-login p { margin-bottom: 12px; }
 .sr-quiz-foot {
-  display: flex; gap: 10px; justify-content: space-between;
+  display: flex; gap: 10px; justify-content: space-between; align-items: center;
   padding: 12px 14px; border-top: 1px solid var(--sr-line-soft);
 }
+.sr-quiz-end { flex: none; }
+.sr-quiz-end svg, .sr-quiz-gate-actions .sr-btn svg { vertical-align: -2px; margin-right: 4px; }
+
+/* ── 答题记录: start gate + result scorecard ── */
+.sr-quiz-gate { padding: 6px 4px 4px; }
+.sr-quiz-gate-note { color: var(--sr-ink-soft); font-size: 14px; line-height: 1.6; padding: 8px 2px 2px; }
+.sr-quiz-gate-actions { display: flex; gap: 10px; margin-top: 16px; }
+.sr-quiz-gate-actions .sr-btn { flex: 1; justify-content: center; }
+
+.sr-score {
+  border: 1px solid var(--sr-line); border-radius: var(--sr-radius);
+  background: var(--sr-card); padding: 16px;
+}
+.sr-score-title { font-family: var(--sr-display); font-size: 14px; font-weight: 600; color: var(--sr-ink-soft); }
+.sr-score-hero { display: flex; align-items: baseline; gap: 12px; margin: 8px 0 12px; }
+.sr-score-pct {
+  font-family: var(--sr-mono); font-size: 34px; font-weight: 600; line-height: 1;
+  color: var(--sr-green-deep);
+}
+.sr-score-ratio { font-size: 15px; font-weight: 600; color: var(--sr-ink); }
+.sr-score-lines { display: flex; flex-direction: column; gap: 6px; }
+.sr-score-line {
+  font-size: 13.5px; line-height: 1.6; color: var(--sr-ink-soft);
+  border-top: 1px solid var(--sr-line-soft); padding-top: 8px;
+}
+.sr-score-line:first-child { border-top: 0; padding-top: 0; }
+.sr-score-wrong { color: var(--sr-ink); font-weight: 600; }
 
 /* ── Login form ── */
 .sr-login { max-width: 340px; margin: 24px auto 0; display: flex; flex-direction: column; gap: 14px; }
