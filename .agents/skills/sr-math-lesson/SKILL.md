@@ -14,7 +14,7 @@ The fix is structural, not stylistic. Read `references/common/lesson-contract.md
 1. **Human outline, then ledger, then lessons.** Start from `resources/content/course-gen-guide-math.md` and preserve its stage, lesson order, title, and instructional direction unless a human explicitly changes the outline. A stage's machine-readable 概念台账 then expands that outline: every lesson declares what terms it `introduces` and `consumes`. A script enforces **prerequisite closure** — no lesson may use a term no earlier lesson taught. This is what mechanically prevents the 去括号-uses-因子-nobody-taught failure.
 2. **Model first.** Every stage has ONE central mental model (e.g. 代数式 stage: *式子是一棵两层的树*). Concepts are names for parts of the model; procedures are moves on the model. Lessons teach the model, then the moves.
 3. **Concepts get their own lessons.** 概念课 is a first-class genre whose goal is naming/parsing fluency, with instances, non-instances, and boundary cases — not a definition paragraph inside a procedure lesson.
-4. **Recall over recognition.** Exercise decks prefer `input` (type the answer) over `choice`. Choice is reserved for discrimination tasks (辨错).
+4. **Choice-only practice.** Every exercise is a choice question with one correct option. Distractors diagnose a real misconception or tempting misreading rather than serving as filler.
 5. **Review is baked in.** Every deck carries 复习 items targeting terms from earlier lessons (per the ledger), so spaced repetition happens without any runtime scheduler.
 6. **Boundary cases are mandatory.** A pattern-matching child only forms real categories when forced through edge instances (−x 的系数、常数项、单独一个字母是不是单项式).
 

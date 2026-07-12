@@ -28,6 +28,11 @@ test('regenerated 3.1 follows the outline and uses the 2.7 practice treatment', 
   const frame = page.frameLocator('iframe')
   await expect(frame.locator('h1.sr-l-title')).toHaveText('3.1 未知数是什么')
   await expect(frame.locator('ol.sr-practice > li')).toHaveCount(20)
+  const optionCounts = await frame
+    .locator('ol.sr-practice > li')
+    .evaluateAll((items) => items.map((item) => item.querySelectorAll('.sr-p-opt').length))
+  expect(optionCounts.every((count) => count >= 3)).toBe(true)
+  expect(optionCounts.some((count) => count >= 5)).toBe(true)
 
   const html = await lessonDocument(page).evaluate(
     (element) => element.contentDocument?.documentElement.outerHTML ?? '',

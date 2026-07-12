@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// sr-math-lesson — deterministic deck validation: item shape (choice/input/work),
-// composition rules (layer shares, recall share, review tail), and review_of
+// sr-math-lesson — deterministic deck validation: choice-only item shape,
+// composition rules (layer shares and review tail), and review_of
 // targets against the ledger. The gate judges meaning; this guards shape.
 //
 // Usage:
@@ -33,7 +33,6 @@ const isFirstLesson = idx === 0
 
 const LAYERS = ['指认', '操作', '辨错', '说理', '复习']
 const TYPES = ['辨认', '表示', '操作', '反推', '辨错', '说理']
-const MODES = ['choice', 'input', 'work']
 const problems = []
 
 if (!Array.isArray(deck)) fail(['deck must be a JSON array'])
@@ -48,23 +47,20 @@ deck.forEach((q, i) => {
   if (!q.prompt || !q.prompt.trim()) problems.push(`${tag}: missing prompt`)
   if (!TYPES.includes(q.type)) problems.push(`${tag}: type must be one of ${TYPES.join('|')}`)
   if (!LAYERS.includes(q.layer)) problems.push(`${tag}: layer must be one of ${LAYERS.join('|')}`)
-  if (!MODES.includes(q.answer_mode)) problems.push(`${tag}: answer_mode must be one of ${MODES.join('|')}`)
+  if (q.answer_mode !== 'choice') problems.push(`${tag}: answer_mode must be choice`)
   if (!q.answer || String(q.answer).trim().length < 2) problems.push(`${tag}: answer must be a substantive explanation`)
   count.layer[q.layer] = (count.layer[q.layer] || 0) + 1
   count.mode[q.answer_mode] = (count.mode[q.answer_mode] || 0) + 1
 
-  if (q.answer_mode === 'choice') {
-    if (!Array.isArray(q.options) || q.options.length < 3) problems.push(`${tag}: choice needs >=3 options`)
-    else if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
+  if (!Array.isArray(q.options) || q.options.length < 3) problems.push(`${tag}: choice needs >=3 options`)
+  else {
+    const normalized = q.options.map((option) => String(option).trim())
+    if (normalized.some((option) => !option)) problems.push(`${tag}: choice options must be non-empty`)
+    if (new Set(normalized).size !== normalized.length) problems.push(`${tag}: choice options must be unique`)
+    if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
       problems.push(`${tag}: correct_index out of range`)
-    if (q.accept != null) problems.push(`${tag}: choice must not carry accept`)
-  } else if (q.answer_mode === 'input') {
-    if (!Array.isArray(q.accept) || !q.accept.length || q.accept.some((a) => typeof a !== 'string' || !a.trim()))
-      problems.push(`${tag}: input needs a non-empty accept array of strings`)
-    if (q.options != null || q.correct_index != null) problems.push(`${tag}: input must not carry options/correct_index`)
-  } else { // work
-    if (q.options != null || q.correct_index != null || q.accept != null) problems.push(`${tag}: work must not carry options/correct_index/accept`)
   }
+  if (q.accept != null) problems.push(`${tag}: choice must not carry accept`)
 
   if (q.layer === '复习') {
     if (!q.review_of) problems.push(`${tag}: 复习 items need review_of`)
@@ -84,12 +80,5 @@ if (pct('操作') < 0.20) problems.push(`操作 layer must be >=20% (got ${Math.
 if ((count.layer['辨错'] || 0) < 2) problems.push('need >=2 辨错 items')
 if ((count.layer['说理'] || 0) < 2) problems.push('need >=2 说理 items')
 if (!isFirstLesson && (count.layer['复习'] || 0) < 3) problems.push('need >=3 复习 items (this is not the stage\'s first lesson)')
-const recallPool = (count.mode.input || 0) + (count.mode.choice || 0)
-if (recallPool && (count.mode.input || 0) / recallPool < 0.40)
-  problems.push(`input must be >=40% of input+choice (got ${Math.round(((count.mode.input || 0) / recallPool) * 100)}%)`)
-deck.filter((q) => q.layer === '说理').forEach((q, i) => {
-  if (q.answer_mode !== 'work') problems.push(`说理 item (ord ${q.ord}) must be answer_mode work`)
-})
-
 if (problems.length) fail(problems)
 console.log(`✓ deck ok: ${n} items · layers ${JSON.stringify(count.layer)} · modes ${JSON.stringify(count.mode)}`)

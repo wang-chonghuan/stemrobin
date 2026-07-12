@@ -86,10 +86,10 @@ A deck is a JSON array of 16–24 items. Item shape:
   "review_of": null,
   "type": "辨认 | 表示 | 操作 | 反推 | 辨错 | 说理",
   "prompt": "题干（KaTeX ok）",
-  "answer_mode": "input | choice | work",
-  "accept": ["-1"],
-  "options": null,
-  "correct_index": null,
+  "answer_mode": "choice",
+  "accept": null,
+  "options": ["选项 A", "选项 B", "选项 C"],
+  "correct_index": 0,
   "answer": "参考答案/解释（作答后展示）"
 }
 ```
@@ -97,24 +97,21 @@ A deck is a JSON array of 16–24 items. Item shape:
 - `layer` is the deck-composition role; `type` is the cognitive act shown to the learner as a tag. A 复习-layer item still carries a normal `type`.
 - `review_of` — only for `layer:"复习"`: the earlier-lesson term this item refreshes (must exist in the ledger's earlier `introduces` or `assumed`).
 
-**Answer modes**
-- `input` (preferred wherever the answer is a number/monomial/short expression): the learner TYPES the answer — recall, not recognition. `accept` lists acceptable string forms; the server normalizes both sides before comparing (whitespace stripped, full-width→half-width, unicode minus→`-`, `²³`→`^2 ^3`). Typing conventions the prompt may remind: exponents as `x^2`, multiplication implicit (`3a`) or `*`, fractions as `1/2`. Design answers to have an essentially unique short form; enumerate genuine variants (e.g. `["3x+3","3+3x"]`) in `accept`.
-- `choice`: 3–4 options, exactly one `correct_index`, distractors = real misconceptions of THIS lesson (each distractor should be wrong for a nameable reason). Use mainly for 辨错/discrimination.
-- `work`: open response (说理, multi-step); `answer` holds the reference reasoning. Parent/self-checked today, photo upload later.
+**Answer mode**
+- `choice` only: at least 3 options, exactly one `correct_index`, and no upper limit on option count. Distractors are real misconceptions of THIS lesson (each distractor should be wrong for a nameable reason). Include more than four options whenever the misconception set genuinely warrants it.
 
 **Composition rules (enforced by `scripts/check-exercises.mjs`)**
 - 16–24 items; `ord` unique and contiguous from 1.
 - 指认 layer ≥ 25% — fast naming/parsing of this lesson's (and reviewed) terms.
 - 操作 layer ≥ 20%.
-- 辨错 ≥ 2 items; 说理 ≥ 2 items (mode `work`, "为什么/错在哪/给同学讲一遍").
+- 辨错 ≥ 2 items; 说理 ≥ 2 items. 说理题也用选择项检验理由辨析。
 - 复习 ≥ 3 items unless this is the stage's first lesson — targets scheduled by the **review tail rule**: prefer terms introduced 1 lesson ago (×2), 2 lessons ago (×1–2), 3 lessons ago (×1). Deeper review is welcome.
-- Recall share: `input` items ≥ 40% of all `input`+`choice` items.
 - **Boundary mandate**: each ledger `boundary_cases` entry for this lesson appears in ≥1 item (gate-checked semantically).
 - Every item has a substantive `answer` that *teaches* (why, not just the value).
 
 ## Ids & DB (persistence contract)
 
 - Lesson id `math-s<stage>-<order2>`; persistence ONLY via `scripts/save-lesson.mjs --ledger <stage-ledger>` (automatically validates human outline fidelity and ledger metadata, then validates 課文 anchors and deck shape/composition, renders print PDF via playwright-core when available, upserts).
-- Tables (SSOT `ssot-schemas/db-schemas/stemrobin.sql`): `sr_lessons(id, subject, stage, lesson_order, title, concept, html, pdf, status)`; `sr_questions(id, lesson_id, ord, type, prompt, answer_mode ∈ choice|work|input, options, correct_index, accept, layer, review_of, answer)`; `sr_answer_events(…, chosen, answer_text, …)`.
+- Tables (SSOT `ssot-schemas/db-schemas/stemrobin.sql`): `sr_lessons(id, subject, stage, lesson_order, title, concept, html, pdf, status)`; `sr_questions(id, lesson_id, ord, type, prompt, answer_mode ∈ choice|work|input, options, correct_index, accept, layer, review_of, answer)`; `sr_answer_events(…, chosen, answer_text, …)`. Math generation writes `choice` only.
 - **Answer-key secrecy**: `accept`, `correct_index`, `answer` never reach the client before answering; the server (`recordAnswer`) normalizes and judges.
 - The app sidebar title/order outline (`app/src/lib/curriculum.ts`) must match the human course guide. Its clickable availability is automatically derived from ids present in `sr_lessons`; cap4 does not hand-edit catalog links.

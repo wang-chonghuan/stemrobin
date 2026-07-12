@@ -4,7 +4,7 @@ Deterministic — only via `scripts/save-lesson.mjs`; never hand-write rows. Rea
 
 ## Prerequisite
 
-Tables live in `ssot-schemas/db-schemas/stemrobin.sql` and are applied to the easy-app Postgres `stemrobin-schema`. `sr_questions` carries `answer_mode ∈ choice|work|input`, `accept jsonb`, `layer`, `review_of`; `sr_answer_events` carries `answer_text`. If the saver reports missing columns, re-apply the SSOT schema.
+Tables live in `ssot-schemas/db-schemas/stemrobin.sql` and are applied to the easy-app Postgres `stemrobin-schema`. The shared table supports `choice|work|input`, but math generation writes `choice` only; it uses `options`, `correct_index`, `layer`, and `review_of`. If the saver reports missing columns, re-apply the SSOT schema.
 
 ## Usage (from repo root)
 
@@ -18,7 +18,7 @@ node .agents/skills/sr-math-lesson/scripts/save-lesson.mjs \
   --ledger resources/content/math-ledger/stage-2.json
 ```
 
-Deck (validates item shape incl. input/accept, replaces `sr_questions`):
+Deck (validates choice-only item shape, replaces `sr_questions`):
 
 ```bash
 node .agents/skills/sr-math-lesson/scripts/save-lesson.mjs \
