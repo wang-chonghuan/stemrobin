@@ -222,7 +222,7 @@ async function main() {
       if (q.answer_mode !== 'choice') fail(`question ${i}: answer_mode must be choice`)
       if (!q.layer) fail(`question ${i}: layer required`)
       if (q.layer === '复习' && !q.review_of) fail(`question ${i}: 复习 needs review_of`)
-      if (!Array.isArray(q.options) || q.options.length < 3) fail(`question ${i}: choice needs >=3 options`)
+      if (!Array.isArray(q.options) || q.options.length !== 4) fail(`question ${i}: choice needs exactly 4 options (single-answer A/B/C/D)`)
       const normalized = q.options.map((option) => String(option).trim())
       if (normalized.some((option) => !option)) fail(`question ${i}: choice options must be non-empty`)
       if (new Set(normalized).size !== normalized.length) fail(`question ${i}: choice options must be unique`)
