@@ -356,7 +356,7 @@
       "order": 6,
       "title": "去括号解方程",
       "genre": "方法课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "带括号的一元一次方程先用分配律把括号拆开，化成已经会解的普通一元一次方程。",
       "introduces": [
         {
@@ -387,7 +387,7 @@
       "order": 7,
       "title": "去分母解方程",
       "genre": "方法课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "含数字分母的一元一次方程，可以两边同时乘以公分母，把分数方程化成没有分母的方程。",
       "introduces": [
         {
@@ -406,6 +406,7 @@
       "consumes": [
         "一元一次方程",
         "解一元一次方程",
+        "去括号解方程",
         "等式性质二",
         "分数记法与分数乘除",
         "分母",
@@ -425,7 +426,7 @@
       "order": 8,
       "title": "方程应用题只做数量关系",
       "genre": "方法课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "方程应用题的第一目标不是套题型，而是把文字里的等量关系写成方程：设未知数、写关系句、列方程、解并回到问题。",
       "introduces": [
         {
