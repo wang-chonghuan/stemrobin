@@ -11,7 +11,7 @@ date: 2026-07-14
 - ticket: STEMROBIN-14
 - type: fix
 - corrects: STEMROBIN-13
-- merge_commit: (uncommitted — code rule change staged locally, not yet merged)
+- merge_commit: 25f297f (PR #6, squash-merged to main 2026-07-14)
 - consumes: []
 
 ## Background
@@ -48,5 +48,4 @@ Production DB: 233 math questions, all `choice`, all exactly 4 options, every
 lessons; math answer events/attempts cleared (0). App runtime unchanged; unit
 tests 16/16; live app loads lessons and the 20-card quiz; pre-answer secrecy
 holds (the quiz query never selects `correct_index`/`answer`). The
-sr-math-lesson rule change is staged in the working tree, not yet committed or
-merged.
+sr-math-lesson rule change merged to main via PR #6 (`25f297f`).
