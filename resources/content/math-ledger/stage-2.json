@@ -46,7 +46,7 @@
       "order": 1,
       "title": "用字母表示数",
       "genre": "方法课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "字母不是一个神秘符号，而是给「一类数」占的位置——规律一次写清，所有数一起管。",
       "introduces": [
         {
@@ -68,7 +68,7 @@
       "order": 2,
       "title": "代数式与求值",
       "genre": "方法课",
-      "status": "planned",
+      "status": "generated",
       "core_idea": "把数和字母用运算连起来的式子叫代数式；给字母一个具体的数，整个式子就算得出一个值。",
       "introduces": [
         {
