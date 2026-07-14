@@ -52,7 +52,7 @@ deck.forEach((q, i) => {
   count.layer[q.layer] = (count.layer[q.layer] || 0) + 1
   count.mode[q.answer_mode] = (count.mode[q.answer_mode] || 0) + 1
 
-  if (!Array.isArray(q.options) || q.options.length < 3) problems.push(`${tag}: choice needs >=3 options`)
+  if (!Array.isArray(q.options) || q.options.length !== 4) problems.push(`${tag}: choice needs exactly 4 options (single-answer A/B/C/D)`)
   else {
     const normalized = q.options.map((option) => String(option).trim())
     if (normalized.some((option) => !option)) problems.push(`${tag}: choice options must be non-empty`)
