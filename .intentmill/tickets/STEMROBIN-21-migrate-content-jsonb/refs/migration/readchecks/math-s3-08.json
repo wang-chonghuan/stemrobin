@@ -1,0 +1,56 @@
+{
+  "motivation": [
+    {
+      "mode": "choice",
+      "prompt": "开头那道题里，哥哥和弟弟一共有多少张卡片？",
+      "options": ["$30$ 张", "$36$ 张", "$24$ 张", "$6$ 张"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "本课要练的核心一步是什么？",
+      "options": ["把文字翻译成方程", "背各种题型", "更快地解方程", "靠猜答案"],
+      "correct_index": 0
+    }
+  ],
+  "explain": [
+    {
+      "mode": "choice",
+      "prompt": "在数量关系里，能用等号把两个量连起来的那一句，叫做什么？",
+      "options": ["等量关系", "数量关系", "代数式", "未知数"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "四步法里第①步是设什么？",
+      "accept": ["未知数", "设未知数"]
+    }
+  ],
+  "examples": [
+    {
+      "mode": "choice",
+      "prompt": "例 2 中，妈妈今年的年龄是女儿的几倍？",
+      "options": ["$3$ 倍", "$2$ 倍", "$4$ 倍", "$48$ 倍"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "例 3 中，笔记本每本多少元？",
+      "accept": ["5", "5元", "$5$", "5 元"]
+    }
+  ],
+  "connections": [
+    {
+      "mode": "choice",
+      "prompt": "本课写出来的 $(x+6)+x=30$ 属于哪一类？",
+      "options": ["一元一次方程", "代数式", "等量关系句", "数量关系"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "后面处理“最多、至少”问题时，会把中间的连接号从等号换成什么？",
+      "options": ["表示大小的记号", "乘号", "括号", "另一个等号"],
+      "correct_index": 0
+    }
+  ]
+}

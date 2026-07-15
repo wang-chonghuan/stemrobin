@@ -1,0 +1,342 @@
+[
+  {
+    "ord": 1,
+    "type": "辨认",
+    "prompt": "在方程 $-7x=21$ 中，$x$ 的系数是多少？",
+    "answer_mode": "choice",
+    "options": [
+      "7",
+      "21",
+      "-7",
+      "-21"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "系数要连同符号一起看，所以 $-7x$ 中 $x$ 的系数是 $-7$，不是 $7$。"
+  },
+  {
+    "ord": 2,
+    "type": "辨认",
+    "prompt": "“等式两边同时乘以同一个非零数，或同时除以同一个非零数，方程的解不改变”说的是哪条性质？",
+    "answer_mode": "choice",
+    "options": [
+      "等式性质二",
+      "等式性质一",
+      "分配律",
+      "移项"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "这是等式性质二。它要求两边做同一个乘除动作；为了保持方程的解不变，使用的数应当非零。"
+  },
+  {
+    "ord": 3,
+    "type": "辨认",
+    "prompt": "在方程 $\\frac{x}{4}=5$ 中，$x$ 的系数是多少？请用分数填写。",
+    "answer_mode": "choice",
+    "options": [
+      "4/1",
+      "1/5",
+      "5/4",
+      "1/4"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$\\frac{x}{4}$ 可以写成 $\\frac14x$，所以 $x$ 的系数是 $\\frac14$。"
+  },
+  {
+    "ord": 4,
+    "type": "辨认",
+    "prompt": "已知 $a=b$。若要把两边同时除以 $c$，必须先满足 $c$ 不等于多少？",
+    "answer_mode": "choice",
+    "options": [
+      "1",
+      "0",
+      "-1",
+      "2"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "必须有 $c\\ne0$，因为除以 $0$ 没有意义。"
+  },
+  {
+    "ord": 5,
+    "type": "辨认",
+    "prompt": "用两边同除去掉未知数前的非零系数，这个动作叫什么？",
+    "answer_mode": "choice",
+    "options": [
+      "除系数",
+      "移项",
+      "合并同类项",
+      "去括号"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "这个动作叫除系数。它不是只擦掉左边的系数，而是让等式两边同时除以这个非零系数。"
+  },
+  {
+    "ord": 6,
+    "type": "操作",
+    "prompt": "对方程 $3x=12$ 两边同除以 $3$，填写 $x$ 的值。",
+    "answer_mode": "choice",
+    "options": [
+      "36",
+      "9",
+      "4",
+      "15"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$3x\\div3=12\\div3$，所以 $x=4$。两边都除以 $3$，原方程的解不改变。"
+  },
+  {
+    "ord": 7,
+    "type": "操作",
+    "prompt": "对方程 $-5x=20$ 除系数，填写 $x$ 的值。",
+    "answer_mode": "choice",
+    "options": [
+      "4",
+      "-100",
+      "15",
+      "-4"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "两边同除以 $-5$，得到 $x=20\\div(-5)=-4$。除以负数时等号仍是等号。"
+  },
+  {
+    "ord": 8,
+    "type": "操作",
+    "prompt": "方程 $\\frac{x}{4}=5$ 的两边同乘 $4$，填写 $x$ 的值。",
+    "answer_mode": "choice",
+    "options": [
+      "20",
+      "9",
+      "1",
+      "1.25"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "两边同乘 $4$ 后，$4\\cdot\\frac{x}{4}=4\\cdot5$，所以 $x=20$。这也就是除以系数 $\\frac14$。"
+  },
+  {
+    "ord": 9,
+    "type": "操作",
+    "prompt": "对方程 $\\frac23x=-8$ 除系数，填写 $x$ 的值。",
+    "answer_mode": "choice",
+    "options": [
+      "-16/3",
+      "-12",
+      "12",
+      "-24"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$x=-8\\div\\frac23=-8\\times\\frac32=-12$。两边同除以 $\\frac23$ 后，左边只剩 $x$。"
+  },
+  {
+    "ord": 10,
+    "type": "操作",
+    "prompt": "方程 $-\\frac{x}{6}=3$ 的两边同乘 $-6$，填写 $x$ 的值。",
+    "answer_mode": "choice",
+    "options": [
+      "18",
+      "-3",
+      "-18",
+      "1/2"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$(-6)\\cdot(-\\frac{x}{6})=(-6)\\cdot3$，左边成为 $x$，右边是 $-18$，所以 $x=-18$。"
+  },
+  {
+    "ord": 11,
+    "type": "辨错",
+    "prompt": "小明把 $3x=12$ 写成 $x=12$，说“把 $3$ 擦掉就行”。下面哪一句准确指出了错误？",
+    "answer_mode": "choice",
+    "options": [
+      "等号右边必须永远保持不变",
+      "只改了左边；应当让两边同时除以 $3$，右边也要变成 $4$",
+      "应该让两边同时减 $3$，得到 $3x-3=9$",
+      "左边的系数不能去掉，所以方程无法继续处理"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "正确的是第 2 项。除系数的完整动作是两边同除以 $3$：$3x\\div3=12\\div3$，因此得到 $x=4$。"
+  },
+  {
+    "ord": 12,
+    "type": "辨错",
+    "prompt": "有人把 $x=2$ 两边同乘 $0$，得到 $0=0$，便说两个方程是等价变形。错在哪里？",
+    "answer_mode": "choice",
+    "options": [
+      "错在等式两边任何时候都不能乘 $0$",
+      "错在 $0=0$ 本身不成立",
+      "错在两边同乘后必须改变等号",
+      "错在新方程丢掉了 $x=2$ 的条件，像 $x=7$ 也能使 $0=0$ 成立"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "正确的是第 3 项。$0=0$ 虽然成立，却不再限制 $x$，所以它与 $x=2$ 的解不同，不是等价变形。"
+  },
+  {
+    "ord": 13,
+    "type": "辨错",
+    "prompt": "处理 $-2x=6$ 时，有人说“两边除以负数，等号也要改变方向”，于是写成 $x>-3$。正确判断是哪一项？",
+    "answer_mode": "choice",
+    "options": [
+      "等号没有方向；两边同除以 $-2$ 后应得 $x=-3$",
+      "他说得对，结果是 $x>-3$",
+      "等号应改成小于号，结果是 $x<-3$",
+      "负数不能用来除系数"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "正确的是第 2 项。等号只表示左右相等，没有方向；两边同除以同一个非零负数后仍然相等，结果是 $x=-3$。"
+  },
+  {
+    "ord": 14,
+    "type": "说理",
+    "prompt": "为什么 $cx=d$ 在 $c\\ne0$ 时可以两边同除以 $c$，而且这样不会改变原方程的解？请把理由说完整。",
+    "answer_mode": "choice",
+    "options": [
+      "因为 $c$ 前面有系数，把 $c$ 擦掉后左边只剩 $x$，右边不用动，所以解不变",
+      "因为两边同除以 $c$ 总能成立，即使 $c=0$ 也不会改变原方程的解",
+      "若某个 $x$ 使 $cx=d$ 成立，两边同除以非零数 $c$ 后会得到 $x=\\frac{d}{c}$",
+      "因为 $cx=d$ 两边同时减去 $c$ 就能得到 $x=d-c$，所以解不变"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "若某个 $x$ 使 $cx=d$ 成立，两边同除以非零数 $c$ 后会得到 $x=\\frac{d}{c}$；反过来，从 $x=\\frac{d}{c}$ 两边同乘 $c$ 又能回到 $cx=d$。两个方程的解完全相同，所以这是等价变形。"
+  },
+  {
+    "ord": 15,
+    "type": "说理",
+    "prompt": "给同学解释：为什么处理 $\\frac{x}{4}=5$ 时，两边同乘 $4$ 与两边同除以 $x$ 的系数是同一件事？",
+    "answer_mode": "choice",
+    "options": [
+      "$\\frac{x}{4}$ 的系数是 $4$，所以除以 $4$ 与乘以 $4$ 是一回事",
+      "$\\frac{x}{4}=\\frac14x$，所以 $x$ 的系数是 $\\frac14$",
+      "两边同乘 $4$ 是加法动作，和除以系数没有关系",
+      "$\\frac{x}{4}=4x$，所以要把两边都除以 $4$"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "$\\frac{x}{4}=\\frac14x$，所以 $x$ 的系数是 $\\frac14$。除以 $\\frac14$ 就等于乘以 $4$；两种写法都会把左边变成 $x$，把右边变成 $20$。"
+  },
+  {
+    "ord": 16,
+    "type": "说理",
+    "prompt": "为什么“$3x=12$，把左边的 $3$ 擦掉”不是一个完整的说理？请写出合法动作和结果。",
+    "answer_mode": "choice",
+    "options": [
+      "只要把左边变成 $x$ 就算完成，右边可以先不管",
+      "擦掉左边的系数和两边同除以 $3$ 是完全一样的写法",
+      "方程的右边在变形过程中应当永远保持不变",
+      "等式两边必须做同一个动作"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "等式两边必须做同一个动作。合法写法是两边同时除以 $3$：$\\frac{3x}{3}=\\frac{12}{3}$，左边成为 $x$，右边成为 $4$，所以 $x=4$；只擦左边会破坏等式性质二的要求。"
+  },
+  {
+    "ord": 17,
+    "type": "操作",
+    "prompt": "【复习 3.2】方程 $x+7=12$ 的两边同时减 $7$，填写 $x$ 的值。",
+    "answer_mode": "choice",
+    "options": [
+      "5",
+      "19",
+      "12",
+      "-5"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "等式性质一",
+    "answer": "根据等式性质一，两边同时减 $7$：$x+7-7=12-7$，所以 $x=5$。"
+  },
+  {
+    "ord": 18,
+    "type": "表示",
+    "prompt": "【复习 3.2】要把 $2x+3=9$ 左边相加的 $3$ 去掉，两边应当同时减多少？",
+    "answer_mode": "choice",
+    "options": [
+      "-3",
+      "9",
+      "3",
+      "6"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "两边同加同减",
+    "answer": "两边应当同时减 $3$。这样左边的 $+3$ 与 $-3$ 抵消，得到 $2x=6$，而方程的解不改变。"
+  },
+  {
+    "ord": 19,
+    "type": "操作",
+    "prompt": "【复习 3.2】在 $5x-4=11$ 中，把左边的 $-4$ 移到右边后，右边的代数式是什么？",
+    "answer_mode": "choice",
+    "options": [
+      "11-4",
+      "11+4",
+      "11+5",
+      "4-11"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "移项",
+    "answer": "移项是两边同时加 $4$ 的简写，所以右边成为 $11+4$，也就是 $15$；原来的 $-4$ 不是凭空变号。"
+  },
+  {
+    "ord": 20,
+    "type": "辨认",
+    "prompt": "【复习 3.1】下面哪一个是方程，而不只是含未知数的代数式？",
+    "answer_mode": "choice",
+    "options": [
+      "$x+3$",
+      "$2a-5$",
+      "$x+3=7$",
+      "$4y$"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "方程",
+    "answer": "正确的是第 3 项。方程要用等号说出含未知数的条件；$x+3=7$ 有未知数也有等号，其余只是代数式。"
+  }
+]

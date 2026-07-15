@@ -1,0 +1,56 @@
+{
+  "motivation": [
+    {
+      "mode": "choice",
+      "prompt": "方程 $3x=12$ 中，$3$ 叫作 $x$ 的什么？",
+      "options": ["系数", "解", "未知数", "常数项"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "$3x$ 表示 $3$ 与 $x$ 做什么运算？",
+      "accept": ["相乘", "乘", "乘法"]
+    }
+  ],
+  "explain": [
+    {
+      "mode": "choice",
+      "prompt": "两边同乘同除、保持等式成立的这条规则叫作什么？",
+      "options": ["等式性质二", "等式性质一", "除系数", "移项法则"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "用两边同除去掉未知数前的非零系数，这个动作叫作什么？",
+      "options": ["除系数", "移项", "合并同类项", "去分母"],
+      "correct_index": 0
+    }
+  ],
+  "examples": [
+    {
+      "mode": "choice",
+      "prompt": "例 4 中 $\\frac23x=-8$，两边同除以 $\\frac23$，得到 $x$ 等于多少？",
+      "options": ["$-12$", "$-8$", "$12$", "$-\\frac{16}{3}$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "例 1 中 $3x=12$ 两边同除以 $3$，得到 $x$ 等于几？",
+      "accept": ["4", "x=4", "$x=4$"]
+    }
+  ],
+  "connections": [
+    {
+      "mode": "choice",
+      "prompt": "本课的两边同乘同除，用来去掉方程中什么样的部分？",
+      "options": ["相乘或相除的部分", "相加或相减的部分", "带括号的部分", "含未知数的部分"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "向前连接 3.5 提到，会把哪些动作按需要接在一起？",
+      "options": ["移项、合并同类项和除系数", "加、减、乘、除四则运算", "画图、列表和计算", "去括号、去分母和开方"],
+      "correct_index": 0
+    }
+  ]
+}

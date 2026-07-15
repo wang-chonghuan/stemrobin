@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.7 整式加减 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 方法课</div>
+    <h1 class="sr-l-title">2.7 整式加减</h1>
+    <div class="sr-l-concept">整式加减没有任何新动作：每个整式整体加括号，然后去括号、合并同类项——两棒接力，把式子化到最简，再用代入检验自己给自己判卷。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">整式加减</span>
+      <span class="sr-chip">化简</span>
+      <span class="sr-chip green">前置：去括号 · 合并同类项</span>
+    </div>
+  </header>
+
+  <!-- 1 / 为什么学这个 -->
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+    <p>手上有两个多项式：</p>
+    <p>$$A = 2x^2 + 3x - 1 \qquad B = x^2 - 4x + 5$$</p>
+    <p>现在要求它们的和 $A+B$，或者它们的差 $A-B$。听起来像个新任务：两个<strong>多项式</strong>——各自都是好几项的整体——怎么"加"？怎么"减"？</p>
+    <p>先把实话说在前面：<strong>这一课没有任何新动作。</strong>你需要的两个动作全都已经在手上——上一课的<strong>去括号</strong>，上上课的<strong>合并同类项</strong>。今天做的事只有一件：把这两个动作接成一条链，一棒交给下一棒。</p>
+    <p>既然没有新动作，为什么还值得专门上一课？因为接力的<strong>交接处</strong>藏着这一阶段最经典的一个错误，而且跑到终点前你还得回答三个问题：</p>
+    <div class="sr-note"><b>本节的驱动问题：</b>（1）求 $A-B$ 时，$B$ 里那些项的符号到底怎么处理？（2）做到什么程度才算"做完了"？（3）做完之后，怎么<strong>自己</strong>检查有没有算错——不用等大人对答案？</div>
+  </section>
+
+  <!-- 2 / 讲解 -->
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <h3>整式加减：一场两棒接力</h3>
+    <p><span class="sr-term">整式加减</span>就是求几个整式的和或差。做法只有一条固定路线：先把每个整式<strong>各自整体加上括号</strong>，用加号或减号连起来，然后——</p>
+    <p>$$\text{第一棒：去括号} \qquad \longrightarrow \qquad \text{第二棒：合并同类项}$$</p>
+    <p>没有第三棒。整式加减这个名字听起来像新东西，拆开看，全是旧零件。</p>
+
+    <h3>交接处的关键：$A-B$ 时 $B$ 整体加括号，每一项都变号</h3>
+    <p>为什么必须整体加括号？因为 $A$、$B$ 都是多项式，是<strong>好几项组成的一个整体</strong>。减去 $B$，是把 $B$ 的<strong>全部</strong>减掉——不是只减它的第一项。所以写差的时候，$B$ 必须整个儿裹进括号：</p>
+    <p>$$A - B = (2x^2+3x-1) - (x^2-4x+5)$$</p>
+    <p>还记得上一课的道理吗：括号前的减号就是因数 $-1$，按乘法分配律，它要乘进括号里的<strong>每一项</strong>。所以 $B$ 的每一项——第一项、第二项、第三项，一个不漏——全部变号：</p>
+    <p>$$-(x^2-4x+5) = -x^2+4x-5$$</p>
+    <div class="sr-eg">
+      <span class="yes">$(3a-2)-(a-5) = 3a-2-a+5$（$a$ 变 $-a$，$-5$ 变 $+5$，两项都翻）</span>
+      <span class="no">$(3a-2)-(a-5) = 3a-2-a-5$（只翻了第一项 $a$，$-5$ 忘了翻）</span>
+    </div>
+
+    <h3>化简：做到什么时候才算完</h3>
+    <p>这条"去括号 → 合并同类项"的链，有个正式的名字：<span class="sr-term">化简</span>——用合法的变形把式子写得更短、更清楚，而<strong>值一点都不变</strong>。化简的终点叫<strong>最简</strong>，有两个检查，两个都过了才能停笔：</p>
+    <p>① 式子里<strong>没有括号</strong>了；② <strong>没有同类项</strong>可以合并了。</p>
+    <div class="sr-eg">
+      <span class="yes">$2a+3$、$x^2+x+1$（无括号，也无同类项可并）</span>
+      <span class="no">$2(x+1)$（还有括号，第一棒没跑）</span>
+      <span class="no">$3x+2x-1$（$3x$ 和 $2x$ 是同类项还没合并，第二棒没跑完）</span>
+    </div>
+
+    <h3>自检工具：化简前后，代同一个数，结果必须一样</h3>
+    <p>化简只是<strong>换一种写法</strong>，式子的值分毫不动。这句话立刻给你一个可以独自使用的检错器：把化简<strong>前</strong>的式子和化简<strong>后</strong>的式子，<strong>代入</strong>同一个数<strong>求值</strong>——两边算出来的数必须相等。相等，基本可以放心；不相等，中间某一步一定出了错，回去逐步找。</p>
+    <div class="sr-note"><b>检验小提醒：</b>挑个好算的数，比如 $1$ 或 $2$。别代 $0$——代 $0$ 时带字母的项全变成 $0$，就算它们算错了也查不出来。不放心的话，换一个数再验一次。</div>
+
+    <div class="sr-pitfall">
+      <b>两个最常踩的坑：</b><br>
+      （1）<b>$A-B$ 只翻了 $B$ 的第一项。</b> $(5x+2)-(3x-4)$ 被写成 $5x+2-3x-4$——$3x$ 翻成了 $-3x$，$-4$ 却原样躺着。括号前的 $-1$ 要乘进<strong>每一项</strong>，正确是 $5x+2-3x+4$。<br>
+      （2）<b>停得太早。</b> 写出 $3x+2x+3$ 就交卷——还有同类项没合并，这不是最简。每次停笔前过一遍两个检查：还有括号吗？还有同类项吗？
+    </div>
+
+    <h3>把整条链画出来</h3>
+    <figure class="sr-fig">
+      <svg viewBox="0 0 680 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="整式加减两棒接力：去括号、合并同类项，最后用代入检验">
+        <text x="20" y="28" font-family="Hanken Grotesk, sans-serif" font-size="13" font-weight="600" fill="#15201F">求 (3a−2) − (a−5)：两棒接力 + 代入检验</text>
+
+        <!-- 起点式子 -->
+        <rect x="30" y="48" width="230" height="40" rx="8" fill="#FFFFFF" stroke="#E3EAE9"/>
+        <text x="145" y="74" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" fill="#15201F">(3a−2) − (a−5)</text>
+
+        <!-- 第一棒 -->
+        <path d="M 145 88 L 145 122" fill="none" stroke="#0E7C9B" stroke-width="1.8" marker-end="url(#ah1)"/>
+        <text x="160" y="110" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#0A5E76">第一棒：去括号（−1 分配进每一项，全变号）</text>
+
+        <rect x="30" y="128" width="230" height="40" rx="8" fill="#E1F1F5" stroke="#0E7C9B"/>
+        <text x="145" y="154" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" fill="#0A5E76">3a − 2 − a + 5</text>
+
+        <!-- 第二棒 -->
+        <path d="M 145 168 L 145 202" fill="none" stroke="#15A06A" stroke-width="1.8" marker-end="url(#ah2)"/>
+        <text x="160" y="190" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#0F7D52">第二棒：合并同类项（系数相加，字母不动）</text>
+
+        <rect x="30" y="208" width="230" height="40" rx="8" fill="#E4F6EE" stroke="#15A06A"/>
+        <text x="145" y="234" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" fill="#0F7D52">2a + 3</text>
+
+        <text x="30" y="278" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#8A9795">终点检查：没括号了？没同类项了？——是最简，停笔。</text>
+
+        <!-- 代入检验框 -->
+        <rect x="400" y="70" width="250" height="160" rx="8" fill="#F5F9F9" stroke="#E3EAE9"/>
+        <text x="416" y="96" font-family="Hanken Grotesk, sans-serif" font-size="13" font-weight="600" fill="#15201F">代入检验：代 a = 1</text>
+        <text x="416" y="126" font-family="JetBrains Mono, monospace" font-size="13" fill="#15201F">原式 = (3−2) − (1−5)</text>
+        <text x="416" y="148" font-family="JetBrains Mono, monospace" font-size="13" fill="#15201F">　　 = 1 − (−4) = 5</text>
+        <text x="416" y="178" font-family="JetBrains Mono, monospace" font-size="13" fill="#15201F">结果 = 2×1 + 3 = 5</text>
+        <text x="416" y="208" font-family="JetBrains Mono, monospace" font-size="13" fill="#0F7D52">5 = 5 ✓ 两边一致</text>
+
+        <!-- 连线：起点与终点都指向检验 -->
+        <path d="M 260 68 C 330 68, 360 90, 398 100" fill="none" stroke="#8A9795" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah3)"/>
+        <path d="M 260 228 C 330 228, 360 206, 398 196" fill="none" stroke="#8A9795" stroke-width="1.4" stroke-dasharray="4 3" marker-end="url(#ah3)"/>
+
+        <text x="30" y="310" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#8A9795">化简只是换写法，值不变——所以化简前后代同一个数，结果必须相等。</text>
+
+        <defs>
+          <marker id="ah1" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#0E7C9B"/></marker>
+          <marker id="ah2" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#15A06A"/></marker>
+          <marker id="ah3" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#8A9795"/></marker>
+        </defs>
+      </svg>
+      <figcaption>整式加减 = 去括号 + 合并同类项的接力，终点是最简；化简前后代同一个数求值，结果必须一样——这是你随身携带的检错器。</figcaption>
+    </figure>
+  </section>
+
+  <!-- 3 / 例题 -->
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　求和：$(2x+3)+(x-1)$。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>第一棒去括号：两个括号前都是加号（因数 $+1$），各项原样搬出：$2x+3+x-1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>第二棒合并同类项：$2x+x=3x$，$3-1=2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>结果 $3x+2$。终点检查：没括号、没同类项——最简，停笔。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2　求差（本课最容易翻车的地方）：$(3a-2)-(a-5)$。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>第二个括号前是减号 $=$ 因数 $-1$，要乘进括号里<strong>每一项</strong>：$a$ 变 $-a$，$-5$ 变 $+5$。得 $3a-2-a+5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>经典错误长这样：$3a-2-a-5$——只翻了 $a$，$-5$ 原样没动。$-1$ 乘每一项，一个都不能漏。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>第二棒合并：$3a-a=2a$，$-2+5=3$。结果 $2a+3$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　括号前带着数：$5b-2(b-3)$。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>去括号：括号前的因数是 $-2$，乘进每一项：$-2\times b=-2b$，$-2\times(-3)=+6$。得 $5b-2b+6$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>合并同类项：$5b-2b=3b$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>结果 $3b+6$。注意第二项是 $+6$（负负得正），不是 $-6$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4　化简 $2(x+1)-(x-3)$，并用代入检验自己判卷。</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>去括号：$2$ 分配进第一个括号得 $2x+2$；第二个括号前是 $-1$，每项变号得 $-x+3$。合起来 $2x+2-x+3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>合并：$2x-x=x$，$2+3=5$。结果 $x+5$。两个终点检查都通过——最简。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>检验：代 $x=2$。原式 $=2\times(2+1)-(2-3)=6-(-1)=7$；结果 $=2+5=7$。两边都是 $7$ ✓。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>如果两边不相等——比如你算出的"结果"代出来是 $6$——不用问任何人，你已经知道中间某步错了，回去一步步查。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 5　说理：求 $A-B$ 时，为什么 $B$ 的每一项都要变号？只翻第一项为什么不行？</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>取 $A=5x+2$，$B=3x-4$。减去 $B$ 是减去 $B$ 的<strong>全部</strong>，所以 $B$ 整体加括号：$(5x+2)-(3x-4)$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>括号前的减号是因数 $-1$，乘法分配律要求它乘进括号里<strong>每一项</strong>：$-1\times 3x=-3x$，$-1\times(-4)=+4$。所以每一项都翻号，得 $5x+2-3x+4=2x+6$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>只翻第一项会得 $5x+2-3x-4=2x-2$。用代入检验揭穿它：代 $x=1$，原式 $=(5+2)-(3-4)=7-(-1)=8$；正确结果 $2+6=8$ ✓；错误结果 $2-2=0$ ✗。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>一句话讲给同学：减 $B$ 是减掉 $B$ 的每一部分，$-1$ 按分配律发给每一项，谁也不能漏。</span></div>
+    </div>
+  </section>
+
+  <!-- 4 / 与其他知识点的联系 -->
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>往回看（把整个阶段串成一条线）：</b>整式加减 $=$ 去括号 $+$ 合并同类项；而这两个动作是同一条<strong>乘法分配律</strong>的正反两用——正着用把括号拆开，反着用把同类项收拢；分配律又是在<strong>项</strong>与<strong>因数</strong>那棵两层的树上操作的。所以这一阶段其实只讲了一件事：<strong>一棵树、两个动作</strong>——先学会给树上的零件起名字（项、因数、系数、次数、单项式、多项式），再学会在树上合法地移动零件（去括号、合并），今天把两个动作接成链，就到了这棵树的顶。检验那一步用的则是更早的<strong>求值</strong>与<strong>代入</strong>。</li>
+      <li><b>往前看（这节课通向哪里）：</b>下一阶段学<strong>方程</strong>：解方程时几乎每道题都要先把两边的式子化简——去括号、合并同类项，理干净了才能往下解。今天练熟的化简，就是那时每天都要跑的接力。</li>
+      <li><b>随身带走的习惯：</b>停笔前问两句——还有括号吗？还有同类项吗？交卷前验一次——化简前后代同一个数，结果一样吗？会自己检查的人，不需要别人告诉他对不对。</li>
+    </ul>
+  </section>
+
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    <p>不用动笔算，每题用一两句话答出来。答不上来就回「讲解」里找。</p>
+    <ol class="sr-oral">
+      <li>整式加减的两棒接力，分别是哪两个动作？先后顺序能换吗？
+        <div class="sr-answer">第一棒去括号，第二棒合并同类项。顺序不能换：同类项常被括号隔开，不先拆括号就没法把它们凑到一起合并。</div>
+      </li>
+      <li>求 $A-B$ 时，为什么 $B$ 要整体加括号？
+        <div class="sr-answer">因为 $B$ 是好几项组成的整体，减去 $B$ 是把 $B$ 的全部减掉，不是只减第一项；整体加括号才能让括号前的 $-1$ 按分配律乘进 $B$ 的每一项。</div>
+      </li>
+      <li>去括号时，$B$ 里哪些项要变号？
+        <div class="sr-answer">每一项都要变号——括号前的减号是因数 $-1$，分配律要求它乘进每一项。最常见的错误就是只翻第一项。</div>
+      </li>
+      <li>一个式子怎样才算化到<strong>最简</strong>？说出两个检查。
+        <div class="sr-answer">①没有括号了；②没有同类项可以合并了。两个检查都通过才算最简，才能停笔。</div>
+      </li>
+      <li>化简完之后，怎么自己检查对不对？道理是什么？
+        <div class="sr-answer">把化简前和化简后的式子代入同一个数求值，两边结果必须相等。道理：化简只是换写法，值不变；不相等就说明中间某步错了。</div>
+      </li>
+      <li>这一课学了什么"新动作"？
+        <div class="sr-answer">没有新动作。整式加减完全等于"去括号＋合并同类项"的接力；新的只是把旧动作接成链，加上终点判定和代入检验这两个习惯。</div>
+      </li>
+    </ol>
+  </section>
+
+
+  <section data-sr-section="practice">
+    <style>
+      /* injected with the deck — screen extras + print layout (self-contained) */
+      ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+      ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+      ol.sr-practice > li:first-child { border-top:0; }
+      ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+      .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+      .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+      .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
+      .sr-p-opt { font-size: 14px; }
+      .sr-p-opt b { font-family: var(--sr-mono); font-weight: 600; color: var(--sr-ink-soft); margin-right: 3px; }
+      @media print {
+        section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+        ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; break-inside: avoid; }
+        ol.sr-practice > li::before { top: 16px; }
+      }
+    </style>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">可以边读边想，也可以打印出来用笔写。做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> 化简 $2x+3(x-1)$ 的第一步是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 先去括号：把 $3$ 乘进 $(x-1)$ 的每一项</span><span class="sr-p-opt"><b>B.</b> 先把 $2x$ 和 $3$ 合并成 $5x$</span><span class="sr-p-opt"><b>C.</b> 先把括号里的 $x$ 和 $-1$ 合并</span><span class="sr-p-opt"><b>D.</b> 先代入 $x=1$ 求值</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $(2m+1)-(m-3)$ 中，第二个括号前面的因数是几？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $+1$</span><span class="sr-p-opt"><b>B.</b> $-1$</span><span class="sr-p-opt"><b>C.</b> $-3$</span><span class="sr-p-opt"><b>D.</b> $3$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 计算并化到最简：$(2x+3)+(x-1)=$？（指数用 ^，例如 x^2）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3x+4</span><span class="sr-p-opt"><b>B.</b> x+2</span><span class="sr-p-opt"><b>C.</b> 3x+2</span><span class="sr-p-opt"><b>D.</b> x+4</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $(3a-2)-(a-5)$ 去括号后，$-5$ 变成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-5$</span><span class="sr-p-opt"><b>B.</b> $-2$</span><span class="sr-p-opt"><b>C.</b> $+2$</span><span class="sr-p-opt"><b>D.</b> $+5$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 计算并化到最简：$(3a-2)-(a-5)=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2a+3</span><span class="sr-p-opt"><b>B.</b> 2a-7</span><span class="sr-p-opt"><b>C.</b> 4a+3</span><span class="sr-p-opt"><b>D.</b> 2a+7</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明算 $(5x+2)-(3x-4)$，写成 $5x+2-3x-4=2x-2$。他错在哪？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5x$ 和 $-3x$ 不是同类项，不能合并</span><span class="sr-p-opt"><b>B.</b> 去括号时只把 $3x$ 变了号，$-4$ 忘了翻成 $+4$</span><span class="sr-p-opt"><b>C.</b> $2$ 和 $-4$ 不是同类项，不能合并</span><span class="sr-p-opt"><b>D.</b> 应该先合并再去括号</span></div></li>
+      <li><span class="sr-ptype">说理</span> 求 $A-B$ 时，为什么 $B$ 的每一项都要变号？只翻第一项为什么不行？给不信的同学讲一遍。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 只有第一项紧挨着减号，所以只给第一项变号，后面各项照抄不变</span><span class="sr-p-opt"><b>B.</b> 减号只是个运算符号、不是因数，所以括号里各项照抄不变</span><span class="sr-p-opt"><b>C.</b> 参考：$B$ 是好几项组成的整体，减去 $B$ 是减掉 $B$ 的全部，所以 $B$ 要整体加括号</span><span class="sr-p-opt"><b>D.</b> $B$ 的每一项本来都是负的，减负变正，所以每项都由负变正</span></div></li>
+      <li><span class="sr-ptype">操作</span> 计算并化到最简：$5b-2(b-3)=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3b-6</span><span class="sr-p-opt"><b>B.</b> 7b+6</span><span class="sr-p-opt"><b>C.</b> 3b</span><span class="sr-p-opt"><b>D.</b> 3b+6</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $x-(y-2)$ 去括号后，$y$ 变成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-y$</span><span class="sr-p-opt"><b>B.</b> $y$</span><span class="sr-p-opt"><b>C.</b> $+2$</span><span class="sr-p-opt"><b>D.</b> $-2$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 下面哪个式子已经是最简？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x+2x-1$</span><span class="sr-p-opt"><b>B.</b> $x^2+x+1$</span><span class="sr-p-opt"><b>C.</b> $2(x+1)$</span><span class="sr-p-opt"><b>D.</b> $5a-a$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 计算并化到最简：$(x^2+2x)-(x^2-x)=$？（指数用 ^）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2x^2+x</span><span class="sr-p-opt"><b>B.</b> x</span><span class="sr-p-opt"><b>C.</b> 3x</span><span class="sr-p-opt"><b>D.</b> 2x^2+3x</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小红化简时把 $3x+2x$ 合并成 $5x^2$。她错在哪？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$ 和 $2x$ 不是同类项，根本不能合并</span><span class="sr-p-opt"><b>B.</b> 系数算错了，应该是 $6x$</span><span class="sr-p-opt"><b>C.</b> 没有错，$5x^2$ 是对的</span><span class="sr-p-opt"><b>D.</b> 合并同类项时系数相加、字母部分不动，不该把 $x$ 改成 $x^2$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 化简到最简：$2(x+1)-(x-3)=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> x+5</span><span class="sr-p-opt"><b>B.</b> x-1</span><span class="sr-p-opt"><b>C.</b> 3x+5</span><span class="sr-p-opt"><b>D.</b> x+4</span></div></li>
+      <li><span class="sr-ptype">说理</span> 小李说 $(3a-2)-(a-5)=2a-7$。不看他的过程，用代入检验判断他对不对：自己挑一个数（别用 $0$）代进等号两边，把两个值都算出来，说出你的结论和这么查的道理。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不用代入，$2a-7$ 和 $2a+3$ 都是 $2a$ 打头，形式一样，所以小李对了</span><span class="sr-p-opt"><b>B.</b> 代 $a=1$：原式 $=(3-2)-(1-5)=1-(-4)=5$</span><span class="sr-p-opt"><b>C.</b> 代 $a=1$：小李的 $2a-7=2-7=-5$ 就是原式的值，所以他没错</span><span class="sr-p-opt"><b>D.</b> 代 $a=0$：两边都算得出来，结果不同也可能是巧合，判断不了</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $5a-2a+7$ 还不是最简，还差哪个动作？（填动作的名字）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 去括号</span><span class="sr-p-opt"><b>B.</b> 代入求值</span><span class="sr-p-opt"><b>C.</b> 合并同类项</span><span class="sr-p-opt"><b>D.</b> 去分母</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 去括号：$-(x-4)=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -x-4</span><span class="sr-p-opt"><b>B.</b> x-4</span><span class="sr-p-opt"><b>C.</b> x+4</span><span class="sr-p-opt"><b>D.</b> -x+4</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 去括号：$-3(a-2)=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -3a+6</span><span class="sr-p-opt"><b>B.</b> -3a-6</span><span class="sr-p-opt"><b>C.</b> -3a</span><span class="sr-p-opt"><b>D.</b> 3a-6</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 下面哪一对是同类项？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$ 和 $3y$</span><span class="sr-p-opt"><b>B.</b> $3xy$ 和 $2yx$</span><span class="sr-p-opt"><b>C.</b> $x^2y$ 和 $xy^2$</span><span class="sr-p-opt"><b>D.</b> $2x$ 和 $2$</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $3x^2-x+1$ 是几项式？（填数字）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 4</span><span class="sr-p-opt"><b>C.</b> 3</span><span class="sr-p-opt"><b>D.</b> 1</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $-x$ 的系数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 1</span><span class="sr-p-opt"><b>B.</b> 0</span><span class="sr-p-opt"><b>C.</b> $-x$</span><span class="sr-p-opt"><b>D.</b> -1</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

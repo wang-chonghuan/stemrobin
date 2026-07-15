@@ -1,0 +1,56 @@
+{
+  "motivation": [
+    {
+      "mode": "choice",
+      "prompt": "上一课那条固定路线的第一步是什么？",
+      "options": ["合并同类项", "去括号", "移项", "除系数"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "本课作为「新面孔」引入的带括号方程是哪一个？",
+      "accept": ["$2(x+3)=10$", "2(x+3)=10"]
+    }
+  ],
+  "explain": [
+    {
+      "mode": "choice",
+      "prompt": "拆括号靠的是哪一条运算律？",
+      "options": ["乘法分配律", "乘法结合律", "加法交换律", "加法结合律"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "按卡片，$8-(x+2)$ 去括号后正确的写法是？",
+      "options": ["$8-x-2$", "$8-x+2$", "$8+x-2$", "$8+x+2$"],
+      "correct_index": 0
+    }
+  ],
+  "examples": [
+    {
+      "mode": "choice",
+      "prompt": "例 1 解 $2(x+3)=10$，得到的解是？",
+      "options": ["$x=2$", "$x=5$", "$x=4$", "$x=3$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "例 4 解 $2(x+1)=3(x-1)$，$x=$？",
+      "accept": ["5", "x=5", "$x=5$"]
+    }
+  ],
+  "connections": [
+    {
+      "mode": "choice",
+      "prompt": "卡片说去括号这个动作背后依靠的是？",
+      "options": ["乘法分配律", "完全平方公式", "因式分解", "求根公式"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "卡片说去括号给后面哪种方程的方法课打地基？",
+      "options": ["带分母的方程", "二元一次方程组", "一元二次方程", "一元一次不等式"],
+      "correct_index": 0
+    }
+  ]
+}

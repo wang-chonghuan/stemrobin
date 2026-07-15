@@ -1,0 +1,342 @@
+[
+  {
+    "ord": 1,
+    "type": "辨认",
+    "prompt": "若 $A=B$，左右同时减去 $5$，仍有 $A-5=B-5$。这里使用的规则叫什么？",
+    "answer_mode": "choice",
+    "options": [
+      "等式性质一",
+      "等式性质二",
+      "移项",
+      "合并同类项"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "这是等式性质一：等式两边同时减去同一个数，所得结果仍然相等。"
+  },
+  {
+    "ord": 2,
+    "type": "辨认",
+    "prompt": "把 $x+4=9$ 简写成 $x=9-4$，这种简写叫什么？",
+    "answer_mode": "choice",
+    "options": [
+      "合并同类项",
+      "消元",
+      "移项",
+      "等价变形"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "这种简写叫移项。它省略的是等式两边同时加上 $-4$ 的完整过程。"
+  },
+  {
+    "ord": 3,
+    "type": "辨认",
+    "prompt": "在等式左右同时加上或减去同一个对象，这个动作叫什么？",
+    "answer_mode": "choice",
+    "options": [
+      "消元",
+      "移项",
+      "合并同类项",
+      "两边同加同减"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "这个动作叫两边同加同减。关键不只是两边都有动作，而是两边处理的是同一个对象。"
+  },
+  {
+    "ord": 4,
+    "type": "辨认",
+    "prompt": "从 $2x+5=x+11$ 出发，下面哪一个动作符合“两边必须减去同一个对象”？",
+    "answer_mode": "choice",
+    "options": [
+      "左边减去 $x$，右边减去 $5$",
+      "左边和右边都减去 $x$",
+      "只把左边减去 $x$",
+      "左边减去 $5$，右边减去 $x$"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "应选“左边和右边都减去 $x$”。等式性质一要求左右做同一个动作，减去不同对象或只改一边都不能保证仍然相等。"
+  },
+  {
+    "ord": 5,
+    "type": "辨认",
+    "prompt": "把一个方程改写成另一个方程，改写前后有完全相同的解，而且每一步都能退回，这种改写叫什么？",
+    "answer_mode": "choice",
+    "options": [
+      "等价变形",
+      "移项",
+      "两边同加同减",
+      "合并同类项"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "这种改写叫等价变形。能用相反动作退回，说明改写没有增加或丢失原来的解。"
+  },
+  {
+    "ord": 6,
+    "type": "反推",
+    "prompt": "从 $x-7=10$ 得到 $x=17$，等式两边实际同时做了什么？用“加几”作答。",
+    "answer_mode": "choice",
+    "options": [
+      "减7",
+      "加10",
+      "加7",
+      "加17"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "两边同时加 $7$。左边的 $-7$ 与 $+7$ 抵消，右边变成 $10+7=17$。"
+  },
+  {
+    "ord": 7,
+    "type": "操作",
+    "prompt": "处理方程 $x+8=13$，求 $x$。",
+    "answer_mode": "choice",
+    "options": [
+      "21",
+      "-5",
+      "13",
+      "5"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "左右同时减去 $8$，得到 $x=13-8=5$；代入原方程有 $5+8=13$。"
+  },
+  {
+    "ord": 8,
+    "type": "操作",
+    "prompt": "处理方程 $x-6=-2$，求 $x$。",
+    "answer_mode": "choice",
+    "options": [
+      "4",
+      "8",
+      "-8",
+      "-4"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "左右同时加上 $6$，得到 $x=-2+6=4$；代入原方程有 $4-6=-2$。"
+  },
+  {
+    "ord": 9,
+    "type": "操作",
+    "prompt": "处理方程 $2x+3=x+9$，求 $x$。",
+    "answer_mode": "choice",
+    "options": [
+      "3",
+      "6",
+      "12",
+      "2"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "先在左右同时减去 $x$，得 $x+3=9$；再同时减去 $3$，得 $x=6$。代入原方程，两边都等于 $15$。"
+  },
+  {
+    "ord": 10,
+    "type": "操作",
+    "prompt": "处理方程 $y+(-5)=12$，求 $y$。",
+    "answer_mode": "choice",
+    "options": [
+      "7",
+      "-7",
+      "17",
+      "-17"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "左右同时加上 $5$，得到 $y=17$。因为 $-5$ 的相反数是 $5$，两者相加为 $0$。"
+  },
+  {
+    "ord": 11,
+    "type": "操作",
+    "prompt": "方程 $3x+2=x+10$ 的左右同时减去 $x$ 后，得到什么方程？",
+    "answer_mode": "choice",
+    "options": [
+      "3x+2=10",
+      "4x+2=10",
+      "2x+2=10-x",
+      "2x+2=10"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "得到 $2x+2=10$，因为 $3x-x=2x$，右边的 $x-x=0$。含未知数的代数式也可以作为两边同时减去的同一个对象。"
+  },
+  {
+    "ord": 12,
+    "type": "辨错",
+    "prompt": "从 $x+4=10$ 出发，哪一行正确写出了去掉 $+4$ 的完整动作？",
+    "answer_mode": "choice",
+    "options": [
+      "$x+4-4=10-4$",
+      "$x+4-4=10$",
+      "$x+4-4=10+4$",
+      "$x-4=10-4$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "第一行正确，因为左右同时减去同一个数 $4$。第二行只改左边，第三行左右做了相反的动作。"
+  },
+  {
+    "ord": 13,
+    "type": "辨错",
+    "prompt": "由 $x+6=11$ 进行移项，哪一行正确？",
+    "answer_mode": "choice",
+    "options": [
+      "$x=11+6$",
+      "$x=11-6$",
+      "$x=6-11$",
+      "$x+6-6=11+6$"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "应写成 $x=11-6$。它来自左右同时加上 $-6$；移项不是凭空变号，而是这个同步动作的简写。"
+  },
+  {
+    "ord": 14,
+    "type": "辨错",
+    "prompt": "一次改写最后得到 $x=5$，把 $5$ 代入原方程后等式成立。仅凭这个检查，可以确认什么？",
+    "answer_mode": "choice",
+    "options": [
+      "改写前后的方程一定有完全相同的解",
+      "原方程一定没有别的解",
+      "$5$ 是原方程的一个解",
+      "每一步改写都一定能退回"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "只能确认 $5$ 是原方程的一个解。要证明改写前后的解完全相同，还要说明每一步都能用相反动作退回。"
+  },
+  {
+    "ord": 15,
+    "type": "说理",
+    "prompt": "为什么 $A=B$ 与 $A+C=B+C$ 可以互相改写？请把正向和退回的动作都说清楚。",
+    "answer_mode": "choice",
+    "options": [
+      "从 $A=B$ 出发，只在左边加上 $C$，得到 $A+C=B$。",
+      "从 $A=B$ 出发，左右各加上不同的数，等式也一定成立。",
+      "因为两式左右形状相似，可以直接互相改写。",
+      "从 $A=B$ 出发，左右同时加上同一个 $C$，得到 $A+C=B+C$。"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "从 $A=B$ 出发，左右同时加上同一个 $C$，得到 $A+C=B+C$；从后一式出发，左右同时减去同一个 $C$，又回到 $A=B$。两个方向都成立，所以改写不增加也不丢失解。"
+  },
+  {
+    "ord": 16,
+    "type": "说理",
+    "prompt": "给同学解释：为什么由 $x+5=12$ 写成 $x=12-5$，不能只说“过等号变号”？",
+    "answer_mode": "choice",
+    "options": [
+      "真正的动作是左右同时加上 $-5$：$x+5+(-5)=12+(-5)$，化简后才得到 $x=12-5$",
+      "过等号就把 $+5$ 变成 $-5$，这是一条独立的变号规则，写 $x=12-5$ 时不必再解释。",
+      "真正的动作是只把右边减去 $5$，左边保持不变，就能得到 $x=12-5$。",
+      "因为 $x+5$ 与 $12$ 形状不同，可以直接把 $5$ 挪到右边，无需依据。"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "真正的动作是左右同时加上 $-5$：$x+5+(-5)=12+(-5)$，化简后才得到 $x=12-5$。“过等号变号”只是省略中间一行的说法，不是独立规则。"
+  },
+  {
+    "ord": 17,
+    "type": "说理",
+    "prompt": "在 $4x+1=x+10$ 中，能不能在左右同时减去 $x$？为什么？这样做后得到什么？",
+    "answer_mode": "choice",
+    "options": [
+      "不可以，因为 $x$ 是未知数，含未知数的式子不能作为两边同减的对象。",
+      "可以，因为左右减去的是同一个代数式 $x$，即使它含未知数也符合等式性质一",
+      "可以，但只需在左边减去 $x$，右边保持不变。",
+      "可以，只要两边形状相近就能同时减去，不必是同一个对象。"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "可以，因为左右减去的是同一个代数式 $x$，即使它含未知数也符合等式性质一。化简后得到 $3x+1=10$。"
+  },
+  {
+    "ord": 18,
+    "type": "辨认",
+    "prompt": "下面哪一个是方程？",
+    "answer_mode": "choice",
+    "options": [
+      "$x+3$",
+      "$7+3=10$",
+      "$x+3=7$",
+      "$x+3>7$"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "方程",
+    "answer": "$x+3=7$ 是方程，因为它含未知数，并用等号说出了一个条件。$x+3$ 没有等号，$7+3=10$ 没有未知数。"
+  },
+  {
+    "ord": 19,
+    "type": "反推",
+    "prompt": "方程 $x+3=7$ 的解是多少？",
+    "answer_mode": "choice",
+    "options": [
+      "10",
+      "-4",
+      "7",
+      "4"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "方程的解",
+    "answer": "解是 $x=4$，因为把 $4$ 代入后得到 $4+3=7$，原方程成立。"
+  },
+  {
+    "ord": 20,
+    "type": "辨认",
+    "prompt": "在方程 $x+5=12$ 中，方程左边是什么？",
+    "answer_mode": "choice",
+    "options": [
+      "x+5",
+      "12",
+      "x",
+      "x+5=12"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "方程左边",
+    "answer": "方程左边是 $x+5$，因为它写在等号的左侧；右边是 $12$。"
+  }
+]

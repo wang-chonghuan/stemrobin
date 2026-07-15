@@ -1,0 +1,342 @@
+[
+  {
+    "ord": 1,
+    "type": "辨认",
+    "prompt": "下面哪一个是代数式？",
+    "answer_mode": "choice",
+    "options": [
+      "$x+y=5$",
+      "$3a+2$",
+      "$5>3$",
+      "$7=7$"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "代数式是「能算出数、且不带等号」的写法。$3a+2$ 正是这样。$x+y=5$、$7=7$ 带等号是等式，$5>3$ 带大于号是不等式，都不是代数式。"
+  },
+  {
+    "ord": 2,
+    "type": "辨认",
+    "prompt": "单独写一个字母 $x$，它是代数式吗？",
+    "answer_mode": "choice",
+    "options": [
+      "是，它是最简单的代数式",
+      "不是，太短了不算",
+      "不是，代数式至少要有两个数",
+      "不是，必须带运算符号才算"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "是。代数式不要求「长」，也不要求一定带运算符号。$x$ 是「什么都没跟它连」的最简单情形，仍然是一个能算出数、不带等号的写法。"
+  },
+  {
+    "ord": 3,
+    "type": "辨认",
+    "prompt": "$\\dfrac{x}{2}$ 表示的意思是？",
+    "answer_mode": "choice",
+    "options": [
+      "$x\\div 2$",
+      "$2\\div x$",
+      "$x\\times 2$",
+      "$x-2$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "分数线就是除号：$\\dfrac{x}{2}$ 表示 $x\\div 2$，也就是 $x$ 乘 $\\dfrac{1}{2}$。注意分子在上、被除数在上，不要读反成 $2\\div x$。"
+  },
+  {
+    "ord": 4,
+    "type": "辨认",
+    "prompt": "$3a$ 的意思是？",
+    "answer_mode": "choice",
+    "options": [
+      "$3\\times a$",
+      "$3+a$",
+      "$a-3$",
+      "$3\\div a$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "按书写约定，$3a$ 是省略了乘号的 $3\\times a$，数字写在字母前面。省略的是乘号，不是加号，所以不等于 $3+a$。"
+  },
+  {
+    "ord": 5,
+    "type": "辨认",
+    "prompt": "$x\\div 2$ 按书写约定应写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$\\dfrac{x}{2}$",
+      "$2x$",
+      "$\\dfrac{2}{x}$",
+      "$x2$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "除法一般不写除号，改写成分数线：被除数 $x$ 在上，除数 $2$ 在下，即 $\\dfrac{x}{2}$。写成 $2x$ 就变成了乘法，写成 $\\dfrac{2}{x}$ 是把上下写反了。"
+  },
+  {
+    "ord": 6,
+    "type": "辨认",
+    "prompt": "$1\\times a$（即 $1a$）按书写约定应写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$a$",
+      "$1a$",
+      "$a1$",
+      "$a+1$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "字母前面的数字若是 $1$，这个 $1$ 省略不写，$1\\times a$ 直接写作 $a$。$a1$ 把数字写到了字母后面，$a+1$ 把乘号当成了加号，都不对。"
+  },
+  {
+    "ord": 7,
+    "type": "操作",
+    "prompt": "当 $x=4$ 时，$3x+1$ 的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "$13$",
+      "$12$",
+      "$15$",
+      "$7$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "代入：$3\\times 4+1$。先乘后加：$3\\times 4=12$，再 $12+1=13$。$12$ 是漏了 $+1$；$15$ 是错先算 $3\\times(4+1)$；$7$ 是把 $3x$ 当成了 $3+x$。"
+  },
+  {
+    "ord": 8,
+    "type": "操作",
+    "prompt": "当 $x=-2$ 时，$2x-1$ 的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "$-5$",
+      "$3$",
+      "$-4$",
+      "$-1$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "代入要带括号：$2\\times(-2)-1=-4-1=-5$。$3$ 是漏了负号算成 $2\\times 2-1$；$-4$ 是只算了 $2\\times(-2)$ 忘了 $-1$；$-1$ 是把 $2x$ 错当成 $2-2$。"
+  },
+  {
+    "ord": 9,
+    "type": "操作",
+    "prompt": "当 $x=6$ 时，$\\dfrac{x}{2}+1$ 的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "$4$",
+      "$3$",
+      "$13$",
+      "$\\dfrac{7}{2}$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$\\dfrac{x}{2}$ 就是 $x\\div 2$，代入 $x=6$：$\\dfrac{6}{2}+1=3+1=4$。$3$ 是漏了 $+1$；$13$ 是把 $\\dfrac{x}{2}$ 错当成 $2x$；$\\dfrac{7}{2}$ 是把 $+1$ 错加进了分子。"
+  },
+  {
+    "ord": 10,
+    "type": "表示",
+    "prompt": "每本书 $5$ 元，买 $x$ 本，再加 $2$ 元邮费。一共花的钱用代数式表示是？",
+    "answer_mode": "choice",
+    "options": [
+      "$5x+2$",
+      "$5+x+2$",
+      "$2x+5$",
+      "$5(x+2)$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$x$ 本书每本 $5$ 元是 $5\\times x=5x$，再加一次 $2$ 元邮费，得 $5x+2$。$5+x+2$ 漏了乘；$2x+5$ 把单价和邮费弄反；$5(x+2)$ 错把邮费也乘了 $5$ 倍。"
+  },
+  {
+    "ord": 11,
+    "type": "操作",
+    "prompt": "当 $y=3$ 时，$4y-2$ 的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "$10$",
+      "$12$",
+      "$5$",
+      "$11$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "代入：$4\\times 3-2=12-2=10$。$12$ 是漏了 $-2$；$5$ 是把 $4y$ 当成 $4+y$ 得 $7$ 再减 $2$；$11$ 是把 $-2$ 错算成 $-1$。"
+  },
+  {
+    "ord": 12,
+    "type": "辨错",
+    "prompt": "把 $x=-3$ 代入 $2x$，下面哪种写法是对的？",
+    "answer_mode": "choice",
+    "options": [
+      "$2\\times(-3)$",
+      "$2\\times-3$",
+      "$2-3$",
+      "$2\\cdot 3$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "$x$ 这个位置代进去的是一个数 $-3$，要连负号整个括起来：$2\\times(-3)=-6$。$2\\times-3$ 缺括号写法不规范，$2-3$ 把乘法悄悄变成了减法，$2\\cdot 3$ 丢了负号。"
+  },
+  {
+    "ord": 13,
+    "type": "辨错",
+    "prompt": "$a\\times 3$ 按书写约定应写成 $3a$。下面哪个写法是对的？",
+    "answer_mode": "choice",
+    "options": [
+      "$3a$",
+      "$a3$",
+      "$a\\times 3$",
+      "$3+a$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "省略乘号且数字写在字母前面，写作 $3a$。$a3$ 把数字写到了字母后面，$a\\times 3$ 没省略乘号，$3+a$ 把乘号当成了加号。"
+  },
+  {
+    "ord": 14,
+    "type": "辨错",
+    "prompt": "小明说：「$x+y=5$ 是一个代数式。」他说得对吗？",
+    "answer_mode": "choice",
+    "options": [
+      "不对，它带等号，是等式不是代数式",
+      "对，它里面有字母也有数",
+      "对，它能算出结果 $5$",
+      "不对，因为它有两个字母"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "判断标准只有一个：带不带等号。$x+y=5$ 有等号，在主张两边相等，是等式。代数式里没有等号。跟字母有几个无关。"
+  },
+  {
+    "ord": 15,
+    "type": "说理",
+    "prompt": "把 $x=-2$ 代入 $3x$，为什么要写成 $3\\times(-2)$？",
+    "answer_mode": "choice",
+    "options": [
+      "因为 $x$ 这个位置代表一个数，把 $-2$ 整个括起来才不会把乘法变成减法",
+      "因为负数一定要写括号，正数就不用",
+      "因为加了括号能让结果变大",
+      "因为不写括号就算不出结果"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "$3x$ 是「$3$ 乘 $x$」，$x$ 现在是 $-2$，括号保护「代进去的是一个数 $-2$、且和 $3$ 是乘法」。若写成 $3-2$ 就变减法算出 $1$，错了；正确是 $3\\times(-2)=-6$。"
+  },
+  {
+    "ord": 16,
+    "type": "说理",
+    "prompt": "为什么 $x+y=5$ 不是代数式？",
+    "answer_mode": "choice",
+    "options": [
+      "因为它带等号，在主张两边相等，是等式",
+      "因为它有两个字母，代数式只能有一个字母",
+      "因为它的值是 $5$，太具体了",
+      "因为字母不能相加"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "代数式是「能算出数、不带等号」的写法，它自己不主张任何相等关系。$x+y=5$ 带等号，是等式。字母可以有很多个，也可以相加，这些都不是原因。"
+  },
+  {
+    "ord": 17,
+    "type": "说理",
+    "prompt": "为什么单独一个字母 $x$ 也算代数式？",
+    "answer_mode": "choice",
+    "options": [
+      "因为代数式是「能算出数、不带等号」的写法，$x$ 就是最简单的一种",
+      "因为 $x$ 后面其实省略了 $+0$",
+      "因为所有字母都等于某个固定的数",
+      "因为 $x$ 其实就等于 $1$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "字母本身代表一类数，给它一个值就能算出数，而且没有等号——这正符合代数式的标准。它不需要补 $+0$，字母也不等于某个固定的数。"
+  },
+  {
+    "ord": 18,
+    "type": "辨认",
+    "prompt": "$5m$ 表示的意思是？",
+    "answer_mode": "choice",
+    "options": [
+      "$m$ 的 $5$ 倍，即 $5\\times m$",
+      "$5$ 与 $m$ 相加",
+      "一个叫「$5m$」的新数",
+      "$m$ 除以 $5$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "用字母表示数",
+    "answer": "用字母表示数时，$5m$ 是省略乘号的 $5\\times m$，表示 $m$ 的 $5$ 倍。它不是 $5+m$，也不是一个新符号，更不是除法。"
+  },
+  {
+    "ord": 19,
+    "type": "表示",
+    "prompt": "用字母表示「任意一个数 $a$ 的相反数」，应写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$-a$",
+      "$a$",
+      "$\\dfrac{1}{a}$",
+      "$a-1$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "用字母表示数",
+    "answer": "一个数的相反数是在它前面添负号，所以 $a$ 的相反数是 $-a$。$\\dfrac{1}{a}$ 是倒数，$a-1$ 是「减 $1$」，都不是相反数。"
+  },
+  {
+    "ord": 20,
+    "type": "说理",
+    "prompt": "用字母表示数时，字母 $x$ 可以代表负数吗？",
+    "answer_mode": "choice",
+    "options": [
+      "可以，字母代表「一类数」，负数也在其中",
+      "不可以，字母只能代表正整数",
+      "不可以，字母只能代表 $0$ 以上的数",
+      "只有写了负号的字母才可以"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "复习",
+    "review_of": "字母",
+    "answer": "字母是给「一类数」占的位置，这类数里既有正数、也有 $0$ 和负数。所以 $x$ 完全可以代表负数，不需要额外写负号来「允许」。"
+  }
+]

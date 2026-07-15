@@ -1,0 +1,55 @@
+{
+  "motivation": [
+    {
+      "mode": "choice",
+      "prompt": "买书每本 $5$ 元、再加 $2$ 元邮费，买 $x$ 本一共要付多少元？",
+      "options": ["$5x+2$", "$5x-2$", "$2x+5$", "$5+2$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "买书这件事里，除了每本的书钱，还要再加几元邮费？",
+      "accept": ["2", "2元", "两元", "2 元"]
+    }
+  ],
+  "explain": [
+    {
+      "mode": "choice",
+      "prompt": "$x+y=5$ 带了等号，它属于下面哪一种？",
+      "options": ["等式", "代数式", "单独一个字母", "分数线"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "按本卡的例子，当 $x=3$ 时，$5x+2$ 等于多少？",
+      "accept": ["17"]
+    }
+  ],
+  "examples": [
+    {
+      "mode": "choice",
+      "prompt": "例 2 中，当 $x=4$ 时，$3x+1$ 的值是多少？",
+      "options": ["$13$", "$12$", "$11$", "$7$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "例 3 中，当 $x=-2$ 时，$2x-1$ 的值是多少？",
+      "accept": ["-5", "−5"]
+    }
+  ],
+  "connections": [
+    {
+      "mode": "choice",
+      "prompt": "本卡「往后看」说后面会进一步研究什么？",
+      "options": ["代数式的结构", "用字母表示数", "有理数运算", "方程的解法"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "本卡说求值的第二步（代入之后）其实就是在做什么？",
+      "options": ["有理数的加减乘除", "解一个方程", "画函数图象", "无理数的运算"],
+      "correct_index": 0
+    }
+  ]
+}

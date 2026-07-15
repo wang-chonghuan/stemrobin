@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.4 项的身份证：系数与次数 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 概念课</div>
+    <h1 class="sr-l-title">2.4 项的身份证：系数与次数</h1>
+    <div class="sr-l-concept">每个项都有一张身份证：数字因数（连同符号）叫系数，字母因数的总个数叫次数。再数一数项的个数，就能给整个式子起名：单项式、多项式，合起来统称整式。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">新词：系数</span>
+      <span class="sr-chip">新词：次数</span>
+      <span class="sr-chip">新词：单项式</span>
+      <span class="sr-chip">新词：多项式</span>
+      <span class="sr-chip">新词：整式</span>
+      <span class="sr-chip green">前置：项 · 因数 · 乘法层</span>
+    </div>
+  </header>
+
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要这个名字</span></div>
+    <p>上一课我们学会了把式子切开：按加减切出<b>项</b>，再打开每个项的<b>乘法层</b>，里面是一串<b>因数</b>相乘。现在来一个新麻烦。假设你在电话里向同学描述 $-3x^2y$ 这个项，只能这样说：「负三，乘一个 $x$，再乘一个 $x$，再乘一个 $y$ 的那个项」——啰嗦，而且一不小心就把负号说丢了。</p>
+    <p>想想我们平时怎么介绍一个人：不用从头描述长相，报身份证上的几条关键信息就够了。项也一样。仔细看，一个项其实只有两条关键信息：<b>前面的数字是多少（带不带负号）</b>，以及<b>字母因数一共有几个</b>。把这两条信息各起一个正式的名字，一句话就能说清任何一个项。</p>
+    <p>还有第二个麻烦：有的代数式只有一个项（比如 $3xy$），有的是好几个项排成一串（比如 $2a^2-3a+7$）。「只有一项的式子」「有好几项的式子」也该有自己的名字——不然连「这道题给的是什么式子」都说不出口。这一课就是来发这些名字的。</p>
+  </section>
+
+  <section data-sr-section="model">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">建立概念</span></div>
+    <p>还记得吗：式子是一棵两层的树——加法层上站着一个个项，打开任何一个项，里面是乘法层，一串因数在相乘。项的两条身份信息，都写在它的乘法层里。</p>
+
+    <h3>身份证第一栏：系数</h3>
+    <p>打开一个项的乘法层，里面的因数分两种：<b>数字因数</b>和<b>字母因数</b>。数字因数<b>连同它的符号</b>，叫这个项的<span class="sr-term">系数</span>。比如 $-3x^2y$ 打开是 $(-3)\cdot x\cdot x\cdot y$，数字因数是 $-3$，所以系数是 $-3$——负号是系数的一部分，不许弄丢。</p>
+
+    <div class="sr-note">
+      <b>记号提醒：$x^2$ 是什么意思？</b>　$x^2$ 读作「$x$ 的平方」，它只是 $x\cdot x$ 的缩写——同一个字母连乘两次，就把次数写在右上角，这个小数字叫指数。同样 $y^3=y\cdot y\cdot y$。所以在乘法层里，$x^2$ 要打开成<b>两个</b>字母因数 $x$，$y^3$ 打开成<b>三个</b> $y$。本课只用到这一句话，正式的乘方课以后再上。
+    </div>
+
+    <h3>身份证第二栏：次数</h3>
+    <p>把一个项的字母因数<b>一个一个数出来</b>，总个数叫这个项的<span class="sr-term">次数</span>。$-3x^2y$ 打开后字母因数是 $x$、$x$、$y$，共 $3$ 个，所以次数是 $3$。注意：数的是<b>个数</b>，不是「最大的指数」；系数不参与数次数。</p>
+
+    <div class="sr-eg">
+      <span class="yes">$-3x^2y$ 的系数是 $-3$，次数是 $3$</span>
+      <span class="yes">$\frac{x}{2}=\frac{1}{2}\cdot x$，系数是 $\frac{1}{2}$，次数是 $1$</span>
+      <span class="no">说「$-5x$ 的系数是 $5$」——把符号弄丢了</span>
+      <span class="no">说「$x^2y$ 的次数是 $2$」——只看了指数，没数个数</span>
+    </div>
+
+    <figure class="sr-fig">
+      <svg viewBox="0 0 640 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="项 -3x²y 的身份证：系数与次数">
+        <!-- top: the term -->
+        <rect x="245" y="18" width="150" height="40" rx="8" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="1.5"/>
+        <text x="320" y="44" text-anchor="middle" font-size="19" font-weight="700" fill="#0A5E76" font-family="JetBrains Mono, monospace">−3x²y</text>
+        <text x="418" y="44" font-size="12" fill="#8A9795">…一个项</text>
+        <!-- arrows down -->
+        <line x1="320" y1="58" x2="110" y2="118" stroke="#8A9795" stroke-width="1.4"/>
+        <line x1="320" y1="58" x2="250" y2="118" stroke="#8A9795" stroke-width="1.4"/>
+        <line x1="320" y1="58" x2="390" y2="118" stroke="#8A9795" stroke-width="1.4"/>
+        <line x1="320" y1="58" x2="530" y2="118" stroke="#8A9795" stroke-width="1.4"/>
+        <text x="320" y="95" text-anchor="middle" font-size="12" fill="#4C5A58">打开乘法层（x² = x·x）</text>
+        <!-- factor boxes -->
+        <rect x="72" y="120" width="76" height="38" rx="8" fill="#FFFFFF" stroke="#0E7C9B" stroke-width="1.5"/>
+        <text x="110" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#0A5E76" font-family="JetBrains Mono, monospace">−3</text>
+        <rect x="212" y="120" width="76" height="38" rx="8" fill="#FFFFFF" stroke="#15A06A" stroke-width="1.5"/>
+        <text x="250" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#0F7D52" font-family="JetBrains Mono, monospace">x</text>
+        <rect x="352" y="120" width="76" height="38" rx="8" fill="#FFFFFF" stroke="#15A06A" stroke-width="1.5"/>
+        <text x="390" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#0F7D52" font-family="JetBrains Mono, monospace">x</text>
+        <rect x="492" y="120" width="76" height="38" rx="8" fill="#FFFFFF" stroke="#15A06A" stroke-width="1.5"/>
+        <text x="530" y="145" text-anchor="middle" font-size="17" font-weight="700" fill="#0F7D52" font-family="JetBrains Mono, monospace">y</text>
+        <!-- multiplication dots between boxes -->
+        <text x="180" y="145" text-anchor="middle" font-size="16" fill="#8A9795">·</text>
+        <text x="320" y="145" text-anchor="middle" font-size="16" fill="#8A9795">·</text>
+        <text x="460" y="145" text-anchor="middle" font-size="16" fill="#8A9795">·</text>
+        <!-- label: numeric factor -> coefficient -->
+        <line x1="110" y1="158" x2="110" y2="196" stroke="#0E7C9B" stroke-width="1.4"/>
+        <rect x="34" y="198" width="152" height="52" rx="8" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="1.2"/>
+        <text x="110" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#0A5E76">数字因数（带符号）</text>
+        <text x="110" y="240" text-anchor="middle" font-size="14" font-weight="700" fill="#0A5E76">系数 = −3</text>
+        <!-- brace over letter factors -->
+        <path d="M 212 168 L 212 178 L 568 178 L 568 168" fill="none" stroke="#15A06A" stroke-width="1.4"/>
+        <line x1="390" y1="178" x2="390" y2="196" stroke="#15A06A" stroke-width="1.4"/>
+        <rect x="300" y="198" width="180" height="52" rx="8" fill="#E4F6EE" stroke="#15A06A" stroke-width="1.2"/>
+        <text x="390" y="220" text-anchor="middle" font-size="13" font-weight="700" fill="#0F7D52">字母因数：x、x、y 共 3 个</text>
+        <text x="390" y="240" text-anchor="middle" font-size="14" font-weight="700" fill="#0F7D52">次数 = 3</text>
+        <!-- identity card summary -->
+        <rect x="130" y="272" width="380" height="34" rx="8" fill="#F5F9F9" stroke="#E3EAE9"/>
+        <text x="320" y="294" text-anchor="middle" font-size="13.5" font-weight="700" fill="#15201F">−3x²y 的身份证：系数 −3 ｜ 次数 3</text>
+      </svg>
+      <figcaption>项 $-3x^2y$ 的身份证：乘法层里，数字因数（带符号）是系数，字母因数的总个数是次数。</figcaption>
+    </figure>
+
+    <h3>再给整个式子起名：数项的个数</h3>
+    <p>项有了身份证，整个式子也按「有几个项」领名字。只有<b>一个项</b>的代数式叫<span class="sr-term">单项式</span>——它是数与字母乘出来的一个项，比如 $3xy$、$-3x^2y$、$\frac{x}{2}$；单独一个数（如 $7$）或单独一个字母（如 $m$）也算，后面会细说。<b>几个单项式用加减连成一串</b>（不止一项），就叫<span class="sr-term">多项式</span>，比如 $2a^2-3a+7$、$x-y$。单项式和多项式是一家人，合起来统称<span class="sr-term">整式</span>。</p>
+    <p>多项式还有两个方便的叫法：有几个项就叫「几项式」；它里面<b>次数最高的那个项</b>的次数，就叫这个多项式的次数。比如 $2a^2-3a+7$ 有三项，次数最高的项是 $2a^2$（次数 $2$），所以它是<b>二次三项式</b>。</p>
+
+    <div class="sr-eg">
+      <span class="yes">$3xy$ —— 一个项，单项式</span>
+      <span class="yes">$x-1$ —— 两项，多项式（一次二项式）</span>
+      <span class="yes">$7$ —— 单独一个数，也是单项式</span>
+      <span class="no">$\frac{2}{x}$ —— 字母站在分母里，不是整式</span>
+    </div>
+  </section>
+
+  <section data-sr-section="anatomy">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">拆给你看</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　给 $-3x^2y$ 办身份证</div>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>打开乘法层，把 $x^2$ 还原成 $x\cdot x$：得到 $(-3)\cdot x\cdot x\cdot y$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>找数字因数，连同符号：$-3$。<b>系数是 $-3$</b>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>数字母因数：$x$、$x$、$y$，共 $3$ 个。<b>次数是 $3$</b>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">④</span><span>整个式子只有这一个项，所以它是一个<b>单项式</b>。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2　给 $2a^2-3a+7$ 的每一项办身份证</div>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>先在加法层切项（符号跟着项走）：$2a^2$、$-3a$、$+7$，共三项。</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>第一项 $2a^2=2\cdot a\cdot a$：系数 $2$，字母因数 $a$、$a$ 共 $2$ 个，次数 $2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>第二项 $-3a=(-3)\cdot a$：系数 $-3$（负号带上），次数 $1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">④</span><span>第三项 $7$ 是常数项：它就是一个数字，没有字母因数，次数 $0$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">⑤</span><span>三个项 → 三项式；次数最高的项是 $2a^2$（次数 $2$）→ 这是一个<b>二次三项式</b>，属于多项式。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　分数长相的项：$\dfrac{x}{2}$</div>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>分数线就是除号：$\frac{x}{2}$ 是 $x\div 2$。而除以 $2$ 就是乘 $\frac{1}{2}$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>改写成乘法层的样子：$\frac{x}{2}=\frac{1}{2}\cdot x$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>数字因数是 $\frac{1}{2}$ → <b>系数是 $\frac{1}{2}$</b>；字母因数只有一个 $x$ → <b>次数是 $1$</b>。它是单项式。</span></div>
+    </div>
+  </section>
+
+  <section data-sr-section="boundary">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">边界与陷阱</span></div>
+
+    <h3>① 看不见的 $1$ 和 $-1$</h3>
+    <p>$x$ 前面好像什么数字都没有？其实藏着一个：$x=1\cdot x$，所以 <b>$x$ 的系数是 $1$</b>。同样 $-x=(-1)\cdot x$，所以 <b>$-x$ 的系数是 $-1$</b>——不是 $1$，也不是「没有系数」。</p>
+    <div class="sr-pitfall"><b>陷阱：</b>「$-x$ 的系数是 $1$，负号另算。」错。项带着自己的符号，打开 $-x$ 的乘法层，数字因数就是 $-1$。要是系数真是 $1$，那 $-x$ 和 $x$ 就成了同一个项，显然不对。</div>
+
+    <h3>② $\dfrac{x}{2}$ 的系数是 $\dfrac{1}{2}$</h3>
+    <p>除以 $2$ 就是乘 $\frac{1}{2}$：$\frac{x}{2}=\frac{1}{2}\cdot x$。所以系数是 $\frac{1}{2}$，不是 $2$。系数可以是分数——身份证第一栏不挑数字的长相。</p>
+
+    <h3>③ 次数 $0$ 与次数 $1$</h3>
+    <p>常数项 $7$ 打开乘法层，里面一个字母因数都没有：$0$ 个字母因数，所以<b>常数项的次数是 $0$</b>。单独的 $x$ 有一个字母因数，所以<b>次数是 $1$</b>（系数是那个看不见的 $1$）。</p>
+
+    <h3>④ $x^2y$ 的次数是 $3$，不是 $2$</h3>
+    <div class="sr-pitfall"><b>陷阱：</b>看到 $x^2y$ 就报「次数 $2$」——这是把「最大的指数」当成了次数。次数数的是字母因数的<b>总个数</b>：$x^2y=x\cdot x\cdot y$，$3$ 个字母因数，次数是 $3$。指数只是「同一个字母连乘了几次」的缩写记录，数次数前要把它打开。</div>
+
+    <h3>⑤ 单独一个数、单独一个字母，也是单项式</h3>
+    <p>$7$ 自己就是一个项（常数项），所以 $7$ 是单项式：系数 $7$，次数 $0$。$m$ 自己也是一个项，所以 $m$ 是单项式：系数 $1$，次数 $1$。身份证照发，一栏都不缺。</p>
+
+    <h3>⑥ $\dfrac{x}{2}$ 进得了整式的家门，$\dfrac{2}{x}$ 进不了</h3>
+    <div class="sr-pitfall"><b>陷阱：</b>$\frac{x}{2}$ 和 $\frac{2}{x}$ 长得像双胞胎，身份却完全不同。$\frac{x}{2}$ 的字母在分数线<b>上面</b>，等于 $\frac{1}{2}\cdot x$，是系数为 $\frac{1}{2}$ 的单项式；$\frac{2}{x}$ 的字母在分数线<b>下面</b>，是 $2\div x$——「除以字母」这件事，单项式和多项式都做不出来，所以 $\frac{2}{x}$ <b>不是整式</b>。判断口诀：看字母站在分数线的哪一边。</div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>向后看 · 第 3 课「式子的两层：项与因数」</b>——系数和次数都是在乘法层里数出来的：数字因数（带符号）是系数，字母因数的个数是次数。没有「项」和「因数」这两个名字，今天的身份证无处可发。</li>
+      <li><b>向后看 · 第 2 课「代数式与求值」</b>——单项式、多项式都是代数式家族的成员；$\frac{x}{2}$ 这种分数写法在那一课已经见过，今天只是给它填了身份证。</li>
+      <li><b>记号债</b>——$x^2$ 这样的指数记号，本课只借用了一句话（$x^2=x\cdot x$）；正式的乘方课以后会补上。</li>
+      <li><b>向前看 · 第 5 课</b>——很快要回答「哪些项可以并成一个项」，判断依据恰好写在身份证上：看它们的字母因数是不是同一套。</li>
+      <li><b>向前看 · 第 7 课</b>——把两个整式相加、相减，「整式」这个名字从此天天用。</li>
+    </ul>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">概念口试</span></div>
+    <p>指着问，张口答。答案默认隐藏，由家长核对。</p>
+    <ol class="sr-oral">
+      <li>$-5x$ 的系数是多少？
+        <div class="sr-answer">$-5$。负号跟着项走，是系数的一部分——不是 $5$。</div>
+      </li>
+      <li>$x^2y$ 的次数是多少？为什么不是 $2$？
+        <div class="sr-answer">$3$。$x^2=x\cdot x$，字母因数是 $x$、$x$、$y$ 共 $3$ 个。$2$ 只是指数，不是字母因数的总个数。</div>
+      </li>
+      <li>单独一个 $x$：系数是多少？次数是多少？
+        <div class="sr-answer">系数是 $1$（看不见的 $1$：$x=1\cdot x$），次数是 $1$（一个字母因数）。</div>
+      </li>
+      <li>常数项 $-8$ 的次数是多少？
+        <div class="sr-answer">$0$。$-8$ 里没有任何字母因数，$0$ 个字母因数，次数就是 $0$。</div>
+      </li>
+      <li>$3ab-4$ 是单项式还是多项式？它是几次几项式？
+        <div class="sr-answer">多项式：有 $3ab$ 和 $-4$ 两项。次数最高的项 $3ab$ 次数是 $2$，所以它是二次二项式。</div>
+      </li>
+      <li>$\dfrac{x}{2}$ 和 $\dfrac{2}{x}$，哪个是整式？为什么？
+        <div class="sr-answer">$\frac{x}{2}$ 是整式（单项式，系数 $\frac{1}{2}$，次数 $1$），因为字母在分数线上面；$\frac{2}{x}$ 是除以字母，字母站进了分母，不是整式。</div>
+      </li>
+    </ol>
+  </section>
+
+
+  <section data-sr-section="practice">
+    <style>
+      /* injected with the deck — screen extras + print layout (self-contained) */
+      ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+      ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+      ol.sr-practice > li:first-child { border-top:0; }
+      ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+      .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+      .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+      .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
+      .sr-p-opt { font-size: 14px; }
+      .sr-p-opt b { font-family: var(--sr-mono); font-weight: 600; color: var(--sr-ink-soft); margin-right: 3px; }
+      @media print {
+        section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+        ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; break-inside: avoid; }
+        ol.sr-practice > li::before { top: 16px; }
+      }
+    </style>
+    <div class="sr-sec-label"><span class="sr-sec-num">7</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">可以边读边想，也可以打印出来用笔写。做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> $-x$ 的系数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -1</span><span class="sr-p-opt"><b>B.</b> 1</span><span class="sr-p-opt"><b>C.</b> 0</span><span class="sr-p-opt"><b>D.</b> -2</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $x$ 的系数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 0</span><span class="sr-p-opt"><b>B.</b> 1</span><span class="sr-p-opt"><b>C.</b> -1</span><span class="sr-p-opt"><b>D.</b> 2</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $x^2y$ 的次数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 3</span><span class="sr-p-opt"><b>C.</b> 4</span><span class="sr-p-opt"><b>D.</b> 1</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $\frac{x}{2}$ 的系数是？（分数请用 1/2 这样输入）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 1</span><span class="sr-p-opt"><b>C.</b> 1/2</span><span class="sr-p-opt"><b>D.</b> 0</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $2a^2-3a+7$ 的常数项是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 7</span><span class="sr-p-opt"><b>B.</b> -3</span><span class="sr-p-opt"><b>C.</b> 2</span><span class="sr-p-opt"><b>D.</b> 12</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 常数项 $-6$ 的次数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 6</span><span class="sr-p-opt"><b>B.</b> 0</span><span class="sr-p-opt"><b>C.</b> 1</span><span class="sr-p-opt"><b>D.</b> -6</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 单独一个字母 $m$ 是单项式吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不是——单项式必须有数字和字母相乘</span><span class="sr-p-opt"><b>B.</b> 是——它是系数为 1、次数为 1 的单项式</span><span class="sr-p-opt"><b>C.</b> 不是——m 只是一个字母，算不上式子</span><span class="sr-p-opt"><b>D.</b> 是——但它没有系数，只有次数 1</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $3ab-4$ 是单项式还是多项式？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 单项式——它就是一个式子</span><span class="sr-p-opt"><b>B.</b> 多项式——它有 $3ab$ 和 $-4$ 两项</span><span class="sr-p-opt"><b>C.</b> 多项式——它有 $3$、$ab$、$-4$ 三项</span><span class="sr-p-opt"><b>D.</b> 都不是——它含有减号</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $\frac{2}{x}$ 是整式吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是——它只有一项，是单项式</span><span class="sr-p-opt"><b>B.</b> 不是——字母 x 站在分母里</span><span class="sr-p-opt"><b>C.</b> 是——它和 x/2 一样是单项式</span><span class="sr-p-opt"><b>D.</b> 不是——它含有除号</span></div></li>
+      <li><span class="sr-ptype">操作</span> $-4x^2y^3$ 的次数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5</span><span class="sr-p-opt"><b>B.</b> 3</span><span class="sr-p-opt"><b>C.</b> 6</span><span class="sr-p-opt"><b>D.</b> 9</span></div></li>
+      <li><span class="sr-ptype">反推</span> 一个单项式：系数是 $-2$，字母因数是两个 $x$。写出这个单项式（指数用 x^2 这样输入）。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2x^2</span><span class="sr-p-opt"><b>B.</b> -2x^2</span><span class="sr-p-opt"><b>C.</b> -2x</span><span class="sr-p-opt"><b>D.</b> 4x^2</span></div></li>
+      <li><span class="sr-ptype">操作</span> 多项式 $x^3-2x+1$ 是几次几项式？（例如输入：二次三项式）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 三次三项式</span><span class="sr-p-opt"><b>B.</b> 三次两项式</span><span class="sr-p-opt"><b>C.</b> 二次三项式</span><span class="sr-p-opt"><b>D.</b> 四次三项式</span></div></li>
+      <li><span class="sr-ptype">操作</span> 把 $2a^2-3a+7$ 每一项的次数按从左到右写出来，用逗号隔开（例：1,0,2）。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2,1,0</span><span class="sr-p-opt"><b>B.</b> 2,1,1</span><span class="sr-p-opt"><b>C.</b> 3,1,0</span><span class="sr-p-opt"><b>D.</b> 2,1,7</span></div></li>
+      <li><span class="sr-ptype">操作</span> 求多项式 $3x^2y-xy+6$ 的次数。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> 2</span><span class="sr-p-opt"><b>C.</b> 5</span><span class="sr-p-opt"><b>D.</b> 6</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明说：「$x^2y$ 的次数是 2，因为最大的指数是 2。」他错在哪里？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 次数应该是 1，因为 $x^2y$ 只是一个项</span><span class="sr-p-opt"><b>B.</b> 次数应该是 4，系数 1 也要数进去</span><span class="sr-p-opt"><b>C.</b> 次数不是看最大的指数，而是数字母因数的总个数：$x$、$x$、$y$ 共 3 个，次数是 3</span><span class="sr-p-opt"><b>D.</b> 小明说得对，次数就看最大的指数</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小红说：「$-5x$ 的系数是 5，负号是减法记号，不属于这个项。」哪句话指出了她的错误？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 她说得对，系数只看数字大小</span><span class="sr-p-opt"><b>B.</b> $-5x$ 的系数应该是 $x$</span><span class="sr-p-opt"><b>C.</b> $-5x$ 的系数应该是 $-1$</span><span class="sr-p-opt"><b>D.</b> 负号跟着项走：$-5x=(-5)\cdot x$，数字因数是 $-5$，系数就是 $-5$</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么 $-x$ 的系数是 $-1$ 而不是 $1$？给不信的同学讲一遍。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 系数只看数字，不带符号</span><span class="sr-p-opt"><b>B.</b> 项带着自己的符号走</span><span class="sr-p-opt"><b>C.</b> $-x$ 前面没有数字，系数取 1</span><span class="sr-p-opt"><b>D.</b> 负号是减号，不算进这个项</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么常数项 $7$ 的次数是 $0$？说说道理。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $7$ 的次数就是它的值 $7$</span><span class="sr-p-opt"><b>B.</b> 常数项的次数都算作 $1$</span><span class="sr-p-opt"><b>C.</b> 次数的定义是「字母因数的总个数」</span><span class="sr-p-opt"><b>D.</b> $7$ 没有字母，所以没有次数，不能写 0</span></div></li>
+      <li><span class="sr-ptype">说理</span> $\frac{x}{2}$ 和 $\frac{2}{x}$ 长得像双胞胎，为什么前一个是单项式，后一个连整式都不是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $\frac{x}{2}$ 和 $\frac{2}{x}$ 只是上下颠倒，其实是一样的</span><span class="sr-p-opt"><b>B.</b> 有分数线的都不是整式，两个都不是</span><span class="sr-p-opt"><b>C.</b> 能写成分数的都算单项式，两个都是</span><span class="sr-p-opt"><b>D.</b> 看字母站在分数线的哪一边</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $3x-5+2y$ 的第二项是？（带符号）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> 5</span><span class="sr-p-opt"><b>C.</b> -5</span><span class="sr-p-opt"><b>D.</b> 2</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 在 $5(x+2)$ 里，$(x+2)$ 是什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 项——它被加号和别的部分隔开</span><span class="sr-p-opt"><b>B.</b> 系数——它和 5 相乘</span><span class="sr-p-opt"><b>C.</b> 因式——乘法层里带字母的因数</span><span class="sr-p-opt"><b>D.</b> 常数项——它的值固定不变</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 当 $a=3$ 时，代数式 $2a-1$ 的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5</span><span class="sr-p-opt"><b>B.</b> 6</span><span class="sr-p-opt"><b>C.</b> 4</span><span class="sr-p-opt"><b>D.</b> 7</span></div></li>
+      <li><span class="sr-ptype">表示</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 一支笔 $x$ 元，买 5 支共多少元？用代数式表示（乘号省略）。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5+x</span><span class="sr-p-opt"><b>B.</b> 5x</span><span class="sr-p-opt"><b>C.</b> x5</span><span class="sr-p-opt"><b>D.</b> x^5</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>
