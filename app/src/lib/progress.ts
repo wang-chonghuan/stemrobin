@@ -81,7 +81,10 @@ export type RecordAttemptResult = { ok: true } | { error: string }
 
 // Record one graded practice attempt for the logged-in learner and prune that
 // (user, lesson) group to the latest TWO attempts. `score` is a percent in
-// [0,100]. Writes nothing when logged out.
+// [0,100]. Writes nothing when logged out. The single source of the practice
+// score-writing rule; the quiz attempt-end path (quiz.ts endAttempt) invokes
+// this same server fn so the recorded percent — the one the scorecard shows —
+// drives getProgress's practice signal (STEMROBIN-30).
 export const recordPracticeAttempt = createServerFn({ method: 'POST' })
   .validator((d: { lessonId: string; score: number }) => d)
   .handler(async ({ data }): Promise<RecordAttemptResult> => {

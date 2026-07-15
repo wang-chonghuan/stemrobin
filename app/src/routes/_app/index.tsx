@@ -3,6 +3,7 @@ import { Atom, BookOpen, FileText, Menu, Rocket } from 'lucide-react'
 
 import { getAvailableLessons } from '~/lib/curriculum'
 import { listAvailableLessonIds } from '~/lib/lessons'
+import { getProgress } from '~/lib/progress'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
@@ -12,13 +13,23 @@ export const Route = createFileRoute('/_app/')({
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
     locale: await getLocale(),
+    progress: await getProgress(),
   }),
 })
 
 function Overview() {
-  const { lessonIds, locale } = Route.useLoaderData()
+  const { lessonIds, locale, progress } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const availableLessons = getAvailableLessons(lessonIds, locale)
+  // Real learner progress (STEMROBIN-30): completed points over total points
+  // (2 × lessons). Reading points (all cards read) + practice points (latest
+  // attempt >= 80). Practice points can regress on a later low attempt.
+  const readingDone = progress.lessons.filter((l) => l.readingComplete).length
+  const practiceDone = progress.lessons.filter((l) => l.practiceComplete).length
+  const pctWidth =
+    progress.totalPoints > 0
+      ? (progress.completedPoints / progress.totalPoints) * 100
+      : 0
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
@@ -35,29 +46,26 @@ function Overview() {
       </div>
 
       <div className="sr-d-scroll">
-        {/* Progress (mockup — wire to sr_answer_events / sr_progress later) */}
+        {/* Progress — real, from getProgress() (STEMROBIN-30) */}
         <section className="sr-progress">
           <div className="sr-progress-top">
             <span className="sr-progress-title">{t(locale, 'ov.progress.title')}</span>
             <span className="sr-progress-pct">
-              8<span> {t(locale, 'ov.progress.unit')}</span>
+              {progress.completedPoints}
+              <span> / {progress.totalPoints} {t(locale, 'ov.progress.unit')}</span>
             </span>
           </div>
           <div className="sr-progress-bar">
-            <span style={{ width: '8.3%' }} />
+            <span style={{ width: `${pctWidth}%` }} />
           </div>
           <div className="sr-progress-stats">
             <div className="sr-progress-stat">
-              <b>8</b>
+              <b>{readingDone}</b>
               <span>{t(locale, 'ov.stat.learned')}</span>
             </div>
             <div className="sr-progress-stat">
-              <b>104</b>
+              <b>{practiceDone}</b>
               <span>{t(locale, 'ov.stat.practiced')}</span>
-            </div>
-            <div className="sr-progress-stat">
-              <b>5</b>
-              <span>{t(locale, 'ov.stat.streak')}</span>
             </div>
           </div>
         </section>
