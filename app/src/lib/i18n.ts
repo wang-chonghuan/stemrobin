@@ -49,6 +49,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'read.mode.aria': '阅读方式',
     'read.mode.cards': '逐卡精读',
     'read.mode.fulltext': '全文速览',
+    'read.exercises': '课后题',
     // card reader
     'card.progress': '第 {num} / {total} 张卡片',
     'card.nav': '卡片导航',
@@ -137,6 +138,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'read.mode.aria': 'Reading mode',
     'read.mode.cards': 'Close reading',
     'read.mode.fulltext': 'Full text',
+    'read.exercises': 'Exercises',
     'card.progress': 'Card {num} / {total}',
     'card.nav': 'Card navigation',
     'card.noRead': 'This card has no read-check — go on to the next.',

@@ -210,7 +210,10 @@ export function CardReader({
   return (
     <div className="sr-card-reader">
       <div className="sr-card-head">
-        <div className="sr-card-lesson">{label}</div>
+        <div className="sr-card-titles">
+          <div className="sr-card-lesson">{label}</div>
+          {card.name && <div className="sr-card-section">{card.name}</div>}
+        </div>
         <div className="sr-card-progress">
           {t(locale, 'card.progress', { num: card.num, total })}
         </div>

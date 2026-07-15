@@ -26,6 +26,10 @@ export const Route = createFileRoute('/_app/lesson/$id')({
     return {
       id: params.id,
       reading,
+      // Browser-safe (KEY-free) 课后题 for the 全文速览 display-only list. When there
+      // is a card tree we always fetch them so 速览 can list the exercises; the
+      // practice QuizDrawer keeps its own independent fetch (untouched).
+      questions: reading ? await getLessonQuestions({ data: params.id }) : [],
       // Full-lesson html only needed as a fallback when there is no card tree.
       html: reading ? null : await getLessonHtml({ data: params.id }),
       lessonIds: await listAvailableLessonIds(),
@@ -35,7 +39,7 @@ export const Route = createFileRoute('/_app/lesson/$id')({
 })
 
 function LessonView() {
-  const { id, reading, html, lessonIds, locale } = Route.useLoaderData()
+  const { id, reading, questions, html, lessonIds, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const fulltextRef = useRef<HTMLIFrameElement>(null)
@@ -124,7 +128,11 @@ function LessonView() {
             // iframe. Mounting no CardReader = firing no recordReadCheck = no 进度.
             <LessonFrame
               frameRef={fulltextRef}
-              html={buildFullTextHtml(reading.head, reading.cards, locale === 'en' ? 'en' : 'zh-CN')}
+              html={buildFullTextHtml(reading.head, reading.cards, locale === 'en' ? 'en' : 'zh-CN', {
+                title: label,
+                questions,
+                exercisesLabel: t(locale, 'read.exercises'),
+              })}
               title={label}
             />
           ) : (

@@ -9,6 +9,7 @@ const content = {
     {
       id: 'l-motivation',
       num: 1,
+      name: '为什么学这个',
       anchor: 'motivation',
       rev: 1,
       body: [
@@ -32,7 +33,7 @@ const content = {
         },
       ],
     },
-    { id: 'l-oral', num: 2, anchor: 'oral', rev: 1, body: [{ id: 'l-oral-b0', kind: 'prose', role: 'html' }] },
+    { id: 'l-oral', num: 2, name: '概念口试', anchor: 'oral', rev: 1, body: [{ id: 'l-oral-b0', kind: 'prose', role: 'html' }] },
   ],
 } as any
 
@@ -81,6 +82,11 @@ describe('projectCards — body assembly + order + numbering', () => {
     const cards = projectCards(content, overlay)
     expect(cards.map((c) => c.num)).toEqual([1, 2])
     expect(cards.map((c) => c.anchor)).toEqual(['motivation', 'oral'])
+  })
+
+  it('surfaces each card section name (中文名) from card.name (STEMROBIN-35)', () => {
+    const cards = projectCards(content, overlay)
+    expect(cards.map((c) => c.name)).toEqual(['为什么学这个', '概念口试'])
   })
 
   it('assembles prose → overlay text and svg → figure.sr-fig + figcaption in body order', () => {
