@@ -1,6 +1,8 @@
 # Capability 3 — Author one lesson's exercise deck
 
-From the ledger + the lesson's 課文, author the deck JSON the card-quiz renders. Read `references/common/lesson-contract.md` (Exercise deck) first — item shape, modes, composition rules, review tail.
+> **JSONB-first:** the deck output is the neutral `exercises` JSONB (`{ items: [ { id, ord, type, mode, layer, review_of, key, rev } ] }`) plus its prose in the same `zh` overlay used by cap2. Prompt/option text are overlay node-id refs; the answer KEY (`key.correct_index`/`key.accept`/`key.answer`) stays neutral-base only. Math decks stay choice-first, but the shape accepts `mode ∈ choice|input|work`. Validate with `node .agents/skills/sr-math-lesson/scripts/check-exercises.mjs --exercises <e.json> --overlay <o.json> --ledger <scratch-ledger.json> --id <id>` (the saver re-runs it against the DB ledger). The composition rules, distractor discipline, boundary mandate, and review tail below are unchanged.
+
+From the ledger (read from the DB) + the lesson's content, author the deck the card-quiz renders. Read `references/common/lesson-contract.md` (JSONB-first + Exercise deck) first — item shape, modes, composition rules, review tail.
 
 **Execution:** after gate-2 passes, the lesson author may author the deck, given the ledger JSON, the approved lesson HTML, and the contract. Multiple decks may run in parallel. The orchestrator runs `scripts/check-exercises.mjs`, then the fast gate-3, then persists via cap4. A separate semantic deck reviewer is not part of the default path.
 

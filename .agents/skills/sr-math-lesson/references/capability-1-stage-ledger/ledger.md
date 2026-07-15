@@ -1,6 +1,8 @@
 # Capability 1 — Author a stage's concept ledger
 
-Produce or revise `resources/content/math-ledger/stage-<n>.json` — the machine-readable outline that everything else builds on. Read `references/common/lesson-contract.md` (The ledger) first.
+> **JSONB-first:** the ledger's SSOT is the DB table `sr_content_ledger`, not a local file. Author/revise the ledger document as a scratch JSON (same schema shown below), validate closure with `check-ledger.mjs` and human-outline fidelity with `check-outline.mjs`, then persist it with `node .agents/skills/sr-math-lesson/scripts/save-ledger.mjs --ledger <scratch>/stage-<n>.json`. cap2/cap3 read the ledger back from the DB. (The legacy `resources/content/math-ledger/stage-*.json` files are historical inputs pending migration; they are no longer the generator's read source.)
+
+Produce or revise the stage ledger document — the machine-readable outline that everything else builds on. Read `references/common/lesson-contract.md` (The ledger) first.
 
 **Execution:** an independent subagent authors the ledger from the matching stage in `resources/content/course-gen-guide-math.md`, official guideline docs, the learner's known state, and the contract. The orchestrator runs `scripts/check-outline.mjs`, `scripts/check-ledger.mjs`, then gate-1, then commits the file.
 

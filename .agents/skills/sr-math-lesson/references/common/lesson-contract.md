@@ -6,9 +6,13 @@ Every capability and gate reads this. It encodes what we learned from the failur
 
 A lesson exists so the learner ends up with a **working mental model plus the language to talk about it** — not just the ability to reproduce a procedure. Success criterion per lesson: the learner can (a) point at any instance and *name its parts fast*, (b) *do* the move, (c) *say why* the move is legal, and (d) still do (a)–(c) two weeks later. The deck design (recall, boundary cases, review tail) exists to make (a) and (d) true; the 課文 design exists to make (b) and (c) true.
 
+## JSONB-first (content SSOT = the DB)
+
+This skill is **JSONB-first**: the DB JSONB is the single content authority (`ssot-schemas/db-schemas/stemrobin.sql`, the "JSONB CONTENT SSOT" block). Ledger → `sr_content_ledger`; card-tree content → `sr_lessons.content`; exercise deck → `sr_lessons.exercises`; learner-visible prose → the source-locale overlay `sr_lesson_i18n(locale='zh')`; `sr_lessons.html`/`pdf` are DERIVED caches rendered from the JSONB. The answer KEY (`correct_index`/`accept`/`answer`) is neutral-base-only and never enters the overlay or any rendered learner-visible HTML. The exact JSONB shapes are documented in `ssot-schemas/db-schemas/stemrobin.sql`; this contract file and the deterministic validators enforce them.
+
 ## The ledger (概念台账)
 
-`resources/content/course-gen-guide-math.md` is the human outline source for the stage's lesson titles, order, and instructional direction. `resources/content/math-ledger/stage-<n>.json` is the downstream machine-readable stage outline and SSOT for lesson metadata, terms, and review scheduling.
+`resources/content/course-gen-guide-math.md` is the human outline source for the stage's lesson titles, order, and instructional direction. The downstream machine-readable stage outline and SSOT for lesson metadata, terms, and review scheduling is the **ledger document persisted in `sr_content_ledger` (subject, stage, ledger, src_rev)** — read from the DB by cap2/cap3, never from a local `resources/content/math-ledger/*.json` file. (Author a ledger as a scratch JSON, validate with `check-ledger.mjs`, then `save-ledger.mjs` upserts it into the DB.)
 
 ```json
 {
@@ -109,9 +113,14 @@ A deck is a JSON array of 16–24 items. Item shape:
 - **Boundary mandate**: each ledger `boundary_cases` entry for this lesson appears in ≥1 item (gate-checked semantically).
 - Every item has a substantive `answer` that *teaches* (why, not just the value).
 
-## Ids & DB (persistence contract)
+## Ids & DB (JSONB-first persistence contract)
 
-- Lesson id `math-s<stage>-<order2>`; persistence ONLY via `scripts/save-lesson.mjs --ledger <stage-ledger>` (automatically validates human outline fidelity and ledger metadata, then validates 課文 anchors and deck shape/composition, renders print PDF via playwright-core when available, upserts).
-- Tables (SSOT `ssot-schemas/db-schemas/stemrobin.sql`): `sr_lessons(id, subject, stage, lesson_order, title, concept, html, pdf, status)`; `sr_questions(id, lesson_id, ord, type, prompt, answer_mode ∈ choice|work|input, options, correct_index, accept, layer, review_of, answer)`; `sr_answer_events(…, chosen, answer_text, …)`. Math generation writes `choice` only.
-- **Answer-key secrecy**: `accept`, `correct_index`, `answer` never reach the client before answering; the server (`recordAnswer`) normalizes and judges.
+- Lesson id `math-s<stage>-<order2>`; persistence ONLY via `scripts/save-lesson.mjs --id <id> --content <c.json> --exercises <e.json> --overlay <o.json>` (reads the ledger from `sr_content_ledger`, validates content+overlay via `check-content.mjs` and exercises+overlay via `check-exercises.mjs`, for real stages validates human-outline fidelity, renders HTML + print PDF FROM the JSONB via `render-lesson.mjs`, upserts). The ledger is persisted separately via `scripts/save-ledger.mjs`.
+- Tables (SSOT `ssot-schemas/db-schemas/stemrobin.sql`):
+  - `sr_content_ledger(subject, stage, ledger JSONB, src_rev)` — the concept ledger.
+  - `sr_lessons(id, subject, stage, lesson_order, title, concept, html, pdf, content JSONB, exercises JSONB, status)` — `content = {cards:[{id, num, anchor, rev, body[], read_check[]}]}` and `exercises = {items:[{id, ord, type, mode∈choice|input|work, layer, review_of, key, rev}]}` are the SSOT; `html`/`pdf` are derived caches.
+  - `sr_lesson_i18n(lesson_id, locale, overlay JSONB)` — per-locale prose overlay `{ node_id → { t, src_rev } }`. `zh` is the source overlay authored here; prose ONLY, never a KEY.
+  - `sr_content_answer_events(…)` — learner runtime table (not written by the generator).
+- Read-check items (`content.cards[].read_check[]`) use `mode ∈ choice|input`; exercise items use `mode ∈ choice|input|work`. The sample/current math pedagogy stays choice-first; the validators accept the full schema mode set.
+- **Answer-key secrecy**: `correct_index`/`accept`/`answer` live only in the neutral-base `key`; they never reach the `zh` overlay or any rendered learner-visible HTML. `check-content.mjs` enforces a KEY-free overlay; the renderer never emits `key`.
 - The app sidebar title/order outline (`app/src/lib/curriculum.ts`) must match the human course guide. Its clickable availability is automatically derived from ids present in `sr_lessons`; cap4 does not hand-edit catalog links.

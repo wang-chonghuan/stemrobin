@@ -1,84 +1,79 @@
 #!/usr/bin/env node
-// sr-math-lesson — deterministic deck validation: choice-only item shape,
-// composition rules (layer shares and review tail), and review_of
-// targets against the ledger. The gate judges meaning; this guards shape.
+// sr-math-lesson (JSONB-first) — deterministic validation of the exercise-deck
+// `exercises` JSONB ({ items: [...] }) + its prose overlay. Preserves the
+// historical deck composition rules (counts, layer shares, review tail,
+// review_of closure) on the new JSONB item shape documented in
+// ssot-schemas/db-schemas/stemrobin.sql. The gate judges meaning; this guards shape.
 //
-// Usage:
-//   node check-exercises.mjs <deck.json> --ledger resources/content/math-ledger/stage-2.json --id math-s2-05
+// Usage (CLI, ledger from a file for dev):
+//   node check-exercises.mjs --exercises e.json --overlay o.json --ledger stage.json --id math-s99-01
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
-
-function fail(msgs) {
-  console.error('✗ deck check failed:')
-  for (const m of msgs) console.error(`  - ${m}`)
-  process.exit(1)
-}
-
-const args = process.argv.slice(2)
-const deckPath = args[0]
-if (!deckPath) { console.error('usage: check-exercises.mjs <deck.json> --ledger <ledger.json> --id <lesson-id>'); process.exit(2) }
-const opt = {}
-for (let i = 1; i < args.length; i++) if (args[i].startsWith('--')) { opt[args[i].slice(2)] = args[i + 1]; i++ }
-if (!opt.ledger || !opt.id) fail(['--ledger and --id are required'])
-
-let deck, ledger
-try { deck = JSON.parse(readFileSync(resolve(process.cwd(), deckPath), 'utf8')) } catch (e) { fail([`deck JSON: ${e.message}`]) }
-try { ledger = JSON.parse(readFileSync(resolve(process.cwd(), opt.ledger), 'utf8')) } catch (e) { fail([`ledger JSON: ${e.message}`]) }
-
-const idx = ledger.lessons.findIndex((l) => l.id === opt.id)
-if (idx === -1) fail([`--id ${opt.id} not in ledger`])
-const earlierTerms = new Set(ledger.assumed.map((a) => a.concept))
-for (const l of ledger.lessons.slice(0, idx)) for (const t of l.introduces || []) earlierTerms.add(t.term)
-const isFirstLesson = idx === 0
+import { earlierTermsFor } from './ledger-core.mjs'
+import { validateItemKey } from './check-content.mjs'
 
 const LAYERS = ['指认', '操作', '辨错', '说理', '复习']
 const TYPES = ['辨认', '表示', '操作', '反推', '辨错', '说理']
-const problems = []
 
-if (!Array.isArray(deck)) fail(['deck must be a JSON array'])
-if (deck.length < 16 || deck.length > 24) problems.push(`deck must have 16–24 items (got ${deck.length})`)
+// Validate exercises + overlay against the ledger. Returns string[] problems.
+export function validateExercises({ exercises, overlay, ledger, id }) {
+  const problems = []
+  if (!exercises || !Array.isArray(exercises.items)) { problems.push('exercises.items must be an array'); return problems }
+  if (!overlay || typeof overlay !== 'object') { problems.push('overlay must be an object'); return problems }
+  const has = (nid) => Object.prototype.hasOwnProperty.call(overlay, nid)
 
-const ords = new Set()
-const count = { layer: {}, mode: {} }
-deck.forEach((q, i) => {
-  const tag = `item[${i}] (ord ${q.ord ?? '?'})`
-  if (!Number.isInteger(q.ord) || ords.has(q.ord)) problems.push(`${tag}: ord must be a unique integer`)
-  ords.add(q.ord)
-  if (!q.prompt || !q.prompt.trim()) problems.push(`${tag}: missing prompt`)
-  if (!TYPES.includes(q.type)) problems.push(`${tag}: type must be one of ${TYPES.join('|')}`)
-  if (!LAYERS.includes(q.layer)) problems.push(`${tag}: layer must be one of ${LAYERS.join('|')}`)
-  if (q.answer_mode !== 'choice') problems.push(`${tag}: answer_mode must be choice`)
-  if (!q.answer || String(q.answer).trim().length < 2) problems.push(`${tag}: answer must be a substantive explanation`)
-  count.layer[q.layer] = (count.layer[q.layer] || 0) + 1
-  count.mode[q.answer_mode] = (count.mode[q.answer_mode] || 0) + 1
+  const { idx, terms: earlierTerms } = earlierTermsFor(ledger, id)
+  if (idx === -1) { problems.push(`--id ${id} not in ledger`); return problems }
+  const isFirstLesson = idx === 0
 
-  if (!Array.isArray(q.options) || q.options.length !== 4) problems.push(`${tag}: choice needs exactly 4 options (single-answer A/B/C/D)`)
-  else {
-    const normalized = q.options.map((option) => String(option).trim())
-    if (normalized.some((option) => !option)) problems.push(`${tag}: choice options must be non-empty`)
-    if (new Set(normalized).size !== normalized.length) problems.push(`${tag}: choice options must be unique`)
-    if (!Number.isInteger(q.correct_index) || q.correct_index < 0 || q.correct_index >= q.options.length)
-      problems.push(`${tag}: correct_index out of range`)
-  }
-  if (q.accept != null) problems.push(`${tag}: choice must not carry accept`)
+  const items = exercises.items
+  if (items.length < 16 || items.length > 24) problems.push(`deck must have 16–24 items (got ${items.length})`)
 
-  if (q.layer === '复习') {
-    if (!q.review_of) problems.push(`${tag}: 复习 items need review_of`)
-    else if (!earlierTerms.has(q.review_of)) problems.push(`${tag}: review_of "${q.review_of}" is not an earlier-lesson/assumed term`)
-  } else if (q.review_of != null) problems.push(`${tag}: review_of only on 复习 items`)
-})
+  const ords = new Set()
+  const seenIds = new Set()
+  const count = { layer: {}, mode: {} }
+  items.forEach((q, i) => {
+    const tag = `item[${i}] (ord ${q.ord ?? '?'} / ${q.id || '?'})`
+    if (!q.id) problems.push(`${tag}: missing id`)
+    else { if (seenIds.has(q.id)) problems.push(`${tag}: duplicate item id ${q.id}`); seenIds.add(q.id) }
+    if (!Number.isInteger(q.ord) || ords.has(q.ord)) problems.push(`${tag}: ord must be a unique integer`)
+    ords.add(q.ord)
+    if (!Number.isInteger(q.rev)) problems.push(`${tag}: rev must be an integer`)
+    if (!TYPES.includes(q.type)) problems.push(`${tag}: type must be one of ${TYPES.join('|')}`)
+    if (!LAYERS.includes(q.layer)) problems.push(`${tag}: layer must be one of ${LAYERS.join('|')}`)
+    if (!has(q.id)) problems.push(`${tag}: prompt id "${q.id}" has no overlay entry`)
+    count.layer[q.layer] = (count.layer[q.layer] || 0) + 1
+    count.mode[q.mode] = (count.mode[q.mode] || 0) + 1
 
-// ords contiguous from 1
-const sorted = [...ords].sort((a, b) => a - b)
-if (sorted[0] !== 1 || sorted[sorted.length - 1] !== sorted.length) problems.push('ord must be contiguous starting at 1')
+    validateItemKey(problems, tag, q, overlay, has, ['choice', 'input', 'work'])
 
-// composition
-const n = deck.length
-const pct = (k) => (count.layer[k] || 0) / n
-if (pct('指认') < 0.25) problems.push(`指认 layer must be >=25% (got ${Math.round(pct('指认') * 100)}%)`)
-if (pct('操作') < 0.20) problems.push(`操作 layer must be >=20% (got ${Math.round(pct('操作') * 100)}%)`)
-if ((count.layer['辨错'] || 0) < 2) problems.push('need >=2 辨错 items')
-if ((count.layer['说理'] || 0) < 2) problems.push('need >=2 说理 items')
-if (!isFirstLesson && (count.layer['复习'] || 0) < 3) problems.push('need >=3 复习 items (this is not the stage\'s first lesson)')
-if (problems.length) fail(problems)
-console.log(`✓ deck ok: ${n} items · layers ${JSON.stringify(count.layer)} · modes ${JSON.stringify(count.mode)}`)
+    if (q.layer === '复习') {
+      if (!q.review_of) problems.push(`${tag}: 复习 items need review_of`)
+      else if (!earlierTerms.has(q.review_of)) problems.push(`${tag}: review_of "${q.review_of}" is not an earlier-lesson/assumed term`)
+    } else if (q.review_of != null) problems.push(`${tag}: review_of only on 复习 items`)
+  })
+
+  const sorted = [...ords].sort((a, b) => a - b)
+  if (sorted.length && (sorted[0] !== 1 || sorted[sorted.length - 1] !== sorted.length)) problems.push('ord must be contiguous starting at 1')
+
+  const n = items.length
+  const pct = (k) => (count.layer[k] || 0) / n
+  if (pct('指认') < 0.25) problems.push(`指认 layer must be >=25% (got ${Math.round(pct('指认') * 100)}%)`)
+  if (pct('操作') < 0.20) problems.push(`操作 layer must be >=20% (got ${Math.round(pct('操作') * 100)}%)`)
+  if ((count.layer['辨错'] || 0) < 2) problems.push('need >=2 辨错 items')
+  if ((count.layer['说理'] || 0) < 2) problems.push('need >=2 说理 items')
+  if (!isFirstLesson && (count.layer['复习'] || 0) < 3) problems.push("need >=3 复习 items (this is not the stage's first lesson)")
+
+  return { problems, count }
+}
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+  const argv = process.argv.slice(2)
+  const args = {}
+  for (let i = 0; i < argv.length; i++) { const a = argv[i]; if (a.startsWith('--')) { args[a.slice(2)] = argv[i + 1]; i++ } }
+  if (!args.exercises || !args.overlay || !args.ledger || !args.id) { console.error('usage: check-exercises.mjs --exercises e.json --overlay o.json --ledger stage.json --id <lesson-id>'); process.exit(2) }
+  const rd = (p, what) => { const fp = resolve(process.cwd(), p); if (!existsSync(fp)) { console.error(`✗ ${what} not found: ${p}`); process.exit(1) } try { return JSON.parse(readFileSync(fp, 'utf8')) } catch (e) { console.error(`✗ ${what} JSON: ${e.message}`); process.exit(1) } }
+  const { problems, count } = validateExercises({ exercises: rd(args.exercises, 'exercises'), overlay: rd(args.overlay, 'overlay'), ledger: rd(args.ledger, 'ledger'), id: args.id })
+  if (problems.length) { console.error('✗ deck check failed:'); for (const m of problems) console.error(`  - ${m}`); process.exit(1) }
+  console.log(`✓ deck ok: ${count && Object.keys(count.layer).length ? `layers ${JSON.stringify(count.layer)} · modes ${JSON.stringify(count.mode)}` : ''}`)
+}
