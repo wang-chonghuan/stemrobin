@@ -572,64 +572,6 @@ a.sr-out-lesson.ready:hover {
   font-weight: 600;
 }
 
-/* ---- 名人传记 reading (rendered from Markdown) ---- */
-.sr-reading {
-  max-width: 680px;
-  margin: 0 auto;
-  color: var(--sr-ink);
-  font-family: var(--sr-body);
-  font-size: 16.5px;
-  line-height: 1.85;
-}
-.sr-reading h1 {
-  font-family: var(--sr-display);
-  font-size: 26px;
-  line-height: 1.25;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin: 2px 0 20px;
-}
-/* Numbered 节 headings (## <global-num> <title>) — the reader can cite "§N". */
-.sr-reading h2 {
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--sr-teal, #0f766e);
-  margin: 30px 0 10px;
-  padding-top: 14px;
-  border-top: 1px solid var(--sr-line-soft, #e6e2da);
-}
-.sr-reading h2:first-of-type {
-  border-top: none;
-  padding-top: 0;
-}
-.sr-reading p {
-  margin: 0 0 16px;
-}
-.sr-reading strong {
-  color: var(--sr-ink);
-  font-weight: 700;
-}
-.sr-reading em {
-  color: var(--sr-ink-soft);
-}
-.sr-reading blockquote {
-  margin: 22px 0;
-  padding: 14px 18px;
-  border-left: 3px solid var(--sr-green);
-  background: var(--sr-green-tint);
-  border-radius: 0 8px 8px 0;
-  font-size: 15.5px;
-  line-height: 1.7;
-}
-.sr-reading blockquote p {
-  margin: 0 0 8px;
-}
-.sr-reading blockquote p:last-child {
-  margin: 0;
-  color: var(--sr-ink-dim);
-  font-size: 13.5px;
-}
-
 /* ---- buttons ---- */
 .sr-btn {
   border: 0;

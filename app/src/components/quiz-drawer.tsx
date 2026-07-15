@@ -11,11 +11,10 @@ import type {
   OpenAttempt,
 } from '~/lib/quiz'
 
-// Injected data source so the same drawer serves both lessons (getLessonQuestions
-// / recordAnswer over sr_questions / sr_answer_events) and 名人传记 chapters
-// (getStoryQuestions / recordStoryAnswer over sr_story_questions /
-// sr_story_answer_events). Both fetch WITHOUT the correct option; correctness is
-// computed server-side by the record fn.
+// Injected data source so the drawer is decoupled from any one content type: the
+// lesson route supplies getLessonQuestions / recordAnswer over sr_questions /
+// sr_answer_events. The fetch returns questions WITHOUT the correct option;
+// correctness is computed server-side by the record fn.
 type FetchQuestions = (opts: { data: string }) => Promise<QuizQuestion[]>
 type RecordAnswer = (opts: {
   data: { questionId: number; attemptId?: number; chosen?: number; text?: string }
@@ -23,7 +22,7 @@ type RecordAnswer = (opts: {
 
 // Optional 答题记录 API. When provided (lessons), the drawer runs the
 // start → quiz → result flow with scoring, 继续/重新开始, and 结束本课答题.
-// When absent (story chapters), the drawer behaves as a plain answer-through deck.
+// When absent, the drawer behaves as a plain answer-through deck.
 export type AttemptApi = {
   fetchScore: (opts: { data: string }) => Promise<ScoreSummary | null>
   fetchOpenAttempt: (opts: { data: string }) => Promise<OpenAttempt | null>
@@ -146,7 +145,7 @@ export function QuizDrawer({
       if (cancelled) return
       setQuestions(qs)
 
-      // Story quizzes (no attempt API) or a logged-out learner: plain quiz phase.
+      // No attempt API, or a logged-out learner: plain quiz phase.
       if (!attempts || !isIn) {
         setPhase('quiz')
         setLoading(false)

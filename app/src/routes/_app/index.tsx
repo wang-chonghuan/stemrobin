@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { Atom, BookOpen, FileText, Menu, Rocket } from 'lucide-react'
+import { Atom, BookOpen, FileText, Menu } from 'lucide-react'
 
 import { getAvailableLessons } from '~/lib/curriculum'
 import { listAvailableLessonIds } from '~/lib/lessons'
@@ -70,7 +70,7 @@ function Overview() {
           </div>
         </section>
 
-        {/* Two pillars */}
+        {/* Science & engineering pillar */}
         <section className="sr-section-gap">
           <div className="sr-pillars">
             <div className="sr-pillar">
@@ -78,15 +78,6 @@ function Overview() {
               <div>
                 <div className="sr-pillar-title">{t(locale, 'ov.pillar1.title')}</div>
                 <p className="sr-pillar-desc">{t(locale, 'ov.pillar1.desc')}</p>
-              </div>
-            </div>
-            <div className="sr-pillar">
-              <span className="sr-pillar-ico green"><Rocket size={20} /></span>
-              <div>
-                <div className="sr-pillar-title">
-                  {t(locale, 'ov.pillar2.title')} <span className="sr-tag">{t(locale, 'ov.pillar2.tag')}</span>
-                </div>
-                <p className="sr-pillar-desc">{t(locale, 'ov.pillar2.desc')}</p>
               </div>
             </div>
           </div>
