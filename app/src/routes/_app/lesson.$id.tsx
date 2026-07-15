@@ -4,7 +4,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Lock, Menu } fr
 
 import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf, listAvailableLessonIds } from '~/lib/lessons'
-import { getLessonReading } from '~/lib/reading'
+import { getLessonReading, buildFullTextHtml } from '~/lib/reading'
 import { getLocale } from '~/lib/locale'
 import { t, type Locale } from '~/lib/i18n'
 import {
@@ -38,9 +38,15 @@ function LessonView() {
   const { id, reading, html, lessonIds, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
+  const fulltextRef = useRef<HTMLIFrameElement>(null)
   const [quizOpen, setQuizOpen] = useState(false)
+  // Reading mode (STEMROBIN-28): 逐卡精读 (card-by-card, DEFAULT) vs 全文速览
+  // (whole lesson at once). Full-text records no read-check and does not advance
+  // 课文进度; only the card flow does. Only meaningful when there is a card tree.
+  const [mode, setMode] = useState<'cards' | 'fulltext'>('cards')
   // 精读 gate: the practice deck unlocks only after every card is read (per visit).
   // Lessons without a card tree (fallback html) leave practice open as before.
+  // Only the card flow can set this — viewing 全文速览 never推进 progress/unlock.
   const [allRead, setAllRead] = useState(!reading)
   const label = getLessonLabel(id, locale)
 
@@ -93,15 +99,46 @@ function LessonView() {
         </div>
       </div>
       <div className="sr-d-scroll" style={{ padding: 0 }}>
+        {reading && (
+          <div className="sr-read-modes" role="group" aria-label={t(locale, 'read.mode.aria')}>
+            <button
+              type="button"
+              className={'sr-read-mode' + (mode === 'cards' ? ' active' : '')}
+              aria-pressed={mode === 'cards'}
+              onClick={() => setMode('cards')}
+            >
+              {t(locale, 'read.mode.cards')}
+            </button>
+            <button
+              type="button"
+              className={'sr-read-mode' + (mode === 'fulltext' ? ' active' : '')}
+              aria-pressed={mode === 'fulltext'}
+              onClick={() => setMode('fulltext')}
+            >
+              {t(locale, 'read.mode.fulltext')}
+            </button>
+          </div>
+        )}
         {reading ? (
-          <CardReader
-            lessonId={id}
-            reading={reading}
-            label={label}
-            locale={locale}
-            onAllRead={() => setAllRead(true)}
-            onOpenPractice={() => setQuizOpen(true)}
-          />
+          mode === 'fulltext' ? (
+            // 全文速览: the whole lesson at once, no read-check, no gate. Reuses the
+            // lesson head + card bodies (getLessonReading payload) in a sandboxed
+            // iframe. Mounting no CardReader = firing no recordReadCheck = no 进度.
+            <LessonFrame
+              frameRef={fulltextRef}
+              html={buildFullTextHtml(reading.head, reading.cards, locale === 'en' ? 'en' : 'zh-CN')}
+              title={label}
+            />
+          ) : (
+            <CardReader
+              lessonId={id}
+              reading={reading}
+              label={label}
+              locale={locale}
+              onAllRead={() => setAllRead(true)}
+              onOpenPractice={() => setQuizOpen(true)}
+            />
+          )
         ) : html ? (
           <LessonFrame frameRef={iframeRef} html={html} title={label} />
         ) : (
