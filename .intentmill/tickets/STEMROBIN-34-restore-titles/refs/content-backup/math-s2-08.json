@@ -1,0 +1,38 @@
+{
+  "cards": [
+    {
+      "id": "math-s2-08-motivation",
+      "num": 1,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s2-08-motivation-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s2-08-motivation-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s2-08-motivation-b2",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s2-08-motivation-b3",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s2-08-motivation-b4",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "motivation",
+      "read_check": []
+    }
+  ]
+}

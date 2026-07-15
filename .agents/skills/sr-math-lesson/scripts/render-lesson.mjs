@@ -8,9 +8,11 @@
 // visible read-check + practice projections carry prompts + options only. The
 // answer KEY (correct_index / accept / answer) is structurally never emitted.
 //
-// Prose (card bodies, read-check + exercise prompts/options, section names) is
-// resolved from the overlay by node id; formulas (KaTeX) and SVG are neutral
-// and inline in `content`. Header chrome derives from the ledger metadata
+// Prose (card bodies, read-check + exercise prompts/options) is resolved from
+// the overlay by node id; formulas (KaTeX) and SVG are neutral and inline in
+// `content`. The per-card section display name (中文名, `card.name`) is a
+// required field of the neutral `content` base and is rendered from there.
+// Header chrome derives from the ledger metadata
 // (`meta`), which is the zh source and not part of the learner i18n overlay.
 //
 // Usage (standalone render, prints HTML to stdout):
@@ -21,14 +23,6 @@ import { fileURLToPath } from 'node:url'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
 const TEMPLATE_PATH = join(scriptDir, '..', 'assets', 'lesson-template.html')
-
-// Genre section display names (neutral, genre-standard). Localizing this small
-// fixed dictionary per locale is a future (translation-ticket) concern.
-const ANCHOR_NAME = {
-  motivation: '为什么需要它', model: '建立概念', anatomy: '拆给你看',
-  boundary: '边界与陷阱', connections: '与其他知识点的联系', oral: '概念口试',
-  explain: '讲解', examples: '例题',
-}
 
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
@@ -86,7 +80,11 @@ ${items}
 }
 
 function renderCard(card, overlay) {
-  const name = ANCHOR_NAME[card.anchor] || card.anchor
+  // Section display name (中文名) is a required per-card field in the content JSONB
+  // (the SSOT); fail fast if a card reaches the renderer without one.
+  if (typeof card.name !== 'string' || !card.name.trim())
+    throw new Error(`card "${card.id || card.anchor}" is missing its section name (中文名)`)
+  const name = card.name
   const body = (card.body || []).map((n) => renderBodyNode(n, overlay, card.id)).join('\n')
   return `  <section data-sr-section="${card.anchor}">
     <div class="sr-sec-label"><span class="sr-sec-num">${card.num}</span><span class="sr-sec-name">${esc(name)}</span></div>

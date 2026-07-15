@@ -1,0 +1,303 @@
+{
+  "cards": [
+    {
+      "id": "math-s3-01-motivation",
+      "num": 1,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-01-motivation-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-motivation-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-motivation-b2",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "motivation",
+      "read_check": [
+        {
+          "id": "math-s3-01-motivation-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-motivation-rc0-o0",
+            "math-s3-01-motivation-rc0-o1",
+            "math-s3-01-motivation-rc0-o2",
+            "math-s3-01-motivation-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-01-motivation-rc1",
+          "key": {
+            "correct_index": 1
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-motivation-rc1-o0",
+            "math-s3-01-motivation-rc1-o1",
+            "math-s3-01-motivation-rc1-o2",
+            "math-s3-01-motivation-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-01-model",
+      "num": 2,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-01-model-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-model-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-model-b2",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-model-b3",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-model-b4",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-model-b5",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "model",
+      "read_check": [
+        {
+          "id": "math-s3-01-model-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-model-rc0-o0",
+            "math-s3-01-model-rc0-o1",
+            "math-s3-01-model-rc0-o2",
+            "math-s3-01-model-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-01-model-rc1",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-model-rc1-o0",
+            "math-s3-01-model-rc1-o1",
+            "math-s3-01-model-rc1-o2",
+            "math-s3-01-model-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-01-anatomy",
+      "num": 3,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-01-anatomy-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-anatomy-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-anatomy-b2",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "anatomy",
+      "read_check": [
+        {
+          "id": "math-s3-01-anatomy-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-anatomy-rc0-o0",
+            "math-s3-01-anatomy-rc0-o1",
+            "math-s3-01-anatomy-rc0-o2",
+            "math-s3-01-anatomy-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-01-anatomy-rc1",
+          "key": {
+            "correct_index": 1
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-anatomy-rc1-o0",
+            "math-s3-01-anatomy-rc1-o1",
+            "math-s3-01-anatomy-rc1-o2",
+            "math-s3-01-anatomy-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-01-boundary",
+      "num": 4,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-01-boundary-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-boundary-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-boundary-b2",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-boundary-b3",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-boundary-b4",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "boundary",
+      "read_check": [
+        {
+          "id": "math-s3-01-boundary-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-boundary-rc0-o0",
+            "math-s3-01-boundary-rc0-o1",
+            "math-s3-01-boundary-rc0-o2",
+            "math-s3-01-boundary-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-01-boundary-rc1",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-boundary-rc1-o0",
+            "math-s3-01-boundary-rc1-o1",
+            "math-s3-01-boundary-rc1-o2",
+            "math-s3-01-boundary-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-01-connections",
+      "num": 5,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-01-connections-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-01-connections-b1",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "connections",
+      "read_check": [
+        {
+          "id": "math-s3-01-connections-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-connections-rc0-o0",
+            "math-s3-01-connections-rc0-o1",
+            "math-s3-01-connections-rc0-o2",
+            "math-s3-01-connections-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-01-connections-rc1",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-01-connections-rc1-o0",
+            "math-s3-01-connections-rc1-o1",
+            "math-s3-01-connections-rc1-o2",
+            "math-s3-01-connections-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-01-oral",
+      "num": 6,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-01-oral-b0",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "oral",
+      "read_check": []
+    }
+  ]
+}

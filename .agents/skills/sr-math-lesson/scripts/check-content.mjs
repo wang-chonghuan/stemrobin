@@ -4,6 +4,7 @@
 // JSONB internals, so this script is the enforcement point for the documented
 // content contract (ssot-schemas/db-schemas/stemrobin.sql):
 //   - genre section anchors present + ordered
+//   - every card carries a non-empty section display name (中文名, `name`)
 //   - every card has a learner-visible `num`; nums unique + contiguous from 1
 //   - every SUBSTANTIAL card carries >=1 read_check (D-SUBSTANTIAL)
 //   - read_check items well-formed per mode; each references overlay prose
@@ -63,6 +64,7 @@ export function validateContent({ content, overlay, genre, id }) {
     if (!c.id || typeof c.id !== 'string') problems.push(`${tag}: missing string id`)
     else if (seenCardIds.has(c.id)) problems.push(`${tag}: duplicate card id`)
     seenCardIds.add(c.id)
+    if (typeof c.name !== 'string' || !c.name.trim()) problems.push(`${tag}: name (section 中文名) must be a non-empty string`)
     if (!Number.isInteger(c.num)) problems.push(`${tag}: num (编号) must be an integer`)
     else seenNums.push(c.num)
     if (!Number.isInteger(c.rev)) problems.push(`${tag}: rev must be an integer`)
