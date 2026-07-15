@@ -1,0 +1,1198 @@
+# n-im intent — STEMROBIN-24 · 实现语言切换与英文数学端到端
+
+> prodfarm cap9 组合：工单全文 + live charter + evodocs。Batch 0004 · Seed STEMROBIN-18（full delegation）· plane。
+> 已交付：T1 JSONB schema；T2 生成器 JSONB-first；T3 16 课迁入 SSOT；T4 逐卡精读流(app, zh)；T5 16 篇 en 覆盖层(sr_lesson_i18n locale='en')。
+> 本单在 T4 精读流基础上加 locale 维度：读 en 覆盖层而非 zh；按 locale 决定课程可用性；不做混语言回退。
+
+---
+## 一、交付工单 STEMROBIN-24（描述全文）
+
+## Meta
+- Type: story
+- Batch: 0004-jsonb-card-reading
+- Origin: seed
+- Seed: [STEMROBIN-18](https://app.plane.so/intentmill/projects/556c9df8-f5ac-435a-8abd-53bc522dd8a7/work-items/0b766852-f1d2-45a0-b6d9-94f2e0cad239)
+
+## Scope
+学习者可在应用内**切换学习语言**（中/英）；选英文后，已译全的数学课以英文呈现——目录、逐卡精读、read-check、练习题全英文；**未译全的课在英文下不出现**（按 locale 决定可用性，不出现半中半英）；中文体验不受影响。
+
+## Constraints
+- 某（课, locale）是否可读，唯一由"该 locale 是否译全"决定；不做混语言回退；源语言中文恒可用。
+- 语言切换覆盖目录、精读逐卡、read-check、练习题全链路。
+- 公式跨语言共享，不因切换而改变。
+- 沿用答案保密：任何语言下初次数据不含 KEY。
+
+## Acceptance criteria
+- 切换到英文后，已译全的数学课的目录项、卡片正文、read-check、练习题均以英文呈现。
+- 未译全的课在英文下不作为可读项出现；切回中文后一切照旧可读。
+- 英文下作答 read-check 与练习，初次数据不含正确答案，服务端判分正常。
+
+---
+## 二、Charter（live 注入）
+
+### charter/goal.md
+```markdown
+# Product Goal
+
+> DRAFT derived from resources/content/intent.md — AWAITING HUMAN CONFIRMATION.
+
+为一名 8 岁、理解力强的孩子提供**初中数学/物理**的自学课程产品。核心原则:**内容按初中标准(2022 版义务教育课标),解释按儿童认知,训练按严肃教材**——不阉割概念,重排入口与坡度。
+
+产品形态:web 课程应用,三层材料——教师版知识骨架、学生版讲义(课文页)、练习题系统(识别/表示/基础操作/反向推理/易错辨析五类题)。
+
+学习方式:课文页采用**卡片式精读**——课文不变、按语义打散成带编号的卡片,一次读一张,读完当场以轻量"读没读"题(read-check)卡关,防止跳读/假读;走完全部卡片才算读完课文,之后进入练习题系统。
+
+多语言:产品面向**多语言学习者**(目标 7–8 种语言,首个为英文),数学内容以中文为源语言,学习者可切换语言学习;数学公式统一用标准数学记法、跨语言共享。(人确认 2026-07-14)
+
+达成度判定标准:(awaiting human — 例如"数学 stage-N 全部课文与练习可用且孩子可独立完成一课")
+```
+
+### charter/redlines.md
+```markdown
+# Redlines — actions requiring human approval
+
+> Closed enumeration; execution looks up, never judges. Human-confirmed 2026-07-08.
+
+1. Destructive or first-time writes to external systems: cloud resource creation/deletion beyond the established n-easyapp redeploy path, public publishing, sending mail/messages.
+2. Irreversible data operations: deleting or polluting accumulated production data (the shared PostgreSQL schema for stemrobin).
+3. Spend above threshold: any action incurring new recurring cost or one-off cost > $5.
+4. Modifying `.prodfarm/charter/goal.md` (the product north star).
+```
+
+### charter/engineering-rules.md
+```markdown
+# Engineering Rules
+
+Engineering norms a coding agent must obey on this repo. Human-authored, read whole, injected with the charter into every ticket. (Migrated from the former root `AGENTS.md` rules page; `AGENTS.md` is now a thin router.)
+
+## 1. Think Before Coding
+
+**Don't assume. Don't hide confusion. Surface tradeoffs.** State assumptions explicitly; if uncertain, ask. If multiple interpretations exist, present them — don't pick silently. If a simpler approach exists, say so. If something is unclear, stop, name it, ask.
+
+## 2. Simplicity First
+
+**Minimum code that solves the problem. Nothing speculative.** No features beyond what was asked; no abstractions for single-use code; no configurability that wasn't requested; no error handling for impossible scenarios. If 200 lines could be 50, rewrite it. "Would a senior engineer say this is overcomplicated?" → if yes, simplify.
+
+## 3. Surgical Changes
+
+**Touch only what you must. Clean up only your own mess.** Don't improve adjacent code/comments/formatting; don't refactor what isn't broken; match existing style. Remove imports/vars/functions your change orphaned; don't delete pre-existing dead code unless asked (mention it). Every changed line traces to the request.
+
+## 4. Goal-Driven Execution
+
+**Define success criteria. Loop until verified.** Turn tasks into verifiable goals ("fix the bug" → "write a test that reproduces it, then make it pass"). For multi-step work, state a brief plan with a verify check per step. Verify by actually running (browser / commands), not by imagining from code.
+
+## 5. SSOT and One Way Only
+
+**One source of truth, one canonical path per operation, no fallback for impossible states.** Keep exactly one SSOT per contract/schema/decision; no parallel definitions, duplicate configs, or shadow workflows. If a source of truth is missing/violated, fail fast and surface it — never add a fallback that hides an impossible state.
+
+## Project specifics (proven on this repo)
+
+- **Secrets**: `.env` is git-ignored and holds DB/API secrets — never stage, commit, or echo it; verify it is not staged before every commit.
+- **DB access is server-only**: all reads/writes go through `app/src/lib/db.ts` `sql()` (the browser never holds the connection string). The DB is the shared Azure easy-app Postgres, schema `stemrobin-schema`.
+- **Answer-key secrecy**: quiz question fetchers (`getLessonQuestions`/`getStoryQuestions`) must never send `correct_index` / `answer` / `accept` to the client; correctness is judged server-side in the `record*` server fns.
+- **Content is DB-driven, skill-generated**: never hand-write `sr_*` rows; math lessons/decks and biographies are produced by `sr-math-lesson` / `sr-story` and persisted only via their `save-*.mjs` scripts (which read repo-root `.env` and resolve `node_modules` from repo root). Schema changes go through `ssot-schemas/db-schemas/stemrobin.sql` (applied via psql), never ad hoc.
+- **Deploy invariant**: Dockerfile + build context stay at repo root; the Container App runs at `--min-replicas 1` (no scale-to-zero).
+```
+
+### charter/architecture.md
+```markdown
+# Architecture
+
+- **Repo layout** (unified prodfarm shape): `app/` = the web app, a **standalone project** with its own `package.json`/`node_modules` (no repo-root `package.json`); `ssot-schemas/db-schemas/` = DB SSOT; `resources/` = all committed human/curated material (`resources/content/` = content-generation source: math-ledger + course-gen guides; `resources/reference/` = human docs incl. `DESIGN.md`); `infra/` = deploy/substrate notes; `.agents/skills/` = content-generation skills (own `package.json` for their `postgres` dep). No top-level `jobs/` (this project has no independently-packaged jobs). Root holds only cross-cutting files: the deploy `Dockerfile`, `.prodfarm/` charter, `AGENTS.md`, and tooling config.
+- Single tanstack-start app; SSR routes under `app/src/routes/_app/` (index = catalog, `lesson.$id`, `story.$id`, `login`).
+- Domain libs in `app/src/lib/`: `curriculum.ts` (course structure + lesson ordering/nav), `lessons.ts`, `stories.ts`, `quiz.ts` + `answer-normalize.ts` (practice, incl. `input`-mode server-side judging), `session*.ts` (auth), `db.ts` (postgres access, `search_path` = the project schema).
+- Content is **generated by project skills, stored in the DB** (not files): math lessons via `sr-math-lesson` (concept ledger `resources/content/math-ledger/stage-*.json` → 課文 html + exercise deck json + print PDF); biographies via `sr-story` (public-domain book → narrative markdown chapters). The app renders stored html/md; PDFs are pre-rendered at save time.
+- `ssot-schemas/db-schemas/stemrobin.sql` is the single source of truth for the DB tables (`sr_lessons`, `sr_questions`, `sr_stories`, `sr_story_chapters`, `sr_story_questions`, `sr_answer_events` + story variant, `sr_users`).
+
+## Project rules
+
+- (awaiting human: architectural rules accumulate here via boundary settlement / ADR-bearing timeline entries)
+
+## Complexity hotspots
+
+- (awaiting real aborts: knowledge/complexity blind spots that caused a batch abort promote here at boundary settlement)
+
+## Stack & constraints
+
+- **Base**: tanstack-start (SSR full-stack, single app in `app/`), React 19, TypeScript, running on Node 24. Vite builds the app through the TanStack Start and Nitro plugins. This is the one supported n-easyapp base for this repo; a second app / a framework change is out of scope without a charter decision.
+- **Layout**: the app is a standalone project under `app/` (`app/package.json`, `app/package-lock.json`, `app/node_modules`); commands run from `app/` or via `npm --prefix app`. No repo-root `package.json`. `app/vite.config.ts` sets `envDir: '..'` so build-time env resolves from the root `.env`.
+- **Routing**: `@tanstack/react-router` (file-based, `app/src/routes/`).
+- **Styling**: Tailwind CSS 4 (+ tw-animate-css), Geist / Bricolage / Hanken / JetBrains Mono fonts. Three-color palette per `resources/reference/DESIGN.md` (teal-blue, green, white) — no new hues.
+- **State**: zustand (`app/src/lib/layout-store.ts`).
+- **Data**: PostgreSQL via the `postgres` client (`app/src/lib/db.ts`); the DB is the Azure easy-app **shared** server, per-project schema `stemrobin-schema` — never a second client, never scale-to-zero. Session via `app/src/lib/session.server.ts` (HMAC cookie).
+- **Authentication**: no external auth provider. Passwords use Node `crypto` scrypt hashing and sessions use an HMAC-signed httpOnly cookie in `app/src/lib/session.server.ts`.
+- **Content pipeline**: markdown via `marked`; lessons/stories/quiz served from the DB through `app/src/lib/`. KaTeX is loaded from a CDN by the root document rather than bundled from npm.
+- **Build/test**: Vite + Nitro produce `app/.output`; Vitest uses the separate `app/vitest.config.ts` because the TanStack Start Vite plugin is incompatible with the Vitest runner. Run with `cd app && npm run dev|build|test|start`.
+- **Deploy**: Azure Container Apps `ca-stemrobin` via n-easyapp; **Dockerfile at repo root, build context = repo root** (n-easyapp's redeploy hard-codes both). The root Dockerfile builds the standalone app: `npm ci` from `app/`'s manifest → `npm run build` → ships `app/.output`. The content skills (`sr-math-lesson`, `sr-story`, `sr-lesson`) resolve `postgres` from their own `.agents/skills/node_modules` — independent of the app. Do not move the Dockerfile.
+```
+
+### charter/runbook.md
+```markdown
+# Runbook
+
+The web app is a **standalone project in `app/`** (its own `package.json` +
+`package-lock.json` + `node_modules`). There is **no repo-root `package.json`**.
+Run app commands from `app/` (or with `npm --prefix app`).
+
+## Develop
+- `cd app && npm install` — install app deps (into `app/node_modules`)
+- `cd app && npm run dev` — vite dev server (default http://localhost:3000; check terminal output for the actual port)
+- Local-dev env: the app's SSR runtime auto-loads `.env` from its own project dir, so a
+  gitignored symlink `app/.env → ../.env` shares the single root `.env`. Recreate it after a
+  fresh clone: `ln -sf ../.env app/.env`. (The container gets env from Azure, not this file.)
+
+## Test / Build
+> Regression: `.autoqa/` initialized (n-autoqa TS-stack support, 2026-07-07). RG cases accumulate per ticket via n-autoqa; `cd app && npm run test` (vitest) remains the unit floor. Run RG suite: n-autoqa cap3.
+
+- `cd app && npm run test` — vitest run
+- `cd app && npm run build` — production build (output `app/.output/`)
+- `cd app && npm run start` — serve the built output (`app/.output/server/index.mjs`)
+- `cd app && npm run e2e` — Playwright E2E (config `app/playwright.config.ts`)
+- Content skills (`sr-math-lesson`, `sr-story`, `sr-lesson`) run their `scripts/*.mjs` directly
+  with node and resolve `postgres` from **`.agents/skills/node_modules`** (their own manifest
+  `.agents/skills/package.json`) — independent of the app's install. Set up once with
+  `cd .agents/skills && npm install`.
+
+## Database
+- PostgreSQL; connection via `.env` (`EASYAPP_DATABASE_URL` / `DATABASE_URL`; obtain from n-easyapp shared PostgreSQL contract). Never commit `.env`.
+- Apply the schema from the repo root: `psql "$EASYAPP_DATABASE_URL" -f ssot-schemas/db-schemas/stemrobin.sql`.
+
+## Deploy
+- Azure Container Apps app `ca-stemrobin` (n-easyapp substrate, shared env `cae-easyapp-shared`).
+- Redeploy: n-easyapp redeploy cap for project `stemrobin` (builds `acreasyapp.azurecr.io/stemrobin:latest` via `az acr build`, updates the container app).
+- **Build invariant**: n-easyapp hard-codes Dockerfile + build context at the **repo root**. The
+  root `Dockerfile` builds the standalone app: `npm ci` from `app/`'s manifest, `npm run build`,
+  then ships only `app/.output`. Do not move the Dockerfile; keep it building `app/`.
+- Live URL: https://ca-stemrobin.kindsmoke-4d84c417.northeurope.azurecontainerapps.io
+
+## Troubleshoot
+- Container logs: `az containerapp logs show -n ca-stemrobin -g rg-easyapp-shared --tail 50`
+```
+
+---
+## 三、相关 evodocs 模块
+
+### mod--app--learner-experience
+```markdown
+# purpose
+
+The learner-experience module is the browser-facing study workspace. It provides
+the routed Chinese interface where a learner browses a curriculum, opens a lesson
+or biography chapter, downloads printable material, signs in, and completes card
+questions. Its responsibility is not to decide which data is valid or which
+answer is correct. Instead, it converts the safe server-function contracts from
+the domain-services module into a compact, responsive learning flow while
+preserving the security and rendering assumptions behind those contracts.
+
+The module unifies two different authored content formats. A math lesson is
+stored as self-contained HTML with its generated practice section and is shown
+inside a sandboxed iframe. A biography chapter begins as controlled Markdown,
+has been transformed into trusted HTML on the server, and is shown as a reading
+article. Both formats have a shared top bar, PDF download, mobile catalog access,
+and card quiz. The shared behavior is intentional: a learner should move between
+courseware and reading without encountering a different application model.
+
+The visual tone is a dense, school-serious workspace: a white detail surface,
+quiet teal-blue primary state, green correctness state, neutral ink text, and a
+single left-side catalog. The implementation treats these as layout and
+interaction contracts. A catalog that disappears incorrectly, an iframe that
+overflows a phone viewport, a quiz that retypesets in the wrong phase, or a
+button that reveals an answer early are functional regressions, not superficial
+styling issues.
+
+# structure
+
+The root route supplies the document frame. It sets Chinese language metadata,
+loads the global visual system, and adds KaTeX stylesheet, runtime, and
+auto-render resources. The application router restores scroll positions and
+uses a full-screen Chinese not-found view. The Start instance is presently an
+empty configuration hook, leaving route modules as the authored application
+entry surfaces rather than adding middleware behavior.
+
+The main layout route forms the persistent workspace. Its loader receives live
+lesson ids and story catalog entries. It renders a catalog beside an outlet, so
+the catalog survives navigation between overview, lesson, story, and login
+routes. A `matchMedia` listener treats widths below 1200px as drawer mode. In
+that mode, the catalog becomes an off-canvas panel with a scrim and a local open
+flag; on returning to desktop, the layout closes the flag because the rail is
+always visible. The media query in CSS mirrors the same threshold, keeping the
+state machine and geometry aligned.
+
+The catalog is a structured navigator, not merely a list of links. It renders
+the fixed math and physics outline from a derived copy that contains ids only for
+persisted lessons. A subject count reports live entries over the total when any
+exist, and a stage opens automatically when it contains a live lesson. Unready
+entries remain text, preventing a learner from navigating to a course placeholder.
+Biographies use their own database-authored story and chapter structure. When
+chapters carry stage data, the catalog groups them by stage name and stored stage
+order; otherwise it falls back to a flat chapter list. Saved global section
+ranges appear beside links so a reader can locate a cited part of a chapter.
+
+The route set has four learner surfaces. The overview lists live lesson cards,
+educational pillars, and a current mock progress panel. The lesson route loads
+stored HTML plus the available lesson sequence, gives the generated document the
+full detail width, supplies a previous/next footer, and opens practice in the
+drawer. The story route loads a chapter view and displays its server-rendered
+HTML as reading prose with the same quiz and download affordances. The login
+route contains only the minimal credential form and server-error feedback. Each
+detail view includes a mobile catalog trigger because its persistent shell may
+be off canvas.
+
+The quiz drawer is a reusable interaction component with injected data sources.
+It has no lesson-specific or story-specific query logic. On open, it resets
+question position, local answers, typing state, pending controls, errors, and
+choice permutations; it then fetches the current user and visible question set.
+It renders choice, typed input, and spoken-work states with a common navigation
+footer. Local state retains only the learner's selected original option index or
+typed text so the UI can identify the wrong selection and preserve a submitted
+typed answer after the server returns a verdict.
+
+The CSS owns the visual implementation: global design tokens, the full-viewport
+application frame, scrollable catalog and detail regions, outline disclosure
+rows, reading typography, buttons, lesson footer navigation, focus treatment,
+drawer and scrim stacking, reduced-motion behavior, quiz presentation, login
+controls, lesson cards, and progress presentation. It is not a Tailwind utility
+layer alone; routes and components depend on its stable semantic class names.
+
+# flows
+
+The usual learner flow starts at the shared layout loader. It receives the
+available lesson ids and story catalog, renders navigation once, and places the
+selected nested route in the detail pane. At desktop width the 236px catalog
+remains visible. At a smaller width, a route's menu button sets the drawer flag,
+the catalog slides in, and the scrim closes it. Clicking a ready lesson or story
+link also closes the drawer in mobile mode. Because the catalog is not
+unmounted while details change, disclosure state uses native `details` elements
+and persists through ordinary route navigation.
+
+The overview separately loads lesson ids and derives the live lesson cards. It
+does not make unavailable curriculum entries visible as cards. The lesson page
+uses the id from the route to request stored HTML and the complete live id list.
+If HTML is missing, it shows the “not generated” state. When HTML is present,
+the page assigns it to the iframe `srcDoc` and sizes the iframe by inspecting the
+embedded body after load. It repeats measurement after two delayed intervals and
+continues observing the body through `ResizeObserver`, which covers font and
+practice-layout changes after the first load. The iframe retains
+`allow-scripts`, `allow-same-origin`, and `allow-modals` sandbox permissions.
+
+Lesson footer navigation is calculated from the database-filtered curriculum
+sequence. A first or last live lesson keeps its disabled side visible to maintain
+the layout. An unknown or unready lesson shows no footer. A PDF download requests
+base64 content from the server, constructs a browser `Blob` URL, clicks a
+temporary anchor, and revokes the URL. The story route follows the same download
+flow. Its body is already server-rendered HTML from persisted Markdown, so it
+uses the reading article and no iframe. Missing story content gets its own
+dim-text absence state.
+
+Opening practice invokes the shared drawer with a content id plus matching fetch
+and record operations. A closed drawer renders nothing. On open, it checks
+whether a user is logged in and reads visible questions. A logged-out learner
+sees a login link; an empty set shows a no-questions message. For choice items,
+the drawer creates one Fisher-Yates permutation of original option indexes and
+uses it for the lifetime of that opening. It sends the original index when
+clicked, immediately highlights the pending option, and after success marks both
+the correct option and an incorrect pick. This preserves server grading even
+when visual order changes.
+
+For typed input, the drawer supports Enter and a submit control, disables the
+field after a response, and applies correct or wrong styling from the server
+result. For spoken-work prompts, it tells the learner to explain first and
+submits a response with no selected option or text; its result has no graded
+verdict and exposes the reference explanation. Network, cold-start, and
+unexpected record failures leave the current question retryable and show a
+Chinese error. Question content and choice options are typeset only when the
+visible card changes. The answer explanation is typeset separately after it
+appears, preventing a post-answer KaTeX pass from moving the option list to the
+top of the drawer.
+
+Login keeps email, password, busy state, and one server error in local state.
+It prevents duplicate submits while busy, calls the login server operation, and
+navigates home only after the server returns a user result. The UI neither
+constructs a session token nor decides whether a password is valid.
+
+# module-relationships
+
+The domain-services module is the sole producer of dynamic learner data. The
+shell consumes lesson ids and story catalog entries; overview, lesson, and story
+loaders consume domain reads; login and quiz controls consume domain writes. The
+direction of that relationship is important: this module must work with
+browser-safe view models and post selected indexes or typed text, never with
+database rows, secrets, or hidden answer fields. The shared quiz props make the
+same component usable for lesson and story contracts while keeping those
+contracts adjudicated on the server.
+
+The content-generation module is an upstream producer of the rendered material.
+Math persistence creates the lesson HTML and prompt-only practice which this
+module shows in the iframe, as well as the PDF bytes the download action uses.
+Biography persistence creates chapter Markdown, global section numbering, staged
+catalog metadata, question records, and chapter PDFs; the domain module turns
+that Markdown into the HTML passed to this module. Generated content controls
+what the learner sees, so renderer changes must be tested with actual persisted
+lessons and chapters rather than placeholder markup.
+
+The app parent gives this child its SSR route tree and owns build/deployment
+composition. The root document within this child relates to the KaTeX CDN, and
+the quiz drawer invokes the loaded auto-render function for question and answer
+nodes. The CSS token layer is the source of truth for actual implemented layout
+and color values. The separate design reference records the intended visual
+identity and tells future UI work to reconcile rules against the implemented
+tokens.
+
+Browser tests sit beside the app as a verification surface. They assert that
+generated practice appears with the expected shape in the iframe, that iframe
+HTML does not contain answer-key fields, and that both page and embedded document
+fit a 390px viewport. Those checks protect the boundary between generator,
+server delivery, and learner experience.
+
+# constraints
+
+The catalog must remain persistent around the detail outlet and must preserve
+the semantic difference between a ready link and an outline-only item. Do not
+put a separate availability cache in this module. Use the derived ids returned
+by the domain child, preserve the current stage grouping rules for stories, and
+close the catalog through the shell callback after mobile navigation. Desktop and
+mobile geometry are linked: the JavaScript media listener and CSS use the 1200px
+drawer threshold, while the visual design values for catalog width, layout height,
+colors, and control dimensions come from the `--sr-*` variables.
+
+Lesson HTML must remain in a sandboxed iframe because it is self-contained
+courseware with its own content markup. Retain the height lifecycle and test
+long generated material, because a one-time height measurement does not capture
+late font, KaTeX, or practice layout. Story HTML must continue to come only from
+the trusted server-rendered chapter path. The client must not parse arbitrary
+Markdown or accept user-supplied HTML.
+
+Quiz presentation may shuffle choice positions, but it must retain and submit
+the original indexes. It must not expose a correct index, `accept` strings, or
+reference answer before the record operation returns. Keep its three visual
+modes distinct: choice and typed input are graded; spoken work is a self-check
+with a null verdict. Preserve independent KaTeX rendering targets and retryable
+error behavior. Focus rings and reduced-motion overrides are part of the
+interactive accessibility contract.
+
+# known-limits
+
+The overview progress card is static placeholder data rather than a learner
+progress projection. It can look current even when answer-event data changes.
+
+Initial user and question requests in the drawer have no explicit loading or
+rejection UI. A failed initial fetch can leave the component looking like it has
+no current question. Record requests handle retryable failures, but the opening
+fetches do not.
+
+The visual design reference still names an 860px mobile breakpoint, whereas the
+implemented persistent-catalog-to-drawer behavior uses 1200px and the quiz drawer
+has an 860px sizing adjustment. Any responsive rule change must resolve that
+difference deliberately. Current detail routes show simple absent-content text
+rather than a dedicated route-level missing-content view.
+
+# notes-for-ai
+
+Treat route, component, CSS, and server contract work as one learner flow. Before
+changing a page, inspect its loader result, the matching domain operation, and
+the catalog or quiz behavior that reaches it. When adding a content family,
+either conform it to the injected quiz shape or give it a separately designed
+interaction boundary; do not add database-specific conditionals throughout the
+drawer. Keep the shared shell as the only owner of mobile catalog state.
+
+For lesson rendering changes, test a real stored courseware document with
+long-form content, KaTeX, and generated practice. Check iframe sizing after
+load, after delayed layout, and at a narrow mobile viewport. Confirm the sandbox
+remains present, footer navigation respects only live lesson ids, and the PDF
+action revokes the generated object URL. For reading changes, verify staged and
+unstaged story catalogs, global section labels, missing views, PDF download, and
+the typography of server-rendered paragraphs and headings.
+
+For quiz work, test logged-out, empty, choice, input, and work paths. Verify that
+a randomized option display still sends the original index; then test a wrong
+choice, correct choice, blank typed input, alternate keyboard forms handled by
+the server, a spoken response, navigation between cards, close/reopen reset, and
+network retry. Inspect browser-visible question data before answering to confirm
+it lacks correct indexes, accepted forms, and explanations. Check KaTeX in a
+question and in a reveal separately.
+
+Run the existing browser regression against a real server after changes to
+lesson, iframe, practice, or mobile layout. Add a route-level browser test when
+a regression would not be captured by pure unit tests. Preserve the token-led
+compact workspace, existing visible focus treatment, and reduced-motion
+fallback. Do not edit generated router output; route behavior lives in authored
+route modules.
+```
+
+### mod--app--domain-services
+```markdown
+# purpose
+
+The domain-services module is StemRobin's trusted application layer. It turns
+the shared PostgreSQL schema into browser-safe learning data, determines which
+outline items are available, establishes the learner identity used to record
+attempts, and makes the answer decision that the browser is not allowed to make
+for itself. It is the only part of the application that knows the database
+connection, hidden correct indexes, accepted typed-answer forms, password hashes,
+or signed session format.
+
+The module supports two content families with one consistent runtime contract.
+Math lessons are stored HTML documents with optional printable PDFs and structured
+practice decks. Biography reading is stored Markdown grouped into stories and
+ordered chapters, with its own printable PDFs and question tables. Each family
+has a catalog read, a detail read, a question read, and an answer-recording
+operation. The learner UI is intentionally insulated from the tables and receives
+only data appropriate to the phase of interaction.
+
+This is also the policy boundary for answer-key secrecy. The initial question
+read supplies a prompt, cognitive type, answer mode, display order, and choice
+options. It never supplies a correct option, an input acceptance set, or a
+reference explanation. The corresponding POST operation checks the signed
+learner session, loads the hidden values itself, records an attempt, and then
+returns a verdict and explanation. That ordering is a product rule rather than a
+presentation convention.
+
+# structure
+
+The database boundary begins with a memoized Postgres client. It accepts the
+local authoring connection variable or the deployment variable, fails immediately
+when neither exists, requires TLS, and sets a quoted search path for the
+hyphenated project schema. The client limits concurrent connections and rotates
+idle or long-lived sockets so a reused server process does not issue its next
+query on a connection already closed by Azure. Every query in this module is
+constructed through that client; a second client, browser connection, or
+alternative schema selection would break the project-wide persistence contract.
+
+The curriculum area maintains a fixed, ordered human outline for math and
+physics. Titles live in that outline without ids. An id is instead calculated
+from a supported subject, the stage position, and the lesson position. Given the
+set of persisted lesson ids, the module derives a fresh linked outline and a
+flat available-lesson list in outline order. It also derives previous and next
+entries from exactly that filtered list. This means persisted content controls
+availability and navigation, while the outline remains the source of labels,
+ordering, and lesson positions. The empty robot subject intentionally produces
+no outline id.
+
+The lesson service reads lesson metadata, stored HTML, stored PDF bytes, and the
+full lesson-id set. PDF bytes are encoded as base64 inside the server operation
+so the browser can construct a download without database access. The story
+service has a parallel shape, but its catalog comes entirely from story and
+chapter rows. It preserves stored chapter order and stage metadata, joins a
+chapter to its parent story for a reading title, converts trusted persisted
+Markdown to HTML on the server, and retrieves chapter PDFs separately. The
+content savers enforce the content formats before persistence; runtime code is
+not a second content authoring or validation workflow.
+
+Quiz operations form a small, deliberate public contract. Math and story question
+readers both produce a visible question object containing id, order, cognitive
+type, prompt, answer mode, and options. This lets the shared quiz drawer render
+either family without knowing its table. Math questions can be choice, typed
+input, or spoken work; story questions use choice or spoken work. The matching
+answer result gives the UI a boolean or ungraded null, a correct index only for
+choice, and a reference explanation only after submission.
+
+Session code is physically server-only. It validates the stored `scrypt` hash
+with a timing-safe comparison and signs only the numeric user id with an
+HMAC-SHA256 secret. The cookie is httpOnly, same-site lax, rooted at `/`, and
+lasts thirty days. A current-user read validates both the signature and the
+continued presence of the user row. The module also exposes a very small Zustand
+store for the responsive catalog drawer; it is intentionally the only transient
+browser-state exception inside this otherwise server-oriented child.
+
+# flows
+
+Lesson discovery begins when a route asks for all lesson ids. The service selects
+the ids present in `sr_lessons`, and the curriculum projection intersects them
+with the fixed outline. The result keeps the original stage and lesson order,
+adds ids only to entries that have persisted material, and keeps ungenerated
+entries as plain labels. The same projection produces a flat sequence for footer
+navigation. An unknown id has no predecessor or successor, so an outline-only
+lesson never becomes navigable simply because its title appears in the catalog.
+The tests lock down this no-mutation, deterministic-order behavior.
+
+A lesson detail request fetches stored HTML by id. Missing rows and rows with
+empty HTML return null, allowing the route to show a missing-courseware state
+instead of looking for a local file. A PDF request takes the same id and returns
+null when the row or bytes are absent. Story detail follows a different
+projection: a chapter row joins to its parent story, its Markdown is converted to
+HTML on the server, and the result includes both chapter and story titles. Story
+catalog building first fetches all stories and all chapters, groups chapters by
+their foreign key, and retains their database order and stored citation ranges.
+
+An initial math quiz request selects only the visible fields from a question row.
+For a choice question it includes the options but not the stored correct index.
+For typed input it excludes the `accept` JSON array. For work items it excludes
+the reference answer. The story question reader applies the same secrecy rule.
+This fetch happens before a learner necessarily has a session, because reading
+the practice prompts is not itself a durable event.
+
+Recording a math answer starts by reading and verifying the signed cookie. A
+missing or invalid user produces a login error and no event row. For choice, the
+service requires a numeric original option index, compares it with the hidden
+correct index, writes `chosen` and the boolean result to the lesson answer-event
+table, and returns the answer plus the correct index. For typed input, it rejects
+blank text, normalizes both sides, writes the trimmed text and the boolean
+result, and returns no correct index. Normalization removes whitespace, maps
+full-width characters and punctuation into ordinary forms, unifies several minus
+glyphs, changes superscripts into caret notation, and treats explicit
+multiplication before letters or parentheses as implicit while preserving numeric
+products such as `2*3`.
+
+Spoken work items are intentionally not auto-graded. The service writes an
+attempt with null correctness and returns the hidden reference explanation after
+the learner declares the response complete. Story recording uses the same
+ungraded behavior for its work items; story choice compares against the separate
+story-question index and writes to the separate story-event table. Keeping the
+two event spaces separate preserves their foreign keys while keeping the UI
+response shape identical.
+
+Login lowercases and trims the supplied email, looks up the stored user record,
+verifies the scrypt hash, and then sets the signed cookie. Logout expires that
+cookie. The drawer store has no relationship to any of these operations: it
+holds only an open/closed flag that survives client-side route transitions and
+is reset by the surrounding responsive shell.
+
+# module-relationships
+
+The database-schema module defines the exact stored contracts this module reads
+and writes. Lesson data depends on `sr_lessons`, `sr_questions`, and
+`sr_answer_events`; story data depends on `sr_stories`, `sr_story_chapters`,
+`sr_story_questions`, and `sr_story_answer_events`; identity depends on
+`sr_users`. Foreign keys and uniqueness constraints determine which content and
+attempt writes can succeed. The domain module does not invent parallel
+structures, and the application must preserve the project schema search path on
+every connection because all SQL assumes those unqualified table names resolve
+inside `stemrobin-schema`.
+
+The math courseware generator is an upstream writer. Its ledger and outline
+checks ensure a deterministic math id, then its saver writes lesson HTML, PDF,
+metadata, and deck rows. When the saver writes a deck, it also replaces the
+stored questions and embeds a prompt-only practice section into the lesson HTML.
+The biography generator similarly writes story provenance, chapter Markdown,
+chapter staging and section ranges, PDFs, and question rows. This module
+therefore consumes generated database state, never local lesson files. A saver
+change to ids, columns, answer modes, or source format must be checked against
+the runtime reads here.
+
+The learner-experience module is the downstream consumer. SSR route loaders call
+catalog and detail readers, lesson and story pages download the base64 PDFs, and
+the shared quiz drawer calls visible-question readers and answer recorders. It
+also consumes the curriculum projection to decide which links show and uses the
+layout store to open the mobile catalog. It must not reconstruct visibility,
+grade answers, render raw story Markdown, or query tables directly, because
+those would bypass the policy implemented here.
+
+The app parent supplies TanStack Start server-function transport and keeps the
+session implementation in a `.server.ts` file so Node crypto and cookie APIs do
+not enter the client bundle. The root document's KaTeX resources complement
+question prompts and generated lesson HTML, but the domain module only moves
+those strings and does not typeset them. This separation lets generated content
+evolve without coupling database decisions to React rendering behavior.
+
+# constraints
+
+All database reads and writes are server-only and go through the shared `sql()`
+client. The connection URL must never be serialized to the browser, and a missing
+configuration variable is an immediate server error. Do not create a secondary
+client for an individual feature or switch the search path per query. The schema
+has a hyphenated name and the existing client configuration quotes it for a
+reason. Connection recycling settings are also operationally important because
+the shared Azure database can close old idle connections.
+
+The answer-key boundary must remain intact for both content families. Question
+readers must never select or serialize `correct_index`, `accept`, or `answer`.
+Record operations must obtain those values from storage only after they have
+verified the session. Choice submissions must use original database option
+indexes, even when the UI has shuffled presentation. Typed input must normalize
+the learner value and every candidate `accept` value through the same function;
+otherwise ordinary Chinese keyboard variants would make equivalent answers fail.
+Work answers have deliberately null correctness and must not be represented as
+wrong answers.
+
+The curriculum must keep its fixed outline free of hand-maintained availability
+ids. Derivation functions return new objects, and tests assert the source outline
+does not change. Story visibility and order are database authored, while lesson
+visibility is the intersection of DB ids and the deterministic outline. Session
+tokens carry only a user id and derive their validity from the HMAC and user-row
+lookup; password hashes remain in the database and must never enter a server
+function response.
+
+# known-limits
+
+Current content reads do not filter by `status`, so draft lesson rows, stories,
+and chapters can appear wherever their ids or parent rows are selected. The
+status fields exist in the schema but are not currently an access-control gate.
+
+The module records granular attempts but does not calculate learner progress,
+mastery, streaks, weak concepts, or a review schedule at runtime. The overview
+therefore cannot obtain real progress from this module yet.
+
+Authentication is intentionally minimal: there is no account creation, password
+reset, role model, session revocation list, rotation protocol, or external
+identity provider. The session secret has a development fallback, so deployment
+security depends on injecting a unique `SESSION_SECRET`. Story Markdown is
+trusted because the generation path rejects embedded HTML; arbitrary user-authored
+Markdown is not a supported input.
+
+# notes-for-ai
+
+Before changing a service operation, identify the exact table columns and
+foreign-key consequences in the schema, then inspect the relevant content saver
+and its input contract. Changes to lesson questions often need coordinated
+updates across the math deck validator, saver, question reader, answer recorder,
+and quiz UI. A new story answer mode requires the same breadth across the story
+saver, schema check constraint, question reader, recorder, and shared UI
+contract. Do not add client-side grading as a shortcut.
+
+For catalog and navigation changes, preserve the distinction between human
+outline order and persisted availability. Add titles to the appropriate outline
+and let a matching persisted row activate them; do not put availability flags in
+the constant. Test first, middle, last, and absent ids, and verify every
+projection leaves the source outline untouched. For story catalog changes, check
+chapter ordering, stage ordering, section ranges, and the behavior for stories
+with no staged chapters.
+
+When modifying typed answer behavior, extend the normalizer and its unit tests
+as one change. Retain the numeric-product exception and test the server-side
+comparison using representative `accept` values. When modifying identity,
+exercise malformed cookie tokens, missing users, timing-safe comparison paths,
+case-normalized email lookup, and cookie expiry. Preserve server-only imports so
+crypto and the database client remain absent from browser bundles.
+
+Verify runtime work through the application rather than by reading query strings.
+Run the unit suite for curriculum and normalization changes. For content,
+authentication, quiz, or schema changes, run the app against a controlled
+database and confirm initial network responses omit hidden answer fields, logged
+out submissions write nothing, each answer mode writes the intended event shape,
+and post-answer responses reveal only the expected data.
+```
+
+### mod--app
+```markdown
+# purpose
+
+The application module is StemRobin's deployable learning product: a single
+server-rendered web application that turns persisted math courseware and
+biography chapters into an always-navigable learner workspace. It is responsible
+for assembling the framework runtime, the document shell, the shared navigation
+surface, the learner routes, the visual system, and the production artifact. It
+does not author educational content or define database tables. Instead, it
+consumes the content and persistence contracts owned elsewhere and gives them a
+consistent interactive presentation.
+
+The module's central value is that the same product surface supports two
+different kinds of study material without creating two apps: lessons are
+self-contained HTML shown in a sandboxed iframe, while biography chapters are
+Markdown rendered on the server into reading prose. Both formats sit inside the
+same catalog shell and attach the same answer-key-safe card quiz. A change here
+therefore affects not only React rendering but also SSR loading, the separation
+between browser and server data, the database-backed availability model, and the
+container artifact that actually runs in production.
+
+# structure
+
+The runtime is a standalone TanStack Start application. The route bootstrap
+creates an SSR router from the generated file-route tree, and the root document
+sets the Chinese document metadata, global CSS, site icons, and KaTeX resources.
+The generated route tree is derived from route files and should be regenerated
+rather than edited directly. Vite combines the Start, React, Tailwind, and Nitro
+plugins; Nitro emits the server output that the runtime process starts. The
+application reads build-time environment configuration from the repository root,
+while its own dependency manifest, lockfile, and installed dependencies remain
+inside the application directory.
+
+The application shell is a parent route that loads the current lesson ids and
+biography catalog before rendering the catalog alongside an outlet. This makes
+the catalog a persistent part of the application lifetime: navigating from the
+overview to a lesson or story changes only the detail outlet rather than
+recreating navigation state. On wide screens the catalog is a fixed left rail.
+Below the shell's mobile breakpoint it becomes a drawer with a scrim, controlled
+by a small in-memory layout store. The store deliberately owns only whether the
+drawer is open; content, learner identity, answers, and all durable state remain
+server-owned.
+
+The two children divide the internal work. The domain-services child owns the
+server functions, curriculum mapping, content lookup, database client, session
+cookie handling, answer normalization, answer evaluation, and answer-event
+recording. The learner-experience child owns routes, catalog presentation, quiz
+interaction, iframe sizing, responsive behavior, and CSS. This parent owns the
+composition between them plus the supporting build configuration, generated
+router boundary, public assets, test entry points, and root document. It should
+remain an integration layer rather than accumulating domain policies that belong
+to the server-side child.
+
+The CSS is a real application surface rather than incidental decoration. It
+defines the compact white workspace, teal-blue and green state colors, a
+fixed-width desktop catalog, scroll ownership for the detail pane, reader
+typography, quiz feedback states, and mobile drawer geometry. The design relies
+on stable class names shared by routes and components, so visual changes should
+be reasoned about as changes to layout contracts and not merely isolated style
+edits.
+
+# flows
+
+An ordinary request enters the SSR router and selects the root document, shared
+application shell, and one nested route. The shell loader obtains the lesson ids
+that exist in persistence and the ordered story/chapter catalog. The catalog
+then combines the lesson ids with the fixed curriculum outline: every outline
+entry has a deterministic id, but only ids found in persisted lesson rows become
+links. Story chapters are different because their catalog is fully database
+authored; the shell groups chapter links by their stored stage metadata when
+present. This allows authoring tools to activate learning material through
+persistence rather than through a UI deployment.
+
+The overview repeats the lesson-id lookup and derives the current set of live
+lessons. The lesson route fetches one stored HTML document and the same available
+id set. When content exists, it supplies the HTML to an iframe through `srcDoc`;
+the iframe is sandboxed and its height is measured on load, after delayed
+resource layout, and through a `ResizeObserver`. The page uses the
+database-filtered curriculum order to display predecessor and successor
+navigation. A missing row produces a clear “not generated” state rather than a
+local file fallback. A separate server call retrieves pre-rendered PDF bytes,
+which the browser converts into a temporary download URL.
+
+The story route follows the same top-level pattern but asks the server for a
+chapter view. The database body is Markdown, and the server converts it to HTML
+before the route places it in the reading article. The associated saver rejects
+embedded HTML, so the route treats this output as trusted generated content.
+Stories also download a stored PDF and use the shared quiz drawer. There is no
+separate story client or a static chapter directory.
+
+Opening a quiz resets local navigation and answer state, fetches only the prompt,
+mode, options, and order for the selected content item, and checks whether a
+learner session exists. Choice options receive a fresh display permutation each
+time the drawer opens, but the UI maps a click back to the original persisted
+option index before posting it. Typed answers and spoken-work prompts travel
+through the same injected record interface. The server returns a result only
+after it has checked authentication and recorded an attempt; then the drawer
+marks choice and typed responses correct or incorrect, while spoken-work
+responses remain ungraded and reveal their reference explanation. The browser
+never starts with the correct option, accepted typed forms, or reference answer.
+
+The production flow is deliberately narrow. The repository-root Dockerfile
+copies the application manifest and lockfile, performs a clean install, copies
+the application source, builds the Nitro output, and places only that output in
+the Node runtime image. The hosting platform supplies runtime variables and
+executes the generated server. This respects the platform's root-Dockerfile and
+root-build-context contract while preserving the application as a standalone
+package.
+
+# module-relationships
+
+The app is the runtime consumer of the database schema. It reaches that
+persistence layer only through the domain-services child, whose server functions
+are invoked by SSR loaders and client event handlers. That direction matters:
+routes may request a lesson, a chapter, a catalog, a PDF, or an answer verdict,
+but they may not create a browser-side database client or expose the connection
+string. The same boundary prevents a quiz response from leaking answer keys in
+the initial fetch. If a query shape, table column, or content status policy
+changes, the server-function return type and the route that renders it need
+review together.
+
+The content-generation parent is an upstream producer rather than a runtime
+dependency installed into the app image. Its math child validates a curriculum
+ledger, saves lesson HTML and decks, and makes a deterministic curriculum entry
+available by creating the corresponding lesson row. Its biography child saves a
+story, ordered chapters, questions, section ranges, and printable PDF. The app
+then consumes those rows through the domain child. The consequence is that
+content changes can alter catalog availability, navigation, rendering, and quiz
+modes without changing application code, while an application change must remain
+compatible with generated content already stored in the shared database.
+
+The two application children meet at explicit server-function contracts. The
+domain child selects and filters data, turns stored Markdown into reader HTML,
+authenticates the learner, normalizes typed mathematical input, and records
+events. The learner-experience child presents those results in routes and
+components, owns temporary visual state, and invokes the POST operations. The
+parent coordinates their shared lifetime in the shell and owns the framework
+entry points that make those operations SSR-capable.
+
+The root document also establishes a relationship with an external KaTeX CDN.
+Courseware and quiz prompts can contain KaTeX delimiters; the document loads the
+stylesheet, runtime, and auto-render helper, while the quiz drawer calls the
+helper only after the relevant DOM is present. Generated courseware is shown in
+an iframe and may include its own rendering support, so visual changes involving
+mathematics need verification in both the parent page and the embedded document.
+
+The application is deployed by a container platform that assumes a
+repository-root Dockerfile and build context. That platform injects the database
+connection string in production. Locally, the application shares the ignored
+root environment file through a symlink arrangement. The production image is
+not responsible for installing or running the content-generation skill package;
+those scripts have their own dependency environment and persist data separately.
+
+# constraints
+
+The application must remain a single standalone package under `app/`. There is
+no root package manifest to use for app commands or container installation. The
+Vite configuration intentionally reads environment values from the parent
+directory so the app and content tools share one secret source without copying
+secrets into version control. The database connection is server-only, and the
+browser must never receive its URL. Any new read or write should use the existing
+server-function and domain-client boundary rather than creating a second access
+path.
+
+Answer-key secrecy is a cross-module invariant. Initial question delivery may
+contain prompts, modes, options, and display order only. Correct indexes,
+accepted typed strings, and explanatory answers remain server-side until a
+logged-in learner submits a response. Presentation-layer option shuffling must
+continue to submit the original option index, otherwise correct server-side
+grading would become detached from the visible selection. The quiz UI also needs
+to preserve the distinction between graded choice/input responses and ungraded
+spoken-work responses.
+
+Lesson availability is not manually maintained in the catalog. The fixed
+curriculum defines titles and deterministic positions, and persisted lesson ids
+determine which entries become clickable and participate in next/previous
+navigation. Story navigation is database authored. The lesson iframe must retain
+its sandbox and responsive height handling, and generated route output must not
+be hand-edited. Deployment must keep the Dockerfile and build context at the
+repository root because the hosting workflow depends on that location.
+
+# known-limits
+
+The overview presents fixed progress numbers and a mock progress bar; it does
+not yet derive learner progress from answer events. There is no general
+progress-read model in the runtime despite durable answer-event tables.
+
+Session signing falls back to a development secret when no environment value is
+set. A production environment therefore depends on correct secret injection.
+KaTeX also depends on CDN availability because it is not bundled. The Playwright
+configuration has no enabled local web-server block, so end-to-end runs require
+an already-running compatible application or an explicit base URL.
+
+The current product has a compact route set only. Unknown lesson identifiers may
+render a page-level empty content state, and there is no dedicated route-level
+not-found treatment for missing persisted courseware beyond the router's generic
+not-found component.
+
+# notes-for-ai
+
+Start cross-cutting application work by deciding whether the change belongs in
+the server-side domain child, the learner-experience child, or the parent
+composition. Keep the parent focused on integration. For a feature that changes
+what content appears, inspect the relevant server function, schema contract, and
+content saver before changing a loader or component. For a feature that changes
+how a learner interacts with content, trace the route, the shared shell, the
+quiz drawer if practice is involved, and the relevant CSS classes as one flow.
+
+When touching lesson or story presentation, verify the actual browser behavior.
+Check desktop and mobile shell geometry, catalog opening and closing, route
+transitions, content absence states, PDF downloads, and whether embedded lesson
+documents remain sized without horizontal overflow. For quiz changes, test all
+three math answer modes and both story modes, including the logged-out gate,
+option shuffling, retryable transient failure behavior, and delayed answer
+reveal. Confirm that a page inspection before a submission cannot find answer
+keys or typed-answer acceptance data.
+
+For framework or build work, preserve the standalone manifest and root
+environment resolution. Run the unit suite with its isolated Vitest
+configuration, then build the application so the Start/Nitro integration is
+exercised. Run targeted browser tests against a real server when route or iframe
+behavior changes. Do not edit generated routing output; make route changes in
+the authored route modules and let the router tooling update the generated tree.
+
+Before changing the deployment surface, inspect the root Dockerfile and ensure
+the image still installs from the application lockfile, builds the SSR output,
+and starts the generated server. Keep application runtime dependencies separate
+from the content skill dependencies. A change that seems local to styling can
+still affect the persistent catalog, mobile scrim stacking, reader typography,
+or quiz feedback layout, so validate it in the complete shell rather than in an
+isolated component alone.
+```
+
+### mod--database-schema
+```markdown
+# purpose
+
+The database-schema module is StemRobin's durable contract for learner identity,
+generated courseware, biographies, quiz keys, and learner attempts. It creates
+the PostgreSQL tables in the project-specific `stemrobin-schema` namespace and
+defines which information survives beyond a browser session or a generated
+content file. The schema is intentionally product-oriented: a lesson is stored
+as a complete reader artifact with its printable PDF; a biography chapter is
+stored as Markdown with a source-backed place in a story; questions hold both
+the learner-visible prompt and the server-only answer material; and answer
+events preserve the relationship between a learner and a particular question
+identity.
+
+The module is not a generic persistence layer. It encodes the division between
+the math and biography learning experiences. Math has HTML lessons, typed
+answers, conceptual layers, and review targets. Biography has public-domain
+story provenance, chapter stages, globally cited sections, and choice or open
+reflection questions. They share learner identity and a broad answer-event
+shape, but their question tables and event tables are deliberately separate
+because their content contracts, answer modes, and foreign-key targets differ.
+
+The database also supports several product promises that future changes must
+preserve. Content delivery is database-driven rather than a static-file lookup.
+Lesson catalog availability comes from saved deterministic ids. Quiz answers are
+not sent to a browser before a learner responds. Story source URLs persist with
+the story rather than being an external note. Parent content rows, child
+question rows, and learner attempts have cascading lifetimes. Understanding
+those relationships is necessary before modifying a saver, adding analytics,
+changing publication status, or migrating a table.
+
+# structure
+
+The DDL establishes the quoted `stemrobin-schema` search path and creates eight
+tables. It assumes a plain PostgreSQL access model: the application and content
+savers hold the connection string on the server, while the browser never gets a
+database credential. There is no browser-facing PostgREST or row-level-security
+layer in this design. The application database client also selects this schema
+explicitly, uses TLS, and recycles idle or old connections so an Azure-held
+connection is not reused after a long pause.
+
+`sr_users` is the small identity root. It stores an identity-generated numeric
+user id, unique email, scrypt password hash, and creation timestamp. Password
+verification happens in server code, and the current login mechanism then
+places only a signed user id in an HTTP-only cookie. There is intentionally no
+database session table, token row, or user-profile hierarchy at this stage.
+Every answer-event table points back to this numeric identity, so deleting a
+learner deletes that learner's answer history through foreign keys.
+
+The math family begins with `sr_lessons`. A row has a string id, subject,
+stage/order coordinates, title, core concept, self-contained HTML, optional
+pre-rendered PDF, status, and timestamps. The `(subject, stage, lesson_order)`
+constraint prevents two lesson rows from claiming the same curriculum position.
+The HTML is the actual reader artifact, not a pointer to a file: it includes
+the lesson's rendering setup and, after deck persistence, an injected practice
+section. The PDF is stored as bytes so the application can return it without
+re-rendering when a learner asks to download it.
+
+`sr_questions` is the math deck child of a lesson. Its unique
+`(lesson_id, ord)` ordering keeps an individual deck sequence unambiguous. It
+stores the question type and prompt together with answer-mode-dependent
+material: choices can have options and a hidden index, typed questions can have
+hidden acceptable forms, and work questions use an explanatory reference answer
+after an attempt. The `layer` and `review_of` columns carry the pedagogical role
+of a question, including the review targets used for spaced retrieval. The
+schema restricts the answer mode to `choice`, `work`, or `input`, but it does
+not itself require that exactly the appropriate companion columns are populated.
+
+`sr_answer_events` records an attempt against a particular math question. Its
+`is_correct` value is a boolean for scored choices and typed answers, or null
+for a work response; `chosen` stores the original option index and
+`answer_text` stores the submitted typed text. The future-facing
+`answer_blob_id` slot has no active upload or review flow. Indexing by user and
+question supports looking up a learner's attempts, while foreign keys connect
+the event to both the learner and the current question identity.
+
+The biography family begins with `sr_stories`, whose row carries a stable slug,
+title, person, era, public-domain source URL, status, and timestamps.
+`sr_story_chapters` owns the ordered chapters of a story. It stores Markdown
+instead of HTML, optional stage label and order, the start and end of the
+story-wide section range, optional printable PDF, and status. The application
+renders this trusted Markdown on the server when it serves a chapter. The
+`(story_id, ord)` constraint prevents duplicate chapter positions but does not
+derive or validate global section continuity; that is controlled by the story
+saver.
+
+`sr_story_questions` mirrors the concept of a math deck but permits only
+`choice` and `work` modes. Its question id space is independent from math
+questions, and `sr_story_answer_events` therefore has its own foreign key
+target, answer history, and index. A story answer event can record a selected
+option or an ungraded work attempt. Public-domain provenance lives on the
+parent story row, so every persisted chapter remains linked to the source
+contract its authoring workflow requires.
+
+# flows
+
+Schema application begins from the project root with a server-only PostgreSQL
+connection string. The DDL selects `stemrobin-schema` and creates absent tables
+and indexes. The app's `sql()` client uses the same schema at runtime, accepts
+the local authoring connection variable or the deployed container's database
+variable, and retains a reusable server-side client. A failed connection string
+is surfaced as a server error; there is no browser fallback or parallel
+database.
+
+Authentication starts with an email/password lookup in `sr_users`. The
+application compares the submitted password against the stored scrypt hash and,
+on success, signs the numeric user id into an HTTP-only cookie. Later answer
+operations verify that cookie, look up only the required answer data in the
+appropriate question table, and insert an answer-event row only for a known
+logged-in learner. No table stores browser sessions, so the cookie signature
+rather than a session-row lookup controls the active login state.
+
+Math content is written in two ordered operations. The math content saver first
+upserts a lesson row after its authoring pipeline has checked curriculum and
+ledger metadata. This makes the lesson HTML, any generated PDF, and its stable
+id available to the reader and catalog. The deck save then reads that existing
+lesson, rebuilds a practice section from the entire supplied deck, updates the
+stored HTML and PDF, deletes all existing `sr_questions` rows for the lesson,
+and inserts the replacement sequence. The question deletion matters beyond the
+current deck: the event table has `ON DELETE CASCADE`, so every learner attempt
+attached to a replaced question is deleted with it.
+
+For a learner starting a math quiz, the initial question read selects only id,
+order, type, prompt, answer mode, and options. It intentionally leaves
+`correct_index`, `accept`, and `answer` in the database. Choice submissions are
+compared against the hidden index. Typed submissions are normalized in
+server-side code and compared against hidden acceptable forms. Work submissions
+record a null correctness value. Only after the operation records the event
+does the server return the explanation and, for a choice, the correct original
+option index. The client may shuffle display order, but it maps the selection
+back to the database's original index before the server evaluates it.
+
+Biography production starts by upserting a provenance-bearing story, then
+upserting one chapter with its Markdown, stage grouping, global section range,
+PDF, and status. The saver validates the chapter's numbered H2 structure and
+checks its first section against the maximum preceding chapter range for that
+story. It then deletes the chapter's prior story questions and inserts the new
+question sequence. As with math, cascading foreign keys delete the old answer
+events with the question rows. The catalog queries stories and chapters
+separately, groups chapters using stage metadata, and exposes their stored
+section ranges. The reader converts stored Markdown to trusted HTML on the
+server, and the story quiz follows the same answer-key hiding pattern with its
+own question/event tables.
+
+The application makes content visible from row existence rather than from a
+separate publication transaction. The lesson catalog takes all saved lesson ids
+and overlays them onto the static curriculum. The story catalog selects all
+stories and chapters. Reader, PDF, and question services likewise query by id
+without adding a `published` predicate. The schema carries draft/published
+state, but the present runtime does not use it to hide draft records.
+
+The overview screen is not currently an answer-event projection. It has
+hard-coded progress figures while the event tables receive real attempts. Any
+future progress feature needs an explicit aggregation policy for duplicate
+attempts, replaced question identities, work-mode null correctness, and the
+separate math/story question families rather than treating the current numbers
+as database-derived.
+
+# module-relationships
+
+The app/domain-services module is the primary runtime consumer. Its database
+client owns the server-only connection setup. Session functions consume
+`sr_users` to authenticate an HMAC-signed cookie. Lesson functions consume
+`sr_lessons` for metadata, HTML, PDF, and catalog availability. Math quiz
+functions consume `sr_questions` and write `sr_answer_events`. Story functions
+consume the story, chapter, and question rows, render stored Markdown, and write
+the separate story answer-event rows. The learner-experience module is
+downstream of those services: it never sees a connection string and receives
+only the data each server function exposes.
+
+The math-courseware module is an upstream writer for lessons and math decks. It
+uses the database schema as the persistence contract after validating curriculum
+and lesson artifacts. Its HTML save creates or updates a lesson; its deck save
+replaces questions and generates the reader-visible practice section. The
+database's uniqueness and cascade rules mean that a content writer must consider
+both catalog identity and learner-history deletion when changing a deck. The
+static curriculum is a separate companion contract: it supplies the labels and
+order that turn a database lesson id into an accessible catalog item.
+
+The biography-reading module is an upstream writer for public-domain story
+content. Its saver enforces source-url, Markdown, question, and section-number
+rules before it writes. The schema then holds the source URL on the parent,
+chapter order and citation range on the child, and questions/events in a
+dedicated family. The data shape allows the shared quiz UI to serve both content
+types without confusing their question ids or relaxing math-specific typed
+answer behavior.
+
+The operational runbook is the deployment relationship. It applies this single
+DDL file using the secret connection string and expects all content writers and
+the app to target the same shared Azure PostgreSQL database/schema. Because
+there is no independent migration runner, a schema change must coordinate the
+DDL, every saver, app read/write functions, and any existing deployed database
+shape. Updating one consumer alone can make a valid table unreadable or allow
+content writers to create rows that another consumer does not understand.
+
+# constraints
+
+The schema file is the source of truth for table and column shape. Schema
+changes belong here and must be applied through the server-only `psql` path;
+application code, browser code, and content artifacts must not invent columns
+or maintain parallel table definitions. All runtime reads and writes go through
+the shared server-side SQL client, whose connection string must remain outside
+the client bundle. Content save scripts use the same server-only database and
+must remain the only writers for generated lesson and biography rows.
+
+Foreign keys establish content lifetime. Deleting a learner removes math and
+story answer events. Deleting a lesson removes its questions and therefore their
+events. Deleting a story removes its chapters, their questions, and their
+events. Deleting a single question also removes all attempts at that question.
+This makes parent deletion straightforward, but it makes deck replacement a
+destructive historical operation. Do not convert a deck update into a
+delete/reinsert cycle casually when preserving attempts matters.
+
+Answer-key secrecy is a schema-plus-service invariant. The key material has to
+exist in `sr_questions` and `sr_story_questions` so the server can evaluate an
+attempt, but it must not be selected into an initial browser payload or embedded
+into a lesson's generated practice HTML. Correctness is not a client
+calculation. Both math and story answer recorders must require a valid learner
+identity before inserting an event and revealing feedback.
+
+Several semantic invariants deliberately live above the database. The schema
+does not prove that a choice has a valid option index, that input-only values
+are null for other modes, that a story chapter's section range follows the
+previous chapter, that a stage label and order are paired, or that a lesson id
+matches its declared subject/stage/order. The current savers and server
+functions enforce the relevant parts. Any new writing path has to preserve these
+checks or strengthen the DDL explicitly; it cannot assume that a successful SQL
+insert represents valid learner content.
+
+# known-limits
+
+The DDL is a creation script, not a migration system. It contains only
+`CREATE ... IF NOT EXISTS` statements and no version table or `ALTER TABLE`
+operations. Reapplying it creates a missing table or index but does not add a
+missing new column to an already-created production table. Operational
+instructions that advise reapplying the schema after a missing-column error are
+therefore insufficient for an evolved database; a deliberate migration must be
+added and applied.
+
+Draft status is stored for lessons, stories, and chapters but does not currently
+control public reads. Catalog, reader, PDF, and question functions query rows
+without filtering to `published`, so every persisted draft is learner-visible.
+The status column is presently metadata rather than an enforced publication
+boundary.
+
+Question replacement destroys answer history for the replaced question ids.
+Both content savers delete their old question rows before inserting a new deck,
+and the event-table foreign keys cascade those deletions. There is no revision
+or mapping layer that preserves attempts across a revised question with the
+same displayed order.
+
+The database alone does not validate answer-mode companion fields, review
+semantics, story section continuity, or curriculum identities. It depends on
+the current savers and services to uphold these rules. Direct SQL writes can
+produce internally inconsistent but constraint-valid rows. The current app also
+has no stored session/revocation model and uses a development fallback session
+secret when `SESSION_SECRET` is absent; deployment must provide a real secret.
+
+The home-page progress panel is hard-coded rather than derived from answer
+events. Work answers record an attempt but not the learner's reasoning text or
+media, and the blob-id fields are placeholders. The existing schema supports
+future progress and review work, but those product capabilities are not yet
+implemented.
+
+# notes-for-ai
+
+Before changing this schema, map every affected table to its content writer and
+runtime reader. A math-question change affects the math saver, deck validator,
+quiz fetcher, server-side scorer, normalizer, practice-section renderer, and
+answer-event consumers. A story-question change affects the story saver,
+catalog/reader, story quiz fetcher, and separate event family. A parent-table
+change can also alter delete cascades. Do not infer the impact from a column
+name alone; trace the writer, browser-safe read, privileged answer read, and
+event insert.
+
+For any database evolution, write an explicit migration plan in the schema
+source and verify it against an existing database shape. Re-running the present
+creation statements will not evolve an old table. Preserve the quoted search
+path, TLS server connection, and all existing foreign-key relationships unless
+the product change deliberately changes data lifetime. When preserving learner
+history is a requirement, design stable question versioning or a migration path
+before changing the saver behavior that delete/reinserts decks.
+
+Keep direct SQL out of generated content workflows. Use the current content
+savers because they validate story provenance, chapter format and section
+continuity, math ledger metadata, lesson/deck shape, and generated practice/PDF
+coupling. If a new writer is unavoidable, give it equivalent validation and
+answer-secrecy behavior before it touches production rows. Never send the
+connection string, password hashes, hidden keys, accepted input forms, or
+reference answers to the browser before the appropriate server operation.
+
+Verify both database contracts and product behavior after a change. At minimum,
+exercise a lesson and story read, PDF retrieval, catalog ordering, one choice
+answer, one math typed answer, and one work answer while inspecting that initial
+question reads omit keys. Test deletion or replacement behavior deliberately in
+a disposable database when changing foreign keys or savers. For progress work,
+define how retries, revised decks, null work correctness, and separate question
+families aggregate before replacing the current mock display.
+```
