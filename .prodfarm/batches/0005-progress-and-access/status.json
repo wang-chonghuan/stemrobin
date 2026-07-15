@@ -1,6 +1,1 @@
-{
-  "status": "running",
-  "seed": "STEMROBIN-26",
-  "started_at": "2026-07-15T12:43:44Z",
-  "ended_at": null
-}
+{ "status": "done", "seed": "STEMROBIN-26", "started_at": "2026-07-15T00:00:00Z", "ended_at": "2026-07-15T19:10:42Z" }
