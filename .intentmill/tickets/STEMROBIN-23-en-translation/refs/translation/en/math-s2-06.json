@@ -160,5 +160,17 @@
   "math-s2-06-connections-rc0-o0": "Remove the parentheses + combine like terms",
   "math-s2-06-connections-rc0-o1": "Remove the parentheses + the distributive law of multiplication",
   "math-s2-06-connections-rc0-o2": "Combine like terms + find the opposite",
-  "math-s2-06-connections-rc0-o3": "Remove the parentheses + move a term"
+  "math-s2-06-connections-rc0-o3": "Remove the parentheses + move a term",
+  "math-s2-06-motivation-rc1-o0": "the coefficient",
+  "math-s2-06-motivation-rc1-o1": "the sign",
+  "math-s2-06-motivation-rc1-o2": "the letter",
+  "math-s2-06-motivation-rc1-o3": "the degree",
+  "math-s2-06-examples-rc1-o0": "$-3a-6$",
+  "math-s2-06-examples-rc1-o1": "$-3a+6$",
+  "math-s2-06-examples-rc1-o2": "$-3a+2$",
+  "math-s2-06-examples-rc1-o3": "$3a-6$",
+  "math-s2-06-connections-rc1-o0": "used forward",
+  "math-s2-06-connections-rc1-o1": "used backward",
+  "math-s2-06-connections-rc1-o2": "not using the distributive law",
+  "math-s2-06-connections-rc1-o3": "used both ways"
 }

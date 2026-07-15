@@ -186,5 +186,13 @@
   "math-s3-04-connections-rc1-o0": "coefficient",
   "math-s3-04-connections-rc1-o1": "degree",
   "math-s3-04-connections-rc1-o2": "constant term",
-  "math-s3-04-connections-rc1-o3": "root"
+  "math-s3-04-connections-rc1-o3": "root",
+  "math-s3-04-model-rc1-o0": "a polynomial equation",
+  "math-s3-04-model-rc1-o1": "a single-variable equation",
+  "math-s3-04-model-rc1-o2": "a quadratic equation",
+  "math-s3-04-model-rc1-o3": "a fractional equation",
+  "math-s3-04-anatomy-rc1-o0": "$2x+2=0$",
+  "math-s3-04-anatomy-rc1-o1": "$2x-8=0$",
+  "math-s3-04-anatomy-rc1-o2": "$6x-8=0$",
+  "math-s3-04-anatomy-rc1-o3": "$2x-8$"
 }

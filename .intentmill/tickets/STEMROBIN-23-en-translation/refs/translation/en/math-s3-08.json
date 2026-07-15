@@ -160,5 +160,13 @@
   "math-s3-08-connections-rc1-o0": "a symbol showing size",
   "math-s3-08-connections-rc1-o1": "a multiplication sign",
   "math-s3-08-connections-rc1-o2": "parentheses",
-  "math-s3-08-connections-rc1-o3": "another equals sign"
+  "math-s3-08-connections-rc1-o3": "another equals sign",
+  "math-s3-08-explain-rc1-o0": "set the unknown",
+  "math-s3-08-explain-rc1-o1": "write the equation",
+  "math-s3-08-explain-rc1-o2": "solve the equation",
+  "math-s3-08-explain-rc1-o3": "check the answer",
+  "math-s3-08-examples-rc1-o0": "3 dollars",
+  "math-s3-08-examples-rc1-o1": "5 dollars",
+  "math-s3-08-examples-rc1-o2": "8 dollars",
+  "math-s3-08-examples-rc1-o3": "10 dollars"
 }

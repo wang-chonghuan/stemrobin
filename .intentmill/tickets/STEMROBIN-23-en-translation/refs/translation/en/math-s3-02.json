@@ -161,5 +161,17 @@
   "math-s3-02-connections-rc1-o0": "Multiplication and division",
   "math-s3-02-connections-rc1-o1": "Addition and subtraction",
   "math-s3-02-connections-rc1-o2": "Transposing a term and restoring",
-  "math-s3-02-connections-rc1-o3": "The opposite and the absolute value"
+  "math-s3-02-connections-rc1-o3": "The opposite and the absolute value",
+  "math-s3-02-motivation-rc1-o0": "a number",
+  "math-s3-02-motivation-rc1-o1": "the unknown $x$",
+  "math-s3-02-motivation-rc1-o2": "the coefficient",
+  "math-s3-02-motivation-rc1-o3": "the brackets",
+  "math-s3-02-explain-rc1-o0": "$15=15$",
+  "math-s3-02-explain-rc1-o1": "$15=10$",
+  "math-s3-02-explain-rc1-o2": "$10=15$",
+  "math-s3-02-explain-rc1-o3": "$50=50$",
+  "math-s3-02-examples-rc1-o0": "16",
+  "math-s3-02-examples-rc1-o1": "6",
+  "math-s3-02-examples-rc1-o2": "-6",
+  "math-s3-02-examples-rc1-o3": "3"
 }

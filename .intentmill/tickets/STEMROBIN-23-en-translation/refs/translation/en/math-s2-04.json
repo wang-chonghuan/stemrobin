@@ -181,5 +181,21 @@
   "math-s2-04-connections-rc0-o0": "Whether the letter factors are the same set",
   "math-s2-04-connections-rc0-o1": "Whether the coefficients are the same",
   "math-s2-04-connections-rc0-o2": "Whether the degree is 0",
-  "math-s2-04-connections-rc0-o3": "Whether the signs are the same"
+  "math-s2-04-connections-rc0-o3": "Whether the signs are the same",
+  "math-s2-04-model-rc1-o0": "monomials",
+  "math-s2-04-model-rc1-o1": "polynomials",
+  "math-s2-04-model-rc1-o2": "polynomial expressions",
+  "math-s2-04-model-rc1-o3": "like terms",
+  "math-s2-04-anatomy-rc1-o0": "$2$",
+  "math-s2-04-anatomy-rc1-o1": "$\\frac{1}{2}$",
+  "math-s2-04-anatomy-rc1-o2": "$x$",
+  "math-s2-04-anatomy-rc1-o3": "$1$",
+  "math-s2-04-boundary-rc1-o0": "2",
+  "math-s2-04-boundary-rc1-o1": "3",
+  "math-s2-04-boundary-rc1-o2": "1",
+  "math-s2-04-boundary-rc1-o3": "4",
+  "math-s2-04-connections-rc1-o0": "monomials",
+  "math-s2-04-connections-rc1-o1": "polynomial expressions",
+  "math-s2-04-connections-rc1-o2": "polynomials",
+  "math-s2-04-connections-rc1-o3": "like terms"
 }

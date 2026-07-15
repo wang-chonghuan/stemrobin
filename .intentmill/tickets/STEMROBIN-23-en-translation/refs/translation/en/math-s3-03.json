@@ -158,5 +158,13 @@
   "math-s3-03-connections-rc1-o0": "Transposing terms, combining like terms, and dividing out the coefficient",
   "math-s3-03-connections-rc1-o1": "The four operations of addition, subtraction, multiplication, and division",
   "math-s3-03-connections-rc1-o2": "Drawing, tabulating, and calculating",
-  "math-s3-03-connections-rc1-o3": "Removing parentheses, clearing denominators, and taking roots"
+  "math-s3-03-connections-rc1-o3": "Removing parentheses, clearing denominators, and taking roots",
+  "math-s3-03-motivation-rc1-o0": "addition",
+  "math-s3-03-motivation-rc1-o1": "multiplication",
+  "math-s3-03-motivation-rc1-o2": "subtraction",
+  "math-s3-03-motivation-rc1-o3": "division",
+  "math-s3-03-examples-rc1-o0": "36",
+  "math-s3-03-examples-rc1-o1": "4",
+  "math-s3-03-examples-rc1-o2": "9",
+  "math-s3-03-examples-rc1-o3": "15"
 }

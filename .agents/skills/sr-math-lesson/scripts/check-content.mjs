@@ -15,6 +15,7 @@
 //   node check-content.mjs --content c.json --overlay o.json --genre 方法课 --id math-s99-01
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { readCheckModes } from './question-policy.mjs'
 
 // Genre section anchors (ordered) — the fixed, validated card boundaries.
 export const ANCHORS = {
@@ -93,7 +94,10 @@ export function validateContent({ content, overlay, genre, id }) {
       else { if (seenNodeIds.has(item.id)) problems.push(`${rtag}: duplicate node id ${item.id}`); seenNodeIds.add(item.id) }
       if (!Number.isInteger(item.rev)) problems.push(`${rtag}: rev must be an integer`)
       if (item.id && !has(item.id)) problems.push(`${rtag}: prompt id "${item.id}" has no overlay entry`)
-      validateItemKey(problems, rtag, item, overlay, has, ['choice', 'input'])
+      // Choice-only policy (STEMROBIN-25, reversible): allowed modes come from
+      // question-policy.mjs. validateItemKey still validates the input branch when
+      // the policy re-enables it — this only narrows which modes are permitted.
+      validateItemKey(problems, rtag, item, overlay, has, readCheckModes())
     }
   })
 

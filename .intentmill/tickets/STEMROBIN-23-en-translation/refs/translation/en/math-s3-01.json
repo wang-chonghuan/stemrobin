@@ -156,5 +156,17 @@
   "math-s3-01-connections-rc0-o0": "The value of the unknown",
   "math-s3-01-connections-rc0-o1": "The letter on paper",
   "math-s3-01-connections-rc0-o2": "The equals sign",
-  "math-s3-01-connections-rc0-o3": "The left side of the equation"
+  "math-s3-01-connections-rc0-o3": "The left side of the equation",
+  "math-s3-01-motivation-rc1-o0": "11 pieces",
+  "math-s3-01-motivation-rc1-o1": "8 pieces",
+  "math-s3-01-motivation-rc1-o2": "14 pieces",
+  "math-s3-01-motivation-rc1-o3": "3 pieces",
+  "math-s3-01-anatomy-rc1-o0": "5",
+  "math-s3-01-anatomy-rc1-o1": "13",
+  "math-s3-01-anatomy-rc1-o2": "36",
+  "math-s3-01-anatomy-rc1-o3": "4",
+  "math-s3-01-connections-rc1-o0": "hold a place",
+  "math-s3-01-connections-rc1-o1": "do the calculation",
+  "math-s3-01-connections-rc1-o2": "give it a name",
+  "math-s3-01-connections-rc1-o3": "decorate it"
 }

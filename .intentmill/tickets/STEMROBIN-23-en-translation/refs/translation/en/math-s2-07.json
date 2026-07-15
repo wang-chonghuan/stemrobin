@@ -174,5 +174,13 @@
   "math-s2-07-connections-rc1-o0": "the distributive law of multiplication",
   "math-s2-07-connections-rc1-o1": "the associative law of multiplication",
   "math-s2-07-connections-rc1-o2": "the commutative law of addition",
-  "math-s2-07-connections-rc1-o3": "the associative law of addition"
+  "math-s2-07-connections-rc1-o3": "the associative law of addition",
+  "math-s2-07-explain-rc2-o0": "the simplest form",
+  "math-s2-07-explain-rc2-o1": "the hardest form",
+  "math-s2-07-explain-rc2-o2": "the largest form",
+  "math-s2-07-explain-rc2-o3": "the expanded form",
+  "math-s2-07-examples-rc2-o0": "5",
+  "math-s2-07-examples-rc2-o1": "7",
+  "math-s2-07-examples-rc2-o2": "14",
+  "math-s2-07-examples-rc2-o3": "2"
 }
