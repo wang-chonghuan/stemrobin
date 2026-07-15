@@ -4,6 +4,7 @@ import { currentUserId } from '~/lib/session.server'
 import { currentLocale } from '~/lib/locale.server'
 import { localizeQuestionType } from '~/lib/i18n'
 import { normalizeMathAnswer } from '~/lib/answer-normalize'
+import { recordPracticeAttempt } from '~/lib/progress'
 
 // Neutral exercise-deck shapes (subset read for the non-source-locale practice
 // deck). The deck's prose (prompt/options) lives in the per-locale overlay keyed
@@ -194,6 +195,14 @@ export type AnsweredItem = {
 
 export type OpenAttempt = { attemptId: number; answered: AnsweredItem[] }
 
+// The single definition of an attempt's score percent (STEMROBIN-30). Gradable
+// items only (choice+input); an all-说理 deck has no gradable total → 0. This is
+// both what the learner sees (ScoreCard) and what is recorded into the progress
+// model at attempt end, so the two can never diverge.
+export function attemptScorePercent(correct: number, gradableTotal: number): number {
+  return gradableTotal > 0 ? Math.round((correct / gradableTotal) * 100) : 0
+}
+
 // Summarize one attempt against its lesson's deck. Server-only helper.
 async function summarizeAttempt(
   lessonId: string,
@@ -334,5 +343,18 @@ export const endAttempt = createServerFn({ method: 'POST' })
       if (!existing.length) return { error: '答题记录不存在' }
       endedAt = existing[0].ended_at ?? new Date()
     }
-    return summarizeAttempt(data.lessonId, data.attemptId, endedAt)
+    const summary = await summarizeAttempt(data.lessonId, data.attemptId, endedAt)
+    // STEMROBIN-30: record this attempt's percent into the progress model so the
+    // homepage practice point reflects the latest attempt (>=80 completes, later
+    // <80 regresses). Same percent the scorecard shows (attemptScorePercent);
+    // server-authoritative — the client never supplies a score. Reuses
+    // STEMROBIN-29's recordPracticeAttempt (its insert+prune rule) rather than
+    // duplicating the storage logic here.
+    await recordPracticeAttempt({
+      data: {
+        lessonId: data.lessonId,
+        score: attemptScorePercent(summary.correct, summary.gradableTotal),
+      },
+    })
+    return summary
   })
