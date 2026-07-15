@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Menu } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Lock, Menu } from 'lucide-react'
 
 import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf, listLessonIds } from '~/lib/lessons'
+import { getLessonReading } from '~/lib/reading'
 import {
   getLessonQuestions,
   recordAnswer,
@@ -14,21 +15,30 @@ import {
 } from '~/lib/quiz'
 import { useLayoutStore } from '~/lib/layout-store'
 import { QuizDrawer } from '~/components/quiz-drawer'
+import { CardReader } from '~/components/card-reader'
 
 export const Route = createFileRoute('/_app/lesson/$id')({
   component: LessonView,
-  loader: async ({ params }) => ({
-    id: params.id,
-    html: await getLessonHtml({ data: params.id }),
-    lessonIds: await listLessonIds(),
-  }),
+  loader: async ({ params }) => {
+    const reading = await getLessonReading({ data: params.id })
+    return {
+      id: params.id,
+      reading,
+      // Full-lesson html only needed as a fallback when there is no card tree.
+      html: reading ? null : await getLessonHtml({ data: params.id }),
+      lessonIds: await listLessonIds(),
+    }
+  },
 })
 
 function LessonView() {
-  const { id, html, lessonIds } = Route.useLoaderData()
+  const { id, reading, html, lessonIds } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [quizOpen, setQuizOpen] = useState(false)
+  // 精读 gate: the practice deck unlocks only after every card is read (per visit).
+  // Lessons without a card tree (fallback html) leave practice open as before.
+  const [allRead, setAllRead] = useState(!reading)
   const label = getLessonLabel(id)
 
   async function downloadPdf() {
@@ -63,8 +73,10 @@ function LessonView() {
             className="sr-btn"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px' }}
             onClick={() => setQuizOpen(true)}
+            disabled={!allRead}
+            title={allRead ? '进入练习题' : '读完全部卡片后解锁练习'}
           >
-            <Layers size={16} /> 卡片答题
+            {allRead ? <Layers size={16} /> : <Lock size={16} />} 练习题
           </button>
           <button
             type="button"
@@ -78,7 +90,15 @@ function LessonView() {
         </div>
       </div>
       <div className="sr-d-scroll" style={{ padding: 0 }}>
-        {html ? (
+        {reading ? (
+          <CardReader
+            lessonId={id}
+            reading={reading}
+            label={label}
+            onAllRead={() => setAllRead(true)}
+            onOpenPractice={() => setQuizOpen(true)}
+          />
+        ) : html ? (
           <LessonFrame frameRef={iframeRef} html={html} title={label} />
         ) : (
           <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>课程内容尚未生成。</p>
