@@ -2,15 +2,18 @@ import { useEffect, useState } from 'react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { CatalogSidebar } from '~/components/catalog'
-import { listLessonIds } from '~/lib/lessons'
+import { listAvailableLessonIds } from '~/lib/lessons'
+import { getLocale } from '~/lib/locale'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getStoryCatalog } from '~/lib/stories'
+import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app')({
   component: AppShell,
   loader: async () => ({
-    lessonIds: await listLessonIds(),
+    lessonIds: await listAvailableLessonIds(),
     stories: await getStoryCatalog(),
+    locale: await getLocale(),
   }),
 })
 
@@ -19,7 +22,7 @@ export const Route = createFileRoute('/_app')({
 // scrim below 1200px. The catalog is persistent — the detail pane swaps via
 // <Outlet /> for the overview and lesson routes, so the sidebar is always shown.
 function AppShell() {
-  const { lessonIds, stories } = Route.useLoaderData()
+  const { lessonIds, stories, locale } = Route.useLoaderData()
   const drawerOpen = useLayoutStore((s) => s.drawerOpen)
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [isMobile, setIsMobile] = useState(false)
@@ -38,7 +41,7 @@ function AppShell() {
   return (
     <div className={`sr-app${isMobile ? ' mobile' : ''}`}>
       <button
-        aria-label="关闭目录"
+        aria-label={t(locale, 'cat.close')}
         className={`sr-scrim${drawerOpen ? ' show' : ''}`}
         onClick={() => setDrawer(false)}
         type="button"
@@ -46,6 +49,7 @@ function AppShell() {
       <CatalogSidebar
         stories={stories}
         lessonIds={lessonIds}
+        locale={locale}
         drawerOpen={drawerOpen}
         onNavigate={() => isMobile && setDrawer(false)}
       />

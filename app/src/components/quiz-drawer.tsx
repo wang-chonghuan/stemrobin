@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { Camera, Check, Flag, Play, RotateCcw, X } from 'lucide-react'
 
 import { getCurrentUser } from '~/lib/session'
+import { t, type Locale } from '~/lib/i18n'
 import type {
   QuizQuestion,
   AnswerResult,
@@ -60,6 +61,7 @@ export function QuizDrawer({
   fetchQuestions,
   record,
   attempts,
+  locale = 'zh',
 }: {
   contentId: string
   open: boolean
@@ -67,6 +69,7 @@ export function QuizDrawer({
   fetchQuestions: FetchQuestions
   record: RecordAnswer
   attempts?: AttemptApi
+  locale?: Locale
 }) {
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null)
   const [loading, setLoading] = useState(true)
@@ -219,7 +222,7 @@ export function QuizDrawer({
     } catch {
       // Network / cold-start / transient backend error — surface it so the tap
       // isn't a silent no-op; the option stays clickable to retry.
-      setErr('网络不太顺，请再点一次这个选项重试。')
+      setErr(t(locale, 'quiz.err.choose'))
     } finally {
       setPicking(null)
     }
@@ -241,7 +244,7 @@ export function QuizDrawer({
         setTypedVal('')
       }
     } catch {
-      setErr('网络不太顺，请再点一次「提交」重试。')
+      setErr(t(locale, 'quiz.err.submit'))
     } finally {
       setSubmitting(false)
     }
@@ -278,7 +281,7 @@ export function QuizDrawer({
       setOpenAttempt(null)
       setPhase('quiz')
     } catch {
-      setErr('网络不太顺，请再试一次。')
+      setErr(t(locale, 'err.network'))
     } finally {
       setBusy(false)
     }
@@ -299,7 +302,7 @@ export function QuizDrawer({
       setOpenAttempt(null)
       setPhase('result')
     } catch {
-      setErr('网络不太顺，请再试一次。')
+      setErr(t(locale, 'err.network'))
     } finally {
       setBusy(false)
     }
@@ -312,11 +315,11 @@ export function QuizDrawer({
       <section
         className="sr-quiz-drawer"
         role="dialog"
-        aria-label="卡片答题"
+        aria-label={t(locale, 'quiz.title')}
         onClick={(e) => e.stopPropagation()}
       >
         <header className="sr-quiz-head">
-          <span className="sr-quiz-title">卡片答题</span>
+          <span className="sr-quiz-title">{t(locale, 'quiz.title')}</span>
           {phase === 'quiz' && total > 0 && (
             <span className="sr-quiz-count">
               {idx + 1} / {total}
@@ -325,7 +328,7 @@ export function QuizDrawer({
           <button
             type="button"
             className="sr-quiz-close"
-            aria-label="关闭"
+            aria-label={t(locale, 'quiz.close')}
             onClick={onClose}
           >
             <X size={18} />
@@ -335,29 +338,27 @@ export function QuizDrawer({
         <div className="sr-quiz-body">
           {loggedIn === false ? (
             <div className="sr-quiz-login">
-              <p>答题需要先登录，用于保存你的作答记录。</p>
+              <p>{t(locale, 'quiz.login')}</p>
               <Link to="/login" className="sr-btn" onClick={onClose}>
-                去登录
+                {t(locale, 'quiz.goLogin')}
               </Link>
             </div>
           ) : loading ? (
-            <p className="sr-quiz-empty">正在载入…</p>
+            <p className="sr-quiz-empty">{t(locale, 'quiz.loading')}</p>
           ) : total === 0 ? (
-            <p className="sr-quiz-empty">这一课还没有练习题。</p>
+            <p className="sr-quiz-empty">{t(locale, 'quiz.empty')}</p>
           ) : phase === 'start' ? (
             <div className="sr-quiz-gate">
               {score ? (
-                <ScoreCard score={score} title="上一次成绩" />
+                <ScoreCard score={score} title={t(locale, 'quiz.score.last')} locale={locale} />
               ) : (
-                <p className="sr-quiz-gate-note">
-                  你上次有一份还没答完的记录，可以继续，或重新开始一份。
-                </p>
+                <p className="sr-quiz-gate-note">{t(locale, 'quiz.gateNote')}</p>
               )}
               {err && <div className="sr-quiz-err">{err}</div>}
               <div className="sr-quiz-gate-actions">
                 {openAttempt && (
                   <button type="button" className="sr-btn" disabled={busy} onClick={beginContinue}>
-                    <Play size={15} /> 继续上一次
+                    <Play size={15} /> {t(locale, 'quiz.continue')}
                   </button>
                 )}
                 <button
@@ -366,25 +367,25 @@ export function QuizDrawer({
                   disabled={busy}
                   onClick={beginRestart}
                 >
-                  <RotateCcw size={15} /> 重新开始
+                  <RotateCcw size={15} /> {t(locale, 'quiz.restart')}
                 </button>
               </div>
             </div>
           ) : phase === 'result' && score ? (
             <div className="sr-quiz-gate">
-              <ScoreCard score={score} title="本次成绩" />
+              <ScoreCard score={score} title={t(locale, 'quiz.score.this')} locale={locale} />
               {err && <div className="sr-quiz-err">{err}</div>}
               <div className="sr-quiz-gate-actions">
                 <button type="button" className="sr-btn" disabled={busy} onClick={beginRestart}>
-                  <RotateCcw size={15} /> 再做一遍
+                  <RotateCcw size={15} /> {t(locale, 'quiz.redo')}
                 </button>
                 <button type="button" className="sr-btn ghost" onClick={onClose}>
-                  关闭
+                  {t(locale, 'quiz.closeBtn')}
                 </button>
               </div>
             </div>
           ) : !q ? (
-            <p className="sr-quiz-empty">这一课还没有练习题。</p>
+            <p className="sr-quiz-empty">{t(locale, 'quiz.empty')}</p>
           ) : (
             <div className="sr-quiz-card">
               {/* verdict pinned above the card so it's seen immediately (graded modes only) */}
@@ -396,14 +397,14 @@ export function QuizDrawer({
                 >
                   {result.isCorrect ? (
                     <>
-                      <Check size={16} /> 答对了
+                      <Check size={16} /> {t(locale, 'quiz.ok')}
                     </>
                   ) : (
                     <>
                       <X size={16} />{' '}
                       {q.answerMode === 'choice'
-                        ? '答错了 · 正确答案已标出'
-                        : '答错了 · 看看下面的讲解'}
+                        ? t(locale, 'quiz.badChoice')
+                        : t(locale, 'quiz.badOther')}
                     </>
                   )}
                 </div>
@@ -416,7 +417,7 @@ export function QuizDrawer({
                 {q.answerMode === 'work' ? (
                   <div className="sr-quiz-work">
                     <Camera size={26} />
-                    <span>这题要讲道理：先把你的解释说出来（说给别人听最好），说完再看参考答案对照。</span>
+                    <span>{t(locale, 'quiz.work.hint')}</span>
                     {!result && (
                       <button
                         type="button"
@@ -437,13 +438,13 @@ export function QuizDrawer({
                               setResults((m) => ({ ...m, [q.id]: { ...r } }))
                             }
                           } catch {
-                            setErr('网络不太顺，请再点一次重试。')
+                            setErr(t(locale, 'quiz.err.submit'))
                           } finally {
                             setSubmitting(false)
                           }
                         }}
                       >
-                        我说完了，看参考答案
+                        {t(locale, 'quiz.work.reveal')}
                       </button>
                     )}
                   </div>
@@ -452,7 +453,7 @@ export function QuizDrawer({
                     <input
                       type="text"
                       value={result ? (result.typed ?? '') : typedVal}
-                      placeholder="把答案打在这里，如 3x^2-5"
+                      placeholder={t(locale, 'quiz.input.placeholder')}
                       autoComplete="off"
                       autoCapitalize="off"
                       autoCorrect="off"
@@ -473,7 +474,7 @@ export function QuizDrawer({
                       disabled={!!result || submitting || !typedVal.trim()}
                       onClick={submitTyped}
                     >
-                      {submitting ? '提交中…' : '提交'}
+                      {submitting ? t(locale, 'quiz.submitting') : t(locale, 'quiz.submit')}
                     </button>
                   </div>
                 ) : (
@@ -536,7 +537,7 @@ export function QuizDrawer({
                 setIdx((i) => Math.max(0, i - 1))
               }}
             >
-              上一题
+              {t(locale, 'quiz.prev')}
             </button>
             {attempts && attemptId != null && (
               <button
@@ -544,9 +545,9 @@ export function QuizDrawer({
                 className="sr-btn ghost sr-quiz-end"
                 disabled={busy}
                 onClick={endQuiz}
-                title="结束本课答题并查看成绩"
+                title={t(locale, 'quiz.end.title')}
               >
-                <Flag size={15} /> 结束本课答题
+                <Flag size={15} /> {t(locale, 'quiz.end')}
               </button>
             )}
             <button
@@ -559,7 +560,7 @@ export function QuizDrawer({
                 setIdx((i) => Math.min(total - 1, i + 1))
               }}
             >
-              下一题
+              {t(locale, 'quiz.next')}
             </button>
           </footer>
         )}
@@ -570,41 +571,52 @@ export function QuizDrawer({
 
 // The scorecard: correct count, ratio X/N, percentage (both shown), the wrong
 // questions by 题号, plus unanswered and 说理 (self-checked, excluded) counts.
-function ScoreCard({ score, title }: { score: ScoreSummary; title: string }) {
+function ScoreCard({
+  score,
+  title,
+  locale,
+}: {
+  score: ScoreSummary
+  title: string
+  locale: Locale
+}) {
   const pct =
     score.gradableTotal > 0
       ? Math.round((score.correct / score.gradableTotal) * 100)
       : 0
+  const sep = locale === 'en' ? ', ' : '、'
   return (
     <div className="sr-score">
       <div className="sr-score-title">{title}</div>
       <div className="sr-score-hero">
         <span className="sr-score-pct">{pct}%</span>
         <span className="sr-score-ratio">
-          答对 {score.correct} / {score.gradableTotal} 题
+          {t(locale, 'quiz.score.ratio', { correct: score.correct, total: score.gradableTotal })}
         </span>
       </div>
       <div className="sr-score-lines">
         {score.unanswered > 0 && (
-          <div className="sr-score-line">未作答 {score.unanswered} 题（未得分）</div>
+          <div className="sr-score-line">
+            {t(locale, 'quiz.score.unanswered', { n: score.unanswered })}
+          </div>
         )}
         {score.workTotal > 0 && (
           <div className="sr-score-line">
-            说理 {score.workDone} / {score.workTotal} 题已完成（自评，不计入比例）
+            {t(locale, 'quiz.score.work', { done: score.workDone, total: score.workTotal })}
           </div>
         )}
         <div className="sr-score-line">
           {score.wrongOrds.length > 0 ? (
             <>
-              答错的题：
+              {t(locale, 'quiz.score.wrongLabel')}
               <span className="sr-score-wrong">
-                {score.wrongOrds.map((o) => `第 ${o} 题`).join('、')}
+                {score.wrongOrds.map((o) => t(locale, 'quiz.score.wrongItem', { n: o })).join(sep)}
               </span>
             </>
           ) : score.correct + score.unanswered > 0 && score.unanswered === 0 ? (
-            '全部答对，太棒了。'
+            t(locale, 'quiz.score.allRight')
           ) : (
-            '这一份没有答错的题。'
+            t(locale, 'quiz.score.noWrong')
           )}
         </div>
       </div>

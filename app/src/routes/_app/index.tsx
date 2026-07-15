@@ -2,40 +2,45 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { Atom, BookOpen, FileText, Menu, Rocket } from 'lucide-react'
 
 import { getAvailableLessons } from '~/lib/curriculum'
-import { listLessonIds } from '~/lib/lessons'
+import { listAvailableLessonIds } from '~/lib/lessons'
+import { getLocale } from '~/lib/locale'
+import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
 
 export const Route = createFileRoute('/_app/')({
   component: Overview,
-  loader: async () => ({ lessonIds: await listLessonIds() }),
+  loader: async () => ({
+    lessonIds: await listAvailableLessonIds(),
+    locale: await getLocale(),
+  }),
 })
 
 function Overview() {
-  const { lessonIds } = Route.useLoaderData()
+  const { lessonIds, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
-  const availableLessons = getAvailableLessons(lessonIds)
+  const availableLessons = getAvailableLessons(lessonIds, locale)
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
         <button
           className="sr-navtoggle"
-          aria-label="打开目录"
+          aria-label={t(locale, 'cat.open')}
           type="button"
           onClick={() => setDrawer(true)}
         >
           <Menu size={18} />
         </button>
         <BookOpen size={18} color="var(--sr-blue)" />
-        <span className="sr-d-title">总览</span>
+        <span className="sr-d-title">{t(locale, 'ov.title')}</span>
       </div>
 
       <div className="sr-d-scroll">
         {/* Progress (mockup — wire to sr_answer_events / sr_progress later) */}
         <section className="sr-progress">
           <div className="sr-progress-top">
-            <span className="sr-progress-title">学习进度</span>
+            <span className="sr-progress-title">{t(locale, 'ov.progress.title')}</span>
             <span className="sr-progress-pct">
-              8<span> / 96 课</span>
+              8<span> {t(locale, 'ov.progress.unit')}</span>
             </span>
           </div>
           <div className="sr-progress-bar">
@@ -44,15 +49,15 @@ function Overview() {
           <div className="sr-progress-stats">
             <div className="sr-progress-stat">
               <b>8</b>
-              <span>已学课程</span>
+              <span>{t(locale, 'ov.stat.learned')}</span>
             </div>
             <div className="sr-progress-stat">
               <b>104</b>
-              <span>已练题目</span>
+              <span>{t(locale, 'ov.stat.practiced')}</span>
             </div>
             <div className="sr-progress-stat">
               <b>5</b>
-              <span>连续天数</span>
+              <span>{t(locale, 'ov.stat.streak')}</span>
             </div>
           </div>
         </section>
@@ -63,21 +68,17 @@ function Overview() {
             <div className="sr-pillar">
               <span className="sr-pillar-ico blue"><Atom size={20} /></span>
               <div>
-                <div className="sr-pillar-title">科学与工程</div>
-                <p className="sr-pillar-desc">
-                  只要你愿意学，AI 会帮你拆解路径、准备材料，陪你一步步掌握任何科学与工程知识。
-                </p>
+                <div className="sr-pillar-title">{t(locale, 'ov.pillar1.title')}</div>
+                <p className="sr-pillar-desc">{t(locale, 'ov.pillar1.desc')}</p>
               </div>
             </div>
             <div className="sr-pillar">
               <span className="sr-pillar-ico green"><Rocket size={20} /></span>
               <div>
                 <div className="sr-pillar-title">
-                  创造者档案 <span className="sr-tag">即将上线</span>
+                  {t(locale, 'ov.pillar2.title')} <span className="sr-tag">{t(locale, 'ov.pillar2.tag')}</span>
                 </div>
-                <p className="sr-pillar-desc">
-                  富兰克林、爱迪生、卡内基、福特……读发明家如何把创造变成事业，配理解与创业推理问答。
-                </p>
+                <p className="sr-pillar-desc">{t(locale, 'ov.pillar2.desc')}</p>
               </div>
             </div>
           </div>
@@ -85,7 +86,7 @@ function Overview() {
 
         {/* Live lessons */}
         <section className="sr-section-gap">
-          <div className="sr-eyebrow">新上线课程（{availableLessons.length}）</div>
+          <div className="sr-eyebrow">{t(locale, 'ov.new', { n: availableLessons.length })}</div>
           <div className="sr-grid">
             {availableLessons.map((l) => (
               <Link
