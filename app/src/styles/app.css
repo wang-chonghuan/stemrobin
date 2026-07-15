@@ -938,9 +938,16 @@ a.sr-out-lesson.ready:hover {
   display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
   padding-bottom: 12px; border-bottom: 1px solid var(--sr-line-soft); margin-bottom: 14px;
 }
+.sr-card-titles { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .sr-card-lesson {
   font-family: var(--sr-display); font-size: 18px; font-weight: 600;
   letter-spacing: -0.01em; color: var(--sr-ink); min-width: 0;
+}
+/* Current card's section title (中文名, STEMROBIN-34/35) — a quiet teal eyebrow
+   under the lesson title, matching DESIGN's blue_deep accent-label treatment. */
+.sr-card-section {
+  font-family: var(--sr-body); font-size: 13px; font-weight: 600;
+  color: var(--sr-blue-deep); min-width: 0;
 }
 .sr-card-progress { flex: none; font-family: var(--sr-mono); font-size: 13px; color: var(--sr-ink-soft); }
 .sr-card-progress b { color: var(--sr-blue-deep); font-size: 15px; }

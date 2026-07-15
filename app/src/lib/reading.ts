@@ -34,6 +34,7 @@ type NeutralReadCheck = {
 type NeutralCard = {
   id: string
   num: number
+  name: string // section display name 中文名 (STEMROBIN-34), e.g. 讲解 / 例题
   anchor: string
   body: BodyNode[]
   read_check?: NeutralReadCheck[]
@@ -51,6 +52,7 @@ export type ReadCheck = {
 export type ReadingCard = {
   id: string
   num: number
+  name: string // section 中文名 (STEMROBIN-34), shown as the section title
   anchor: string
   bodyHtml: string
   readChecks: ReadCheck[]
@@ -106,21 +108,86 @@ export function projectCards(content: Content, overlay: Overlay): ReadingCard[] 
   return content.cards.map((card) => ({
     id: card.id,
     num: card.num,
+    name: card.name,
     anchor: card.anchor,
     bodyHtml: bodyToHtml(card, overlay),
     readChecks: (card.read_check ?? []).map((rc) => projectReadCheck(rc, overlay)),
   }))
 }
 
-// Full-text (全文速览) srcDoc: the WHOLE lesson content at once — every card's
-// already-assembled bodyHtml concatenated in card order, wrapped in the same
+// Escape plain-text (lesson title / section 中文名) before it enters the srcDoc
+// HTML. Card bodies + question prompts are authored markup (KaTeX $…$) inserted
+// verbatim like the per-card view; titles/names are text, so they are escaped.
+function escapeHtml(s: string): string {
+  return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+}
+
+// A KEY-free question view (matches the getLessonQuestions payload subset the
+// 全文速览 needs). prompt/options only — never correct_index/accept/answer.
+export type FullTextQuestion = {
+  ord: number
+  prompt: string
+  answerMode: 'choice' | 'work' | 'input'
+  options: string[] | null
+}
+
+// Extras rendered by the 全文速览 (STEMROBIN-35): the lesson title at the top, and
+// after the full text the display-only 课后题 (post-lesson exercises). The 课后题
+// are STATIC markup — no submit control, no inputs, no option buttons, no click
+// handler, no server call — so viewing 速览 cannot answer/judge/record or move
+// progress (seed grill G-3). The exercisesLabel is the localized 课后题 heading.
+export type FullTextExtras = {
+  title?: string
+  questions?: FullTextQuestion[]
+  exercisesLabel?: string
+}
+
+// Static 课后题 list. Prompts/options are authored content (may carry KaTeX $…$)
+// inserted verbatim so the lesson head's renderMathInElement(document.body,…)
+// typesets them; only choice options render, as a plain (non-interactive) list.
+function exercisesHtml(questions: FullTextQuestion[] | undefined, label: string): string {
+  if (!questions || questions.length === 0) return ''
+  const items = questions
+    .map((q) => {
+      const opts =
+        q.answerMode === 'choice' && q.options && q.options.length
+          ? `<ul class="sr-fulltext-ex-opts">${q.options
+              .map((o) => `<li>${o}</li>`)
+              .join('')}</ul>`
+          : ''
+      return `<li class="sr-fulltext-ex-item"><div class="sr-fulltext-ex-prompt">${q.prompt}</div>${opts}</li>`
+    })
+    .join('')
+  return `<section class="sr-fulltext-exercises"><h2>${escapeHtml(label)}</h2><ol>${items}</ol></section>`
+}
+
+// Full-text (全文速览) srcDoc: the WHOLE lesson content at once, wrapped in the same
 // lesson head + <article class="sr-lesson"> shell the per-card iframe uses, so
-// formulas (KaTeX) and lesson element classes render identically. It reads only
-// bodyHtml, never readChecks/key — full-text carries no read-check and no KEY.
+// formulas (KaTeX) and lesson element classes render identically. Layout is
+// traditional-textbook (STEMROBIN-35): the lesson title at the top, then per card
+// the section 中文名 (name) as a heading before that card's bodyHtml, then — when
+// provided — the display-only 课后题 list. It reads only bodyHtml + card name (never
+// readChecks/key), and the questions are the KEY-free getLessonQuestions view.
 // Pure (DB-free, unit-tested); the caller renders it in the sandboxed iframe.
-export function buildFullTextHtml(head: string, cards: ReadingCard[], lang: string): string {
-  const body = cards.map((c) => c.bodyHtml).join('\n')
-  return `<!doctype html><html lang="${lang}"><head>${head}</head><body><article class="sr-lesson">${body}</article></body></html>`
+export function buildFullTextHtml(
+  head: string,
+  cards: ReadingCard[],
+  lang: string,
+  extras: FullTextExtras = {},
+): string {
+  const titleHtml = extras.title
+    ? `<h1 class="sr-fulltext-title">${escapeHtml(extras.title)}</h1>`
+    : ''
+  const sections = cards
+    .map((c) => {
+      const heading = c.name
+        ? `<h2 class="sr-fulltext-section">${escapeHtml(c.name)}</h2>`
+        : ''
+      return `${heading}${c.bodyHtml}`
+    })
+    .join('\n')
+  const exercises = exercisesHtml(extras.questions, extras.exercisesLabel ?? '')
+  return `<!doctype html><html lang="${lang}"><head>${head}</head><body><article class="sr-lesson">${titleHtml}${sections}${exercises}</article></body></html>`
 }
 
 // Pure server-side judge (DB-free, unit-tested). choice: chosen === correct_index;
