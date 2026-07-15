@@ -185,6 +185,41 @@ body {
   font-weight: 600;
 }
 
+/* Learning-language switch (中 / EN) in the catalog header. Segmented control on
+   the existing --sr-* tokens: selected uses blue_tint bg + blue_deep text, like a
+   selected catalog item / chip (see DESIGN.md). */
+.sr-lang-switch {
+  margin-left: auto;
+  flex: none;
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--sr-line);
+  border-radius: 8px;
+  background: var(--sr-line-soft);
+}
+
+.sr-lang-opt {
+  border: 0;
+  background: transparent;
+  color: var(--sr-ink-dim);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 1.4;
+}
+
+.sr-lang-opt.active {
+  background: var(--sr-blue-tint);
+  color: var(--sr-blue-deep);
+}
+
+.sr-lang-opt:not(.active):hover {
+  color: var(--sr-ink-soft);
+}
+
 .sr-cat-scroll {
   flex: 1;
   min-height: 0;

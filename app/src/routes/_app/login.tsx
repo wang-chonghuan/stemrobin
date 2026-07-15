@@ -2,13 +2,17 @@ import { useState } from 'react'
 import { createFileRoute, useRouter } from '@tanstack/react-router'
 
 import { login } from '~/lib/session'
+import { getLocale } from '~/lib/locale'
+import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app/login')({
   component: LoginView,
+  loader: async () => ({ locale: await getLocale() }),
 })
 
 function LoginView() {
   const router = useRouter()
+  const { locale } = Route.useLoaderData()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
@@ -33,13 +37,13 @@ function LoginView() {
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
-        <span className="sr-d-title">登录</span>
+        <span className="sr-d-title">{t(locale, 'login.title')}</span>
       </div>
       <div className="sr-d-scroll">
         <form className="sr-login" onSubmit={submit}>
-          <p className="sr-login-lead">登录后可保存你的答题记录。</p>
+          <p className="sr-login-lead">{t(locale, 'login.lead')}</p>
           <label className="sr-login-field">
-            <span>邮箱</span>
+            <span>{t(locale, 'login.email')}</span>
             <input
               type="email"
               autoComplete="username"
@@ -49,7 +53,7 @@ function LoginView() {
             />
           </label>
           <label className="sr-login-field">
-            <span>密码</span>
+            <span>{t(locale, 'login.password')}</span>
             <input
               type="password"
               autoComplete="current-password"
@@ -60,7 +64,7 @@ function LoginView() {
           </label>
           {error && <p className="sr-login-error">{error}</p>}
           <button type="submit" className="sr-btn" disabled={busy}>
-            {busy ? '登录中…' : '登录'}
+            {busy ? t(locale, 'login.submitting') : t(locale, 'login.submit')}
           </button>
         </form>
       </div>

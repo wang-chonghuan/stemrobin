@@ -1,7 +1,65 @@
 import { createServerFn } from '@tanstack/react-start'
 import { sql } from '~/lib/db'
 import { currentUserId } from '~/lib/session.server'
+import { currentLocale } from '~/lib/locale.server'
+import { localizeQuestionType } from '~/lib/i18n'
 import { normalizeMathAnswer } from '~/lib/answer-normalize'
+
+// Neutral exercise-deck shapes (subset read for the non-source-locale practice
+// deck). The deck's prose (prompt/options) lives in the per-locale overlay keyed
+// by node id; the KEY (correct_index/accept) stays in the neutral base and is
+// NEVER projected here. items align 1:1 with sr_questions by `ord` (same option
+// order + correct_index), so the numeric sr_questions.id + the existing judge and
+// attempt machinery serve every locale unchanged — only the TEXT comes from the
+// overlay.
+type ExItem = { id: string; ord: number; mode: string; options?: string[] }
+type Exercises = { items: ExItem[] }
+type Overlay = Record<string, { t: string; src_rev: number }>
+
+// The post-answer reveal explanation exists only in the source locale (zh) —
+// there is no translated explanation node — so a translation locale gets an empty
+// reveal (verdict + correct-option highlight is the feedback), never half-Chinese.
+export function localeReveal(locale: 'zh' | 'en', answer: string): string {
+  return locale === 'zh' ? answer : ''
+}
+
+// Project a lesson's practice deck into the learner's locale. Source locale (zh)
+// keeps the relational sr_questions text verbatim; a translation locale (en)
+// sources prompt/option TEXT from the exercises JSONB + that locale's overlay,
+// keyed to each sr_questions row by ord. KEY-free by construction.
+export function projectQuestions(
+  rows: readonly {
+    id: number
+    ord: number
+    type: string
+    prompt: string
+    answer_mode: 'choice' | 'work' | 'input'
+    options: string[] | null
+  }[],
+  exercises: Exercises | null,
+  overlay: Overlay,
+  locale: 'zh' | 'en',
+): QuizQuestion[] {
+  const base = rows.map((r) => ({
+    id: r.id,
+    ord: r.ord,
+    type: r.type,
+    prompt: r.prompt,
+    answerMode: r.answer_mode,
+    options: r.options ?? null,
+  }))
+  if (locale === 'zh' || !exercises || !Array.isArray(exercises.items)) return base
+  const itemByOrd = new Map(exercises.items.map((i) => [i.ord, i]))
+  return base.map((q) => {
+    const item = itemByOrd.get(q.ord)
+    const prompt = item && overlay[item.id]?.t ? overlay[item.id].t : q.prompt
+    const options =
+      item && q.answerMode === 'choice'
+        ? (item.options ?? []).map((oid) => overlay[oid]?.t ?? '')
+        : q.options
+    return { ...q, type: localizeQuestionType(q.type, locale), prompt, options }
+  })
+}
 
 // Card-quiz data. Questions are delivered WITHOUT the correct option, accepted
 // input forms, or worked answer — those are judged/returned only by recordAnswer,
@@ -18,18 +76,25 @@ export type QuizQuestion = {
 export const getLessonQuestions = createServerFn({ method: 'GET' })
   .validator((lessonId: string) => lessonId)
   .handler(async ({ data: lessonId }): Promise<QuizQuestion[]> => {
+    const locale = currentLocale()
     const rows = await sql()`
       select id, ord, type, prompt, answer_mode, options
       from sr_questions where lesson_id = ${lessonId} order by ord
     `
-    return rows.map((r) => ({
-      id: r.id,
-      ord: r.ord,
-      type: r.type,
-      prompt: r.prompt,
-      answerMode: r.answer_mode,
-      options: r.options ?? null,
-    }))
+    if (locale === 'zh') {
+      return projectQuestions(rows as never, null, {}, 'zh')
+    }
+    // Non-source locale: pull the translated deck text from the neutral exercises
+    // JSONB + this locale's overlay (KEY stays in the neutral base, never selected).
+    const ex = await sql()`
+      select l.exercises, ov.overlay
+      from sr_lessons l
+      left join sr_lesson_i18n ov on ov.lesson_id = l.id and ov.locale = ${locale}
+      where l.id = ${lessonId}
+    `
+    const exercises = ex.length ? (ex[0].exercises as Exercises | null) : null
+    const overlay = (ex.length ? (ex[0].overlay as Overlay | null) : null) ?? {}
+    return projectQuestions(rows as never, exercises, overlay, locale)
   })
 
 export type AnswerResult = {
@@ -50,6 +115,7 @@ export const recordAnswer = createServerFn({ method: 'POST' })
     async ({ data }): Promise<AnswerResult | { error: string }> => {
       const uid = currentUserId()
       if (uid == null) return { error: '请先登录' }
+      const locale = currentLocale()
       const attemptId = data.attemptId ?? null
       const rows = await sql()`
         select correct_index, answer, answer_mode, accept
@@ -57,6 +123,9 @@ export const recordAnswer = createServerFn({ method: 'POST' })
       `
       if (!rows.length) return { error: '题目不存在' }
       const mode = rows[0].answer_mode
+      // Suppress the zh reference explanation outside the source locale (see
+      // localeReveal) so the reveal is never half-Chinese. Judging is unchanged.
+      const reveal = (a: string): string => localeReveal(locale, a)
 
       if (mode === 'choice') {
         if (typeof data.chosen !== 'number') return { error: '缺少选项' }
@@ -66,7 +135,7 @@ export const recordAnswer = createServerFn({ method: 'POST' })
           insert into sr_answer_events (user_id, question_id, attempt_id, is_correct, chosen)
           values (${uid}, ${data.questionId}, ${attemptId}, ${isCorrect}, ${data.chosen})
         `
-        return { isCorrect, correctIndex, answer: rows[0].answer }
+        return { isCorrect, correctIndex, answer: reveal(rows[0].answer) }
       }
 
       if (mode === 'input') {
@@ -78,7 +147,7 @@ export const recordAnswer = createServerFn({ method: 'POST' })
           insert into sr_answer_events (user_id, question_id, attempt_id, is_correct, answer_text)
           values (${uid}, ${data.questionId}, ${attemptId}, ${isCorrect}, ${data.text.trim()})
         `
-        return { isCorrect, correctIndex: null, answer: rows[0].answer }
+        return { isCorrect, correctIndex: null, answer: reveal(rows[0].answer) }
       }
 
       if (mode === 'work') {
@@ -89,7 +158,7 @@ export const recordAnswer = createServerFn({ method: 'POST' })
           insert into sr_answer_events (user_id, question_id, attempt_id, is_correct)
           values (${uid}, ${data.questionId}, ${attemptId}, ${null})
         `
-        return { isCorrect: null, correctIndex: null, answer: rows[0].answer }
+        return { isCorrect: null, correctIndex: null, answer: reveal(rows[0].answer) }
       }
 
       return { error: '该题不支持在线作答' }

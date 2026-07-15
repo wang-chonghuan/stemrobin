@@ -4,6 +4,7 @@ import { Check, ChevronLeft, ChevronRight, Layers, RotateCcw, X } from 'lucide-r
 import { getCurrentUser } from '~/lib/session'
 import { recordReadCheck } from '~/lib/reading'
 import type { LessonReading, ReadCheck, ReadingCard } from '~/lib/reading'
+import { t, type Locale } from '~/lib/i18n'
 
 // Card-by-card 精读 flow. One numbered card at a time: read the card body (its own
 // sandboxed iframe, reusing the lesson's <head> so formulas + lesson styles render),
@@ -33,17 +34,27 @@ function renderMath(el: HTMLElement | null) {
 
 // Full self-contained srcDoc for one card: lesson head (KaTeX + tokens + styles) +
 // the card body wrapped in the lesson's own container so element classes apply.
-function cardSrcDoc(head: string, bodyHtml: string): string {
-  return `<!doctype html><html lang="zh-CN"><head>${head}</head><body><article class="sr-lesson">${bodyHtml}</article></body></html>`
+function cardSrcDoc(head: string, bodyHtml: string, lang: string): string {
+  return `<!doctype html><html lang="${lang}"><head>${head}</head><body><article class="sr-lesson">${bodyHtml}</article></body></html>`
 }
 
 // One card body in a sandboxed iframe. Height is measured from the content and
 // re-measured on srcDoc swap + after KaTeX/CDN reflow (same lifecycle as the
 // full-lesson LessonFrame).
-function CardFrame({ head, bodyHtml, title }: { head: string; bodyHtml: string; title: string }) {
+function CardFrame({
+  head,
+  bodyHtml,
+  title,
+  lang,
+}: {
+  head: string
+  bodyHtml: string
+  title: string
+  lang: string
+}) {
   const frameRef = useRef<HTMLIFrameElement>(null)
   const [height, setHeight] = useState(320)
-  const srcDoc = cardSrcDoc(head, bodyHtml)
+  const srcDoc = cardSrcDoc(head, bodyHtml, lang)
 
   useEffect(() => {
     const iframe = frameRef.current
@@ -96,12 +107,14 @@ export function CardReader({
   lessonId,
   reading,
   label,
+  locale,
   onAllRead,
   onOpenPractice,
 }: {
   lessonId: string
   reading: Reading
   label: string
+  locale: Locale
   onAllRead: () => void
   onOpenPractice: () => void
 }) {
@@ -160,7 +173,7 @@ export function CardReader({
       }
       setResults((m) => ({ ...m, [rc.id]: { correct: r.isCorrect, ...submission } }))
     } catch {
-      setErr('网络不太顺，请再试一次。')
+      setErr(t(locale, 'err.network'))
     } finally {
       setBusy(null)
     }
@@ -171,25 +184,31 @@ export function CardReader({
       <div className="sr-card-head">
         <div className="sr-card-lesson">{label}</div>
         <div className="sr-card-progress">
-          第 <b>{card.num}</b> / {total} 张卡片
+          {t(locale, 'card.progress', { num: card.num, total })}
         </div>
       </div>
 
       <div className="sr-card-frame-wrap">
-        <CardFrame head={head} bodyHtml={card.bodyHtml} title={`${label} · 第 ${card.num} 张`} />
+        <CardFrame
+          head={head}
+          bodyHtml={card.bodyHtml}
+          lang={locale === 'en' ? 'en' : 'zh-CN'}
+          title={`${label} · ${t(locale, 'card.n', { num: card.num })}`}
+        />
       </div>
 
       <div className="sr-card-checks" ref={checksRef}>
         {card.readChecks.length === 0 ? (
-          <p className="sr-card-noread">这张卡片没有读一读，直接看下一张。</p>
+          <p className="sr-card-noread">{t(locale, 'card.noRead')}</p>
         ) : (
           <>
-            <div className="sr-card-checks-title">读一读 · 读完这张卡再作答</div>
+            <div className="sr-card-checks-title">{t(locale, 'card.checksTitle')}</div>
             {card.readChecks.map((rc, i) => (
               <ReadCheckItem
                 key={rc.id}
                 rc={rc}
                 index={i}
+                locale={locale}
                 result={results[rc.id]}
                 typedVal={typed[rc.id] ?? ''}
                 busy={busy === rc.id}
@@ -202,22 +221,22 @@ export function CardReader({
         )}
         {err && <div className="sr-quiz-err">{err}</div>}
         {loggedIn === false && (
-          <p className="sr-card-guest">未登录也能读；登录后你的作答才会被记录。</p>
+          <p className="sr-card-guest">{t(locale, 'card.guest')}</p>
         )}
       </div>
 
       {showDone ? (
         <div className="sr-card-done">
           <div className="sr-card-done-badge">
-            <Check size={18} /> 这一课读完了
+            <Check size={18} /> {t(locale, 'card.doneBadge')}
           </div>
-          <p>全部 {total} 张卡片都读过并作答通过，可以开始练习了。</p>
+          <p>{t(locale, 'card.doneText', { total })}</p>
           <button type="button" className="sr-btn" onClick={onOpenPractice}>
-            <Layers size={16} /> 进入练习
+            <Layers size={16} /> {t(locale, 'card.openPractice')}
           </button>
         </div>
       ) : (
-        <nav className="sr-card-nav" aria-label="卡片导航">
+        <nav className="sr-card-nav" aria-label={t(locale, 'card.nav')}>
           <button
             type="button"
             className="sr-btn ghost"
@@ -227,7 +246,7 @@ export function CardReader({
               setCurrent((i) => Math.max(0, i - 1))
             }}
           >
-            <ChevronLeft size={16} /> 上一张卡片
+            <ChevronLeft size={16} /> {t(locale, 'card.prev')}
           </button>
           {passed ? (
             <button
@@ -239,10 +258,10 @@ export function CardReader({
                 setCurrent((i) => Math.min(total - 1, i + 1))
               }}
             >
-              下一张卡片 <ChevronRight size={16} />
+              {t(locale, 'card.next')} <ChevronRight size={16} />
             </button>
           ) : (
-            <span className="sr-card-locked">答对本卡的读一读后解锁下一张</span>
+            <span className="sr-card-locked">{t(locale, 'card.locked')}</span>
           )}
         </nav>
       )}
@@ -253,6 +272,7 @@ export function CardReader({
 function ReadCheckItem({
   rc,
   index,
+  locale,
   result,
   typedVal,
   busy,
@@ -262,6 +282,7 @@ function ReadCheckItem({
 }: {
   rc: ReadCheck
   index: number
+  locale: Locale
   result: CheckResult | undefined
   typedVal: string
   busy: boolean
@@ -311,7 +332,7 @@ function ReadCheckItem({
           <input
             type="text"
             value={correct ? (result?.text ?? '') : typedVal}
-            placeholder="把答案打在这里"
+            placeholder={t(locale, 'input.placeholder')}
             autoComplete="off"
             autoCapitalize="off"
             autoCorrect="off"
@@ -330,7 +351,7 @@ function ReadCheckItem({
               disabled={busy || !typedVal.trim()}
               onClick={() => onSubmitText(typedVal)}
             >
-              {busy ? '…' : '提交'}
+              {busy ? '…' : t(locale, 'input.submit')}
             </button>
           )}
         </div>
@@ -338,12 +359,12 @@ function ReadCheckItem({
 
       {correct && (
         <div className="sr-card-check-verdict ok">
-          <Check size={15} /> 答对了
+          <Check size={15} /> {t(locale, 'check.ok')}
         </div>
       )}
       {wrong && (
         <div className="sr-card-check-verdict bad">
-          <RotateCcw size={15} /> 答得不对——回到本卡再读一遍，然后重答。
+          <RotateCcw size={15} /> {t(locale, 'check.bad')}
         </div>
       )}
     </div>

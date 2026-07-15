@@ -1,6 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { sql } from '~/lib/db'
 import { currentUserId } from '~/lib/session.server'
+import { currentLocale } from '~/lib/locale.server'
 import { normalizeMathAnswer } from '~/lib/answer-normalize'
 
 // Card-by-card 精读 (close-reading) data for a migrated math lesson. The 課文 is
@@ -14,9 +15,11 @@ import { normalizeMathAnswer } from '~/lib/answer-normalize'
 // structurally projected out here and is NEVER placed in the fetch payload —
 // correctness is returned only by recordReadCheck after the learner answers.
 //
-// This ticket is zh-only (STEMROBIN-22); `locale` is a parameter defaulted to
-// 'zh' so STEMROBIN-24 (language switching) can generalize without reshaping this.
-const SOURCE_LOCALE = 'zh'
+// The learner's active locale (STEMROBIN-24) is read server-side from the
+// sr_locale cookie via currentLocale(); the overlay for THAT locale is projected.
+// zh is the source locale. Per-locale availability (clean D5): a lesson only
+// renders in a locale it is fully translated for — an under-covered overlay makes
+// getLessonReading return null (not-readable) rather than render half-translated.
 
 // ── Neutral JSONB shapes (subset this module reads; see ssot-schemas stemrobin.sql) ──
 type ProseNode = { id: string; kind: 'prose'; role: string }
@@ -141,11 +144,12 @@ function extractHead(html: string | null): string {
 export const getLessonReading = createServerFn({ method: 'GET' })
   .validator((id: string) => id)
   .handler(async ({ data: id }): Promise<LessonReading> => {
+    const locale = currentLocale()
     const rows = await sql()`
       select l.content, l.html, i.overlay
       from sr_lessons l
       left join sr_lesson_i18n i
-        on i.lesson_id = l.id and i.locale = ${SOURCE_LOCALE}
+        on i.lesson_id = l.id and i.locale = ${locale}
       where l.id = ${id}
     `
     if (!rows.length) return null
@@ -154,7 +158,14 @@ export const getLessonReading = createServerFn({ method: 'GET' })
     if (!content || !Array.isArray(content.cards) || content.cards.length === 0) {
       return null // no card tree → route falls back to full html
     }
-    return { head: extractHead(rows[0].html), cards: projectCards(content, overlay) }
+    // Per-locale availability: if this locale's overlay does not fully cover the
+    // card tree, do not render half-translated content — return null (the lesson
+    // is not readable in this locale). projectCards throws on a missing node.
+    try {
+      return { head: extractHead(rows[0].html), cards: projectCards(content, overlay) }
+    } catch {
+      return null
+    }
   })
 
 export type ReadCheckResult = { isCorrect: boolean } | { error: string }
@@ -194,7 +205,7 @@ export const recordReadCheck = createServerFn({ method: 'POST' })
           ${uid}, ${data.lessonId}, 'read_check', ${data.nodeId}, ${isCorrect},
           ${target.mode === 'choice' ? (data.chosen ?? null) : null},
           ${target.mode === 'input' ? (data.text?.trim() ?? null) : null},
-          ${SOURCE_LOCALE}
+          ${currentLocale()}
         )
       `
     }

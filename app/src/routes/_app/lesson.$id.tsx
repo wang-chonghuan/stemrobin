@@ -3,8 +3,10 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Lock, Menu } from 'lucide-react'
 
 import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
-import { getLessonHtml, getLessonPdf, listLessonIds } from '~/lib/lessons'
+import { getLessonHtml, getLessonPdf, listAvailableLessonIds } from '~/lib/lessons'
 import { getLessonReading } from '~/lib/reading'
+import { getLocale } from '~/lib/locale'
+import { t, type Locale } from '~/lib/i18n'
 import {
   getLessonQuestions,
   recordAnswer,
@@ -26,20 +28,21 @@ export const Route = createFileRoute('/_app/lesson/$id')({
       reading,
       // Full-lesson html only needed as a fallback when there is no card tree.
       html: reading ? null : await getLessonHtml({ data: params.id }),
-      lessonIds: await listLessonIds(),
+      lessonIds: await listAvailableLessonIds(),
+      locale: await getLocale(),
     }
   },
 })
 
 function LessonView() {
-  const { id, reading, html, lessonIds } = Route.useLoaderData()
+  const { id, reading, html, lessonIds, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const [quizOpen, setQuizOpen] = useState(false)
   // 精读 gate: the practice deck unlocks only after every card is read (per visit).
   // Lessons without a card tree (fallback html) leave practice open as before.
   const [allRead, setAllRead] = useState(!reading)
-  const label = getLessonLabel(id)
+  const label = getLessonLabel(id, locale)
 
   async function downloadPdf() {
     const b64 = await getLessonPdf({ data: id })
@@ -56,7 +59,7 @@ function LessonView() {
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
-        <button className="sr-navtoggle" aria-label="打开目录" type="button" onClick={() => setDrawer(true)}>
+        <button className="sr-navtoggle" aria-label={t(locale, 'cat.open')} type="button" onClick={() => setDrawer(true)}>
           <Menu size={18} />
         </button>
         <Link
@@ -64,7 +67,7 @@ function LessonView() {
           className="sr-btn ghost"
           style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 10px' }}
         >
-          <ArrowLeft size={16} /> 返回
+          <ArrowLeft size={16} /> {t(locale, 'lesson.back')}
         </Link>
         {/* no title in the top bar — the 課文's own numbered h1 (e.g. 2.6 去括号) carries it */}
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8 }}>
@@ -74,16 +77,16 @@ function LessonView() {
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px' }}
             onClick={() => setQuizOpen(true)}
             disabled={!allRead}
-            title={allRead ? '进入练习题' : '读完全部卡片后解锁练习'}
+            title={allRead ? t(locale, 'lesson.practice.open') : t(locale, 'lesson.practice.locked')}
           >
-            {allRead ? <Layers size={16} /> : <Lock size={16} />} 练习题
+            {allRead ? <Layers size={16} /> : <Lock size={16} />} {t(locale, 'lesson.practice')}
           </button>
           <button
             type="button"
             className="sr-icontool"
             onClick={downloadPdf}
-            aria-label="下载 PDF"
-            title="下载 PDF"
+            aria-label={t(locale, 'lesson.pdf')}
+            title={t(locale, 'lesson.pdf')}
           >
             <Download size={17} />
           </button>
@@ -95,19 +98,21 @@ function LessonView() {
             lessonId={id}
             reading={reading}
             label={label}
+            locale={locale}
             onAllRead={() => setAllRead(true)}
             onOpenPractice={() => setQuizOpen(true)}
           />
         ) : html ? (
           <LessonFrame frameRef={iframeRef} html={html} title={label} />
         ) : (
-          <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>课程内容尚未生成。</p>
+          <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>{t(locale, 'lesson.notReady')}</p>
         )}
-        <LessonNavFooter id={id} lessonIds={lessonIds} />
+        <LessonNavFooter id={id} lessonIds={lessonIds} locale={locale} />
       </div>
       <QuizDrawer
         contentId={id}
         open={quizOpen}
+        locale={locale}
         onClose={() => setQuizOpen(false)}
         fetchQuestions={getLessonQuestions}
         record={recordAnswer}
@@ -125,27 +130,35 @@ function LessonView() {
 // Bottom prev/next navigation between lessons that have pages, in CURRICULUM
 // order (SR-3). Unknown ids (no page) render no nav; at the first/last page the
 // corresponding side is disabled (kept in layout) instead of hidden.
-function LessonNavFooter({ id, lessonIds }: { id: string; lessonIds: string[] }) {
-  const { prev, next } = getLessonNavForIds(id, lessonIds)
+function LessonNavFooter({
+  id,
+  lessonIds,
+  locale,
+}: {
+  id: string
+  lessonIds: string[]
+  locale: Locale
+}) {
+  const { prev, next } = getLessonNavForIds(id, lessonIds, locale)
   if (!prev && !next) return null
   return (
-    <nav className="sr-lesson-nav" aria-label="课程导航">
+    <nav className="sr-lesson-nav" aria-label={t(locale, 'lesson.nav')}>
       {prev ? (
         <Link to="/lesson/$id" params={{ id: prev.id }} className="sr-btn ghost">
-          <ChevronLeft size={16} /> 上一课 · {getLessonLabel(prev.id)}
+          <ChevronLeft size={16} /> {t(locale, 'lesson.prev')} · {getLessonLabel(prev.id, locale)}
         </Link>
       ) : (
         <button type="button" className="sr-btn ghost" disabled>
-          <ChevronLeft size={16} /> 上一课
+          <ChevronLeft size={16} /> {t(locale, 'lesson.prev')}
         </button>
       )}
       {next ? (
         <Link to="/lesson/$id" params={{ id: next.id }} className="sr-btn ghost">
-          下一课 · {getLessonLabel(next.id)} <ChevronRight size={16} />
+          {t(locale, 'lesson.next')} · {getLessonLabel(next.id, locale)} <ChevronRight size={16} />
         </Link>
       ) : (
         <button type="button" className="sr-btn ghost" disabled>
-          下一课 <ChevronRight size={16} />
+          {t(locale, 'lesson.next')} <ChevronRight size={16} />
         </button>
       )}
     </nav>

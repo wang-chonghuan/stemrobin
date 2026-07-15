@@ -9,6 +9,13 @@
 // if sr_lessons contains the deterministic id for an outline item, that item
 // becomes clickable without editing this file.
 
+import {
+  localizeLessonTitle,
+  localizeStage,
+  localizeSubject,
+  type Locale,
+} from '~/lib/i18n'
+
 export type OutlineLesson = { title: string; id?: string }
 export type OutlineStage = { title: string; lessons: OutlineLesson[] }
 export type OutlineSubject = { subject: 'math' | 'physics' | 'robot'; label: string; stages: OutlineStage[] }
@@ -168,15 +175,17 @@ export const CURRICULUM: OutlineSubject[] = [
 ]
 
 // "2.4 代数式的值" — stage.order from the id + title from the outline. Used as the
-// lesson-view header (no raw id shown). Falls back to the id if not found.
-export function getLessonLabel(id: string): string {
+// lesson-view header (no raw id shown). Falls back to the id if not found. In a
+// non-source locale the title is localized (the number prefix is neutral).
+export function getLessonLabel(id: string, locale: Locale = 'zh'): string {
   const m = id.match(/^(?:math|physics)-s(\d+)-(\d+)$/)
   for (const s of CURRICULUM) {
     for (let si = 0; si < s.stages.length; si++) {
       const st = s.stages[si]
       for (let li = 0; li < st.lessons.length; li++) {
         if (getOutlineLessonId(s.subject, si, li) === id) {
-          return m ? `${Number(m[1])}.${Number(m[2])} ${st.lessons[li].title}` : st.lessons[li].title
+          const title = localizeLessonTitle(id, st.lessons[li].title, locale)
+          return m ? `${Number(m[1])}.${Number(m[2])} ${title}` : title
         }
       }
     }
@@ -189,40 +198,85 @@ export function getOutlineLessonId(subject: OutlineSubject['subject'], stageInde
   return `${subject}-s${stageIndex + 1}-${String(lessonIndex + 1).padStart(2, '0')}`
 }
 
-export function getAvailableLessons(lessonIds: readonly string[]): AvailableLesson[] {
+// The displayed "S.L" numbers for a lesson, parsed from its id (id encodes
+// stageIndex+1 / lessonIndex+1). Used by the catalog so numbering stays correct
+// even when a locale's outline is filtered (untranslated stages dropped) — array
+// indices would renumber; the id does not. null for ids without a page.
+export function parseLessonNumber(id: string): { stage: number; order: number } | null {
+  const m = id.match(/^(?:math|physics)-s(\d+)-(\d+)$/)
+  return m ? { stage: Number(m[1]), order: Number(m[2]) } : null
+}
+
+export function getAvailableLessons(
+  lessonIds: readonly string[],
+  locale: Locale = 'zh',
+): AvailableLesson[] {
   const available = new Set(lessonIds)
   return CURRICULUM.flatMap((s) =>
     s.stages.flatMap((st, si) =>
       st.lessons.flatMap((l, li) => {
         const id = getOutlineLessonId(s.subject, si, li)
-        return id && available.has(id) ? [{ id, title: l.title, subject: s.label }] : []
+        return id && available.has(id)
+          ? [
+              {
+                id,
+                title: localizeLessonTitle(id, l.title, locale),
+                subject: localizeSubject(s.label, locale),
+              },
+            ]
+          : []
       }),
     ),
   )
 }
 
-export function withAvailableLessonIds(lessonIds: readonly string[]): OutlineSubject[] {
+// The catalog outline with availability marked + titles localized. Under the
+// source locale (zh) this is the FULL outline (untranslated future lessons stay
+// as greyed placeholders) — unchanged behavior. Under a translation locale (en)
+// the outline shows ONLY lessons available in that locale: untranslated
+// placeholders and any resulting empty stage/subject are dropped, so the catalog
+// never shows a half-translated entry (clean D5 per-locale availability).
+export function withAvailableLessonIds(
+  lessonIds: readonly string[],
+  locale: Locale = 'zh',
+): OutlineSubject[] {
   const available = new Set(lessonIds)
-  return CURRICULUM.map((s) => ({
-    ...s,
+  const mapped: OutlineSubject[] = CURRICULUM.map((s) => ({
+    subject: s.subject,
+    label: localizeSubject(s.label, locale),
     stages: s.stages.map((st, si) => ({
-      ...st,
+      title: localizeStage(st.title, locale),
       lessons: st.lessons.map((l, li) => {
         const id = getOutlineLessonId(s.subject, si, li)
-        return id && available.has(id) ? { ...l, id } : { title: l.title }
+        return id && available.has(id)
+          ? { id, title: localizeLessonTitle(id, l.title, locale) }
+          : { title: l.title }
       }),
     })),
   }))
+  if (locale === 'zh') return mapped
+  return mapped
+    .map((s) => ({
+      ...s,
+      stages: s.stages
+        .map((st) => ({ ...st, lessons: st.lessons.filter((l) => l.id) }))
+        .filter((st) => st.lessons.length > 0),
+    }))
+    .filter((s) => s.stages.length > 0)
 }
 
 // Prev/next lesson (pages only, CURRICULUM order) for the lesson-view footer nav.
 // Derived from the DB-filtered outline. Unknown ids (no page) get neither, so
 // outline-only lessons never participate in navigation.
-export function getLessonNavForIds(id: string, lessonIds: readonly string[]): {
+export function getLessonNavForIds(
+  id: string,
+  lessonIds: readonly string[],
+  locale: Locale = 'zh',
+): {
   prev?: AvailableLesson
   next?: AvailableLesson
 } {
-  const availableLessons = getAvailableLessons(lessonIds)
+  const availableLessons = getAvailableLessons(lessonIds, locale)
   const i = availableLessons.findIndex((l) => l.id === id)
   if (i === -1) return {}
   return { prev: availableLessons[i - 1], next: availableLessons[i + 1] }
