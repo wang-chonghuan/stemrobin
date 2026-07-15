@@ -112,6 +112,17 @@ export function projectCards(content: Content, overlay: Overlay): ReadingCard[] 
   }))
 }
 
+// Full-text (全文速览) srcDoc: the WHOLE lesson content at once — every card's
+// already-assembled bodyHtml concatenated in card order, wrapped in the same
+// lesson head + <article class="sr-lesson"> shell the per-card iframe uses, so
+// formulas (KaTeX) and lesson element classes render identically. It reads only
+// bodyHtml, never readChecks/key — full-text carries no read-check and no KEY.
+// Pure (DB-free, unit-tested); the caller renders it in the sandboxed iframe.
+export function buildFullTextHtml(head: string, cards: ReadingCard[], lang: string): string {
+  const body = cards.map((c) => c.bodyHtml).join('\n')
+  return `<!doctype html><html lang="${lang}"><head>${head}</head><body><article class="sr-lesson">${body}</article></body></html>`
+}
+
 // Pure server-side judge (DB-free, unit-tested). choice: chosen === correct_index;
 // input: normalized text matches any accepted form (same normalizer as the
 // practice deck, so authors enumerate only genuinely different forms).

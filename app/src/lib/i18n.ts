@@ -51,6 +51,10 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'lesson.nav': '课程导航',
     'lesson.prev': '上一课',
     'lesson.next': '下一课',
+    // reading mode switch
+    'read.mode.aria': '阅读方式',
+    'read.mode.cards': '逐卡精读',
+    'read.mode.fulltext': '全文速览',
     // card reader
     'card.progress': '第 {num} / {total} 张卡片',
     'card.nav': '卡片导航',
@@ -143,6 +147,9 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'lesson.nav': 'Lesson navigation',
     'lesson.prev': 'Previous',
     'lesson.next': 'Next',
+    'read.mode.aria': 'Reading mode',
+    'read.mode.cards': 'Close reading',
+    'read.mode.fulltext': 'Full text',
     'card.progress': 'Card {num} / {total}',
     'card.nav': 'Card navigation',
     'card.noRead': 'This card has no read-check — go on to the next.',
