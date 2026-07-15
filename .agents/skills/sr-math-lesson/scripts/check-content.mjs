@@ -29,7 +29,7 @@ export const SUBSTANTIAL = {
   方法课: ['motivation', 'explain', 'examples', 'connections'],
   练习课: [],
 }
-const KEY_FIELDS = ['correct_index', 'accept', 'answer']
+export const KEY_FIELDS = ['correct_index', 'accept', 'answer']
 
 // Validate content + overlay for one lesson. Returns string[] problems (empty = ok).
 export function validateContent({ content, overlay, genre, id }) {
