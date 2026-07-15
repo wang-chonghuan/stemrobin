@@ -110,6 +110,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'login.password': '密码',
     'login.submit': '登录',
     'login.submitting': '登录中…',
+    'login.logout': '登出',
   },
   en: {
     'switch.aria': 'Learning language',
@@ -197,6 +198,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'login.password': 'Password',
     'login.submit': 'Sign in',
     'login.submitting': 'Signing in…',
+    'login.logout': 'Sign out',
   },
 }
 

@@ -9,12 +9,12 @@ import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app')({
-  // Single site-wide auth gate (SSOT). `_app` is the pathless parent of every learner
-  // surface (/, /lesson/$id, /login), so one check here gates the whole app.
-  // Runs before the loader, so a logged-out user never triggers the protected reads.
-  // The login route stays reachable while logged out; everything else redirects to it.
-  beforeLoad: async ({ location }) => {
-    if (location.pathname === '/login') return
+  // Single site-wide auth gate (SSOT). `_app` is the pathless parent of every
+  // PROTECTED learner surface (/, /lesson/$id), so one check here gates the whole
+  // app. Runs before the loader, so a logged-out user never triggers the protected
+  // reads. The login page is a separate top-level route (not under `_app`), so it
+  // needs no exception here — every `_app` surface requires a user, full stop.
+  beforeLoad: async () => {
     const user = await getCurrentUser()
     if (!user) throw redirect({ to: '/login' })
   },
@@ -22,6 +22,7 @@ export const Route = createFileRoute('/_app')({
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
     locale: await getLocale(),
+    user: await getCurrentUser(),
   }),
 })
 
@@ -30,7 +31,7 @@ export const Route = createFileRoute('/_app')({
 // scrim below 1200px. The catalog is persistent — the detail pane swaps via
 // <Outlet /> for the overview and lesson routes, so the sidebar is always shown.
 function AppShell() {
-  const { lessonIds, locale } = Route.useLoaderData()
+  const { lessonIds, locale, user } = Route.useLoaderData()
   const drawerOpen = useLayoutStore((s) => s.drawerOpen)
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [isMobile, setIsMobile] = useState(false)
@@ -57,6 +58,7 @@ function AppShell() {
       <CatalogSidebar
         lessonIds={lessonIds}
         locale={locale}
+        user={user}
         drawerOpen={drawerOpen}
         onNavigate={() => isMobile && setDrawer(false)}
       />

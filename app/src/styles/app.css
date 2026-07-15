@@ -844,6 +844,67 @@ a.sr-out-lesson.ready:hover {
 }
 .sr-login-field input:focus { outline: 2px solid var(--sr-blue); outline-offset: 1px; border-color: var(--sr-blue); }
 .sr-login-error { color: var(--sr-green-deep); font-size: 13px; }
+.sr-login-submit { margin-top: 4px; align-self: stretch; }
+
+/* ── Bare login page (top-level /login route, no app shell) ── */
+.sr-auth {
+  width: 100vw;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: var(--sr-panel);
+  color: var(--sr-ink);
+  font-family: var(--sr-body);
+}
+.sr-auth-card {
+  width: 100%;
+  max-width: 380px;
+  padding: 26px 28px 30px;
+  background: var(--sr-white);
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius);
+  box-shadow: 0 8px 30px rgba(20, 60, 66, 0.06);
+}
+.sr-auth-brand { display: flex; align-items: center; gap: 10px; }
+.sr-auth-title { margin: 16px 0 2px; font-family: var(--sr-display); font-size: 20px; font-weight: 700; }
+.sr-auth .sr-login { max-width: none; margin: 6px 0 0; }
+
+/* ── Catalog footer: signed-in user + logout ── */
+.sr-cat-foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-top: 1px solid var(--sr-line);
+  background: var(--sr-panel);
+}
+.sr-cat-user {
+  flex: 1;
+  min-width: 0;
+  font-size: 11.5px;
+  color: var(--sr-ink-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sr-logout {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--sr-ink-soft);
+  background: var(--sr-white);
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+}
+.sr-logout:hover { color: var(--sr-ink); background: var(--sr-line-soft); }
 .sr-quiz-err {
   margin-top: 12px; padding: 8px 10px; font-size: 13px;
   color: var(--sr-ink); background: var(--sr-panel);
