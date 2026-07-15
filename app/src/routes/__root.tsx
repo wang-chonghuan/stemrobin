@@ -26,6 +26,20 @@ export const Route = createRootRoute({
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',
       },
+      // Preload the KaTeX JS so `renderMathInElement` is ready ASAP — the deferred
+      // scripts otherwise download late, leaving the first card's read-check math
+      // as raw $…$ until the CDN lands (read-checks live in the app DOM, not the
+      // iframe, so they depend on the root document's KaTeX).
+      {
+        rel: 'preload',
+        as: 'script',
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js',
+      },
+      {
+        rel: 'preload',
+        as: 'script',
+        href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js',
+      },
     ],
     scripts: [
       {

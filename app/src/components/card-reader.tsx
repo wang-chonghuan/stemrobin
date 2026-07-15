@@ -148,29 +148,35 @@ export function CardReader({
     }
   }, [])
 
-  // Typeset read-check prompts/options when the visible card changes.
+  // Typeset read-check prompts/options (they live in the app DOM, not the iframe).
   //
-  // The KaTeX auto-render script is loaded from a CDN with `defer`, so on the
-  // lesson's first paint `window.renderMathInElement` is often NOT defined yet —
-  // the CardReader mounts with the page, unlike the practice drawer which the
-  // learner only opens later (by then the CDN has long since loaded). A single
-  // setTimeout(…,0) typeset therefore no-ops on cold load and the prompt/options
-  // stay as raw $…$ source. Retry on a short interval until the auto-render fn is
-  // ready, then typeset once. (Re-running renderMathInElement on already-typeset
-  // nodes is a no-op — no delimiters remain — so the results-change re-run is safe.)
+  // The KaTeX auto-render script is CDN-`defer`red, so on the lesson's first paint
+  // `window.renderMathInElement` is often not defined yet, and even once it is the
+  // freshly-committed read-check DOM may not be settled on the very first tick. A
+  // one-shot typeset therefore leaves the FIRST card's prompt/options as raw $…$
+  // source (later cards typeset fine because navigating re-runs this effect). So
+  // retry on a short interval and SELF-VERIFY: after each typeset, if raw `$`
+  // delimiters still remain in the subtree, KaTeX/the DOM wasn't ready — keep
+  // retrying until they're gone or the ceiling is hit. Re-running renderMathInElement
+  // on already-typeset nodes is a no-op (no delimiters remain), so this is safe.
   useEffect(() => {
     let done = false
     let timer: ReturnType<typeof setTimeout>
     let tries = 0
     const tick = () => {
       if (done) return
+      const el = checksRef.current
       const fn = (window as unknown as { renderMathInElement?: Function }).renderMathInElement
-      if (typeof fn === 'function') {
-        renderMath(checksRef.current)
-        done = true
-        return
+      if (el && typeof fn === 'function') {
+        renderMath(el)
+        // Success = no raw `$` delimiter left in the visible text. If any remain the
+        // typeset ran too early (KaTeX/DOM not ready) — retry until it takes.
+        if (!(el.textContent ?? '').includes('$')) {
+          done = true
+          return
+        }
       }
-      // ~10s ceiling (100 × 100ms) so a never-loading CDN can't leak a timer.
+      // ~10s ceiling (100 × 100ms) so a never-loading CDN / stray `$` can't leak a timer.
       if (tries++ < 100) timer = setTimeout(tick, 100)
     }
     timer = setTimeout(tick, 0)
