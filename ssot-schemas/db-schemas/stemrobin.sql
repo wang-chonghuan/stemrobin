@@ -221,6 +221,7 @@ CREATE INDEX IF NOT EXISTS sr_story_answer_events_user_idx
 --
 --   content   = { "cards": [ {
 --                   "id": "<stable card node id>", "num": <learner-visible 编号>,
+--                   "name": "<section display name 中文名, e.g. 讲解 / 例题>",
 --                   "anchor": "motivation|model|anatomy|boundary|explain|examples|connections|...",
 --                   "rev": <int>,                       -- per-node source revision (staleness)
 --                   "body": [ <ordered neutral nodes> ],-- prose nodes are node-id refs (text in overlay);

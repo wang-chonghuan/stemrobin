@@ -1,0 +1,370 @@
+{
+  "cards": [
+    {
+      "id": "math-s3-06-motivation",
+      "num": 1,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-06-motivation-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-motivation-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-motivation-b2",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-motivation-b3",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "motivation",
+      "read_check": [
+        {
+          "id": "math-s3-06-motivation-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-motivation-rc0-o0",
+            "math-s3-06-motivation-rc0-o1",
+            "math-s3-06-motivation-rc0-o2",
+            "math-s3-06-motivation-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-06-motivation-rc1",
+          "key": {
+            "correct_index": 1
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-motivation-rc1-o0",
+            "math-s3-06-motivation-rc1-o1",
+            "math-s3-06-motivation-rc1-o2",
+            "math-s3-06-motivation-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-06-explain",
+      "num": 2,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-06-explain-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b2",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b3",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b4",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b5",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b6",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "svg": "<svg viewBox=\"0 0 700 190\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"乘法分配律把括号外的因数分给括号内每一项的示意图\">\n        <defs>\n          <marker id=\"arw\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7\" refY=\"4.5\" orient=\"auto\">\n            <path d=\"M0,0 L9,4.5 L0,9 z\" fill=\"#0A5E76\"/>\n          </marker>\n        </defs>\n        <g font-family=\"Noto Sans SC, sans-serif\">\n          <text x=\"350\" y=\"30\" text-anchor=\"middle\" font-size=\"13\" fill=\"#8A9795\">括号外的数，要分给括号里的每一项——一项都不能漏</text>\n\n          <text x=\"150\" y=\"105\" text-anchor=\"middle\" font-size=\"30\" font-weight=\"700\" fill=\"#15201F\">2 ( x + 3 )</text>\n\n          <!-- 2 -> x -->\n          <path d=\"M108 118 C 108 150, 300 150, 470 118\" fill=\"none\" stroke=\"#0E7C9B\" stroke-width=\"2\" marker-end=\"url(#arw)\"/>\n          <!-- 2 -> 3 -->\n          <path d=\"M108 118 C 108 172, 420 172, 560 118\" fill=\"none\" stroke=\"#15A06A\" stroke-width=\"2\" marker-end=\"url(#arw)\"/>\n\n          <text x=\"470\" y=\"100\" text-anchor=\"middle\" font-size=\"26\" font-weight=\"700\" fill=\"#0A5E76\">2·x</text>\n          <text x=\"525\" y=\"100\" text-anchor=\"middle\" font-size=\"26\" font-weight=\"700\" fill=\"#15201F\">+</text>\n          <text x=\"575\" y=\"100\" text-anchor=\"middle\" font-size=\"26\" font-weight=\"700\" fill=\"#0F7D52\">2·3</text>\n\n          <text x=\"520\" y=\"150\" text-anchor=\"middle\" font-size=\"15\" fill=\"#4C5A58\">= 2x + 6</text>\n        </g>\n      </svg>",
+          "kind": "svg",
+          "caption_id": "math-s3-06-explain-cap7"
+        },
+        {
+          "id": "math-s3-06-explain-b8",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b9",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b10",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b11",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b12",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b13",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b14",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b15",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b16",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b17",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b18",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b19",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b20",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b21",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b22",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b23",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b24",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b25",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b26",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b27",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-explain-b28",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "svg": "<svg viewBox=\"0 0 700 150\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"去括号解方程的五步路线图\">\n        <defs>\n          <marker id=\"arw2\" markerWidth=\"9\" markerHeight=\"9\" refX=\"7\" refY=\"4.5\" orient=\"auto\">\n            <path d=\"M0,0 L9,4.5 L0,9 z\" fill=\"#0A5E76\"/>\n          </marker>\n        </defs>\n        <g font-family=\"Noto Sans SC, sans-serif\" font-size=\"13\">\n          <rect x=\"10\"  y=\"46\" width=\"120\" height=\"58\" rx=\"9\" fill=\"#E4F6EE\" stroke=\"#15A06A\"/>\n          <text x=\"70\"  y=\"70\" text-anchor=\"middle\" font-weight=\"700\" fill=\"#0F7D52\">① 去括号</text>\n          <text x=\"70\"  y=\"90\" text-anchor=\"middle\" fill=\"#4C5A58\" font-size=\"11\">分配律拆开</text>\n\n          <rect x=\"152\" y=\"46\" width=\"120\" height=\"58\" rx=\"9\" fill=\"#E1F1F5\" stroke=\"#0E7C9B\"/>\n          <text x=\"212\" y=\"70\" text-anchor=\"middle\" font-weight=\"700\" fill=\"#0A5E76\">② 合并</text>\n          <text x=\"212\" y=\"90\" text-anchor=\"middle\" fill=\"#4C5A58\" font-size=\"11\">两边各变短</text>\n\n          <rect x=\"294\" y=\"46\" width=\"120\" height=\"58\" rx=\"9\" fill=\"#E1F1F5\" stroke=\"#0E7C9B\"/>\n          <text x=\"354\" y=\"70\" text-anchor=\"middle\" font-weight=\"700\" fill=\"#0A5E76\">③ 移项</text>\n          <text x=\"354\" y=\"90\" text-anchor=\"middle\" fill=\"#4C5A58\" font-size=\"11\">未知数归一边</text>\n\n          <rect x=\"436\" y=\"46\" width=\"120\" height=\"58\" rx=\"9\" fill=\"#E1F1F5\" stroke=\"#0E7C9B\"/>\n          <text x=\"496\" y=\"70\" text-anchor=\"middle\" font-weight=\"700\" fill=\"#0A5E76\">④ 除系数</text>\n          <text x=\"496\" y=\"90\" text-anchor=\"middle\" fill=\"#4C5A58\" font-size=\"11\">系数变成 1</text>\n\n          <rect x=\"578\" y=\"46\" width=\"112\" height=\"58\" rx=\"9\" fill=\"#E4F6EE\" stroke=\"#15A06A\"/>\n          <text x=\"634\" y=\"70\" text-anchor=\"middle\" font-weight=\"700\" fill=\"#0F7D52\">⑤ 检验</text>\n          <text x=\"634\" y=\"90\" text-anchor=\"middle\" fill=\"#4C5A58\" font-size=\"11\">代入原方程</text>\n\n          <line x1=\"130\" y1=\"75\" x2=\"150\" y2=\"75\" stroke=\"#0A5E76\" stroke-width=\"2\" marker-end=\"url(#arw2)\"/>\n          <line x1=\"272\" y1=\"75\" x2=\"292\" y2=\"75\" stroke=\"#0A5E76\" stroke-width=\"2\" marker-end=\"url(#arw2)\"/>\n          <line x1=\"414\" y1=\"75\" x2=\"434\" y2=\"75\" stroke=\"#0A5E76\" stroke-width=\"2\" marker-end=\"url(#arw2)\"/>\n          <line x1=\"556\" y1=\"75\" x2=\"576\" y2=\"75\" stroke=\"#0A5E76\" stroke-width=\"2\" marker-end=\"url(#arw2)\"/>\n\n          <text x=\"350\" y=\"28\" text-anchor=\"middle\" font-size=\"13\" fill=\"#8A9795\">只在最前面加了\"去括号\"一步，后四步就是上一课的老路线</text>\n          <text x=\"350\" y=\"132\" text-anchor=\"middle\" font-size=\"12\" fill=\"#8A9795\">括号拆完，问题就变回已经会解的普通方程</text>\n        </g>\n      </svg>",
+          "kind": "svg",
+          "caption_id": "math-s3-06-explain-cap29"
+        }
+      ],
+      "anchor": "explain",
+      "read_check": [
+        {
+          "id": "math-s3-06-explain-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-explain-rc0-o0",
+            "math-s3-06-explain-rc0-o1",
+            "math-s3-06-explain-rc0-o2",
+            "math-s3-06-explain-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-06-explain-rc1",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-explain-rc1-o0",
+            "math-s3-06-explain-rc1-o1",
+            "math-s3-06-explain-rc1-o2",
+            "math-s3-06-explain-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-06-examples",
+      "num": 3,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-06-examples-b0",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-examples-b1",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-examples-b2",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-examples-b3",
+          "kind": "prose",
+          "role": "html"
+        },
+        {
+          "id": "math-s3-06-examples-b4",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "examples",
+      "read_check": [
+        {
+          "id": "math-s3-06-examples-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-examples-rc0-o0",
+            "math-s3-06-examples-rc0-o1",
+            "math-s3-06-examples-rc0-o2",
+            "math-s3-06-examples-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-06-examples-rc1",
+          "key": {
+            "correct_index": 1
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-examples-rc1-o0",
+            "math-s3-06-examples-rc1-o1",
+            "math-s3-06-examples-rc1-o2",
+            "math-s3-06-examples-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-06-connections",
+      "num": 4,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-06-connections-b0",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "connections",
+      "read_check": [
+        {
+          "id": "math-s3-06-connections-rc0",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-connections-rc0-o0",
+            "math-s3-06-connections-rc0-o1",
+            "math-s3-06-connections-rc0-o2",
+            "math-s3-06-connections-rc0-o3"
+          ]
+        },
+        {
+          "id": "math-s3-06-connections-rc1",
+          "key": {
+            "correct_index": 0
+          },
+          "rev": 1,
+          "mode": "choice",
+          "options": [
+            "math-s3-06-connections-rc1-o0",
+            "math-s3-06-connections-rc1-o1",
+            "math-s3-06-connections-rc1-o2",
+            "math-s3-06-connections-rc1-o3"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math-s3-06-oral",
+      "num": 5,
+      "rev": 1,
+      "body": [
+        {
+          "id": "math-s3-06-oral-b0",
+          "kind": "prose",
+          "role": "html"
+        }
+      ],
+      "anchor": "oral",
+      "read_check": []
+    }
+  ]
+}
