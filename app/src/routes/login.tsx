@@ -1,11 +1,20 @@
 import { useState } from 'react'
-import { createFileRoute, useRouter } from '@tanstack/react-router'
+import { createFileRoute, redirect, useRouter } from '@tanstack/react-router'
 
-import { login } from '~/lib/session'
+import { getCurrentUser, login } from '~/lib/session'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
 
-export const Route = createFileRoute('/_app/login')({
+// Bare login page. Deliberately a TOP-LEVEL route (sibling of the gated `_app`
+// layout), so a logged-out visitor sees only this login card — no catalog
+// sidebar, no lesson titles, no other protected content. The `_app` auth gate
+// (STEMROBIN-31) still protects every other surface; this page is the one public
+// route. An already-authenticated visitor is bounced to the app.
+export const Route = createFileRoute('/login')({
+  beforeLoad: async () => {
+    const user = await getCurrentUser()
+    if (user) throw redirect({ to: '/' })
+  },
   component: LoginView,
   loader: async () => ({ locale: await getLocale() }),
 })
@@ -35,11 +44,21 @@ function LoginView() {
   }
 
   return (
-    <main className="sr-detail">
-      <div className="sr-d-top">
-        <span className="sr-d-title">{t(locale, 'login.title')}</span>
-      </div>
-      <div className="sr-d-scroll">
+    <main className="sr-auth">
+      <div className="sr-auth-card">
+        <div className="sr-auth-brand">
+          <img
+            className="sr-brand-img"
+            src="/logo-mark.png"
+            alt="知更"
+            width={44}
+            height={44}
+          />
+          <span className="sr-brand-name">
+            知<b>更</b>
+          </span>
+        </div>
+        <h1 className="sr-auth-title">{t(locale, 'login.title')}</h1>
         <form className="sr-login" onSubmit={submit}>
           <p className="sr-login-lead">{t(locale, 'login.lead')}</p>
           <label className="sr-login-field">
@@ -63,7 +82,7 @@ function LoginView() {
             />
           </label>
           {error && <p className="sr-login-error">{error}</p>}
-          <button type="submit" className="sr-btn" disabled={busy}>
+          <button type="submit" className="sr-btn primary sr-login-submit" disabled={busy}>
             {busy ? t(locale, 'login.submitting') : t(locale, 'login.submit')}
           </button>
         </form>
