@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react'
-import { createFileRoute, Outlet } from '@tanstack/react-router'
+import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 
 import { CatalogSidebar } from '~/components/catalog'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { getLocale } from '~/lib/locale'
 import { useLayoutStore } from '~/lib/layout-store'
+import { getCurrentUser } from '~/lib/session'
 import { getStoryCatalog } from '~/lib/stories'
 import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app')({
+  // Single site-wide auth gate (SSOT). `_app` is the pathless parent of every learner
+  // surface (/, /lesson/$id, /story/$id, /login), so one check here gates the whole app.
+  // Runs before the loader, so a logged-out user never triggers the protected reads.
+  // The login route stays reachable while logged out; everything else redirects to it.
+  beforeLoad: async ({ location }) => {
+    if (location.pathname === '/login') return
+    const user = await getCurrentUser()
+    if (!user) throw redirect({ to: '/login' })
+  },
   component: AppShell,
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
