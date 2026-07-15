@@ -1,0 +1,308 @@
+[
+  {
+    "ord": 1,
+    "type": "辨认",
+    "prompt": "$3a$ 的意思是？",
+    "answer_mode": "choice",
+    "options": [
+      "$3\\times a$（3 乘 a）",
+      "$3+a$（3 加 a）",
+      "把 3 和 a 拼在一起，读作三十几",
+      "$a-3$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$3a$ 就是 $3\\times a$，省略的只是乘号，它是一个乘法。它既不是 $3+a$，也不是「3 和 a 拼成的两位数」，到底多大要看 $a$ 换成哪个数。"
+  },
+  {
+    "ord": 2,
+    "type": "辨认",
+    "prompt": "$2a$ 表示的是什么？",
+    "answer_mode": "choice",
+    "options": [
+      "$a$ 的 2 倍",
+      "$a$ 的一半",
+      "比 $a$ 多 2",
+      "2 减去 $a$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$2a=2\\times a$，就是把 $a$ 乘 2，也就是 $a$ 的 2 倍。把它当成「$a$ 的一半」是把乘 2 看成了除 2；当成「比 a 多 2」是把乘看成了加。"
+  },
+  {
+    "ord": 3,
+    "type": "表示",
+    "prompt": "$a\\times 5$ 按书写约定应写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$5a$",
+      "$a5$",
+      "$a+5$",
+      "$\\dfrac{a}{5}$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "乘号省略、数字写在字母前面，所以 $a\\times 5=5a$。写成 $a5$ 违反「数字在前」的约定；$a+5$、$\\frac{a}{5}$ 则把乘法换成了别的运算。"
+  },
+  {
+    "ord": 4,
+    "type": "表示",
+    "prompt": "$a\\times b$ 按书写约定写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$ab$",
+      "$a+b$",
+      "$a-b$",
+      "$\\dfrac{a}{b}$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "字母和字母相乘，乘号同样可以省略，所以 $a\\times b=ab$。$a+b$、$a-b$、$\\frac{a}{b}$ 分别把乘法错当成了加、减、除。"
+  },
+  {
+    "ord": 5,
+    "type": "表示",
+    "prompt": "$a+a$ 可以写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$2a$",
+      "$a2$",
+      "$a+2$",
+      "$aa$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "一个数加它自己就是它的 2 倍，所以 $a+a=2a$。$a2$ 违反数字写在前面的约定；$a+2$ 把「加自己」错看成「加 2」；$aa$ 是 $a\\times a$，把加法错当成了乘法。"
+  },
+  {
+    "ord": 6,
+    "type": "辨认",
+    "prompt": "在 $3n$ 里，3 和 $n$ 之间是什么运算？",
+    "answer_mode": "choice",
+    "options": [
+      "乘法（$3\\times n$）",
+      "加法（$3+n$）",
+      "把 3 和 n 拼成一个两位数",
+      "减法（$n-3$）"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$3n$ 是 $3\\times n$，中间省略的是乘号，所以是乘法。省略乘号不等于把两个符号拼起来，也不是加或减。"
+  },
+  {
+    "ord": 7,
+    "type": "表示",
+    "prompt": "把「比 $x$ 多 3」用字母写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$x+3$",
+      "$3x$",
+      "$x-3$",
+      "$3-x$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "「多 3」是在 $x$ 上再加 3，所以是 $x+3$。$3x$ 是把「多 3」错看成「3 倍」；$x-3$、$3-x$ 则把「多」看成了「少」。"
+  },
+  {
+    "ord": 8,
+    "type": "操作",
+    "prompt": "每支笔 3 元，买 $n$ 支，一共多少元？",
+    "answer_mode": "choice",
+    "options": [
+      "$3n$ 元",
+      "$n3$ 元",
+      "$3+n$ 元",
+      "$\\dfrac{n}{3}$ 元"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "总价永远是「$3\\times$ 支数」，支数用 $n$ 占位就是 $3\\times n$，照约定写成 $3n$。$n3$ 违反数字在前的约定；$3+n$、$\\frac{n}{3}$ 用错了运算。"
+  },
+  {
+    "ord": 9,
+    "type": "操作",
+    "prompt": "每本练习本 4 元，买 $m$ 本，总价是多少元？",
+    "answer_mode": "choice",
+    "options": [
+      "$4m$ 元",
+      "$m4$ 元",
+      "$4+m$ 元",
+      "$4-m$ 元"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "总价是「$4\\times$ 本数」，本数用 $m$ 占位得 $4\\times m$，省略乘号、数字在前写作 $4m$。其余选项要么写法违约定，要么把乘法换成了加减。"
+  },
+  {
+    "ord": 10,
+    "type": "操作",
+    "prompt": "一个数是 $a$，它的相反数是？",
+    "answer_mode": "choice",
+    "options": [
+      "$-a$",
+      "$a$",
+      "$\\dfrac{1}{a}$",
+      "$0$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "相反数是只把符号变号得到的数，所以 $a$ 的相反数是 $-a$。$\\frac{1}{a}$ 是倒数不是相反数；相反数一般不等于 $0$（只有 $a=0$ 时才是）。"
+  },
+  {
+    "ord": 11,
+    "type": "操作",
+    "prompt": "一个数是 $x$，它的 2 倍写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$2x$",
+      "$x2$",
+      "$x+2$",
+      "$\\dfrac{x}{2}$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "2 倍就是乘 2，$2\\times x$ 照约定写作 $2x$。$x2$ 违反数字在前；$x+2$ 把 2 倍看成加 2；$\\frac{x}{2}$ 是一半而不是 2 倍。"
+  },
+  {
+    "ord": 12,
+    "type": "操作",
+    "prompt": "$a+(-a)$ 的结果是？",
+    "answer_mode": "choice",
+    "options": [
+      "$0$",
+      "$2a$",
+      "$a$",
+      "$-a$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "一个数加它的相反数一定得 0，所以 $a+(-a)=0$。$2a$ 是把 $-a$ 错当成再加一个 $a$；$a$、$-a$ 都是把其中一个加数漏掉了。"
+  },
+  {
+    "ord": 13,
+    "type": "表示",
+    "prompt": "一支笔 $a$ 元，买 $n$ 支，总价写成？",
+    "answer_mode": "choice",
+    "options": [
+      "$an$ 元",
+      "$a+n$ 元",
+      "$\\dfrac{a}{n}$ 元",
+      "$n-a$ 元"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "总价是单价乘支数，$a\\times n$ 省略乘号写作 $an$。这里两个都是字母，乘号照样省略。$a+n$、$\\frac{a}{n}$、$n-a$ 用错了运算。"
+  },
+  {
+    "ord": 14,
+    "type": "辨错",
+    "prompt": "小明把 $a\\times 3$ 写成了 $a3$。这样对吗？",
+    "answer_mode": "choice",
+    "options": [
+      "错，数字要写在字母前面，应写作 $3a$",
+      "对，$a3$ 完全没问题",
+      "错，应该写成 $a+3$",
+      "错，乘号不能省略，必须写 $a\\times 3$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "乘号可以省略是对的，但还有一条约定：数字要写在字母前面，所以 $a\\times 3$ 应写作 $3a$，不能写成 $a3$。乘号确实能省略，$a\\times 3$ 也不是加法。"
+  },
+  {
+    "ord": 15,
+    "type": "辨错",
+    "prompt": "小红说：「$3a$ 就读作『3 和 a』，等于三十几。」这话对吗？",
+    "answer_mode": "choice",
+    "options": [
+      "错，$3a=3\\times a$ 是乘法，读作『3 乘 a』，大小要看 $a$",
+      "对，$3a$ 就是三十几",
+      "错，$3a$ 应该读作『a 的 3』",
+      "对，$3a$ 等于 $30+a$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "$3a$ 是 $3\\times a$，读作「3 乘 a」，省略的只是乘号而不是把两个符号拼起来。它不是三十几，也不是 $30+a$；到底多大，取决于 $a$ 换成哪个数。"
+  },
+  {
+    "ord": 16,
+    "type": "辨错",
+    "prompt": "小刚说：「字母 $a$ 只能代表某一个固定的数。」这话对吗？",
+    "answer_mode": "choice",
+    "options": [
+      "错，$a$ 可以代表一整类数里的任意一个，正数、$0$、负数都行",
+      "对，$a$ 是藏起来的某一个固定的数",
+      "错，$a$ 只能代表正数",
+      "错，$a$ 只能代表整数"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "字母是一个占位的框，代表的是一整类数里随便哪一个——正数、$0$、负数都能填进去，并不是某一个藏起来的固定答案，也没有只准取正数或整数的限制。"
+  },
+  {
+    "ord": 17,
+    "type": "说理",
+    "prompt": "为什么 $a+(-a)=0$ 对每一个数都成立？",
+    "answer_mode": "choice",
+    "options": [
+      "因为 $a$ 代表任意一个数，任何数加上它的相反数都得 $0$",
+      "因为 $a$ 一定等于 $0$",
+      "因为只要是字母相加就等于 $0$",
+      "因为 $a$ 和 $-a$ 都是很小的数，加起来约等于 $0$"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "$a$ 站的是「所有的数」这一整类，把任何一个数放进框里，它和它的相反数相加都得 $0$，所以这一行同时管住了 $3+(-3)$、$8+(-8)$…… $a$ 并不等于 0，也不是因为字母才等于 0。"
+  },
+  {
+    "ord": 18,
+    "type": "说理",
+    "prompt": "写一条对所有数都成立的规律时，为什么用字母 $a$ 比用一个具体数字更好？",
+    "answer_mode": "choice",
+    "options": [
+      "因为一个字母站住一整类数，规律写一次就把所有数一起管住了",
+      "因为字母写起来比数字好看",
+      "因为字母代表一个我们还不知道的固定的数",
+      "因为字母能让式子变短，除此之外没有别的用处"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "具体数字一次只能说一个数，而字母站的是一整类数，所以 $a+(-a)=0$ 这一行就替你写好了无穷多条具体算式。这不是为了好看或写得短，字母的关键正是它不被定成某一个固定的数。"
+  }
+]

@@ -1,0 +1,70 @@
+{
+  "motivation": [
+    {
+      "mode": "choice",
+      "prompt": "两个同学争论的是哪个代数式？",
+      "options": ["$3x+2(a-1)-7$", "$x-2y+1$", "$7-2m$", "$4(x+y)-3$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "$3x$ 的 $3$ 和 $3+x$ 的 $3$ 干的事有什么不同？",
+      "options": ["一个在乘，一个在加", "都在做加法", "都在做乘法", "一个在减，一个在乘"],
+      "correct_index": 0
+    }
+  ],
+  "model": [
+    {
+      "mode": "choice",
+      "prompt": "把式子沿着加号、减号切开，切出来的每一块叫什么？",
+      "options": ["项", "因数", "因式", "常数"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "因数里带字母的那种（比如 $x$、$(a-1)$）有一个专门的名字，叫什么？",
+      "accept": ["因式"]
+    }
+  ],
+  "anatomy": [
+    {
+      "mode": "choice",
+      "prompt": "例 2 中，拆 $7-2m$，它的常数项是哪个？",
+      "options": ["$7$", "$-2$", "$m$", "$-2m$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "例 1 中，$x-2y+1$ 的第二项 $-2y$ 拆成因数 $-2$ 和哪个因数？",
+      "accept": ["y", "$y$"]
+    }
+  ],
+  "boundary": [
+    {
+      "mode": "choice",
+      "prompt": "按「符号跟着项走」，$y-5x$ 的第二项是哪个？",
+      "options": ["$-5x$", "$5x$", "$-5$", "$x$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "在 $3x$ 里，$3$ 站在乘法层，它的身份是什么？",
+      "options": ["因数", "项", "常数项", "因式"],
+      "correct_index": 0
+    }
+  ],
+  "connections": [
+    {
+      "mode": "choice",
+      "prompt": "这一课的下一课叫什么名字？",
+      "options": ["《项的身份证》", "《式子的两层》", "《代数式》", "《括号》"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "「符号跟着项走」的全部依据是什么？",
+      "options": ["减法可以改写成加相反数", "括号是先算我的记号", "乘法可以交换顺序", "常数代入什么都不变"],
+      "correct_index": 0
+    }
+  ]
+}

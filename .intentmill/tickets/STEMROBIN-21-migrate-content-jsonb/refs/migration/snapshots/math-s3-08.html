@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.8 方程应用题只做数量关系 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 方程和不等式 · 方法课</div>
+    <h1 class="sr-l-title">3.8 方程应用题只做数量关系</h1>
+    <div class="sr-l-concept">应用题的第一目标不是套题型，而是把文字里的等量关系写成方程：设未知数、写关系句、列方程，最后解出来并回到问题作答。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">数量关系</span>
+      <span class="sr-chip">等量关系</span>
+      <span class="sr-chip green">设未知数·列方程</span>
+      <span class="sr-chip green">回到问题作答</span>
+    </div>
+  </header>
+
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+    <p>前面几课，我们已经会解一元一次方程了：给一个 $3x+2=x+8$，你能又稳又快地求出 $x$。可是真正的题目往往不是直接给你一个方程，而是给你一段文字：</p>
+    <div class="sr-note"><b>题：</b>哥哥和弟弟一共有 $30$ 张卡片，哥哥比弟弟多 $6$ 张。哥哥有多少张？</div>
+    <p>面对这段话，很多人第一反应是"猜"：哥哥 $18$、弟弟 $12$？加起来是 $30$，差是 $6$，好像对了。可要是换成"一共 $237$ 张、哥哥比弟弟多 $41$ 张"，猜就不灵了，你会越猜越乱。</p>
+    <p>问题不在于你不会解方程，而在于你不知道<strong>该列出哪个方程</strong>。这段文字里其实藏着一句最关键的话——"哥哥的张数加弟弟的张数等于 $30$"。只要把这句话找出来、翻译成式子，剩下的就是你早就会的解方程。</p>
+    <p>所以这一课要练的不是新的解法，而是<strong>把文字翻译成方程</strong>这一步。它是应用题里最容易被跳过、也最容易出错的一步。学会了它，任何数字换多大都不怕。</p>
+    <div class="sr-note"><b>驱动问题：</b>拿到一段文字应用题，怎样稳稳地找出那句藏着的相等关系，把它翻译成一个方程，而不是靠猜、也不是靠背题型？</div>
+  </section>
+
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <h3>两种"关系"：数量关系与等量关系</h3>
+    <p>一段应用题里，会出现好几个量：哥哥的张数、弟弟的张数、总数、差……这些量之间怎样用加减乘除连在一起，就是它们的<span class="sr-term">数量关系</span>。比如"哥哥比弟弟多 $6$ 张"就是一条数量关系，"两人一共 $30$ 张"也是一条。数量关系描述的是"谁和谁、用什么运算、连成什么"。</p>
+    <p>在这些数量关系里，有一条特别有用：它把两个量（或两组量）用等号连起来，说"这一边正好等于那一边"。这种"$A=B$"形式的关系，叫做<span class="sr-term">等量关系</span>。等量关系是数量关系里能写成等号的那一条——它就是你将来那个方程的"骨架"。</p>
+    <div class="sr-note"><b>一句话记住区别：</b>数量关系是"这些量之间的所有联系"；等量关系是其中<strong>能用等号连起来的那一句</strong>。列方程，靠的正是等量关系这一句。</div>
+
+    <h3>四步：设未知数 → 写等量关系句 → 列方程 → 解并回到问题</h3>
+    <p>把文字变成答案，走的是一条固定的四步路线：</p>
+    <figure class="sr-fig">
+      <svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="方程应用题的四步路线图">
+        <defs>
+          <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L9,4.5 L0,9 z" fill="#0A5E76"/>
+          </marker>
+        </defs>
+        <g font-family="Noto Sans SC, sans-serif" font-size="14">
+          <rect x="10"  y="46" width="156" height="58" rx="9" fill="#E1F1F5" stroke="#0E7C9B"/>
+          <text x="88"  y="70" text-anchor="middle" font-weight="700" fill="#0A5E76">① 设未知数</text>
+          <text x="88"  y="90" text-anchor="middle" fill="#4C5A58" font-size="12">带单位地设 x</text>
+
+          <rect x="188" y="46" width="156" height="58" rx="9" fill="#E1F1F5" stroke="#0E7C9B"/>
+          <text x="266" y="70" text-anchor="middle" font-weight="700" fill="#0A5E76">② 写等量关系句</text>
+          <text x="266" y="90" text-anchor="middle" fill="#4C5A58" font-size="12">先写一句 A=B</text>
+
+          <rect x="366" y="46" width="156" height="58" rx="9" fill="#E1F1F5" stroke="#0E7C9B"/>
+          <text x="444" y="70" text-anchor="middle" font-weight="700" fill="#0A5E76">③ 列方程</text>
+          <text x="444" y="90" text-anchor="middle" fill="#4C5A58" font-size="12">把那句话翻译成式子</text>
+
+          <rect x="544" y="46" width="146" height="58" rx="9" fill="#E4F6EE" stroke="#15A06A"/>
+          <text x="617" y="70" text-anchor="middle" font-weight="700" fill="#0F7D52">④ 解并作答</text>
+          <text x="617" y="90" text-anchor="middle" fill="#4C5A58" font-size="12">回到问题带单位</text>
+
+          <line x1="166" y1="75" x2="186" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw)"/>
+          <line x1="344" y1="75" x2="364" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw)"/>
+          <line x1="522" y1="75" x2="542" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw)"/>
+
+          <text x="350" y="26" text-anchor="middle" font-size="13" fill="#8A9795">本课重点在 ①②③——把文字变成方程</text>
+          <text x="350" y="132" text-anchor="middle" font-size="12" fill="#8A9795">第④步的"解"用上一课已经学会的方法</text>
+        </g>
+      </svg>
+      <figcaption>四步路线：真正的难点在②写等量关系句，它决定了③列出的方程对不对。</figcaption>
+    </figure>
+    <p><strong>① 设未知数。</strong>先决定用字母代表哪个量。设的时候要<strong>带着单位的意识</strong>：不是光写一个 $x$，而是想清楚"设弟弟有 $x$ 张卡片"——$x$ 代表的是张数。把这一步做实，叫<span class="sr-term">设未知数</span>。</p>
+    <p><strong>② 写等量关系句。</strong>用中文先写一句话，说清楚"哪一堆量正好等于哪一堆量"，例如"哥哥的张数 $+$ 弟弟的张数 $=$ 总数"。这一句先不带 $x$、不着急写式子，就是普通的中文句子。</p>
+    <p><strong>③ 列方程。</strong>把第②句里每个量，换成第①步设法下的代数式，就得到方程。把等量关系翻译成方程，叫<span class="sr-term">列方程</span>。因为弟弟是 $x$、哥哥比弟弟多 $6$ 所以哥哥是 $x+6$，那句"哥哥 $+$ 弟弟 $=30$"就翻译成 $(x+6)+x=30$。</p>
+    <p><strong>④ 解并回到问题。</strong>用上一课的方法解出 $x$，然后<strong>回到原来的问题</strong>作答——题目问"哥哥有多少张"，答的就得是哥哥的张数、还要带上"张"这个单位，而不是停在 $x=12$。</p>
+
+    <h3>为什么"先写等量关系句"这一步不能省</h3>
+    <p>很多人想直接从文字跳到式子，一读完题就写 $x+6=30$，然后发现哪里不对。真正稳的做法是：<strong>先写一句纯中文的等量关系，再把这句话逐字翻译成方程</strong>。中文那句话你一眼能判断对不对（"哥哥加弟弟等于总数"显然成立），翻译只是照抄。跳过中文直接写式子，等于把"想清楚关系"和"写对符号"两件事一起做，最容易两头都错。</p>
+
+    <div class="sr-pitfall"><b>陷阱一（别从文字直接跳到式子）：</b>不要读完题就急着写方程。先落一句中文的等量关系（"$A=B$"），确认这句话本身成立，再把它翻译成式子。跳过中文这一步，是应用题出错的头号原因。</div>
+    <div class="sr-pitfall"><b>陷阱二（设未知数要带单位意识）：</b>设 $x$ 的时候要想清楚它代表什么量：是人数、长度，还是价格。写"设弟弟有 $x$ 张卡片"，而不是光甩一个 $x$。心里没有单位，后面列式子就容易把"张数"和"钱数"混在一起加。</div>
+    <div class="sr-pitfall"><b>陷阱三（同一题可以有不同设法，但每种设法都要让关系句说得通）：</b>上面这题也可以设"哥哥有 $x$ 张"，那弟弟就是 $x-6$，等量关系句仍是"哥哥 $+$ 弟弟 $=$ 总数"，方程变成 $x+(x-6)=30$。设法不同，方程不同，但那句等量关系必须始终说得通、始终对得上你的设法。不能一边设"哥哥是 $x$"，一边又按"弟弟是 $x$"去写关系。</div>
+    <div class="sr-pitfall"><b>陷阱四（解完要回到原问题作答）：</b>解出 $x$ 只是半路，不是终点。要回头看题目到底问什么。如果设的是弟弟、解得 $x=12$，而题目问哥哥，那答案是 $12+6=18$ 张，不是 $12$。答话要带单位，别停在"$x=12$"。</div>
+  </section>
+
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1（和差型）：一共 30、多 6，哥哥几张</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>哥哥和弟弟一共 $30$ 张卡片，哥哥比弟弟多 $6$ 张。哥哥有多少张？</span></div>
+      <div class="sr-step"><span class="sr-step-n">设</span><span>设弟弟有 $x$ 张卡片。那么哥哥比弟弟多 $6$ 张，哥哥就是 $x+6$ 张。</span></div>
+      <div class="sr-step"><span class="sr-step-n">关系句</span><span>先写一句等量关系：<strong>哥哥的张数 $+$ 弟弟的张数 $=$ 总数</strong>。这句话显然成立。</span></div>
+      <div class="sr-step"><span class="sr-step-n">列方程</span><span>把每个量翻译过来：$(x+6)+x=30$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">解</span><span>去括号合并：$2x+6=30$；移项：$2x=24$；除系数：$x=12$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">回到问题</span><span>题目问的是<strong>哥哥</strong>，不是 $x$（弟弟）。哥哥 $=x+6=18$。答：哥哥有 $18$ 张卡片。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>哥哥 $18$、弟弟 $12$：一共 $30$、相差 $6$，与题意相符。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2（倍数型）：妈妈的年龄是女儿的 3 倍</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>妈妈今年的年龄是女儿的 $3$ 倍，两人年龄一共 $48$ 岁。女儿今年几岁？</span></div>
+      <div class="sr-step"><span class="sr-step-n">设</span><span>设女儿今年 $x$ 岁。妈妈是女儿的 $3$ 倍，妈妈就是 $3x$ 岁。</span></div>
+      <div class="sr-step"><span class="sr-step-n">关系句</span><span>等量关系：<strong>妈妈的年龄 $+$ 女儿的年龄 $=$ 两人年龄之和</strong>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">列方程</span><span>翻译：$3x+x=48$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">解</span><span>合并：$4x=48$；除系数：$x=12$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">回到问题</span><span>题目问女儿，正好设的就是女儿，$x=12$。答：女儿今年 $12$ 岁。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>妈妈 $3\times12=36$ 岁，$36+12=48$，正好是 $3$ 倍、和为 $48$，相符。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3（价格总额型）：买了两种本子</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>笔记本每本 $5$ 元，练习本每本 $3$ 元。小明买的笔记本比练习本多买 $2$ 本，一共花了 $34$ 元。他买了几本练习本？</span></div>
+      <div class="sr-step"><span class="sr-step-n">设</span><span>设练习本买了 $x$ 本。笔记本比练习本多 $2$ 本，笔记本就买了 $x+2$ 本。</span></div>
+      <div class="sr-step"><span class="sr-step-n">关系句</span><span>等量关系：<strong>笔记本的钱 $+$ 练习本的钱 $=$ 总花费</strong>。（这里要把"本数"先乘上"单价"变成"钱数"，同一句里比较的都得是钱。）</span></div>
+      <div class="sr-step"><span class="sr-step-n">列方程</span><span>笔记本的钱是 $5(x+2)$，练习本的钱是 $3x$，翻译：$5(x+2)+3x=34$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">解</span><span>去括号：$5x+10+3x=34$；合并：$8x+10=34$；移项：$8x=24$；除系数：$x=3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">回到问题</span><span>题目问练习本，设的就是练习本，$x=3$。答：他买了 $3$ 本练习本。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>练习本 $3$ 本、笔记本 $5$ 本：$3\times3+5\times5=9+25=34$ 元，且笔记本比练习本多 $2$ 本，相符。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4（说理）：为什么这句关系句翻译出来是错的？</div>
+      <div class="sr-step"><span class="sr-step-n">情景</span><span>还是例 3 那道题，一位同学设练习本 $x$ 本、笔记本 $x+2$ 本，等量关系却写成"<strong>笔记本的本数 $+$ 练习本的本数 $=34$</strong>"，于是列出 $(x+2)+x=34$，解得 $x=16$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">问</span><span>他的方程为什么是错的？错在设法，还是错在等量关系句？</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>设法没错，错在等量关系句。$34$ 是<strong>钱数</strong>（元），而 $(x+2)+x$ 是<strong>本数</strong>（本）。他那句"本数 $+$ 本数 $=34$"把两种不同的量用等号连了起来，等号两边单位都对不上，这句话根本不成立。正确的关系句必须两边都是钱："笔记本的钱 $+$ 练习本的钱 $=$ 总花费"，也就是要先用单价把本数换算成钱，才能和 $34$ 元相等。这说明：等量关系句里，等号两边必须是同一种量。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 5（一题两设法）：同一道题，换一种设法</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>再看例 1：一共 $30$ 张，哥哥比弟弟多 $6$ 张，求哥哥。这次我们直接设哥哥。</span></div>
+      <div class="sr-step"><span class="sr-step-n">设</span><span>设哥哥有 $x$ 张。哥哥比弟弟多 $6$，所以弟弟比哥哥少 $6$，弟弟是 $x-6$ 张。</span></div>
+      <div class="sr-step"><span class="sr-step-n">关系句</span><span>等量关系句不变：<strong>哥哥的张数 $+$ 弟弟的张数 $=$ 总数</strong>。它对两种设法都说得通。</span></div>
+      <div class="sr-step"><span class="sr-step-n">列方程</span><span>翻译：$x+(x-6)=30$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">解</span><span>去括号合并：$2x-6=30$；移项：$2x=36$；除系数：$x=18$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">回到问题</span><span>这次 $x$ 直接就是哥哥，$x=18$。答：哥哥有 $18$ 张——和例 1 完全一样。</span></div>
+      <div class="sr-step"><span class="sr-step-n">说理</span><span>两种设法列出的方程不同（$(x+6)+x=30$ 与 $x+(x-6)=30$），但答案相同，因为它们翻译的是同一句等量关系。设法可以自选，能让关系句说得通、算起来顺手就行。</span></div>
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>本课站在前面几课的地基上：</b>设未知数用的是<b>未知数</b>和<b>表示未知数的字母</b>；把每个量写成 $x+6$、$3x$、$5(x+2)$ 这样的式子，用的是<b>代数式</b>和<b>用字母表示数</b>；写出来的 $(x+6)+x=30$ 是一个<b>一元一次方程</b>；第④步"解"，整套动作（去括号、合并同类项、移项、除系数、检验）就是上一课的<b>解一元一次方程</b>。这一课没有新的计算，只加了"把文字变成方程"这一段。</li>
+      <li><b>等量关系其实就是等号的老本行：</b>方程的核心是<b>等号</b>连起来的一个<b>等式</b>，说"左边等于右边"。等量关系句正是在文字里找出这句"左边 $=$ 右边"，再翻译成符号。所以列方程不是新魔法，是把最早学的等式思想用在文字上。</li>
+      <li><b>后面会用同样的思路处理"最多、至少"这类问题：</b>再往后，题目问的不再是"正好等于多少"，而是"最多不超过多少、至少要多少"这类一整片答案的问题。到那时，第①②步——设未知数、把文字里的数量关系写出来——几乎照搬本课，只是把中间那个连接号从等号换成表示大小的记号。先把"翻译文字"练扎实，后面就顺。</li>
+    </ul>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    <ol class="sr-oral">
+      <li>
+        "数量关系"和"等量关系"有什么区别？列方程靠的是哪一个？
+        <div class="sr-answer">数量关系是一段题里各个量之间用加减乘除连起来的所有联系；等量关系是其中能用等号连起来、写成"$A=B$"的那一句。列方程靠的正是等量关系——把那句"左边等于右边"翻译成式子。</div>
+      </li>
+      <li>
+        为什么要先写一句中文的等量关系，再列方程，而不是读完题直接写式子？
+        <div class="sr-answer">因为中文那句话你一眼能判断对不对（比如"哥哥加弟弟等于总数"显然成立），翻译成符号只是照抄。直接写式子等于把"想清楚关系"和"写对符号"两件难事一起做，最容易两头都错。先落一句中文关系，是应用题最稳的一步。</div>
+      </li>
+      <li>
+        "设弟弟有 $x$"和光写一个"$x$"有什么不一样？为什么要带着单位去设？
+        <div class="sr-answer">"设弟弟有 $x$ 张卡片"讲清了 $x$ 代表哪个量、单位是张。光写 $x$ 心里没数，后面很容易把不同的量（比如张数和钱数、本数和元数）错误地用等号或加号连在一起。带单位地设，是为了让后面每一步都对得上量。</div>
+      </li>
+      <li>
+        同一道应用题，能不能有不同的设法？不同设法之间必须保持什么一致？
+        <div class="sr-answer">能。比如例 1 既可设弟弟为 $x$，也可设哥哥为 $x$，列出的方程不同但答案相同。必须保持一致的是那句等量关系——每种设法下，"哥哥 $+$ 弟弟 $=$ 总数"都要说得通，且式子里各个量的写法要和你的设法对应，不能一边设哥哥、一边又按弟弟去写。</div>
+      </li>
+      <li>
+        在例 4 里，"笔记本的本数 $+$ 练习本的本数 $=34$"这句关系句为什么是错的？
+        <div class="sr-answer">因为 $34$ 是钱数（元），而本数 $+$ 本数还是本数（本），等号两边不是同一种量，这句话根本不成立。等量关系句里等号两边必须是同一种量，所以要先用单价把本数换成钱："笔记本的钱 $+$ 练习本的钱 $=$ 总花费"。</div>
+      </li>
+      <li>
+        解出 $x=12$ 之后，为什么不能马上把 $12$ 当成答案？应该怎么办？
+        <div class="sr-answer">因为 $x$ 只是你设的那个量，未必就是题目要问的量。要回到原问题看它问什么：如果设的是弟弟、问的是哥哥，答案是 $12+6=18$ 张，不是 $12$。回到问题作答，而且要带上单位，才算真正做完。</div>
+      </li>
+    </ol>
+  </section>
+
+
+  <section data-sr-section="practice">
+    <style>
+      /* injected with the deck — screen extras + print layout (self-contained) */
+      ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+      ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+      ol.sr-practice > li:first-child { border-top:0; }
+      ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+      .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+      .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+      .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
+      .sr-p-opt { font-size: 14px; }
+      .sr-p-opt b { font-family: var(--sr-mono); font-weight: 600; color: var(--sr-ink-soft); margin-right: 3px; }
+      @media print {
+        section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+        ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; break-inside: avoid; }
+        ol.sr-practice > li::before { top: 16px; }
+      }
+    </style>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">可以边读边想，也可以打印出来用笔写。做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> 一支笔 $3$ 元、一个本 $4$ 元，买了同样多的笔和本，一共花了 $28$ 元。设买了 $x$ 支笔。下面哪一句是这道题的等量关系句？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 笔的钱 $+$ 本的钱 $=$ 总花费</span><span class="sr-p-opt"><b>B.</b> 笔的支数 $+$ 本的支数 $=$ 总花费</span><span class="sr-p-opt"><b>C.</b> 笔的单价 $+$ 本的单价 $=$ 总花费</span><span class="sr-p-opt"><b>D.</b> 笔的钱 $+$ 本的钱 $=$ 笔的支数</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 题目：篮球比足球贵 $20$ 元，一个篮球加一个足球一共 $96$ 元。设足球 $x$ 元。这里的 $x$ 代表的是什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 足球的价钱（元）</span><span class="sr-p-opt"><b>B.</b> 足球的个数（个）</span><span class="sr-p-opt"><b>C.</b> 篮球的价钱（元）</span><span class="sr-p-opt"><b>D.</b> 两个球的总价（元）</span></div></li>
+      <li><span class="sr-ptype">表示</span> 设弟弟有 $x$ 张卡片，哥哥比弟弟多 $6$ 张。哥哥的张数用式子表示是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x+6$</span><span class="sr-p-opt"><b>B.</b> $x-6$</span><span class="sr-p-opt"><b>C.</b> $6x$</span><span class="sr-p-opt"><b>D.</b> $6-x$</span></div></li>
+      <li><span class="sr-ptype">表示</span> 设女儿今年 $x$ 岁，妈妈的年龄是女儿的 $3$ 倍。妈妈的年龄用式子表示是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$</span><span class="sr-p-opt"><b>B.</b> $x+3$</span><span class="sr-p-opt"><b>C.</b> $\dfrac{x}{3}$</span><span class="sr-p-opt"><b>D.</b> $3+x$</span></div></li>
+      <li><span class="sr-ptype">表示</span> 练习本每本 $3$ 元，买了 $x$ 本。这些练习本一共花的钱用式子表示是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$ 元</span><span class="sr-p-opt"><b>B.</b> $x+3$ 元</span><span class="sr-p-opt"><b>C.</b> $3+x$ 元</span><span class="sr-p-opt"><b>D.</b> $\dfrac{x}{3}$ 元</span></div></li>
+      <li><span class="sr-ptype">操作</span> 哥哥和弟弟一共 $30$ 张卡片，哥哥比弟弟多 $6$ 张。设弟弟有 $x$ 张。下面哪个方程是对的？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $(x+6)+x=30$</span><span class="sr-p-opt"><b>B.</b> $(x-6)+x=30$</span><span class="sr-p-opt"><b>C.</b> $(x+6)-x=30$</span><span class="sr-p-opt"><b>D.</b> $x+6=30$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 妈妈的年龄是女儿的 $3$ 倍，两人年龄一共 $48$ 岁。设女儿 $x$ 岁。列出的方程是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x+x=48$</span><span class="sr-p-opt"><b>B.</b> $3x-x=48$</span><span class="sr-p-opt"><b>C.</b> $3x=48$</span><span class="sr-p-opt"><b>D.</b> $x+3=48$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 「苹果比梨多 $5$ 个，苹果和梨一共 $25$ 个，求梨。」一位同学设梨 $x$ 个，读完题直接写出 $x+5=25$。这个方程对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错：他漏了苹果这一项，把总数只对着梨列，应是 $x+(x+5)=25$</span><span class="sr-p-opt"><b>B.</b> 对：$x+5=25$ 正好表示一共 $25$ 个</span><span class="sr-p-opt"><b>C.</b> 错：应该写成 $x-5=25$</span><span class="sr-p-opt"><b>D.</b> 对：设梨为 $x$，苹果就是 $25$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 「笔记本 $5$ 元/本，练习本 $3$ 元/本，笔记本比练习本多买 $2$ 本，一共 $34$ 元。」设练习本 $x$ 本，某同学写的等量关系句是「笔记本的本数 $+$ 练习本的本数 $=34$」。这句关系句对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错：$34$ 是钱数，本数 $+$ 本数还是本数，等号两边不是同一种量</span><span class="sr-p-opt"><b>B.</b> 对：两种本子的本数加起来正好是 $34$</span><span class="sr-p-opt"><b>C.</b> 错：应改成「笔记本本数 $-$ 练习本本数 $=34$」</span><span class="sr-p-opt"><b>D.</b> 对：只要能把 $x$ 解出来，关系句写成什么都行</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 还是「一共 $30$ 张、哥哥比弟弟多 $6$ 张」这道题。某同学设哥哥有 $x$ 张，却写出方程 $x+(x+6)=30$。他的方程对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错：设哥哥为 $x$ 时弟弟应是 $x-6$，他却按「弟弟 $=x+6$」写，设法和式子对不上</span><span class="sr-p-opt"><b>B.</b> 对：哥哥比弟弟多 $6$，弟弟就是 $x+6$</span><span class="sr-p-opt"><b>C.</b> 错：应该写成 $x+(x+6)=36$</span><span class="sr-p-opt"><b>D.</b> 对：只要两个含 $x$ 的式子相加等于 $30$ 就行</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么这一课一再强调「先写一句中文的等量关系，再列方程」，而不是读完题就直接写式子？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为中文那句话能一眼看出对不对，翻译成符号只是照抄；跳过它等于把想关系和写符号两件难事一起做，最容易两头都错</span><span class="sr-p-opt"><b>B.</b> 因为写了中文老师才看得懂，跟方程对不对没关系</span><span class="sr-p-opt"><b>C.</b> 因为方程格式规定必须先写一句文字说明</span><span class="sr-p-opt"><b>D.</b> 因为直接写式子算得慢，写中文能算得快一些</span></div></li>
+      <li><span class="sr-ptype">说理</span> 同一道题，设弟弟为 $x$ 得到 $(x+6)+x=30$，设哥哥为 $x$ 得到 $x+(x-6)=30$。两个方程明明不一样，为什么算出的哥哥张数相同？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为两个方程翻译的是同一句等量关系「哥哥 $+$ 弟弟 $=$ 总数」，只是选来当 $x$ 的量不同</span><span class="sr-p-opt"><b>B.</b> 因为凑巧这两个方程的解相同，换道题就不一定了</span><span class="sr-p-opt"><b>C.</b> 因为设哥哥和设弟弟其实是同一个 $x$</span><span class="sr-p-opt"><b>D.</b> 因为方程的解只跟数字 $30$、$6$ 有关，跟设法和关系句都无关</span></div></li>
+      <li><span class="sr-ptype">说理</span> 设弟弟为 $x$，解得 $x=12$，题目问的是「哥哥有几张」（哥哥比弟弟多 $6$）。为什么不能直接答 $12$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为 $x$ 是弟弟的张数，题目问哥哥，要回到问题答 $x+6=18$ 张</span><span class="sr-p-opt"><b>B.</b> 因为 $12$ 一定算错了，应该重新解方程</span><span class="sr-p-opt"><b>C.</b> 因为答案必须写成分数才算完整</span><span class="sr-p-opt"><b>D.</b> 因为 $x$ 永远不等于最终答案，做完总要再加 $6$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 下面四句话，哪一句是「等量关系」（能写成 $A=B$ 的那一句）？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 全班人数 $=$ 男生人数 $+$ 女生人数</span><span class="sr-p-opt"><b>B.</b> 男生比女生多几人</span><span class="sr-p-opt"><b>C.</b> 每人交 $5$ 元</span><span class="sr-p-opt"><b>D.</b> 女生人数是一个未知数</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 「一件上衣的价钱是一条裤子的 $2$ 倍。」要给这道题设未知数，下面哪种设法最清楚、带了单位意识？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 设一条裤子 $x$ 元</span><span class="sr-p-opt"><b>B.</b> 设 $x$</span><span class="sr-p-opt"><b>C.</b> 设裤子 $=$ 上衣</span><span class="sr-p-opt"><b>D.</b> 设一条裤子 $x$ 件</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 「桌子数是椅子数的 $4$ 倍，桌子和椅子一共 $45$ 张。」这道题的等量关系句是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 桌子数 $+$ 椅子数 $=45$</span><span class="sr-p-opt"><b>B.</b> 桌子数 $\times$ 椅子数 $=45$</span><span class="sr-p-opt"><b>C.</b> 桌子数 $-$ 椅子数 $=45$</span><span class="sr-p-opt"><b>D.</b> 桌子数 $=$ 椅子数 $\times 45$</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 复习：解方程 $\dfrac{x}{2}+\dfrac{x}{3}=5$，两边同乘公分母 $6$，去分母后得到的方程是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x+2x=30$</span><span class="sr-p-opt"><b>B.</b> $x+x=30$</span><span class="sr-p-opt"><b>C.</b> $3x+2x=5$</span><span class="sr-p-opt"><b>D.</b> $3x+2x=11$</span></div></li>
+      <li><span class="sr-ptype">辨错</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 复习：解方程 $2-3(x-1)=5$，去括号这一步正确的结果是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $2-3x+3=5$</span><span class="sr-p-opt"><b>B.</b> $2-3x-3=5$</span><span class="sr-p-opt"><b>C.</b> $2-3x-1=5$</span><span class="sr-p-opt"><b>D.</b> $2+3x-3=5$</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 复习：解方程 $5x-3=2x+9$，把含未知数的项移到左边、常数移到右边，正确的一步是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5x-2x=9+3$</span><span class="sr-p-opt"><b>B.</b> $5x+2x=9-3$</span><span class="sr-p-opt"><b>C.</b> $5x-2x=9-3$</span><span class="sr-p-opt"><b>D.</b> $5x+2x=9+3$</span></div></li>
+      <li><span class="sr-ptype">说理</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 复习：解一元一次方程解出 $x=4$ 后要「检验」，正确的做法是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 把 $x=4$ 代回原方程，看左边和右边算出来是否相等</span><span class="sr-p-opt"><b>B.</b> 把 $x=4$ 代入自己整理后的最后一行式子</span><span class="sr-p-opt"><b>C.</b> 把方程再从头解一遍，看得数是否一样</span><span class="sr-p-opt"><b>D.</b> 检验就是把 $4$ 写进最后的答句里</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

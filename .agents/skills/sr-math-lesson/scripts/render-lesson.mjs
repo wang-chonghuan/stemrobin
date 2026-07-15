@@ -54,6 +54,7 @@ function renderBodyNode(node, overlay, cardId) {
   }
   // prose
   const t = txt(overlay, node.id, `body prose in ${cardId}`)
+  if (node.role === 'html') return t   // verbatim neutral block markup (migration: preserves original block structure)
   if (node.role === 'note') return `    <div class="sr-note">${t}</div>`
   if (node.role === 'pitfall') return `    <div class="sr-pitfall">${t}</div>`
   if (node.role === 'h3') return `    <h3>${esc(t)}</h3>`

@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.5 同类项与合并 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 方法课</div>
+    <h1 class="sr-l-title">2.5 同类项与合并</h1>
+    <div class="sr-l-concept">字母部分完全相同的项是同类项，可以像数苹果一样数着并——系数相加、字母部分原样，合法性来自反着用的乘法分配律 $ax+bx=(a+b)x$。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">同类项</span>
+      <span class="sr-chip">合并同类项</span>
+      <span class="sr-chip">字母部分</span>
+      <span class="sr-chip green">前置：项 · 系数 · 乘法分配律</span>
+    </div>
+  </header>
+
+  <!-- 1 / 为什么学这个 -->
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+
+    <p>3 个苹果加 2 个苹果，是 5 个苹果。这件事你三岁就会。现在看这个式子：</p>
+    <p style="text-align:center">$3x+5+2x$</p>
+    <p>3 个 $x$ 加 2 个 $x$，应该就是 5 个 $x$——所以这个式子想必能写短一点，变成 $5x+5$。直觉没有错，而且这正是我们想要的：一个七零八落的长式子，数一数就变短了。</p>
+    <p>可是换一个式子，直觉立刻出事：</p>
+    <p style="text-align:center">$3x+2y$</p>
+    <p>3 个 $x$ 加 2 个 $y$，是 5 个……什么？3 个苹果加 2 个梨，不是 5 个「苹果梨」。这两项<strong>数不到一起去</strong>。</p>
+    <p>于是问题变成了：<strong>什么时候「数着并」是合法的，什么时候不合法？</strong>这一课给出精确的判据（它的名字叫<span class="sr-term">同类项</span>）、并的动作（<span class="sr-term">合并同类项</span>），以及最重要的——为什么这样并是合法的。学完之后，你不但会做，还能把道理讲给别人听。</p>
+  </section>
+
+  <!-- 2 / 讲解 -->
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <h3>第一步：给项再拆一刀——字母部分</h3>
+    <p>还记得吗：项是式子里按加减切出来的块，每个项都有一张身份证——数字因数（连同符号）叫系数。现在把身份证补全：把系数拿走之后，项里剩下的所有字母因数<strong>打成一捆</strong>，这一捆就叫这个项的<span class="sr-term">字母部分</span>。也就是说，任何一个项都可以看成两件东西相乘：</p>
+    <p style="text-align:center">项 $=$ 系数 $\times$ 字母部分</p>
+    <div class="sr-eg">
+      <span class="yes">$5a$ 的字母部分是 $a$（系数 $5$）</span>
+      <span class="yes">$-4x^2y$ 的字母部分是 $x^2y$（系数 $-4$）</span>
+      <span class="yes">$x$ 的字母部分是 $x$（系数是看不见的 $1$）</span>
+      <span class="yes">常数项 $7$ 没有字母，字母部分是「空」</span>
+      <span class="no">「$-4x^2y$ 的字母部分是 $4x^2y$」——不对，$4$ 是系数的一部分，不属于字母部分</span>
+    </div>
+    <p>注意最后一个正例：常数项也有字母部分，只不过它的字母部分是<strong>空的</strong>——一个字母都没有。这个「空」等一下会派上用场。</p>
+
+    <h3>第二步：同类项——字母部分完全相同的项</h3>
+    <p>判据只有一句话：<strong>两个项，如果字母部分完全相同，它们就是同类项。</strong>「完全相同」要抠两个字：</p>
+    <p>（1）<strong>哪些字母、每个字母的指数，都得一样。</strong>逐个字母对指数：$x^2y$ 里 $x$ 的指数是 $2$、$y$ 是 $1$；$xy^2$ 里 $x$ 是 $1$、$y$ 是 $2$。字母虽然都是 $x$ 和 $y$，但指数站错了位置，字母部分就不是同一捆——不是同类项。</p>
+    <p>（2）<strong>乘的顺序不算区别。</strong>字母部分是乘法层里的一捆因数，而乘法不在乎先后：$xy$ 和 $yx$ 是同一捆东西的两种写法。所以 $3xy$ 和 $2yx$ 是同类项。</p>
+    <p>还有一句同样重要的话：判断同类项<strong>只看字母部分，不看系数</strong>。系数是「有几个」，字母部分是「是什么」——同类不同类，问的是「是什么」。</p>
+    <div class="sr-eg">
+      <span class="yes">$3x$ 与 $-5x$：字母部分都是 $x$，同类</span>
+      <span class="yes">$3xy$ 与 $2yx$：同一捆字母因数，顺序不算区别，同类</span>
+      <span class="yes">$7$ 与 $-3$：字母部分都是「空」，所有常数项彼此同类</span>
+      <span class="no">$3x$ 与 $3y$：系数相同没用，字母部分一个是 $x$ 一个是 $y$，不同类</span>
+      <span class="no">$x^2y$ 与 $xy^2$：指数位置不同，字母部分不是同一捆，不同类</span>
+    </div>
+
+    <h3>第三步：合并的动作——系数相加，字母部分原样</h3>
+    <p>是同类项，就可以并成一项。动作只有两句话：</p>
+    <p style="text-align:center"><strong>系数相加，字母部分原样搬过来。</strong></p>
+    <p>$3x+5x$：系数 $3+5=8$，字母部分 $x$ 原样，得 $8x$。$4ab-ba$：系数 $4+(-1)=3$，字母部分 $ab$ 原样，得 $3ab$。就这么多——字母部分在整个过程中<strong>一个指头都不许动</strong>。</p>
+    <div class="sr-note">
+      <b>系数加出 0 怎么办？</b> $2x-2x$：系数 $2+(-2)=0$，得 $0\cdot x$。$0$ 乘任何数都是 $0$，所以这一项<strong>整个消失</strong>，什么也不留下。项会「湮灭」，这不是意外，是系数恰好抵消的正常结局。
+    </div>
+
+    <h3>第四步：为什么合法？把乘法分配律倒过来读</h3>
+    <p>会做还不够，要能讲出为什么。乘法分配律你早就会：</p>
+    <p style="text-align:center">$(a+b)\times x = ax+bx$</p>
+    <p>这条等式平时从左往右用——把括号「分」出去。现在<strong>从右往左读</strong>：</p>
+    <p style="text-align:center">$ax+bx = (a+b)x$</p>
+    <p>左边是两个同类项相加，右边是「系数相加、字母部分原样」的结果——<strong>合并同类项就是反着用的分配律</strong>，一个字都不多。把 $3x+5x$ 的推导完整讲一遍是这样的：</p>
+    <p>$x$ 是一个数（不管它是几）。$3x+5x$ 里两项有公共的因数 $x$，按分配律把它提出来：$3x+5x=(3+5)x=8x$。因为分配律对<strong>任何数</strong>都成立，所以不管 $x$ 取几，$3x+5x$ 和 $8x$ 永远相等——这就是合并合法的全部理由。不信可以代入检验：$x=4$ 时，左边 $12+20=32$，右边 $8\times4=32$，一样。</p>
+    <p>这个推导还顺便解释了为什么<strong>不同类就不能并</strong>：分配律提出去的必须是两项<strong>公共</strong>的因数。$3x+2y$ 里，$x$ 和 $y$ 谁也不是公共因数，没有东西可提，分配律帮不上忙——所以它们只能原样待着。</p>
+
+    <div class="sr-pitfall">
+      <b>坑一：把不同类的项硬并起来。</b> $3x+2y$ 写成 $5xy$——错了两次：先把不同类的系数加了，又凭空把 $x$ 和 $y$ 乘在了一起。用数检验立刻穿帮：$x=1,y=2$ 时，$3x+2y=3+4=7$，而 $5xy=5\times1\times2=10$。$7\ne10$，所以 $5xy$ 根本不是原式。不同类的项，加号连着放在那里，就是最终答案。
+    </div>
+    <div class="sr-pitfall">
+      <b>坑二：合并时动了字母部分。</b> $5x^2+3x^2$ 写成 $8x^4$——系数加对了，却把指数也「加」了。回到分配律：$5x^2+3x^2=(5+3)x^2=8x^2$，公共因数 $x^2$ 被原样提出来，它没有任何理由变成 $x^4$。记住口令的后半句：<strong>字母部分原样</strong>。
+    </div>
+
+    <p>压成一句话：<strong>先看字母部分认出同类项，再系数相加、字母部分原样——这一切合法，因为它就是 $ax+bx=(a+b)x$。</strong></p>
+  </section>
+
+  <!-- 3 / 例题 -->
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　合并：$3x+5+2x-1$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>先按字母部分把项分堆：$3x$ 和 $2x$ 字母部分都是 $x$，一堆；$5$ 和 $-1$ 都是常数项，字母部分都是「空」，也是一堆（所有常数项彼此都是同类项）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>$x$ 这一堆：系数 $3+2=5$，字母部分原样，得 $5x$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>常数这一堆：$5+(-1)=4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>结果：$3x+5+2x-1=5x+4$。检验：$x=1$ 时原式 $3+5+2-1=9$，新式 $5+4=9$，一致。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2（说理）　为什么 $3x+2y$ 不能合并成一项？</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>查判据：$3x$ 的字母部分是 $x$，$2y$ 的字母部分是 $y$，不相同——不是同类项。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>讲道理：合并的合法性来自分配律 $ax+bx=(a+b)x$，它要求两项有<strong>公共的</strong>字母因数可提。$3x$ 和 $2y$ 没有公共字母因数，分配律无处下手。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>用数戳穿错误写法 $5xy$：取 $x=1,y=2$，$3x+2y=7$ 而 $5xy=10$。两个式子代同一组数得出不同的值，就不可能是同一个式子。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>结论：$3x+2y$ 已经是最短的样子，答案就是它自己。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　合并：$2x-2x+3$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>分堆：$2x$ 与 $-2x$ 同类（字母部分都是 $x$）；$3$ 是常数项，自己一堆。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>系数相加：$2+(-2)=0$，得 $0\cdot x=0$——这一项整个消失。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>结果：$2x-2x+3=3$。一个带字母的式子并完只剩一个数，完全正常。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4　合并：$4ab-ba+2a^2b$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>$-ba$ 的字母部分是 $ba$，乘的顺序不算区别，它就是 $ab$——所以 $4ab$ 与 $-ba$ 同类。$-ba$ 的系数是看不见的 $-1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>$2a^2b$ 呢？它的字母部分是 $a^2b$：$a$ 的指数是 $2$，和 $ab$ 里 $a$ 的指数 $1$ 不同——不同类，只能原样待着。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>合并同类的一堆：系数 $4+(-1)=3$，得 $3ab$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>结果：$4ab-ba+2a^2b=3ab+2a^2b$。并不动的项照抄，不许硬塞进来。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 5　合并：$3x^2y+2xy^2-x^2y$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>逐个字母对指数：$3x^2y$ 与 $-x^2y$ 的字母部分都是 $x^2y$，同类；$2xy^2$ 的字母部分是 $xy^2$，指数位置不同，不同类。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>合并同类的一堆：系数 $3+(-1)=2$，字母部分 $x^2y$ 原样，得 $2x^2y$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>结果：$3x^2y+2xy^2-x^2y=2x^2y+2xy^2$。两项长得像但并不同类——考眼力的地方全在指数上。</span></div>
+    </div>
+  </section>
+
+  <!-- 4 / 与其他知识点的联系 -->
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>向后看——项与因数（第 3 课）、系数与次数（第 4 课）：</b>那两课把项解剖成「系数 $\times$ 字母因数」，当时你可能觉得只是起名字。现在兑现了：正因为身份证上系数和字母因数分得清清楚楚，这一课才能说出「系数相加、字母部分原样」这样一句精确的口令。解剖是为了动手。</li>
+      <li><b>向后看——乘法分配律：</b>合并同类项不是一条新规则，它就是分配律 $ax+bx=(a+b)x$ 从右往左读。学会一条律，正着反着都能用，这是数学里常见的「一鱼两吃」。</li>
+      <li><b>向后看——求值与代入（第 2 课）：</b>合并前后的式子代同一个数，值必须一样——这既是「合并没有改变式子」的含义，也是你检查自己有没有并错的最快办法。</li>
+      <li><b>向前看——括号（下一课）：</b>像 $5x-(3x-2)$ 这样的式子，括号把同类项藏了起来。下一课学的方法会把括号这层包装合法地拆掉，拆完之后做的事，还是这一课的合并。</li>
+      <li><b>向前看——多项式的加与减（再下一课）：</b>两个多项式相加减，整个流程就是「拆掉包装 + 合并同类项」的接力。这一课是那条流水线的后半段，先把它练熟。</li>
+    </ul>
+  </section>
+
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    <p>合上书，口头回答。答案说给大人听，不许翻回去看。</p>
+    <ol class="sr-oral">
+      <li>什么是一个项的字母部分？$-7ab^2$ 的字母部分是什么？系数是什么？
+        <div class="sr-answer">把系数（数字因数连同符号）拿走，剩下的全部字母因数打成一捆，就是字母部分。$-7ab^2$ 的字母部分是 $ab^2$，系数是 $-7$。</div>
+      </li>
+      <li>判断两个项是不是同类项，看什么、不看什么？$3x$ 和 $3y$ 是同类项吗？
+        <div class="sr-answer">只看字母部分是否完全相同（哪些字母、每个字母的指数都一样），不看系数。$3x$ 和 $3y$ 的字母部分一个是 $x$ 一个是 $y$，不是同类项——系数都是 $3$ 帮不上忙。</div>
+      </li>
+      <li>合并同类项的动作是哪两句话？
+        <div class="sr-answer">系数相加，字母部分原样搬过来。</div>
+      </li>
+      <li>为什么 $ax+bx=(a+b)x$？用乘法分配律讲给我听。
+        <div class="sr-answer">分配律说 $(a+b)\times x=ax+bx$，对任何数都成立。把它从右往左读：$ax+bx$ 里两项有公共因数 $x$，提出来就是 $(a+b)x$。因为对任何 $x$ 的取值都相等，所以合并前后是同一个式子——这就是合并同类项合法的原因。</div>
+      </li>
+      <li>$3xy$ 和 $2yx$ 是同类项吗？为什么乘的顺序不算区别？
+        <div class="sr-answer">是同类项。字母部分是乘法层里的一捆因数，乘法不在乎先后顺序，$xy$ 和 $yx$ 是同一捆东西的两种写法。合并得 $3xy+2yx=5xy$。</div>
+      </li>
+      <li>$2x-2x$ 合并之后剩什么？为什么这一项整个消失了？
+        <div class="sr-answer">剩 $0$，什么也不留。系数相加 $2+(-2)=0$，得 $0\cdot x$，而 $0$ 乘任何数都是 $0$，所以这一项整个消失。</div>
+      </li>
+    </ol>
+  </section>
+
+
+  <section data-sr-section="practice">
+    <style>
+      /* injected with the deck — screen extras + print layout (self-contained) */
+      ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+      ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+      ol.sr-practice > li:first-child { border-top:0; }
+      ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+      .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+      .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+      .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
+      .sr-p-opt { font-size: 14px; }
+      .sr-p-opt b { font-family: var(--sr-mono); font-weight: 600; color: var(--sr-ink-soft); margin-right: 3px; }
+      @media print {
+        section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+        ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; break-inside: avoid; }
+        ol.sr-practice > li::before { top: 16px; }
+      }
+    </style>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">可以边读边想，也可以打印出来用笔写。做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> $3x$ 和 $3y$ 是同类项吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是——系数都是 $3$，当然同类</span><span class="sr-p-opt"><b>B.</b> 不是——字母部分一个是 $x$、一个是 $y$，不相同</span><span class="sr-p-opt"><b>C.</b> 是——都是一个字母的一次项，形式相同就同类</span><span class="sr-p-opt"><b>D.</b> 不是——要等 $x$、$y$ 取了值才能定</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $3xy$ 和 $2yx$ 是同类项吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是——字母部分都是 $x$、$y$ 各一个，乘的顺序不算区别</span><span class="sr-p-opt"><b>B.</b> 不是——一个写 $xy$、一个写 $yx$，写法不同</span><span class="sr-p-opt"><b>C.</b> 不是——系数 $3$ 和 $2$ 不相等</span><span class="sr-p-opt"><b>D.</b> 是——只要都用到 $x$ 和 $y$ 就一定同类</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $x^2y$ 和 $xy^2$ 是同类项吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是——用到的字母都是 $x$ 和 $y$</span><span class="sr-p-opt"><b>B.</b> 不是——$x$ 的指数一个是 $2$、一个是 $1$，逐个字母对指数对不上</span><span class="sr-p-opt"><b>C.</b> 是——两项次数都是 $3$，次数相同就算同类</span><span class="sr-p-opt"><b>D.</b> 是——只是指数换了个位置，不影响是不是同类</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $5a$ 的字母部分是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5a</span><span class="sr-p-opt"><b>B.</b> a^5</span><span class="sr-p-opt"><b>C.</b> a</span><span class="sr-p-opt"><b>D.</b> 5</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $-4x^2y$ 的字母部分是？（指数用 ^ 输入，如 x^2）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -4x^2y</span><span class="sr-p-opt"><b>B.</b> -x^2y</span><span class="sr-p-opt"><b>C.</b> xy</span><span class="sr-p-opt"><b>D.</b> x^2y</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $7$ 和 $-3$ 这两个常数项是同类项吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是——常数项都没有字母，字母部分都是「空」，完全相同</span><span class="sr-p-opt"><b>B.</b> 不是——$7$ 和 $-3$ 数值不同</span><span class="sr-p-opt"><b>C.</b> 不是——常数项没有字母，谈不上字母部分</span><span class="sr-p-opt"><b>D.</b> 不是——一个是正数、一个是负数，符号不同</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并：$3x+5x=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 15x</span><span class="sr-p-opt"><b>B.</b> 8x^2</span><span class="sr-p-opt"><b>C.</b> 8x</span><span class="sr-p-opt"><b>D.</b> 8</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并：$7a-2a+a=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5a</span><span class="sr-p-opt"><b>B.</b> 6a</span><span class="sr-p-opt"><b>C.</b> 4a</span><span class="sr-p-opt"><b>D.</b> 10a</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并：$2x-2x+3=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 0</span><span class="sr-p-opt"><b>B.</b> 3x</span><span class="sr-p-opt"><b>C.</b> 7</span><span class="sr-p-opt"><b>D.</b> 3</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并：$4ab-ba=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3ab</span><span class="sr-p-opt"><b>B.</b> 4ab-ba</span><span class="sr-p-opt"><b>C.</b> 5ab</span><span class="sr-p-opt"><b>D.</b> 3</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并：$6+2x-4=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2x+10</span><span class="sr-p-opt"><b>B.</b> 2x+2</span><span class="sr-p-opt"><b>C.</b> 4x</span><span class="sr-p-opt"><b>D.</b> 2x-2</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并：$3x^2y+2xy^2-x^2y=$？（指数用 ^ 输入，如 x^2）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 4x^2y</span><span class="sr-p-opt"><b>B.</b> 4x^2y+2xy^2</span><span class="sr-p-opt"><b>C.</b> 2x^2y+2xy^2</span><span class="sr-p-opt"><b>D.</b> 3x^2y+2xy^2</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明把 $3x+2y$ 合并成 $5xy$。他真正的错误是哪一个？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$ 和 $2y$ 字母部分不同，不是同类项，根本不能并成一项</span><span class="sr-p-opt"><b>B.</b> 系数算错了，$3+2$ 应该等于 $6$</span><span class="sr-p-opt"><b>C.</b> 答案应该写成 $5(x+y)$，他只是少写了括号</span><span class="sr-p-opt"><b>D.</b> 字母部分该相乘 $x\cdot y=xy$ 没错，只是系数也要相乘成 $6xy$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小红合并 $5x^2+3x^2$ 得到 $8x^4$。错在哪里？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 字母部分被改动了：合并只把系数相加，$x^2$ 要原样保留，正确结果是 $8x^2$</span><span class="sr-p-opt"><b>B.</b> 系数不该相加而该相乘：应得 $15x^2$</span><span class="sr-p-opt"><b>C.</b> 没有错：系数相加，指数也要相加</span><span class="sr-p-opt"><b>D.</b> 系数也算错了：$5+3$ 应等于 $9$，结果是 $9x^2$</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么 $ax+bx=(a+b)x$？用乘法分配律讲清楚——这就是合并同类项合法的原因。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为 $ax$、$bx$ 都含 $x$，把系数与字母一起相加，自然得到 $(a+b)x$</span><span class="sr-p-opt"><b>B.</b> 因为 $a$ 与 $b$ 本来就是同类项，先求出 $a+b$ 再补上一个 $x$ 即可</span><span class="sr-p-opt"><b>C.</b> 因为等式两边都有 $x$，把 $x$ 约去后 $a+b$ 相等，所以原式成立</span><span class="sr-p-opt"><b>D.</b> 参考说法：乘法分配律说 $(a+b)\times x=ax+bx$，对任何数都成立</span></div></li>
+      <li><span class="sr-ptype">说理</span> 给同学讲一遍：为什么 $3x+2y$ 不能合并成一项？再用 $x=1,y=2$ 检验，说明 $5xy$ 为什么一定是错的。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为 $3x$ 和 $2y$ 系数不同（$3\ne2$），系数不相等就不能合并</span><span class="sr-p-opt"><b>B.</b> 参考说法：合并的合法性来自分配律 $ax+bx=(a+b)x$，它要求两项有公共的字母因数可以提出来</span><span class="sr-p-opt"><b>C.</b> 其实能合并，$3x+2y=5xy$，代入 $x=1,y=2$ 得 $10$ 也说得通</span><span class="sr-p-opt"><b>D.</b> 因为 $x$ 和 $y$ 还没有确定的值，等它们取了值就能并成一项了</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $-\frac{a}{3}$ 的系数是？（分数用 / 输入，如 1/2）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 1/3</span><span class="sr-p-opt"><b>B.</b> -3</span><span class="sr-p-opt"><b>C.</b> -1/3</span><span class="sr-p-opt"><b>D.</b> 3</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $2ab^2$ 的次数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> 2</span><span class="sr-p-opt"><b>C.</b> 4</span><span class="sr-p-opt"><b>D.</b> 6</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $x-2y+1$ 的第二项是？（连同符号）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2y</span><span class="sr-p-opt"><b>B.</b> x</span><span class="sr-p-opt"><b>C.</b> -2</span><span class="sr-p-opt"><b>D.</b> -2y</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 先合并 $3x+5x$，再代入 $x=2$ 求它的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 30</span><span class="sr-p-opt"><b>B.</b> 16</span><span class="sr-p-opt"><b>C.</b> 8</span><span class="sr-p-opt"><b>D.</b> 10</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

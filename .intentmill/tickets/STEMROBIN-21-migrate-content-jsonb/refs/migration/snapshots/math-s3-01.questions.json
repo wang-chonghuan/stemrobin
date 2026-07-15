@@ -1,0 +1,342 @@
+[
+  {
+    "ord": 1,
+    "type": "辨认",
+    "prompt": "“盒子里原来有多少颗糖？”这句话里，未知数指的是哪一个？",
+    "answer_mode": "choice",
+    "options": [
+      "原来糖的数量",
+      "盒子这个字",
+      "糖这个字",
+      "题目里的问号"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "未知数是还不知道、需要找出的量：盒子里原来有多少颗糖。问号或字母只是把这个量写出来的符号。"
+  },
+  {
+    "ord": 2,
+    "type": "辨认",
+    "prompt": "在 $x+3=8$ 里，哪个是表示未知数的字母？",
+    "answer_mode": "choice",
+    "options": [
+      "3",
+      "x",
+      "8",
+      "+"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$x$ 是写在纸上的字母标签；它表示那个还不知道的数。"
+  },
+  {
+    "ord": 3,
+    "type": "辨认",
+    "prompt": "在 $x+3=8$ 里，题目已经告诉你的数是哪些？用逗号隔开。",
+    "answer_mode": "choice",
+    "options": [
+      "3",
+      "8",
+      "3,8",
+      "3,8,x"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$3$ 和 $8$ 是题目给出的条件。未知的是 $x$ 所表示的那个数。"
+  },
+  {
+    "ord": 4,
+    "type": "表示",
+    "prompt": "“一根绳子剪去 $4$ 米后剩 $9$ 米。”若用 $m$ 表示原来长度，$m$ 表示什么？",
+    "answer_mode": "choice",
+    "options": [
+      "剪去的长度",
+      "剩下的长度",
+      "字母 m 的形状",
+      "绳子原来的长度"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "先声明 $m$ 表示原来长度，所以未知数是原来长度；$m$ 是它的字母标签。"
+  },
+  {
+    "ord": 5,
+    "type": "辨认",
+    "prompt": "$3+4=7$ 是方程吗？",
+    "answer_mode": "choice",
+    "options": [
+      "不是，因为没有未知数",
+      "是，因为有等号",
+      "是，因为它是等式",
+      "是，因为结果是 7"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "它是等式，但没有未知数。方程需要同时有等号和未知数。"
+  },
+  {
+    "ord": 6,
+    "type": "辨认",
+    "prompt": "$n+5$ 是方程吗？",
+    "answer_mode": "choice",
+    "options": [
+      "是，因为有字母 n",
+      "不是，因为没有等号",
+      "是，因为它是代数式",
+      "是，因为 5 是已知数"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "$n+5$ 是代数式。它含有字母，但没有等号，所以还没有说出一个完整条件。"
+  },
+  {
+    "ord": 7,
+    "type": "表示",
+    "prompt": "想表示“还不知道的苹果个数”，可以用字母 $a$ 吗？回答“可以”或“不可以”。",
+    "answer_mode": "choice",
+    "options": [
+      "不可以，未知数只能用 x",
+      "不可以，a 还没算出值",
+      "可以，先说明 a 代表什么",
+      "不可以，字母不能表示数"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "指认",
+    "review_of": null,
+    "answer": "可以。字母可以自己选，但要先说明 $a$ 表示还不知道的苹果个数。"
+  },
+  {
+    "ord": 8,
+    "type": "表示",
+    "prompt": "一只笔 $6$ 元，买若干支一共 $24$ 元。设买了 $n$ 支，写出条件。",
+    "answer_mode": "choice",
+    "options": [
+      "6+n=24",
+      "24n=6",
+      "n=6×24",
+      "6n=24"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "每支 $6$ 元，买 $n$ 支是 $6n$ 元；总价是 $24$ 元，所以条件是 $6n=24$。"
+  },
+  {
+    "ord": 9,
+    "type": "操作",
+    "prompt": "检查 $x=5$ 是否满足 $x+3=8$。把左边算出的数填出来。",
+    "answer_mode": "choice",
+    "options": [
+      "8",
+      "2",
+      "5",
+      "15"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "把 $5$ 代入左边：$5+3=8$。左边和右边同为 $8$，所以 $x=5$ 满足条件。"
+  },
+  {
+    "ord": 10,
+    "type": "操作",
+    "prompt": "在 $m-4=9$ 中，未知数的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "5",
+      "13",
+      "9",
+      "4"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$13-4=9$，所以当 $m=13$ 时条件成立。$13$ 是未知数的值。"
+  },
+  {
+    "ord": 11,
+    "type": "反推",
+    "prompt": "在 $q+7=15$ 中，$q$ 的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "22",
+      "15",
+      "8",
+      "7"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$8+7=15$，所以 $q=8$。要把 $8$ 放回原条件验证，而不是只看猜测。"
+  },
+  {
+    "ord": 12,
+    "type": "表示",
+    "prompt": "“一个数减去 $2$ 等于 $10$。”用 $t$ 表示这个数，写出方程。",
+    "answer_mode": "choice",
+    "options": [
+      "t+2=10",
+      "2-t=10",
+      "t-10=2",
+      "t-2=10"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$t$ 代表那个还不知道的数；“减去 2 等于 10”写成 $t-2=10$。"
+  },
+  {
+    "ord": 13,
+    "type": "操作",
+    "prompt": "在 $p=12$ 中，未知数的值是？",
+    "answer_mode": "choice",
+    "options": [
+      "12",
+      "0",
+      "24",
+      "6"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "操作",
+    "review_of": null,
+    "answer": "$p=12$ 本身就是一个方程。它直接告诉我们未知数 $p$ 的值是 $12$。"
+  },
+  {
+    "ord": 14,
+    "type": "辨错",
+    "prompt": "小明说：“在 $x+3=8$ 中，未知数就是字母 x，所以 x 的值也是 x。”哪一句指出了错误？",
+    "answer_mode": "choice",
+    "options": [
+      "x 不是未知数的字母",
+      "x 是标签，未知数的值是满足条件的数",
+      "8 不是已知数",
+      "3 才是未知数"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "$x$ 是表示未知数的字母标签；满足 $x+3=8$ 的数是 $5$，所以未知数的值是 $5$，不是字母 $x$。"
+  },
+  {
+    "ord": 15,
+    "type": "辨错",
+    "prompt": "小红在 $n-2=6$ 中猜 $n=7$，说“看起来差不多”。她缺少哪一步？",
+    "answer_mode": "choice",
+    "options": [
+      "把 n 换成 x",
+      "把等号删掉",
+      "把 7 放回原条件检查",
+      "再多猜几个数"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "必须检查：$7-2=5$，不等于 $6$。所以 $n=7$ 不满足原条件。"
+  },
+  {
+    "ord": 16,
+    "type": "辨错",
+    "prompt": "下面哪一句把“未知数”说对了？",
+    "answer_mode": "choice",
+    "options": [
+      "未知数一定写成 x",
+      "题目里的每个数字都是未知数",
+      "未知数就是等号右边的答案",
+      "未知数是题目里还不知道、需要找出的量"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "辨错",
+    "review_of": null,
+    "answer": "未知数是还不知道的量。它可以用不同字母表示；题目已经给出的数字是已知条件。"
+  },
+  {
+    "ord": 17,
+    "type": "说理",
+    "prompt": "解释：为什么在 $a+4=10$ 中，不能说“a 就是 6”，而要说“a 的值是 6”？",
+    "answer_mode": "choice",
+    "options": [
+      "$a$ 是写在式子里的字母，用来表示未知数",
+      "$a$ 就是 6，只是换种说法",
+      "$6$ 是字母 a 的名字",
+      "$a$ 是等号左边的整个式子"
+    ],
+    "correct_index": 0,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "$a$ 是写在式子里的字母，用来表示未知数；$6$ 是让 $a+4=10$ 成立的数。两者一个是标签，一个是这个未知数的值，不能混成同一个东西。"
+  },
+  {
+    "ord": 18,
+    "type": "说理",
+    "prompt": "给同学解释：为什么 $b+2$ 不是方程，而 $b+2=9$ 是方程？",
+    "answer_mode": "choice",
+    "options": [
+      "$b+2$ 和 $b+2=9$ 都是方程，只是写法不同",
+      "$b+2$ 只是一个代数式，没有等号，没说出要满足什么条件",
+      "$b+2$ 不是方程，因为它没有未知数",
+      "$b+2$ 不是方程，因为它没有数字"
+    ],
+    "correct_index": 1,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "$b+2$ 只是一个代数式，没有等号，没说出要满足什么条件。$b+2=9$ 用等号把左右两边连起来，并且含有未知数 $b$，所以是方程。"
+  },
+  {
+    "ord": 19,
+    "type": "说理",
+    "prompt": "“设一个数为 n”这句话里，n 表示什么？为什么可以不用 x？",
+    "answer_mode": "choice",
+    "options": [
+      "只有 x 能表示未知数，n 只是临时代替",
+      "$n$ 就是已经算出的那个数的值",
+      "$n$ 是表示未知数的字母，它代表题目中还不知道的那个数",
+      "换成 x 就变成另一个未知数了"
+    ],
+    "correct_index": 2,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "$n$ 是表示未知数的字母，它代表题目中还不知道的那个数。字母只是标签，只要先说明它代表什么，$n$、$x$、$a$ 都可以使用。"
+  },
+  {
+    "ord": 20,
+    "type": "说理",
+    "prompt": "在“盒子里原来有多少颗糖，拿走 3 颗后剩 8 颗”这个问题中，说清楚：未知数、表示它的字母、未知数的值分别是什么。",
+    "answer_mode": "choice",
+    "options": [
+      "未知数是拿走的 3 颗糖",
+      "未知数是剩下的 8 颗糖",
+      "未知数是用来表示的字母 x",
+      "未知数是盒子里原来的糖数"
+    ],
+    "correct_index": 3,
+    "accept": null,
+    "layer": "说理",
+    "review_of": null,
+    "answer": "未知数是盒子里原来的糖数；可以用 $x$ 表示它；条件是 $x-3=8$。检查 $x=11$ 时，$11-3=8$，所以未知数的值是 $11$。"
+  }
+]

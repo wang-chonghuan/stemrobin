@@ -1,0 +1,69 @@
+{
+  "motivation": [
+    {
+      "mode": "choice",
+      "prompt": "本卡里，把“暂时不知道、需要找出来的量”叫作什么？",
+      "options": ["未知数", "已知数", "代数式", "方程"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "盒子里拿走 $3$ 枚后，正好剩下多少枚？",
+      "accept": ["8", "8枚", "八", "八枚"]
+    }
+  ],
+  "model": [
+    {
+      "mode": "choice",
+      "prompt": "在 $x-3=8$ 里，未知数的值是多少？",
+      "options": ["$11$", "$8$", "$3$", "$x$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "本卡说反例 $3+8=11$ 有等号，但缺少什么？",
+      "options": ["未知量", "等号", "数值", "加号"],
+      "correct_index": 0
+    }
+  ],
+  "anatomy": [
+    {
+      "mode": "choice",
+      "prompt": "例 3 中，像 $n+5=12$ 这种带未知数的等式叫什么？",
+      "options": ["方程", "代数式", "等式", "未知数"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "例 1 中，条件写成 $m-4=9$，未知数的值是多少？",
+      "accept": ["13", "m=13", "$13$", "十三"]
+    }
+  ],
+  "boundary": [
+    {
+      "mode": "choice",
+      "prompt": "陷阱 2 里，题目已经给出、属于已知条件、不需要再找的是哪些数？",
+      "options": ["$3$、$8$、$18$", "$x$、$n$", "$5$、$7$", "$x$、$3$"],
+      "correct_index": 0
+    },
+    {
+      "mode": "choice",
+      "prompt": "陷阱 1 说“$x$ 是什么”？",
+      "options": ["写在纸上的标签", "还不知道的量", "方程的解", "已知条件"],
+      "correct_index": 0
+    }
+  ],
+  "connections": [
+    {
+      "mode": "choice",
+      "prompt": "下一课研究：方程两边同时加上或减去同一个东西时，什么不变？",
+      "options": ["未知数的值", "纸上的字母", "等号", "方程左边"],
+      "correct_index": 0
+    },
+    {
+      "mode": "input",
+      "prompt": "本卡说字母现在多了一种角色：可以暂时替一个尚未知道但要找出的量做什么？",
+      "accept": ["站位", "占位", "占一个位置"]
+    }
+  ]
+}

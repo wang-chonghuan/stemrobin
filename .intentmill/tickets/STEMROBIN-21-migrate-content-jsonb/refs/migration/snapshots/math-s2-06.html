@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.6 去括号 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+    ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; }
+    ol.sr-practice > li::before { top: 16px; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+</head>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 方法课</div>
+    <h1 class="sr-l-title">2.6 去括号</h1>
+    <div class="sr-l-concept">括号是树里打包的一个整体；去括号就是把括号前的那个因数（$+1$、$-1$ 或一个数）按分配律乘进括号内的每一项——三种情形，一条道理。</div>
+    <div class="sr-l-chips">
+      <span class="sr-chip">方法课</span>
+      <span class="sr-chip green">去括号</span>
+      <span class="sr-chip green">分配律正着用</span>
+      <span class="sr-chip green">因数 −1</span>
+    </div>
+  </header>
+
+  <!-- 1 / 为什么学这个 -->
+  <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么学这个</span></div>
+
+    <p>上一课你学会了合并同类项：$3a$ 和 $2a$ 一数就并成 $5a$。现在看这个式子：</p>
+    <p style="text-align:center; font-size:17px;">$3a + 2(a-1)$</p>
+    <p>你想数 $a$：外面明摆着 $3$ 个，括号里似乎还有。可你能直接写「$3a+2a\cdots$」吗？<strong>不能。</strong>还记得吗——在加法层上，$2(a-1)$ <strong>整个</strong>是一个项。括号里的那个 $a$ 被打包锁在这个项的乘法层深处，它和外面的 $3a$ 根本不站在同一层。同类项的合并只在加法层上进行，隔着包装，数数没法开始。</p>
+
+    <p>所以需要一个新动作：<strong>把包装拆开</strong>，让里面的项走到加法层上来，和外面的项站成一排。这个动作就是本课的主角。而它全部的悬念只有一个问题：</p>
+
+    <div class="sr-note"><b>本课的驱动问题：</b>打开包装时，里面每一项的<strong>符号</strong>会怎样？有时原样不动，有时全体变号，有时还要连着一个数一起乘。谁说了算？</div>
+
+    <p>很多人靠背口诀应付——「括号前是负号，里面全变号」。口诀能背出来，可一紧张就漏：漏掉第二项，漏掉一个负号。这节课不靠口诀。我们只讲<strong>一条道理</strong>，三种情形从那条道理里自己长出来。懂了道理，你不但不会漏，还能讲给别人听。</p>
+  </section>
+
+  <!-- 2 / 讲解 -->
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+
+    <h3>第一步：看清括号站在树的哪里</h3>
+    <p>拿 $5x-(2x-3)$ 来解剖。在加法层，这个式子切成两项：$5x$ 和 $-(2x-3)$。现在钻进第二项的乘法层看零件：它有两个因数——<strong>括号前的那个因数</strong>，和括号 $(2x-3)$ 本身。括号带着字母，所以它是一个因式；而括号前的因数，才是这节课真正的主角。</p>
+
+    <p>括号前的因数有三种长相，其中两种爱躲起来：</p>
+    <p><strong>（一）什么都不写</strong>，如 $a+(b-c)$。那里站着一个<strong>看不见的因数 $+1$</strong>——就像 $x$ 的系数是看不见的 $1$ 一样。<br>
+    <strong>（二）一个减号</strong>，如 $5x-(2x-3)$。<strong>把减号读成因数 $-1$</strong>：减去一个数，等于加上它的相反数，也就是加上它的 $(-1)$ 倍。所以 $5x-(2x-3)=5x+(-1)(2x-3)$。<br>
+    <strong>（三）一个具体的数</strong>，如 $2(a-1)$、$-3(a-2)$。因数就是 $2$、就是 $-3$——<strong>符号跟着这个因数一起走</strong>。</p>
+
+    <h3>第二步：一条道理</h3>
+    <p><span class="sr-term">去括号</span>：<strong>用乘法分配律，把括号前的那个因数乘进括号内的每一项</strong>，乘完括号消失。定义就这一句。</p>
+
+    <p>为什么这样做是合法的？乘法分配律说：$m(p+q)=mp+mq$——一个因数乘一个和，等于它分别乘每个加数，再加起来。括号里装的本来就是几项之和，所以这个因数进门时必须<strong>挨家挨户</strong>：每一项都乘一次，一项也不能漏。它不是口诀，它是分配律正着用了一遍。</p>
+
+    <figure class="sr-fig">
+      <svg viewBox="0 0 680 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="因数 −1 按分配律分别乘进括号里的两项">
+        <!-- top: the expression, minus read as factor -1 -->
+        <text x="340" y="40" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="20" fill="#15201F">−(a − b)　读作　(−1) × (a − b)</text>
+
+        <!-- the factor -1 box -->
+        <rect x="290" y="66" width="100" height="38" rx="8" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+        <text x="340" y="91" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="17" font-weight="600" fill="#0A5E76">因数 −1</text>
+
+        <!-- two terms inside the bracket -->
+        <rect x="130" y="160" width="150" height="40" rx="8" fill="#FFFFFF" stroke="#15A06A" stroke-width="2"/>
+        <text x="205" y="186" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">第一项 a</text>
+        <rect x="400" y="160" width="150" height="40" rx="8" fill="#FFFFFF" stroke="#15A06A" stroke-width="2"/>
+        <text x="475" y="186" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="16" fill="#15201F">第二项 −b</text>
+
+        <!-- arrows from factor to each term (hand-drawn curves) -->
+        <path d="M 305 104 C 260 125, 230 140, 212 156" fill="none" stroke="#0E7C9B" stroke-width="2.5"/>
+        <path d="M 212 156 l 2 -9 M 212 156 l 9 -2" stroke="#0E7C9B" stroke-width="2.5" fill="none"/>
+        <path d="M 375 104 C 420 125, 450 140, 468 156" fill="none" stroke="#0E7C9B" stroke-width="2.5"/>
+        <path d="M 468 156 l -9 -2 M 468 156 l -2 -9" stroke="#0E7C9B" stroke-width="2.5" fill="none"/>
+        <text x="215" y="130" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#0A5E76">乘一次</text>
+        <text x="465" y="130" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-size="12" fill="#0A5E76">也要乘一次</text>
+
+        <!-- results -->
+        <text x="205" y="236" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#0F7D52">(−1)×a = −a</text>
+        <text x="475" y="236" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="15" fill="#0F7D52">(−1)×(−b) = +b</text>
+
+        <!-- final line -->
+        <text x="340" y="278" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="18" font-weight="600" fill="#15201F">所以 −(a − b) = −a + b</text>
+      </svg>
+      <figcaption>分配律要求因数 $-1$ 对括号里的<strong>每一项</strong>各乘一次：两项进去，两项出来，每一项都变成自己的相反数。</figcaption>
+    </figure>
+
+    <h3>第三步：三种情形自己长出来</h3>
+    <p><strong>情形一：因数是 $+1$（括号前什么都不写）。</strong></p>
+    <p style="text-align:center;">$a+(b-c) = a + 1\times b + 1\times(-c) = a+b-c$</p>
+    <p>$1$ 乘什么都原样，所以各项符号不变。注意：「不变」不是因为没做乘法，而是<strong>乘了一个 $1$</strong>。把这层想明白，三种情形才真的是一条道理。</p>
+
+    <p><strong>情形二：因数是 $-1$（括号前是减号）。</strong></p>
+    <p style="text-align:center;">$a-(b-c) = a + (-1)\times b + (-1)\times(-c) = a-b+c$</p>
+    <p>$-1$ 乘任何数，得它的相反数。所以括号里<strong>每一项</strong>都变成自己的相反数：正的变负，负的变正，无一例外——第一项如此，第二项、第三项也如此。</p>
+
+    <p><strong>情形三：因数是一个数（如 $-3$）。</strong></p>
+    <p style="text-align:center;">$-3(a-2) = (-3)\times a + (-3)\times(-2) = -3a+6$</p>
+    <p>数要乘进每一项，而且<strong>连符号一起乘</strong>：$(-3)\times(-2)$ 负负得正，得 $+6$。</p>
+
+    <div class="sr-note"><b>拆包不丢件：</b>分配律给括号里每一项各安排一次乘法——几项进去，就有几项出来，去括号前后<strong>项数不变</strong>。做完后数一数项数，是最快的自检：$-(2x-3)$ 里有两项，拆出来必须还是两项。</div>
+
+    <div class="sr-pitfall"><b>坑一：漏变第二项之后的符号。</b><br>
+    $5x-(2x-3) \;=\; 5x-2x-3$　<strong>✗ 错</strong><br>
+    错因：把减号当成「只管紧挨着的 $2x$」。减号不是只管一个邻居——它是因数 $-1$，按分配律要乘括号里的<strong>每一项</strong>：$(-1)\times(-3)=+3$。正确是 $5x-2x+3$。括号里的项越多，越容易在第二项之后掉链子。</div>
+
+    <div class="sr-pitfall"><b>坑二：负系数漏乘或符号算错。</b><br>
+    $-3(a-2) \;=\; -3a-6$　<strong>✗ 错</strong><br>
+    错因：$-3$ 只乘了第一项，第二项要么忘乘、要么丢了负号。$(-3)\times(-2)$ 是负负得正，等于 $+6$。正确是 $-3a+6$。<br>
+    <b>解药（两个坑通用）：</b>动笔前，先把括号前的东西<strong>读成一个因数</strong>——「负 $1$ 乘进去」「负 $3$ 乘进去」——挨家挨户各乘一次，符号自然带对。</div>
+  </section>
+
+  <!-- 3 / 例题 -->
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 1　去括号：$a+(b-c)$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>认因数：括号前什么都没写，那里站着看不见的因数 $+1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>分配律，挨家挨户：$1\times b = b$，$1\times(-c) = -c$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>所以 $a+(b-c)=a+b-c$。各项原样——因为乘的是 $1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>自检项数：括号里两项（$b$ 和 $-c$），拆出来还是两项。拆包不丢件。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 2　去括号并合并：$5x-(2x-3)$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>认因数：括号前是减号，读成因数 $-1$：$5x+(-1)(2x-3)$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>挨家挨户：$(-1)\times 2x=-2x$；$(-1)\times(-3)=+3$。<strong>第二项也要乘</strong>，负负得正。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>去括号得 $5x-2x+3$。项数自检：两项进、两项出，加上外面的 $5x$ 共三项。✓</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>$5x$ 和 $-2x$ 现在同站加法层，是同类项，合并：$5x-2x+3=3x+3$。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 3　去括号：$-3(a-2)$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>认因数：括号前是 $-3$，负号跟着数走，因数就是 $-3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>挨家挨户：$(-3)\times a=-3a$；$(-3)\times(-2)=+6$（负负得正）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>所以 $-3(a-2)=-3a+6$。最容易错成 $-3a-6$：那是第二项忘了「连符号一起乘」。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 4　开头那道题的完整接力：$3a+2(a-1)$</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>认因数：括号前是 $2$。目标：把锁在乘法层里的 $a$ 放到加法层上来。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>去括号：$2\times a=2a$，$2\times(-1)=-2$，得 $3a+2a-2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>现在 $3a$ 和 $2a$ 站在同一层了，是同类项，可以数了：$3a+2a=5a$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>结果：$3a+2(a-1)=5a-2$。先去括号，再合并同类项——两棒接力，缺一不可。</span></div>
+    </div>
+
+    <div class="sr-example">
+      <div class="sr-example-h">例 5　说理题：$x-(a-b+2)$ 去括号后，为什么括号里<strong>每一项</strong>都要变号？连最后的 $2$ 也不放过？</div>
+      <div class="sr-step"><span class="sr-step-n">1.</span><span>先把问题换个说法：减号不是一个「命令里面变号」的咒语，它是一个<strong>因数 $-1$</strong>：$x-(a-b+2)=x+(-1)(a-b+2)$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2.</span><span>括号里是三项之和：$a$、$-b$、$+2$。分配律规定，因数乘一个和，必须分别乘<strong>每个</strong>加数——它不认识「第一项」「最后一项」，只认识「每一项」。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3.</span><span>逐项乘：$(-1)\times a=-a$；$(-1)\times(-b)=+b$；$(-1)\times 2=-2$。每一项都变成自己的相反数。</span></div>
+      <div class="sr-step"><span class="sr-step-n">4.</span><span>所以 $x-(a-b+2)=x-a+b-2$。最后的 $2$ 变成 $-2$，不是因为口诀这么背，而是因为 $-1$ 也乘到了它头上。<strong>漏掉它 = 分配律少乘了一户</strong>，那结果就不再等于原来的式子了。</span></div>
+    </div>
+  </section>
+
+  <!-- 4 / 与其他知识点的联系 -->
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+    <ul class="sr-links">
+      <li><b>往回看（这个动作站在什么上面）：</b>合法性全部来自<strong>乘法分配律</strong>。有趣的是方向：上一课合并同类项是把分配律<strong>反着用</strong>——$ax+bx=(a+b)x$，把散的归拢；今天去括号是<strong>正着用</strong>——$m(p+q)=mp+mq$，把包的拆开。同一条律，两个方向，一收一放。还要用到「式子的两层」那一课的眼睛：项、因数、因式、乘法层——看不出「括号前站着一个因数」，就只能退回背口诀。最后是第 1 阶段的相反数：$-1$ 乘一个数得它的相反数，这正是「全体变号」的算理。</li>
+      <li><b>往前看（谁会用到它）：</b>下一课「整式的加减」其实没有新动作——多项式相加减，就是「去括号 + 合并同类项」的接力赛：先拆掉所有包装，再把同类的项归堆数清。今天这一课是接力的第一棒；第一棒掉了符号，第二棒数得再准也白数。</li>
+      <li><b>一条主线：</b>这一阶段所有动作都是在两层树上合法地搬零件：合并同类项在加法层上归堆，去括号把乘法层里锁着的项释放到加法层。谁给了搬运许可？都是分配律。</li>
+    </ul>
+  </section>
+
+  <!-- 5 / 概念口试 -->
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+    <ol class="sr-oral">
+      <li>$a+(b-c)$ 的括号前什么都没写。去括号时，实际上是哪个因数乘了进去？
+        <div class="sr-answer">看不见的因数 $+1$。$1$ 乘每一项都原样，所以各项符号不变——「不变」也是乘出来的结果。</div>
+      </li>
+      <li>$a-(b-c)$ 去括号后，$-c$ 为什么变成了 $+c$？
+        <div class="sr-answer">减号读成因数 $-1$，分配律把它乘进每一项：$(-1)\times(-c)=+c$，负负得正。每一项都变成自己的相反数。</div>
+      </li>
+      <li>括号里原来有 $3$ 项，去完括号应该有几项？为什么？
+        <div class="sr-answer">还是 $3$ 项。分配律给每一项各安排一次乘法，几项进去几项出来——拆包不丢件。项数变了就说明漏乘或多写了。</div>
+      </li>
+      <li>$-2(x-4)$ 去括号后的第二项是多少？为什么是正的？
+        <div class="sr-answer">$+8$。因数 $-2$ 要乘到第二项 $-4$ 头上：$(-2)\times(-4)=+8$，负负得正。写成 $-8$ 就是把符号丢在了门外。</div>
+      </li>
+      <li>去括号这个动作的合法性来自哪条运算律？正着用还是反着用？
+        <div class="sr-answer">乘法分配律，正着用：$m(p+q)=mp+mq$。上一课合并同类项是同一条律反着用。</div>
+      </li>
+      <li>「括号前是负号，里面全变号」这句口诀，背后的道理是什么？请不用口诀重新说一遍。
+        <div class="sr-answer">括号前的减号是因数 $-1$；按分配律它要乘进括号内的每一项，而 $-1$ 乘任何数得它的相反数，所以每一项都变号。</div>
+      </li>
+    </ol>
+  </section>
+
+
+  <section data-sr-section="practice">
+    <style>
+      /* injected with the deck — screen extras + print layout (self-contained) */
+      ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+      ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+      ol.sr-practice > li:first-child { border-top:0; }
+      ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+      .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+      .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+      .sr-p-opts { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 7px; }
+      .sr-p-opt { font-size: 14px; }
+      .sr-p-opt b { font-family: var(--sr-mono); font-weight: 600; color: var(--sr-ink-soft); margin-right: 3px; }
+      @media print {
+        section[data-sr-section="practice"] { break-before: page; page-break-before: always; }
+        ol.sr-practice > li { border-top: 1.4px solid #111; border-bottom: 1.4px solid #111; padding: 16px 0 46px; break-inside: avoid; }
+        ol.sr-practice > li::before { top: 16px; }
+      }
+    </style>
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">可以边读边想，也可以打印出来用笔写。做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> 在 $5x-(2x-3)$ 里，括号前的因数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $+1$</span><span class="sr-p-opt"><b>B.</b> $5x$</span><span class="sr-p-opt"><b>C.</b> $2$</span><span class="sr-p-opt"><b>D.</b> $-1$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $-(a-b)$ 去括号后有几项？（填一个数）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> 2</span><span class="sr-p-opt"><b>C.</b> 1</span><span class="sr-p-opt"><b>D.</b> 4</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $-3(a-2)$ 里，$-3$ 是项还是因数？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 项</span><span class="sr-p-opt"><b>B.</b> 因数</span><span class="sr-p-opt"><b>C.</b> 因式</span><span class="sr-p-opt"><b>D.</b> 常数项</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $a+(b-c)$ 里，括号前什么都没写。去括号时乘进去的那个看不见的因数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $0$</span><span class="sr-p-opt"><b>B.</b> $-1$</span><span class="sr-p-opt"><b>C.</b> $+1$</span><span class="sr-p-opt"><b>D.</b> $a$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在式子 $3a+2(a-1)$ 的加法层上，$2(a-1)$ 算几个项？（填一个数）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 1</span><span class="sr-p-opt"><b>B.</b> 2</span><span class="sr-p-opt"><b>C.</b> 3</span><span class="sr-p-opt"><b>D.</b> 4</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $-(x-y+2)$ 的括号里面有几项？（填一个数）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 4</span><span class="sr-p-opt"><b>C.</b> 3</span><span class="sr-p-opt"><b>D.</b> 1</span></div></li>
+      <li><span class="sr-ptype">操作</span> 去括号：$a+(b-c)=$ ？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $a-b+c$</span><span class="sr-p-opt"><b>B.</b> $a+b-c$</span><span class="sr-p-opt"><b>C.</b> $a+b+c$</span><span class="sr-p-opt"><b>D.</b> $a+b$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 去括号（可以顺手合并同类项）：$5x-(2x-3)=$ ？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5x+2x-3$</span><span class="sr-p-opt"><b>B.</b> $5x-2x-3$</span><span class="sr-p-opt"><b>C.</b> $5x-2x+3$</span><span class="sr-p-opt"><b>D.</b> $5x+2x+3$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 去括号：$-3(a-2)=$ ？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-3a-6$</span><span class="sr-p-opt"><b>B.</b> $-3a+6$</span><span class="sr-p-opt"><b>C.</b> $3a-6$</span><span class="sr-p-opt"><b>D.</b> $-3a-2$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 先去括号，再合并同类项：$3a+2(a-1)=$ ？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5a-1$</span><span class="sr-p-opt"><b>B.</b> $5a+2$</span><span class="sr-p-opt"><b>C.</b> $4a-2$</span><span class="sr-p-opt"><b>D.</b> $5a-2$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 去括号：$-(m-n+1)=$ ？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-m+n-1$</span><span class="sr-p-opt"><b>B.</b> $-m-n+1$</span><span class="sr-p-opt"><b>C.</b> $-m+n+1$</span><span class="sr-p-opt"><b>D.</b> $m-n+1$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明写：$5x-(2x-3)=5x-2x-3$。他到底错在哪？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不该变第一项的符号，$2x$ 应保持 $+2x$</span><span class="sr-p-opt"><b>B.</b> 应该把括号外的 $5x$ 也变号</span><span class="sr-p-opt"><b>C.</b> 减号只管紧挨着的一项，所以他其实没错</span><span class="sr-p-opt"><b>D.</b> 漏变了第二项 $-3$ 的符号，应该是 $+3$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小红写：$-3(a-2)=-3a-6$。她错在哪？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 漏了负负得正：$(-3)\times(-2)=+6$，应该是 $-3a+6$</span><span class="sr-p-opt"><b>B.</b> $-3$ 只该乘第一项 $a$，第二项 $-2$ 不用乘</span><span class="sr-p-opt"><b>C.</b> 第一项也错了，$-3\times a$ 应该是 $3a$</span><span class="sr-p-opt"><b>D.</b> 她没错，$-3(a-2)=-3a-6$ 本来就对</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小刚写：$2(a+b)=2a+b$。用「拆包不丢件」的眼光看，他错在哪？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 括号前是正数，各项应该原样，答案就是 $a+b$</span><span class="sr-p-opt"><b>B.</b> 因数 $2$ 漏乘了第二项 $b$，应该是 $2a+2b$</span><span class="sr-p-opt"><b>C.</b> 去括号后应该变号，答案是 $2a-2b$</span><span class="sr-p-opt"><b>D.</b> 他没错，因数 $2$ 只乘第一项就够了</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么括号前是减号时，括号里每一项都要变号？请用「因数 $-1$」和乘法分配律，讲给一个只会背「负变正不变」口诀的同学听。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为减法就是把括号里第一项变号、后面的项照抄，所以只有紧挨着的第一项要变，其余不变</span><span class="sr-p-opt"><b>B.</b> 减号不是咒语，它是一个因数 $-1$——减去一个数等于加上它的相反数，即加上它的 $(-1)$ 倍，所以 $a-(b-c)=a+(-1)(b-c)$</span><span class="sr-p-opt"><b>C.</b> 因为括号本身规定去掉后每个符号都要取反，这是括号的书写规矩，和乘不乘没关系</span><span class="sr-p-opt"><b>D.</b> 因为减号会把碰到的每一项都传染变号，这是符号传染律，记住就行</span></div></li>
+      <li><span class="sr-ptype">说理</span> 括号前什么都不写时（如 $a+(b-c)$），去括号后各项「原样不变」。这个「不变」的背后其实做了一次什么乘法？为什么去括号前后项数总是不变？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 参考回答：括号前不写东西等于站着一个看不见的因数 $+1$，去括号时是 $1$ 乘进了每一项——$1\times b=b$、$1\times(-c)=-c$，「不变」是乘 $1$ 的结果，不是没做乘法</span><span class="sr-p-opt"><b>B.</b> 因为括号前没有数，本来就没做乘法，直接把括号擦掉就行，项数当然不变</span><span class="sr-p-opt"><b>C.</b> 因为去括号只是把括号里的项原地搬出来，搬家不改变数量，和乘法无关</span><span class="sr-p-opt"><b>D.</b> 因为看不见的因数其实是 $0$，$0$ 乘上去不会新增项，所以前后项数不变</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 合并同类项：$4x+3x=$ ？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $12x$</span><span class="sr-p-opt"><b>B.</b> $7x^2$</span><span class="sr-p-opt"><b>C.</b> $7x$</span><span class="sr-p-opt"><b>D.</b> $7$</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 下列哪一组是同类项？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$ 和 $3y$</span><span class="sr-p-opt"><b>B.</b> $x^2y$ 和 $xy^2$</span><span class="sr-p-opt"><b>C.</b> $3xy$ 和 $-2yx$</span><span class="sr-p-opt"><b>D.</b> $2x$ 和 $2$</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $-x$ 的系数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $1$</span><span class="sr-p-opt"><b>B.</b> $-1$</span><span class="sr-p-opt"><b>C.</b> $0$</span><span class="sr-p-opt"><b>D.</b> $x$</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $-xy^2$ 的次数是？（填一个数）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> 2</span><span class="sr-p-opt"><b>C.</b> 4</span><span class="sr-p-opt"><b>D.</b> 1</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>
