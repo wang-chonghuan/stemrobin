@@ -107,7 +107,7 @@ export type AnswerResult = {
 // Record one answer (requires a logged-in learner). Choice sends `chosen`;
 // input sends `text`, judged server-side against the hidden accept list (the
 // key never reaches the client). `attemptId` groups the event into a 答题 pass
-// (optional — story quizzes send none). Returns the verdict + the reveal answer.
+// (optional). Returns the verdict + the reveal answer.
 export const recordAnswer = createServerFn({ method: 'POST' })
   .validator(
     (d: { questionId: number; attemptId?: number; chosen?: number; text?: string }) => d,

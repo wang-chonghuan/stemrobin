@@ -6,12 +6,11 @@ import { listAvailableLessonIds } from '~/lib/lessons'
 import { getLocale } from '~/lib/locale'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getCurrentUser } from '~/lib/session'
-import { getStoryCatalog } from '~/lib/stories'
 import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app')({
   // Single site-wide auth gate (SSOT). `_app` is the pathless parent of every learner
-  // surface (/, /lesson/$id, /story/$id, /login), so one check here gates the whole app.
+  // surface (/, /lesson/$id, /login), so one check here gates the whole app.
   // Runs before the loader, so a logged-out user never triggers the protected reads.
   // The login route stays reachable while logged out; everything else redirects to it.
   beforeLoad: async ({ location }) => {
@@ -22,7 +21,6 @@ export const Route = createFileRoute('/_app')({
   component: AppShell,
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
-    stories: await getStoryCatalog(),
     locale: await getLocale(),
   }),
 })
@@ -32,7 +30,7 @@ export const Route = createFileRoute('/_app')({
 // scrim below 1200px. The catalog is persistent — the detail pane swaps via
 // <Outlet /> for the overview and lesson routes, so the sidebar is always shown.
 function AppShell() {
-  const { lessonIds, stories, locale } = Route.useLoaderData()
+  const { lessonIds, locale } = Route.useLoaderData()
   const drawerOpen = useLayoutStore((s) => s.drawerOpen)
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [isMobile, setIsMobile] = useState(false)
@@ -57,7 +55,6 @@ function AppShell() {
         type="button"
       />
       <CatalogSidebar
-        stories={stories}
         lessonIds={lessonIds}
         locale={locale}
         drawerOpen={drawerOpen}

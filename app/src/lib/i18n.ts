@@ -26,7 +26,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'cat.open': '打开目录',
     'cat.close': '关闭目录',
     'cat.group.curriculum': '课程大纲',
-    'cat.group.stories': '名人传记',
     'cat.stage': '第 {n} 阶段 · {title}',
     // overview
     'ov.title': '总览',
@@ -36,9 +35,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.stat.practiced': '练习完成',
     'ov.pillar1.title': '科学与工程',
     'ov.pillar1.desc': '只要你愿意学，AI 会帮你拆解路径、准备材料，陪你一步步掌握任何科学与工程知识。',
-    'ov.pillar2.title': '创造者档案',
-    'ov.pillar2.tag': '即将上线',
-    'ov.pillar2.desc': '富兰克林、爱迪生、卡内基、福特……读发明家如何把创造变成事业，配理解与创业推理问答。',
     'ov.new': '新上线课程（{n}）',
     // lesson view
     'lesson.back': '返回',
@@ -121,7 +117,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'cat.open': 'Open catalog',
     'cat.close': 'Close catalog',
     'cat.group.curriculum': 'Curriculum',
-    'cat.group.stories': 'Biographies',
     'cat.stage': 'Stage {n} · {title}',
     'ov.title': 'Overview',
     'ov.progress.title': 'Learning progress',
@@ -131,10 +126,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.pillar1.title': 'Science & Engineering',
     'ov.pillar1.desc':
       'As long as you want to learn, AI helps map the path, prepare the materials, and walk you step by step through any science or engineering topic.',
-    'ov.pillar2.title': 'Creator Profiles',
-    'ov.pillar2.tag': 'Coming soon',
-    'ov.pillar2.desc':
-      'Franklin, Edison, Carnegie, Ford… read how inventors turned creating into a career, with comprehension and entrepreneurial-reasoning questions.',
     'ov.new': 'New lessons ({n})',
     'lesson.back': 'Back',
     'lesson.practice': 'Practice',
