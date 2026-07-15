@@ -168,5 +168,17 @@
   "math-s2-05-connections-rc0-o0": "Parentheses",
   "math-s2-05-connections-rc0-o1": "Coefficient",
   "math-s2-05-connections-rc0-o2": "Letter part",
-  "math-s2-05-connections-rc0-o3": "Exponent"
+  "math-s2-05-connections-rc0-o3": "Exponent",
+  "math-s2-05-motivation-rc1-o0": "like terms",
+  "math-s2-05-motivation-rc1-o1": "a polynomial expression",
+  "math-s2-05-motivation-rc1-o2": "a monomial",
+  "math-s2-05-motivation-rc1-o3": "an algebraic factor",
+  "math-s2-05-examples-rc1-o0": "$2x+3$",
+  "math-s2-05-examples-rc1-o1": "$3$",
+  "math-s2-05-examples-rc1-o2": "$3x$",
+  "math-s2-05-examples-rc1-o3": "$0$",
+  "math-s2-05-connections-rc1-o0": "equal",
+  "math-s2-05-connections-rc1-o1": "larger",
+  "math-s2-05-connections-rc1-o2": "smaller",
+  "math-s2-05-connections-rc1-o3": "opposite"
 }

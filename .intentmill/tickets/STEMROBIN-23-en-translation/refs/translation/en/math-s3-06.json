@@ -171,5 +171,13 @@
   "math-s3-06-connections-rc1-o0": "Equations with denominators",
   "math-s3-06-connections-rc1-o1": "Systems of linear equations in two unknowns",
   "math-s3-06-connections-rc1-o2": "Quadratic equations in one unknown",
-  "math-s3-06-connections-rc1-o3": "Linear inequalities in one unknown"
+  "math-s3-06-connections-rc1-o3": "Linear inequalities in one unknown",
+  "math-s3-06-motivation-rc1-o0": "$2x+3=10$",
+  "math-s3-06-motivation-rc1-o1": "$2(x+3)=10$",
+  "math-s3-06-motivation-rc1-o2": "$x+3=10$",
+  "math-s3-06-motivation-rc1-o3": "$2(x+3)$",
+  "math-s3-06-examples-rc1-o0": "2",
+  "math-s3-06-examples-rc1-o1": "5",
+  "math-s3-06-examples-rc1-o2": "-5",
+  "math-s3-06-examples-rc1-o3": "0"
 }

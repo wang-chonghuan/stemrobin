@@ -11,6 +11,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { earlierTermsFor } from './ledger-core.mjs'
 import { validateItemKey } from './check-content.mjs'
+import { exerciseModes } from './question-policy.mjs'
 
 const LAYERS = ['指认', '操作', '辨错', '说理', '复习']
 const TYPES = ['辨认', '表示', '操作', '反推', '辨错', '说理']
@@ -45,7 +46,10 @@ export function validateExercises({ exercises, overlay, ledger, id }) {
     count.layer[q.layer] = (count.layer[q.layer] || 0) + 1
     count.mode[q.mode] = (count.mode[q.mode] || 0) + 1
 
-    validateItemKey(problems, tag, q, overlay, has, ['choice', 'input', 'work'])
+    // Choice-only policy (STEMROBIN-25, reversible): allowed modes come from
+    // question-policy.mjs; validateItemKey keeps its input/work branches for when
+    // the policy re-enables them.
+    validateItemKey(problems, tag, q, overlay, has, exerciseModes())
 
     if (q.layer === '复习') {
       if (!q.review_of) problems.push(`${tag}: 复习 items need review_of`)

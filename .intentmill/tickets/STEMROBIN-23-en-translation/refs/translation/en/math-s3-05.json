@@ -169,5 +169,21 @@
   "math-s3-05-connections-rc0-o0": "property two of equations",
   "math-s3-05-connections-rc0-o1": "property one of equations",
   "math-s3-05-connections-rc0-o2": "the distributive law",
-  "math-s3-05-connections-rc0-o3": "the commutative law"
+  "math-s3-05-connections-rc0-o3": "the commutative law",
+  "math-s3-05-motivation-rc1-o0": "$x=5$",
+  "math-s3-05-motivation-rc1-o1": "$3x+2=x+8$",
+  "math-s3-05-motivation-rc1-o2": "$3x=6$",
+  "math-s3-05-motivation-rc1-o3": "$2x=6$",
+  "math-s3-05-explain-rc1-o0": "isolating the unknown",
+  "math-s3-05-explain-rc1-o1": "combining like terms",
+  "math-s3-05-explain-rc1-o2": "removing the parentheses",
+  "math-s3-05-explain-rc1-o3": "finding a common denominator",
+  "math-s3-05-examples-rc1-o0": "12",
+  "math-s3-05-examples-rc1-o1": "4",
+  "math-s3-05-examples-rc1-o2": "6",
+  "math-s3-05-examples-rc1-o3": "2",
+  "math-s3-05-connections-rc1-o0": "the distributive law",
+  "math-s3-05-connections-rc1-o1": "the associative law",
+  "math-s3-05-connections-rc1-o2": "the commutative law",
+  "math-s3-05-connections-rc1-o3": "transposition"
 }

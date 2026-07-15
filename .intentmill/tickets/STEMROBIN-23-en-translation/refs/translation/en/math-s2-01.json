@@ -149,5 +149,13 @@
   "math-s2-01-connections-rc1-o0": "Connect numbers and letters with addition, subtraction, multiplication, and division into a longer expression, and substitute specific numbers for the letters to work out a result",
   "math-s2-01-connections-rc1-o1": "Learn addition, subtraction, multiplication, and division of rational numbers all over again",
   "math-s2-01-connections-rc1-o2": "Only learn how to omit the multiplication sign",
-  "math-s2-01-connections-rc1-o3": "Learn the area of geometric shapes"
+  "math-s2-01-connections-rc1-o3": "Learn the area of geometric shapes",
+  "math-s2-01-explain-rc1-o0": "$a3$",
+  "math-s2-01-explain-rc1-o1": "$3a$",
+  "math-s2-01-explain-rc1-o2": "$3+a$",
+  "math-s2-01-explain-rc1-o3": "$a^3$",
+  "math-s2-01-examples-rc1-o0": "11 dollars",
+  "math-s2-01-examples-rc1-o1": "28 dollars",
+  "math-s2-01-examples-rc1-o2": "47 dollars",
+  "math-s2-01-examples-rc1-o3": "4 dollars"
 }

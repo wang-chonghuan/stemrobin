@@ -156,5 +156,17 @@
   "math-s3-07-connections-rc1-o0": "combine → transpose → divide by the coefficient → check",
   "math-s3-07-connections-rc1-o1": "transpose → combine → check → divide by the coefficient",
   "math-s3-07-connections-rc1-o2": "remove brackets → put over a common denominator → transpose → check",
-  "math-s3-07-connections-rc1-o3": "divide by the coefficient → transpose → combine → check"
+  "math-s3-07-connections-rc1-o3": "divide by the coefficient → transpose → combine → check",
+  "math-s3-07-motivation-rc1-o0": "$\\dfrac{2x}{5}$",
+  "math-s3-07-motivation-rc1-o1": "$\\dfrac{5x}{6}$",
+  "math-s3-07-motivation-rc1-o2": "$\\dfrac{x}{5}$",
+  "math-s3-07-motivation-rc1-o3": "$\\dfrac{5x}{5}$",
+  "math-s3-07-explain-rc1-o0": "5",
+  "math-s3-07-explain-rc1-o1": "6",
+  "math-s3-07-explain-rc1-o2": "12",
+  "math-s3-07-explain-rc1-o3": "2",
+  "math-s3-07-examples-rc1-o0": "30",
+  "math-s3-07-examples-rc1-o1": "6",
+  "math-s3-07-examples-rc1-o2": "3",
+  "math-s3-07-examples-rc1-o3": "12"
 }

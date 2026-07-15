@@ -152,5 +152,17 @@
   "math-s2-02-connections-rc1-o0": "Addition, subtraction, multiplication, and division of rational numbers",
   "math-s2-02-connections-rc1-o1": "Solving an equation",
   "math-s2-02-connections-rc1-o2": "Drawing a function graph",
-  "math-s2-02-connections-rc1-o3": "Operations with irrational numbers"
+  "math-s2-02-connections-rc1-o3": "Operations with irrational numbers",
+  "math-s2-02-motivation-rc1-o0": "2 dollars",
+  "math-s2-02-motivation-rc1-o1": "5 dollars",
+  "math-s2-02-motivation-rc1-o2": "7 dollars",
+  "math-s2-02-motivation-rc1-o3": "0 dollars",
+  "math-s2-02-explain-rc1-o0": "15",
+  "math-s2-02-explain-rc1-o1": "17",
+  "math-s2-02-explain-rc1-o2": "25",
+  "math-s2-02-explain-rc1-o3": "10",
+  "math-s2-02-examples-rc1-o0": "3",
+  "math-s2-02-examples-rc1-o1": "-5",
+  "math-s2-02-examples-rc1-o2": "-3",
+  "math-s2-02-examples-rc1-o3": "-4"
 }

@@ -170,5 +170,13 @@
   "math-s2-03-connections-rc1-o0": "Subtraction can be rewritten as adding the opposite",
   "math-s2-03-connections-rc1-o1": "Parentheses are the compute-me-first mark",
   "math-s2-03-connections-rc1-o2": "Multiplication order can be swapped",
-  "math-s2-03-connections-rc1-o3": "A constant stays the same no matter what is substituted"
+  "math-s2-03-connections-rc1-o3": "A constant stays the same no matter what is substituted",
+  "math-s2-03-model-rc1-o0": "a term",
+  "math-s2-03-model-rc1-o1": "an algebraic factor",
+  "math-s2-03-model-rc1-o2": "a coefficient",
+  "math-s2-03-model-rc1-o3": "a monomial",
+  "math-s2-03-anatomy-rc1-o0": "$y$",
+  "math-s2-03-anatomy-rc1-o1": "$-y$",
+  "math-s2-03-anatomy-rc1-o2": "$2y$",
+  "math-s2-03-anatomy-rc1-o3": "$-2y$"
 }
