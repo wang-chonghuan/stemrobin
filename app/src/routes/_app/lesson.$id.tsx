@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Lock, Menu } from 'lucide-react'
+import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Menu } from 'lucide-react'
 
 import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf, listAvailableLessonIds } from '~/lib/lessons'
@@ -44,10 +44,9 @@ function LessonView() {
   // (whole lesson at once). Full-text records no read-check and does not advance
   // 课文进度; only the card flow does. Only meaningful when there is a card tree.
   const [mode, setMode] = useState<'cards' | 'fulltext'>('cards')
-  // 精读 gate: the practice deck unlocks only after every card is read (per visit).
-  // Lessons without a card tree (fallback html) leave practice open as before.
-  // Only the card flow can set this — viewing 全文速览 never推进 progress/unlock.
-  const [allRead, setAllRead] = useState(!reading)
+  // STEMROBIN-33: the 课后题 (practice) entry is always openable — it is NOT gated
+  // on reading progress. Reading-complete (课文进度) is still earned only by 精读-ing
+  // every card (recordReadCheck events); opening/answering practice never grants it.
   const label = getLessonLabel(id, locale)
 
   async function downloadPdf() {
@@ -82,10 +81,9 @@ function LessonView() {
             className="sr-btn"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px' }}
             onClick={() => setQuizOpen(true)}
-            disabled={!allRead}
-            title={allRead ? t(locale, 'lesson.practice.open') : t(locale, 'lesson.practice.locked')}
+            title={t(locale, 'lesson.practice.open')}
           >
-            {allRead ? <Layers size={16} /> : <Lock size={16} />} {t(locale, 'lesson.practice')}
+            <Layers size={16} /> {t(locale, 'lesson.practice')}
           </button>
           <button
             type="button"
@@ -135,7 +133,6 @@ function LessonView() {
               reading={reading}
               label={label}
               locale={locale}
-              onAllRead={() => setAllRead(true)}
               onOpenPractice={() => setQuizOpen(true)}
             />
           )

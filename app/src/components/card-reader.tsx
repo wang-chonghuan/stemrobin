@@ -108,14 +108,12 @@ export function CardReader({
   reading,
   label,
   locale,
-  onAllRead,
   onOpenPractice,
 }: {
   lessonId: string
   reading: Reading
   label: string
   locale: Locale
-  onAllRead: () => void
   onOpenPractice: () => void
 }) {
   const { head, cards } = reading
@@ -188,11 +186,6 @@ export function CardReader({
       obs.disconnect()
     }
   }, [current])
-
-  // Fire the completion callback once all cards are passed.
-  useEffect(() => {
-    if (allRead) onAllRead()
-  }, [allRead, onAllRead])
 
   async function submit(rc: ReadCheck, submission: { chosen?: number; text?: string }) {
     if (busy) return
