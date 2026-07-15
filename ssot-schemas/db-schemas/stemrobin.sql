@@ -191,3 +191,104 @@ CREATE TABLE IF NOT EXISTS sr_story_answer_events (
 
 CREATE INDEX IF NOT EXISTS sr_story_answer_events_user_idx
   ON sr_story_answer_events (user_id, question_id);
+
+-- ===========================================================================
+-- JSONB CONTENT SSOT (STEMROBIN-19, batch 0004-jsonb-card-reading)
+-- ---------------------------------------------------------------------------
+-- Makes the DB the single authority for course content as JSONB. Three neutral,
+-- language-neutral JSONB families are the SSOT; HTML/卡片视图/PDF and every locale
+-- are DERIVED (regenerable) from them:
+--   1. ledger   — per (subject, stage), in sr_content_ledger
+--   2. content  — per lesson card-tree, in sr_lessons.content
+--   3. exercises— per lesson deck, in sr_lessons.exercises
+-- Learner-facing prose is NOT stored in the neutral base; it lives in a per-locale
+-- text overlay (sr_lesson_i18n) keyed by node_id. The answer KEY (correct option /
+-- accepted forms / reference answer) lives ONLY in the neutral base JSONB and is
+-- structurally excluded from every locale overlay (answer-key secrecy). Card and
+-- exercise answer events are stored in sr_content_answer_events (disposable data).
+--
+-- This ticket is SCHEMA ONLY: it defines structure, not the generator, migration,
+-- reading UI, or translation (STEMROBIN-20..24). Existing rows keep NULL content
+-- until a later migration populates them. All statements are additive + idempotent.
+-- The internal JSONB shapes below (cards[].read_check[].key, exercises.items[].key,
+-- per-node `rev` / overlay `src_rev`) are a CONTRACT documented here and enforced by
+-- the generator/saver/reader tickets — Postgres does not constrain JSONB internals.
+-- ===========================================================================
+
+-- Neutral base content on the existing lesson identity row. Added via ALTER (the
+-- table already exists in prod, so a CREATE TABLE IF NOT EXISTS block would no-op).
+-- html/pdf on sr_lessons remain DERIVED caches; SSOT for content = these columns.
+--
+--   content   = { "cards": [ {
+--                   "id": "<stable card node id>", "num": <learner-visible 编号>,
+--                   "anchor": "motivation|model|anatomy|boundary|explain|examples|connections|...",
+--                   "rev": <int>,                       -- per-node source revision (staleness)
+--                   "body": [ <ordered neutral nodes> ],-- prose nodes are node-id refs (text in overlay);
+--                                                         -- formula (KaTeX) / svg nodes are neutral, inline here
+--                   "read_check": [ {
+--                       "id": "<stable check node id>", "mode": "choice"|"input",
+--                       "key": { "correct_index": <int> } | { "accept": ["…"] },  -- KEY: neutral-base only
+--                       "rev": <int>
+--                   } ]
+--                 } ] }
+--   exercises = { "items": [ {
+--                   "id": "<stable item node id>", "ord": <int>, "type": "辨认|表示|操作|反推|辨错|说理",
+--                   "mode": "choice"|"input"|"work", "layer": "指认|操作|辨错|说理|复习",
+--                   "review_of": "<earlier term>"|null,
+--                   "key": { "correct_index": <int> } | { "accept": ["…"] } | { "answer": "<reference>" },
+--                   "rev": <int>
+--                 } ] }
+-- Prose text is NOT stored here; only structure/order/编号/anchors/formulas/SVG/KEY.
+ALTER TABLE sr_lessons ADD COLUMN IF NOT EXISTS content   JSONB;  -- neutral card-tree SSOT
+ALTER TABLE sr_lessons ADD COLUMN IF NOT EXISTS exercises JSONB;  -- neutral exercise-deck SSOT
+
+-- Per-stage concept ledger, migrated from resources/content/math-ledger/stage-*.json
+-- into the DB as the authoritative source. Authoring metadata (source language zh);
+-- NOT part of the learner-facing i18n overlay (ledger prose is not translated).
+--   ledger = { subject, stage, theme, model, assumed[], lessons[] { id, order, title,
+--              genre, status, core_idea, introduces[], consumes[], boundary_cases[] } }
+CREATE TABLE IF NOT EXISTS sr_content_ledger (
+  subject     TEXT NOT NULL,
+  stage       INT  NOT NULL,
+  ledger      JSONB NOT NULL,                         -- the concept-ledger document, verbatim
+  src_rev     BIGINT NOT NULL DEFAULT 1,              -- ledger source revision
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (subject, stage)
+);
+
+-- Per-locale text overlay: ONE overlay per (lesson, locale). Maps each translatable
+-- prose node_id to its translated string plus the source revision it was translated
+-- from (staleness ⇔ overlay src_rev < neutral-base node rev, or node absent). zh is
+-- the SOURCE locale and is itself an overlay row. This table holds ONLY prose — it
+-- MUST NEVER contain an answer KEY (correct_index / accept / answer). Formulas/SVG/
+-- numeric literals inherit from the neutral base and are never duplicated here.
+--   overlay = { "<node_id>": { "t": "<translated prose>", "src_rev": <int> } }
+CREATE TABLE IF NOT EXISTS sr_lesson_i18n (
+  lesson_id   TEXT NOT NULL REFERENCES sr_lessons(id) ON DELETE CASCADE,
+  locale      TEXT NOT NULL,                          -- 'zh' (source) | 'en' | …
+  overlay     JSONB NOT NULL,                         -- { node_id -> { t, src_rev } }, prose only, NO KEY
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (lesson_id, locale)
+);
+
+-- Card read-check + exercise answer events. One table with a `kind` discriminator
+-- (read-check and exercise events share an identical shape). node_id is the JSONB
+-- item identity (a read_check id or an exercises item id) — there is deliberately NO
+-- FK to a relational question row, because JSONB items have no row identity. This
+-- answer-event data is DISPOSABLE (authorized). is_correct is null for ungraded
+-- (work) items; chosen is the choice option index; answer_text is typed input.
+CREATE TABLE IF NOT EXISTS sr_content_answer_events (
+  id           BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,
+  user_id      BIGINT NOT NULL REFERENCES sr_users(user_id) ON DELETE CASCADE,
+  lesson_id    TEXT   NOT NULL REFERENCES sr_lessons(id) ON DELETE CASCADE,
+  kind         TEXT   NOT NULL CHECK (kind IN ('read_check','exercise')),
+  node_id      TEXT   NOT NULL,                        -- read_check id or exercises item id (JSONB identity)
+  is_correct   BOOLEAN,                                -- null = ungraded (work)
+  chosen       INT,                                    -- choice option index
+  answer_text  TEXT,                                   -- typed input text
+  locale       TEXT,                                   -- locale the learner answered in (disposable analytics)
+  created_at   TIMESTAMPTZ NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS sr_content_answer_events_user_lesson_idx
+  ON sr_content_answer_events (user_id, lesson_id);
