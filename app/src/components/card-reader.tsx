@@ -150,41 +150,44 @@ export function CardReader({
 
   // Typeset read-check prompts/options (they live in the app DOM, not the iframe).
   //
-  // The KaTeX auto-render script is CDN-`defer`red, so on the lesson's first paint
-  // `window.renderMathInElement` is often not defined yet, and even once it is the
-  // freshly-committed read-check DOM may not be settled on the very first tick. A
-  // one-shot typeset therefore leaves the FIRST card's prompt/options as raw $…$
-  // source (later cards typeset fine because navigating re-runs this effect). So
-  // retry on a short interval and SELF-VERIFY: after each typeset, if raw `$`
-  // delimiters still remain in the subtree, KaTeX/the DOM wasn't ready — keep
-  // retrying until they're gone or the ceiling is hit. Re-running renderMathInElement
-  // on already-typeset nodes is a no-op (no delimiters remain), so this is safe.
+  // The prompt/options are injected via dangerouslySetInnerHTML, so KaTeX's typeset
+  // (which mutates that DOM) is undone whenever React re-renders the item and
+  // re-applies the raw `$…$` markup — observed on the FIRST card, where an async
+  // re-render (`loggedIn` resolving) reverts a successful early typeset and a
+  // one-shot effect never re-applies it. Also, the KaTeX auto-render script is
+  // CDN-`defer`red, so it may not be ready on the first tick.
+  // Fix: (a) retry until KaTeX is ready and the subtree has no raw `$` left, and
+  // (b) keep a MutationObserver so any later re-render that restores raw `$` is
+  // immediately re-typeset. renderMathInElement on already-typeset nodes is a no-op
+  // (no delimiters remain), so the observer self-heals reverts without looping.
   useEffect(() => {
-    let done = false
-    let timer: ReturnType<typeof setTimeout>
-    let tries = 0
-    const tick = () => {
-      if (done) return
-      const el = checksRef.current
+    const el = checksRef.current
+    if (!el) return
+    let raf = 0
+    const typeset = () => {
       const fn = (window as unknown as { renderMathInElement?: Function }).renderMathInElement
-      if (el && typeof fn === 'function') {
-        renderMath(el)
-        // Success = no raw `$` delimiter left in the visible text. If any remain the
-        // typeset ran too early (KaTeX/DOM not ready) — retry until it takes.
-        if (!(el.textContent ?? '').includes('$')) {
-          done = true
-          return
-        }
-      }
-      // ~10s ceiling (100 × 100ms) so a never-loading CDN / stray `$` can't leak a timer.
-      if (tries++ < 100) timer = setTimeout(tick, 100)
+      if (typeof fn === 'function' && (el.textContent ?? '').includes('$')) renderMath(el)
     }
-    timer = setTimeout(tick, 0)
+    // Initial pass: retry (~10s ceiling) until KaTeX is loaded and no raw `$` remains.
+    let tries = 0
+    let timer: ReturnType<typeof setTimeout>
+    const tick = () => {
+      typeset()
+      if ((el.textContent ?? '').includes('$') && tries++ < 100) timer = setTimeout(tick, 100)
+    }
+    tick()
+    // Re-typeset whenever a re-render reverts the innerHTML back to raw `$…$`.
+    const obs = new MutationObserver(() => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(typeset)
+    })
+    obs.observe(el, { childList: true, subtree: true, characterData: true })
     return () => {
-      done = true
       clearTimeout(timer)
+      cancelAnimationFrame(raf)
+      obs.disconnect()
     }
-  }, [current, results])
+  }, [current])
 
   // Fire the completion callback once all cards are passed.
   useEffect(() => {
