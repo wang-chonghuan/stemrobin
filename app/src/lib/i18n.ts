@@ -43,7 +43,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     // lesson view
     'lesson.back': '返回',
     'lesson.practice': '练习题',
-    'lesson.practice.locked': '读完全部卡片后解锁练习',
     'lesson.practice.open': '进入练习题',
     'lesson.pdf': '下载 PDF',
     'lesson.notReady': '课程内容尚未生成。',
@@ -138,7 +137,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.new': 'New lessons ({n})',
     'lesson.back': 'Back',
     'lesson.practice': 'Practice',
-    'lesson.practice.locked': 'Finish all cards to unlock practice',
     'lesson.practice.open': 'Open practice',
     'lesson.pdf': 'Download PDF',
     'lesson.notReady': "This lesson's content is not ready yet.",
