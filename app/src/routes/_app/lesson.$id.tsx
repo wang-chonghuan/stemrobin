@@ -4,7 +4,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight, Download, Layers, Menu } from 'lu
 
 import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf, listAvailableLessonIds } from '~/lib/lessons'
-import { getLessonReading, buildFullTextHtml } from '~/lib/reading'
+import { getLessonReading } from '~/lib/reading'
 import { getLocale } from '~/lib/locale'
 import { t, type Locale } from '~/lib/i18n'
 import {
@@ -26,12 +26,10 @@ export const Route = createFileRoute('/_app/lesson/$id')({
     return {
       id: params.id,
       reading,
-      // Browser-safe (KEY-free) 课后题 for the 全文速览 display-only list. When there
-      // is a card tree we always fetch them so 速览 can list the exercises; the
-      // practice QuizDrawer keeps its own independent fetch (untouched).
-      questions: reading ? await getLessonQuestions({ data: params.id }) : [],
-      // Full-lesson html only needed as a fallback when there is no card tree.
-      html: reading ? null : await getLessonHtml({ data: params.id }),
+      // The stored skill-rendered 課文 html (same render as the PDF): the 全文速览
+      // shows it verbatim, and it is also the fallback view when there is no card
+      // tree. One renderer, one source — no separate full-text builder.
+      html: await getLessonHtml({ data: params.id }),
       lessonIds: await listAvailableLessonIds(),
       locale: await getLocale(),
     }
@@ -39,7 +37,7 @@ export const Route = createFileRoute('/_app/lesson/$id')({
 })
 
 function LessonView() {
-  const { id, reading, questions, html, lessonIds, locale } = Route.useLoaderData()
+  const { id, reading, html, lessonIds, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const fulltextRef = useRef<HTMLIFrameElement>(null)
@@ -123,18 +121,15 @@ function LessonView() {
         )}
         {reading ? (
           mode === 'fulltext' ? (
-            // 全文速览: the whole lesson at once, no read-check, no gate. Reuses the
-            // lesson head + card bodies (getLessonReading payload) in a sandboxed
-            // iframe. Mounting no CardReader = firing no recordReadCheck = no 进度.
-            <LessonFrame
-              frameRef={fulltextRef}
-              html={buildFullTextHtml(reading.head, reading.cards, locale === 'en' ? 'en' : 'zh-CN', {
-                title: label,
-                questions,
-                exercisesLabel: t(locale, 'read.exercises'),
-              })}
-              title={label}
-            />
+            // 全文速览: the whole lesson at once, rendered from the stored skill html
+            // (sr_lessons.html) — identical to the PDF (numbered section labels +
+            // styled 课后题). The html's 练习 section is prompt-only (no KEY), so it
+            // stays display-only. No CardReader = no recordReadCheck = no 进度.
+            html ? (
+              <LessonFrame frameRef={fulltextRef} html={html} title={label} />
+            ) : (
+              <p style={{ padding: 20, color: 'var(--sr-ink-dim)' }}>{t(locale, 'lesson.notReady')}</p>
+            )
           ) : (
             <CardReader
               lessonId={id}
