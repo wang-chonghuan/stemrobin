@@ -1004,12 +1004,14 @@ a.sr-out-lesson.ready:hover {
   font-family: var(--sr-display); font-size: 18px; font-weight: 600;
   letter-spacing: -0.01em; color: var(--sr-ink); min-width: 0;
 }
-/* Current card's section title (中文名, STEMROBIN-34/35) — a quiet teal eyebrow
-   under the lesson title, matching DESIGN's blue_deep accent-label treatment. */
+/* Current card's section title (编号 + 中文名, STEMROBIN-34/35/42) — a prominent
+   teal accent label under the lesson title (bright --sr-blue primary, not near-black),
+   with the section number reading as a stronger lead-in. */
 .sr-card-section {
-  font-family: var(--sr-body); font-size: 13px; font-weight: 600;
-  color: var(--sr-blue-deep); min-width: 0;
+  font-family: var(--sr-body); font-size: 15px; font-weight: 700;
+  color: var(--sr-blue); min-width: 0;
 }
+.sr-card-section-num { font-family: var(--sr-mono); font-weight: 700; }
 .sr-card-progress { flex: none; font-family: var(--sr-mono); font-size: 13px; color: var(--sr-ink-soft); }
 .sr-card-progress b { color: var(--sr-blue-deep); font-size: 15px; }
 

@@ -212,7 +212,11 @@ export function CardReader({
       <div className="sr-card-head">
         <div className="sr-card-titles">
           <div className="sr-card-lesson">{label}</div>
-          {card.name && <div className="sr-card-section">{card.name}</div>}
+          {card.name && (
+            <div className="sr-card-section">
+              <span className="sr-card-section-num">{card.num}</span> {card.name}
+            </div>
+          )}
         </div>
         <div className="sr-card-progress">
           {t(locale, 'card.progress', { num: card.num, total })}
