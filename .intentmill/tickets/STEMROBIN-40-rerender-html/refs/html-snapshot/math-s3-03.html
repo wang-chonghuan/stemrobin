@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.3 等式两边同乘同除 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+
+  <style>
+    /* JSONB-first read-check projection (self-contained) */
+    .sr-readcheck { margin-top:14px; border-top:1px dashed var(--sr-line); padding-top:10px; }
+    .sr-rc-label { font:700 11px var(--sr-mono); color:var(--sr-green-deep); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+    ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+    ol.sr-practice > li:first-child { border-top:0; }
+    ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+    .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+    .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
+    .sr-p-opt { font-size:14px; }
+    .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }
+    @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
+  </style>
+</head>
+<body>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 方程和不等式 · 方法课</div>
+    <h1 class="sr-l-title">3.3 等式两边同乘同除</h1>
+    <div class="sr-l-concept">等式两边同时乘以同一个数，或同时除以同一个非零数，左右仍然相等；这一步用来去掉未知数前的系数。</div>
+    <div class="sr-l-chips"><span class="sr-chip">方法课</span></div>
+  </header>
+
+  <!--
+    Compose numbered sections here per the lesson's genre (see lesson-contract.md):
+
+    概念课: motivation / model / anatomy / boundary / connections / oral
+    方法课: motivation / explain / examples / connections / oral
+
+    Each section:
+      <section data-sr-section="ANCHOR">
+        <div class="sr-sec-label"><span class="sr-sec-num">N</span><span class="sr-sec-name">中文名</span></div>
+        ...content...
+      </section>
+
+    NO practice section — exercises live in the deck (DB), not in the 課文.
+  -->
+    <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要它</span></div>
+<p>方程 $3x=12$ 已经把未知数和一个数连在一起。这里的 $3$ 是 $x$ 的系数：$3x$ 表示 $3$ 与 $x$ 相乘。要知道 $x$ 的值，必须把这个系数去掉。</p>
+<p>但不能只把左边的 $3$ 擦掉。等号表示左右两个代数式的值相等；只改一边，原来的相等关系就可能被破坏。我们需要一种能同时处理等式两边、又不改变原方程的解的动作。</p>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>方程 $3x=12$ 中，$3$ 叫作 $x$ 的什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 系数</span><span class="sr-p-opt"><b>B.</b> 解</span><span class="sr-p-opt"><b>C.</b> 未知数</span><span class="sr-p-opt"><b>D.</b> 常数项</span></div></li>
+      <li>$3x$ 表示 $3$ 与 $x$ 做什么运算？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 相加</span><span class="sr-p-opt"><b>B.</b> 相乘</span><span class="sr-p-opt"><b>C.</b> 相减</span><span class="sr-p-opt"><b>D.</b> 相除</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+<h3>相等的两个数，做同样的乘除仍然相等</h3>
+<p>如果 $a=b$，那么 $a$ 与 $b$ 表示同一个数。把这个数的两份表示都乘以同一个数 $c$，结果仍相等：</p>
+<p>$a=b\quad\Longrightarrow\quad ac=bc$</p>
+<p>如果 $c\ne 0$，两边同时除以 $c$，所得结果也仍相等：</p>
+<p>$a=b\quad\Longrightarrow\quad \frac{a}{c}=\frac{b}{c}\qquad(c\ne 0)$</p>
+<p>这条保持等式成立的规则叫作<span class="sr-term">等式性质二</span>。</p>
+<div class="sr-eg">
+      <span class="yes">$8=8$，两边同乘 $-3$ 后，$-24=-24$；$12=12$，两边同除以 $4$ 后，$3=3$。</span>
+      <span class="no">$8=8$ 不能写成 $8\div0=8\div0$，因为除以 $0$ 没有意义。</span>
+    </div>
+<h3>把规则用在方程两边</h3>
+<p>在方程两边同时乘以同一个数，或同时除以同一个非零数，这套动作叫作<span class="sr-term">两边同乘同除</span>。用非零数做这一步时，能从新方程回到原方程，所以原方程的解不改变，它是等价变形。</p>
+<div class="sr-eg">
+      <span class="yes">$3x=12$ 的两边同时除以 $3$，得到 $x=4$。</span>
+      <span class="no">$3x=12$ 只把左边除以 $3$，却让右边仍是 $12$；两边没有做同一个动作。</span>
+    </div>
+<p>在 $cx=d$ 中，$c$ 是未知数 $x$ 的系数。若 $c\ne0$，两边同除以 $c$：</p>
+<p>$cx=d\quad\Longrightarrow\quad \frac{cx}{c}=\frac{d}{c}\quad\Longrightarrow\quad x=\frac{d}{c}$</p>
+<p>用两边同除去掉未知数前的非零系数，这个动作叫作<span class="sr-term">除系数</span>。</p>
+<div class="sr-eg">
+      <span class="yes">$-5x=20$ 两边同除以 $-5$，得到 $x=-4$。</span>
+      <span class="no">$-5x=20$ 直接擦去 $-5$，却不处理右边；这不是除系数。</span>
+    </div>
+<div class="sr-pitfall">
+      <b>边界一：不能除以 $0$。</b> 两边同除的数必须是非零数。$0x=0$ 不能两边同除以 $0$，因为“除以 $0$”没有意义。
+    </div>
+<div class="sr-pitfall">
+      <b>边界二：不是把系数擦掉。</b> 从 $3x=12$ 到 $x=4$，完整动作是两边都除以 $3$：左边的 $3x\div3=x$，右边的 $12\div3=4$。
+    </div>
+<div class="sr-pitfall">
+      <b>边界三：分数系数可以用同乘去掉。</b> $\frac{x}{4}=5$ 也可以写成 $\frac14x=5$。两边同乘 $4$ 得到 $x=20$；这与两边同除以系数 $\frac14$ 是同一件事。
+    </div>
+<div class="sr-pitfall">
+      <b>边界四：乘除负数不改变等号。</b> $-2x=6$ 两边同除以 $-2$ 得到 $x=-3$。等号只记录左右相等，没有需要改变的方向。
+    </div>
+<div class="sr-note">
+      <b>乘以 $0$ 要分清两件事。</b> 一个已经成立的等式两边同乘 $0$，仍会得到成立的 $0=0$；但处理方程时这样做会丢掉原来的条件。例如 $x=2$ 两边同乘 $0$ 后变成 $0=0$，此时 $x=7$ 也能让新方程成立，却不是原方程的解。因此，为保持原方程的解不变，用同乘做等价变形时也应乘非零数。
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>两边同乘同除、保持等式成立的这条规则叫作什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 等式性质二</span><span class="sr-p-opt"><b>B.</b> 等式性质一</span><span class="sr-p-opt"><b>C.</b> 除系数</span><span class="sr-p-opt"><b>D.</b> 移项法则</span></div></li>
+      <li>用两边同除去掉未知数前的非零系数，这个动作叫作什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 除系数</span><span class="sr-p-opt"><b>B.</b> 移项</span><span class="sr-p-opt"><b>C.</b> 合并同类项</span><span class="sr-p-opt"><b>D.</b> 去分母</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+<div class="sr-example">
+      <div class="sr-example-h">例 1：正数系数</div>
+      <div class="sr-step"><span class="sr-step-n">01</span><span>$3x=12$，$x$ 的系数是 $3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">02</span><span>两边同除以 $3$：$\frac{3x}{3}=\frac{12}{3}$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">03</span><span>得到 $x=4$。把 $4$ 代入原方程，$3\times4=12$。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 2：负数系数</div>
+      <div class="sr-step"><span class="sr-step-n">01</span><span>$-5x=20$，系数是 $-5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">02</span><span>两边同除以 $-5$：$\frac{-5x}{-5}=\frac{20}{-5}$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">03</span><span>得到 $x=-4$。除数是负数，等号仍是等号。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 3：未知数被除以一个数</div>
+      <div class="sr-step"><span class="sr-step-n">01</span><span>$\frac{x}{4}=5$，也就是 $\frac14x=5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">02</span><span>两边同乘 $4$：$4\cdot\frac{x}{4}=4\cdot5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">03</span><span>得到 $x=20$。左边乘 $4$ 与除以系数 $\frac14$ 的结果相同。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 4：分数系数</div>
+      <div class="sr-step"><span class="sr-step-n">01</span><span>$\frac23x=-8$，系数是 $\frac23$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">02</span><span>两边同除以 $\frac23$：$x=-8\div\frac23$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">03</span><span>按分数除法计算，得到 $x=-12$。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 5：说理——为什么要分两步</div>
+      <div class="sr-step"><span class="sr-step-n">01</span><span>方程 $4x+7=19$ 中，先用等式性质一，两边同时减 $7$，得到 $4x=12$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">02</span><span>再用等式性质二，两边同时除以 $4$，得到 $x=3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">03</span><span>理由：第一步去掉与 $4x$ 相加的 $7$，第二步去掉 $x$ 前的系数 $4$；每一步都让两边做同一个合法动作，所以方程的解不改变。</span></div>
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>例 4 中 $\frac23x=-8$，两边同除以 $\frac23$，得到 $x$ 等于多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-12$</span><span class="sr-p-opt"><b>B.</b> $-8$</span><span class="sr-p-opt"><b>C.</b> $12$</span><span class="sr-p-opt"><b>D.</b> $-\frac{16}{3}$</span></div></li>
+      <li>例 1 中 $3x=12$ 两边同除以 $3$，得到 $x$ 等于几？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 36</span><span class="sr-p-opt"><b>B.</b> 4</span><span class="sr-p-opt"><b>C.</b> 9</span><span class="sr-p-opt"><b>D.</b> 15</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+<ul class="sr-links">
+      <li><b>向后连接 3.1：</b>方程用等号把左右两个代数式连起来；本课的每一步都必须同时作用在等式两边。</li>
+      <li><b>向后连接 3.2：</b>两边同加同减用来去掉相加或相减的部分；本课的两边同乘同除用来去掉相乘或相除的部分。它们都是等价变形。</li>
+      <li><b>向前连接 3.5：</b>会把移项、合并同类项和除系数按需要接在一起，逐步让未知数单独留下。</li>
+    </ul>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>本课的两边同乘同除，用来去掉方程中什么样的部分？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 相乘或相除的部分</span><span class="sr-p-opt"><b>B.</b> 相加或相减的部分</span><span class="sr-p-opt"><b>C.</b> 带括号的部分</span><span class="sr-p-opt"><b>D.</b> 含未知数的部分</span></div></li>
+      <li>向前连接 3.5 提到，会把哪些动作按需要接在一起？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 移项、合并同类项和除系数</span><span class="sr-p-opt"><b>B.</b> 加、减、乘、除四则运算</span><span class="sr-p-opt"><b>C.</b> 画图、列表和计算</span><span class="sr-p-opt"><b>D.</b> 去括号、去分母和开方</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+<ol class="sr-oral">
+      <li>
+        已知 $a=b$。要把两边同时除以 $c$，必须先说明什么？
+        <div class="sr-answer">$c\ne0$。除以 $0$ 没有意义。</div>
+      </li>
+      <li>
+        为什么从 $3x=12$ 到 $x=4$ 不能说“把 $3$ 擦掉了”？
+        <div class="sr-answer">因为合法动作是等式两边同时除以 $3$：左边变成 $x$，右边变成 $4$。只擦左边会破坏两边做同一动作的要求。</div>
+      </li>
+      <li>
+        对 $\frac{x}{4}=5$，应当让两边做什么？它为什么能去掉 $x$ 前的系数？
+        <div class="sr-answer">两边同乘 $4$。因为 $\frac{x}{4}$ 的系数是 $\frac14$，乘 $4$ 后左边成为 $x$，右边成为 $20$。</div>
+      </li>
+      <li>
+        $-2x=6$ 两边同除以 $-2$ 后，等号要不要改变？为什么？
+        <div class="sr-answer">不要，得到 $x=-3$。等号表示左右相等，没有方向；两边同除以同一个非零负数后仍然相等。</div>
+      </li>
+      <li>
+        有人把 $x=2$ 两边同乘 $0$，得到 $0=0$，然后说这是等价变形。错在哪里？
+        <div class="sr-answer">$0=0$ 虽然成立，却丢掉了 $x=2$ 这个条件；例如 $x=7$ 也能让 $0=0$ 成立，却不是原方程的解。因此，为保持原方程的解不变，同乘时也应使用非零数。</div>
+      </li>
+    </ol>
+  </section>
+
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> 在方程 $-7x=21$ 中，$x$ 的系数是多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 7</span><span class="sr-p-opt"><b>B.</b> 21</span><span class="sr-p-opt"><b>C.</b> -7</span><span class="sr-p-opt"><b>D.</b> -21</span></div></li>
+      <li><span class="sr-ptype">辨认</span> “等式两边同时乘以同一个非零数，或同时除以同一个非零数，方程的解不改变”说的是哪条性质？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 等式性质二</span><span class="sr-p-opt"><b>B.</b> 等式性质一</span><span class="sr-p-opt"><b>C.</b> 分配律</span><span class="sr-p-opt"><b>D.</b> 移项</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在方程 $\frac{x}{4}=5$ 中，$x$ 的系数是多少？请用分数填写。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 4/1</span><span class="sr-p-opt"><b>B.</b> 1/5</span><span class="sr-p-opt"><b>C.</b> 5/4</span><span class="sr-p-opt"><b>D.</b> 1/4</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 已知 $a=b$。若要把两边同时除以 $c$，必须先满足 $c$ 不等于多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 1</span><span class="sr-p-opt"><b>B.</b> 0</span><span class="sr-p-opt"><b>C.</b> -1</span><span class="sr-p-opt"><b>D.</b> 2</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 用两边同除去掉未知数前的非零系数，这个动作叫什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 除系数</span><span class="sr-p-opt"><b>B.</b> 移项</span><span class="sr-p-opt"><b>C.</b> 合并同类项</span><span class="sr-p-opt"><b>D.</b> 去括号</span></div></li>
+      <li><span class="sr-ptype">操作</span> 对方程 $3x=12$ 两边同除以 $3$，填写 $x$ 的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 36</span><span class="sr-p-opt"><b>B.</b> 9</span><span class="sr-p-opt"><b>C.</b> 4</span><span class="sr-p-opt"><b>D.</b> 15</span></div></li>
+      <li><span class="sr-ptype">操作</span> 对方程 $-5x=20$ 除系数，填写 $x$ 的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 4</span><span class="sr-p-opt"><b>B.</b> -100</span><span class="sr-p-opt"><b>C.</b> 15</span><span class="sr-p-opt"><b>D.</b> -4</span></div></li>
+      <li><span class="sr-ptype">操作</span> 方程 $\frac{x}{4}=5$ 的两边同乘 $4$，填写 $x$ 的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 20</span><span class="sr-p-opt"><b>B.</b> 9</span><span class="sr-p-opt"><b>C.</b> 1</span><span class="sr-p-opt"><b>D.</b> 1.25</span></div></li>
+      <li><span class="sr-ptype">操作</span> 对方程 $\frac23x=-8$ 除系数，填写 $x$ 的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -16/3</span><span class="sr-p-opt"><b>B.</b> -12</span><span class="sr-p-opt"><b>C.</b> 12</span><span class="sr-p-opt"><b>D.</b> -24</span></div></li>
+      <li><span class="sr-ptype">操作</span> 方程 $-\frac{x}{6}=3$ 的两边同乘 $-6$，填写 $x$ 的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 18</span><span class="sr-p-opt"><b>B.</b> -3</span><span class="sr-p-opt"><b>C.</b> -18</span><span class="sr-p-opt"><b>D.</b> 1/2</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明把 $3x=12$ 写成 $x=12$，说“把 $3$ 擦掉就行”。下面哪一句准确指出了错误？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 等号右边必须永远保持不变</span><span class="sr-p-opt"><b>B.</b> 只改了左边；应当让两边同时除以 $3$，右边也要变成 $4$</span><span class="sr-p-opt"><b>C.</b> 应该让两边同时减 $3$，得到 $3x-3=9$</span><span class="sr-p-opt"><b>D.</b> 左边的系数不能去掉，所以方程无法继续处理</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 有人把 $x=2$ 两边同乘 $0$，得到 $0=0$，便说两个方程是等价变形。错在哪里？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错在等式两边任何时候都不能乘 $0$</span><span class="sr-p-opt"><b>B.</b> 错在 $0=0$ 本身不成立</span><span class="sr-p-opt"><b>C.</b> 错在两边同乘后必须改变等号</span><span class="sr-p-opt"><b>D.</b> 错在新方程丢掉了 $x=2$ 的条件，像 $x=7$ 也能使 $0=0$ 成立</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 处理 $-2x=6$ 时，有人说“两边除以负数，等号也要改变方向”，于是写成 $x&gt;-3$。正确判断是哪一项？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 等号没有方向；两边同除以 $-2$ 后应得 $x=-3$</span><span class="sr-p-opt"><b>B.</b> 他说得对，结果是 $x&gt;-3$</span><span class="sr-p-opt"><b>C.</b> 等号应改成小于号，结果是 $x&lt;-3$</span><span class="sr-p-opt"><b>D.</b> 负数不能用来除系数</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么 $cx=d$ 在 $c\ne0$ 时可以两边同除以 $c$，而且这样不会改变原方程的解？请把理由说完整。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为 $c$ 前面有系数，把 $c$ 擦掉后左边只剩 $x$，右边不用动，所以解不变</span><span class="sr-p-opt"><b>B.</b> 因为两边同除以 $c$ 总能成立，即使 $c=0$ 也不会改变原方程的解</span><span class="sr-p-opt"><b>C.</b> 若某个 $x$ 使 $cx=d$ 成立，两边同除以非零数 $c$ 后会得到 $x=\frac{d}{c}$</span><span class="sr-p-opt"><b>D.</b> 因为 $cx=d$ 两边同时减去 $c$ 就能得到 $x=d-c$，所以解不变</span></div></li>
+      <li><span class="sr-ptype">说理</span> 给同学解释：为什么处理 $\frac{x}{4}=5$ 时，两边同乘 $4$ 与两边同除以 $x$ 的系数是同一件事？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $\frac{x}{4}$ 的系数是 $4$，所以除以 $4$ 与乘以 $4$ 是一回事</span><span class="sr-p-opt"><b>B.</b> $\frac{x}{4}=\frac14x$，所以 $x$ 的系数是 $\frac14$</span><span class="sr-p-opt"><b>C.</b> 两边同乘 $4$ 是加法动作，和除以系数没有关系</span><span class="sr-p-opt"><b>D.</b> $\frac{x}{4}=4x$，所以要把两边都除以 $4$</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么“$3x=12$，把左边的 $3$ 擦掉”不是一个完整的说理？请写出合法动作和结果。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 只要把左边变成 $x$ 就算完成，右边可以先不管</span><span class="sr-p-opt"><b>B.</b> 擦掉左边的系数和两边同除以 $3$ 是完全一样的写法</span><span class="sr-p-opt"><b>C.</b> 方程的右边在变形过程中应当永远保持不变</span><span class="sr-p-opt"><b>D.</b> 等式两边必须做同一个动作</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 【复习 3.2】方程 $x+7=12$ 的两边同时减 $7$，填写 $x$ 的值。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5</span><span class="sr-p-opt"><b>B.</b> 19</span><span class="sr-p-opt"><b>C.</b> 12</span><span class="sr-p-opt"><b>D.</b> -5</span></div></li>
+      <li><span class="sr-ptype">表示</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 【复习 3.2】要把 $2x+3=9$ 左边相加的 $3$ 去掉，两边应当同时减多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -3</span><span class="sr-p-opt"><b>B.</b> 9</span><span class="sr-p-opt"><b>C.</b> 3</span><span class="sr-p-opt"><b>D.</b> 6</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 【复习 3.2】在 $5x-4=11$ 中，把左边的 $-4$ 移到右边后，右边的代数式是什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 11-4</span><span class="sr-p-opt"><b>B.</b> 11+4</span><span class="sr-p-opt"><b>C.</b> 11+5</span><span class="sr-p-opt"><b>D.</b> 4-11</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 【复习 3.1】下面哪一个是方程，而不只是含未知数的代数式？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x+3$</span><span class="sr-p-opt"><b>B.</b> $2a-5$</span><span class="sr-p-opt"><b>C.</b> $x+3=7$</span><span class="sr-p-opt"><b>D.</b> $4y$</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

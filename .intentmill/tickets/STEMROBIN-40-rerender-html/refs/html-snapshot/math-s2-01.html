@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.1 用字母表示数 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+
+  <style>
+    /* JSONB-first read-check projection (self-contained) */
+    .sr-readcheck { margin-top:14px; border-top:1px dashed var(--sr-line); padding-top:10px; }
+    .sr-rc-label { font:700 11px var(--sr-mono); color:var(--sr-green-deep); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+    ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+    ol.sr-practice > li:first-child { border-top:0; }
+    ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+    .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+    .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
+    .sr-p-opt { font-size:14px; }
+    .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }
+    @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
+  </style>
+</head>
+<body>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 方法课</div>
+    <h1 class="sr-l-title">2.1 用字母表示数</h1>
+    <div class="sr-l-concept">字母不是一个神秘符号，而是给「一类数」占的位置——规律一次写清，所有数一起管。</div>
+    <div class="sr-l-chips"><span class="sr-chip">方法课</span></div>
+  </header>
+
+  <!--
+    Compose numbered sections here per the lesson's genre (see lesson-contract.md):
+
+    概念课: motivation / model / anatomy / boundary / connections / oral
+    方法课: motivation / explain / examples / connections / oral
+
+    Each section:
+      <section data-sr-section="ANCHOR">
+        <div class="sr-sec-label"><span class="sr-sec-num">N</span><span class="sr-sec-name">中文名</span></div>
+        ...content...
+      </section>
+
+    NO practice section — exercises live in the deck (DB), not in the 課文.
+  -->
+    <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要它</span></div>
+<p>先看一句你早就知道是对的话：<strong>任何一个数，加上它自己，都等于它的 2 倍。</strong>请你把它写成算式。</p>
+<p>你会发现一个麻烦：这句话对<strong>每一个</strong>数都成立，可算式一次只能写一个数。</p>
+<p>$3+3=2\times 3$，对；$8+8=2\times 8$，对；$(-5)+(-5)=2\times(-5)$，也对……这样的算式有无穷多条，你永远写不完。用「任何一个数」这四个汉字说，谁都懂，可它不是数学式子，不能拿去算、拿去接着变形。</p>
+<p>再看一个买东西的场景：一支笔 3 元。买 5 支要 $3\times 5$ 元，买 20 支要 $3\times 20$ 元。可如果我想<strong>一句话说清「买多少支都照这个规矩算钱」</strong>，具体的数字就不够用了——因为「多少支」还没定下来。</p>
+<p>这两处卡住的地方是同一个：<strong>我们想说的是一条对一整类数都成立的规律，可手里只有一个一个的具体数字。</strong>本课要学一个专门解决它的写法——用一个符号，一次把整类数都占住。</p>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>本卡开头买东西的场景里，一支笔多少元？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3 元</span><span class="sr-p-opt"><b>B.</b> 5 元</span><span class="sr-p-opt"><b>C.</b> 20 元</span><span class="sr-p-opt"><b>D.</b> 2 元</span></div></li>
+      <li>本卡说，用「任何一个数」这四个汉字说，为什么不方便？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 它不是数学式子，不能拿去算、拿去接着变形</span><span class="sr-p-opt"><b>B.</b> 它写起来太长了</span><span class="sr-p-opt"><b>C.</b> 它只对整数成立</span><span class="sr-p-opt"><b>D.</b> 它算出来的结果不对</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+<p>回到「一支笔 3 元」。把买的支数从少到多摆开，总价是这样长出来的：</p>
+<p>买 1 支 → $3\times 1$；买 2 支 → $3\times 2$；买 3 支 → $3\times 3$；买 7 支 → $3\times 7$……</p>
+<p>盯着右边看：每一条都是「$3\times$（支数）」，唯一在变的就是那个支数。既然只有这一个位置在变，我们干脆给它一个名字，放一个符号在那儿——比如写一个 $n$，让 $n$ 代表支数。于是所有情况一次写完：</p>
+<p>$\text{总价} = 3\times n$</p>
+<p>这里的 $n$ 就是一个<span class="sr-term">字母</span>。<strong>字母是一个用来代表数的符号；它代表的不是某一个固定的数，而是一整类数里随便哪一个。</strong>在这里 $n$ 可以是 1、是 2、是 100——你买几支，它就是几。这种「用一个字母去占住一整类数的位置，好把规律一次写清」的做法，就叫<span class="sr-term">用字母表示数</span>。</p>
+<p>它到底解决了什么？<strong>一个字母顶掉了无穷多条算式。</strong>回到开头那句话，现在也能一次写清了：用一个字母 $a$ 代表「任何一个数」，那句「任何一个数加上它自己等于它的 2 倍」就是一行式子：</p>
+<p>$a+a=2\times a$</p>
+<p>$a$ 站的是「所有的数」，所以这一行同时替你写好了 $3+3=2\times3$、$8+8=2\times8$、$(-5)+(-5)=2\times(-5)$……一次全管住。这就是字母的威力：<strong>规律写一次，所有数一起管。</strong></p>
+    <figure class="sr-fig"><svg viewBox="0 0 560 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="字母是一个占位的框，很多具体的数都能填进去">
+        <rect x="150" y="20" width="90" height="46" rx="8" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+        <text x="195" y="50" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="26" font-weight="600" fill="#0A5E76">n</text>
+        <text x="195" y="88" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="12" fill="#4C5A58">一个占位的框</text>
+        <text x="430" y="30" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="12" fill="#4C5A58">可以填进任何一个数</text>
+        <g font-family="JetBrains Mono, monospace" font-size="15" fill="#15201F">
+          <text x="360" y="60">1</text><text x="400" y="60">2</text><text x="440" y="60">7</text><text x="480" y="60">100</text>
+          <text x="360" y="88">-5</text><text x="410" y="88">0</text><text x="455" y="88">…</text>
+        </g>
+        <path d="M245 45 H340" stroke="#8A9795" stroke-width="1.5" fill="none" marker-end="url(#ar)"/>
+        <defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#8A9795"/></marker></defs>
+        <text x="195" y="128" text-anchor="middle" font-family="Noto Sans SC, sans-serif" font-size="12.5" fill="#0F7D52">字母站的是一整类数，不是某一个固定的数</text>
+      </svg><figcaption>字母像一个占位的框：把哪个数填进去，它当下就等于那个数。</figcaption></figure>
+<h3>三条要记住的书写约定</h3>
+<p>字母进了式子以后，为了写得快、看得清，乘号有一套省略的规矩。它们是后面所有内容的基础，必须现在就记牢：</p>
+<p><strong>（1）字母和数字相乘，乘号可以省略：</strong>$3\times a$ 写作 $3a$。</p>
+<p><strong>（2）数字要写在字母前面：</strong>$a\times 3$ 也写作 $3a$，不写成 $a3$。</p>
+<p><strong>（3）字母和字母相乘，乘号同样可以省略：</strong>$a\times b$ 写作 $ab$。</p>
+<p>所以本课那三行式子照约定应写成：总价 $=3n$，$a+a=2a$。省略的只是乘号那个记号，运算本身一点没变。</p>
+<div class="sr-pitfall">
+      <b>常见错误一：把 $3a$ 读成「3 和 a」。</b>$3a$ 是 $3\times a$，读作「3 乘 a」，是一个乘法。它不是把 3 和 $a$ 拼在一起，也不是 30 多。省略的是乘号，不是乘法。
+    </div>
+<div class="sr-pitfall">
+      <b>常见错误二：以为一个字母只能代表某一个数。</b>字母代表的是一整类数里随便哪一个：$n$ 可以是 5，也可以是 100；$a$ 可以是正数、$0$，也可以是负数。它是个占位的框，不是一个藏起来的固定答案。
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>本卡把「用来代表数的符号」叫作什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 字母</span><span class="sr-p-opt"><b>B.</b> 数字</span><span class="sr-p-opt"><b>C.</b> 算式</span><span class="sr-p-opt"><b>D.</b> 变量框</span></div></li>
+      <li>本卡的书写约定里，$3\times a$ 省略乘号后写作什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $a3$</span><span class="sr-p-opt"><b>B.</b> $3a$</span><span class="sr-p-opt"><b>C.</b> $3+a$</span><span class="sr-p-opt"><b>D.</b> $a^3$</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+<div class="sr-example">
+      <div class="sr-example-h">例 1　用字母写出一个数量关系</div>
+      <p>每本练习本 4 元，买 $m$ 本，一共多少元？</p>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>先想具体的：买 3 本是 $4\times3$，买 10 本是 $4\times10$——总价永远是「$4\times$ 本数」。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>本数用字母 $m$ 占位，总价就是 $4\times m$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>照书写约定省略乘号、数字在前：总价 $=4m$（元）。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 2　用字母写出一条一般规律</div>
+      <p>「任何一个数，和它的相反数相加，结果都是 $0$。」把这条规律写成一行式子。</p>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>先验证它是一条对整类数都成立的规律：$3+(-3)=0$，$8+(-8)=0$，$(-5)+5=0$，都对。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>用一个字母 $a$ 代表「任何一个数」，那么它的相反数就是 $-a$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>一行写清：$a+(-a)=0$。这一行就替你管住了上面所有具体的例子。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 3　把字母换回具体的数验证</div>
+      <p>例 1 得到总价 $=4m$。如果买 7 本，用这个式子算，和一本一本数出来的钱一样吗？</p>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>字母代表的就是数，所以让 $m$ 当 7：$4m=4\times7=28$（元）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>一本一本数：$4+4+4+4+4+4+4=28$（元）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>两边都是 28，一致。这说明 $4m$ 不是新的东西，它就是「把某个数放进框里再乘 4」的简写。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 4　用字母写「任意一个数的 2 倍」</div>
+      <p>请用字母写出「任意一个数的 2 倍」，并说说它和「这个数加它自己」是不是一回事。</p>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>用字母 $x$ 代表这个数，它的 2 倍是 $2\times x$，省略乘号写作 $2x$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>「这个数加它自己」是 $x+x$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>因为一个数加自己就是它的 2 倍，所以 $x+x=2x$——不管 $x$ 换成哪个数，这两种写法算出来都相等。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 5（说理）　为什么一个字母 $a$ 能代表「所有的数」，而不是只代表某一个数</div>
+      <p>有人说：「你写的 $a$，其实心里想的就是某一个数，只是没告诉我。」这话对吗？说清理由。</p>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>不对。字母的用处，正是<strong>不</strong>把它定成某一个数：它是一个占位的框，谁进来都行。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>正因为 $a$ 没被定死，$a+(-a)=0$ 这一行才能同时对 $a=3$、$a=8$、$a=-5$……全都成立。若 $a$ 只准是某一个数，这行就只管一个例子，字母就白用了。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>所以 $a$ 代表的是「所有数里随便哪一个」这一整类，不是某一个藏起来的答案。这正是用字母表示数比写具体数字强的地方。</span></div>
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>例 1 里，每本练习本多少元？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 4 元</span><span class="sr-p-opt"><b>B.</b> 3 元</span><span class="sr-p-opt"><b>C.</b> 7 元</span><span class="sr-p-opt"><b>D.</b> 10 元</span></div></li>
+      <li>例 3 里，买 7 本用式子 $4m$ 算出的总价是多少元？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 11 元</span><span class="sr-p-opt"><b>B.</b> 28 元</span><span class="sr-p-opt"><b>C.</b> 47 元</span><span class="sr-p-opt"><b>D.</b> 4 元</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+<ul class="sr-links">
+      <li><b>往回看：有理数的加减乘除。</b>字母并没有带来新的运算——$3n$ 是乘法，$a+(-a)$ 是加法。字母代表的就是你已经会算的那些数（正数、$0$、负数都行），一旦把某个数放进框里，剩下的还是有理数运算。</li>
+      <li><b>往前看：下一课（2.1 的下一课）。</b>这一课只是把单独的数换成了字母；下一课会把数和字母用加减乘除连成一个更长的式子，并学会给字母换上一个具体的数，把整个式子算出一个结果。今天的「字母是占位的框、可以换成具体数」正是那一课的地基。</li>
+    </ul>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>本卡说字母有没有带来新的运算？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 没有，$3n$ 还是乘法、$a+(-a)$ 还是加法</span><span class="sr-p-opt"><b>B.</b> 有，字母带来了全新的运算</span><span class="sr-p-opt"><b>C.</b> 有，字母只能做加法</span><span class="sr-p-opt"><b>D.</b> 没有，因为字母不能参与运算</span></div></li>
+      <li>按本卡说法，下一课会做什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 把数和字母用加减乘除连成更长的式子，并给字母换上具体的数算出结果</span><span class="sr-p-opt"><b>B.</b> 重新学一遍有理数的加减乘除</span><span class="sr-p-opt"><b>C.</b> 只学如何省略乘号</span><span class="sr-p-opt"><b>D.</b> 学习几何图形的面积</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+<ol class="sr-oral">
+      <li>字母 $a$ 能代表负数吗？能代表 $0$ 吗？
+        <div class="sr-answer">都能。字母代表的是一整类数里随便哪一个，正数、$0$、负数都在其中；它不是只能取正数的符号。</div>
+      </li>
+      <li>$3a$ 是什么意思？读作什么？它等于 30 多吗？
+        <div class="sr-answer">$3a$ 就是 $3\times a$，读作「3 乘 a」，是一个乘法。省略的只是乘号。它不是「3 和 a 拼在一起」，也不是 30 多；到底多大，要看 $a$ 换成哪个数。</div>
+      </li>
+      <li>用一个字母写出「任意一个数的 2 倍」。
+        <div class="sr-answer">设这个数是 $x$，它的 2 倍是 $2x$（即 $2\times x$）。也可以写成 $x+x$，两者相等。</div>
+      </li>
+      <li>「一支笔 3 元，买 $n$ 支，总价 $3n$ 元。」这里的 $n$ 代表的是某一个固定的数吗？
+        <div class="sr-answer">不是。$n$ 是占位的框，你买几支它就当几：买 5 支时 $n$ 是 5，买 20 支时 $n$ 是 20。一个 $3n$ 一次写清了「买多少支都照这个规矩算钱」。</div>
+      </li>
+      <li>为什么 $a+(-a)=0$ 只写一行，却能顶掉 $3+(-3)=0$、$8+(-8)=0$…… 无穷多条算式？
+        <div class="sr-answer">因为 $a$ 站的是「所有的数」这一整类，不是某一个数。把任何一个数放进 $a$ 的框里，这一行都成立，所以它一次把无穷多条具体算式都管住了——这就是用字母表示数的用处。</div>
+      </li>
+      <li>$a\times 3$ 按书写约定应该怎么写？写成 $a3$ 行吗？
+        <div class="sr-answer">写作 $3a$：乘号省略，且数字要写在字母前面。$a3$ 不合约定，不能这么写。</div>
+      </li>
+    </ol>
+  </section>
+
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> $3a$ 的意思是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3\times a$（3 乘 a）</span><span class="sr-p-opt"><b>B.</b> $3+a$（3 加 a）</span><span class="sr-p-opt"><b>C.</b> 把 3 和 a 拼在一起，读作三十几</span><span class="sr-p-opt"><b>D.</b> $a-3$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $2a$ 表示的是什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $a$ 的 2 倍</span><span class="sr-p-opt"><b>B.</b> $a$ 的一半</span><span class="sr-p-opt"><b>C.</b> 比 $a$ 多 2</span><span class="sr-p-opt"><b>D.</b> 2 减去 $a$</span></div></li>
+      <li><span class="sr-ptype">表示</span> $a\times 5$ 按书写约定应写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5a$</span><span class="sr-p-opt"><b>B.</b> $a5$</span><span class="sr-p-opt"><b>C.</b> $a+5$</span><span class="sr-p-opt"><b>D.</b> $\dfrac{a}{5}$</span></div></li>
+      <li><span class="sr-ptype">表示</span> $a\times b$ 按书写约定写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $ab$</span><span class="sr-p-opt"><b>B.</b> $a+b$</span><span class="sr-p-opt"><b>C.</b> $a-b$</span><span class="sr-p-opt"><b>D.</b> $\dfrac{a}{b}$</span></div></li>
+      <li><span class="sr-ptype">表示</span> $a+a$ 可以写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $2a$</span><span class="sr-p-opt"><b>B.</b> $a2$</span><span class="sr-p-opt"><b>C.</b> $a+2$</span><span class="sr-p-opt"><b>D.</b> $aa$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $3n$ 里，3 和 $n$ 之间是什么运算？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 乘法（$3\times n$）</span><span class="sr-p-opt"><b>B.</b> 加法（$3+n$）</span><span class="sr-p-opt"><b>C.</b> 把 3 和 n 拼成一个两位数</span><span class="sr-p-opt"><b>D.</b> 减法（$n-3$）</span></div></li>
+      <li><span class="sr-ptype">表示</span> 把「比 $x$ 多 3」用字母写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x+3$</span><span class="sr-p-opt"><b>B.</b> $3x$</span><span class="sr-p-opt"><b>C.</b> $x-3$</span><span class="sr-p-opt"><b>D.</b> $3-x$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 每支笔 3 元，买 $n$ 支，一共多少元？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3n$ 元</span><span class="sr-p-opt"><b>B.</b> $n3$ 元</span><span class="sr-p-opt"><b>C.</b> $3+n$ 元</span><span class="sr-p-opt"><b>D.</b> $\dfrac{n}{3}$ 元</span></div></li>
+      <li><span class="sr-ptype">操作</span> 每本练习本 4 元，买 $m$ 本，总价是多少元？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $4m$ 元</span><span class="sr-p-opt"><b>B.</b> $m4$ 元</span><span class="sr-p-opt"><b>C.</b> $4+m$ 元</span><span class="sr-p-opt"><b>D.</b> $4-m$ 元</span></div></li>
+      <li><span class="sr-ptype">操作</span> 一个数是 $a$，它的相反数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-a$</span><span class="sr-p-opt"><b>B.</b> $a$</span><span class="sr-p-opt"><b>C.</b> $\dfrac{1}{a}$</span><span class="sr-p-opt"><b>D.</b> $0$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 一个数是 $x$，它的 2 倍写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $2x$</span><span class="sr-p-opt"><b>B.</b> $x2$</span><span class="sr-p-opt"><b>C.</b> $x+2$</span><span class="sr-p-opt"><b>D.</b> $\dfrac{x}{2}$</span></div></li>
+      <li><span class="sr-ptype">操作</span> $a+(-a)$ 的结果是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $0$</span><span class="sr-p-opt"><b>B.</b> $2a$</span><span class="sr-p-opt"><b>C.</b> $a$</span><span class="sr-p-opt"><b>D.</b> $-a$</span></div></li>
+      <li><span class="sr-ptype">表示</span> 一支笔 $a$ 元，买 $n$ 支，总价写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $an$ 元</span><span class="sr-p-opt"><b>B.</b> $a+n$ 元</span><span class="sr-p-opt"><b>C.</b> $\dfrac{a}{n}$ 元</span><span class="sr-p-opt"><b>D.</b> $n-a$ 元</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明把 $a\times 3$ 写成了 $a3$。这样对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错，数字要写在字母前面，应写作 $3a$</span><span class="sr-p-opt"><b>B.</b> 对，$a3$ 完全没问题</span><span class="sr-p-opt"><b>C.</b> 错，应该写成 $a+3$</span><span class="sr-p-opt"><b>D.</b> 错，乘号不能省略，必须写 $a\times 3$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小红说：「$3a$ 就读作『3 和 a』，等于三十几。」这话对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错，$3a=3\times a$ 是乘法，读作『3 乘 a』，大小要看 $a$</span><span class="sr-p-opt"><b>B.</b> 对，$3a$ 就是三十几</span><span class="sr-p-opt"><b>C.</b> 错，$3a$ 应该读作『a 的 3』</span><span class="sr-p-opt"><b>D.</b> 对，$3a$ 等于 $30+a$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小刚说：「字母 $a$ 只能代表某一个固定的数。」这话对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错，$a$ 可以代表一整类数里的任意一个，正数、$0$、负数都行</span><span class="sr-p-opt"><b>B.</b> 对，$a$ 是藏起来的某一个固定的数</span><span class="sr-p-opt"><b>C.</b> 错，$a$ 只能代表正数</span><span class="sr-p-opt"><b>D.</b> 错，$a$ 只能代表整数</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么 $a+(-a)=0$ 对每一个数都成立？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为 $a$ 代表任意一个数，任何数加上它的相反数都得 $0$</span><span class="sr-p-opt"><b>B.</b> 因为 $a$ 一定等于 $0$</span><span class="sr-p-opt"><b>C.</b> 因为只要是字母相加就等于 $0$</span><span class="sr-p-opt"><b>D.</b> 因为 $a$ 和 $-a$ 都是很小的数，加起来约等于 $0$</span></div></li>
+      <li><span class="sr-ptype">说理</span> 写一条对所有数都成立的规律时，为什么用字母 $a$ 比用一个具体数字更好？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为一个字母站住一整类数，规律写一次就把所有数一起管住了</span><span class="sr-p-opt"><b>B.</b> 因为字母写起来比数字好看</span><span class="sr-p-opt"><b>C.</b> 因为字母代表一个我们还不知道的固定的数</span><span class="sr-p-opt"><b>D.</b> 因为字母能让式子变短，除此之外没有别的用处</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

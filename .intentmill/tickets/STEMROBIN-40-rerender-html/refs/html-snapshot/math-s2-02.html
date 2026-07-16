@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.2 代数式与求值 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+
+  <style>
+    /* JSONB-first read-check projection (self-contained) */
+    .sr-readcheck { margin-top:14px; border-top:1px dashed var(--sr-line); padding-top:10px; }
+    .sr-rc-label { font:700 11px var(--sr-mono); color:var(--sr-green-deep); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+    ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+    ol.sr-practice > li:first-child { border-top:0; }
+    ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+    .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+    .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
+    .sr-p-opt { font-size:14px; }
+    .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }
+    @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
+  </style>
+</head>
+<body>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 方法课</div>
+    <h1 class="sr-l-title">2.2 代数式与求值</h1>
+    <div class="sr-l-concept">把数和字母用运算连起来的式子叫代数式；给字母一个具体的数，整个式子就算得出一个值。</div>
+    <div class="sr-l-chips"><span class="sr-chip">方法课</span></div>
+  </header>
+
+  <!--
+    Compose numbered sections here per the lesson's genre (see lesson-contract.md):
+
+    概念课: motivation / model / anatomy / boundary / connections / oral
+    方法课: motivation / explain / examples / connections / oral
+
+    Each section:
+      <section data-sr-section="ANCHOR">
+        <div class="sr-sec-label"><span class="sr-sec-num">N</span><span class="sr-sec-name">中文名</span></div>
+        ...content...
+      </section>
+
+    NO practice section — exercises live in the deck (DB), not in the 課文.
+  -->
+    <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要它</span></div>
+<p>上一课我们学会了<strong>用字母表示数</strong>：字母是给「一类数」占的位置。可是光有一个字母 $x$ 还不够用。买书这件事，真正要付的钱不是「$x$ 本」这么简单——每本 $5$ 元，还要再加 $2$ 元邮费。这里有一次乘法、一次加法，要把它们一起写清楚。</p>
+<p>于是我们需要把数和字母<strong>用运算连起来</strong>，写成一个式子：买 $x$ 本、每本 $5$ 元、再加 $2$ 元邮费，一共 $5x+2$ 元。这样，规律一次写死了：$x$ 是几，就照这个式子算几。</p>
+<p>但写出来只是第一步。老板真正想知道的是「买 $3$ 本要付多少钱」——这就要求我们能把 $x$ 换成一个<strong>具体的数</strong>，把整个式子算成一个确定的钱数。本课要装进脑子里的，就是这两件事：怎么把量写成式子，以及给字母一个数、把式子算出一个值。</p>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>买书每本 $5$ 元、再加 $2$ 元邮费，买 $x$ 本一共要付多少元？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5x+2$</span><span class="sr-p-opt"><b>B.</b> $5x-2$</span><span class="sr-p-opt"><b>C.</b> $2x+5$</span><span class="sr-p-opt"><b>D.</b> $5+2$</span></div></li>
+      <li>买书这件事里，除了每本的书钱，还要再加几元邮费？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2 元</span><span class="sr-p-opt"><b>B.</b> 5 元</span><span class="sr-p-opt"><b>C.</b> 7 元</span><span class="sr-p-opt"><b>D.</b> 0 元</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+<h3>一、什么是代数式</h3>
+<p>把数、字母，用加、减、乘、除这些运算连起来，得到的式子就叫<span class="sr-term">代数式</span>。$5x+2$ 是代数式，$3a$ 是代数式，单独一个字母 $x$ 也是代数式——它是「什么都没跟它连」的最简单情形。</p>
+<div class="sr-eg">
+      <span class="yes">$3a$、$x+2$、$\dfrac{x}{2}$，以及单独一个字母 $x$——都是代数式。</span>
+      <span class="no">$x+y=5$ 带了等号，它是在说「两边相等」，是一个<strong>等式</strong>，不是代数式。</span>
+      <span class="no">$3+{>}$ 根本不是一个合法的算式（$>$ 不是运算），谈不上代数式。</span>
+    </div>
+<p>一句话记住：代数式是「一个能算出数的写法」，它自己不主张任何相等关系，所以里面<strong>没有等号</strong>。</p>
+<h3>二、求值：把字母换成一个具体的数</h3>
+<p>字母本来就代表数。既然它代表数，我们就可以给它一个<strong>具体的数</strong>，让整个式子变成一道纯算术题，算出一个确定的结果。这个动作叫<span class="sr-term">求值</span>。</p>
+<p>其中最关键的一步——把式子里的字母，换成那个具体的数——叫<span class="sr-term">代入</span>。代入之后式子里再没有字母，只剩数和运算，按有理数的运算顺序算下去，就得到唯一的值。</p>
+<div class="sr-note"><b>为什么可以这样做？</b>因为字母从一开始就是「一类数」的占位符。代入不是变魔术，只是把「一类数」具体成「这一个数」。所以 $x=3$ 时 $5x+2$ 就等于 $5\times 3+2=17$——式子说的规律没变，只是这一次问的是 $x=3$ 这一个数。</div>
+<h3>三、三个书写约定与边界</h3>
+<div class="sr-pitfall"><b>约定一：乘号省略，数字写在字母前，$1a$ 直接写作 $a$。</b>$3\times a$ 通常不写乘号，直接写成 $3a$，读作「$3a$」，意思仍然是 $3\times a$。数字要写在字母前面（写 $3a$，不写 $a3$）。如果字母前面的数字是 $1$，比如 $1\times a$，直接写成 $a$——那个 $1$ 省略不写。</div>
+<div class="sr-pitfall"><b>约定二：除法写成分数线。</b>$x\div 2$ 一般不写除号，而写成 $\dfrac{x}{2}$。这和「$x$ 除以 $2$ 等于 $x$ 乘 $\dfrac{1}{2}$」是一回事，$\dfrac{x}{2}$ 也是一个代数式。</div>
+<div class="sr-pitfall"><b>约定三：带等号的不是代数式；单独一个字母是代数式。</b>$x+y=5$ 有等号，是等式，不是代数式；而单独一个 $x$、单独一个 $3a$，虽然「短」，却是不折不扣的代数式。判断标准只有一个：它是不是一个「能算出数、且不带等号」的写法。</div>
+<h3>四、代入负数：一定要带括号</h3>
+<p>代入一个负数时，要把这个负数<strong>连同它的负号，用括号整个装起来</strong>再代进去，否则符号会算错。比如把 $x=-2$ 代入 $3x$：</p>
+<p>$3x \;=\; 3\times(-2) \;=\; -6$</p>
+<div class="sr-pitfall"><b>陷阱：$3\times-2$ 这种写法是错的。</b>$3x$ 的意思是「$3$ 乘 $x$」，$x$ 这一整个位置现在要放进 $-2$，所以必须写成 $3\times(-2)$。若丢了括号写成 $3-2$，就变成了减法，算出 $1$，完全错了。<strong>括号是在保护「这里代进去的是一个数 $-2$，不是先减后乘」这件事。</strong></div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>$x+y=5$ 带了等号，它属于下面哪一种？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 等式</span><span class="sr-p-opt"><b>B.</b> 代数式</span><span class="sr-p-opt"><b>C.</b> 单独一个字母</span><span class="sr-p-opt"><b>D.</b> 分数线</span></div></li>
+      <li>按本卡的例子，当 $x=3$ 时，$5x+2$ 等于多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 15</span><span class="sr-p-opt"><b>B.</b> 17</span><span class="sr-p-opt"><b>C.</b> 25</span><span class="sr-p-opt"><b>D.</b> 10</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+<div class="sr-example">
+      <div class="sr-example-h">例 1（把情境写成代数式）</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>一支笔 $3$ 元，买 $n$ 支，再加 $5$ 元一个笔袋。一共花多少钱？用代数式表示。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>$n$ 支笔的钱：每支 $3$ 元，写成 $3\times n$，按约定省略乘号即 $3n$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>再加一个 $5$ 元的笔袋，用加法连起来。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>一共 $3n+5$ 元。这是一个代数式，没有等号。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 2（给定字母的值求值）</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>当 $x=4$ 时，求 $3x+1$ 的值。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>代入：把 $x$ 换成 $4$，$3x+1 = 3\times 4 + 1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>按运算顺序，先乘后加：$3\times 4 = 12$，再 $12+1=13$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>$3x+1$ 在 $x=4$ 时的值是 $13$。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 3（代入负数，注意括号）</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>当 $x=-2$ 时，求 $2x-1$ 的值。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>代入时把 $-2$ 用括号装起来：$2x-1 = 2\times(-2)-1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>先算乘法：$2\times(-2)=-4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">3</span><span>再算减法：$-4-1=-5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>$2x-1$ 在 $x=-2$ 时的值是 $-5$。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 4（代入分数，用分数线约定）</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>当 $x=6$ 时，求 $\dfrac{x}{2}+1$ 的值。</span></div>
+      <div class="sr-step"><span class="sr-step-n">1</span><span>$\dfrac{x}{2}$ 就是 $x\div 2$。代入 $x=6$：$\dfrac{6}{2}+1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">2</span><span>$\dfrac{6}{2}=3$，再 $3+1=4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>值是 $4$。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 5（说理：为什么代入 $-2$ 必须写括号）</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>把 $x=-2$ 代入 $3x$，为什么要写成 $3\times(-2)$，不能写成 $3\times-2$ 或 $3-2$？</span></div>
+      <div class="sr-step"><span class="sr-step-n">理</span><span>$3x$ 的意思是「$3$ 乘 $x$」，$x$ 这一整个位置代表一个数，现在这个数是 $-2$。要保证代进去的是「一个数 $-2$」，就得把它整体括起来：$3\times(-2)$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">辨</span><span>写成 $3-2$ 就把乘法悄悄改成了减法，结果 $1$，错了；正确结果是 $3\times(-2)=-6$。括号保护的正是「这是一个数，且和 $3$ 之间是乘法」这两件事。</span></div>
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>例 2 中，当 $x=4$ 时，$3x+1$ 的值是多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $13$</span><span class="sr-p-opt"><b>B.</b> $12$</span><span class="sr-p-opt"><b>C.</b> $11$</span><span class="sr-p-opt"><b>D.</b> $7$</span></div></li>
+      <li>例 3 中，当 $x=-2$ 时，$2x-1$ 的值是多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> -5</span><span class="sr-p-opt"><b>C.</b> -3</span><span class="sr-p-opt"><b>D.</b> -4</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+<ul class="sr-links">
+      <li><b>往回看 · 用字母表示数：</b>上一课让字母替一类数占位；这一课就是把这些字母和数，用运算连成一整个式子——代数式正是「用字母表示数」的自然延续。</li>
+      <li><b>往回看 · 有理数运算：</b>求值的第二步没有新东西，代入之后就是在做有理数的加减乘除。代入负数带括号、先乘后加，用的全是有理数的老规矩。</li>
+      <li><b>往后看 · 代数式的结构：</b>后面会进一步研究一个代数式内部是怎么搭起来的（怎样按加减、按乘法把它拆开看），以及怎样把它化得更简单。今天先把「什么是代数式、怎样给它求值」立稳，后面才有东西可拆。</li>
+    </ul>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>本卡「往后看」说后面会进一步研究什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 代数式的结构</span><span class="sr-p-opt"><b>B.</b> 用字母表示数</span><span class="sr-p-opt"><b>C.</b> 有理数运算</span><span class="sr-p-opt"><b>D.</b> 方程的解法</span></div></li>
+      <li>本卡说求值的第二步（代入之后）其实就是在做什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 有理数的加减乘除</span><span class="sr-p-opt"><b>B.</b> 解一个方程</span><span class="sr-p-opt"><b>C.</b> 画函数图象</span><span class="sr-p-opt"><b>D.</b> 无理数的运算</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+<ol class="sr-oral">
+      <li>$\dfrac{x}{2}$ 是代数式吗？$x+y=5$ 呢？为什么？
+        <div class="sr-answer">$\dfrac{x}{2}$ 是代数式——它是数和字母用除法连成的、能算出数的写法，没有等号。$x+y=5$ 不是代数式，它带等号，是等式。</div></li>
+      <li>单独写一个 $x$，它是代数式吗？
+        <div class="sr-answer">是。代数式不要求「长」，单独一个字母就是最简单的代数式。</div></li>
+      <li>把 $x=-3$ 代入 $2x-1$，第一步该写成什么？
+        <div class="sr-answer">写成 $2\times(-3)-1$。代入负数要用括号把 $-3$ 整个装起来，不能写成 $2\times-3-1$ 或 $2-3-1$。</div></li>
+      <li>$1\cdot a$（就是 $1\times a$）一般写成什么？$3\times a$ 呢？
+        <div class="sr-answer">$1\times a$ 写成 $a$（前面的 $1$ 省略不写）；$3\times a$ 写成 $3a$（省略乘号，数字写在字母前面）。</div></li>
+      <li>「求值」这个动作，一句话说清是在做什么？
+        <div class="sr-answer">给字母一个具体的数（代入），把式子变成纯算术题，算出唯一的一个值。</div></li>
+      <li>$x\div 2$ 按书写约定应写成什么？它还是代数式吗？
+        <div class="sr-answer">写成 $\dfrac{x}{2}$。它仍然是代数式——除法用分数线记，没有等号。</div></li>
+    </ol>
+  </section>
+
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> 下面哪一个是代数式？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x+y=5$</span><span class="sr-p-opt"><b>B.</b> $3a+2$</span><span class="sr-p-opt"><b>C.</b> $5&gt;3$</span><span class="sr-p-opt"><b>D.</b> $7=7$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 单独写一个字母 $x$，它是代数式吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是，它是最简单的代数式</span><span class="sr-p-opt"><b>B.</b> 不是，太短了不算</span><span class="sr-p-opt"><b>C.</b> 不是，代数式至少要有两个数</span><span class="sr-p-opt"><b>D.</b> 不是，必须带运算符号才算</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $\dfrac{x}{2}$ 表示的意思是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x\div 2$</span><span class="sr-p-opt"><b>B.</b> $2\div x$</span><span class="sr-p-opt"><b>C.</b> $x\times 2$</span><span class="sr-p-opt"><b>D.</b> $x-2$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $3a$ 的意思是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3\times a$</span><span class="sr-p-opt"><b>B.</b> $3+a$</span><span class="sr-p-opt"><b>C.</b> $a-3$</span><span class="sr-p-opt"><b>D.</b> $3\div a$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $x\div 2$ 按书写约定应写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $\dfrac{x}{2}$</span><span class="sr-p-opt"><b>B.</b> $2x$</span><span class="sr-p-opt"><b>C.</b> $\dfrac{2}{x}$</span><span class="sr-p-opt"><b>D.</b> $x2$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $1\times a$（即 $1a$）按书写约定应写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $a$</span><span class="sr-p-opt"><b>B.</b> $1a$</span><span class="sr-p-opt"><b>C.</b> $a1$</span><span class="sr-p-opt"><b>D.</b> $a+1$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 当 $x=4$ 时，$3x+1$ 的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $13$</span><span class="sr-p-opt"><b>B.</b> $12$</span><span class="sr-p-opt"><b>C.</b> $15$</span><span class="sr-p-opt"><b>D.</b> $7$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 当 $x=-2$ 时，$2x-1$ 的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-5$</span><span class="sr-p-opt"><b>B.</b> $3$</span><span class="sr-p-opt"><b>C.</b> $-4$</span><span class="sr-p-opt"><b>D.</b> $-1$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 当 $x=6$ 时，$\dfrac{x}{2}+1$ 的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $4$</span><span class="sr-p-opt"><b>B.</b> $3$</span><span class="sr-p-opt"><b>C.</b> $13$</span><span class="sr-p-opt"><b>D.</b> $\dfrac{7}{2}$</span></div></li>
+      <li><span class="sr-ptype">表示</span> 每本书 $5$ 元，买 $x$ 本，再加 $2$ 元邮费。一共花的钱用代数式表示是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5x+2$</span><span class="sr-p-opt"><b>B.</b> $5+x+2$</span><span class="sr-p-opt"><b>C.</b> $2x+5$</span><span class="sr-p-opt"><b>D.</b> $5(x+2)$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 当 $y=3$ 时，$4y-2$ 的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $10$</span><span class="sr-p-opt"><b>B.</b> $12$</span><span class="sr-p-opt"><b>C.</b> $5$</span><span class="sr-p-opt"><b>D.</b> $11$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 把 $x=-3$ 代入 $2x$，下面哪种写法是对的？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $2\times(-3)$</span><span class="sr-p-opt"><b>B.</b> $2\times-3$</span><span class="sr-p-opt"><b>C.</b> $2-3$</span><span class="sr-p-opt"><b>D.</b> $2\cdot 3$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> $a\times 3$ 按书写约定应写成 $3a$。下面哪个写法是对的？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3a$</span><span class="sr-p-opt"><b>B.</b> $a3$</span><span class="sr-p-opt"><b>C.</b> $a\times 3$</span><span class="sr-p-opt"><b>D.</b> $3+a$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明说：「$x+y=5$ 是一个代数式。」他说得对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不对，它带等号，是等式不是代数式</span><span class="sr-p-opt"><b>B.</b> 对，它里面有字母也有数</span><span class="sr-p-opt"><b>C.</b> 对，它能算出结果 $5$</span><span class="sr-p-opt"><b>D.</b> 不对，因为它有两个字母</span></div></li>
+      <li><span class="sr-ptype">说理</span> 把 $x=-2$ 代入 $3x$，为什么要写成 $3\times(-2)$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为 $x$ 这个位置代表一个数，把 $-2$ 整个括起来才不会把乘法变成减法</span><span class="sr-p-opt"><b>B.</b> 因为负数一定要写括号，正数就不用</span><span class="sr-p-opt"><b>C.</b> 因为加了括号能让结果变大</span><span class="sr-p-opt"><b>D.</b> 因为不写括号就算不出结果</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么 $x+y=5$ 不是代数式？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为它带等号，在主张两边相等，是等式</span><span class="sr-p-opt"><b>B.</b> 因为它有两个字母，代数式只能有一个字母</span><span class="sr-p-opt"><b>C.</b> 因为它的值是 $5$，太具体了</span><span class="sr-p-opt"><b>D.</b> 因为字母不能相加</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么单独一个字母 $x$ 也算代数式？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为代数式是「能算出数、不带等号」的写法，$x$ 就是最简单的一种</span><span class="sr-p-opt"><b>B.</b> 因为 $x$ 后面其实省略了 $+0$</span><span class="sr-p-opt"><b>C.</b> 因为所有字母都等于某个固定的数</span><span class="sr-p-opt"><b>D.</b> 因为 $x$ 其实就等于 $1$</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> $5m$ 表示的意思是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $m$ 的 $5$ 倍，即 $5\times m$</span><span class="sr-p-opt"><b>B.</b> $5$ 与 $m$ 相加</span><span class="sr-p-opt"><b>C.</b> 一个叫「$5m$」的新数</span><span class="sr-p-opt"><b>D.</b> $m$ 除以 $5$</span></div></li>
+      <li><span class="sr-ptype">表示</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 用字母表示「任意一个数 $a$ 的相反数」，应写成？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-a$</span><span class="sr-p-opt"><b>B.</b> $a$</span><span class="sr-p-opt"><b>C.</b> $\dfrac{1}{a}$</span><span class="sr-p-opt"><b>D.</b> $a-1$</span></div></li>
+      <li><span class="sr-ptype">说理</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 用字母表示数时，字母 $x$ 可以代表负数吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 可以，字母代表「一类数」，负数也在其中</span><span class="sr-p-opt"><b>B.</b> 不可以，字母只能代表正整数</span><span class="sr-p-opt"><b>C.</b> 不可以，字母只能代表 $0$ 以上的数</span><span class="sr-p-opt"><b>D.</b> 只有写了负号的字母才可以</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>
