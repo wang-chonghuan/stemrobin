@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.1 未知数是什么 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+
+  <style>
+    /* JSONB-first read-check projection (self-contained) */
+    .sr-readcheck { margin-top:14px; border-top:1px dashed var(--sr-line); padding-top:10px; }
+    .sr-rc-label { font:700 11px var(--sr-mono); color:var(--sr-green-deep); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+    ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+    ol.sr-practice > li:first-child { border-top:0; }
+    ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+    .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+    .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
+    .sr-p-opt { font-size:14px; }
+    .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }
+    @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
+  </style>
+</head>
+<body>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 方程和不等式 · 概念课</div>
+    <h1 class="sr-l-title">3.1 未知数是什么</h1>
+    <div class="sr-l-concept">未知数是题目里暂时不知道、但可以用一个符号先占位的量；字母只是它的名字牌，不是答案本身。</div>
+    <div class="sr-l-chips"><span class="sr-chip">概念课</span></div>
+  </header>
+
+  <!--
+    Compose numbered sections here per the lesson's genre (see lesson-contract.md):
+
+    概念课: motivation / model / anatomy / boundary / connections / oral
+    方法课: motivation / explain / examples / connections / oral
+
+    Each section:
+      <section data-sr-section="ANCHOR">
+        <div class="sr-sec-label"><span class="sr-sec-num">N</span><span class="sr-sec-name">中文名</span></div>
+        ...content...
+      </section>
+
+    NO practice section — exercises live in the deck (DB), not in the 課文.
+  -->
+    <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要它</span></div>
+<p>盒子里有一些棋子。拿走 $3$ 枚后，正好剩 $8$ 枚。盒子里原来有多少枚？</p>
+<p>我们还不知道原来的数量，但这个数量不是不存在。它是一个确定的数，只是题目暂时没有把它告诉我们。数学里，像这样<strong>暂时不知道、需要找出来的量</strong>叫 <span class="sr-term">未知数</span>。</p>
+<div class="sr-eg">
+      <strong>先占位，再求值。</strong><br>
+      可以先写成 $x-3=8$。这里 $x$ 不是答案；$x$ 只是替那盒棋子的原来数量占了一个位置。
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>本卡里，把“暂时不知道、需要找出来的量”叫作什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 未知数</span><span class="sr-p-opt"><b>B.</b> 已知数</span><span class="sr-p-opt"><b>C.</b> 代数式</span><span class="sr-p-opt"><b>D.</b> 方程</span></div></li>
+      <li>盒子里拿走 $3$ 枚后，正好剩下多少枚？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 11 枚</span><span class="sr-p-opt"><b>B.</b> 8 枚</span><span class="sr-p-opt"><b>C.</b> 14 枚</span><span class="sr-p-opt"><b>D.</b> 3 枚</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="model">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">建立概念</span></div>
+<p>本阶段会把两个代数式放在等号两边，形成一个必须成立的条件。像 $x-3=8$：左边是 $x-3$，右边是 $8$。$x$ 代表的量还不知道；以后我们会在等号两边同步变形，让它单独站出来。</p>
+<p>今天先认清这个条件里的三个对象：未知的量、写在纸上的字母标签、以及最后让左右两边相等的数值。</p>
+<svg class="sr-map" viewBox="0 0 720 250" role="img" aria-label="未知数、字母和数值的关系图">
+      <rect x="36" y="42" width="188" height="156" rx="12" fill="#E1F1F5" stroke="#0E7C9B" stroke-width="2"/>
+      <text x="130" y="84" text-anchor="middle" font-size="18" font-weight="700" fill="#0A5E76">题目里的量</text>
+      <text x="130" y="122" text-anchor="middle" font-size="19" fill="#15201F">原来有多少枚？</text>
+      <text x="130" y="158" text-anchor="middle" font-size="15" fill="#4C5A58">现在还不知道</text>
+      <path d="M225 120 H318" stroke="#0E7C9B" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="324" y="42" width="160" height="156" rx="12" fill="#F5F9F9" stroke="#0E7C9B" stroke-width="2"/>
+      <text x="404" y="84" text-anchor="middle" font-size="18" font-weight="700" fill="#0A5E76">纸上的标签</text>
+      <text x="404" y="134" text-anchor="middle" font-size="42" font-family="monospace" fill="#15201F">x</text>
+      <text x="404" y="170" text-anchor="middle" font-size="14" fill="#4C5A58">表示未知数的字母</text>
+      <path d="M485 120 H578" stroke="#15A06A" stroke-width="3" marker-end="url(#arrow)"/>
+      <rect x="584" y="42" width="100" height="156" rx="12" fill="#E4F6EE" stroke="#15A06A" stroke-width="2"/>
+      <text x="634" y="84" text-anchor="middle" font-size="17" font-weight="700" fill="#0F7D52">找到后</text>
+      <text x="634" y="134" text-anchor="middle" font-size="42" font-family="monospace" fill="#15201F">11</text>
+      <text x="634" y="170" text-anchor="middle" font-size="14" fill="#4C5A58">未知数的值</text>
+      <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#0E7C9B"/></marker></defs>
+    </svg>
+<table class="sr-table">
+      <thead><tr><th>要分清的对象</th><th>在 $x-3=8$ 里</th></tr></thead>
+      <tbody>
+        <tr><td><span class="sr-term">未知数</span></td><td>盒子里原来有多少枚这个量。</td></tr>
+        <tr><td><span class="sr-term">表示未知数的字母</span></td><td>写在纸上的 $x$。</td></tr>
+        <tr><td><span class="sr-term">未知数的值</span></td><td>最后找到的 $11$，因为 $11-3=8$。</td></tr>
+      </tbody>
+    </table>
+<div class="sr-eg">
+      <strong>正例：</strong>$x-3=8$ 既有等号，也有表示未知量的 $x$；它说的是一个需要满足的条件。<br>
+      <strong>反例：</strong>$3+8=11$ 有等号，却没有未知量；$x-3$ 有未知量，却没有等号。两者都还不能告诉我们“哪个数会让这个条件成立”。
+    </div>
+<p>字母可以是 $x$，也可以是 $n$、$a$ 或别的字母。关键不是字母长什么样，而是你有没有先说清它代表哪个未知的量。</p>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>在 $x-3=8$ 里，未知数的值是多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $11$</span><span class="sr-p-opt"><b>B.</b> $8$</span><span class="sr-p-opt"><b>C.</b> $3$</span><span class="sr-p-opt"><b>D.</b> $x$</span></div></li>
+      <li>本卡说反例 $3+8=11$ 有等号，但缺少什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 未知量</span><span class="sr-p-opt"><b>B.</b> 等号</span><span class="sr-p-opt"><b>C.</b> 数值</span><span class="sr-p-opt"><b>D.</b> 加号</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="anatomy">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">拆给你看</span></div>
+<div class="sr-example">
+      <h3>例 1：找一段路有多长</h3>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>一段路剪去 $4$ 米后还剩 $9$ 米。原来长多少米？</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>设原来长 $m$ 米。这里未知数是“原来的长度”，$m$ 是表示它的字母。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>条件写成 $m-4=9$。试 $m=13$：$13-4=9$，成立，所以未知数的值是 $13$。</span></div>
+    </div>
+<div class="sr-example">
+      <h3>例 2：不是所有字母都在找答案</h3>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>“每本笔记本 $p$ 元，买 $3$ 本要 $3p$ 元。”</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>这里还没有告诉我们具体买哪一种笔记本，也没有给出必须满足的条件。$p$ 可以先表示价格，但此刻没有一个唯一的值要找。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>若再说“$3p=18$”，才有一个需要检查的未知数；$p=6$ 会让等式成立。</span></div>
+    </div>
+<div class="sr-example">
+      <h3>例 3：用等号把条件说完整</h3>
+      <div class="sr-step"><span class="sr-step-n">①</span><span>$n+5$ 只是一个代数式，像一句没有说完的话。</span></div>
+      <div class="sr-step"><span class="sr-step-n">②</span><span>$n+5=12$ 有 <span class="sr-term">等号</span>，两边分别叫 <span class="sr-term">方程左边</span> 和 <span class="sr-term">方程右边</span>。</span></div>
+      <div class="sr-step"><span class="sr-step-n">③</span><span>这种带未知数的等式叫 <span class="sr-term">方程</span>。$n=7$ 时左右同为 $12$，所以 $7$ 是这个方程的 <span class="sr-term">方程的解</span>，也就是未知数的值。</span></div>
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>例 3 中，像 $n+5=12$ 这种带未知数的等式叫什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 方程</span><span class="sr-p-opt"><b>B.</b> 代数式</span><span class="sr-p-opt"><b>C.</b> 等式</span><span class="sr-p-opt"><b>D.</b> 未知数</span></div></li>
+      <li>例 1 中，条件写成 $m-4=9$，未知数的值是多少？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5</span><span class="sr-p-opt"><b>B.</b> 13</span><span class="sr-p-opt"><b>C.</b> 36</span><span class="sr-p-opt"><b>D.</b> 4</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="boundary">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">边界与陷阱</span></div>
+<div class="sr-pitfall"><b>陷阱 1：</b>“$x$ 就是未知数。”不够准确。$x$ 是写在纸上的标签；未知数是它所代表的、还不知道的量。</div>
+<div class="sr-pitfall"><b>陷阱 2：</b>“题目里的每个数都是未知数。”不对。题目已经给出的 $3$、$8$、$18$ 是已知条件，不需要再找。</div>
+<div class="sr-pitfall"><b>陷阱 3：</b>“我觉得 $x=5$，所以答案就是 $5$。”不够。必须放回原条件检查。例如在 $x+3=8$ 中，$5+3=8$，才说明猜对了。</div>
+<div class="sr-pitfall"><b>陷阱 4：</b>“只有 $x$ 能表示未知数。”不对。$n-2=6$ 里的 $n$ 也可以表示未知数；先声明“设这个数为 $n$”即可。</div>
+<div class="sr-pitfall"><b>陷阱 5：</b>$3+4=7$ 是等式，但没有未知数；$x+3$ 含有未知数，却没有等号。它们都不是“带未知数的等式”。</div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>陷阱 2 里，题目已经给出、属于已知条件、不需要再找的是哪些数？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3$、$8$、$18$</span><span class="sr-p-opt"><b>B.</b> $x$、$n$</span><span class="sr-p-opt"><b>C.</b> $5$、$7$</span><span class="sr-p-opt"><b>D.</b> $x$、$3$</span></div></li>
+      <li>陷阱 1 说“$x$ 是什么”？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 写在纸上的标签</span><span class="sr-p-opt"><b>B.</b> 还不知道的量</span><span class="sr-p-opt"><b>C.</b> 方程的解</span><span class="sr-p-opt"><b>D.</b> 已知条件</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+<p>前一阶段里，你已经用字母表示数、写代数式、代入求值。现在多了一种角色：字母可以暂时替一个<strong>尚未知道但要找出的量</strong>站位。</p>
+<p>下一课会研究：当一个方程两边同时加上或减去同一个东西，为什么原来的未知数的值不变。那时我们会真正开始移动条件；今天先把“到底在找谁”认准。</p>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>下一课研究：方程两边同时加上或减去同一个东西时，什么不变？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 未知数的值</span><span class="sr-p-opt"><b>B.</b> 纸上的字母</span><span class="sr-p-opt"><b>C.</b> 等号</span><span class="sr-p-opt"><b>D.</b> 方程左边</span></div></li>
+      <li>本卡说字母现在多了一种角色：可以暂时替一个尚未知道但要找出的量做什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 占一个位置</span><span class="sr-p-opt"><b>B.</b> 做计算</span><span class="sr-p-opt"><b>C.</b> 起名字</span><span class="sr-p-opt"><b>D.</b> 做装饰</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">概念口试</span></div>
+<ol class="sr-oral">
+      <li>“一根绳子剪去 $6$ 厘米后还剩 $10$ 厘米。”这里未知的量是什么？
+        <details class="sr-answer"><summary>回答</summary><div>绳子原来的长度。可以用一个字母，例如 $l$，来表示它。</div></details>
+      </li>
+      <li>在 $a+2=9$ 中，$a$、未知数和未知数的值分别是什么？
+        <details class="sr-answer"><summary>回答</summary><div>$a$ 是表示未知数的字母；未知数是还不知道的那个数；它的值是 $7$。</div></details>
+      </li>
+      <li>为什么不能只说“我猜 $n=4$”就结束？
+        <details class="sr-answer"><summary>回答</summary><div>因为要把 $4$ 放回原条件检查；只有原条件成立，$4$ 才是这个未知数的值。</div></details>
+      </li>
+      <li>$b+1$ 是方程吗？$b+1=6$ 呢？
+        <details class="sr-answer"><summary>回答</summary><div>$b+1$ 只有代数式，没有等号；$b+1=6$ 是带未知数的等式，所以是方程。</div></details>
+      </li>
+      <li>能不能用 $q$ 表示未知数？为什么？
+        <details class="sr-answer"><summary>回答</summary><div>能。字母只是标签；只要先说明 $q$ 代表哪个未知的量即可。</div></details>
+      </li>
+    </ol>
+  </section>
+
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">7</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> “盒子里原来有多少颗糖？”这句话里，未知数指的是哪一个？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 原来糖的数量</span><span class="sr-p-opt"><b>B.</b> 盒子这个字</span><span class="sr-p-opt"><b>C.</b> 糖这个字</span><span class="sr-p-opt"><b>D.</b> 题目里的问号</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $x+3=8$ 里，哪个是表示未知数的字母？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> x</span><span class="sr-p-opt"><b>C.</b> 8</span><span class="sr-p-opt"><b>D.</b> +</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $x+3=8$ 里，题目已经告诉你的数是哪些？用逗号隔开。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 3</span><span class="sr-p-opt"><b>B.</b> 8</span><span class="sr-p-opt"><b>C.</b> 3,8</span><span class="sr-p-opt"><b>D.</b> 3,8,x</span></div></li>
+      <li><span class="sr-ptype">表示</span> “一根绳子剪去 $4$ 米后剩 $9$ 米。”若用 $m$ 表示原来长度，$m$ 表示什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 剪去的长度</span><span class="sr-p-opt"><b>B.</b> 剩下的长度</span><span class="sr-p-opt"><b>C.</b> 字母 m 的形状</span><span class="sr-p-opt"><b>D.</b> 绳子原来的长度</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $3+4=7$ 是方程吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不是，因为没有未知数</span><span class="sr-p-opt"><b>B.</b> 是，因为有等号</span><span class="sr-p-opt"><b>C.</b> 是，因为它是等式</span><span class="sr-p-opt"><b>D.</b> 是，因为结果是 7</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $n+5$ 是方程吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 是，因为有字母 n</span><span class="sr-p-opt"><b>B.</b> 不是，因为没有等号</span><span class="sr-p-opt"><b>C.</b> 是，因为它是代数式</span><span class="sr-p-opt"><b>D.</b> 是，因为 5 是已知数</span></div></li>
+      <li><span class="sr-ptype">表示</span> 想表示“还不知道的苹果个数”，可以用字母 $a$ 吗？回答“可以”或“不可以”。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不可以，未知数只能用 x</span><span class="sr-p-opt"><b>B.</b> 不可以，a 还没算出值</span><span class="sr-p-opt"><b>C.</b> 可以，先说明 a 代表什么</span><span class="sr-p-opt"><b>D.</b> 不可以，字母不能表示数</span></div></li>
+      <li><span class="sr-ptype">表示</span> 一只笔 $6$ 元，买若干支一共 $24$ 元。设买了 $n$ 支，写出条件。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 6+n=24</span><span class="sr-p-opt"><b>B.</b> 24n=6</span><span class="sr-p-opt"><b>C.</b> n=6×24</span><span class="sr-p-opt"><b>D.</b> 6n=24</span></div></li>
+      <li><span class="sr-ptype">操作</span> 检查 $x=5$ 是否满足 $x+3=8$。把左边算出的数填出来。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 8</span><span class="sr-p-opt"><b>B.</b> 2</span><span class="sr-p-opt"><b>C.</b> 5</span><span class="sr-p-opt"><b>D.</b> 15</span></div></li>
+      <li><span class="sr-ptype">操作</span> 在 $m-4=9$ 中，未知数的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5</span><span class="sr-p-opt"><b>B.</b> 13</span><span class="sr-p-opt"><b>C.</b> 9</span><span class="sr-p-opt"><b>D.</b> 4</span></div></li>
+      <li><span class="sr-ptype">反推</span> 在 $q+7=15$ 中，$q$ 的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 22</span><span class="sr-p-opt"><b>B.</b> 15</span><span class="sr-p-opt"><b>C.</b> 8</span><span class="sr-p-opt"><b>D.</b> 7</span></div></li>
+      <li><span class="sr-ptype">表示</span> “一个数减去 $2$ 等于 $10$。”用 $t$ 表示这个数，写出方程。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> t+2=10</span><span class="sr-p-opt"><b>B.</b> 2-t=10</span><span class="sr-p-opt"><b>C.</b> t-10=2</span><span class="sr-p-opt"><b>D.</b> t-2=10</span></div></li>
+      <li><span class="sr-ptype">操作</span> 在 $p=12$ 中，未知数的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 12</span><span class="sr-p-opt"><b>B.</b> 0</span><span class="sr-p-opt"><b>C.</b> 24</span><span class="sr-p-opt"><b>D.</b> 6</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小明说：“在 $x+3=8$ 中，未知数就是字母 x，所以 x 的值也是 x。”哪一句指出了错误？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> x 不是未知数的字母</span><span class="sr-p-opt"><b>B.</b> x 是标签，未知数的值是满足条件的数</span><span class="sr-p-opt"><b>C.</b> 8 不是已知数</span><span class="sr-p-opt"><b>D.</b> 3 才是未知数</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小红在 $n-2=6$ 中猜 $n=7$，说“看起来差不多”。她缺少哪一步？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 把 n 换成 x</span><span class="sr-p-opt"><b>B.</b> 把等号删掉</span><span class="sr-p-opt"><b>C.</b> 把 7 放回原条件检查</span><span class="sr-p-opt"><b>D.</b> 再多猜几个数</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 下面哪一句把“未知数”说对了？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 未知数一定写成 x</span><span class="sr-p-opt"><b>B.</b> 题目里的每个数字都是未知数</span><span class="sr-p-opt"><b>C.</b> 未知数就是等号右边的答案</span><span class="sr-p-opt"><b>D.</b> 未知数是题目里还不知道、需要找出的量</span></div></li>
+      <li><span class="sr-ptype">说理</span> 解释：为什么在 $a+4=10$ 中，不能说“a 就是 6”，而要说“a 的值是 6”？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $a$ 是写在式子里的字母，用来表示未知数</span><span class="sr-p-opt"><b>B.</b> $a$ 就是 6，只是换种说法</span><span class="sr-p-opt"><b>C.</b> $6$ 是字母 a 的名字</span><span class="sr-p-opt"><b>D.</b> $a$ 是等号左边的整个式子</span></div></li>
+      <li><span class="sr-ptype">说理</span> 给同学解释：为什么 $b+2$ 不是方程，而 $b+2=9$ 是方程？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $b+2$ 和 $b+2=9$ 都是方程，只是写法不同</span><span class="sr-p-opt"><b>B.</b> $b+2$ 只是一个代数式，没有等号，没说出要满足什么条件</span><span class="sr-p-opt"><b>C.</b> $b+2$ 不是方程，因为它没有未知数</span><span class="sr-p-opt"><b>D.</b> $b+2$ 不是方程，因为它没有数字</span></div></li>
+      <li><span class="sr-ptype">说理</span> “设一个数为 n”这句话里，n 表示什么？为什么可以不用 x？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 只有 x 能表示未知数，n 只是临时代替</span><span class="sr-p-opt"><b>B.</b> $n$ 就是已经算出的那个数的值</span><span class="sr-p-opt"><b>C.</b> $n$ 是表示未知数的字母，它代表题目中还不知道的那个数</span><span class="sr-p-opt"><b>D.</b> 换成 x 就变成另一个未知数了</span></div></li>
+      <li><span class="sr-ptype">说理</span> 在“盒子里原来有多少颗糖，拿走 3 颗后剩 8 颗”这个问题中，说清楚：未知数、表示它的字母、未知数的值分别是什么。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 未知数是拿走的 3 颗糖</span><span class="sr-p-opt"><b>B.</b> 未知数是剩下的 8 颗糖</span><span class="sr-p-opt"><b>C.</b> 未知数是用来表示的字母 x</span><span class="sr-p-opt"><b>D.</b> 未知数是盒子里原来的糖数</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.6 去括号解方程 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+
+  <style>
+    /* JSONB-first read-check projection (self-contained) */
+    .sr-readcheck { margin-top:14px; border-top:1px dashed var(--sr-line); padding-top:10px; }
+    .sr-rc-label { font:700 11px var(--sr-mono); color:var(--sr-green-deep); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+    ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+    ol.sr-practice > li:first-child { border-top:0; }
+    ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+    .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+    .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
+    .sr-p-opt { font-size:14px; }
+    .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }
+    @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
+  </style>
+</head>
+<body>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 方程和不等式 · 方法课</div>
+    <h1 class="sr-l-title">3.6 去括号解方程</h1>
+    <div class="sr-l-concept">带括号的一元一次方程先用分配律把括号拆开，化成已经会解的普通一元一次方程。</div>
+    <div class="sr-l-chips"><span class="sr-chip">方法课</span></div>
+  </header>
+
+  <!--
+    Compose numbered sections here per the lesson's genre (see lesson-contract.md):
+
+    概念课: motivation / model / anatomy / boundary / connections / oral
+    方法课: motivation / explain / examples / connections / oral
+
+    Each section:
+      <section data-sr-section="ANCHOR">
+        <div class="sr-sec-label"><span class="sr-sec-num">N</span><span class="sr-sec-name">中文名</span></div>
+        ...content...
+      </section>
+
+    NO practice section — exercises live in the deck (DB), not in the 課文.
+  -->
+    <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要它</span></div>
+<p>上一课我们练熟了一条固定路线：合并同类项 → 移项 → 除系数 → 检验。只要方程长成 $3x+2=x+8$ 那样——每一项要么是含未知数的项、要么是常数项——这条路线就一路走到底。</p>
+<p>可现在来了一个新面孔：$2(x+3)=10$。它也是一元一次方程，可路线的第一步就卡住了。左边是 $2(x+3)$，你没法把它跟右边的常数当作同类项去合并，也没法直接把括号里的 $x$ 单独移到另一边——$x$ 被括号连同 $2$ 一起"包"住了，还没露出来。</p>
+<p>缺的其实不是新路线，而是一步<strong>"开路"的动作</strong>：先把括号拆掉，让里面的每一项都露出来、变成一项一项排好的样子。括号一拆，方程就退回成我们已经会解的普通模样，老路线立刻又能用。</p>
+<div class="sr-note"><b>驱动问题：</b>像 $2(x+3)=10$、$3(x-1)=x+5$ 这种带括号的方程，怎样先把它变回"每一项都露在外面"的普通一元一次方程，再用已经学过的路线求解？</div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>上一课那条固定路线的第一步是什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 合并同类项</span><span class="sr-p-opt"><b>B.</b> 去括号</span><span class="sr-p-opt"><b>C.</b> 移项</span><span class="sr-p-opt"><b>D.</b> 除系数</span></div></li>
+      <li>本课作为「新面孔」引入的带括号方程是哪一个？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $2x+3=10$</span><span class="sr-p-opt"><b>B.</b> $2(x+3)=10$</span><span class="sr-p-opt"><b>C.</b> $x+3=10$</span><span class="sr-p-opt"><b>D.</b> $2(x+3)$</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="explain">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">讲解</span></div>
+<h3>拆括号靠的是乘法分配律</h3>
+<p>拆括号不是新发明的招式，它就是我们早已学过的<strong>乘法分配律</strong>在方程里出场。还记得吗：一个数乘一个括号，等于这个数分别乘括号里的每一项，再把结果加起来——</p>
+<p>$a(b+c)=ab+ac$</p>
+<p>把括号里的项一项一项都乘一遍、拆成不带括号的等价写法，这个化简动作就叫<span class="sr-term">去括号</span>。用去括号把带括号的方程改写成普通一元一次方程、再按老路线求解，这整套方法就是<span class="sr-term">去括号解方程</span>。</p>
+<p>先看最干净的一步：</p>
+<p>$2(x+3)=2\cdot x+2\cdot 3=2x+6$</p>
+<p>于是 $2(x+3)=10$ 就变回了 $2x+6=10$——括号没了，每一项都露在外面，这正是上一课那条路线认得的样子。</p>
+    <figure class="sr-fig"><svg viewBox="0 0 700 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="乘法分配律把括号外的因数分给括号内每一项的示意图">
+        <defs>
+          <marker id="arw" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L9,4.5 L0,9 z" fill="#0A5E76"/>
+          </marker>
+        </defs>
+        <g font-family="Noto Sans SC, sans-serif">
+          <text x="350" y="30" text-anchor="middle" font-size="13" fill="#8A9795">括号外的数，要分给括号里的每一项——一项都不能漏</text>
+
+          <text x="150" y="105" text-anchor="middle" font-size="30" font-weight="700" fill="#15201F">2 ( x + 3 )</text>
+
+          <!-- 2 -> x -->
+          <path d="M108 118 C 108 150, 300 150, 470 118" fill="none" stroke="#0E7C9B" stroke-width="2" marker-end="url(#arw)"/>
+          <!-- 2 -> 3 -->
+          <path d="M108 118 C 108 172, 420 172, 560 118" fill="none" stroke="#15A06A" stroke-width="2" marker-end="url(#arw)"/>
+
+          <text x="470" y="100" text-anchor="middle" font-size="26" font-weight="700" fill="#0A5E76">2·x</text>
+          <text x="525" y="100" text-anchor="middle" font-size="26" font-weight="700" fill="#15201F">+</text>
+          <text x="575" y="100" text-anchor="middle" font-size="26" font-weight="700" fill="#0F7D52">2·3</text>
+
+          <text x="520" y="150" text-anchor="middle" font-size="15" fill="#4C5A58">= 2x + 6</text>
+        </g>
+      </svg><figcaption>括号外的 $2$ 要分别乘括号里的 $x$ 和 $3$，两条线一条都不能少。</figcaption></figure>
+<h3>为什么可以这么拆：去括号是等价变形</h3>
+<p>我们敢把 $2(x+3)$ 直接换写成 $2x+6$，靠的不是"规定"，而是分配律保证：不论 $x$ 取什么值，$2(x+3)$ 和 $2x+6$ 算出来永远是同一个数。所以这只是把方程<strong>一边的代数式</strong>换了个等价的写法，方程说的还是同一件事，它的解一个都不变。这一点很重要，后面第四个陷阱会专门讲清楚。</p>
+<h3>括号前是减号：里面每一项都要变号</h3>
+<p>如果括号前面不是加号而是减号，比如 $8-(x+2)$，可以把这个减号看成"减去整个括号"，也就是乘 $-1$：$8-(x+2)=8+(-1)(x+2)$。把 $-1$ 分给括号里每一项：</p>
+<p>$8-(x+2)=8-x-2$</p>
+<p>注意：括号里的 $x$ 变成 $-x$，$+2$ 变成 $-2$——<strong>括号里的每一项都变了号</strong>，不是只把第一项变号、后面照抄。</p>
+<div class="sr-pitfall"><b>陷阱一（减号要管到底）：</b>$8-(x+2)$ 常被错写成 $8-x+2$——只把 $x$ 变了号，$+2$ 忘了变。减号是"减去整个括号"，括号里<strong>每一项</strong>都要跟着变号。正确的是 $8-x-2$。多项时更要小心：$-(x+2-y)=-x-2+y$，三项全变号。</div>
+<h3>括号前是负系数：把这个负数乘进每一项</h3>
+<p>再复杂一点，括号前是一个负数，比如 $-3(x-2)$。这时要把 $-3$ 这个负系数<strong>完整地</strong>（连同负号）乘进括号里每一项：</p>
+<p>$-3(x-2)=(-3)\cdot x+(-3)\cdot(-2)=-3x+6$</p>
+<p>两处都要盯住符号：$-3$ 乘 $x$ 得 $-3x$；$-3$ 乘 $-2$，负负得正，得 $+6$。</p>
+<div class="sr-pitfall"><b>陷阱二（负系数别只乘第一项）：</b>$-3(x-2)$ 常被错写成 $-3x-2$（负号只乘了 $x$，$-2$ 原样抄下来），或写成 $-3x-6$（忘了负负得正）。负系数是一个整体的因数，要乘进括号里<strong>每一项</strong>，并且每一次乘都按有理数乘法的符号规则算清楚。正确的是 $-3x+6$。</div>
+<h3>两边都有括号：各自先拆，再合并</h3>
+<p>有时等号左右两边都有括号，例如 $2(x+1)=3(x-1)$。办法很简单：<strong>左右两边各自先去括号</strong>，谁也不影响谁；两边都拆干净、各自合并同类项之后，方程就完全退回成普通模样，再走老路线。</p>
+<p>$2(x+1)=3(x-1)\;\Rightarrow\; 2x+2=3x-3$</p>
+<div class="sr-pitfall"><b>陷阱三（两边分开拆，别串味）：</b>两边都有括号时，是"左边拆左边、右边拆右边"，各拆各的。去括号只是把某一边的式子换个写法，不是把左边的数搬去乘右边。先把两边都变成不带括号的样子，再谈移项、合并。</div>
+<h3>去括号是"改写一边"，不是"两边动手"</h3>
+<p>最后一个容易糊涂的地方：去括号和移项、除系数<strong>不是同一类动作</strong>。移项、除系数是"等式两边一起做"的等价变形（等式性质一、性质二）；而去括号只是把<strong>一边</strong>的那个代数式，换成一个恒等于它的写法，另一边碰都没碰。</p>
+<div class="sr-pitfall"><b>陷阱四（别把去括号当成两边加减）：</b>解 $2(x+3)=10$ 时，有人把左边拆成 $2x+6$ 的同时，觉得"右边也得跟着加个 $6$"，写成 $2x+6=16$——这是把去括号误当成了"等式两边同加同减"。其实去括号只改写了左边这一个代数式的样子，$2(x+3)$ 和 $2x+6$ 本来就相等，右边的 $10$ 一动都不该动。正确的第一行是 $2x+6=10$。</div>
+<h3>合起来：去括号解方程的完整路线</h3>
+<p>把新动作接到老路线的最前面，就得到一条对带括号方程都管用的路线：</p>
+    <figure class="sr-fig"><svg viewBox="0 0 700 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="去括号解方程的五步路线图">
+        <defs>
+          <marker id="arw2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto">
+            <path d="M0,0 L9,4.5 L0,9 z" fill="#0A5E76"/>
+          </marker>
+        </defs>
+        <g font-family="Noto Sans SC, sans-serif" font-size="13">
+          <rect x="10"  y="46" width="120" height="58" rx="9" fill="#E4F6EE" stroke="#15A06A"/>
+          <text x="70"  y="70" text-anchor="middle" font-weight="700" fill="#0F7D52">① 去括号</text>
+          <text x="70"  y="90" text-anchor="middle" fill="#4C5A58" font-size="11">分配律拆开</text>
+
+          <rect x="152" y="46" width="120" height="58" rx="9" fill="#E1F1F5" stroke="#0E7C9B"/>
+          <text x="212" y="70" text-anchor="middle" font-weight="700" fill="#0A5E76">② 合并</text>
+          <text x="212" y="90" text-anchor="middle" fill="#4C5A58" font-size="11">两边各变短</text>
+
+          <rect x="294" y="46" width="120" height="58" rx="9" fill="#E1F1F5" stroke="#0E7C9B"/>
+          <text x="354" y="70" text-anchor="middle" font-weight="700" fill="#0A5E76">③ 移项</text>
+          <text x="354" y="90" text-anchor="middle" fill="#4C5A58" font-size="11">未知数归一边</text>
+
+          <rect x="436" y="46" width="120" height="58" rx="9" fill="#E1F1F5" stroke="#0E7C9B"/>
+          <text x="496" y="70" text-anchor="middle" font-weight="700" fill="#0A5E76">④ 除系数</text>
+          <text x="496" y="90" text-anchor="middle" fill="#4C5A58" font-size="11">系数变成 1</text>
+
+          <rect x="578" y="46" width="112" height="58" rx="9" fill="#E4F6EE" stroke="#15A06A"/>
+          <text x="634" y="70" text-anchor="middle" font-weight="700" fill="#0F7D52">⑤ 检验</text>
+          <text x="634" y="90" text-anchor="middle" fill="#4C5A58" font-size="11">代入原方程</text>
+
+          <line x1="130" y1="75" x2="150" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw2)"/>
+          <line x1="272" y1="75" x2="292" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw2)"/>
+          <line x1="414" y1="75" x2="434" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw2)"/>
+          <line x1="556" y1="75" x2="576" y2="75" stroke="#0A5E76" stroke-width="2" marker-end="url(#arw2)"/>
+
+          <text x="350" y="28" text-anchor="middle" font-size="13" fill="#8A9795">只在最前面加了"去括号"一步，后四步就是上一课的老路线</text>
+          <text x="350" y="132" text-anchor="middle" font-size="12" fill="#8A9795">括号拆完，问题就变回已经会解的普通方程</text>
+        </g>
+      </svg><figcaption>去括号只是给老路线加了一个开头：括号一拆，后面全是熟路。</figcaption></figure>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>拆括号靠的是哪一条运算律？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 乘法分配律</span><span class="sr-p-opt"><b>B.</b> 乘法结合律</span><span class="sr-p-opt"><b>C.</b> 加法交换律</span><span class="sr-p-opt"><b>D.</b> 加法结合律</span></div></li>
+      <li>按卡片，$8-(x+2)$ 去括号后正确的写法是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $8-x-2$</span><span class="sr-p-opt"><b>B.</b> $8-x+2$</span><span class="sr-p-opt"><b>C.</b> $8+x-2$</span><span class="sr-p-opt"><b>D.</b> $8+x+2$</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="examples">
+    <div class="sr-sec-label"><span class="sr-sec-num">3</span><span class="sr-sec-name">例题</span></div>
+<div class="sr-example">
+      <div class="sr-example-h">例 1：括号前是正数——最基本的一条</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解 $2(x+3)=10$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">去括号</span><span>用分配律把 $2$ 分给括号里每一项：$2x+6=10$。右边的 $10$ 不动。</span></div>
+      <div class="sr-step"><span class="sr-step-n">移项</span><span>把 $+6$ 移到右边、变号：$2x=10-6$，即 $2x=4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">除系数</span><span>两边同除以 $2$：$x=2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>代入原方程 $2(x+3)=10$：左边 $=2\times(2+3)=2\times5=10$，右边 $=10$，相等。$x=2$ 正确。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 2：括号前是减号——里面两项都变号</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解 $8-(x+2)=3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">去括号</span><span>减号要管到括号里每一项：$8-x-2=3$（$x$ 变 $-x$，$+2$ 变 $-2$）。</span></div>
+      <div class="sr-step"><span class="sr-step-n">合并</span><span>左边 $8-2=6$ 是同类项（都是常数项），合并成 $6-x=3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">移项</span><span>把 $6$ 移到右边、变号：$-x=3-6$，即 $-x=-3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">除系数</span><span>系数是 $-1$，两边同除以 $-1$：$x=3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>代入原方程：左边 $=8-(3+2)=8-5=3$，右边 $=3$，相等。$x=3$ 正确。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 3：括号前是负系数——负号乘进每一项</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解 $-3(x-2)=x+2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">去括号</span><span>把 $-3$ 连同负号乘进括号：$(-3)\cdot x=-3x$，$(-3)\cdot(-2)=+6$，得 $-3x+6=x+2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">移项</span><span>把 $x$ 移到左边（变 $-x$）、把 $6$ 移到右边（变 $-6$）：$-3x-x=2-6$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">合并</span><span>左边 $-3x-x=-4x$，右边 $2-6=-4$：$-4x=-4$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">除系数</span><span>两边同除以 $-4$：$x=1$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>代入原方程：左边 $=-3\times(1-2)=-3\times(-1)=3$，右边 $=1+2=3$，相等。$x=1$ 正确。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 4：两边都有括号——各自先拆</div>
+      <div class="sr-step"><span class="sr-step-n">题</span><span>解 $2(x+1)=3(x-1)$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">去括号</span><span>左边 $2(x+1)=2x+2$，右边 $3(x-1)=3x-3$，各拆各的：$2x+2=3x-3$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">移项</span><span>把 $3x$ 移到左边（变 $-3x$）、把 $2$ 移到右边（变 $-2$）：$2x-3x=-3-2$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">合并</span><span>左边 $2x-3x=-x$，右边 $-3-2=-5$：$-x=-5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">除系数</span><span>两边同除以 $-1$：$x=5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">检验</span><span>代入原方程：左边 $=2\times(5+1)=12$，右边 $=3\times(5-1)=12$，相等。$x=5$ 正确。</span></div>
+    </div>
+<div class="sr-example">
+      <div class="sr-example-h">例 5（说理）：拆括号时右边该不该跟着加？</div>
+      <div class="sr-step"><span class="sr-step-n">情景</span><span>同学解 $2(x+3)=10$，第一步把左边拆成 $2x+6$。他想："移项、除系数都是两边一起做的，那我去括号是不是也得两边一起？"于是把右边也加了 $6$，写成 $2x+6=16$，最后算出 $x=5$。</span></div>
+      <div class="sr-step"><span class="sr-step-n">问</span><span>他哪里想错了？去括号和移项到底差在哪？</span></div>
+      <div class="sr-step"><span class="sr-step-n">答</span><span>差在"动了几边"。移项、除系数是<strong>等式两边同时</strong>做一件事的等价变形，所以两边都要动。而去括号只是把<strong>左边这一个代数式</strong>换成一个恒等于它的写法——$2(x+3)$ 和 $2x+6$ 对任何 $x$ 都相等，本来就是同一个数，右边的 $10$ 压根没参与，不该跟着改。正确的第一行是 $2x+6=10$，解得 $x=2$；代入原方程，$2\times(2+3)=10$ 成立。他的 $x=5$ 代回原方程得 $2\times8=16\ne10$，一验就知道错了。</span></div>
+    </div>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>例 1 解 $2(x+3)=10$，得到的解是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x=2$</span><span class="sr-p-opt"><b>B.</b> $x=5$</span><span class="sr-p-opt"><b>C.</b> $x=4$</span><span class="sr-p-opt"><b>D.</b> $x=3$</span></div></li>
+      <li>例 4 解 $2(x+1)=3(x-1)$，$x=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 5</span><span class="sr-p-opt"><b>C.</b> -5</span><span class="sr-p-opt"><b>D.</b> 0</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="connections">
+    <div class="sr-sec-label"><span class="sr-sec-num">4</span><span class="sr-sec-name">与其他知识点的联系</span></div>
+<ul class="sr-links">
+      <li><b>去括号这个动作不是新的：</b>它就是整式课里学过的<b>去括号</b>化简，背后是<b>乘法分配律</b>。以前我们用它化简式子（求值、合并），现在只是把同一个动作用到方程的一边上。符号处理也全靠早学的<b>有理数</b>乘法：负负得正、减号要管到底。</li>
+      <li><b>拆完就接回上一课：</b>括号一去，方程立刻变回普通一元一次方程，后面照走<b>解一元一次方程</b>那条老路线——合并同类项、移项（等式性质一）、除系数（等式性质二）、检验，一个都不少。本课真正新的，只有排在最前面的"去括号"这一步。</li>
+      <li><b>去括号是等价变形的一种，但和移项不同类：</b>移项、除系数是"等式两边一起做"；去括号只改写<b>一边</b>的代数式。两者都不改变<b>方程的解</b>，但动的对象不一样，别混为一谈。</li>
+      <li><b>它给后面的方法课打地基：</b>接下来会遇到<b>带分母的方程</b>，第一步要先想办法把分母清掉，之后往往正好冒出括号，又得回到本课的去括号来收尾。那节后面的方法课，正是踩着"去括号解方程"这块地基往上走的。</li>
+    </ul>
+    <div class="sr-readcheck">
+      <div class="sr-rc-label">读一读 · 检查</div>
+      <ol class="sr-practice">
+      <li>卡片说去括号这个动作背后依靠的是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 乘法分配律</span><span class="sr-p-opt"><b>B.</b> 完全平方公式</span><span class="sr-p-opt"><b>C.</b> 因式分解</span><span class="sr-p-opt"><b>D.</b> 求根公式</span></div></li>
+      <li>卡片说去括号给后面哪种方程的方法课打地基？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 带分母的方程</span><span class="sr-p-opt"><b>B.</b> 二元一次方程组</span><span class="sr-p-opt"><b>C.</b> 一元二次方程</span><span class="sr-p-opt"><b>D.</b> 一元一次不等式</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section data-sr-section="oral">
+    <div class="sr-sec-label"><span class="sr-sec-num">5</span><span class="sr-sec-name">概念口试</span></div>
+<ol class="sr-oral">
+      <li>
+        解带括号的方程，为什么第一步要去括号？去括号靠的是哪条早就学过的规则？
+        <div class="sr-answer">因为括号把里面的项"包"住了，未知数没法直接合并、移项，老路线的第一步就卡住。去括号靠的是<strong>乘法分配律</strong> $a(b+c)=ab+ac$——把括号外的数分给里面每一项。拆完括号，方程就变回普通一元一次方程，老路线又能用了。</div>
+      </li>
+      <li>
+        把 $8-(x+2)$ 去括号，写成 $8-x+2$ 对不对？为什么？正确的是什么？
+        <div class="sr-answer">不对。括号前是减号，等于减去整个括号，括号里<strong>每一项</strong>都要变号：$x$ 变 $-x$，$+2$ 变 $-2$。$8-x+2$ 只把第一项变了号、$+2$ 忘了变。正确的是 $8-x-2$。</div>
+      </li>
+      <li>
+        把 $-3(x-2)$ 去括号，得到 $-3x-6$ 对吗？正确结果是多少？
+        <div class="sr-answer">不对。要把 $-3$ 连同负号乘进每一项：$(-3)\cdot x=-3x$，$(-3)\cdot(-2)$ 负负得正 $=+6$。所以是 $-3x+6$，不是 $-3x-6$。写成 $-3x-6$ 是忘了负负得正。</div>
+      </li>
+      <li>
+        解 $2(x+1)=3(x-1)$ 时，两边的括号该怎么处理？可不可以把左边的 $2$ 拿去乘右边？
+        <div class="sr-answer">左右两边<strong>各自</strong>去括号：左边 $2(x+1)=2x+2$，右边 $3(x-1)=3x-3$，互不干涉，得到 $2x+2=3x-3$。绝不能把左边的 $2$ 拿去乘右边——去括号只改写它所在的那一边。</div>
+      </li>
+      <li>
+        解 $2(x+3)=10$，把左边拆成 $2x+6$，有人说"右边也要加 $6$"，写成 $2x+6=16$。错在哪？
+        <div class="sr-answer">错在把去括号当成了"等式两边同加同减"。去括号只是把<strong>左边一个代数式</strong>换成恒等于它的写法，$2(x+3)$ 本来就等于 $2x+6$，右边的 $10$ 没参与、不该动。正确的第一行是 $2x+6=10$。</div>
+      </li>
+      <li>
+        去括号和移项都不改变方程的解，那它俩到底是不是同一类动作？
+        <div class="sr-answer">不是同一类。移项、除系数是<strong>等式两边同时</strong>做的等价变形（靠等式性质一、二）；去括号只是把<strong>一边</strong>的代数式换个等价写法，另一边不动。两者都保解不变，但"动几边"不一样，不能混。</div>
+      </li>
+    </ol>
+  </section>
+
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">6</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> 解带括号的方程，第一步“去括号”靠的是哪一条规则？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 加法结合律</span><span class="sr-p-opt"><b>B.</b> 乘法分配律</span><span class="sr-p-opt"><b>C.</b> 等式性质二</span><span class="sr-p-opt"><b>D.</b> 合并同类项法则</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $2(x+3)$ 去括号后等于？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $2x+6$</span><span class="sr-p-opt"><b>B.</b> $2x+3$</span><span class="sr-p-opt"><b>C.</b> $x+6$</span><span class="sr-p-opt"><b>D.</b> $2x+5$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $2(x+3)$ 里，括号 $(x+3)$ 相对括号外的 $2$，是它的什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 项</span><span class="sr-p-opt"><b>B.</b> 系数</span><span class="sr-p-opt"><b>C.</b> 因数</span><span class="sr-p-opt"><b>D.</b> 次数</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $-(x+2)$ 去括号后等于？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-x+2$</span><span class="sr-p-opt"><b>B.</b> $x-2$</span><span class="sr-p-opt"><b>C.</b> $-x-2$</span><span class="sr-p-opt"><b>D.</b> $x+2$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $-3(x-2)$ 去括号后等于？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-3x-6$</span><span class="sr-p-opt"><b>B.</b> $-3x+6$</span><span class="sr-p-opt"><b>C.</b> $-3x-2$</span><span class="sr-p-opt"><b>D.</b> $3x-6$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 和上一课的普通解方程路线比，去括号解方程多出来、且排在最前面的是哪一步？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 移项</span><span class="sr-p-opt"><b>B.</b> 除系数</span><span class="sr-p-opt"><b>C.</b> 检验</span><span class="sr-p-opt"><b>D.</b> 去括号</span></div></li>
+      <li><span class="sr-ptype">操作</span> 解 $2(x+3)=10$，$x=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5$</span><span class="sr-p-opt"><b>B.</b> $2$</span><span class="sr-p-opt"><b>C.</b> $8$</span><span class="sr-p-opt"><b>D.</b> $3.5$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 解 $8-(x+2)=3$，$x=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $7$</span><span class="sr-p-opt"><b>B.</b> $3$</span><span class="sr-p-opt"><b>C.</b> $-3$</span><span class="sr-p-opt"><b>D.</b> $13$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 解 $-3(x-2)=x+2$，$x=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $1$</span><span class="sr-p-opt"><b>B.</b> $-1$</span><span class="sr-p-opt"><b>C.</b> $-2$</span><span class="sr-p-opt"><b>D.</b> $3$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 解 $2(x+1)=3(x-1)$，$x=$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $-5$</span><span class="sr-p-opt"><b>B.</b> $1$</span><span class="sr-p-opt"><b>C.</b> $5$</span><span class="sr-p-opt"><b>D.</b> $-1$</span></div></li>
+      <li><span class="sr-ptype">操作</span> $8-(x-3)$ 去括号并合并后等于？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $5-x$</span><span class="sr-p-opt"><b>B.</b> $11-x$</span><span class="sr-p-opt"><b>C.</b> $11+x$</span><span class="sr-p-opt"><b>D.</b> $x-5$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 把 $-(x+2-y)$ 去括号写成 $-x-2-y$，对不对？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 对，三项都已经正确变号</span><span class="sr-p-opt"><b>B.</b> 错，$-y$ 应是 $+y$，括号里三项都要变号</span><span class="sr-p-opt"><b>C.</b> 错，$x$ 不该变号</span><span class="sr-p-opt"><b>D.</b> 错，正确结果是 $-x+2+y$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 解 $2(x+3)=10$，有人把左边拆成 $2x+6$ 的同时，觉得“右边也要加 6”，写成 $2x+6=16$。这样对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 对，等式两边要同时加同一个数</span><span class="sr-p-opt"><b>B.</b> 对，去括号必须两边一起做</span><span class="sr-p-opt"><b>C.</b> 错，去括号只改写了左边一个式子，右边的 10 不参与，应是 $2x+6=10$</span><span class="sr-p-opt"><b>D.</b> 错，右边应减 6，写成 $2x+6=4$</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 解 $2(x+1)=3(x-1)$，有人把左边的 $2$ 也拿去乘右边，写成 $2x+2=2\cdot 3(x-1)$。这样对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 错，左右各自去括号，左边的 2 只乘它自己括号里的项</span><span class="sr-p-opt"><b>B.</b> 对，为保持等式平衡两边都要乘 2</span><span class="sr-p-opt"><b>C.</b> 对，分配律允许跨过等号相乘</span><span class="sr-p-opt"><b>D.</b> 错，应该把两边都乘 3</span></div></li>
+      <li><span class="sr-ptype">说理</span> $8-(x+2)$ 去括号时，为什么 $+2$ 也要变成 $-2$？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为加减法可以随便交换位置</span><span class="sr-p-opt"><b>B.</b> 因为只有紧跟减号的第一项变号，其余照抄</span><span class="sr-p-opt"><b>C.</b> 因为减号相当于乘 $-1$，$-1$ 要乘进括号里每一项</span><span class="sr-p-opt"><b>D.</b> 因为括号里的数都要取相反数，和外面的减号无关</span></div></li>
+      <li><span class="sr-ptype">说理</span> 去括号和移项都不改变方程的解，它们是不是同一类动作？为什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 不是。移项是等式两边同时做的变形，去括号只是把一边的式子换个等价写法</span><span class="sr-p-opt"><b>B.</b> 是。两者都要在等式两边同时操作</span><span class="sr-p-opt"><b>C.</b> 不是。去括号会改变方程的解，移项不会</span><span class="sr-p-opt"><b>D.</b> 是。两者都直接来自等式性质一</span></div></li>
+      <li><span class="sr-ptype">说理</span> $-3(x-2)$ 去括号得 $-3x+6$，而不是 $-3x-6$，理由是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 因为常数项去括号后一律取正</span><span class="sr-p-opt"><b>B.</b> 因为 $-3$ 乘 $-2$，负负得正，得 $+6$</span><span class="sr-p-opt"><b>C.</b> 因为 $-3$ 只乘 $x$，$-2$ 原样保留</span><span class="sr-p-opt"><b>D.</b> 因为括号里第二项一定要变成相反数</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 解完方程得到 $x=2$，做检验时应该把 $x=2$ 代入哪个式子？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 自己整理后的最后一行</span><span class="sr-p-opt"><b>B.</b> 去括号后的第一行</span><span class="sr-p-opt"><b>C.</b> 原方程</span><span class="sr-p-opt"><b>D.</b> 除系数前的那一行</span></div></li>
+      <li><span class="sr-ptype">说理</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 解一元一次方程要“未知数孤立”，这句话指的是最后达到什么样子？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 让未知数单独留在等号一边，另一边只剩一个数</span><span class="sr-p-opt"><b>B.</b> 让方程里只出现一个未知数</span><span class="sr-p-opt"><b>C.</b> 把未知数移到等号右边</span><span class="sr-p-opt"><b>D.</b> 让未知数前的系数变成 0</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 下面哪一个是一元一次方程？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x^2+1=5$</span><span class="sr-p-opt"><b>B.</b> $3x-4=0$</span><span class="sr-p-opt"><b>C.</b> $x+y=6$</span><span class="sr-p-opt"><b>D.</b> $\dfrac{2}{x}+1=3$</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>

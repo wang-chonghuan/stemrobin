@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2.8 化简综合练武场 · StemRobin</title>
+
+<!-- Formula rendering: KaTeX (standard, self-contained). Auto-render on load. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false});"></script>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Noto+Sans+SC:wght@400;500;700&display=swap");
+  /* StemRobin resources/reference/DESIGN.md tokens — kept inline so the lesson is a standalone file
+     the frontend can load directly (it does not inherit the app's app.css). */
+  :root {
+    --sr-white:#FFFFFF; --sr-panel:#F5F9F9; --sr-card:#FFFFFF;
+    --sr-blue:#0E7C9B; --sr-blue-deep:#0A5E76; --sr-blue-tint:#E1F1F5;
+    --sr-green:#15A06A; --sr-green-deep:#0F7D52; --sr-green-tint:#E4F6EE;
+    --sr-ink:#15201F; --sr-ink-soft:#4C5A58; --sr-ink-dim:#8A9795;
+    --sr-line:#E3EAE9; --sr-line-soft:#EEF3F2;
+    --sr-radius:10px; --sr-radius-sm:8px;
+    --sr-display:"Bricolage Grotesque","Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-body:"Hanken Grotesk","Noto Sans SC",system-ui,sans-serif;
+    --sr-mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+
+  * { box-sizing:border-box; }
+  body {
+    margin:0; background:var(--sr-white); color:var(--sr-ink);
+    font-family:var(--sr-body); line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  .sr-lesson { max-width:760px; margin:0 auto; padding:24px 22px 40px; }
+
+  /* header */
+  .sr-l-head { border-bottom:1px solid var(--sr-line); padding-bottom:16px; margin-bottom:8px; }
+  .sr-l-eyebrow { color:var(--sr-blue-deep); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+  .sr-l-title { margin:6px 0 4px; font-family:var(--sr-display); font-size:26px; font-weight:700; letter-spacing:-.02em; line-height:1.15; }
+  .sr-l-concept { color:var(--sr-ink-soft); font-size:14.5px; }
+  .sr-l-chips { display:flex; gap:6px; flex-wrap:wrap; margin-top:10px; }
+  .sr-chip { display:inline-flex; align-items:center; border-radius:999px; padding:3px 9px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:11.5px; font-weight:600; }
+  .sr-chip.green { background:var(--sr-green-tint); color:var(--sr-green-deep); }
+
+  /* sections */
+  section { margin-top:26px; }
+  .sr-sec-label { display:flex; align-items:baseline; gap:10px; margin-bottom:10px; }
+  .sr-sec-num { font-family:var(--sr-mono); font-size:13px; font-weight:600; color:#fff; background:var(--sr-blue); border-radius:6px; padding:1px 8px; }
+  .sr-sec-name { font-family:var(--sr-display); font-size:18px; font-weight:600; }
+  section p { margin:10px 0; font-size:15px; }
+  section h3 { font-family:var(--sr-display); font-size:15.5px; font-weight:600; margin:18px 0 6px; }
+  strong { color:var(--sr-ink); }
+  .sr-term { color:var(--sr-blue-deep); font-weight:600; }            /* 正式术语首次出现 */
+  code { font-family:var(--sr-mono); font-size:.92em; background:var(--sr-panel); padding:1px 5px; border-radius:5px; }
+
+  /* callouts */
+  .sr-note { border-left:3px solid var(--sr-blue); background:var(--sr-blue-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall { border-left:3px solid var(--sr-green); background:var(--sr-green-tint); border-radius:0 8px 8px 0; padding:10px 14px; margin:14px 0; font-size:14px; }
+  .sr-pitfall b, .sr-note b { color:var(--sr-ink); }
+
+  /* worked examples */
+  .sr-example { border:1px solid var(--sr-line); border-radius:var(--sr-radius); padding:14px 16px; margin:12px 0; background:var(--sr-card); }
+  .sr-example-h { font-family:var(--sr-display); font-size:14.5px; font-weight:600; margin-bottom:6px; }
+  .sr-step { display:flex; gap:10px; margin:6px 0; font-size:14.5px; }
+  .sr-step-n { flex:none; font-family:var(--sr-mono); font-size:12px; font-weight:600; color:var(--sr-blue-deep); }
+
+  /* practice */
+  ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+  ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ol.sr-practice > li:first-child { border-top:0; }
+  ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+  .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+  details.sr-answer { margin-top:6px; }
+  details.sr-answer summary { color:var(--sr-blue-deep); font-size:12.5px; font-weight:600; cursor:pointer; }
+  details.sr-answer > div { margin-top:5px; color:var(--sr-ink-soft); font-size:14px; }
+
+  /* figures (inline SVG) */
+  figure.sr-fig { margin:14px 0; text-align:center; }
+  figure.sr-fig svg { max-width:100%; height:auto; border:1px solid var(--sr-line); border-radius:8px; background:var(--sr-white); }
+  figure.sr-fig figcaption { margin-top:6px; color:var(--sr-ink-dim); font-size:12px; }
+
+  /* connections */
+  ul.sr-links { padding-left:0; list-style:none; }
+  ul.sr-links > li { padding:8px 0; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+  ul.sr-links > li:first-child { border-top:0; }
+  ul.sr-links b { color:var(--sr-blue-deep); }
+
+
+  @media (prefers-color-scheme: dark) { /* lessons render on white inside an app frame; keep light. */ }
+
+  /* ===== sr-v2-features: responsive math / concept quiz / def examples / dark / print ===== */
+  /* item 1 — long display math scrolls in its own box instead of overflowing the page */
+  .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; padding: 2px 0 4px; }
+  .sr-lesson { overflow-wrap: break-word; }
+
+  /* item 2 — 概念口试 (concept oral quiz) */
+  ol.sr-oral { padding-left: 0; list-style: none; counter-reset: o; margin: 6px 0 0; }
+  ol.sr-oral > li { counter-increment: o; position: relative; padding: 10px 0 10px 42px; border-top: 1px solid var(--sr-line-soft); font-size: 14.5px; }
+  ol.sr-oral > li:first-child { border-top: 0; }
+  ol.sr-oral > li::before { content: "问" counter(o); position: absolute; left: 0; top: 10px; padding: 1px 7px; border-radius: 6px; background: var(--sr-green-tint); color: var(--sr-green-deep); font: 700 11px var(--sr-mono); }
+
+  /* item 3 — 定义正例 / 反例 */
+  /* 正例/反例 — block entries so long sentences wrap naturally on narrow screens
+     (inline-flex squeezed each text/KaTeX run into shrinking columns on mobile) */
+  .sr-eg { margin: 8px 0; padding: 9px 12px; border-radius: 8px; background: var(--sr-panel); font-size: 14px; }
+  .sr-eg > span { display: block; margin: 4px 0; line-height: 1.7; overflow-wrap: break-word; }
+  .sr-eg .yes { color: var(--sr-green-deep); }
+  .sr-eg .no  { color: #C0492B; }
+  .sr-eg .yes::before { content: "正例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+  .sr-eg .no::before  { content: "反例"; font: 700 10.5px var(--sr-body); margin-right: 6px; }
+
+
+  /* items 5,6 — 下载 PDF: A4, always day mode, practice on a new page with full-width rules */
+  @page { size: A4; margin: 14mm; }
+  @media print {
+    html, body { overflow: visible !important; height: auto !important; }
+    details.sr-answer { display: none !important; }
+    figure.sr-fig, .sr-example, ol.sr-practice > li, ol.sr-oral > li { break-inside: avoid; }
+  }
+
+
+  /* sr-answer-collapse-fix — force answers hidden until the <details> is opened.
+     Native <details> content-hiding isn't applied in some Chromium builds, so we
+     key visibility off the [open] attribute (which the summary click still sets). */
+  details.sr-answer > div { display: none; }
+  details.sr-answer[open] > div { display: block; }
+
+
+  /* sr-answer-hidden — answers are NOT revealable by the learner (no toggle).
+     Hidden by default; a backend signal adds body.sr-reveal-answers to unlock
+     (teacher / answer key). Always hidden in the printed PDF worksheet. */
+  .sr-answer { display: none; }
+  body.sr-reveal-answers .sr-answer { display: block; margin-top: 5px; color: var(--sr-ink-soft); font-size: 14px; border-left: 2px solid var(--sr-green); padding-left: 10px; }
+  @media print { .sr-answer { display: none !important; } }
+
+
+  /* sr-print-fit — in PDF, let content fill the A4 printable width (the @page
+     margin handles spacing); the 760px max-width would otherwise overflow the page. */
+  @media print { .sr-lesson { max-width: 100% !important; padding: 0 !important; } }
+
+</style>
+
+  <style>
+    /* JSONB-first read-check projection (self-contained) */
+    .sr-readcheck { margin-top:14px; border-top:1px dashed var(--sr-line); padding-top:10px; }
+    .sr-rc-label { font:700 11px var(--sr-mono); color:var(--sr-green-deep); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+    ol.sr-practice { padding-left:0; list-style:none; counter-reset:p; }
+    ol.sr-practice > li { counter-increment:p; position:relative; padding:9px 0 9px 34px; border-top:1px solid var(--sr-line-soft); font-size:14.5px; }
+    ol.sr-practice > li:first-child { border-top:0; }
+    ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
+    .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
+    .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
+    .sr-p-opt { font-size:14px; }
+    .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }
+    @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
+  </style>
+</head>
+<body>
+<body>
+<article class="sr-lesson">
+
+  <header class="sr-l-head">
+    <div class="sr-l-eyebrow">数学 · 代数式 · 练习课</div>
+    <h1 class="sr-l-title">2.8 化简综合练武场</h1>
+    <div class="sr-l-concept">无新概念：全阶段词汇与动作的混合练习，长链条化简 + 快速指认 + 讲理由。</div>
+    <div class="sr-l-chips"><span class="sr-chip">练习课</span></div>
+  </header>
+
+  <!--
+    Compose numbered sections here per the lesson's genre (see lesson-contract.md):
+
+    概念课: motivation / model / anatomy / boundary / connections / oral
+    方法课: motivation / explain / examples / connections / oral
+
+    Each section:
+      <section data-sr-section="ANCHOR">
+        <div class="sr-sec-label"><span class="sr-sec-num">N</span><span class="sr-sec-name">中文名</span></div>
+        ...content...
+      </section>
+
+    NO practice section — exercises live in the deck (DB), not in the 課文.
+  -->
+    <section data-sr-section="motivation">
+    <div class="sr-sec-label"><span class="sr-sec-num">1</span><span class="sr-sec-name">为什么需要它</span></div>
+<p>这一课没有任何新东西——它是整个阶段的<strong>练武场</strong>。从 2.3 到 2.7，你其实只学了一件事和两个动作：式子是一棵两层的树，按加减切出来的块叫项，项里按乘法拆出来的零件叫因数；在这棵树上，你会做的动作是<strong>去括号</strong>（把括号前的因数按分配律发进每一项）和<strong>合并同类项</strong>（系数相加、字母不动）。整式加减、化简，都只是这两个动作的接力。今天的题全部从这些旧内容里来，混在一起考。</p>
+<p>先把名字清点一遍，因为练武场上一半的题是「指着零件问名字」：项、常数项、因数、系数（数字因数，<em>连同符号</em>）、次数（字母因数的总个数）、单项式、多项式、同类项。这些名字你都见过——但混在一起、换个式子问，你还能一秒答出来吗？这正是本课要检验的。</p>
+<p>用法很简单：打开卡片答题，题目是<strong>乱序</strong>的，前一题问系数、后一题就要你化简一长串——这是故意的，真正的本事是换着花样也不糊。每答完一题，无论对错，把讲解读完再进下一题；<strong>答错的题尤其要读</strong>，讲解里写的不只是答案，还有这一步为什么合法、错的人通常错在哪。</p>
+<p>遇到「说理」题，先<strong>说出声</strong>再写：想象一个不信的同学坐在对面，你要用分配律、用相反数把道理讲到他点头为止。能算对是一层功夫，能讲明白是更高一层——说不出道理的步骤，下次换个样子就会做错。</p>
+<p>最后一个自查习惯，也是 2.7 教过的检验办法：<strong>代入检验</strong>。化简前的式子和化简后的式子，代同一个数进去，算出来的值必须一模一样；不一样，说明中间某一步动了不该动的零件。做长链条化简题时，别急着看答案——先自己代一个小数（比如 $x=1$）验一遍，这个习惯比任何一道题都值钱。</p>
+  </section>
+
+  <section data-sr-section="practice">
+    <div class="sr-sec-label"><span class="sr-sec-num">2</span><span class="sr-sec-name">练习</span></div>
+    <p class="sr-p-note">做完打开「卡片答题」逐题核对——答案和讲解都在那里。</p>
+    <ol class="sr-practice">
+      <li><span class="sr-ptype">辨认</span> $-2x^2$ 的系数是？（输入时带上符号）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> -4</span><span class="sr-p-opt"><b>C.</b> 4</span><span class="sr-p-opt"><b>D.</b> -2</span></div></li>
+      <li><span class="sr-ptype">操作</span> 化简：$2(3x-1)-(x+4)$<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5x+2</span><span class="sr-p-opt"><b>B.</b> 7x-6</span><span class="sr-p-opt"><b>C.</b> 5x-6</span><span class="sr-p-opt"><b>D.</b> 5x-5</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $x^2y$ 的次数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 4</span><span class="sr-p-opt"><b>C.</b> 3</span><span class="sr-p-opt"><b>D.</b> 1</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 去括号：$x-(2y-3)$。下面哪个结果是对的？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x-2y-3$</span><span class="sr-p-opt"><b>B.</b> $x+2y-3$</span><span class="sr-p-opt"><b>C.</b> $x+2y+3$</span><span class="sr-p-opt"><b>D.</b> $x-2y+3$</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并同类项：$2x-2x+5$<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 4x+5</span><span class="sr-p-opt"><b>B.</b> 5x</span><span class="sr-p-opt"><b>C.</b> 0</span><span class="sr-p-opt"><b>D.</b> 5</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 在 $4(x-3)$ 里，$(x-3)$ 是什么？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 一个项：它被括号括起来，是加法层的一块</span><span class="sr-p-opt"><b>B.</b> 一个因式：它和 4 相乘，站在乘法层</span><span class="sr-p-opt"><b>C.</b> 一个系数：它是这个式子里的数字因数</span><span class="sr-p-opt"><b>D.</b> 一个多项式：它里面有减号，可以再拆成两块</span></div></li>
+      <li><span class="sr-ptype">操作</span> 计算：$(x^2+3x-2)-(x^2-x+1)$（结果化到最简，指数用 x^2 输入）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2x-1</span><span class="sr-p-opt"><b>B.</b> 4x-1</span><span class="sr-p-opt"><b>C.</b> x^2+4x-3</span><span class="sr-p-opt"><b>D.</b> 4x-3</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 常数项 $7$ 的次数是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 1</span><span class="sr-p-opt"><b>B.</b> 7</span><span class="sr-p-opt"><b>C.</b> 0</span><span class="sr-p-opt"><b>D.</b> 2</span></div></li>
+      <li><span class="sr-ptype">操作</span> 去括号：$-3(a-2)$<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -3a-6</span><span class="sr-p-opt"><b>B.</b> 3a-6</span><span class="sr-p-opt"><b>C.</b> -3a+6</span><span class="sr-p-opt"><b>D.</b> -3a-2</span></div></li>
+      <li><span class="sr-ptype">辨认</span> 下面哪一对是同类项？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $3x$ 与 $3y$</span><span class="sr-p-opt"><b>B.</b> $x^2y$ 与 $xy^2$</span><span class="sr-p-opt"><b>C.</b> $3xy$ 与 $2yx$</span><span class="sr-p-opt"><b>D.</b> $2x$ 与 $2$</span></div></li>
+      <li><span class="sr-ptype">说理</span> 为什么括号前是减号时，去括号要把括号里的每一项都变号？给一个不信的同学讲清楚道理，不许只说「规定就是这样」。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 去括号是规定好的口诀，减号在前就全变号，背下来照做就行</span><span class="sr-p-opt"><b>B.</b> 括号前是减号，只要把第一项变号，后面的项照抄就行</span><span class="sr-p-opt"><b>C.</b> 减去一个整体，就是加上这个整体的相反数</span><span class="sr-p-opt"><b>D.</b> 减号和括号里第一个符号可以合并抵消，其余各项保持不变</span></div></li>
+      <li><span class="sr-ptype">辨错</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 小云把 $3(x+2)-2x$ 化简成了 $x+2$。请你代入 $x=1$ 检验她对不对：分别算出原式的值和她的结果的值，写出两个数，再下结论；如果她错了，给出正确的化简结果。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 代 $x=1$：原式 $=3\times(1+2)-2\times1=9-2=7$</span><span class="sr-p-opt"><b>B.</b> 代 $x=1$：原式 $=3\times1+2-2\times1=3+2-2=3$</span><span class="sr-p-opt"><b>C.</b> 代 $x=1$：原式 $=3\times(1+2)=9$</span><span class="sr-p-opt"><b>D.</b> 代 $x=1$：原式 $=3\times(1+2)+2\times1=9+2=11$</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $-x$ 的系数是？（带符号）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -1</span><span class="sr-p-opt"><b>B.</b> 1</span><span class="sr-p-opt"><b>C.</b> 0</span><span class="sr-p-opt"><b>D.</b> -x</span></div></li>
+      <li><span class="sr-ptype">操作</span> 合并同类项：$3m^2+2m-m^2-5m$（指数用 m^2 输入）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 4m^2-3m</span><span class="sr-p-opt"><b>B.</b> 2m^2-7m</span><span class="sr-p-opt"><b>C.</b> 2m^2-3m</span><span class="sr-p-opt"><b>D.</b> 2m^2+3m</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小杰说：「$2a^2b$ 的次数是 2，因为最大的指数是 2。」他说得对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 对，次数就看最大的那个指数</span><span class="sr-p-opt"><b>B.</b> 不对，次数是 4：系数 2 也要算一个</span><span class="sr-p-opt"><b>C.</b> 不对，次数是 2：只数 $a$、$b$ 两种不同的字母</span><span class="sr-p-opt"><b>D.</b> 不对，次数是 3：字母因数是 $a$、$a$、$b$，一共三个</span></div></li>
+      <li><span class="sr-ptype">操作</span> 化简：$3(a-2b)+2(b-a)$<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 5a-4b</span><span class="sr-p-opt"><b>B.</b> a-8b</span><span class="sr-p-opt"><b>C.</b> a-6b</span><span class="sr-p-opt"><b>D.</b> a-4b</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 下面哪个是单项式？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> $x+1$</span><span class="sr-p-opt"><b>B.</b> $\dfrac{x}{2}$</span><span class="sr-p-opt"><b>C.</b> $\dfrac{2}{x}$</span><span class="sr-p-opt"><b>D.</b> $a+b+c$</span></div></li>
+      <li><span class="sr-ptype">说理</span> 求多项式 $A$ 减多项式 $B$ 时，为什么要把 $B$ 整体加上括号再去括号？不加括号会出什么事？自己举一个具体的例子说明。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 加不加括号都一样，反正最后合并同类项结果都不会变</span><span class="sr-p-opt"><b>B.</b> 减多项式时只要把 $B$ 的第一项变号，后面几项照抄下来就行</span><span class="sr-p-opt"><b>C.</b> $A-B$ 减的是 $B$ 这个整体，所以 $B$ 的每一项都要变号，不只第一项</span><span class="sr-p-opt"><b>D.</b> $A-B$ 就是把 $A$、$B$ 的对应项直接相减，括号里的符号不用改</span></div></li>
+      <li><span class="sr-ptype">辨认</span> $\dfrac{x}{2}$ 的系数是？（分数用 1/2 这样输入）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2</span><span class="sr-p-opt"><b>B.</b> 1</span><span class="sr-p-opt"><b>C.</b> 1/2</span><span class="sr-p-opt"><b>D.</b> x/2</span></div></li>
+      <li><span class="sr-ptype">操作</span> 化简：$5x-(3x-4)+2$<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 2x-2</span><span class="sr-p-opt"><b>B.</b> 8x+6</span><span class="sr-p-opt"><b>C.</b> 2x+2</span><span class="sr-p-opt"><b>D.</b> 2x+6</span></div></li>
+      <li><span class="sr-ptype">辨认</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 多项式 $2x^2-3x+7$ 的第二项是？（带符号）<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> -3x</span><span class="sr-p-opt"><b>B.</b> 3x</span><span class="sr-p-opt"><b>C.</b> 2x^2</span><span class="sr-p-opt"><b>D.</b> -3</span></div></li>
+      <li><span class="sr-ptype">辨错</span> 小芳算 $(2a+3)-(a-1)$，第一步写成 $2a+3-a-1$。她这一步对吗？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 对，接着合并得 $a+2$</span><span class="sr-p-opt"><b>B.</b> 错，第一个括号也要变号，应写成 $-2a-3-a+1$</span><span class="sr-p-opt"><b>C.</b> 错，她漏变了 $-1$ 的符号：$-(a-1)$ 应得 $-a+1$，正确结果是 $a+4$</span><span class="sr-p-opt"><b>D.</b> 错，$-(a-1)$ 应得 $-a-1$，只把第一项 $a$ 变号，结果是 $a+2$</span></div></li>
+      <li><span class="sr-ptype">操作</span><span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span> 先化简再求值：$4(x+1)-3x$，当 $x=6$ 时的值是？<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 6</span><span class="sr-p-opt"><b>B.</b> 7</span><span class="sr-p-opt"><b>C.</b> 10</span><span class="sr-p-opt"><b>D.</b> 28</span></div></li>
+      <li><span class="sr-ptype">说理</span> 合并同类项时，为什么只把系数相加、字母部分一动不动？用分配律把道理讲清楚，并解释为什么 $3x+2y$ 不能这样合并。<div class="sr-p-opts"><span class="sr-p-opt"><b>A.</b> 合并同类项就是把数字加起来、字母乘起来，这是规定好的做法</span><span class="sr-p-opt"><b>B.</b> 系数相加时字母部分也跟着相加，例如 $3x+2x=5x^2$</span><span class="sr-p-opt"><b>C.</b> 只要两项都带字母就能合并，所以 $3x+2y$ 合成 $5xy$</span><span class="sr-p-opt"><b>D.</b> 把分配律反着用：$3x+2x=(3+2)x=5x$——公共的字母部分 $x$ 被整个提出来，剩下系数相加，所以字母不动、只动系数</span></div></li>
+    </ol>
+  </section>
+
+</article>
+</body>
+</html>
