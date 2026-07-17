@@ -33,27 +33,29 @@ export function CatalogSidebar({
   return (
     <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`}>
       <div className="sr-cat-head">
-        <img
-          className="sr-brand-img"
-          src="/logo-mark.png"
-          alt={locale === 'en' ? 'stemrobin' : '知更'}
-          width={44}
-          height={44}
-        />
-        <div>
-          <span className="sr-brand-name">
-            {locale === 'en' ? (
-              'stemrobin'
-            ) : (
-              <>
-                知<b>更</b>
-              </>
+        <Link className="sr-brand-link" to="/" onClick={onNavigate} aria-label={t(locale, 'ov.title')}>
+          <img
+            className="sr-brand-img"
+            src="/logo-mark.png"
+            alt={locale === 'en' ? 'stemrobin' : '知更'}
+            width={44}
+            height={44}
+          />
+          <div>
+            <span className="sr-brand-name">
+              {locale === 'en' ? (
+                'stemrobin'
+              ) : (
+                <>
+                  知<b>更</b>
+                </>
+              )}
+            </span>
+            {locale !== 'en' && (
+              <span className="sr-tagline">{t(locale, 'brand.tagline')}</span>
             )}
-          </span>
-          {locale !== 'en' && (
-            <span className="sr-tagline">{t(locale, 'brand.tagline')}</span>
-          )}
-        </div>
+          </div>
+        </Link>
       </div>
 
       <div className="sr-cat-scroll">

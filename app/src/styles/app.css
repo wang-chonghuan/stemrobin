@@ -153,6 +153,20 @@ body {
   gap: 9px;
   padding: 14px 14px 8px;
 }
+/* Logo area links to the home overview. */
+.sr-brand-link {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: inherit;
+  padding: 3px;
+  margin: -3px;
+  border-radius: 8px;
+}
+.sr-brand-link:hover { background: var(--sr-panel); }
 
 .sr-brand-mark {
   width: 28px;
