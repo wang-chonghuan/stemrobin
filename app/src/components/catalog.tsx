@@ -37,23 +37,15 @@ export function CatalogSidebar({
           <img
             className="sr-brand-img"
             src="/logo-mark.png"
-            alt={locale === 'en' ? 'stemrobin' : '知更'}
+            alt="MynaTree"
             width={44}
             height={44}
           />
           <div>
             <span className="sr-brand-name">
-              {locale === 'en' ? (
-                'stemrobin'
-              ) : (
-                <>
-                  知<b>更</b>
-                </>
-              )}
+              Myna<b>Tree</b>
             </span>
-            {locale !== 'en' && (
-              <span className="sr-tagline">{t(locale, 'brand.tagline')}</span>
-            )}
+            <span className="sr-tagline">{t(locale, 'brand.tagline')}</span>
           </div>
         </Link>
       </div>

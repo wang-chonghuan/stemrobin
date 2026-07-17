@@ -50,12 +50,12 @@ function LoginView() {
           <img
             className="sr-brand-img"
             src="/logo-mark.png"
-            alt="知更"
+            alt="MynaTree"
             width={44}
             height={44}
           />
           <span className="sr-brand-name">
-            知<b>更</b>
+            Myna<b>Tree</b>
           </span>
         </div>
         <h1 className="sr-auth-title">{t(locale, 'login.title')}</h1>

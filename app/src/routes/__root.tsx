@@ -16,7 +16,7 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      { title: '知更 · StemRobin' },
+      { title: 'MynaTree · AI 数学老师' },
       { name: 'description', content: '帮助未来的创造者，积累科学与工程知识。' },
     ],
     links: [
