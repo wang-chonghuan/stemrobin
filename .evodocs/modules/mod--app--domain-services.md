@@ -1,239 +1,77 @@
 # purpose
 
-The domain-services module is StemRobin's trusted application layer. It turns
-the shared PostgreSQL schema into browser-safe learning data, determines which
-outline items are available, establishes the learner identity used to record
-attempts, and makes the answer decision that the browser is not allowed to make
-for itself. It is the only part of the application that knows the database
-connection, hidden correct indexes, accepted typed-answer forms, password hashes,
-or signed session format.
+The domain-services module is StemRobin's trusted server-side policy layer for math learning. It turns the shared PostgreSQL schema into locale-complete, browser-safe curriculum, reading, practice, identity, and progress data. It owns every decision that must not be duplicated in the browser: database access, session verification, locale resolution, content availability, answer-key separation, answer judgment, attempt scoring, and progress aggregation.
 
-The module supports two content families with one consistent runtime contract.
-Math lessons are stored HTML documents with optional printable PDFs and structured
-practice decks. Biography reading is stored Markdown grouped into stories and
-ordered chapters, with its own printable PDFs and question tables. Each family
-has a catalog read, a detail read, a question read, and an answer-recording
-operation. The learner UI is intentionally insulated from the tables and receives
-only data appropriate to the phase of interaction.
+The module bridges a hybrid content model. Card reading comes from neutral JSONB stored on a lesson plus a prose-only locale overlay. Practice uses relational question rows for stable runtime identities and answer events, while exercise JSONB and overlays provide translated prompt and option text. Stored HTML/PDF remain derived lesson artifacts. The module keeps these representations aligned behind server-function contracts so components do not need to understand storage details.
 
-This is also the policy boundary for answer-key secrecy. The initial question
-read supplies a prompt, cognitive type, answer mode, display order, and choice
-options. It never supplies a correct option, an input acceptance set, or a
-reference explanation. The corresponding POST operation checks the signed
-learner session, loads the hidden values itself, records an attempt, and then
-returns a verdict and explanation. That ordering is a product rule rather than a
-presentation convention.
+The central security rule is phase separation. Initial reading and practice fetches include prompts, visible options, order, and presentation metadata only. Correct indexes, accepted forms, and reference answers remain in neutral JSONB or privileged relational columns. The server reads hidden data only when judging a submitted response. Locale overlays are never a second location for answer keys.
 
 # structure
 
-The database boundary begins with a memoized Postgres client. It accepts the
-local authoring connection variable or the deployment variable, fails immediately
-when neither exists, requires TLS, and sets a quoted search path for the
-hyphenated project schema. The client limits concurrent connections and rotates
-idle or long-lived sockets so a reused server process does not issue its next
-query on a connection already closed by Azure. Every query in this module is
-constructed through that client; a second client, browser connection, or
-alternative schema selection would break the project-wide persistence contract.
+The database boundary is a memoized Postgres client configured for TLS, a small connection pool, connection recycling, and the quoted `stemrobin-schema` search path. It accepts the local authoring connection variable or deployed runtime variable and fails immediately when neither exists. All services use this one client; there is no browser database SDK or feature-specific connection.
 
-The curriculum area maintains a fixed, ordered human outline for math and
-physics. Titles live in that outline without ids. An id is instead calculated
-from a supported subject, the stage position, and the lesson position. Given the
-set of persisted lesson ids, the module derives a fresh linked outline and a
-flat available-lesson list in outline order. It also derives previous and next
-entries from exactly that filtered list. This means persisted content controls
-availability and navigation, while the outline remains the source of labels,
-ordering, and lesson positions. The empty robot subject intentionally produces
-no outline id.
+Curriculum logic owns the fixed math and physics outline, deterministic lesson ids, learner-visible numbering, locale-specific labels, availability projection, and previous/next navigation. Chinese uses the full source outline and marks only persisted/readable lessons as links. A translation locale receives only lessons in the supplied readable-id set, with empty stages and subjects removed. This keeps future untranslated placeholders from appearing as partially supported English content.
 
-The lesson service reads lesson metadata, stored HTML, stored PDF bytes, and the
-full lesson-id set. PDF bytes are encoded as base64 inside the server operation
-so the browser can construct a download without database access. The story
-service has a parallel shape, but its catalog comes entirely from story and
-chapter rows. It preserves stored chapter order and stage metadata, joins a
-chapter to its parent story for a reading title, converts trusted persisted
-Markdown to HTML on the server, and retrieves chapter PDFs separately. The
-content savers enforce the content formats before persistence; runtime code is
-not a second content authoring or validation workflow.
+Locale support has two layers. Isomorphic translation helpers provide application chrome, curriculum labels, lesson titles, and question-type labels. Server-only locale primitives read and write a long-lived `sr_locale` preference cookie. Loaders resolve locale on the server so content overlay selection and first paint agree. Unknown cookie values fall back to Chinese.
 
-Quiz operations form a small, deliberate public contract. Math and story question
-readers both produce a visible question object containing id, order, cognitive
-type, prompt, answer mode, and options. This lets the shared quiz drawer render
-either family without knowing its table. Math questions can be choice, typed
-input, or spoken work; story questions use choice or spoken work. The matching
-answer result gives the UI a boolean or ungraded null, a correct index only for
-choice, and a reference explanation only after submission.
+Lesson services read metadata, stored HTML, PDF bytes, and locale-readable ids. Readability is calculated from all node ids referenced by card prose, figure captions, card checks, exercise prompts, and exercise options. A lesson is available only when the selected overlay covers every referenced id. This is stricter than row existence and prevents mixed-language rendering.
 
-Session code is physically server-only. It validates the stored `scrypt` hash
-with a timing-safe comparison and signs only the numeric user id with an
-HMAC-SHA256 secret. The cookie is httpOnly, same-site lax, rooted at `/`, and
-lasts thirty days. A current-user read validates both the signature and the
-continued presence of the user row. The module also exposes a very small Zustand
-store for the responsive catalog drawer; it is intentionally the only transient
-browser-state exception inside this otherwise server-oriented child.
+Reading services project neutral cards into browser-facing cards. Ordered body nodes combine locale prose with neutral formulas and SVG. Read-check prompts and options are resolved from the overlay while their keys are omitted. A missing overlay node fails projection; the server returns no card reading rather than emitting blanks. The stored lesson head is extracted from derived HTML so each card iframe can reuse the same KaTeX and visual contract.
+
+Practice services expose key-free relational questions. Chinese uses relational prompt and option text. Other locales align relational rows with exercise JSONB by order and resolve prompt/option node ids from the overlay, while retaining numeric question ids and hidden relational keys for scoring. Separate attempt operations start, resume, restart, end, summarize, and retrieve the latest score.
+
+Session services isolate Node crypto and server cookie APIs. Passwords are verified against scrypt hashes. The session value contains only a numeric user id and HMAC signature. Progress services combine lesson read-check definitions, correct content events, and the latest scored practice attempt into two possible points per lesson.
 
 # flows
 
-Lesson discovery begins when a route asks for all lesson ids. The service selects
-the ids present in `sr_lessons`, and the curriculum projection intersects them
-with the fixed outline. The result keeps the original stage and lesson order,
-adds ids only to entries that have persisted material, and keeps ungenerated
-entries as plain labels. The same projection produces a flat sequence for footer
-navigation. An unknown id has no predecessor or successor, so an outline-only
-lesson never becomes navigable simply because its title appears in the catalog.
-The tests lock down this no-mutation, deterministic-order behavior.
+A shell or overview load first verifies the session in the parent route, then asks this module for the active locale and readable lesson ids. The availability query enumerates every translatable node referenced by content and exercises, joins the requested overlay, and accepts only lessons with zero missing nodes. The curriculum projection then supplies localized labels and navigation in deterministic outline order.
 
-A lesson detail request fetches stored HTML by id. Missing rows and rows with
-empty HTML return null, allowing the route to show a missing-courseware state
-instead of looking for a local file. A PDF request takes the same id and returns
-null when the row or bytes are absent. Story detail follows a different
-projection: a chapter row joins to its parent story, its Markdown is converted to
-HTML on the server, and the result includes both chapter and story titles. Story
-catalog building first fetches all stories and all chapters, groups chapters by
-their foreign key, and retains their database order and stored citation ranges.
+A card-reading request selects neutral content, stored HTML, and the active locale overlay. It rejects missing or empty card trees. Projection preserves card order, learner-visible card numbers, section names, anchors, formulas, SVG, and captions. Read-check objects contain only id, mode, prompt, and visible options. A choice submission compares the original option index with the hidden JSONB index; an input submission normalizes both typed text and accepted forms. Logged-out read-checks can be judged, but only authenticated learners produce `sr_content_answer_events`.
 
-An initial math quiz request selects only the visible fields from a question row.
-For a choice question it includes the options but not the stored correct index.
-For typed input it excludes the `accept` JSON array. For work items it excludes
-the reference answer. The story question reader applies the same secrecy rule.
-This fetch happens before a learner necessarily has a session, because reading
-the practice prompts is not itself a durable event.
+A practice fetch selects only visible relational question columns. For English, it obtains the lesson exercise JSONB and overlay and substitutes localized prompt/option text by exercise order. The answer recorder requires a valid session, then selects hidden relational key columns. Choice and input responses are graded; work responses remain ungraded. Answer events can carry an attempt id so the drawer can reconstruct one pass through the deck.
 
-Recording a math answer starts by reading and verifying the signed cookie. A
-missing or invalid user produces a login error and no event row. For choice, the
-service requires a numeric original option index, compares it with the hidden
-correct index, writes `chosen` and the boolean result to the lesson answer-event
-table, and returns the answer plus the correct index. For typed input, it rejects
-blank text, normalizes both sides, writes the trimmed text and the boolean
-result, and returns no correct index. Normalization removes whitespace, maps
-full-width characters and punctuation into ordinary forms, unifies several minus
-glyphs, changes superscripts into caret notation, and treats explicit
-multiplication before letters or parentheses as implicit while preserving numeric
-products such as `2*3`.
+Starting an attempt deletes any existing open attempt for the same learner and lesson, relying on cascade behavior to clear its linked answer events. Resuming reads the latest open attempt and collapses multiple events per question to the newest event. Ending stamps `ended_at`, summarizes the current deck against recorded events, counts unanswered gradable items in the denominator, excludes work items from the percentage, and records that same server-authoritative percentage in practice progress.
 
-Spoken work items are intentionally not auto-graded. The service writes an
-attempt with null correctness and returns the hidden reference explanation after
-the learner declares the response complete. Story recording uses the same
-ungraded behavior for its work items; story choice compares against the separate
-story-question index and writes to the separate story-event table. Keeping the
-two event spaces separate preserves their foreign keys while keeping the UI
-response shape identical.
+Progress treats each lesson as one locale-agnostic identity. Reading is complete only when the lesson has at least one read-check and every defined check has a correct event for the learner. Practice is complete when the latest stored score is at least eighty. A later lower score makes practice incomplete again. The writer retains only the latest two practice score rows per learner and lesson. Logged-out progress returns correct totals with no completed points.
 
-Login lowercases and trims the supplied email, looks up the stored user record,
-verifies the scrypt hash, and then sets the signed cookie. Logout expires that
-cookie. The drawer store has no relationship to any of these operations: it
-holds only an open/closed flag that survives client-side route transitions and
-is reset by the surrounding responsive shell.
+Login trims and lowercases email, verifies the stored hash, and writes the signed cookie. Logout expires it. The current-user operation verifies the signature and confirms the user row still exists. Locale switching writes its separate non-httpOnly preference cookie and causes route loaders to rerun.
 
 # module-relationships
 
-The database-schema module defines the exact stored contracts this module reads
-and writes. Lesson data depends on `sr_lessons`, `sr_questions`, and
-`sr_answer_events`; story data depends on `sr_stories`, `sr_story_chapters`,
-`sr_story_questions`, and `sr_story_answer_events`; identity depends on
-`sr_users`. Foreign keys and uniqueness constraints determine which content and
-attempt writes can succeed. The domain module does not invent parallel
-structures, and the application must preserve the project schema search path on
-every connection because all SQL assumes those unqualified table names resolve
-inside `stemrobin-schema`.
+The database-schema module owns table, column, index, and cascade contracts. This module consumes users, lessons, content/exercise JSONB, overlays, relational questions, content answer events, relational answer events, quiz attempts, and practice attempts. Some critical validity remains above SQL: JSONB shape, complete overlay coverage, answer-mode companion fields, latest-two pruning, and progress interpretation.
 
-The math courseware generator is an upstream writer. Its ledger and outline
-checks ensure a deterministic math id, then its saver writes lesson HTML, PDF,
-metadata, and deck rows. When the saver writes a deck, it also replaces the
-stored questions and embeds a prompt-only practice section into the lesson HTML.
-The biography generator similarly writes story provenance, chapter Markdown,
-chapter staging and section ranges, PDFs, and question rows. This module
-therefore consumes generated database state, never local lesson files. A saver
-change to ids, columns, answer modes, or source format must be checked against
-the runtime reads here.
+The math-courseware generator is the upstream writer. It validates and saves stage ledgers, card trees, exercise decks, Chinese overlays, relational practice rows, and derived HTML/PDF. Translation tools add complete overlays. Any change to node identity, exercise order, key placement, or rendering metadata must be reviewed against the projections here. The application never regenerates source content.
 
-The learner-experience module is the downstream consumer. SSR route loaders call
-catalog and detail readers, lesson and story pages download the base64 PDFs, and
-the shared quiz drawer calls visible-question readers and answer recorders. It
-also consumes the curriculum projection to decide which links show and uses the
-layout store to open the mobile catalog. It must not reconstruct visibility,
-grade answers, render raw story Markdown, or query tables directly, because
-those would bypass the policy implemented here.
+The learner-experience module is downstream. It consumes safe view models and calls mutations for locale, session, read-checks, answers, attempts, and progress. It may shuffle choice presentation, but it submits original indexes. It must not infer overlay fallback, calculate authoritative scores, query hidden keys, or reconstruct progress from local state.
 
-The app parent supplies TanStack Start server-function transport and keeps the
-session implementation in a `.server.ts` file so Node crypto and cookie APIs do
-not enter the client bundle. The root document's KaTeX resources complement
-question prompts and generated lesson HTML, but the domain module only moves
-those strings and does not typeset them. This separation lets generated content
-evolve without coupling database decisions to React rendering behavior.
+The app parent supplies SSR transport, the protected route gate, and the runtime environment. Curriculum labels are code-owned companion data rather than generated database content. The same deterministic lesson id connects outline order, JSONB, overlays, questions, attempts, and progress.
 
 # constraints
 
-All database reads and writes are server-only and go through the shared `sql()`
-client. The connection URL must never be serialized to the browser, and a missing
-configuration variable is an immediate server error. Do not create a secondary
-client for an individual feature or switch the search path per query. The schema
-has a hyphenated name and the existing client configuration quotes it for a
-reason. Connection recycling settings are also operationally important because
-the shared Azure database can close old idle connections.
+All database access stays server-only through the shared client. Preserve the quoted schema path and connection recycling behavior. Do not add a second client, expose the connection string, or import server-only crypto/cookie modules into browser code.
 
-The answer-key boundary must remain intact for both content families. Question
-readers must never select or serialize `correct_index`, `accept`, or `answer`.
-Record operations must obtain those values from storage only after they have
-verified the session. Choice submissions must use original database option
-indexes, even when the UI has shuffled presentation. Typed input must normalize
-the learner value and every candidate `accept` value through the same function;
-otherwise ordinary Chinese keyboard variants would make equivalent answers fail.
-Work answers have deliberately null correctness and must not be represented as
-wrong answers.
+Answer keys remain separated from fetch payloads and overlays. Reading projection must not emit JSONB `key` objects. Practice fetches must not select `correct_index`, `accept`, or `answer`. Server record operations may reveal feedback only after validation and judgment. Non-Chinese practice currently suppresses Chinese explanations rather than falling back to mixed-language feedback.
 
-The curriculum must keep its fixed outline free of hand-maintained availability
-ids. Derivation functions return new objects, and tests assert the source outline
-does not change. Story visibility and order are database authored, while lesson
-visibility is the intersection of DB ids and the deterministic outline. Session
-tokens carry only a user id and derive their validity from the HMAC and user-row
-lookup; password hashes remain in the database and must never enter a server
-function response.
+Locale availability is all-or-nothing. Missing translated nodes hide card reading and catalog availability. Node ids and exercise order are cross-storage contracts; changing them can break translation, question localization, progress, and answer history even when individual JSON objects still parse.
+
+Progress is server-authoritative and locale-agnostic. Reading requires every current read-check, and a lesson with no checks does not complete vacuously. Practice uses the latest score and can regress. The attempt score shown in the drawer and the score written to progress must continue to use the same calculation.
 
 # known-limits
 
-Current content reads do not filter by `status`, so draft lesson rows, stories,
-and chapters can appear wherever their ids or parent rows are selected. The
-status fields exist in the schema but are not currently an access-control gate.
+The content model remains hybrid. JSONB owns neutral lesson and exercise structure, but practice answering and attempt resume depend on relational `sr_questions`. Exercise order is the alignment key between them. A migration that changes one side without the other can localize the wrong question or detach keys from visible text.
 
-The module records granular attempts but does not calculate learner progress,
-mastery, streaks, weak concepts, or a review schedule at runtime. The overview
-therefore cannot obtain real progress from this module yet.
+English reference explanations are not translated. After a response, English learners receive the verdict and choice highlighting but an empty explanation field. This avoids mixed-language output but provides less teaching feedback than Chinese.
 
-Authentication is intentionally minimal: there is no account creation, password
-reset, role model, session revocation list, rotation protocol, or external
-identity provider. The session secret has a development fallback, so deployment
-security depends on injecting a unique `SESSION_SECRET`. Story Markdown is
-trusted because the generation path rejects embedded HTML; arbitrary user-authored
-Markdown is not a supported input.
+Authentication has no registration, password reset, roles, server-side revocation, or external provider. The development session-secret fallback is unsafe for production if environment injection is omitted.
+
+Progress history is intentionally lossy. Only the latest two score summaries are kept, content events are disposable, and question replacement can remove relational answer events through cascades. The model supports current learner feedback rather than longitudinal analytics.
 
 # notes-for-ai
 
-Before changing a service operation, identify the exact table columns and
-foreign-key consequences in the schema, then inspect the relevant content saver
-and its input contract. Changes to lesson questions often need coordinated
-updates across the math deck validator, saver, question reader, answer recorder,
-and quiz UI. A new story answer mode requires the same breadth across the story
-saver, schema check constraint, question reader, recorder, and shared UI
-contract. Do not add client-side grading as a shortcut.
+Before changing a service, identify its authority: curriculum code, neutral JSONB, locale overlay, relational question row, attempt row, or progress summary. Avoid creating fallback data paths between them. A missing overlay, key, user, or database configuration should remain visible as an unavailable or error state rather than being silently synthesized.
 
-For catalog and navigation changes, preserve the distinction between human
-outline order and persisted availability. Add titles to the appropriate outline
-and let a matching persisted row activate them; do not put availability flags in
-the constant. Test first, middle, last, and absent ids, and verify every
-projection leaves the source outline untouched. For story catalog changes, check
-chapter ordering, stage ordering, section ranges, and the behavior for stories
-with no staged chapters.
+For localization changes, test complete and incomplete overlays, Chinese source behavior, English filtering, card projection, practice text alignment, and explanation suppression. Preserve formulas, SVG, stable node ids, and key-free overlays. For curriculum changes, coordinate human titles, deterministic ids, generated lesson rows, and localized title maps.
 
-When modifying typed answer behavior, extend the normalizer and its unit tests
-as one change. Retain the numeric-product exception and test the server-side
-comparison using representative `accept` values. When modifying identity,
-exercise malformed cookie tokens, missing users, timing-safe comparison paths,
-case-normalized email lookup, and cookie expiry. Preserve server-only imports so
-crypto and the database client remain absent from browser bundles.
+For practice changes, test initial key-free fetches, choice/input/work judgment, option shuffling, open-attempt replacement, resume hydration, early end, latest score retrieval, and progress recording. Verify cascade consequences in a disposable database. For progress changes, test zero-check lessons, all-check completion, exact eighty threshold, regression, latest-row ordering, and logged-out totals.
 
-Verify runtime work through the application rather than by reading query strings.
-Run the unit suite for curriculum and normalization changes. For content,
-authentication, quiz, or schema changes, run the app against a controlled
-database and confirm initial network responses omit hidden answer fields, logged
-out submissions write nothing, each answer mode writes the intended event shape,
-and post-answer responses reveal only the expected data.
+Run the focused Vitest suites for curriculum, reading, locale, quiz, normalization, and progress, then run the production build. When storage contracts change, inspect the schema and generator saver in the same change and verify the browser-visible network payload before and after answering.
