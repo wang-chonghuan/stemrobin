@@ -43,7 +43,15 @@ export function CatalogSidebar({
           />
           <div>
             <span className="sr-brand-name">
-              Myna<b>Tree</b>
+              {locale === 'en' ? (
+                <>
+                  Myna<b>Tree</b>
+                </>
+              ) : (
+                <>
+                  八个<b>树</b>
+                </>
+              )}
             </span>
             <span className="sr-tagline">{t(locale, 'brand.tagline')}</span>
           </div>
