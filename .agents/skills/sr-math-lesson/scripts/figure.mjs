@@ -210,6 +210,21 @@ export function validateFigure(spec, tag = 'figure') {
   return problems
 }
 
+// The learner-referenceable labels a figure carries (point names/labels, angle
+// and arc labels, number-line point labels). Used for the figure-text
+// consistency check: a figure whose labels never appear in the surrounding prose
+// is disconnected from the text — a sign the figure is decorative, not load-bearing.
+export function figureLabels(spec) {
+  const out = new Set()
+  const add = (v) => { if (v != null && String(v).trim()) out.add(String(v).trim()) }
+  for (const p of spec.points || []) { if (!p.hidden) { add(p.name); add(p.label) } }
+  for (const a of spec.angles || []) add(a.label)
+  for (const a of spec.arcs || []) add(a.label)
+  for (const s of spec.segments || []) add(s.label)
+  for (const l of spec.labels || []) add(l.text)
+  return out
+}
+
 if (import.meta.url === `file://${process.argv[1]}`) {
   const arg = process.argv[2]
   if (arg === '--self') { // built-in demo specs, for a quick eyeball

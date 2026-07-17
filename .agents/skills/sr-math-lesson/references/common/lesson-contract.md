@@ -54,7 +54,7 @@ Self-contained HTML from `assets/lesson-template.html` (head/style shell + heade
 
 **概念课** (goal: the learner can parse instances and name parts) — anchors, in order: `motivation, model, anatomy, boundary, connections, oral`
 1. `motivation` 为什么需要这个名字 — a real confusion that having the name resolves. Never "本课我们学习…".
-2. `model` 建立概念 — the definition **through the stage model**, with a `.sr-eg` block of 正例/反例, and a hand-drawn inline SVG diagram of the structure (e.g. the two-layer expression tree). First formal term in `<span class="sr-term">`.
+2. `model` 建立概念 — the definition **through the stage model**, with a `.sr-eg` block of 正例/反例, and — **where the model is spatial** — one or more figures that show the structure (a two-layer expression tree, a circle with its parts, a number line). Figure decisions are **not preset**: see "## Figures" below — a geometry model usually needs figures, an algebra model often needs none. First formal term in `<span class="sr-term">`.
 3. `anatomy` 拆给你看 — 2–4 worked *parsing* examples (`.sr-example`): take a concrete expression, decompose it aloud, name every part.
 4. `boundary` 边界与陷阱 — every ledger `boundary_cases` entry gets treated honestly (`.sr-pitfall` for traps). This is where categories become real.
 5. `connections` 与其他知识点的联系 — backward (what this stands on) and forward (what will consume this term next), by name.
@@ -77,7 +77,22 @@ Both genres:
 - **Vocabulary contract**: every technical term used must be either introduced in THIS lesson or present in an earlier lesson's `introduces`/`assumed`. On first use of a consumed term, a one-line reminder is welcome ("还记得吗：项是按加减切出来的块"). `check-ledger.mjs --vocab` greps the HTML for later-lesson terms; the gate hunts wild jargon.
 - 深入浅出, school-serious tone (resources/reference/DESIGN.md), no encouragement filler, no cartoon metaphors that will have to be unlearned. The tree/layer language IS the metaphor and it is the real structure.
 - **Authors never write a `practice` section** — the deck is the SSOT. The saver (cap4 deck path) GENERATES a `practice` section from the deck and embeds it into the stored 課文: prompts + choice options only (the answer key — `answer`/`correct_index`/`accept` — never enters the html; checking happens in the card-quiz). On screen the learner sees every question while reading; in the printed PDF the practice starts on its own page with full-width rules between items (pen-writing room). A hand-authored practice section fails gate-2.
-- KaTeX `$...$`/`$$...$$`; inline SVG for figures (viewBox, labeled, template palette); never images.
+- KaTeX `$...$`/`$$...$$` for symbols; **figures as declarative specs** (see "## Figures"); never images.
+
+## Figures — representation follows cognitive demand (no preset)
+
+The skill is **not** text-first and **not** figure-first. Each lesson's figure needs are **judged per-lesson by domain and content**, and that judgment is made **explicit and checkable in the blueprint** (see "## Blueprint" — the pre-authoring gate) before any prose is written. A geometry lesson (objects are spatial: a circle, an angle, two overlapping ranges) usually needs several figures — often one per worked example and a side-by-side pair for a boundary contrast; an algebra lesson (objects are symbolic: `$2x+1>7$`) usually needs few or none. There is **no figure count** — the check is **necessity**: every figure must earn its place (a `why` in the blueprint; 无理由=废图), and every claim/step/problem that only makes sense *with* a figure must have one (缺图, caught in the blueprint review).
+
+- **Figures are authored as declarative specs, not hand-drawn SVG.** A body node is `{ kind:"svg", spec:{…}, caption_id? }`; `scripts/figure.mjs` computes correct coordinates and emits static inline SVG (three-hue palette, viewBox, labeled) at render time. This is correct-by-construction — points land ON the circle, the minor arc and equal-radius marks are computed — so figures scale without the hand-typed-coordinate errors raw SVG invites. Spec families: `geometry` (circles/points-on-circle/segments/arcs/angles/ticks/right-angle marks) and `numberline` (ticks/open|closed endpoints/rays). Raw `svg` markup stays allowed for a bespoke diagram the spec can't express, but prefer the spec.
+- **Figure-text consistency** (`check-content`): a spec figure's labels (`O`, `A`, `α`, `弧AB`, …) must appear in that card's prose — a figure whose labels are nowhere in the text is decorative, not load-bearing, and fails.
+- Palette + never-images rule unchanged (`resources/reference/DESIGN.md`).
+
+## Blueprint — plan-and-check before authoring (事中/草案检验)
+
+Author a lesson in two phases so structural and figure problems are caught **before** a whole lesson of prose exists, not after:
+
+1. **Blueprint first** (`references/capability-2-lesson-html` step 0): a small JSON plan — the lesson's `domain` + `domain_rationale` (the agent's explicit representation judgment), the per-section skeleton with a **figure plan** (which figures, and a `why` for each), and a `deck_plan` (item count + which items carry figures and why). Run `scripts/check-blueprint.mjs bp.json --ledger <stage> --id <id>` (structure + every-figure-justified gate) **and** a light semantic review (does any spatial claim lack a figure? is any figure gratuitous?). **Do not author full prose until the blueprint passes** — this is the gate.
+2. **Author to the blueprint**, running the deterministic checks **incrementally** (per section/card) rather than only at the end.
 
 ## Exercise deck (cap3 → `sr_questions`)
 

@@ -17,6 +17,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { readCheckModes } from './question-policy.mjs'
+import { validateFigure, figureLabels } from './figure.mjs'
 
 // Genre section anchors (ordered) — the fixed, validated card boundaries.
 export const ANCHORS = {
@@ -100,8 +101,25 @@ export function validateContent({ content, overlay, genre, id }) {
         if (!n.tex) problems.push(`${ntag}: formula node needs tex`)
         if (n.id && has(n.id)) problems.push(`${ntag}: formula must be neutral (not in overlay)`)
       } else if (n.kind === 'svg') {
-        if (!n.svg || !/<svg[\s>]/i.test(n.svg)) problems.push(`${ntag}: svg node needs inline <svg> markup`)
+        // A figure is a declarative `spec` (preferred: figure.mjs computes correct
+        // coordinates) or raw inline `svg` markup (legacy/bespoke).
+        if (n.spec) {
+          for (const p of validateFigure(n.spec, `${ntag} figure spec`)) problems.push(p)
+        } else if (!n.svg || !/<svg[\s>]/i.test(n.svg)) {
+          problems.push(`${ntag}: svg node needs a figure \`spec\` or inline <svg> markup`)
+        }
         if (n.caption_id && !has(n.caption_id)) problems.push(`${ntag}: svg caption_id "${n.caption_id}" has no overlay entry`)
+        // figure-text consistency: a spec figure's labels should appear in this
+        // card's prose (else the figure is decorative, not load-bearing).
+        if (n.spec) {
+          const labels = [...figureLabels(n.spec)]
+          if (labels.length) {
+            const prose = (c.body || []).filter((b) => b.kind === 'prose' && has(b.id)).map((b) => overlay[b.id].t).join(' ')
+              + ' ' + (c.name || '') + ' ' + (n.caption_id && has(n.caption_id) ? overlay[n.caption_id].t : '')
+            const hit = labels.some((lab) => prose.includes(lab))
+            if (!hit) problems.push(`${ntag}: figure labels [${labels.slice(0, 6).join(', ')}] appear nowhere in the card prose — figure looks disconnected from the text (图-文不一致)`)
+          }
+        }
       } else problems.push(`${ntag}: unknown body node kind "${n.kind}"`)
     }
 

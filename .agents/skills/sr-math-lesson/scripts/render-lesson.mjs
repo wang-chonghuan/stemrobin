@@ -20,6 +20,7 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { renderFigure } from './figure.mjs'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
 const TEMPLATE_PATH = join(scriptDir, '..', 'assets', 'lesson-template.html')
@@ -43,8 +44,12 @@ function txt(overlay, id, ctx) {
 function renderBodyNode(node, overlay, cardId) {
   if (node.kind === 'formula') return `    <p class="sr-formula">$$${node.tex}$$</p>`
   if (node.kind === 'svg') {
+    // A figure is either a `spec` (declarative → figure.mjs computes coordinates)
+    // or raw `svg` markup (legacy / bespoke). Prefer the spec — it is
+    // correct-by-construction and machine-checkable.
+    const svg = node.spec ? renderFigure(node.spec) : node.svg
     const cap = node.caption_id ? `<figcaption>${esc(txt(overlay, node.caption_id, `svg caption in ${cardId}`))}</figcaption>` : ''
-    return `    <figure class="sr-fig">${node.svg}${cap}</figure>`
+    return `    <figure class="sr-fig">${svg}${cap}</figure>`
   }
   // prose
   const t = txt(overlay, node.id, `body prose in ${cardId}`)

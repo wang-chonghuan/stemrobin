@@ -40,7 +40,7 @@ Learner-visible **prose** (card bodies, read-check + exercise prompts/options) l
 When the requested lessons use an already checked ledger:
 
 1. Run outline + ledger validation once and ensure the ledger is in `sr_content_ledger` (`save-ledger.mjs`).
-2. Author each lesson's card-tree `content` JSONB + `zh` overlay (with per-substantial-card read-check) in parallel.
+2. For each lesson, **blueprint first, then author**: produce the blueprint (domain judgment + per-section figure plan with a `why` per figure + deck plan), pass `check-blueprint.mjs` + a 缺图/废图 self-review, THEN author the card-tree `content` JSONB + `zh` overlay (with per-substantial-card read-check), drawing planned figures as `figure.mjs` **specs** (not hand-drawn SVG). Representation follows the content's cognitive demand — no figure preset (geometry usually several, algebra usually none). Run the deterministic checks incrementally, not only at the end.
 3. Run one independent, batched gate-2 review; each lesson still needs its own pass.
 4. Author each passed lesson's exercise deck JSONB + overlay in parallel, then run `check-content.mjs` + `check-exercises.mjs`.
 5. Save all lessons (`save-lesson.mjs` renders HTML/PDF FROM the JSONB and upserts content/exercises/overlay/html/pdf per lesson).
