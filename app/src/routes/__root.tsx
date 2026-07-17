@@ -17,7 +17,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       { title: 'MynaTree · AI 数学老师' },
-      { name: 'description', content: '帮助未来的创造者，积累科学与工程知识。' },
+      { name: 'description', content: 'MynaTree — 孩子的私人 AI 数学老师：卡片式学习、即时反馈、讲到会为止、还能超前学。' },
     ],
     links: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
