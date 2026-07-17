@@ -34,8 +34,10 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': '点',
     'ov.stat.learned': '课文完成',
     'ov.stat.practiced': '练习完成',
-    'ov.pillar1.title': '科学与工程',
-    'ov.pillar1.desc': '只要你愿意学，AI 会帮你拆解路径、准备材料，陪你一步步掌握任何科学与工程知识。',
+    'ov.hero.badge': '现已开放 · 初中数学',
+    'ov.hero.title.a': '你的家庭 ',
+    'ov.hero.title.b': 'Alpha School',
+    'ov.hero.desc': '卡片式学数学，做错即时反馈。不会的题，AI 无限次讲解、不断生成同类题，直到你真正掌握，再带你往前一步——支持超前学习。',
     'ov.new': '新上线课程（{n}）',
     // lesson view
     'lesson.back': '返回',
@@ -125,9 +127,11 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': 'pts',
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
-    'ov.pillar1.title': 'Science & Engineering',
-    'ov.pillar1.desc':
-      'As long as you want to learn, AI helps map the path, prepare the materials, and walk you step by step through any science or engineering topic.',
+    'ov.hero.badge': 'Now open · Secondary math',
+    'ov.hero.title.a': 'Your home ',
+    'ov.hero.title.b': 'Alpha School',
+    'ov.hero.desc':
+      'Learn math card by card with instant feedback. Stuck on a problem? The AI re-explains and generates fresh practice as long as it takes — until you truly get it, then moves you a step ahead.',
     'ov.new': 'New lessons ({n})',
     'lesson.back': 'Back',
     'lesson.practice': 'Practice',
