@@ -11,7 +11,10 @@
 //   → validate exercises+overlay (shape + composition + review_of closure)
 //   → [real stages] human-outline fidelity check; [--sample] skip it
 //   → render HTML (+ best-effort PDF) from the JSONB
-//   → upsert sr_lessons(content, exercises, html, pdf) + sr_lesson_i18n(zh).
+//   → upsert sr_lessons(content, exercises, html, pdf) + sr_lesson_i18n(zh)
+//   → derive+upsert the relational sr_questions deck the app's card-quiz reads
+//     (a zh projection of the JSONB deck: prompt/options from the overlay, the
+//     KEY + post-answer `answer` reveal from the neutral base; KEY never in html).
 // Never hand-writes rows; idempotent (stable node ids, on-conflict upsert).
 //
 // Usage (from repo root):
@@ -70,6 +73,15 @@ try {
   const { problems: eProblems } = validateExercises({ exercises, overlay, ledger, id: args.id })
   if (eProblems.length) fail(`exercises validation failed:\n  - ${eProblems.join('\n  - ')}`)
 
+  // Every deck item must carry its post-answer reveal: sr_questions.answer is
+  // NOT NULL and the app reveals it after answering (the deck is projected to
+  // the relational sr_questions the card-quiz reads). Fail fast, before any DB write.
+  for (const it of Array.isArray(exercises.items) ? exercises.items : []) {
+    if (typeof it.key?.answer !== 'string' || !it.key.answer.trim()) {
+      fail(`exercise ${it.id} (ord ${it.ord}) is missing key.answer (the post-answer reveal explanation)`)
+    }
+  }
+
   // --- human-outline fidelity: real stages only (a disposable sample maps to no guide entry) ---
   if (!isSample) {
     const tmp = mkdtempSync(join(tmpdir(), 'srml-'))
@@ -104,9 +116,41 @@ try {
     values (${args.id}, 'zh', ${sql.json(overlay)}, now())
     on conflict (lesson_id, locale) do update set overlay=excluded.overlay, updated_at=now()
   `
+
+  // --- derive the relational sr_questions deck (the app serves the zh card-quiz
+  //     from sr_questions; it is a DERIVED zh projection, like html/pdf). Prompt/
+  //     option TEXT come from the zh overlay; the KEY (correct_index/accept) and
+  //     the post-answer `answer` reveal come from the neutral base — they never
+  //     enter the overlay or the learner-visible html. Upsert by (lesson_id, ord)
+  //     so a re-save preserves question ids (and the learner sr_answer_events that
+  //     FK them), then drop any stale tail beyond the new deck.
+  const ovText = (nid, what) => {
+    const t = overlay[nid]?.t
+    if (typeof t !== 'string' || !t.trim()) fail(`overlay missing text for ${what} (${nid})`)
+    return t
+  }
+  const items = Array.isArray(exercises.items) ? exercises.items : []
+  for (const it of items) {
+    const mode = it.mode
+    const options = mode === 'choice' ? (it.options || []).map((oid) => ovText(oid, 'exercise option')) : null
+    await sql`
+      insert into sr_questions (lesson_id, ord, type, prompt, answer_mode, options, correct_index, accept, layer, review_of, answer)
+      values (${args.id}, ${it.ord}, ${it.type}, ${ovText(it.id, 'exercise prompt')}, ${mode},
+              ${options ? sql.json(options) : null}, ${mode === 'choice' ? it.key.correct_index : null},
+              ${mode === 'input' && it.key.accept ? sql.json(it.key.accept) : null},
+              ${it.layer ?? null}, ${it.review_of ?? null}, ${it.key.answer})
+      on conflict (lesson_id, ord) do update set
+        type=excluded.type, prompt=excluded.prompt, answer_mode=excluded.answer_mode,
+        options=excluded.options, correct_index=excluded.correct_index, accept=excluded.accept,
+        layer=excluded.layer, review_of=excluded.review_of, answer=excluded.answer
+    `
+  }
+  const maxOrd = items.reduce((m, it) => Math.max(m, Number(it.ord) || 0), 0)
+  await sql`delete from sr_questions where lesson_id = ${args.id} and ord > ${maxOrd}`
+
   const cards = content.cards.length
   const rc = content.cards.reduce((n, c) => n + (Array.isArray(c.read_check) ? c.read_check.length : 0), 0)
-  console.log(`✓ ${args.id} (${entry.genre}) saved JSONB-first: content ${cards} cards / ${rc} read-check · exercises ${exercises.items.length} items · zh overlay ${Object.keys(overlay).length} nodes · html ${html.length}B · pdf ${pdfBuf ? Math.round(pdfBuf.length / 1024) + 'KB' : 'none'} · status=${status}`)
+  console.log(`✓ ${args.id} (${entry.genre}) saved JSONB-first: content ${cards} cards / ${rc} read-check · exercises ${exercises.items.length} items → sr_questions ${items.length} · zh overlay ${Object.keys(overlay).length} nodes · html ${html.length}B · pdf ${pdfBuf ? Math.round(pdfBuf.length / 1024) + 'KB' : 'none'} · status=${status}`)
 } finally {
   await sql.end()
 }

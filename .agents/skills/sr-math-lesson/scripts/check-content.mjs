@@ -112,7 +112,10 @@ export function validateContent({ content, overlay, genre, id }) {
 }
 
 // Shared item key/option validation for read_check + exercises (choice|input|work).
-export function validateItemKey(problems, tag, item, overlay, has, allowedModes) {
+// `allowAnswer` permits an optional post-answer `answer` reveal string on a choice
+// key — true for exercise deck items (the app reveals it after answering, projected
+// to sr_questions.answer), false for read-checks (pure comprehension gates, no reveal).
+export function validateItemKey(problems, tag, item, overlay, has, allowedModes, allowAnswer = false) {
   if (!allowedModes.includes(item.mode)) { problems.push(`${tag}: mode must be one of ${allowedModes.join('|')}`); return }
   if (!item.key || typeof item.key !== 'object') { problems.push(`${tag}: missing key`); return }
   if (item.mode === 'choice') {
@@ -120,7 +123,11 @@ export function validateItemKey(problems, tag, item, overlay, has, allowedModes)
     else for (const optId of item.options) if (!has(optId)) problems.push(`${tag}: option id "${optId}" has no overlay entry`)
     if (!Number.isInteger(item.key.correct_index) || item.key.correct_index < 0 || (Array.isArray(item.options) && item.key.correct_index >= item.options.length))
       problems.push(`${tag}: choice key.correct_index out of range`)
-    if ('accept' in item.key || 'answer' in item.key) problems.push(`${tag}: choice key must be only { correct_index }`)
+    if ('accept' in item.key) problems.push(`${tag}: choice key must not carry accept`)
+    if ('answer' in item.key) {
+      if (!allowAnswer) problems.push(`${tag}: read-check choice key must be only { correct_index }`)
+      else if (typeof item.key.answer !== 'string' || !item.key.answer.trim()) problems.push(`${tag}: choice key.answer must be a non-empty string`)
+    }
   } else if (item.mode === 'input') {
     if (!Array.isArray(item.key.accept) || !item.key.accept.length) problems.push(`${tag}: input key needs accept[] of strings`)
     if ('correct_index' in item.key) problems.push(`${tag}: input key must be only { accept }`)

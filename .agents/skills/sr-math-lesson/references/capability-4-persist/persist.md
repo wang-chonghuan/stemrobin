@@ -14,7 +14,7 @@ Ledger → DB (validate closure, upsert `sr_content_ledger`):
 node .agents/skills/sr-math-lesson/scripts/save-ledger.mjs --ledger <scratch>/stage-2.json
 ```
 
-Lesson (reads ledger from `sr_content_ledger`, validates content/exercises/overlay, renders HTML + print PDF FROM the JSONB, upserts `sr_lessons.content/exercises/html/pdf` + `sr_lesson_i18n(zh)`):
+Lesson (reads ledger from `sr_content_ledger`, validates content/exercises/overlay, renders HTML + print PDF FROM the JSONB, upserts `sr_lessons.content/exercises/html/pdf` + `sr_lesson_i18n(zh)`, and derives+upserts the relational `sr_questions` deck the app card-quiz reads — a `zh` projection: prompt/options from the overlay, `correct_index`/`accept`/`answer` from the neutral `key`, upserted by `(lesson_id, ord)` so re-saves preserve question ids and learner answer events):
 
 ```bash
 node .agents/skills/sr-math-lesson/scripts/save-lesson.mjs \

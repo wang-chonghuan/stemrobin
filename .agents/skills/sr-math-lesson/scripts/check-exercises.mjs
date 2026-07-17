@@ -48,8 +48,9 @@ export function validateExercises({ exercises, overlay, ledger, id }) {
 
     // Choice-only policy (STEMROBIN-25, reversible): allowed modes come from
     // question-policy.mjs; validateItemKey keeps its input/work branches for when
-    // the policy re-enables them.
-    validateItemKey(problems, tag, q, overlay, has, exerciseModes())
+    // the policy re-enables them. allowAnswer=true: a deck item carries its
+    // post-answer `answer` reveal (projected to sr_questions.answer at save).
+    validateItemKey(problems, tag, q, overlay, has, exerciseModes(), true)
 
     if (q.layer === '复习') {
       if (!q.review_of) problems.push(`${tag}: 复习 items need review_of`)
