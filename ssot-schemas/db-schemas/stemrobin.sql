@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS sr_questions (
   layer          TEXT,                             -- deck role: 指认/操作/辨错/说理/复习
   review_of      TEXT,                             -- 复习 only: term being refreshed
   answer         TEXT NOT NULL,                    -- hidden explanation (post-answer reveal)
+  figure         TEXT,                             -- optional rendered inline SVG (derived from the deck item's figure spec); shown WITH the question
   UNIQUE (lesson_id, ord)
 );
 
@@ -242,6 +243,7 @@ CREATE INDEX IF NOT EXISTS sr_story_answer_events_user_idx
 -- Prose text is NOT stored here; only structure/order/编号/anchors/formulas/SVG/KEY.
 ALTER TABLE sr_lessons ADD COLUMN IF NOT EXISTS content   JSONB;  -- neutral card-tree SSOT
 ALTER TABLE sr_lessons ADD COLUMN IF NOT EXISTS exercises JSONB;  -- neutral exercise-deck SSOT
+ALTER TABLE sr_questions ADD COLUMN IF NOT EXISTS figure TEXT;    -- rendered inline SVG for a figure-bearing exercise (derived from the item's figure spec)
 
 -- Per-stage concept ledger, migrated from resources/content/math-ledger/stage-*.json
 -- into the DB as the authoritative source. Authoring metadata (source language zh);

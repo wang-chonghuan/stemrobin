@@ -36,6 +36,7 @@ export function projectQuestions(
     prompt: string
     answer_mode: 'choice' | 'work' | 'input'
     options: string[] | null
+    figure?: string | null
   }[],
   exercises: Exercises | null,
   overlay: Overlay,
@@ -48,6 +49,7 @@ export function projectQuestions(
     prompt: r.prompt,
     answerMode: r.answer_mode,
     options: r.options ?? null,
+    figure: r.figure ?? null, // rendered SVG, locale-independent
   }))
   if (locale === 'zh' || !exercises || !Array.isArray(exercises.items)) return base
   const itemByOrd = new Map(exercises.items.map((i) => [i.ord, i]))
@@ -72,6 +74,7 @@ export type QuizQuestion = {
   prompt: string
   answerMode: 'choice' | 'work' | 'input'
   options: string[] | null
+  figure: string | null // optional rendered inline SVG shown with the question (locale-independent)
 }
 
 export const getLessonQuestions = createServerFn({ method: 'GET' })
@@ -79,7 +82,7 @@ export const getLessonQuestions = createServerFn({ method: 'GET' })
   .handler(async ({ data: lessonId }): Promise<QuizQuestion[]> => {
     const locale = currentLocale()
     const rows = await sql()`
-      select id, ord, type, prompt, answer_mode, options
+      select id, ord, type, prompt, answer_mode, options, figure
       from sr_questions where lesson_id = ${lessonId} order by ord
     `
     if (locale === 'zh') {

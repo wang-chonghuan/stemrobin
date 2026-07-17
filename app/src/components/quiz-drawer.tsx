@@ -411,6 +411,9 @@ export function QuizDrawer({
 
               <div ref={qRef}>
                 <div className="sr-quiz-ptype">{q.type}</div>
+                {q.figure && (
+                  <div className="sr-quiz-figure" dangerouslySetInnerHTML={{ __html: q.figure }} />
+                )}
                 <div className="sr-quiz-prompt">{q.prompt}</div>
 
                 {q.answerMode === 'work' ? (

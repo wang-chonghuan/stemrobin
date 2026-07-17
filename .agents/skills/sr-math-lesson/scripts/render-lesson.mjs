@@ -106,7 +106,8 @@ function renderPractice(exercises, overlay, secCount) {
     const tags = `<span class="sr-ptype">${esc(q.type)}</span>` +
       (q.layer === '复习' ? `<span class="sr-ptype" style="background:var(--sr-green-tint);color:var(--sr-green-deep)">复习</span>` : '')
     const prompt = esc(txt(overlay, q.id, `exercise ${q.id}`))
-    return `      <li>${tags} ${prompt}${renderChoiceOptions(q, overlay, `exercise ${q.id}`)}</li>`
+    const fig = q.figure ? `<div class="sr-p-fig">${renderFigure(q.figure)}</div>` : ''
+    return `      <li>${tags} ${prompt}${fig}${renderChoiceOptions(q, overlay, `exercise ${q.id}`)}</li>`
   }).join('\n')
   return `
   <section data-sr-section="practice">
@@ -142,6 +143,8 @@ export function renderLessonHtml({ meta, content, exercises, overlay }) {
     ol.sr-practice > li::before { content:counter(p); position:absolute; left:0; top:9px; width:22px; height:22px; display:grid; place-items:center; border-radius:6px; background:var(--sr-panel); color:var(--sr-ink-soft); font-family:var(--sr-mono); font-size:11.5px; font-weight:600; }
     .sr-ptype { display:inline-block; margin-right:6px; border-radius:5px; padding:0 6px; background:var(--sr-blue-tint); color:var(--sr-blue-deep); font-size:10.5px; font-weight:700; vertical-align:1px; }
     .sr-p-note { color: var(--sr-ink-dim); font-size: 12.5px; margin: -2px 0 8px; }
+    .sr-p-fig { margin:8px 0; }
+    .sr-p-fig svg { max-width:min(360px,100%); height:auto; }
     .sr-p-opts { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:7px; }
     .sr-p-opt { font-size:14px; }
     .sr-p-opt b { font-family:var(--sr-mono); font-weight:600; color:var(--sr-ink-soft); margin-right:3px; }

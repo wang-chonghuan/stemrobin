@@ -11,6 +11,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { earlierTermsFor } from './ledger-core.mjs'
 import { validateItemKey } from './check-content.mjs'
+import { validateFigure } from './figure.mjs'
 import { exerciseModes } from './question-policy.mjs'
 
 const LAYERS = ['指认', '操作', '辨错', '说理', '复习']
@@ -51,6 +52,9 @@ export function validateExercises({ exercises, overlay, ledger, id }) {
     // the policy re-enables them. allowAnswer=true: a deck item carries its
     // post-answer `answer` reveal (projected to sr_questions.answer at save).
     validateItemKey(problems, tag, q, overlay, has, exerciseModes(), true)
+
+    // optional figure spec (a figure-bearing exercise): validate it renders
+    if (q.figure) for (const p of validateFigure(q.figure, `${tag} figure`)) problems.push(p)
 
     if (q.layer === '复习') {
       if (!q.review_of) problems.push(`${tag}: 复习 items need review_of`)

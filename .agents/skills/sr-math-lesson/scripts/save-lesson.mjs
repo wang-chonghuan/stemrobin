@@ -29,6 +29,7 @@ import { connect, repoRoot } from './db.mjs'
 import { validateContent } from './check-content.mjs'
 import { validateExercises } from './check-exercises.mjs'
 import { renderLessonHtml, renderPdf } from './render-lesson.mjs'
+import { renderFigure } from './figure.mjs'
 
 function fail(msg) { console.error(`✗ ${msg}`); process.exit(1) }
 
@@ -133,16 +134,18 @@ try {
   for (const it of items) {
     const mode = it.mode
     const options = mode === 'choice' ? (it.options || []).map((oid) => ovText(oid, 'exercise option')) : null
+    // a figure-bearing exercise: render its neutral figure spec to static SVG (derived, like html)
+    const figure = it.figure ? renderFigure(it.figure) : null
     await sql`
-      insert into sr_questions (lesson_id, ord, type, prompt, answer_mode, options, correct_index, accept, layer, review_of, answer)
+      insert into sr_questions (lesson_id, ord, type, prompt, answer_mode, options, correct_index, accept, layer, review_of, answer, figure)
       values (${args.id}, ${it.ord}, ${it.type}, ${ovText(it.id, 'exercise prompt')}, ${mode},
               ${options ? sql.json(options) : null}, ${mode === 'choice' ? it.key.correct_index : null},
               ${mode === 'input' && it.key.accept ? sql.json(it.key.accept) : null},
-              ${it.layer ?? null}, ${it.review_of ?? null}, ${it.key.answer})
+              ${it.layer ?? null}, ${it.review_of ?? null}, ${it.key.answer}, ${figure})
       on conflict (lesson_id, ord) do update set
         type=excluded.type, prompt=excluded.prompt, answer_mode=excluded.answer_mode,
         options=excluded.options, correct_index=excluded.correct_index, accept=excluded.accept,
-        layer=excluded.layer, review_of=excluded.review_of, answer=excluded.answer
+        layer=excluded.layer, review_of=excluded.review_of, answer=excluded.answer, figure=excluded.figure
     `
   }
   const maxOrd = items.reduce((m, it) => Math.max(m, Number(it.ord) || 0), 0)
