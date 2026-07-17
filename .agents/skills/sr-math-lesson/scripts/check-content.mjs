@@ -33,6 +33,18 @@ export const SUBSTANTIAL = {
 }
 export const KEY_FIELDS = ['correct_index', 'accept', 'answer']
 
+// Inside inline/display math ($...$ / $$...$$), a raw '<' immediately followed by
+// an ASCII letter is parsed by the browser as an HTML tag-open (KaTeX runs AFTER
+// HTML parsing), swallowing text — e.g. `$2<x$` eats everything up to the next `>`.
+// Authors must write `\lt` (or a space, or `&lt;`). Bare operators ($>$, $<$,
+// `$a < b$`, `$x<3$`) are safe — only '<' + letter is the hazard. Returns the
+// offending span (truncated) or null.
+export function mathHtmlHazard(text) {
+  const spans = String(text).match(/\$\$[^]*?\$\$|\$[^$]+\$/g) || []
+  for (const span of spans) if (/<[A-Za-z]/.test(span)) return span.slice(0, 48)
+  return null
+}
+
 // Validate content + overlay for one lesson. Returns string[] problems (empty = ok).
 export function validateContent({ content, overlay, genre, id }) {
   const problems = []
@@ -77,6 +89,13 @@ export function validateContent({ content, overlay, genre, id }) {
         if (seenNodeIds.has(n.id)) problems.push(`${ntag}: duplicate node id ${n.id}`)
         seenNodeIds.add(n.id)
         if (!has(n.id)) problems.push(`${ntag}: prose id "${n.id}" has no overlay entry`)
+        else if (n.role !== 'h3') {
+          // Body prose is rendered VERBATIM (render-lesson renderBodyNode), so a raw
+          // '<' before a letter inside $...$ is a real HTML-tag-eating hazard here
+          // (read-check/deck/caption text is esc()'d and safe, so only body prose is scanned).
+          const hz = mathHtmlHazard(overlay[n.id].t)
+          if (hz) problems.push(`${ntag} ("${n.id}"): raw '<' before a letter inside math ("${hz}") — body prose renders verbatim; write \\lt`)
+        }
       } else if (n.kind === 'formula') {
         if (!n.tex) problems.push(`${ntag}: formula node needs tex`)
         if (n.id && has(n.id)) problems.push(`${ntag}: formula must be neutral (not in overlay)`)

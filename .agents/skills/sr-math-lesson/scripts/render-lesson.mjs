@@ -143,13 +143,17 @@ export function renderLessonHtml({ meta, content, exercises, overlay }) {
     @media print { section[data-sr-section="practice"] { break-before: page; page-break-before: always; } ol.sr-practice > li { border-top:1.4px solid #111; border-bottom:1.4px solid #111; padding:16px 0 46px; break-inside:avoid; } ol.sr-practice > li::before { top:16px; } }
   </style>`
 
+  // Function replacements: a string second arg to String.replace interprets $&,
+  // $$, $` etc. in the replacement — and esc() turns `>`/`<` into `&gt;`/`&lt;`,
+  // so a prompt like `$>$` becomes `$&gt;` whose `$&` would inject the matched
+  // placeholder ({{SECTIONS}}). A function replacement is taken verbatim.
   return template
-    .replace(/\{\{TITLE\}\}/g, esc(title))
-    .replace('{{EYEBROW}}', esc(eyebrow))
-    .replace('{{CONCEPT}}', esc(concept))
-    .replace('{{CHIPS}}', chips)
-    .replace('{{SECTIONS}}', `${sections}\n${practice}`)
-    .replace('</head>', `${readcheckStyle}\n</head>`)
+    .replace(/\{\{TITLE\}\}/g, () => esc(title))
+    .replace('{{EYEBROW}}', () => esc(eyebrow))
+    .replace('{{CONCEPT}}', () => esc(concept))
+    .replace('{{CHIPS}}', () => chips)
+    .replace('{{SECTIONS}}', () => `${sections}\n${practice}`)
+    .replace('</head>', () => `${readcheckStyle}\n</head>`)
 }
 
 // Render the print PDF for a full lesson html (best effort — playwright-core).
