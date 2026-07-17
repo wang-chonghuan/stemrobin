@@ -1,10 +1,15 @@
 import { Link, useRouter } from '@tanstack/react-router'
-import { LogOut } from 'lucide-react'
+import { Check, ChevronUp, Languages, LogOut } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 
 import { type OutlineSubject, parseLessonNumber, withAvailableLessonIds } from '~/lib/curriculum'
 import { LOCALES, t, type Locale } from '~/lib/i18n'
 import { setLocale } from '~/lib/locale'
 import { logout, type CurrentUser } from '~/lib/session'
+
+// Language names are shown in their own language (self-referential), so they are
+// not routed through the i18n table.
+const LOCALE_NAME: Record<Locale, string> = { zh: '中文', en: 'English' }
 
 // The persistent left catalog: the curriculum outline (math + physics),
 // collapsible by subject and stage. Lives in the _app layout so it stays mounted
@@ -49,7 +54,6 @@ export function CatalogSidebar({
             <span className="sr-tagline">{t(locale, 'brand.tagline')}</span>
           )}
         </div>
-        <LanguageSwitch locale={locale} />
       </div>
 
       <div className="sr-cat-scroll">
@@ -65,58 +69,90 @@ export function CatalogSidebar({
         ))}
       </div>
 
-      <LogoutFooter user={user} locale={locale} />
+      <UserMenu user={user} locale={locale} />
     </aside>
   )
 }
 
-// Persistent logout control in the catalog footer. Shows the signed-in email and
-// a logout button that clears the HMAC session (existing `logout` server fn) and
-// returns to the bare /login page.
-function LogoutFooter({ user, locale }: { user: CurrentUser | null; locale: Locale }) {
+// Sidebar account control: an avatar + name button that opens an upward popover
+// with the language switch (folded in from the old header control) and logout.
+// No display-name field exists (sr_users has only email), so the name is the
+// email's local-part and the avatar is its first letter.
+function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }) {
   const router = useRouter()
-  if (!user) return null
-  async function signOut() {
-    await logout()
-    router.navigate({ to: '/login' })
-  }
-  return (
-    <div className="sr-cat-foot">
-      <span className="sr-cat-user" title={user.email}>
-        {user.email}
-      </span>
-      <button type="button" className="sr-logout" onClick={signOut}>
-        <LogOut size={15} aria-hidden />
-        {t(locale, 'login.logout')}
-      </button>
-    </div>
-  )
-}
+  const [open, setOpen] = useState(false)
+  const rootRef = useRef<HTMLDivElement>(null)
 
-// Persistent 中 / EN segmented control. Sets the sr_locale cookie server-side,
-// then invalidates the router so every loader re-runs and the whole app
-// re-renders in the chosen language (no full page reload).
-function LanguageSwitch({ locale }: { locale: Locale }) {
-  const router = useRouter()
-  const labels: Record<Locale, string> = { zh: '中', en: 'EN' }
-  async function pick(next: Locale) {
+  useEffect(() => {
+    if (!open) return
+    const onDown = (e: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [open])
+
+  if (!user) return null
+  const name = user.email.split('@')[0]
+  const initial = (name[0] || user.email[0] || '?').toUpperCase()
+
+  async function pickLocale(next: Locale) {
+    setOpen(false)
     if (next === locale) return
     await setLocale({ data: next })
     await router.invalidate()
   }
+  async function signOut() {
+    setOpen(false)
+    await logout()
+    router.navigate({ to: '/login' })
+  }
+
   return (
-    <div className="sr-lang-switch" role="group" aria-label={t(locale, 'switch.aria')}>
-      {LOCALES.map((l) => (
-        <button
-          key={l}
-          type="button"
-          className={'sr-lang-opt' + (l === locale ? ' active' : '')}
-          aria-pressed={l === locale}
-          onClick={() => pick(l)}
-        >
-          {labels[l]}
-        </button>
-      ))}
+    <div className="sr-usermenu" ref={rootRef}>
+      {open && (
+        <div className="sr-usermenu-pop" role="menu" aria-label={t(locale, 'account.menu')}>
+          <div className="sr-usermenu-section">
+            <span className="sr-usermenu-label">
+              <Languages size={13} aria-hidden /> {t(locale, 'switch.aria')}
+            </span>
+            {LOCALES.map((l) => (
+              <button
+                key={l}
+                type="button"
+                role="menuitemradio"
+                aria-checked={l === locale}
+                className={'sr-usermenu-item' + (l === locale ? ' active' : '')}
+                onClick={() => pickLocale(l)}
+              >
+                <span>{LOCALE_NAME[l]}</span>
+                {l === locale && <Check size={15} aria-hidden />}
+              </button>
+            ))}
+          </div>
+          <div className="sr-usermenu-sep" />
+          <button type="button" role="menuitem" className="sr-usermenu-item danger" onClick={signOut}>
+            <LogOut size={15} aria-hidden /> {t(locale, 'login.logout')}
+          </button>
+        </div>
+      )}
+      <button
+        type="button"
+        className={'sr-usermenu-trigger' + (open ? ' open' : '')}
+        aria-haspopup="menu"
+        aria-expanded={open}
+        onClick={() => setOpen((v) => !v)}
+        title={user.email}
+      >
+        <span className="sr-avatar" aria-hidden>{initial}</span>
+        <span className="sr-usermenu-name">{name}</span>
+        <ChevronUp size={16} className="sr-usermenu-caret" aria-hidden />
+      </button>
     </div>
   )
 }
