@@ -101,6 +101,18 @@ try {
   const html = renderLessonHtml({ meta, content, exercises, overlay })
   const pdfBuf = await renderPdf(html)
 
+  // Bake a derived `svg` cache into each content body figure node. The authored
+  // SSOT is the declarative `node.spec` (figure.mjs computes coordinates); the
+  // card-reading projection (app/src/lib/reading.ts) renders body figures from
+  // `node.svg`, so — like html/pdf and the exercise-figure svg — persist the
+  // computed svg as a derived cache alongside the spec. Without it the 逐卡精读
+  // view shows "undefined" for every spec figure. (STEMROBIN-64)
+  for (const card of content.cards || []) {
+    for (const node of card.body || []) {
+      if (node && node.kind === 'svg' && node.spec) node.svg = renderFigure(node.spec)
+    }
+  }
+
   // --- deterministic upsert: JSONB SSOT + derived caches + zh overlay ---
   await sql`
     insert into sr_lessons (id, subject, stage, lesson_order, title, concept, html, pdf, content, exercises, status, updated_at)
