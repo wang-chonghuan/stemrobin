@@ -54,7 +54,7 @@ function LoginView() {
             width={44}
             height={44}
           />
-          <span className="sr-brand-name">
+          <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
             {locale === 'en' ? (
               <>
                 Myna<b>Tree</b>

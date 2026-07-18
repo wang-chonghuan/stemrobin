@@ -191,6 +191,15 @@ body {
 .sr-brand-name b {
   color: var(--sr-green-deep);
 }
+/* Chinese wordmark (八个树): the display font is Latin-only, so CJK falls back to
+   the system font — sparse glyphs read thin and 3 chars run big. Heavier + a touch
+   smaller + tighter so it reads as solid/compact as the old 知更 mark. English is
+   unaffected. */
+.sr-brand-name-zh {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
 
 .sr-tagline {
   margin-top: 1px;

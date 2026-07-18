@@ -42,7 +42,7 @@ export function CatalogSidebar({
             height={44}
           />
           <div>
-            <span className="sr-brand-name">
+            <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
               {locale === 'en' ? (
                 <>
                   Myna<b>Tree</b>
