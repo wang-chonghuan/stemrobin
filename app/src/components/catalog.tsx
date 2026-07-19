@@ -1,5 +1,5 @@
 import { Link, useRouter } from '@tanstack/react-router'
-import { Check, ChevronUp, Languages, LogOut } from 'lucide-react'
+import { Check, ChevronUp, Languages, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { type OutlineSubject, parseLessonNumber, withAvailableLessonIds } from '~/lib/curriculum'
@@ -99,16 +99,66 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
     }
   }, [open])
 
-  if (!user) return null
-  const name = user.email.split('@')[0]
-  const initial = (name[0] || user.email[0] || '?').toUpperCase()
-
   async function pickLocale(next: Locale) {
     setOpen(false)
     if (next === locale) return
     await setLocale({ data: next })
     await router.invalidate()
   }
+
+  // Open access (STEMROBIN-68): logged-out visitors see a prominent sign-in CTA
+  // (browsing is free) plus the language switch, folded into a small globe popover.
+  if (!user) {
+    return (
+      <div className="sr-usermenu sr-usermenu-guest" ref={rootRef}>
+        {open && (
+          <div className="sr-usermenu-pop" role="menu" aria-label={t(locale, 'switch.aria')}>
+            <div className="sr-usermenu-section">
+              <span className="sr-usermenu-label">
+                <Languages size={13} aria-hidden /> {t(locale, 'switch.aria')}
+              </span>
+              {LOCALES.map((l) => (
+                <button
+                  key={l}
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={l === locale}
+                  className={'sr-usermenu-item' + (l === locale ? ' active' : '')}
+                  onClick={() => pickLocale(l)}
+                >
+                  <span>{LOCALE_NAME[l]}</span>
+                  {l === locale && <Check size={15} aria-hidden />}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+        <Link to="/login" className="sr-usermenu-trigger sr-usermenu-login">
+          <span className="sr-avatar" aria-hidden>
+            <LogIn size={16} />
+          </span>
+          <span className="sr-usermenu-name">
+            {t(locale, 'cat.login')}
+            <small>{t(locale, 'cat.login.sub')}</small>
+          </span>
+        </Link>
+        <button
+          type="button"
+          className="sr-usermenu-langbtn"
+          aria-label={t(locale, 'switch.aria')}
+          aria-haspopup="menu"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <Languages size={16} aria-hidden />
+        </button>
+      </div>
+    )
+  }
+
+  const name = user.email.split('@')[0]
+  const initial = (name[0] || user.email[0] || '?').toUpperCase()
+
   async function signOut() {
     setOpen(false)
     await logout()

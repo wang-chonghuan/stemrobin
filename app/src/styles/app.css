@@ -1251,3 +1251,50 @@ a.sr-out-lesson.ready:hover {
   .sr-card-nav .sr-btn { flex: 1; justify-content: center; }
   .sr-card-locked { flex-basis: 100%; text-align: center; }
 }
+
+/* ── Open access (STEMROBIN-68): guest sign-in CTA, free messaging, practice gate ── */
+.sr-usermenu-guest { display: flex; align-items: stretch; gap: 6px; }
+.sr-usermenu-login {
+  flex: 1; min-width: 0; text-decoration: none;
+  background: var(--sr-blue-tint);
+}
+.sr-usermenu-login:hover { background: var(--sr-blue-tint); filter: brightness(0.97); }
+.sr-usermenu-login .sr-avatar { background: var(--sr-blue); color: #fff; }
+.sr-usermenu-login .sr-usermenu-name { white-space: normal; line-height: 1.2; color: var(--sr-blue-deep); }
+.sr-usermenu-login .sr-usermenu-name small {
+  display: block; font-size: 11px; font-weight: 500; color: var(--sr-ink-soft);
+}
+.sr-usermenu-langbtn {
+  flex: none; width: 40px; display: grid; place-items: center;
+  border: 1px solid var(--sr-line); background: transparent; border-radius: 8px;
+  color: var(--sr-ink-soft); cursor: pointer;
+}
+.sr-usermenu-langbtn:hover { background: var(--sr-panel); }
+
+.sr-hero-free { margin-top: 8px; font-size: 13.5px; font-weight: 600; color: var(--sr-green-deep); }
+.sr-login-free {
+  align-self: center; margin: -2px 0 6px; padding: 3px 10px; border-radius: 999px;
+  background: var(--sr-green-tint); color: var(--sr-green-deep);
+  font-size: 12.5px; font-weight: 600;
+}
+.sr-progress-guest { margin-top: 8px; font-size: 13px; color: var(--sr-ink-soft); }
+.sr-progress-guest-cta { color: var(--sr-blue-deep); font-weight: 600; text-decoration: underline; }
+
+.sr-modal-scrim {
+  position: fixed; inset: 0; z-index: 60; display: grid; place-items: center;
+  padding: 20px; background: rgba(21, 32, 31, 0.44);
+}
+.sr-modal {
+  width: 100%; max-width: 380px; background: var(--sr-card);
+  border: 1px solid var(--sr-line); border-radius: var(--sr-radius);
+  box-shadow: 0 12px 40px rgba(10, 94, 118, 0.18); padding: 22px 22px 18px;
+}
+.sr-practice-gate-free {
+  display: inline-block; padding: 3px 10px; border-radius: 999px;
+  background: var(--sr-green-tint); color: var(--sr-green-deep);
+  font-size: 12px; font-weight: 700;
+}
+.sr-modal-title { margin: 12px 0 6px; font-size: 18px; font-weight: 700; color: var(--sr-ink); }
+.sr-modal-body { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--sr-ink-soft); }
+.sr-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+.sr-modal-actions .sr-btn { text-decoration: none; }

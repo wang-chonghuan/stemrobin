@@ -6,6 +6,7 @@ import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
 import { getLessonHtml, getLessonPdf, listAvailableLessonIds } from '~/lib/lessons'
 import { getLessonReading } from '~/lib/reading'
 import { getLocale } from '~/lib/locale'
+import { getCurrentUser } from '~/lib/session'
 import { t, type Locale } from '~/lib/i18n'
 import {
   getLessonQuestions,
@@ -32,16 +33,21 @@ export const Route = createFileRoute('/_app/lesson/$id')({
       html: await getLessonHtml({ data: params.id }),
       lessonIds: await listAvailableLessonIds(),
       locale: await getLocale(),
+      user: await getCurrentUser(),
     }
   },
 })
 
 function LessonView() {
-  const { id, reading, html, lessonIds, locale } = Route.useLoaderData()
+  const { id, reading, html, lessonIds, locale, user } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const iframeRef = useRef<HTMLIFrameElement>(null)
   const fulltextRef = useRef<HTMLIFrameElement>(null)
   const [quizOpen, setQuizOpen] = useState(false)
+  // Open access (STEMROBIN-68): practice is the login wall. A logged-out learner
+  // gets a free-sign-in prompt instead of the quiz (recordAnswer would reject
+  // anyway); card read-checks stay open to everyone.
+  const [practiceGate, setPracticeGate] = useState(false)
   // Reading mode (STEMROBIN-28): 逐卡精读 (card-by-card, DEFAULT) vs 全文速览
   // (whole lesson at once). Full-text records no read-check and does not advance
   // 课文进度; only the card flow does. Only meaningful when there is a card tree.
@@ -50,6 +56,7 @@ function LessonView() {
   // on reading progress. Reading-complete (课文进度) is still earned only by 精读-ing
   // every card (recordReadCheck events); opening/answering practice never grants it.
   const label = getLessonLabel(id, locale)
+  const openPractice = () => (user ? setQuizOpen(true) : setPracticeGate(true))
 
   async function downloadPdf() {
     const b64 = await getLessonPdf({ data: id })
@@ -82,7 +89,7 @@ function LessonView() {
             type="button"
             className="sr-btn"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '6px 12px' }}
-            onClick={() => setQuizOpen(true)}
+            onClick={openPractice}
             title={t(locale, 'lesson.practice.open')}
           >
             <Layers size={16} /> {t(locale, 'lesson.practice')}
@@ -136,7 +143,7 @@ function LessonView() {
               reading={reading}
               label={label}
               locale={locale}
-              onOpenPractice={() => setQuizOpen(true)}
+              onOpenPractice={openPractice}
             />
           )
         ) : html ? (
@@ -160,7 +167,45 @@ function LessonView() {
           endAttempt,
         }}
       />
+      <PracticeGateModal open={practiceGate} locale={locale} onClose={() => setPracticeGate(false)} />
     </main>
+  )
+}
+
+// Open-access login wall (STEMROBIN-68): shown when a logged-out learner opens
+// practice. Emphasizes that signing in is free (no paywall) and only saves progress.
+function PracticeGateModal({
+  open,
+  locale,
+  onClose,
+}: {
+  open: boolean
+  locale: Locale
+  onClose: () => void
+}) {
+  if (!open) return null
+  return (
+    <div
+      className="sr-modal-scrim"
+      role="dialog"
+      aria-modal="true"
+      aria-label={t(locale, 'practice.gate.title')}
+      onClick={onClose}
+    >
+      <div className="sr-modal sr-practice-gate" onClick={(e) => e.stopPropagation()}>
+        <span className="sr-practice-gate-free">{t(locale, 'login.free')}</span>
+        <h2 className="sr-modal-title">{t(locale, 'practice.gate.title')}</h2>
+        <p className="sr-modal-body">{t(locale, 'practice.gate.body')}</p>
+        <div className="sr-modal-actions">
+          <button type="button" className="sr-btn ghost" onClick={onClose}>
+            {t(locale, 'practice.gate.cancel')}
+          </button>
+          <Link to="/login" className="sr-btn primary">
+            {t(locale, 'practice.gate.login')}
+          </Link>
+        </div>
+      </div>
+    </div>
   )
 }
 

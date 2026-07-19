@@ -69,6 +69,7 @@ function LoginView() {
         <h1 className="sr-auth-title">{t(locale, 'login.title')}</h1>
         <form className="sr-login" onSubmit={submit}>
           <p className="sr-login-lead">{t(locale, 'login.lead')}</p>
+          <p className="sr-login-free">{t(locale, 'login.free')}</p>
           <label className="sr-login-field">
             <span>{t(locale, 'login.email')}</span>
             <input
