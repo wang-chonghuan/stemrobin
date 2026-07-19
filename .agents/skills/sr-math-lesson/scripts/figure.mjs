@@ -94,7 +94,7 @@ function angleAt(P, vertex, from, to, o = {}) {
   const largeArc = 0
   let out = `<path d="M ${num(start[0])} ${num(start[1])} A ${r} ${r} 0 ${largeArc} ${sweep} ${num(end[0])} ${num(end[1])}" fill="none" stroke="${o.color || C.green}" stroke-width="2"/>`
   if (o.label) {
-    const mid = (aFrom + aTo) / 2 + (Math.abs(d) > Math.PI ? Math.PI : 0)
+    const mid = aFrom + d / 2 // bisector of the SMALL angle (d is the normalized signed sweep); robust when the angle straddles ±180°
     const lr = r + 14
     out += text(V[0] + lr * Math.cos(mid), V[1] - lr * Math.sin(mid), o.label, { anchor: 'middle', color: o.color || C.greenDeep })
   }
