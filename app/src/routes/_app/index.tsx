@@ -14,6 +14,7 @@ import { getAvailableLessons } from '~/lib/curriculum'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { getProgress } from '~/lib/progress'
 import { getLocale } from '~/lib/locale'
+import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
 
@@ -23,6 +24,7 @@ export const Route = createFileRoute('/_app/')({
     lessonIds: await listAvailableLessonIds(),
     locale: await getLocale(),
     progress: await getProgress(),
+    user: await getCurrentUser(),
   }),
 })
 
@@ -35,7 +37,7 @@ const PRINCIPLES = [
 ] as const
 
 function Overview() {
-  const { lessonIds, locale, progress } = Route.useLoaderData()
+  const { lessonIds, locale, progress, user } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const availableLessons = getAvailableLessons(lessonIds, locale)
   // Show only the 6 most-recent lessons (curriculum order is ascending, so the
@@ -75,6 +77,7 @@ function Overview() {
               <span className="sr-hero-accent">{t(locale, 'ov.hero.title.b')}</span>
             </h1>
             <p className="sr-hero-desc">{t(locale, 'ov.hero.desc')}</p>
+            <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
           </div>
           <HeroArt />
         </section>
@@ -91,6 +94,14 @@ function Overview() {
           <div className="sr-progress-bar">
             <span style={{ width: `${pctWidth}%` }} />
           </div>
+          {!user && (
+            <p className="sr-progress-guest">
+              {t(locale, 'ov.progress.guest')}{' '}
+              <Link to="/login" className="sr-progress-guest-cta">
+                {t(locale, 'ov.progress.guest.cta')}
+              </Link>
+            </p>
+          )}
           <div className="sr-progress-stats">
             <div className="sr-progress-stat">
               <b>{readingDone}</b>

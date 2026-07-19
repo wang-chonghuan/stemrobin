@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { CatalogSidebar } from '~/components/catalog'
 import { listAvailableLessonIds } from '~/lib/lessons'
@@ -9,15 +9,12 @@ import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app')({
-  // Single site-wide auth gate (SSOT). `_app` is the pathless parent of every
-  // PROTECTED learner surface (/, /lesson/$id), so one check here gates the whole
-  // app. Runs before the loader, so a logged-out user never triggers the protected
-  // reads. The login page is a separate top-level route (not under `_app`), so it
-  // needs no exception here — every `_app` surface requires a user, full stop.
-  beforeLoad: async () => {
-    const user = await getCurrentUser()
-    if (!user) throw redirect({ to: '/login' })
-  },
+  // Open access (STEMROBIN-68): the learner surfaces (/, /lesson/$id) are PUBLIC —
+  // browsing lessons and answering card read-checks needs no login (read-checks are
+  // judged server-side but only persisted for a logged-in user; see recordReadCheck).
+  // The login wall lives at the practice deck (recordAnswer requires a user) and at
+  // its entry prompt, not here. `user` is still loaded (may be null) so the shell can
+  // show either the account menu or a sign-in CTA.
   component: AppShell,
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
