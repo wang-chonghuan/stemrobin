@@ -69,6 +69,17 @@ spec.sentences.forEach((s, i) => {
   }
 })
 
+// 本课生词 (中英对照): every target word introduced by this lesson must carry a
+// Chinese meaning, and every listed word must be a real VOA1500 word in the passage.
+const targetWords = [...new Set(spec.sentences.flatMap((s) => s.targets ?? []).map((w) => w.toLowerCase()))]
+const glossMap = new Map(Object.entries(spec.vocab ?? {}).map(([k, v]) => [k.toLowerCase(), v]))
+for (const w of targetWords) {
+  if (!glossMap.has(w)) problems.push(`生词 "${w}" 缺中文释义 (spec.vocab)`)
+}
+for (const w of glossMap.keys()) {
+  if (!resolve(w, vocab)) problems.push(`生词 "${w}" 不在 VOA1500 词表`)
+}
+
 if (problems.length) {
   console.error('✗ 校验未通过，未写入任何数据：')
   for (const p of problems) console.error(`  · ${p}`)
@@ -83,7 +94,13 @@ const sentences = spec.sentences.map((s, i) => {
   ).filter((n) => n >= 0)
   return { id: `s${i + 1}`, num: i + 1, text: s.text.trim(), targets, rev: 1 }
 })
-const content = { kind: 'short-text', theme: spec.theme ?? null, properNames: spec.properNames ?? [], sentences }
+// vocab list in first-appearance order across the passage; pos from the wordlist.
+const vocabList = targetWords.map((w) => ({
+  en: w,
+  pos: vocab.pos.get(resolve(w, vocab)) ?? '',
+  zh: glossMap.get(w),
+}))
+const content = { kind: 'short-text', theme: spec.theme ?? null, properNames: spec.properNames ?? [], vocab: vocabList, sentences }
 const overlay = Object.fromEntries(spec.sentences.map((s, i) => [`s${i + 1}`, { t: s.gloss.trim(), src_rev: 1 }]))
 
 // ── narrate ────────────────────────────────────────────────────────────────

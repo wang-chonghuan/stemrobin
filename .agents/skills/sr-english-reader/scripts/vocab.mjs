@@ -103,7 +103,8 @@ export function loadVocab() {
       if (part && !index.has(part)) index.set(part, key)
     }
   }
-  return { index, count: doc.entries.length, entryKeys: doc.entries.map((e) => e.word.toLowerCase()) }
+  const pos = new Map(doc.entries.map((e) => [e.word.toLowerCase(), e.pos]))
+  return { index, pos, count: doc.entries.length, entryKeys: doc.entries.map((e) => e.word.toLowerCase()) }
 }
 
 // Resolve one surface word to the wordlist entry it covers, or null.

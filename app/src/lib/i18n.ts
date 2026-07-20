@@ -40,7 +40,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'en.read.done': '全部读完了！',
     'en.ladder.enter': '进入背诵天梯',
     'en.ladder.soon': '背诵天梯即将上线',
-    'en.read.locked': '读完每一句后解锁',
+    'en.vocab.title': '本课生词',
     // overview
     'ov.title': '总览',
     'ov.progress.title': '学习进度',
@@ -172,7 +172,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'en.read.done': 'Every sentence read!',
     'en.ladder.enter': 'Enter the recitation ladder',
     'en.ladder.soon': 'Recitation ladder coming soon',
-    'en.read.locked': 'Unlocks after every sentence is read',
+    'en.vocab.title': 'Words in this lesson',
     'ov.title': 'Overview',
     'ov.progress.title': 'Learning progress',
     'ov.progress.unit': 'pts',

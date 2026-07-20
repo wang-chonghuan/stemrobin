@@ -184,16 +184,27 @@ function EnglishReadView() {
         })}
       </ol>
 
+        {reading.vocab.length > 0 && (
+          <section className="sr-en-vocab">
+            <h2 className="sr-en-vocab-title">{t(locale, 'en.vocab.title')}</h2>
+            <ul className="sr-en-vocab-list">
+              {reading.vocab.map((v) => (
+                <li key={v.en} className="sr-en-vocab-item">
+                  <span className="sr-en-vocab-en">{v.en}</span>
+                  <span className="sr-en-vocab-zh">{v.zh}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Ladder is no longer gated on reading — it is always available. The ladder
+            page itself is STEMROBIN-84 (still to build), so the entry is present but
+            not yet wired. */}
         <div className="sr-en-ladder">
-          {allRead ? (
-            // STEMROBIN-84 builds the ladder itself; the gate that reveals it is this
-            // ticket's acceptance criterion, so the entry appears but is not yet wired.
-            <button type="button" className="sr-btn primary" disabled>
-              {t(locale, 'en.ladder.soon')}
-            </button>
-          ) : (
-            <span className="sr-en-ladder-locked">{t(locale, 'en.read.locked')}</span>
-          )}
+          <button type="button" className="sr-btn primary" disabled>
+            {t(locale, 'en.ladder.soon')}
+          </button>
         </div>
       </div>
     </main>

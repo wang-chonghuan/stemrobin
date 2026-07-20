@@ -27,10 +27,14 @@ export type ShortTextSentence = {
   targets: number[] // 0-based word-token indices of this lesson's new VOA target words
   rev?: number
 }
+// The lesson's VOA1500 words (its newly-introduced target words), with the Chinese
+// meaning, shown as a 中英对照 word list after the passage.
+export type VocabItem = { en: string; pos: string; zh: string }
 export type ShortTextContent = {
   kind: 'short-text'
   theme?: string
   properNames?: string[] // author-declared names allowed outside the VOA1500 list
+  vocab?: VocabItem[]
   sentences: ShortTextSentence[]
 }
 type Overlay = Record<string, { t: string; src_rev: number }>
@@ -178,7 +182,7 @@ type Row = { title: string; content: unknown; overlay: unknown }
 
 export const getEnglishReading = createServerFn({ method: 'GET' })
   .validator((id: string) => id)
-  .handler(async ({ data: id }): Promise<{ title: string; theme: string | null; sentences: ReadingSentence[] } | null> => {
+  .handler(async ({ data: id }): Promise<{ title: string; theme: string | null; vocab: VocabItem[]; sentences: ReadingSentence[] } | null> => {
     const locale = currentLocale()
     const rows = (await sql()`
       select l.title, l.content, i.overlay
@@ -195,6 +199,7 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
     return {
       title: rows[0].title,
       theme: content.theme ?? null,
+      vocab: content.vocab ?? [],
       sentences: projectReading(content, overlay, new Set(audio.map((a) => a.node_id))),
     }
   })

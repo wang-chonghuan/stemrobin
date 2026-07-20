@@ -1450,7 +1450,46 @@ a.sr-out-lesson.ready:hover {
   border-top: 1px solid var(--sr-line-soft);
   text-align: center;
 }
-.sr-en-ladder-locked {
-  color: var(--sr-ink-dim);
-  font-size: 12px;
+
+/* 本课生词 · 中英对照 (STEMROBIN-83) — a compact reference card after the passage. */
+.sr-en-vocab {
+  margin-top: 14px;
+  padding: 15px;
+  background: var(--sr-card);
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius);
+}
+.sr-en-vocab-title {
+  margin: 0 0 10px;
+  font-family: var(--sr-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--sr-ink);
+}
+.sr-en-vocab-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 2px 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sr-en-vocab-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--sr-line-soft);
+}
+.sr-en-vocab-en {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sr-blue-deep);
+}
+.sr-en-vocab-zh {
+  font-size: 13px;
+  color: var(--sr-ink-soft);
+  text-align: right;
 }
