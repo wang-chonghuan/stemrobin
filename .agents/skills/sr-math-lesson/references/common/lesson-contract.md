@@ -54,7 +54,7 @@ Self-contained HTML from `assets/lesson-template.html` (head/style shell + heade
 
 **概念课** (goal: the learner can parse instances and name parts) — anchors, in order: `motivation, model, anatomy, boundary, connections, oral`
 1. `motivation` 为什么需要这个名字 — a real confusion that having the name resolves. Never "本课我们学习…".
-2. `model` 建立概念 — the definition **through the stage model**, with a `.sr-eg` block of 正例/反例, and — **where the model is spatial** — one or more figures that show the structure (a two-layer expression tree, a circle with its parts, a number line). Figure decisions are **not preset**: see "## Figures" below — a geometry model usually needs figures, an algebra model often needs none. First formal term in `<span class="sr-term">`.
+2. `model` 建立概念 — **先直觉，后形式**: open with the term's one-line plain-language mental image tied to a concrete instance ("对着的一对角，就是对顶角，比如 ∠1 和 ∠3"), THEN give the precise definition **through the stage model** with a `.sr-eg` block of 正例/反例. The formal criterion (公共顶点/反向延长线…) comes AFTER the picture, as 怎么确认/为什么这么叫 — never as the opening sentence. Where the model is spatial, add figures that show the structure (a two-layer expression tree, a circle with its parts, a number line). Figure decisions are **not preset**: see "## Figures" below — a geometry model usually needs figures, an algebra model often needs none. First formal term in `<span class="sr-term">`.
 3. `anatomy` 拆给你看 — 2–4 worked *parsing* examples (`.sr-example`): take a concrete expression, decompose it aloud, name every part.
 4. `boundary` 边界与陷阱 — every ledger `boundary_cases` entry gets treated honestly (`.sr-pitfall` for traps). This is where categories become real.
 5. `connections` 与其他知识点的联系 — backward (what this stands on) and forward (what will consume this term next), by name.
@@ -62,12 +62,14 @@ Self-contained HTML from `assets/lesson-template.html` (head/style shell + heade
 
 **方法课** (goal: the learner can do the move and say why it's legal) — anchors, in order: `motivation, explain, examples, connections, oral`
 1. `motivation` 为什么学这个 — the driving problem the move solves.
-2. `explain` 讲解 — the move **derived from the principle** (e.g. 去括号 from 分配律 on the tree), cases if needed, `.sr-pitfall` for the classic mistakes.
+2. `explain` 讲解 — **先直觉，后形式**: introduce every new term/idea with a one-line plain-language mental image on a concrete instance first, THEN the precise criterion; and give the move **derived from the principle** (e.g. 去括号 from 分配律 on the tree), cases if needed, `.sr-pitfall` for the classic mistakes.
 3. `examples` 例题 — 3–5 `.sr-example` worked examples with `.sr-step` steps; include one 说理 example (explain-why, not compute).
 4. `connections` — backward/forward as above.
 5. `oral` — 4–6 conceptual questions, hidden answers.
 
 **练习课** (goal: mixed retrieval across the whole stage) — anchors: `motivation` only. The 課文 is a short orientation (what this arena covers, how to use the card-quiz, the self-check habit) — 3–5 paragraphs, no new content. The substance is the deck: a full-size mixed deck whose items may target ANY earlier lesson's terms/moves (it introduces nothing). Same composition rules apply; 复习-layer items still carry `review_of`.
+
+**先直觉，后形式（intuition-first — the ordering rule for every `model` and `explain`):** 每个 `introduces` 的术语，在正式术语句之前，必须先有**一句大白话的直觉图像**，且挂在**具体实例**上（图里的 ∠1、∠3，不是抽象泛说）；精确判据（公共顶点、反向延长线、和为 180°…）放在直觉句**之后**，当"怎么确认 / 为什么这么叫"。判据先行的开场（"有…性质的…叫…"）正是本 skill 要治的老毛病。**这是顺序要求，不是删精确性**——直觉 → 精确判据 → 边界三者都在，只是直觉打头。一句好直觉句让孩子当场有画面（"对着的一对角就是对顶角"；"挨着拼成一条直线的两个角就是邻补角，所以和是 180°"）。
 
 **Header format (all genres, uniform):**
 - `{{TITLE}}` = **`<stage>.<order> 标题`**, e.g. `2.6 去括号` — the number lives IN the lesson title (the app's top bar shows no title; the sidebar shows the same `2.6` numbering).
