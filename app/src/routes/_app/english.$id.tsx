@@ -1,6 +1,6 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Check, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
+import { ArrowLeft, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
 
 import { getEnglishReading, getSentenceAudio } from '~/lib/english'
 import { getLocale } from '~/lib/locale'
@@ -30,9 +30,23 @@ function EnglishReadView() {
   const [showAllGloss, setShowAllGloss] = useState(false)
   const [playing, setPlaying] = useState<string | null>(null)
   // Narration is fetched on click and cached, so opening a lesson does not pull
-  // ~450KB of audio the learner may never play.
+  // ~450KB of audio the learner may never play. The cache key includes the lesson
+  // id: this route component is REUSED across /english/$id navigations, so a cache
+  // keyed only by node id would serve lesson 1's "s1" clip on lesson 2.
   const audioCache = useRef<Map<string, string>>(new Map())
   const playerRef = useRef<HTMLAudioElement | null>(null)
+
+  // Same reuse hazard for the per-lesson UI state — reset it (and stop any playing
+  // clip) whenever the lesson changes, or read marks would leak between lessons.
+  useEffect(() => {
+    setRead(new Set())
+    setOpenGloss(new Set())
+    setShowAllGloss(false)
+    setPlaying(null)
+    audioCache.current.clear()
+    playerRef.current?.pause()
+    playerRef.current = null
+  }, [id])
 
   if (!reading) {
     return (
@@ -49,18 +63,22 @@ function EnglishReadView() {
   async function play(nodeId: string) {
     setPlaying(nodeId)
     try {
-      let src = audioCache.current.get(nodeId)
+      const key = `${id}:${nodeId}`
+      let src = audioCache.current.get(key)
       if (!src) {
         const clip = await getSentenceAudio({ data: { lessonId: id, nodeId } })
         if (!clip) return
         src = `data:${clip.mime};base64,${clip.b64}`
-        audioCache.current.set(nodeId, src)
+        audioCache.current.set(key, src)
       }
       playerRef.current?.pause()
       const audio = new Audio(src)
       playerRef.current = audio
       audio.onended = () => setPlaying(null)
       await audio.play()
+      // Listening to a sentence IS the read confirmation now that the explicit
+      // 已读 control is gone; the ladder still unlocks only when all are heard.
+      markRead(nodeId)
     } finally {
       setPlaying((cur) => (cur === nodeId ? null : cur))
     }
@@ -137,29 +155,27 @@ function EnglishReadView() {
                 <div className="sr-en-actions">
                   <button
                     type="button"
-                    className="sr-en-act"
+                    className="sr-en-icon"
                     disabled={!s.hasAudio || playing === s.id}
                     onClick={() => play(s.id)}
                     aria-label={t(locale, 'en.read.play')}
+                    title={t(locale, 'en.read.play')}
                   >
                     {playing === s.id ? (
-                      <Loader2 size={15} className="sr-spin" aria-hidden />
+                      <Loader2 size={17} className="sr-spin" aria-hidden />
                     ) : (
-                      <Volume2 size={15} aria-hidden />
+                      <Volume2 size={17} aria-hidden />
                     )}
-                    {t(locale, 'en.read.play')}
-                  </button>
-                  <button type="button" className="sr-en-act" onClick={() => toggleGloss(s.id)}>
-                    <Languages size={15} aria-hidden /> {t(locale, 'en.read.gloss')}
                   </button>
                   <button
                     type="button"
-                    className={'sr-en-act mark' + (isRead ? ' done' : '')}
-                    onClick={() => markRead(s.id)}
-                    disabled={isRead}
+                    className={'sr-en-icon' + (glossOpen ? ' on' : '')}
+                    onClick={() => toggleGloss(s.id)}
+                    aria-label={t(locale, 'en.read.gloss')}
+                    title={t(locale, 'en.read.gloss')}
+                    aria-pressed={glossOpen}
                   >
-                    <Check size={15} aria-hidden />{' '}
-                    {isRead ? t(locale, 'en.read.wasread') : t(locale, 'en.read.markread')}
+                    <Languages size={17} aria-hidden />
                   </button>
                 </div>
               </div>

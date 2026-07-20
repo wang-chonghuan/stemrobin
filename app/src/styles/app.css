@@ -1414,35 +1414,34 @@ a.sr-out-lesson.ready:hover {
 }
 .sr-en-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-/* Compact ghost control: transparent + line border, panel hover (DESIGN ghost). */
-.sr-en-act {
-  display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
-  border: 1px solid var(--sr-line);
+  gap: 4px;
+  margin-top: 8px;
+  margin-left: -6px; /* optical: pull the borderless icons back to the text edge */
+}
+/* Borderless icon control — no frame, per the compact/quiet UI rule. */
+.sr-en-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 0;
   border-radius: var(--sr-radius-sm);
   background: transparent;
-  color: var(--sr-ink-soft);
-  font-size: 12px;
+  color: var(--sr-ink-dim);
   cursor: pointer;
 }
-.sr-en-act:hover:not(:disabled) {
+.sr-en-icon:hover:not(:disabled) {
   background: var(--sr-panel);
-  color: var(--sr-ink);
+  color: var(--sr-blue);
 }
-.sr-en-act:disabled {
-  opacity: 0.55;
+.sr-en-icon.on {
+  color: var(--sr-blue-deep);
+}
+.sr-en-icon:disabled {
+  opacity: 0.4;
   cursor: default;
-}
-.sr-en-act.mark.done {
-  border-color: var(--sr-green);
-  color: var(--sr-green-deep);
-  opacity: 1;
 }
 
 .sr-en-ladder {
