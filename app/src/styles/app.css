@@ -1471,11 +1471,18 @@ a.sr-out-lesson.ready:hover {
 }
 .sr-en-vocab-item {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 6px 0;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
   border-bottom: 1px solid var(--sr-line-soft);
+}
+.sr-en-vocab-item .sr-en-vocab-zh {
+  margin-left: auto;   /* Chinese pinned to the right end */
+}
+/* the per-word speaker: smaller than the sentence icon, sits right after the word */
+.sr-en-word-say {
+  width: 22px;
+  height: 22px;
 }
 .sr-en-vocab-en {
   font-size: 14px;

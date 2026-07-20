@@ -109,6 +109,56 @@ const coveredKeys = [...covered].sort()
 const content = { kind: 'short-text', theme: spec.theme ?? null, properNames: spec.properNames ?? [], vocab: vocabList, coveredKeys, sentences }
 const overlay = Object.fromEntries(spec.sentences.map((s, i) => [`s${i + 1}`, { t: s.gloss.trim(), src_rev: 1 }]))
 
+// ── print PDF (English + 中文 + 生词, downloadable like a math lesson) ────────
+function esc(s) { return String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])) }
+function printHtml() {
+  const rows = spec.sentences
+    .map((s, i) => `<div class="s"><div class="n">${i + 1}</div><div><p class="en">${esc(s.text)}</p><p class="zh">${esc(s.gloss)}</p></div></div>`)
+    .join('')
+  const vrows = vocabList
+    .map((v) => `<div class="v"><span class="ve">${esc(v.en)}</span><span class="vz">${esc(v.zh)}</span></div>`)
+    .join('')
+  return `<!doctype html><html><head><meta charset="utf-8"><style>
+    @page { size: A4; margin: 18mm 16mm; }
+    body { font-family: -apple-system, "Helvetica Neue", "PingFang SC", "Noto Sans CJK SC", sans-serif; color: #15201F; }
+    h1 { font-size: 20px; margin: 0 0 4px; }
+    .lead { color: #8A9795; font-size: 12px; margin: 0 0 16px; }
+    .s { display: flex; gap: 10px; padding: 9px 0; border-top: 1px solid #EEF3F2; }
+    .s:first-of-type { border-top: 0; }
+    .n { color: #8A9795; font-size: 12px; min-width: 18px; }
+    .en { font-size: 15px; margin: 0 0 3px; }
+    .zh { font-size: 13px; color: #4C5A58; margin: 0; }
+    h2 { font-size: 13px; margin: 20px 0 8px; }
+    .vlist { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 24px; }
+    .v { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; border-bottom: 1px solid #EEF3F2; }
+    .ve { font-weight: 600; color: #0A5E76; font-size: 13px; }
+    .vz { color: #4C5A58; font-size: 13px; }
+  </style></head><body>
+    <h1>${spec.order}. ${esc(spec.title)}</h1>
+    <p class="lead">VOA1500 · ${esc(spec.theme ?? '')}</p>
+    ${rows}
+    <h2>本课生词</h2>
+    <div class="vlist">${vrows}</div>
+  </body></html>`
+}
+
+let pdf = null
+try {
+  const { chromium } = await import('playwright-core')
+  let browser
+  try { browser = await chromium.launch() } catch { browser = await chromium.launch({ channel: 'chrome' }) }
+  try {
+    const page = await browser.newPage()
+    await page.setContent(printHtml(), { waitUntil: 'networkidle' })
+    await page.evaluate(() => document.fonts.ready.then(() => true))
+    await page.emulateMedia({ media: 'print' })
+    pdf = await page.pdf({ printBackground: true, preferCSSPageSize: true })
+  } finally { await browser.close() }
+  console.log(`· PDF 生成 (${Math.round((pdf?.length ?? 0) / 1024)} KB)`)
+} catch (e) {
+  fail(`PDF 生成失败: ${(e && e.message) || e}`)
+}
+
 // ── narrate ────────────────────────────────────────────────────────────────
 console.log(`· 合成朗读 ${sentences.length} 句 …`)
 const audio = []
@@ -122,13 +172,13 @@ const sql = postgres(dbUrl, { ssl: 'require', max: 3, idle_timeout: 20, connecti
 try {
   await sql.begin(async (tx) => {
     await tx`
-      insert into sr_lessons (id, subject, stage, lesson_order, title, concept, content, status)
+      insert into sr_lessons (id, subject, stage, lesson_order, title, concept, content, pdf, status)
       values (${spec.id}, 'english', ${spec.unit}, ${spec.order}, ${spec.title},
-              ${spec.theme ?? ''}, ${tx.json(content)}, ${args.status || 'draft'})
+              ${spec.theme ?? ''}, ${tx.json(content)}, ${pdf}, ${args.status || 'draft'})
       on conflict (id) do update set
         stage = excluded.stage, lesson_order = excluded.lesson_order, title = excluded.title,
-        concept = excluded.concept, content = excluded.content, status = excluded.status,
-        updated_at = now()
+        concept = excluded.concept, content = excluded.content, pdf = excluded.pdf,
+        status = excluded.status, updated_at = now()
     `
     await tx`
       insert into sr_lesson_i18n (lesson_id, locale, overlay) values (${spec.id}, 'zh', ${tx.json(overlay)})

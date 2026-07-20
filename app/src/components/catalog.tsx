@@ -251,7 +251,7 @@ function EnglishOutline({
                 onClick={onNavigate}
               >
                 <span className="sr-out-dot" aria-hidden />
-                {l.seq} {l.title}
+                {l.seq}. {l.title}
               </Link>
             </li>
           ))}

@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
+import { ArrowLeft, Download, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
 
 import { getEnglishReading, getSentenceAudio, type EnglishVocab } from '~/lib/english'
+import { getLessonPdf } from '~/lib/lessons'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
@@ -82,6 +83,30 @@ function EnglishReadView() {
       return next
     })
 
+  // Single-word pronunciation uses the BROWSER's built-in speech synthesis (Web
+  // Speech API) — deliberately different from the sentence narration, which is the
+  // pre-rendered Azure clip. No network, no stored audio for the word list.
+  const speakWord = (word: string) => {
+    const synth = window.speechSynthesis
+    if (!synth) return
+    synth.cancel()
+    const u = new SpeechSynthesisUtterance(word)
+    u.lang = 'en-US'
+    synth.speak(u)
+  }
+
+  async function downloadPdf() {
+    const b64 = await getLessonPdf({ data: id })
+    if (!b64) return
+    const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0))
+    const url = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }))
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `${reading!.seq}. ${reading!.title}.pdf`
+    a.click()
+    URL.revokeObjectURL(url)
+  }
+
   return (
     <main className="sr-detail sr-en-read">
       <div className="sr-d-top">
@@ -100,12 +125,22 @@ function EnglishReadView() {
         >
           <ArrowLeft size={16} /> {t(locale, 'lesson.back')}
         </Link>
+        <button
+          type="button"
+          className="sr-icontool"
+          style={{ marginLeft: 'auto' }}
+          onClick={downloadPdf}
+          aria-label={t(locale, 'lesson.pdf')}
+          title={t(locale, 'lesson.pdf')}
+        >
+          <Download size={17} />
+        </button>
       </div>
 
       <div className="sr-d-scroll">
         <header className="sr-en-head">
           <h1>
-            <span className="sr-en-seq">{reading.seq}</span> {reading.title}
+            <span className="sr-en-seq">{reading.seq}.</span> {reading.title}
           </h1>
         </header>
 
@@ -172,10 +207,10 @@ function EnglishReadView() {
           <section className="sr-en-vocab">
             <h2 className="sr-en-vocab-title">{t(locale, 'en.vocab.title')}</h2>
             {reading.newWords.length > 0 && (
-              <VocabGroup label={t(locale, 'en.vocab.new')} tone="new" words={reading.newWords} />
+              <VocabGroup label={t(locale, 'en.vocab.new')} tone="new" words={reading.newWords} onSpeak={speakWord} speakLabel={t(locale, 'en.read.play')} />
             )}
             {reading.reviewWords.length > 0 && (
-              <VocabGroup label={t(locale, 'en.vocab.review')} tone="review" words={reading.reviewWords} />
+              <VocabGroup label={t(locale, 'en.vocab.review')} tone="review" words={reading.reviewWords} onSpeak={speakWord} speakLabel={t(locale, 'en.read.play')} />
             )}
           </section>
         )}
@@ -184,8 +219,21 @@ function EnglishReadView() {
   )
 }
 
-// One labelled 中英对照 group of the 生词表 (新词 or 复习).
-function VocabGroup({ label, tone, words }: { label: string; tone: 'new' | 'review'; words: EnglishVocab[] }) {
+// One labelled 中英对照 group of the 生词表 (新词 or 复习). Each word has a small
+// speaker that pronounces it with the browser's built-in TTS (onSpeak).
+function VocabGroup({
+  label,
+  tone,
+  words,
+  onSpeak,
+  speakLabel,
+}: {
+  label: string
+  tone: 'new' | 'review'
+  words: EnglishVocab[]
+  onSpeak: (word: string) => void
+  speakLabel: string
+}) {
   return (
     <div className="sr-en-vocab-group">
       <span className={`sr-en-vocab-label ${tone}`}>{label}</span>
@@ -193,6 +241,15 @@ function VocabGroup({ label, tone, words }: { label: string; tone: 'new' | 'revi
         {words.map((v) => (
           <li key={v.en} className="sr-en-vocab-item">
             <span className="sr-en-vocab-en">{v.en}</span>
+            <button
+              type="button"
+              className="sr-en-icon sr-en-word-say"
+              onClick={() => onSpeak(v.en)}
+              aria-label={speakLabel}
+              title={speakLabel}
+            >
+              <Volume2 size={14} aria-hidden />
+            </button>
             <span className="sr-en-vocab-zh">{v.zh}</span>
           </li>
         ))}
