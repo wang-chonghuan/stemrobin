@@ -1319,34 +1319,20 @@ a.sr-out-lesson.ready:hover {
   margin-bottom: 14px;
 }
 .sr-en-head h1 {
-  margin: 0 0 4px;
+  margin: 0;
   font-family: var(--sr-display);
   font-size: 18px;
   font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--sr-ink);
 }
-.sr-en-head p {
-  margin: 0;
-  max-width: 60ch;
-  color: var(--sr-ink-soft);
-  font-size: 13px;
-  line-height: 1.6;
-}
 
 .sr-en-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 10px;
   flex-wrap: wrap;
   margin-bottom: 12px;
-}
-.sr-en-progress {
-  color: var(--sr-blue-deep);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
 }
 .sr-en-allgloss {
   display: inline-flex;
@@ -1359,27 +1345,25 @@ a.sr-out-lesson.ready:hover {
   background: var(--sr-panel);
 }
 
-/* One sentence = one card (DESIGN: cards hold one concrete content module). */
-.sr-en-sentences {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.sr-en-sentence {
-  display: flex;
-  gap: 12px;
-  padding: 15px;
+/* The whole passage lives in ONE card; sentences are rows split by a divider. */
+.sr-en-card {
+  padding: 2px 15px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
   border-radius: var(--sr-radius);
 }
-/* Read = mastery, so it takes the green tint pair, not a bespoke accent bar. */
-.sr-en-sentence.read {
-  background: var(--sr-green-tint);
-  border-color: var(--sr-green);
+.sr-en-row {
+  padding: 12px 0;
+  border-top: 1px solid var(--sr-line-soft);
+}
+.sr-en-row:first-child {
+  border-top: 0;
+}
+/* num + sentence on the left, audio/中文 controls pushed to the right end. */
+.sr-en-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .sr-en-num {
   flex: none;
@@ -1393,31 +1377,30 @@ a.sr-out-lesson.ready:hover {
   font-family: var(--sr-mono);
   font-size: 11px;
 }
-.sr-en-body {
+.sr-en-en {
   flex: 1;
   min-width: 0;
-}
-.sr-en-en {
   margin: 0;
   color: var(--sr-ink);
   font-size: 15px;
   line-height: 1.6;
   cursor: pointer;
 }
+.sr-en-actions {
+  flex: none;
+  margin-left: auto;   /* right end of the row */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+/* Chinese sits under its sentence, indented past the number to line up with text. */
 .sr-en-zh {
-  margin: 6px 0 0;
+  margin: 6px 0 0 30px;
   padding-left: 10px;
   border-left: 2px solid var(--sr-blue-tint);
   color: var(--sr-ink-soft);
   font-size: 13px;
   line-height: 1.6;
-}
-.sr-en-actions {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  margin-top: 8px;
-  margin-left: -6px; /* optical: pull the borderless icons back to the text edge */
 }
 /* Borderless icon control — no frame, per the compact/quiet UI rule. */
 .sr-en-icon {
@@ -1442,13 +1425,6 @@ a.sr-out-lesson.ready:hover {
 .sr-en-icon:disabled {
   opacity: 0.4;
   cursor: default;
-}
-
-.sr-en-ladder {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--sr-line-soft);
-  text-align: center;
 }
 
 /* 本课生词 · 中英对照 (STEMROBIN-83) — a compact reference card after the passage. */

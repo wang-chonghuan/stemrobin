@@ -25,7 +25,6 @@ export const Route = createFileRoute('/_app/english/$id')({
 function EnglishReadView() {
   const { id, reading, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
-  const [read, setRead] = useState<Set<string>>(new Set())
   const [openGloss, setOpenGloss] = useState<Set<string>>(new Set())
   const [showAllGloss, setShowAllGloss] = useState(false)
   const [playing, setPlaying] = useState<string | null>(null)
@@ -37,9 +36,8 @@ function EnglishReadView() {
   const playerRef = useRef<HTMLAudioElement | null>(null)
 
   // Same reuse hazard for the per-lesson UI state — reset it (and stop any playing
-  // clip) whenever the lesson changes, or read marks would leak between lessons.
+  // clip) whenever the lesson changes, or open glosses would leak between lessons.
   useEffect(() => {
-    setRead(new Set())
     setOpenGloss(new Set())
     setShowAllGloss(false)
     setPlaying(null)
@@ -55,10 +53,6 @@ function EnglishReadView() {
       </main>
     )
   }
-
-  const total = reading.sentences.length
-  const doneCount = read.size
-  const allRead = doneCount === total
 
   async function play(nodeId: string) {
     setPlaying(nodeId)
@@ -76,9 +70,6 @@ function EnglishReadView() {
       playerRef.current = audio
       audio.onended = () => setPlaying(null)
       await audio.play()
-      // Listening to a sentence IS the read confirmation now that the explicit
-      // 已读 control is gone; the ladder still unlocks only when all are heard.
-      markRead(nodeId)
     } finally {
       setPlaying((cur) => (cur === nodeId ? null : cur))
     }
@@ -88,13 +79,6 @@ function EnglishReadView() {
     setOpenGloss((prev) => {
       const next = new Set(prev)
       next.has(sid) ? next.delete(sid) : next.add(sid)
-      return next
-    })
-
-  const markRead = (sid: string) =>
-    setRead((prev) => {
-      const next = new Set(prev)
-      next.add(sid)
       return next
     })
 
@@ -121,68 +105,66 @@ function EnglishReadView() {
       <div className="sr-d-scroll">
         <header className="sr-en-head">
           <h1>{reading.title}</h1>
-          <p>{t(locale, 'en.read.lead')}</p>
         </header>
 
-      <div className="sr-en-toolbar">
-        <span className="sr-en-progress">
-          {allRead
-            ? t(locale, 'en.read.done')
-            : t(locale, 'en.read.progress', { done: doneCount, total })}
-        </span>
-        <button
-          type="button"
-          className="sr-btn ghost sr-en-allgloss"
-          onClick={() => setShowAllGloss((v) => !v)}
-        >
-          <Languages size={15} aria-hidden />{' '}
-          {showAllGloss ? t(locale, 'en.read.hideall') : t(locale, 'en.read.showall')}
-        </button>
-      </div>
+        <div className="sr-en-toolbar">
+          <button type="button" className="sr-btn primary" disabled>
+            {t(locale, 'en.ladder.enter')}
+          </button>
+          <button
+            type="button"
+            className="sr-btn ghost sr-en-allgloss"
+            onClick={() => setShowAllGloss((v) => !v)}
+          >
+            <Languages size={15} aria-hidden />{' '}
+            {showAllGloss ? t(locale, 'en.read.hideall') : t(locale, 'en.read.showall')}
+          </button>
+        </div>
 
-      <ol className="sr-en-sentences">
-        {reading.sentences.map((s) => {
-          const isRead = read.has(s.id)
-          const glossOpen = showAllGloss || openGloss.has(s.id)
-          return (
-            <li key={s.id} className={'sr-en-sentence' + (isRead ? ' read' : '')}>
-              <span className="sr-en-num">{s.num}</span>
-              <div className="sr-en-body">
-                <p className="sr-en-en" onClick={() => toggleGloss(s.id)}>
-                  {s.text}
-                </p>
-                {glossOpen && s.gloss && <p className="sr-en-zh">{s.gloss}</p>}
-                <div className="sr-en-actions">
-                  <button
-                    type="button"
-                    className="sr-en-icon"
-                    disabled={!s.hasAudio || playing === s.id}
-                    onClick={() => play(s.id)}
-                    aria-label={t(locale, 'en.read.play')}
-                    title={t(locale, 'en.read.play')}
-                  >
-                    {playing === s.id ? (
-                      <Loader2 size={17} className="sr-spin" aria-hidden />
-                    ) : (
-                      <Volume2 size={17} aria-hidden />
-                    )}
-                  </button>
-                  <button
-                    type="button"
-                    className={'sr-en-icon' + (glossOpen ? ' on' : '')}
-                    onClick={() => toggleGloss(s.id)}
-                    aria-label={t(locale, 'en.read.gloss')}
-                    title={t(locale, 'en.read.gloss')}
-                    aria-pressed={glossOpen}
-                  >
-                    <Languages size={17} aria-hidden />
-                  </button>
+        {/* Whole passage in one card; sentences separated by a divider (border-top on
+            every row but the first). Audio + Chinese controls sit at the right end. */}
+        <div className="sr-en-card">
+          {reading.sentences.map((s) => {
+            const glossOpen = showAllGloss || openGloss.has(s.id)
+            return (
+              <div key={s.id} className="sr-en-row">
+                <div className="sr-en-line">
+                  <span className="sr-en-num">{s.num}</span>
+                  <p className="sr-en-en" onClick={() => toggleGloss(s.id)}>
+                    {s.text}
+                  </p>
+                  <div className="sr-en-actions">
+                    <button
+                      type="button"
+                      className="sr-en-icon"
+                      disabled={!s.hasAudio || playing === s.id}
+                      onClick={() => play(s.id)}
+                      aria-label={t(locale, 'en.read.play')}
+                      title={t(locale, 'en.read.play')}
+                    >
+                      {playing === s.id ? (
+                        <Loader2 size={17} className="sr-spin" aria-hidden />
+                      ) : (
+                        <Volume2 size={17} aria-hidden />
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      className={'sr-en-icon' + (glossOpen ? ' on' : '')}
+                      onClick={() => toggleGloss(s.id)}
+                      aria-label={t(locale, 'en.read.gloss')}
+                      title={t(locale, 'en.read.gloss')}
+                      aria-pressed={glossOpen}
+                    >
+                      <Languages size={17} aria-hidden />
+                    </button>
+                  </div>
                 </div>
+                {glossOpen && s.gloss && <p className="sr-en-zh">{s.gloss}</p>}
               </div>
-            </li>
-          )
-        })}
-      </ol>
+            )
+          })}
+        </div>
 
         {reading.vocab.length > 0 && (
           <section className="sr-en-vocab">
@@ -197,15 +179,6 @@ function EnglishReadView() {
             </ul>
           </section>
         )}
-
-        {/* Ladder is no longer gated on reading — it is always available. The ladder
-            page itself is STEMROBIN-84 (still to build), so the entry is present but
-            not yet wired. */}
-        <div className="sr-en-ladder">
-          <button type="button" className="sr-btn primary" disabled>
-            {t(locale, 'en.ladder.soon')}
-          </button>
-        </div>
       </div>
     </main>
   )
