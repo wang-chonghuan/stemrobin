@@ -51,7 +51,6 @@ describe('DB-driven availability contract', () => {
   it('computes deterministic outline ids without storing manual availability in CURRICULUM', () => {
     expect(getOutlineLessonId('math', 2, 0)).toBe('math-s3-01')
     expect(getOutlineLessonId('physics', 0, 2)).toBe('physics-s1-03')
-    expect(getOutlineLessonId('robot', 0, 0)).toBeNull()
     expect(CURRICULUM.flatMap((s) => s.stages.flatMap((st) => st.lessons)).some((l) => l.id)).toBe(false)
   })
 

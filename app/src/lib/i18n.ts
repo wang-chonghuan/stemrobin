@@ -273,7 +273,6 @@ export function t(
 export const SUBJECT_LABELS_EN: Record<string, string> = {
   数学: 'Math',
   物理: 'Physics',
-  机器人: 'Robotics',
 }
 
 export const STAGE_LABELS_EN: Record<string, string> = {

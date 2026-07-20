@@ -18,7 +18,7 @@ import {
 
 export type OutlineLesson = { title: string; id?: string }
 export type OutlineStage = { title: string; lessons: OutlineLesson[] }
-export type OutlineSubject = { subject: 'math' | 'physics' | 'robot'; label: string; stages: OutlineStage[] }
+export type OutlineSubject = { subject: 'math' | 'physics'; label: string; stages: OutlineStage[] }
 export type AvailableLesson = { id: string; title: string; subject: string }
 
 const L = (...titles: string[]): OutlineLesson[] => titles.map((title) => ({ title }))
@@ -167,11 +167,6 @@ export const CURRICULUM: OutlineSubject[] = [
       },
     ],
   },
-  {
-    subject: 'robot',
-    label: '机器人',
-    stages: [],
-  },
 ]
 
 // "2.4 代数式的值" — stage.order from the id + title from the outline. Used as the
@@ -193,8 +188,7 @@ export function getLessonLabel(id: string, locale: Locale = 'zh'): string {
   return m ? `${Number(m[1])}.${Number(m[2])}` : id
 }
 
-export function getOutlineLessonId(subject: OutlineSubject['subject'], stageIndex: number, lessonIndex: number): string | null {
-  if (subject === 'robot') return null
+export function getOutlineLessonId(subject: OutlineSubject['subject'], stageIndex: number, lessonIndex: number): string {
   return `${subject}-s${stageIndex + 1}-${String(lessonIndex + 1).padStart(2, '0')}`
 }
 

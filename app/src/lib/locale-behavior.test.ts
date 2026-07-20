@@ -47,7 +47,7 @@ describe('withAvailableLessonIds locale', () => {
 
   it('en shows ONLY available lessons, localized, with empty stages/subjects dropped', () => {
     const en = withAvailableLessonIds(['math-s2-01', 'math-s2-02'], 'en')
-    // physics + robot (no available lessons) are dropped
+    // physics (no available lessons) is dropped
     expect(en.every((s) => s.subject === 'math')).toBe(true)
     const math = en[0]
     expect(math.label).toBe('Math')
