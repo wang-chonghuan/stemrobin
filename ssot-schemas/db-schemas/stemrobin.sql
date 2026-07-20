@@ -326,3 +326,55 @@ CREATE TABLE IF NOT EXISTS sr_practice_attempts (
 -- within a (user_id, lesson_id) group.
 CREATE INDEX IF NOT EXISTS sr_practice_attempts_user_lesson_idx
   ON sr_practice_attempts (user_id, lesson_id, submitted_at);
+
+-- ===========================================================================
+-- 短文学英语 / SHORT-TEXT ENGLISH (STEMROBIN-77, batch 0012-english-voa1500)
+-- ---------------------------------------------------------------------------
+-- A short-text English lesson is a memorizable passage (6-9 sentences) that the
+-- learner first READS (per-sentence audio + L1 gloss) and then RECITES through a
+-- progressive cloze ladder. It reuses the existing lesson identity + neutral/overlay
+-- split rather than forking a parallel content store (SSOT).
+--
+-- Which half holds what — the one non-obvious modelling decision:
+--   * The ENGLISH sentence is the artifact being LEARNED, not translatable prose.
+--     Like a formula or an SVG it is identical in every locale, so it lives in the
+--     NEUTRAL base (sr_lessons.content) and is never duplicated per locale.
+--   * The L1 GLOSS (中文, later other languages) IS per-locale prose, so it lives in
+--     the sr_lesson_i18n overlay keyed by the sentence node id — exactly the existing
+--     overlay contract. The overlay still MUST NEVER hold an answer KEY.
+--
+--   content = { "kind": "short-text",              -- discriminator vs the math card tree
+--               "theme": "<child-facing topic>",
+--               "sentences": [ {
+--                 "id": "<stable sentence node id, e.g. s1>",
+--                 "num": <learner-visible 1-based order>,
+--                 "text": "<the English sentence — neutral, the learned artifact>",
+--                 "targets": [ <0-based word-token indices of THIS lesson's new
+--                               VOA target words; drives cloze level 1> ],
+--                 "rev": <int>
+--               } ] }
+--
+-- The recitation answer key is the sentence `text` itself. There is therefore no
+-- separate KEY field: secrecy is enforced by PROJECTION — the reading payload may
+-- carry `text` (the read phase deliberately shows it), while the recitation payload
+-- carries only masked tokens and is graded server-side. See app/src/lib/english.ts.
+-- ---------------------------------------------------------------------------
+
+-- Admit the new subject. A CHECK cannot be altered in place; drop-then-add keeps
+-- this block idempotent and re-runnable like the rest of this file.
+ALTER TABLE sr_lessons DROP CONSTRAINT IF EXISTS sr_lessons_subject_check;
+ALTER TABLE sr_lessons ADD  CONSTRAINT sr_lessons_subject_check
+  CHECK (subject IN ('math','physics','english'));
+
+-- Pre-rendered per-sentence narration (Azure gpt-4o-mini-tts, STEMROBIN-78),
+-- generated once at save time the way sr_lessons.pdf is. NOT locale-keyed: the
+-- English audio is the same whatever the learner's first language.
+CREATE TABLE IF NOT EXISTS sr_lesson_audio (
+  lesson_id   TEXT NOT NULL REFERENCES sr_lessons(id) ON DELETE CASCADE,
+  node_id     TEXT NOT NULL,                        -- sentence node id in content.sentences[]
+  mime        TEXT NOT NULL DEFAULT 'audio/mpeg',
+  bytes       BYTEA NOT NULL,                       -- the narration clip
+  voice       TEXT,                                 -- tts voice used (provenance)
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
+  PRIMARY KEY (lesson_id, node_id)
+);
