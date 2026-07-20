@@ -1299,33 +1299,39 @@ a.sr-out-lesson.ready:hover {
 .sr-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 .sr-modal-actions .sr-btn { text-decoration: none; }
 
-/* ── 短文学英语 · catalog + read phase (STEMROBIN-82/83) ─────────────────── */
+/* ── 短文学英语 · catalog + read phase (STEMROBIN-82/83) ───────────────────
+   Follows resources/reference/DESIGN.md: 15px card padding, 12px gaps, 14px
+   section gaps, 10px/8px radii, three-colour palette only, compact type that
+   does not scale with viewport. Buttons reuse .sr-btn (ghost/primary) rather
+   than inventing a parallel control. */
 
+/* Operational label — small and dense, like the other group headings. */
 .sr-out-unit {
   padding: 6px 12px 2px 30px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
   color: var(--sr-ink-dim);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .sr-en-head {
-  padding: 4px 0 14px;
-  border-bottom: 1px solid var(--sr-line-soft);
+  margin-bottom: 14px;
 }
 .sr-en-head h1 {
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   font-family: var(--sr-display);
-  font-size: 24px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--sr-ink);
 }
 .sr-en-head p {
   margin: 0;
-  max-width: 62ch;
-  font-size: 13.5px;
-  line-height: 1.6;
+  max-width: 60ch;
   color: var(--sr-ink-soft);
+  font-size: 13px;
+  line-height: 1.6;
 }
 
 .sr-en-toolbar {
@@ -1334,63 +1340,58 @@ a.sr-out-lesson.ready:hover {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  padding: 12px 0;
+  margin-bottom: 12px;
 }
 .sr-en-progress {
-  font-size: 13px;
-  font-weight: 600;
   color: var(--sr-blue-deep);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 .sr-en-allgloss {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 11px;
-  font-size: 12.5px;
+  padding: 7px 12px;
   color: var(--sr-ink-soft);
-  background: var(--sr-card);
-  border: 1px solid var(--sr-line);
-  border-radius: var(--sr-radius-sm);
-  cursor: pointer;
 }
 .sr-en-allgloss:hover {
   background: var(--sr-panel);
-  color: var(--sr-ink);
 }
 
+/* One sentence = one card (DESIGN: cards hold one concrete content module). */
 .sr-en-sentences {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 .sr-en-sentence {
   display: flex;
   gap: 12px;
-  padding: 14px 16px;
+  padding: 15px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
-  border-left: 3px solid var(--sr-line);
   border-radius: var(--sr-radius);
-  transition: border-color 0.15s ease, background 0.15s ease;
 }
+/* Read = mastery, so it takes the green tint pair, not a bespoke accent bar. */
 .sr-en-sentence.read {
-  border-left-color: var(--sr-green);
   background: var(--sr-green-tint);
+  border-color: var(--sr-green);
 }
 .sr-en-num {
   flex: none;
-  width: 22px;
-  height: 22px;
   display: grid;
   place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--sr-line-soft);
+  color: var(--sr-ink-dim);
   font-family: var(--sr-mono);
   font-size: 11px;
-  color: var(--sr-ink-dim);
-  background: var(--sr-panel);
-  border-radius: 50%;
 }
 .sr-en-body {
   flex: 1;
@@ -1398,74 +1399,59 @@ a.sr-out-lesson.ready:hover {
 }
 .sr-en-en {
   margin: 0;
-  font-size: 17px;
-  line-height: 1.65;
   color: var(--sr-ink);
+  font-size: 15px;
+  line-height: 1.6;
   cursor: pointer;
 }
 .sr-en-zh {
   margin: 6px 0 0;
-  font-size: 14px;
-  line-height: 1.7;
-  color: var(--sr-ink-soft);
   padding-left: 10px;
   border-left: 2px solid var(--sr-blue-tint);
+  color: var(--sr-ink-soft);
+  font-size: 13px;
+  line-height: 1.6;
 }
 .sr-en-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
+/* Compact ghost control: transparent + line border, panel hover (DESIGN ghost). */
 .sr-en-act {
   display: inline-flex;
   align-items: center;
   gap: 5px;
   padding: 5px 10px;
-  font-size: 12px;
-  color: var(--sr-ink-soft);
-  background: transparent;
   border: 1px solid var(--sr-line);
   border-radius: var(--sr-radius-sm);
+  background: transparent;
+  color: var(--sr-ink-soft);
+  font-size: 12px;
   cursor: pointer;
 }
 .sr-en-act:hover:not(:disabled) {
-  background: var(--sr-blue-tint);
-  border-color: var(--sr-blue);
-  color: var(--sr-blue-deep);
+  background: var(--sr-panel);
+  color: var(--sr-ink);
 }
 .sr-en-act:disabled {
   opacity: 0.55;
   cursor: default;
 }
 .sr-en-act.mark.done {
-  color: var(--sr-green-deep);
   border-color: var(--sr-green);
+  color: var(--sr-green-deep);
   opacity: 1;
 }
 
 .sr-en-ladder {
-  margin: 22px 0 8px;
-  padding-top: 16px;
+  margin-top: 14px;
+  padding-top: 14px;
   border-top: 1px solid var(--sr-line-soft);
   text-align: center;
 }
-.sr-en-ladder-btn {
-  padding: 10px 22px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--sr-white);
-  background: var(--sr-green-deep);
-  border: none;
-  border-radius: var(--sr-radius-sm);
-  cursor: pointer;
-}
-.sr-en-ladder-btn:disabled {
-  background: var(--sr-green);
-  opacity: 0.7;
-  cursor: default;
-}
 .sr-en-ladder-locked {
-  font-size: 12.5px;
   color: var(--sr-ink-dim);
+  font-size: 12px;
 }

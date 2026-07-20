@@ -100,10 +100,11 @@ function EnglishReadView() {
         </Link>
       </div>
 
-      <header className="sr-en-head">
-        <h1>{reading.title}</h1>
-        <p>{t(locale, 'en.read.lead')}</p>
-      </header>
+      <div className="sr-d-scroll">
+        <header className="sr-en-head">
+          <h1>{reading.title}</h1>
+          <p>{t(locale, 'en.read.lead')}</p>
+        </header>
 
       <div className="sr-en-toolbar">
         <span className="sr-en-progress">
@@ -113,7 +114,7 @@ function EnglishReadView() {
         </span>
         <button
           type="button"
-          className="sr-en-allgloss"
+          className="sr-btn ghost sr-en-allgloss"
           onClick={() => setShowAllGloss((v) => !v)}
         >
           <Languages size={15} aria-hidden />{' '}
@@ -167,16 +168,17 @@ function EnglishReadView() {
         })}
       </ol>
 
-      <div className="sr-en-ladder">
-        {allRead ? (
-          // STEMROBIN-84 builds the ladder itself; the gate that reveals it is this
-          // ticket's acceptance criterion, so the entry appears but is not yet wired.
-          <button type="button" className="sr-en-ladder-btn" disabled>
-            {t(locale, 'en.ladder.soon')}
-          </button>
-        ) : (
-          <span className="sr-en-ladder-locked">{t(locale, 'en.read.locked')}</span>
-        )}
+        <div className="sr-en-ladder">
+          {allRead ? (
+            // STEMROBIN-84 builds the ladder itself; the gate that reveals it is this
+            // ticket's acceptance criterion, so the entry appears but is not yet wired.
+            <button type="button" className="sr-btn primary" disabled>
+              {t(locale, 'en.ladder.soon')}
+            </button>
+          ) : (
+            <span className="sr-en-ladder-locked">{t(locale, 'en.read.locked')}</span>
+          )}
+        </div>
       </div>
     </main>
   )
