@@ -1,0 +1,107 @@
+{
+  "id": "english-03",
+  "unit": 1,
+  "order": 3,
+  "title": "A New Friend",
+  "theme": "making a new friend at school",
+  "properNames": [
+    "Tom",
+    "Sam"
+  ],
+  "vocab": {
+    "warm": "温暖的",
+    "morning": "早晨",
+    "new": "新的",
+    "boy": "男孩",
+    "door": "门",
+    "look": "看",
+    "name": "名字",
+    "friend": "朋友",
+    "give": "给",
+    "book": "书",
+    "play": "玩；玩耍",
+    "class": "班级；课",
+    "run": "跑",
+    "jump": "跳",
+    "big": "大的",
+    "tree": "树",
+    "sun": "太阳",
+    "bird": "鸟",
+    "sing": "唱；鸣叫",
+    "dog": "狗",
+    "happy": "高兴的",
+    "sad": "伤心的"
+  },
+  "sentences": [
+    {
+      "text": "It is a warm morning, and Tom walks to school.",
+      "gloss": "这是一个温暖的早晨，汤姆走路去学校。",
+      "targets": [
+        "warm",
+        "morning"
+      ]
+    },
+    {
+      "text": "A new boy stands near the door.",
+      "gloss": "一个新来的男孩站在门边。",
+      "targets": [
+        "new",
+        "boy",
+        "door"
+      ]
+    },
+    {
+      "text": "Tom looks at him and says his name.",
+      "gloss": "汤姆看着他，说出自己的名字。",
+      "targets": [
+        "look",
+        "name"
+      ]
+    },
+    {
+      "text": "The boy is Sam, and he has no friends here.",
+      "gloss": "这个男孩叫萨姆，他在这里还没有朋友。",
+      "targets": [
+        "friend"
+      ]
+    },
+    {
+      "text": "Tom gives Sam a book and asks him to play.",
+      "gloss": "汤姆给萨姆一本书，请他一起玩。",
+      "targets": [
+        "give",
+        "book",
+        "play"
+      ]
+    },
+    {
+      "text": "After class they run and jump near a big tree.",
+      "gloss": "下课后，他们在一棵大树旁边跑跑跳跳。",
+      "targets": [
+        "class",
+        "run",
+        "jump",
+        "big",
+        "tree"
+      ]
+    },
+    {
+      "text": "A bird sings in the sun, and a dog plays with them.",
+      "gloss": "一只鸟在阳光下鸣叫，一只狗和他们一起玩。",
+      "targets": [
+        "bird",
+        "sing",
+        "sun",
+        "dog"
+      ]
+    },
+    {
+      "text": "Now Sam is happy, and he is not sad.",
+      "gloss": "现在萨姆很高兴，不再伤心了。",
+      "targets": [
+        "happy",
+        "sad"
+      ]
+    }
+  ]
+}
