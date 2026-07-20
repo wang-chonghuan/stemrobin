@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
 
-import { getEnglishReading, getSentenceAudio } from '~/lib/english'
+import { getEnglishReading, getSentenceAudio, type EnglishVocab } from '~/lib/english'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
@@ -104,7 +104,9 @@ function EnglishReadView() {
 
       <div className="sr-d-scroll">
         <header className="sr-en-head">
-          <h1>{reading.title}</h1>
+          <h1>
+            <span className="sr-en-seq">{reading.seq}</span> {reading.title}
+          </h1>
         </header>
 
         <div className="sr-en-toolbar">
@@ -166,20 +168,35 @@ function EnglishReadView() {
           })}
         </div>
 
-        {reading.vocab.length > 0 && (
+        {(reading.newWords.length > 0 || reading.reviewWords.length > 0) && (
           <section className="sr-en-vocab">
             <h2 className="sr-en-vocab-title">{t(locale, 'en.vocab.title')}</h2>
-            <ul className="sr-en-vocab-list">
-              {reading.vocab.map((v) => (
-                <li key={v.en} className="sr-en-vocab-item">
-                  <span className="sr-en-vocab-en">{v.en}</span>
-                  <span className="sr-en-vocab-zh">{v.zh}</span>
-                </li>
-              ))}
-            </ul>
+            {reading.newWords.length > 0 && (
+              <VocabGroup label={t(locale, 'en.vocab.new')} tone="new" words={reading.newWords} />
+            )}
+            {reading.reviewWords.length > 0 && (
+              <VocabGroup label={t(locale, 'en.vocab.review')} tone="review" words={reading.reviewWords} />
+            )}
           </section>
         )}
       </div>
     </main>
+  )
+}
+
+// One labelled 中英对照 group of the 生词表 (新词 or 复习).
+function VocabGroup({ label, tone, words }: { label: string; tone: 'new' | 'review'; words: EnglishVocab[] }) {
+  return (
+    <div className="sr-en-vocab-group">
+      <span className={`sr-en-vocab-label ${tone}`}>{label}</span>
+      <ul className="sr-en-vocab-list">
+        {words.map((v) => (
+          <li key={v.en} className="sr-en-vocab-item">
+            <span className="sr-en-vocab-en">{v.en}</span>
+            <span className="sr-en-vocab-zh">{v.zh}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

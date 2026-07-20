@@ -216,7 +216,8 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
 // 短文学英语 (STEMROBIN-82). Its catalog is DB-driven rather than a static outline:
 // the 60 VOA1500 passages are generated, so their titles only exist once saved.
 // Nothing is rendered until at least one lesson is in the DB — there is no static
-// list to show placeholders against, unlike math/physics.
+// list to show placeholders against, unlike math/physics. Lessons are a flat,
+// sequentially-numbered list (1, 2, 3 …), not grouped into units.
 function EnglishOutline({
   lessons,
   locale,
@@ -227,7 +228,6 @@ function EnglishOutline({
   onNavigate: () => void
 }) {
   if (!lessons.length) return null
-  const units = [...new Set(lessons.map((l) => l.unit))].sort((a, b) => a - b)
   return (
     <details className="sr-out-subject" open>
       <summary>
@@ -240,29 +240,22 @@ function EnglishOutline({
           <span className="sr-out-caret" aria-hidden />
           <span className="sr-out-stage-name">VOA1500</span>
         </summary>
-        {units.map((u) => (
-          <div key={u}>
-            <div className="sr-out-unit">{t(locale, 'cat.english.unit', { n: u })}</div>
-            <ul className="sr-out-lessons">
-              {lessons
-                .filter((l) => l.unit === u)
-                .map((l) => (
-                  <li key={l.id}>
-                    <Link
-                      to="/english/$id"
-                      params={{ id: l.id }}
-                      className="sr-out-lesson ready"
-                      activeProps={{ className: 'sr-out-lesson ready active' }}
-                      onClick={onNavigate}
-                    >
-                      <span className="sr-out-dot" aria-hidden />
-                      {l.unit}.{l.order} {l.title}
-                    </Link>
-                  </li>
-                ))}
-            </ul>
-          </div>
-        ))}
+        <ul className="sr-out-lessons">
+          {lessons.map((l) => (
+            <li key={l.id}>
+              <Link
+                to="/english/$id"
+                params={{ id: l.id }}
+                className="sr-out-lesson ready"
+                activeProps={{ className: 'sr-out-lesson ready active' }}
+                onClick={onNavigate}
+              >
+                <span className="sr-out-dot" aria-hidden />
+                {l.seq} {l.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </details>
     </details>
   )

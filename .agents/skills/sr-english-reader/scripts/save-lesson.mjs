@@ -94,13 +94,19 @@ const sentences = spec.sentences.map((s, i) => {
   ).filter((n) => n >= 0)
   return { id: `s${i + 1}`, num: i + 1, text: s.text.trim(), targets, rev: 1 }
 })
-// vocab list in first-appearance order across the passage; pos from the wordlist.
+// vocab list in first-appearance order; pos + entry-key from the wordlist. `key` is
+// the VOA headword ("hungry" -> "hunger"), so the app can match the same word across
+// lessons for the new-vs-review split.
 const vocabList = targetWords.map((w) => ({
   en: w,
+  key: resolve(w, vocab),
   pos: vocab.pos.get(resolve(w, vocab)) ?? '',
   zh: glossMap.get(w),
 }))
-const content = { kind: 'short-text', theme: spec.theme ?? null, properNames: spec.properNames ?? [], vocab: vocabList, sentences }
+// The VOA entry-keys the whole passage covers — the app intersects this with earlier
+// lessons' vocab keys to find which words are review words.
+const coveredKeys = [...covered].sort()
+const content = { kind: 'short-text', theme: spec.theme ?? null, properNames: spec.properNames ?? [], vocab: vocabList, coveredKeys, sentences }
 const overlay = Object.fromEntries(spec.sentences.map((s, i) => [`s${i + 1}`, { t: s.gloss.trim(), src_rev: 1 }]))
 
 // ── narrate ────────────────────────────────────────────────────────────────

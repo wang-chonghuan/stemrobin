@@ -1305,18 +1305,12 @@ a.sr-out-lesson.ready:hover {
    does not scale with viewport. Buttons reuse .sr-btn (ghost/primary) rather
    than inventing a parallel control. */
 
-/* Operational label — small and dense, like the other group headings. */
-.sr-out-unit {
-  padding: 6px 12px 2px 30px;
-  color: var(--sr-ink-dim);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
 .sr-en-head {
   margin-bottom: 14px;
+}
+.sr-en-seq {
+  color: var(--sr-blue-deep);
+  font-variant-numeric: tabular-nums;
 }
 .sr-en-head h1 {
   margin: 0;
@@ -1434,6 +1428,30 @@ a.sr-out-lesson.ready:hover {
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
   border-radius: var(--sr-radius);
+}
+.sr-en-vocab-group {
+  margin-top: 12px;
+}
+.sr-en-vocab-group:first-of-type {
+  margin-top: 0;
+}
+/* new = teal (this lesson's own words); review = dim (carried from earlier). */
+.sr-en-vocab-label {
+  display: inline-block;
+  margin-bottom: 8px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.sr-en-vocab-label.new {
+  background: var(--sr-blue-tint);
+  color: var(--sr-blue-deep);
+}
+.sr-en-vocab-label.review {
+  background: var(--sr-line-soft);
+  color: var(--sr-ink-dim);
 }
 .sr-en-vocab-title {
   margin: 0 0 10px;

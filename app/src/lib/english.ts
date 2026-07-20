@@ -28,13 +28,16 @@ export type ShortTextSentence = {
   rev?: number
 }
 // The lesson's VOA1500 words (its newly-introduced target words), with the Chinese
-// meaning, shown as a 中英对照 word list after the passage.
-export type VocabItem = { en: string; pos: string; zh: string }
+// meaning, shown as a 中英对照 word list after the passage. `key` is the VOA headword
+// entry-key ("hungry" -> "hunger"), used to match the same word across lessons for
+// the new-vs-review split.
+export type VocabItem = { en: string; pos: string; zh: string; key: string }
 export type ShortTextContent = {
   kind: 'short-text'
   theme?: string
   properNames?: string[] // author-declared names allowed outside the VOA1500 list
   vocab?: VocabItem[]
+  coveredKeys?: string[] // VOA entry-keys the passage covers (for review detection)
   sentences: ShortTextSentence[]
 }
 type Overlay = Record<string, { t: string; src_rev: number }>
@@ -179,10 +182,18 @@ export function judgeFreeText(expectedText: string, submitted: string): { isCorr
 
 // ── Fetchers ──
 type Row = { title: string; content: unknown; overlay: unknown }
+export type EnglishVocab = { en: string; zh: string }
 
 export const getEnglishReading = createServerFn({ method: 'GET' })
   .validator((id: string) => id)
-  .handler(async ({ data: id }): Promise<{ title: string; theme: string | null; vocab: VocabItem[]; sentences: ReadingSentence[] } | null> => {
+  .handler(async ({ data: id }): Promise<{
+    seq: number
+    title: string
+    theme: string | null
+    newWords: EnglishVocab[]
+    reviewWords: EnglishVocab[]
+    sentences: ReadingSentence[]
+  } | null> => {
     const locale = currentLocale()
     const rows = (await sql()`
       select l.title, l.content, i.overlay
@@ -196,27 +207,52 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
     const audio = (await sql()`
       select node_id from sr_lesson_audio where lesson_id = ${id}
     `) as unknown as { node_id: string }[]
+
+    // Sequence + cross-lesson vocab: which words this passage reuses from earlier
+    // lessons (review) vs first introduces (new). A word is "introduced" by the
+    // earliest lesson (by stage/order) whose vocab lists it; earlier target words
+    // that reappear in this passage (by covered entry-key) are review words.
+    const all = (await sql()`
+      select id, content->'vocab' as vocab
+      from sr_lessons where subject = 'english'
+      order by stage, lesson_order
+    `) as unknown as { id: string; vocab: VocabItem[] | null }[]
+    const seq = Math.max(1, all.findIndex((r) => r.id === id) + 1)
+    const introduced = new Map<string, EnglishVocab>() // key -> word, from its introducing lesson
+    for (const l of all) {
+      if (l.id === id) break // only lessons BEFORE this one
+      for (const v of l.vocab ?? []) if (v.key && !introduced.has(v.key)) introduced.set(v.key, { en: v.en, zh: v.zh })
+    }
+    const newWords: EnglishVocab[] = (content.vocab ?? []).map((v) => ({ en: v.en, zh: v.zh }))
+    const newKeys = new Set((content.vocab ?? []).map((v) => v.key))
+    const reviewWords: EnglishVocab[] = (content.coveredKeys ?? [])
+      .filter((k) => !newKeys.has(k) && introduced.has(k))
+      .map((k) => introduced.get(k)!)
+
     return {
+      seq,
       title: rows[0].title,
       theme: content.theme ?? null,
-      vocab: content.vocab ?? [],
+      newWords,
+      reviewWords,
       sentences: projectReading(content, overlay, new Set(audio.map((a) => a.node_id))),
     }
   })
 
 // Catalog for the 短文学英语 column. Unlike math/physics — whose outline is a static
 // list in curriculum.ts with DB-driven availability — the short-text titles are
-// generated, so the English catalog IS the DB. stage = unit, lesson_order = position.
-export type EnglishLessonRef = { id: string; unit: number; order: number; title: string }
+// generated, so the English catalog IS the DB. Lessons are numbered by a flat global
+// sequence (1, 2, 3 …) across the whole course, not grouped into units.
+export type EnglishLessonRef = { id: string; seq: number; title: string }
 
 export const listEnglishLessons = createServerFn({ method: 'GET' }).handler(
   async (): Promise<EnglishLessonRef[]> => {
     const rows = (await sql()`
-      select id, stage, lesson_order, title
+      select id, title
       from sr_lessons where subject = 'english'
       order by stage, lesson_order
-    `) as unknown as { id: string; stage: number; lesson_order: number; title: string }[]
-    return rows.map((r) => ({ id: r.id, unit: r.stage, order: r.lesson_order, title: r.title }))
+    `) as unknown as { id: string; title: string }[]
+    return rows.map((r, i) => ({ id: r.id, seq: i + 1, title: r.title }))
   },
 )
 
