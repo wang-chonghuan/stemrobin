@@ -30,6 +30,7 @@ export type ShortTextSentence = {
 export type ShortTextContent = {
   kind: 'short-text'
   theme?: string
+  properNames?: string[] // author-declared names allowed outside the VOA1500 list
   sentences: ShortTextSentence[]
 }
 type Overlay = Record<string, { t: string; src_rev: number }>

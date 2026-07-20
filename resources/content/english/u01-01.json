@@ -1,0 +1,50 @@
+{
+  "id": "english-u01-01",
+  "unit": 1,
+  "order": 1,
+  "title": "The Little Cat",
+  "theme": "helping a small animal on the way home",
+  "properNames": ["Anna"],
+  "sentences": [
+    {
+      "text": "Anna walks home from school every day.",
+      "gloss": "安娜每天从学校走回家。",
+      "targets": ["walk", "school"]
+    },
+    {
+      "text": "One day she hears a small sound near the road.",
+      "gloss": "有一天，她在路边听见一个很小的声音。",
+      "targets": ["hear", "sound", "road"]
+    },
+    {
+      "text": "A little cat is under a car and cannot move.",
+      "gloss": "一只小猫在汽车下面，动不了。",
+      "targets": ["cat", "under", "car", "move"]
+    },
+    {
+      "text": "Anna is afraid, so she calls her mother for help.",
+      "gloss": "安娜有点害怕，就打电话叫妈妈来帮忙。",
+      "targets": ["afraid", "call", "mother", "help"]
+    },
+    {
+      "text": "Her mother comes and lifts the cat out very slowly.",
+      "gloss": "妈妈来了，很慢地把小猫抱了出来。",
+      "targets": ["lift", "slow"]
+    },
+    {
+      "text": "They take the cat to a doctor in their town.",
+      "gloss": "他们把小猫送到镇上的医生那里。",
+      "targets": ["take", "doctor", "town"]
+    },
+    {
+      "text": "The doctor says the cat is only hungry and cold.",
+      "gloss": "医生说，小猫只是又饿又冷。",
+      "targets": ["doctor", "only", "hungry", "cold"]
+    },
+    {
+      "text": "Now the cat lives with Anna and sleeps on her bed.",
+      "gloss": "现在小猫和安娜住在一起，睡在她的床上。",
+      "targets": ["live", "sleep", "bed"]
+    }
+  ]
+}

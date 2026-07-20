@@ -1,0 +1,50 @@
+{
+  "id": "english-u01-02",
+  "unit": 1,
+  "order": 2,
+  "title": "Cooking with Father",
+  "theme": "a father and son making dinner together",
+  "properNames": ["Ben"],
+  "sentences": [
+    {
+      "text": "\"What are we eating tonight?\" Ben asks his father.",
+      "gloss": "“我们今晚吃什么？”本问爸爸。",
+      "targets": ["eat", "ask", "father"]
+    },
+    {
+      "text": "\"We can cook rice and fish,\" his father answers.",
+      "gloss": "“我们可以做米饭和鱼。”爸爸回答。",
+      "targets": ["cook", "rice", "fish", "answer"]
+    },
+    {
+      "text": "Ben wants to help, so he washes the rice in cold water.",
+      "gloss": "本想帮忙，就用冷水把米洗干净。",
+      "targets": ["want", "wash", "water"]
+    },
+    {
+      "text": "His father cuts the fish with a very sharp knife.",
+      "gloss": "爸爸用一把很锋利的刀切鱼。",
+      "targets": ["cut", "sharp", "knife"]
+    },
+    {
+      "text": "\"Please be careful,\" Ben says in a quiet voice.",
+      "gloss": "“请小心。”本轻声说。",
+      "targets": ["careful", "quiet", "voice"]
+    },
+    {
+      "text": "They put the food on the fire and wait ten minutes.",
+      "gloss": "他们把食物放到火上，等了十分钟。",
+      "targets": ["food", "fire", "wait", "minute"]
+    },
+    {
+      "text": "Soon the room smells good, and Ben feels very hungry.",
+      "gloss": "很快屋里就香了，本觉得很饿。",
+      "targets": ["room", "smell", "feel"]
+    },
+    {
+      "text": "\"You are a good cook,\" his father says with a laugh.",
+      "gloss": "“你是个好厨师。”爸爸笑着说。",
+      "targets": ["good", "laugh"]
+    }
+  ]
+}
