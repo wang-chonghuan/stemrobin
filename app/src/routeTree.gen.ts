@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppLessonIdRouteImport } from './routes/_app/lesson.$id'
+import { Route as AppEnglishIdRouteImport } from './routes/_app/english.$id'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -33,15 +34,22 @@ const AppLessonIdRoute = AppLessonIdRouteImport.update({
   path: '/lesson/$id',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEnglishIdRoute = AppEnglishIdRouteImport.update({
+  id: '/english/$id',
+  path: '/english/$id',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
+  '/english/$id': typeof AppEnglishIdRoute
   '/lesson/$id': typeof AppLessonIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/': typeof AppIndexRoute
+  '/english/$id': typeof AppEnglishIdRoute
   '/lesson/$id': typeof AppLessonIdRoute
 }
 export interface FileRoutesById {
@@ -49,14 +57,21 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/english/$id': typeof AppEnglishIdRoute
   '/_app/lesson/$id': typeof AppLessonIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/lesson/$id'
+  fullPaths: '/' | '/login' | '/english/$id' | '/lesson/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/lesson/$id'
-  id: '__root__' | '/_app' | '/login' | '/_app/' | '/_app/lesson/$id'
+  to: '/login' | '/' | '/english/$id' | '/lesson/$id'
+  id:
+    | '__root__'
+    | '/_app'
+    | '/login'
+    | '/_app/'
+    | '/_app/english/$id'
+    | '/_app/lesson/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,16 +109,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppLessonIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/english/$id': {
+      id: '/_app/english/$id'
+      path: '/english/$id'
+      fullPath: '/english/$id'
+      preLoaderRoute: typeof AppEnglishIdRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
 interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
+  AppEnglishIdRoute: typeof AppEnglishIdRoute
   AppLessonIdRoute: typeof AppLessonIdRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
+  AppEnglishIdRoute: AppEnglishIdRoute,
   AppLessonIdRoute: AppLessonIdRoute,
 }
 

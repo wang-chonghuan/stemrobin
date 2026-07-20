@@ -3,6 +3,7 @@ import { Check, ChevronUp, Languages, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { type OutlineSubject, parseLessonNumber, withAvailableLessonIds } from '~/lib/curriculum'
+import type { EnglishLessonRef } from '~/lib/english'
 import { LOCALES, t, type Locale } from '~/lib/i18n'
 import { setLocale } from '~/lib/locale'
 import { logout, type CurrentUser } from '~/lib/session'
@@ -18,12 +19,14 @@ const LOCALE_NAME: Record<Locale, string> = { zh: '中文', en: 'English' }
 // shell (catalog + detail) in that language.
 export function CatalogSidebar({
   lessonIds,
+  englishLessons,
   locale,
   user,
   drawerOpen,
   onNavigate,
 }: {
   lessonIds: string[]
+  englishLessons: EnglishLessonRef[]
   locale: Locale
   user: CurrentUser | null
   drawerOpen: boolean
@@ -69,6 +72,7 @@ export function CatalogSidebar({
             onNavigate={onNavigate}
           />
         ))}
+        <EnglishOutline lessons={englishLessons} locale={locale} onNavigate={onNavigate} />
       </div>
 
       <UserMenu user={user} locale={locale} />
@@ -206,6 +210,61 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
         <ChevronUp size={16} className="sr-usermenu-caret" aria-hidden />
       </button>
     </div>
+  )
+}
+
+// 短文学英语 (STEMROBIN-82). Its catalog is DB-driven rather than a static outline:
+// the 60 VOA1500 passages are generated, so their titles only exist once saved.
+// Nothing is rendered until at least one lesson is in the DB — there is no static
+// list to show placeholders against, unlike math/physics.
+function EnglishOutline({
+  lessons,
+  locale,
+  onNavigate,
+}: {
+  lessons: EnglishLessonRef[]
+  locale: Locale
+  onNavigate: () => void
+}) {
+  if (!lessons.length) return null
+  const units = [...new Set(lessons.map((l) => l.unit))].sort((a, b) => a - b)
+  return (
+    <details className="sr-out-subject" open>
+      <summary>
+        <span className="sr-out-caret" aria-hidden />
+        <span className="sr-out-subject-name">{t(locale, 'cat.english')}</span>
+        <span className="sr-count">{lessons.length}</span>
+      </summary>
+      <details className="sr-out-stage" open>
+        <summary>
+          <span className="sr-out-caret" aria-hidden />
+          <span className="sr-out-stage-name">VOA1500</span>
+        </summary>
+        {units.map((u) => (
+          <div key={u}>
+            <div className="sr-out-unit">{t(locale, 'cat.english.unit', { n: u })}</div>
+            <ul className="sr-out-lessons">
+              {lessons
+                .filter((l) => l.unit === u)
+                .map((l) => (
+                  <li key={l.id}>
+                    <Link
+                      to="/english/$id"
+                      params={{ id: l.id }}
+                      className="sr-out-lesson ready"
+                      activeProps={{ className: 'sr-out-lesson ready active' }}
+                      onClick={onNavigate}
+                    >
+                      <span className="sr-out-dot" aria-hidden />
+                      {l.unit}.{l.order} {l.title}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
+        ))}
+      </details>
+    </details>
   )
 }
 

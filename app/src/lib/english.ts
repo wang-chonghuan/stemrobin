@@ -174,14 +174,14 @@ export function judgeFreeText(expectedText: string, submitted: string): { isCorr
 }
 
 // ── Fetchers ──
-type Row = { content: unknown; overlay: unknown }
+type Row = { title: string; content: unknown; overlay: unknown }
 
 export const getEnglishReading = createServerFn({ method: 'GET' })
   .validator((id: string) => id)
-  .handler(async ({ data: id }): Promise<{ theme: string | null; sentences: ReadingSentence[] } | null> => {
+  .handler(async ({ data: id }): Promise<{ title: string; theme: string | null; sentences: ReadingSentence[] } | null> => {
     const locale = currentLocale()
     const rows = (await sql()`
-      select l.content, i.overlay
+      select l.title, l.content, i.overlay
       from sr_lessons l
       left join sr_lesson_i18n i on i.lesson_id = l.id and i.locale = ${locale}
       where l.id = ${id} and l.subject = 'english'
@@ -193,9 +193,40 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
       select node_id from sr_lesson_audio where lesson_id = ${id}
     `) as unknown as { node_id: string }[]
     return {
+      title: rows[0].title,
       theme: content.theme ?? null,
       sentences: projectReading(content, overlay, new Set(audio.map((a) => a.node_id))),
     }
+  })
+
+// Catalog for the 短文学英语 column. Unlike math/physics — whose outline is a static
+// list in curriculum.ts with DB-driven availability — the short-text titles are
+// generated, so the English catalog IS the DB. stage = unit, lesson_order = position.
+export type EnglishLessonRef = { id: string; unit: number; order: number; title: string }
+
+export const listEnglishLessons = createServerFn({ method: 'GET' }).handler(
+  async (): Promise<EnglishLessonRef[]> => {
+    const rows = (await sql()`
+      select id, stage, lesson_order, title
+      from sr_lessons where subject = 'english'
+      order by stage, lesson_order
+    `) as unknown as { id: string; stage: number; lesson_order: number; title: string }[]
+    return rows.map((r) => ({ id: r.id, unit: r.stage, order: r.lesson_order, title: r.title }))
+  },
+)
+
+// One sentence's narration, base64 — same shape as getLessonPdf (bytes stay
+// server-side, the client builds a Blob). Fetched on click so the page load does
+// not carry ~450KB of audio it may never play.
+export const getSentenceAudio = createServerFn({ method: 'GET' })
+  .validator((d: { lessonId: string; nodeId: string }) => d)
+  .handler(async ({ data }): Promise<{ mime: string; b64: string } | null> => {
+    const rows = (await sql()`
+      select mime, bytes from sr_lesson_audio
+      where lesson_id = ${data.lessonId} and node_id = ${data.nodeId}
+    `) as unknown as { mime: string; bytes: Buffer }[]
+    if (!rows.length) return null
+    return { mime: rows[0].mime, b64: Buffer.from(rows[0].bytes).toString('base64') }
   })
 
 // The recitation payload: masked tokens only. Deliberately does NOT return `text`.

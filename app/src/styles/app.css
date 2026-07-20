@@ -1298,3 +1298,174 @@ a.sr-out-lesson.ready:hover {
 .sr-modal-body { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--sr-ink-soft); }
 .sr-modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
 .sr-modal-actions .sr-btn { text-decoration: none; }
+
+/* ── 短文学英语 · catalog + read phase (STEMROBIN-82/83) ─────────────────── */
+
+.sr-out-unit {
+  padding: 6px 12px 2px 30px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sr-ink-dim);
+  text-transform: uppercase;
+}
+
+.sr-en-head {
+  padding: 4px 0 14px;
+  border-bottom: 1px solid var(--sr-line-soft);
+}
+.sr-en-head h1 {
+  margin: 0 0 6px;
+  font-family: var(--sr-display);
+  font-size: 24px;
+  color: var(--sr-ink);
+}
+.sr-en-head p {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--sr-ink-soft);
+}
+
+.sr-en-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 0;
+}
+.sr-en-progress {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--sr-blue-deep);
+}
+.sr-en-allgloss {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  font-size: 12.5px;
+  color: var(--sr-ink-soft);
+  background: var(--sr-card);
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+}
+.sr-en-allgloss:hover {
+  background: var(--sr-panel);
+  color: var(--sr-ink);
+}
+
+.sr-en-sentences {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sr-en-sentence {
+  display: flex;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--sr-card);
+  border: 1px solid var(--sr-line);
+  border-left: 3px solid var(--sr-line);
+  border-radius: var(--sr-radius);
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.sr-en-sentence.read {
+  border-left-color: var(--sr-green);
+  background: var(--sr-green-tint);
+}
+.sr-en-num {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  font-family: var(--sr-mono);
+  font-size: 11px;
+  color: var(--sr-ink-dim);
+  background: var(--sr-panel);
+  border-radius: 50%;
+}
+.sr-en-body {
+  flex: 1;
+  min-width: 0;
+}
+.sr-en-en {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--sr-ink);
+  cursor: pointer;
+}
+.sr-en-zh {
+  margin: 6px 0 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--sr-ink-soft);
+  padding-left: 10px;
+  border-left: 2px solid var(--sr-blue-tint);
+}
+.sr-en-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.sr-en-act {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: var(--sr-ink-soft);
+  background: transparent;
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+}
+.sr-en-act:hover:not(:disabled) {
+  background: var(--sr-blue-tint);
+  border-color: var(--sr-blue);
+  color: var(--sr-blue-deep);
+}
+.sr-en-act:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.sr-en-act.mark.done {
+  color: var(--sr-green-deep);
+  border-color: var(--sr-green);
+  opacity: 1;
+}
+
+.sr-en-ladder {
+  margin: 22px 0 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--sr-line-soft);
+  text-align: center;
+}
+.sr-en-ladder-btn {
+  padding: 10px 22px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--sr-white);
+  background: var(--sr-green-deep);
+  border: none;
+  border-radius: var(--sr-radius-sm);
+  cursor: pointer;
+}
+.sr-en-ladder-btn:disabled {
+  background: var(--sr-green);
+  opacity: 0.7;
+  cursor: default;
+}
+.sr-en-ladder-locked {
+  font-size: 12.5px;
+  color: var(--sr-ink-dim);
+}
