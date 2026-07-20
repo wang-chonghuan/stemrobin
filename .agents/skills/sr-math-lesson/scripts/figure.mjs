@@ -192,6 +192,40 @@ function renderNumberLine(spec) {
 }
 
 // ------------------------------------------------------------------- render ----
+// Grow the viewBox so no <text> label is clipped. A caption placed near an edge
+// (e.g. a "below" caption at y≈h) renders its baseline outside [0,h] and the SVG
+// clips it. Rather than force every author to size the canvas perfectly, measure
+// the rendered text extents and expand the viewBox to fit them (+ a small margin).
+// A no-op when all text already sits inside [0,0,w,h] — well-fitting figures are
+// byte-identical, so no existing figure regresses.
+function fitViewBox(body, w, h) {
+  let minX = 0, minY = 0, maxX = w, maxY = h
+  const re = /<text\b([^>]*)>([^<]*)<\/text>/g
+  let m
+  while ((m = re.exec(body))) {
+    const a = m[1], txt = m[2]
+    const x = parseFloat((a.match(/\bx="(-?[\d.]+)"/) || [])[1])
+    const y = parseFloat((a.match(/\by="(-?[\d.]+)"/) || [])[1])
+    if (Number.isNaN(x) || Number.isNaN(y)) continue
+    const fs = parseFloat((a.match(/font-size="([\d.]+)"/) || [])[1]) || 15
+    const anchor = (a.match(/text-anchor="(\w+)"/) || [])[1] || 'start'
+    // rough advance width: CJK/full-width ≈ fs, else ≈ 0.55·fs
+    let tw = 0
+    for (const ch of txt) tw += /[⺀-鿿＀-￯　-〿]/.test(ch) ? fs : fs * 0.55
+    const x0 = anchor === 'middle' ? x - tw / 2 : anchor === 'end' ? x - tw : x
+    const x1 = anchor === 'middle' ? x + tw / 2 : anchor === 'end' ? x : x + tw
+    minX = Math.min(minX, x0); maxX = Math.max(maxX, x1)
+    minY = Math.min(minY, y - fs * 0.85); maxY = Math.max(maxY, y + fs * 0.32) // ascent above / descent below the baseline
+  }
+  if (minX === 0 && minY === 0 && maxX === w && maxY === h) return `0 0 ${w} ${h}`
+  const pad = 4
+  const vx = Math.floor(minX - pad === -pad ? 0 : Math.min(0, minX - pad))
+  const vy = Math.floor(Math.min(0, minY - pad))
+  const vw = Math.ceil(Math.max(w, maxX + pad)) - vx
+  const vh = Math.ceil(Math.max(h, maxY + pad)) - vy
+  return `${vx} ${vy} ${vw} ${vh}`
+}
+
 export function renderFigure(spec) {
   if (!spec || typeof spec !== 'object') throw new Error('figure spec must be an object')
   const [w, h] = spec.size || (spec.kind === 'numberline' ? [560, 120] : [600, 440])
@@ -200,7 +234,7 @@ export function renderFigure(spec) {
   if (spec.kind === 'numberline') body = renderNumberLine(spec)
   else if (spec.kind === 'geometry') body = renderGeometry(spec)
   else throw new Error(`unknown figure kind "${spec.kind}" (geometry|numberline)`)
-  return `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(aria)}">\n  ${body}\n</svg>`
+  return `<svg viewBox="${fitViewBox(body, w, h)}" role="img" aria-label="${esc(aria)}">\n  ${body}\n</svg>`
 }
 
 // Validate a spec without rendering (used by check-content/check-exercises).
