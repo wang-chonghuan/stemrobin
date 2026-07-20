@@ -1,0 +1,30 @@
+{
+  "status": "running",
+  "seed": "STEMROBIN-75",
+  "started_at": "2026-07-20",
+  "progress": {
+    "STEMROBIN-76": "merged 0051628 · verified · deploy-batched"
+  },
+  "tickets": [
+    "STEMROBIN-76",
+    "STEMROBIN-77",
+    "STEMROBIN-78",
+    "STEMROBIN-79",
+    "STEMROBIN-80",
+    "STEMROBIN-81",
+    "STEMROBIN-82",
+    "STEMROBIN-83",
+    "STEMROBIN-84"
+  ],
+  "blocked_on": {
+    "STEMROBIN-76": [],
+    "STEMROBIN-77": [],
+    "STEMROBIN-78": [],
+    "STEMROBIN-79": [],
+    "STEMROBIN-80": ["STEMROBIN-77", "STEMROBIN-78", "STEMROBIN-79"],
+    "STEMROBIN-81": ["STEMROBIN-80"],
+    "STEMROBIN-82": ["STEMROBIN-77"],
+    "STEMROBIN-83": ["STEMROBIN-81", "STEMROBIN-77"],
+    "STEMROBIN-84": ["STEMROBIN-83"]
+  }
+}
