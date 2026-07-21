@@ -1,0 +1,17 @@
+{
+  "status": "ready",
+  "seed": "STEMROBIN-92",
+  "started_at": "2026-07-21",
+  "tickets": ["STEMROBIN-93","STEMROBIN-94","STEMROBIN-95","STEMROBIN-96","STEMROBIN-97","STEMROBIN-98","STEMROBIN-99"],
+  "blocked_on": {
+    "STEMROBIN-93": [],
+    "STEMROBIN-94": [],
+    "STEMROBIN-95": ["STEMROBIN-93","STEMROBIN-94","STEMROBIN-99"],
+    "STEMROBIN-96": ["STEMROBIN-93","STEMROBIN-95"],
+    "STEMROBIN-97": ["STEMROBIN-96"],
+    "STEMROBIN-98": ["STEMROBIN-96"],
+    "STEMROBIN-99": ["STEMROBIN-95"]
+  },
+  "supersedes": { "STEMROBIN-95": "STEMROBIN-86, STEMROBIN-91", "STEMROBIN-96": "STEMROBIN-90" },
+  "note": "95<->99 的互为前置以两阶段解开：95 先出难词初稿 -> 99 定稿 70 课蓝图 -> 95 出定稿分配表。"
+}

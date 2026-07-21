@@ -1,5 +1,5 @@
 {
-  "status": "ready",
+  "status": "done",
   "seed": "STEMROBIN-85",
   "started_at": "2026-07-21",
   "tickets": [
@@ -13,13 +13,26 @@
   "blocked_on": {
     "STEMROBIN-86": [],
     "STEMROBIN-87": [],
-    "STEMROBIN-88": ["STEMROBIN-87"],
-    "STEMROBIN-89": ["STEMROBIN-87"],
-    "STEMROBIN-90": ["STEMROBIN-86", "STEMROBIN-87", "STEMROBIN-88", "STEMROBIN-89"],
-    "STEMROBIN-91": ["STEMROBIN-90"]
+    "STEMROBIN-88": [
+      "STEMROBIN-87"
+    ],
+    "STEMROBIN-89": [
+      "STEMROBIN-87"
+    ],
+    "STEMROBIN-90": [
+      "STEMROBIN-86",
+      "STEMROBIN-87",
+      "STEMROBIN-88",
+      "STEMROBIN-89"
+    ],
+    "STEMROBIN-91": [
+      "STEMROBIN-90"
+    ]
   },
   "supersedes": {
     "STEMROBIN-89": "STEMROBIN-84",
     "STEMROBIN-91": "STEMROBIN-81"
-  }
+  },
+  "ended_at": "2026-07-21",
+  "outcome": "87/88/89 done (content v2 + 3-layer audio, page v2, recitation ladder — all shipped); 86->superseded(95), 90->superseded(96), 91->superseded(95/96) at boundary for infrastructure hardening (seed STEMROBIN-92 / batch 0014-voa1500-infra). All English content reset to zero per human ruling."
 }
