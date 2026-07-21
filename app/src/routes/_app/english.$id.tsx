@@ -2,7 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, Download, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
 
-import { getEnglishReading, getSentenceAudio, type EnglishVocab } from '~/lib/english'
+import {
+  getEnglishReading,
+  getSentenceAudio,
+  getWordAudio,
+  FULL_AUDIO_NODE,
+  type EnglishVocab,
+  type Pattern,
+} from '~/lib/english'
 import { getLessonPdf } from '~/lib/lessons'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
@@ -55,13 +62,15 @@ function EnglishReadView() {
     )
   }
 
-  async function play(nodeId: string) {
-    setPlaying(nodeId)
+  // One player for all three audio layers (sentence, whole passage, single word).
+  // Every clip is PRE-RENDERED TTS fetched on demand and cached; the browser's own
+  // speech synthesis is deliberately not used anywhere.
+  async function playClip(key: string, fetchClip: () => Promise<{ mime: string; b64: string } | null>) {
+    setPlaying(key)
     try {
-      const key = `${id}:${nodeId}`
       let src = audioCache.current.get(key)
       if (!src) {
-        const clip = await getSentenceAudio({ data: { lessonId: id, nodeId } })
+        const clip = await fetchClip()
         if (!clip) return
         src = `data:${clip.mime};base64,${clip.b64}`
         audioCache.current.set(key, src)
@@ -72,9 +81,15 @@ function EnglishReadView() {
       audio.onended = () => setPlaying(null)
       await audio.play()
     } finally {
-      setPlaying((cur) => (cur === nodeId ? null : cur))
+      setPlaying((cur) => (cur === key ? null : cur))
     }
   }
+
+  const play = (nodeId: string) =>
+    playClip(`${id}:${nodeId}`, () => getSentenceAudio({ data: { lessonId: id, nodeId } }))
+  const playFull = () => play(FULL_AUDIO_NODE)
+  // Word clips are course-global, so they are cached by word rather than by lesson.
+  const speakWord = (word: string) => playClip(`w:${word}`, () => getWordAudio({ data: word }))
 
   const toggleGloss = (sid: string) =>
     setOpenGloss((prev) => {
@@ -82,18 +97,6 @@ function EnglishReadView() {
       next.has(sid) ? next.delete(sid) : next.add(sid)
       return next
     })
-
-  // Single-word pronunciation uses the BROWSER's built-in speech synthesis (Web
-  // Speech API) — deliberately different from the sentence narration, which is the
-  // pre-rendered Azure clip. No network, no stored audio for the word list.
-  const speakWord = (word: string) => {
-    const synth = window.speechSynthesis
-    if (!synth) return
-    synth.cancel()
-    const u = new SpeechSynthesisUtterance(word)
-    u.lang = 'en-US'
-    synth.speak(u)
-  }
 
   async function downloadPdf() {
     const b64 = await getLessonPdf({ data: id })
@@ -148,6 +151,21 @@ function EnglishReadView() {
           <button type="button" className="sr-btn primary" disabled>
             {t(locale, 'en.ladder.enter')}
           </button>
+          {reading.hasFullAudio && (
+            <button
+              type="button"
+              className="sr-btn ghost sr-en-allgloss"
+              onClick={playFull}
+              disabled={playing === `${id}:${FULL_AUDIO_NODE}`}
+            >
+              {playing === `${id}:${FULL_AUDIO_NODE}` ? (
+                <Loader2 size={15} className="sr-spin" aria-hidden />
+              ) : (
+                <Volume2 size={15} aria-hidden />
+              )}{' '}
+              {t(locale, 'en.read.playall')}
+            </button>
+          )}
           <button
             type="button"
             className="sr-btn ghost sr-en-allgloss"
@@ -157,6 +175,22 @@ function EnglishReadView() {
             {showAllGloss ? t(locale, 'en.read.hideall') : t(locale, 'en.read.showall')}
           </button>
         </div>
+
+        {/* 句型卡 — the blueprint makes patterns the point of the lesson, so they lead
+            the page. Each shows its template (slots highlighted) and its 中文. */}
+        {reading.patterns.length > 0 && (
+          <section className="sr-en-patterns">
+            <h2 className="sr-en-vocab-title">{t(locale, 'en.patterns.title')}</h2>
+            <ul className="sr-en-pattern-list">
+              {reading.patterns.map((p) => (
+                <li key={p.id} className="sr-en-pattern">
+                  <p className="sr-en-pattern-en">{renderTemplate(p)}</p>
+                  {p.zh && <p className="sr-en-pattern-zh">{p.zh}</p>}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {/* Whole passage in one card; sentences separated by a divider (border-top on
             every row but the first). Audio + Chinese controls sit at the right end. */}
@@ -168,18 +202,19 @@ function EnglishReadView() {
                 <div className="sr-en-line">
                   <span className="sr-en-num">{s.num}</span>
                   <p className="sr-en-en" onClick={() => toggleGloss(s.id)}>
+                    {s.speaker && <span className="sr-en-speaker">{s.speaker}:</span>}
                     {s.text}
                   </p>
                   <div className="sr-en-actions">
                     <button
                       type="button"
                       className="sr-en-icon"
-                      disabled={!s.hasAudio || playing === s.id}
+                      disabled={!s.hasAudio || playing === `${id}:${s.id}`}
                       onClick={() => play(s.id)}
                       aria-label={t(locale, 'en.read.play')}
                       title={t(locale, 'en.read.play')}
                     >
-                      {playing === s.id ? (
+                      {playing === `${id}:${s.id}` ? (
                         <Loader2 size={17} className="sr-spin" aria-hidden />
                       ) : (
                         <Volume2 size={17} aria-hidden />
@@ -216,6 +251,18 @@ function EnglishReadView() {
         )}
       </div>
     </main>
+  )
+}
+
+// A pattern template with its `___` slots highlighted — the slot is what the learner
+// swaps words into, and what the ladder blanks first.
+function renderTemplate(p: Pattern) {
+  return p.template.split(/(___)/g).map((part, i) =>
+    part === '___' ? (
+      <span key={i} className="sr-en-slot">___</span>
+    ) : (
+      <span key={i}>{part}</span>
+    ),
   )
 }
 

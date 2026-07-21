@@ -1494,3 +1494,56 @@ a.sr-out-lesson.ready:hover {
   color: var(--sr-ink-soft);
   text-align: right;
 }
+
+/* ── 句型卡 + 对话说话人 (STEMROBIN-87/88) ────────────────────────────────
+   The blueprint makes patterns the point of the lesson, so the pattern card leads
+   the page. Slots use the teal primary — they are the swappable part the ladder
+   blanks first. */
+.sr-en-patterns {
+  margin-bottom: 14px;
+  padding: 15px;
+  background: var(--sr-panel);
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius);
+}
+.sr-en-pattern-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sr-en-pattern {
+  padding-left: 10px;
+  border-left: 2px solid var(--sr-blue);
+}
+.sr-en-pattern-en {
+  margin: 0;
+  color: var(--sr-ink);
+  font-size: 15px;
+  line-height: 1.55;
+  font-weight: 600;
+}
+.sr-en-pattern-zh {
+  margin: 2px 0 0;
+  color: var(--sr-ink-soft);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+/* the ___ slot: what the learner swaps, and what level 1 of the ladder blanks */
+.sr-en-slot {
+  padding: 0 3px;
+  border-radius: 3px;
+  background: var(--sr-blue-tint);
+  color: var(--sr-blue-deep);
+  font-family: var(--sr-mono);
+  font-weight: 700;
+}
+/* dialogue turn label */
+.sr-en-speaker {
+  margin-right: 6px;
+  color: var(--sr-green-deep);
+  font-size: 13px;
+  font-weight: 700;
+}

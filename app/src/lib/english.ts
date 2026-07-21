@@ -20,10 +20,22 @@ import { currentLocale } from '~/lib/locale.server'
 // hidden word, and grading happens only in `judgeSentence` on the server.
 
 // ── Neutral JSONB shape ──
+// v2 (STEMROBIN-87): the blueprint makes sentence PATTERNS the core of the course —
+// 2–4 templates per lesson with a `___` slot the learner swaps words into. That is
+// the same shape as the cloze ladder, so patterns are data, not prose: the ladder
+// blanks slot words first, which is exactly "memorize the template, then speak".
+export type Pattern = {
+  id: string
+  template: string // "Look ___ and ___ before you cross."
+  zh?: string | null // filled from the per-locale overlay
+}
 export type ShortTextSentence = {
   id: string
   num: number
   text: string
+  speaker?: string | null // dialogue turns; null for narration
+  pattern?: string | null // id of the pattern this sentence realizes
+  slots?: number[] // word-token indices that fill this pattern's `___` slots
   targets: number[] // 0-based word-token indices of this lesson's new VOA target words
   rev?: number
 }
@@ -34,7 +46,11 @@ export type ShortTextSentence = {
 export type VocabItem = { en: string; pos: string; zh: string; key: string }
 export type ShortTextContent = {
   kind: 'short-text'
+  v?: number
   theme?: string
+  scene?: string // the blueprint's 场景
+  form?: 'dialogue' | 'narrative'
+  patterns?: Pattern[]
   properNames?: string[] // author-declared names allowed outside the VOA1500 list
   vocab?: VocabItem[]
   coveredKeys?: string[] // VOA entry-keys the passage covers (for review detection)
@@ -81,36 +97,45 @@ export function wordIndices(tokens: Token[]): number[] {
 // level n-1 hid, plus more) is guaranteed BY CONSTRUCTION: every level takes a prefix
 // of ONE fixed priority order, so a longer prefix is always a superset.
 //
-// Priority: this lesson's target words first (level 1 = "目标词和关键动词"), then the
-// remaining words longest-first — a deterministic proxy that pushes content words
-// ahead of short function words, so prepositions/glue disappear at the later levels
-// exactly as the ladder intends. No randomness, so a level is reproducible without
-// storing anything.
+// Priority (v2, STEMROBIN-89): **pattern slot words first**, then this lesson's target
+// words, then the rest longest-first. The slot is the `___` of the lesson's pattern, so
+// level 1 leaves the template's fixed frame visible and blanks exactly the swappable
+// part — "背下来就能换词照说". Targets come next (words worth recalling), and the
+// longest-first tail is a deterministic proxy that pushes content words ahead of short
+// function words, so glue disappears only at the later levels. No randomness, so a
+// level is reproducible without storing anything.
 export const LADDER_RATIOS = [0.2, 0.4, 0.6, 0.8, 1] as const
 export type Level = 1 | 2 | 3 | 4 | 5
 
-export function maskPriority(tokens: Token[], targets: number[]): number[] {
+export function maskPriority(tokens: Token[], targets: number[], slots: number[] = []): number[] {
   const words = wordIndices(tokens)
-  const targetSet = new Set(targets.map((n) => words[n]).filter((i) => i !== undefined))
-  const isTarget = (i: number) => targetSet.has(i)
-  const targeted = words.filter(isTarget)
+  const toTokenIdx = (ns: number[]) => new Set(ns.map((n) => words[n]).filter((i) => i !== undefined))
+  const slotSet = toTokenIdx(slots)
+  const targetSet = toTokenIdx(targets)
+  const slotted = words.filter((i) => slotSet.has(i))
+  const targeted = words.filter((i) => !slotSet.has(i) && targetSet.has(i))
   const rest = words
-    .filter((i) => !isTarget(i))
+    .filter((i) => !slotSet.has(i) && !targetSet.has(i))
     .sort((a, b) => tokens[b].w.length - tokens[a].w.length || a - b)
-  return [...targeted, ...rest]
+  return [...slotted, ...targeted, ...rest]
 }
 
-export function hiddenIndices(tokens: Token[], targets: number[], level: Level): Set<number> {
-  const order = maskPriority(tokens, targets)
+export function hiddenIndices(
+  tokens: Token[],
+  targets: number[],
+  level: Level,
+  slots: number[] = [],
+): Set<number> {
+  const order = maskPriority(tokens, targets, slots)
   const n = Math.ceil(LADDER_RATIOS[level - 1] * order.length)
   return new Set(order.slice(0, n))
 }
 
 // ── Browser-facing shapes ──
-export type ReadingSentence = { id: string; num: number; text: string; gloss: string | null; hasAudio: boolean }
+export type ReadingSentence = { id: string; num: number; text: string; gloss: string | null; hasAudio: boolean; speaker: string | null; pattern: string | null }
 // A hidden slot carries NO `w` — the answer never reaches the browser.
 export type MaskedToken = { w: string; isWord: boolean } | { hidden: true; isWord: true }
-export type RecitationSentence = { id: string; num: number; tokens: MaskedToken[]; blanks: number }
+export type RecitationSentence = { id: string; num: number; tokens: MaskedToken[]; blanks: number; speaker: string | null }
 
 // Read phase: full text + this locale's gloss + whether narration exists.
 export function projectReading(
@@ -124,6 +149,8 @@ export function projectReading(
     text: s.text,
     gloss: overlay[s.id]?.t ?? null,
     hasAudio: audioNodes.has(s.id),
+    speaker: s.speaker ?? null,
+    pattern: s.pattern ?? null,
   }))
 }
 
@@ -132,13 +159,13 @@ export function projectReading(
 export function projectRecitation(content: ShortTextContent, level: Level): RecitationSentence[] {
   return content.sentences.map((s) => {
     const tokens = tokenize(s.text)
-    const hide = hiddenIndices(tokens, s.targets, level)
+    const hide = hiddenIndices(tokens, s.targets, level, s.slots ?? [])
     let blanks = 0
     const masked: MaskedToken[] = tokens.map((t, i) => {
       if (t.isWord && hide.has(i)) { blanks++; return { hidden: true, isWord: true } }
       return { w: t.w, isWord: t.isWord }
     })
-    return { id: s.id, num: s.num, tokens: masked, blanks }
+    return { id: s.id, num: s.num, tokens: masked, blanks, speaker: s.speaker ?? null }
   })
 }
 
@@ -158,7 +185,7 @@ export function judgeSentence(
   answers: string[],
 ): { isCorrect: boolean; wrong: number[] } {
   const tokens = tokenize(sentence.text)
-  const hide = hiddenIndices(tokens, sentence.targets, level)
+  const hide = hiddenIndices(tokens, sentence.targets, level, sentence.slots ?? [])
   const expected = tokens.map((t, i) => (t.isWord && hide.has(i) ? t.w : null)).filter((w): w is string => w !== null)
   const wrong: number[] = []
   expected.forEach((exp, i) => {
@@ -181,6 +208,10 @@ export function judgeFreeText(expectedText: string, submitted: string): { isCorr
 }
 
 // ── Fetchers ──
+// Reserved node id under which the whole-passage narration is stored in
+// sr_lesson_audio, alongside the per-sentence clips.
+export const FULL_AUDIO_NODE = 'full'
+
 type Row = { title: string; content: unknown; overlay: unknown }
 export type EnglishVocab = { en: string; zh: string }
 
@@ -190,6 +221,9 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
     seq: number
     title: string
     theme: string | null
+    form: 'dialogue' | 'narrative'
+    patterns: Pattern[]
+    hasFullAudio: boolean
     newWords: EnglishVocab[]
     reviewWords: EnglishVocab[]
     sentences: ReadingSentence[]
@@ -229,13 +263,25 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
       .filter((k) => !newKeys.has(k) && introduced.has(k))
       .map((k) => introduced.get(k)!)
 
+    // Pattern templates are neutral; their 中文 lives in the same per-locale overlay
+    // as the sentence gloss, keyed by pattern id.
+    const patterns: Pattern[] = (content.patterns ?? []).map((p) => ({
+      id: p.id,
+      template: p.template,
+      zh: overlay[p.id]?.t ?? null,
+    }))
+    const audioNodes = new Set(audio.map((a) => a.node_id))
+
     return {
       seq,
       title: rows[0].title,
       theme: content.theme ?? null,
+      form: content.form ?? 'narrative',
+      patterns,
+      hasFullAudio: audioNodes.has(FULL_AUDIO_NODE),
       newWords,
       reviewWords,
-      sentences: projectReading(content, overlay, new Set(audio.map((a) => a.node_id))),
+      sentences: projectReading(content, overlay, audioNodes),
     }
   })
 
@@ -265,6 +311,19 @@ export const getSentenceAudio = createServerFn({ method: 'GET' })
     const rows = (await sql()`
       select mime, bytes from sr_lesson_audio
       where lesson_id = ${data.lessonId} and node_id = ${data.nodeId}
+    `) as unknown as { mime: string; bytes: Buffer }[]
+    if (!rows.length) return null
+    return { mime: rows[0].mime, b64: Buffer.from(rows[0].bytes).toString('base64') }
+  })
+
+// One VOA word's pronunciation, base64. Course-global: "walk" is synthesized once and
+// reused by every lesson that teaches or reviews it (sr_word_audio is keyed by word,
+// not by lesson).
+export const getWordAudio = createServerFn({ method: 'GET' })
+  .validator((w: string) => w)
+  .handler(async ({ data: word }): Promise<{ mime: string; b64: string } | null> => {
+    const rows = (await sql()`
+      select mime, bytes from sr_word_audio where word = ${word.toLowerCase()}
     `) as unknown as { mime: string; bytes: Buffer }[]
     if (!rows.length) return null
     return { mime: rows[0].mime, b64: Buffer.from(rows[0].bytes).toString('base64') }

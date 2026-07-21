@@ -378,3 +378,42 @@ CREATE TABLE IF NOT EXISTS sr_lesson_audio (
   updated_at  TIMESTAMPTZ NOT NULL DEFAULT now(),
   PRIMARY KEY (lesson_id, node_id)
 );
+
+-- ===========================================================================
+-- 短文学英语 v2 — 句型 + 三层发音 (STEMROBIN-87, batch 0013-voa1500-v2)
+-- ---------------------------------------------------------------------------
+-- The human blueprint (.agents/skills/sr-voa1500/outline.md) makes SENTENCE
+-- PATTERNS the core of the course: each lesson teaches 2-4 templates with a `___`
+-- slot, and the learner memorizes the template then swaps words into the slot.
+-- That is the same shape as the cloze ladder, so patterns become first-class data
+-- rather than prose: the ladder blanks the SLOT words first (see app/src/lib/english.ts).
+--
+-- content JSONB gains (v: 2) — still the neutral base, still no learner prose:
+--   { "kind":"short-text", "v":2,
+--     "scene":"…", "form":"dialogue"|"narrative",
+--     "patterns":[ { "id":"p1", "template":"Look ___ and ___ before you cross.",
+--                    "rev":1 } ],            -- template zh lives in the i18n overlay
+--     "sentences":[ { "id":"s1","num":1,
+--                     "speaker":"Mom"|null,  -- dialogue turns; null for narration
+--                     "text":"…",
+--                     "pattern":"p1"|null,   -- which template this sentence realizes
+--                     "slots":[1,3],         -- word-token indices filling the ___ slots
+--                     "targets":[…] } ],
+--     "vocab":[…], "coveredKeys":[…] }
+-- Speaker names and pattern templates are English/neutral; their Chinese renderings
+-- (pattern zh) are overlay entries keyed by the pattern id, exactly like sentence gloss.
+--
+-- Audio is three layers. Sentence + full-passage narration are per lesson and already
+-- fit sr_lesson_audio (the full passage is stored under the reserved node id 'full'),
+-- so no migration is needed there. WORD pronunciation is course-global — "walk" is
+-- pronounced once and reused by every lesson that teaches or reviews it — so it gets
+-- its own table keyed by the word rather than being duplicated per lesson.
+-- ---------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS sr_word_audio (
+  word        TEXT PRIMARY KEY,                   -- VOA1500 headword, lowercase
+  mime        TEXT NOT NULL DEFAULT 'audio/mpeg',
+  bytes       BYTEA NOT NULL,
+  voice       TEXT,
+  updated_at  TIMESTAMPTZ NOT NULL DEFAULT now()
+);

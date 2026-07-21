@@ -35,6 +35,8 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'en.read.hideall': '收起整篇中文',
     'en.ladder.enter': '背诵天梯',
     'en.vocab.title': '本课生词',
+    'en.read.playall': '听整篇',
+    'en.patterns.title': '本课句型',
     'en.vocab.new': '新词',
     'en.vocab.review': '复习',
     // overview
@@ -163,6 +165,8 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'en.read.hideall': 'Hide whole-text Chinese',
     'en.ladder.enter': 'Recitation ladder',
     'en.vocab.title': 'Words in this lesson',
+    'en.read.playall': 'Play the whole passage',
+    'en.patterns.title': 'Sentence patterns',
     'en.vocab.new': 'New',
     'en.vocab.review': 'Review',
     'ov.title': 'Overview',

@@ -69,6 +69,27 @@ spec.sentences.forEach((s, i) => {
   }
 })
 
+// v2: patterns are the core of the course, so validate them like content, not decoration.
+const patterns = spec.patterns ?? []
+if (!patterns.length) problems.push('缺 patterns：蓝图要求每课 2–4 个句型')
+if (patterns.length > 4) problems.push(`patterns ${patterns.length} 个，蓝图上限 4`)
+for (const p of patterns) {
+  if (!p.id || !p.template) problems.push(`句型缺 id/template: ${JSON.stringify(p)}`)
+  // A template may be a fixed phrase ("Be careful!") — the blueprint's own patterns
+  // mostly are. What is swappable is marked per sentence via `slots`, not in the text.
+  if (!p.zh || !p.zh.trim()) problems.push(`句型 "${p.id}" 缺中文`)
+}
+const patternIds = new Set(patterns.map((p) => p.id))
+for (const [i, s0] of spec.sentences.entries()) {
+  if (s0.pattern && !patternIds.has(s0.pattern)) problems.push(`第 ${i + 1} 句引用了不存在的句型 "${s0.pattern}"`)
+  for (const w of s0.slots ?? []) {
+    const ws = words(s0.text).map((x) => x.toLowerCase())
+    if (!ws.includes(String(w).toLowerCase())) problems.push(`第 ${i + 1} 句的槽位词 "${w}" 不在该句中`)
+  }
+}
+if (spec.form === 'dialogue' && !spec.sentences.some((s0) => s0.speaker))
+  problems.push('form=dialogue 但没有任何 speaker')
+
 // 本课生词 (中英对照): every target word introduced by this lesson must carry a
 // Chinese meaning, and every listed word must be a real VOA1500 word in the passage.
 const targetWords = [...new Set(spec.sentences.flatMap((s) => s.targets ?? []).map((w) => w.toLowerCase()))]
@@ -92,7 +113,14 @@ const sentences = spec.sentences.map((s, i) => {
   const targets = (s.targets ?? []).map((t) =>
     ws.findIndex((w) => w === t.toLowerCase() || resolve(w, vocab) === resolve(t, vocab)),
   ).filter((n) => n >= 0)
-  return { id: `s${i + 1}`, num: i + 1, text: s.text.trim(), targets, rev: 1 }
+  const slots = (s.slots ?? []).map((t) =>
+    ws.findIndex((w) => w === String(t).toLowerCase() || resolve(w, vocab) === resolve(String(t), vocab)),
+  ).filter((n) => n >= 0)
+  return {
+    id: `s${i + 1}`, num: i + 1, text: s.text.trim(),
+    speaker: s.speaker ?? null, pattern: s.pattern ?? null,
+    slots, targets, rev: 1,
+  }
 })
 // vocab list in first-appearance order; pos + entry-key from the wordlist. `key` is
 // the VOA headword ("hungry" -> "hunger"), so the app can match the same word across
@@ -106,8 +134,19 @@ const vocabList = targetWords.map((w) => ({
 // The VOA entry-keys the whole passage covers — the app intersects this with earlier
 // lessons' vocab keys to find which words are review words.
 const coveredKeys = [...covered].sort()
-const content = { kind: 'short-text', theme: spec.theme ?? null, properNames: spec.properNames ?? [], vocab: vocabList, coveredKeys, sentences }
-const overlay = Object.fromEntries(spec.sentences.map((s, i) => [`s${i + 1}`, { t: s.gloss.trim(), src_rev: 1 }]))
+const content = {
+  kind: 'short-text', v: 2,
+  theme: spec.theme ?? null,
+  scene: spec.scene ?? null,
+  form: spec.form ?? 'narrative',
+  patterns: patterns.map((p) => ({ id: p.id, template: p.template, rev: 1 })),
+  properNames: spec.properNames ?? [],
+  vocab: vocabList, coveredKeys, sentences,
+}
+const overlay = Object.fromEntries([
+  ...spec.sentences.map((s, i) => [`s${i + 1}`, { t: s.gloss.trim(), src_rev: 1 }]),
+  ...patterns.map((p) => [p.id, { t: p.zh.trim(), src_rev: 1 }]),
+])
 
 // ── print PDF (English + 中文 + 生词, downloadable like a math lesson) ────────
 function esc(s) { return String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c])) }
@@ -160,11 +199,42 @@ try {
 }
 
 // ── narrate ────────────────────────────────────────────────────────────────
-console.log(`· 合成朗读 ${sentences.length} 句 …`)
+// Dialogue gets two voices so the child hears turn-taking; narration keeps one.
+// Voices are assigned by order of first appearance, so the mapping is stable.
+const VOICES = (env.AZURE_TTS_VOICES || 'alloy,nova').split(',').map((v) => v.trim()).filter(Boolean)
+const speakers = [...new Set(sentences.map((s) => s.speaker).filter(Boolean))]
+const voiceOf = (sp) => (sp && speakers.length > 1 ? VOICES[speakers.indexOf(sp) % VOICES.length] : VOICES[0])
+if (speakers.length > 1 && VOICES.length < 2)
+  console.log('! 只有一个可用音色，对话降级为单音色')
+
+console.log(`· 合成朗读 ${sentences.length} 句${speakers.length > 1 ? ` (${speakers.length} 个说话人)` : ''} …`)
 const audio = []
 for (const s of sentences) {
-  audio.push({ node: s.id, bytes: await synthesize(s.text) })
-  process.stdout.write(`  ${s.id} ${audio[audio.length - 1].bytes.length}B\n`)
+  const v = voiceOf(s.speaker)
+  audio.push({ node: s.id, bytes: await synthesize(s.text, { voice: v }), voice: v })
+  process.stdout.write(`  ${s.id}${s.speaker ? ' [' + s.speaker + '/' + v + ']' : ''} ${audio[audio.length - 1].bytes.length}B\n`)
+}
+// Whole-passage narration, stored under the reserved node id 'full'. For a dialogue
+// it is the per-sentence clips concatenated, so the two voices are preserved; for
+// narration a single synthesis of the joined text reads more naturally.
+const fullBytes = speakers.length > 1
+  ? Buffer.concat(audio.map((a) => a.bytes))
+  : await synthesize(sentences.map((s) => s.text).join(' '), { voice: VOICES[0] })
+audio.push({ node: 'full', bytes: fullBytes, voice: speakers.length > 1 ? VOICES.join('+') : VOICES[0] })
+console.log(`  full ${fullBytes.length}B`)
+
+// Course-global word pronunciation: synthesize only words not already in the shared
+// table, so "walk" is spoken once for the whole course.
+console.log(`· 单词发音 (全课程共享) …`)
+const wordAudio = []
+{
+  const sqlProbe = postgres(dbUrl, { ssl: 'require', max: 2, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' } })
+  try {
+    const have = new Set((await sqlProbe`select word from sr_word_audio`).map((r) => r.word))
+    const need = vocabList.map((v) => v.en).filter((w) => !have.has(w.toLowerCase()))
+    for (const w of need) wordAudio.push({ word: w.toLowerCase(), bytes: await synthesize(w, { voice: VOICES[0] }) })
+    console.log(`  新合成 ${wordAudio.length} 个 / 复用 ${vocabList.length - wordAudio.length} 个`)
+  } finally { await sqlProbe.end() }
 }
 
 // ── persist ────────────────────────────────────────────────────────────────
@@ -187,12 +257,19 @@ try {
     for (const a of audio) {
       await tx`
         insert into sr_lesson_audio (lesson_id, node_id, mime, bytes, voice)
-        values (${spec.id}, ${a.node}, 'audio/mpeg', ${a.bytes}, ${env.AZURE_TTS_VOICE})
+        values (${spec.id}, ${a.node}, 'audio/mpeg', ${a.bytes}, ${a.voice ?? env.AZURE_TTS_VOICE})
         on conflict (lesson_id, node_id) do update set bytes = excluded.bytes, voice = excluded.voice, updated_at = now()
       `
     }
+    for (const w of wordAudio) {
+      await tx`
+        insert into sr_word_audio (word, mime, bytes, voice)
+        values (${w.word}, 'audio/mpeg', ${w.bytes}, ${VOICES[0]})
+        on conflict (word) do update set bytes = excluded.bytes, voice = excluded.voice, updated_at = now()
+      `
+    }
   })
-  console.log(`✓ ${spec.id} 已保存 — ${sentences.length} 句 / ${totalWords} 词 / 覆盖 ${covered.size} 个词表词条 / ${audio.length} 段朗读`)
+  console.log(`✓ ${spec.id} 已保存 — ${sentences.length} 句 / ${totalWords} 词 / 覆盖 ${covered.size} 个词表词条 / ${audio.length - 1} 句朗读 + 整篇 / ${wordAudio.length} 个新单词发音`)
 } catch (e) {
   fail(`写库失败: ${e.message}`)
 } finally {

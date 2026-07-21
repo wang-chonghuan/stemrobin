@@ -9,6 +9,7 @@ import {
   isShortText,
   LADDER_RATIOS,
   type Level,
+  maskPriority,
   type ShortTextContent,
 } from './english'
 
@@ -147,5 +148,75 @@ describe('judging', () => {
     const r = judgeFreeText(SENT.text, 'Anna walks home')
     expect(r.isCorrect).toBe(false)
     expect(r.wrong).toEqual([3, 4, 5, 6])
+  })
+})
+
+// ── v2: patterns drive the ladder (STEMROBIN-87/89) ──────────────────────────
+const PAT: ShortTextContent = {
+  kind: 'short-text',
+  v: 2,
+  form: 'dialogue',
+  patterns: [{ id: 'p1', template: 'Look ___ and ___ before you cross.' }],
+  sentences: [
+    {
+      id: 's1', num: 1, speaker: 'Mom',
+      text: 'Look left and right before you cross.',
+      pattern: 'p1',
+      slots: [1, 3], // left, right — the swappable part of the template
+      targets: [6],  // cross
+    },
+  ],
+}
+
+describe('pattern slots drive the ladder', () => {
+  it('L1 blanks the slot words, keeping the template frame visible', () => {
+    const s = PAT.sentences[0]
+    const tokens = tokenize(s.text)
+    const hidden = hiddenIndices(tokens, s.targets, 1, s.slots)
+    const hiddenWords = [...hidden].map((i) => tokens[i].w)
+    // the swappable slot words go first...
+    expect(hiddenWords).toContain('left')
+    expect(hiddenWords).toContain('right')
+    // ...while the fixed frame of the pattern stays readable at level 1
+    for (const frame of ['Look', 'before', 'you']) expect(hiddenWords).not.toContain(frame)
+  })
+
+  it('ranks slots above targets above the rest', () => {
+    const s = PAT.sentences[0]
+    const tokens = tokenize(s.text)
+    const order = maskPriority(tokens, s.targets, s.slots).map((i) => tokens[i].w)
+    expect(order.slice(0, 2).sort()).toEqual(['left', 'right'])
+    expect(order[2]).toBe('cross')
+  })
+
+  it('still NESTS with slots in play', () => {
+    const s = PAT.sentences[0]
+    const tokens = tokenize(s.text)
+    for (let l = 2 as Level; l <= 5; l = (l + 1) as Level) {
+      const prev = hiddenIndices(tokens, s.targets, (l - 1) as Level, s.slots)
+      const cur = hiddenIndices(tokens, s.targets, l, s.slots)
+      for (const i of prev) expect(cur.has(i)).toBe(true)
+    }
+  })
+
+  it('keeps the speaker but never leaks a hidden word, at any level', () => {
+    for (const level of LEVELS) {
+      const out = projectRecitation(PAT, level)
+      expect(out[0].speaker).toBe('Mom')
+      const serialized = JSON.stringify(out)
+      if (level === 5) {
+        for (const w of ['Look', 'left', 'right', 'before', 'cross']) {
+          expect(serialized).not.toContain(w)
+        }
+      }
+    }
+  })
+
+  it('judges slot answers server-side without echoing them back', () => {
+    const s = PAT.sentences[0]
+    expect(judgeSentence(s, 1, ['left', 'right'])).toEqual({ isCorrect: true, wrong: [] })
+    const bad = judgeSentence(s, 1, ['up', 'down'])
+    expect(bad.isCorrect).toBe(false)
+    expect(JSON.stringify(bad)).not.toContain('left')
   })
 })

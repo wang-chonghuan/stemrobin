@@ -37,7 +37,11 @@ const IRREGULAR = new Map(Object.entries({
   teeth: 'tooth', mice: 'mouse', better: 'good', best: 'good', worse: 'bad',
   worst: 'bad', more: 'more', most: 'most', us: 'we', him: 'he', her: 'she',
   them: 'they', its: 'it', his: 'he', hers: 'she', theirs: 'they', ours: 'we',
-  their: 'they', my: 'my', mine: 'my', your: 'your', yours: 'your', me: 'me',
+  // Possessive/object pronouns are inflections of in-list pronouns. VOA1500 lists
+  // I/you/he/she/it/we/our but not my/your/his/her/their/its/me — English cannot be
+  // written without them, and the ruling allows inflected forms, so map each to its
+  // in-list base rather than to itself (which resolved to nothing).
+  their: 'they', my: 'i', mine: 'i', me: 'i', your: 'you', yours: 'you',
   cannot: 'can', // written as one word; both halves are in-list
 }))
 
