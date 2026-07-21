@@ -1,0 +1,467 @@
+{
+  "generated": "node .agents/skills/sr-voa1500/scripts/audit-vocab.mjs --emit-gaps (STEMROBIN-94). Words a children's-course author would plausibly write that resolve to NOTHING in resources/content/voa1500-wordlist.json and are not inflections of anything in it. The gate rejects them; avoid them while writing instead of discovering them at save time.",
+  "wordlist": "resources/content/voa1500-wordlist.json (1541 headwords)",
+  "contractionPolicy": "RESOLVE — contractions are treated as inflections, so authors may write natural spoken English in the 〔对话〕 lessons instead of stilted expansions. vocab.mjs strips the enclitic and resolves the head, running it through the irregular map: I'm/I'll/I've/I'd -> i, we're -> we, it's -> it, let's -> let, don't -> do, isn't -> is -> be, hasn't -> has -> have, couldn't -> could -> can; won't -> will and o'clock -> clock are spelled-out exceptions. This is a lemma rule, not a hole: a contraction of an out-of-list word still resolves to nothing and still fails the gate (\"shan't\" fails, because \"shall\" itself is absent).",
+  "gaps": [
+    {
+      "form": "woke",
+      "note": "inflection of \"wake\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "drew",
+      "note": "inflection of \"draw\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "drawn",
+      "note": "inflection of \"draw\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "laid",
+      "note": "inflection of \"lay\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "rang",
+      "note": "inflection of \"ring\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "rung",
+      "note": "inflection of \"ring\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "teeth",
+      "note": "inflection of \"tooth\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "mice",
+      "note": "inflection of \"mouse\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "geese",
+      "note": "inflection of \"goose\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "shelves",
+      "note": "inflection of \"shelf\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "thieves",
+      "note": "inflection of \"thief\", which is itself absent from the list; reword"
+    },
+    {
+      "form": "none",
+      "note": "use \"not any\""
+    },
+    {
+      "form": "everyone",
+      "note": "use \"all the children\" / \"everybody\" is also absent — reword"
+    },
+    {
+      "form": "everybody",
+      "note": "reword: \"all of them\""
+    },
+    {
+      "form": "everything",
+      "note": "reword: \"all of it\" / name the things"
+    },
+    {
+      "form": "everywhere",
+      "note": "reword: \"in every place\""
+    },
+    {
+      "form": "someone",
+      "note": "reword: \"a person\" / \"a boy\" / \"a friend\""
+    },
+    {
+      "form": "somebody",
+      "note": "reword: \"a person\""
+    },
+    {
+      "form": "something",
+      "note": "reword: \"a thing\""
+    },
+    {
+      "form": "somewhere",
+      "note": "reword: \"in some place\""
+    },
+    {
+      "form": "anyone",
+      "note": "reword: \"any person\""
+    },
+    {
+      "form": "anybody",
+      "note": "reword: \"any person\""
+    },
+    {
+      "form": "anything",
+      "note": "reword: \"any thing\""
+    },
+    {
+      "form": "anywhere",
+      "note": "reword: \"any place\""
+    },
+    {
+      "form": "nobody",
+      "note": "reword: \"no one is / no person\""
+    },
+    {
+      "form": "into",
+      "note": "no in-list equivalent; use \"in\" (\"She walks in the room\")"
+    },
+    {
+      "form": "onto",
+      "note": "use \"on\" (\"He climbs on the box\")"
+    },
+    {
+      "form": "upon",
+      "note": "use \"on\""
+    },
+    {
+      "form": "inside",
+      "note": "use \"in\" / \"in the house\""
+    },
+    {
+      "form": "outside",
+      "note": "use \"out\" / \"out of the house\""
+    },
+    {
+      "form": "within",
+      "note": "use \"in\""
+    },
+    {
+      "form": "throughout",
+      "note": "use \"through\" / \"all day\""
+    },
+    {
+      "form": "beside",
+      "note": "use \"near\" / \"next to\" (both in list via near/next)"
+    },
+    {
+      "form": "besides",
+      "note": "use \"also\""
+    },
+    {
+      "form": "beyond",
+      "note": "use \"past\" / \"far from\""
+    },
+    {
+      "form": "beneath",
+      "note": "use \"under\""
+    },
+    {
+      "form": "though",
+      "note": "use \"but\""
+    },
+    {
+      "form": "till",
+      "note": "use \"until\""
+    },
+    {
+      "form": "therefore",
+      "note": "use \"so\""
+    },
+    {
+      "form": "perhaps",
+      "note": "use \"may\" (\"It may rain\")"
+    },
+    {
+      "form": "maybe",
+      "note": "use \"may\" (\"She may come\")"
+    },
+    {
+      "form": "quite",
+      "note": "use \"very\""
+    },
+    {
+      "form": "rather",
+      "note": "use \"very\" / \"more\""
+    },
+    {
+      "form": "sometimes",
+      "note": "reword: \"some days\" / \"at times\""
+    },
+    {
+      "form": "anyway",
+      "note": "drop it"
+    },
+    {
+      "form": "ahead",
+      "note": "use \"in front\""
+    },
+    {
+      "form": "upstairs",
+      "note": "reword: \"up the stairs\" — \"stairs\" is absent too"
+    },
+    {
+      "form": "downstairs",
+      "note": "reword: \"down the stairs\""
+    },
+    {
+      "form": "everyday",
+      "note": "write \"every day\" as two words"
+    },
+    {
+      "form": "where",
+      "note": "ABSENT from the list — ask with \"what place\" or rewrite the question"
+    },
+    {
+      "form": "whatever",
+      "note": "reword"
+    },
+    {
+      "form": "whenever",
+      "note": "use \"when\""
+    },
+    {
+      "form": "wherever",
+      "note": "reword"
+    },
+    {
+      "form": "whoever",
+      "note": "reword"
+    },
+    {
+      "form": "hello",
+      "note": "ABSENT — greet with \"good morning\" / a name"
+    },
+    {
+      "form": "hi",
+      "note": "ABSENT — greet with \"good morning\" / a name"
+    },
+    {
+      "form": "hey",
+      "note": "ABSENT — use the name"
+    },
+    {
+      "form": "bye",
+      "note": "ABSENT — use \"good night\" / \"see you\""
+    },
+    {
+      "form": "goodbye",
+      "note": "ABSENT — use \"good night\" / \"see you\""
+    },
+    {
+      "form": "sorry",
+      "note": "ABSENT — use \"I am sad\" / \"it was my fault\""
+    },
+    {
+      "form": "okay",
+      "note": "ABSENT — use \"all right\" / \"good\""
+    },
+    {
+      "form": "ok",
+      "note": "ABSENT — use \"all right\" / \"good\""
+    },
+    {
+      "form": "oh",
+      "note": "drop the interjection"
+    },
+    {
+      "form": "wow",
+      "note": "drop it or use \"very good\""
+    },
+    {
+      "form": "shall",
+      "note": "ABSENT — use \"will\""
+    },
+    {
+      "form": "shan't",
+      "note": "ABSENT — \"shall\" is not in the list; use \"will not\""
+    },
+    {
+      "form": "homework",
+      "note": "reword: \"school work\" / \"work for school\""
+    },
+    {
+      "form": "classroom",
+      "note": "use \"class room\" as two words, or \"room\""
+    },
+    {
+      "form": "playground",
+      "note": "use \"the field\" — \"yard\" is absent too"
+    },
+    {
+      "form": "backpack",
+      "note": "reword: \"she carries her books\""
+    },
+    {
+      "form": "notebook",
+      "note": "use \"book\" / \"paper\""
+    },
+    {
+      "form": "pencil",
+      "note": "reword: \"she writes\" — \"pen\" is absent too"
+    },
+    {
+      "form": "eraser",
+      "note": "reword"
+    },
+    {
+      "form": "desk",
+      "note": "reword: \"she sits in her place\" — \"table\" is absent too"
+    },
+    {
+      "form": "blackboard",
+      "note": "reword: \"the front of the class\""
+    },
+    {
+      "form": "breakfast",
+      "note": "reword: \"the first meal\" / \"we eat in the morning\""
+    },
+    {
+      "form": "lunch",
+      "note": "reword: \"we eat at noon\""
+    },
+    {
+      "form": "snack",
+      "note": "use \"food\""
+    },
+    {
+      "form": "sandwich",
+      "note": "use \"bread\""
+    },
+    {
+      "form": "cookie",
+      "note": "use \"food\" / \"sugar\" — \"cake\" is absent too"
+    },
+    {
+      "form": "candy",
+      "note": "use \"sugar\""
+    },
+    {
+      "form": "apple",
+      "note": "use \"fruit\""
+    },
+    {
+      "form": "juice",
+      "note": "use \"water\" / \"drink\""
+    },
+    {
+      "form": "thirsty",
+      "note": "reword: \"she wants water\""
+    },
+    {
+      "form": "excited",
+      "note": "use \"happy\""
+    },
+    {
+      "form": "scared",
+      "note": "use \"afraid\" / \"fear\""
+    },
+    {
+      "form": "nervous",
+      "note": "use \"afraid\""
+    },
+    {
+      "form": "silly",
+      "note": "reword"
+    },
+    {
+      "form": "polite",
+      "note": "reword"
+    },
+    {
+      "form": "birthday",
+      "note": "reword: \"the day she was born\""
+    },
+    {
+      "form": "weekend",
+      "note": "use \"week end\" as two words, or name the day"
+    },
+    {
+      "form": "afternoon",
+      "note": "reword: \"after noon\" as two words"
+    },
+    {
+      "form": "evening",
+      "note": "use \"night\""
+    },
+    {
+      "form": "kitchen",
+      "note": "use \"room\""
+    },
+    {
+      "form": "bedroom",
+      "note": "reword: \"her room\""
+    },
+    {
+      "form": "bathroom",
+      "note": "reword: \"the wash room\""
+    },
+    {
+      "form": "garden",
+      "note": "use \"field\" / \"plant\""
+    },
+    {
+      "form": "park",
+      "note": "use \"field\""
+    },
+    {
+      "form": "puppy",
+      "note": "use \"dog\""
+    },
+    {
+      "form": "kitten",
+      "note": "use \"cat\""
+    },
+    {
+      "form": "rabbit",
+      "note": "use \"animal\""
+    },
+    {
+      "form": "bicycle",
+      "note": "use \"ride\" / \"wheel\""
+    },
+    {
+      "form": "bike",
+      "note": "use \"ride\" / \"wheel\""
+    },
+    {
+      "form": "toy",
+      "note": "use \"game\" / \"ball\""
+    },
+    {
+      "form": "doll",
+      "note": "reword or make it a declared proper name — \"toy\" is absent too"
+    },
+    {
+      "form": "cartoon",
+      "note": "use \"television\" / \"show\""
+    },
+    {
+      "form": "phone",
+      "note": "use \"telephone\""
+    },
+    {
+      "form": "pocket",
+      "note": "reword — \"bag\" is absent too"
+    },
+    {
+      "form": "jacket",
+      "note": "use \"clothes\""
+    },
+    {
+      "form": "umbrella",
+      "note": "reword"
+    },
+    {
+      "form": "socks",
+      "note": "use \"clothes\""
+    },
+    {
+      "form": "pretty",
+      "note": "use \"lovely\"? absent — use \"nice\" / \"fine\""
+    },
+    {
+      "form": "stairs",
+      "note": "reword: \"she goes up\" / \"she goes down\""
+    },
+    {
+      "form": "chair",
+      "note": "use \"seat\""
+    },
+    {
+      "form": "table",
+      "note": "reword: \"she puts it down\" / use \"place\""
+    }
+  ]
+}
