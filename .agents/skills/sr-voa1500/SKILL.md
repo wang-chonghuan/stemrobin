@@ -1,9 +1,9 @@
 ---
-name: sr-english-reader
+name: sr-voa1500
 description: Generate and persist 短文学英语 short-text English lessons for the VOA1500 recitation course — constrained set-cover passages for 8–12 year olds, with per-sentence 中文 gloss and pre-rendered Azure TTS narration. Use when authoring or regenerating a VOA1500 课文.
 ---
 
-# sr-english-reader
+# sr-voa1500
 
 Produces one memorizable short passage per lesson for the 短文学英语 pillar: the learner
 reads it (per-sentence narration + 中文), then recites it up a five-level cloze ladder.
@@ -30,29 +30,39 @@ widen the gate to make a passage fit — rewrite the passage.**
 
 ## The outline is the plan — read it first
 
-`outline.json` is this course's **curriculum SSOT**: all 60 lessons, each with its
-life-domain, title, and the practical thing the learner can do afterwards
-(`use`). It encodes two human rulings that the passages must obey:
+**`outline.md` is this course's curriculum SSOT** — the human-authored blueprint
+(v2) for all 60 lessons, in 10 units. It is **human property: do not edit it, not by
+one character.** Propose changes to the human; never rewrite it yourself.
 
-- **每课要有用** — every lesson is a real everyday situation the child can use, not a
-  story for its own sake;
-- **话题必须分散** — lessons 4–51 walk across daily life (self, home, school, health,
-  shopping, getting around, people, time, nature); only 52–60 turn to the
-  social/news topics, where VOA1500's ~200–300 news words (vote/law/army/economy)
-  are deliberately concentrated instead of being scattered into small stories.
+Each lesson card carries four fields, and they bind the passage:
 
-Never invent a lesson topic ad hoc: take it from `outline.json`. When a lesson is
-written, flip its `status` to `written`. Each lesson's `words` array (its assigned
-target-word bucket) is filled in at allocation time — that array, not your taste, is
-what the passage must cover.
+| Field | Meaning |
+|---|---|
+| 场景 | the real situation the passage happens in |
+| 句型 | 2–4 sentence patterns the learner memorizes and can swap words into (`___` is the slot) |
+| 新词 | representative target words — **examples, not the full set** |
+| 复用 | older words/themes this lesson rolls back in |
 
-## Authoring order (theme first, never word-list-first)
+Its selection rule is **frequency first**: how often does a child actually meet this
+word or scene? Daily micro-scenes (crossing the road, class, meals, falling out with
+a friend, screen time, overhearing the news) come early and repeat; rare errands
+(bank, post office) are deliberately out. Every passage is built around its 句型 —
+the patterns are the point, the words ride along. Roughly a third are dialogues
+〔对话〕, because speaking transfers far better from dialogue than from narration.
+Each unit closes with a 〔综合〕 lesson that recycles the whole unit. The abstract
+VOA news vocabulary lands in unit 10, seen from a child's eye.
+
+Never invent a lesson topic ad hoc: take 场景 and 句型 from `outline.md`. The 新词
+listed there are examples only — the authoritative per-lesson word set comes from
+the full 1500-word allocation (the blueprint's own next step), not from that line.
+
+## Authoring order (patterns + scene first, never word-list-first)
 
 The ruling is explicit: *课文不能按照词表机械拼接*. So:
 
-1. **Take the lesson's theme + `use` from `outline.json`** and build the situation
-   around it. Dialogue is as welcome as narrative — for situations like 问路 /
-   退货投诉 / 意见不同, a dialogue is the natural and more useful form.
+1. **Take the lesson's 场景 + 句型 from `outline.md`** and build the passage so those
+   patterns land naturally and repeatedly — a lesson is a pattern drill wearing a
+   story, not a box of words. Write it as a dialogue when the card says 〔对话〕.
 2. **Write the passage naturally** at 6–9 sentences, as a complete little story or scene
    with a beginning and an end. It must be worth memorizing on its own.
 3. **Then** pull it toward the uncovered-word set: check `coverage.mjs`, and revise word
@@ -94,7 +104,7 @@ the reading/recitation projections consume.
 
 | File | Purpose |
 |---|---|
-| `outline.json` | **the 60-lesson curriculum SSOT** — themes, `use`, and each lesson's target-word bucket |
+| `outline.md` | **the 60-lesson curriculum SSOT** — the human-authored blueprint (v2): 场景 / 句型 / 新词 / 复用 per lesson. Human property, never machine-edited |
 | `scripts/vocab.mjs` | the VOA1500 gate — lemma resolution + out-of-vocabulary detection |
 | `scripts/tts.mjs` | one English sentence → mp3 bytes (Azure `gpt-4o-mini-tts`) |
 | `scripts/save-lesson.mjs` | validate → narrate → persist (content + zh overlay + audio) |
@@ -104,8 +114,8 @@ Run from the repo root; deps resolve from `.agents/skills/node_modules`
 (`cd .agents/skills && npm install` once). DB + TTS config come from the repo-root `.env`.
 
 ```
-node .agents/skills/sr-english-reader/scripts/save-lesson.mjs --spec <lesson.json>
-node .agents/skills/sr-english-reader/scripts/coverage.mjs --json <report.json>
+node .agents/skills/sr-voa1500/scripts/save-lesson.mjs --spec <lesson.json>
+node .agents/skills/sr-voa1500/scripts/coverage.mjs --json <report.json>
 ```
 
 ## Boundaries

@@ -1,4 +1,4 @@
-// sr-english-reader — VOA1500 vocabulary gate (STEMROBIN-80).
+// sr-voa1500 — VOA1500 vocabulary gate (STEMROBIN-80).
 //
 // Enforces the charter ruling "英文词元不得超出 VOA1500(允许其词形变化、专有名词、数字)":
 // every word of a generated passage must resolve to a headword in

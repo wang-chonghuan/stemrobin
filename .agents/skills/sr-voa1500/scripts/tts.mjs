@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// sr-english-reader — 朗读生成 (STEMROBIN-78). Synthesizes one English sentence to
+// sr-voa1500 — 朗读生成 (STEMROBIN-78). Synthesizes one English sentence to
 // mp3 bytes via the EXISTING Azure OpenAI `gpt-4o-mini-tts` deployment (no new
 // cloud resource was created; config lives in the repo-root .env). Used by the
 // short-text generation skill to pre-render per-sentence audio at save time, the
@@ -9,7 +9,7 @@
 // hides a missing source of truth).
 //
 // Usage (from repo root):
-//   node .agents/skills/sr-english-reader/scripts/tts.mjs \
+//   node .agents/skills/sr-voa1500/scripts/tts.mjs \
 //     --text "Tom has a red bag." --out /tmp/s1.mp3
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// sr-english-reader — VOA1500 coverage report across the saved short-text lessons
+// sr-voa1500 — VOA1500 coverage report across the saved short-text lessons
 // (STEMROBIN-80). This is the artifact that decides STEMROBIN-81's acceptance:
 // "core wordlist 100% covered, core words appearing in >= 3 distinct lessons".
 //
@@ -8,7 +8,7 @@
 // so this script must never round a gap away.
 //
 // Usage (from repo root):
-//   node .agents/skills/sr-english-reader/scripts/coverage.mjs [--json <out.json>]
+//   node .agents/skills/sr-voa1500/scripts/coverage.mjs [--json <out.json>]
 import { writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import postgres from 'postgres'

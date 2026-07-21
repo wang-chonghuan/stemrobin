@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// sr-english-reader — deterministic persistence for one short-text English lesson
+// sr-voa1500 — deterministic persistence for one short-text English lesson
 // (STEMROBIN-80). Validates the passage against the charter's hard constraints,
 // pre-renders per-sentence narration via Azure TTS, then writes the neutral content,
 // the zh gloss overlay and the audio in one transaction.
@@ -9,7 +9,7 @@
 // never silently relaxed to fit (charter · abort beats workaround).
 //
 // Usage (from repo root):
-//   node .agents/skills/sr-english-reader/scripts/save-lesson.mjs --spec <lesson.json> [--status draft]
+//   node .agents/skills/sr-voa1500/scripts/save-lesson.mjs --spec <lesson.json> [--status draft]
 //
 // Spec shape:
 //   { "id":"english-u01-01", "unit":1, "order":1, "title":"...", "theme":"...",
