@@ -28,13 +28,31 @@ non-conforming lesson rather than degrade it.
 `save-lesson.mjs` fails the save and prints every violation if any of these break. **Do not
 widen the gate to make a passage fit — rewrite the passage.**
 
+## The outline is the plan — read it first
+
+`outline.json` is this course's **curriculum SSOT**: all 60 lessons, each with its
+life-domain, title, and the practical thing the learner can do afterwards
+(`use`). It encodes two human rulings that the passages must obey:
+
+- **每课要有用** — every lesson is a real everyday situation the child can use, not a
+  story for its own sake;
+- **话题必须分散** — lessons 4–51 walk across daily life (self, home, school, health,
+  shopping, getting around, people, time, nature); only 52–60 turn to the
+  social/news topics, where VOA1500's ~200–300 news words (vote/law/army/economy)
+  are deliberately concentrated instead of being scattered into small stories.
+
+Never invent a lesson topic ad hoc: take it from `outline.json`. When a lesson is
+written, flip its `status` to `written`. Each lesson's `words` array (its assigned
+target-word bucket) is filled in at allocation time — that array, not your taste, is
+what the passage must cover.
+
 ## Authoring order (theme first, never word-list-first)
 
 The ruling is explicit: *课文不能按照词表机械拼接*. So:
 
-1. **Pick a theme a child cares about** — school, a pet, a lost thing, cooking with a
-   parent, a rainy day, a new friend, a small mistake and its repair. Dialogue is as
-   welcome as narrative.
+1. **Take the lesson's theme + `use` from `outline.json`** and build the situation
+   around it. Dialogue is as welcome as narrative — for situations like 问路 /
+   退货投诉 / 意见不同, a dialogue is the natural and more useful form.
 2. **Write the passage naturally** at 6–9 sentences, as a complete little story or scene
    with a beginning and an end. It must be worth memorizing on its own.
 3. **Then** pull it toward the uncovered-word set: check `coverage.mjs`, and revise word
@@ -74,8 +92,9 @@ the reading/recitation projections consume.
 
 ## Scripts
 
-| Script | Purpose |
+| File | Purpose |
 |---|---|
+| `outline.json` | **the 60-lesson curriculum SSOT** — themes, `use`, and each lesson's target-word bucket |
 | `scripts/vocab.mjs` | the VOA1500 gate — lemma resolution + out-of-vocabulary detection |
 | `scripts/tts.mjs` | one English sentence → mp3 bytes (Azure `gpt-4o-mini-tts`) |
 | `scripts/save-lesson.mjs` | validate → narrate → persist (content + zh overlay + audio) |
