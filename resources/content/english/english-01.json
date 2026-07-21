@@ -1,0 +1,134 @@
+{
+  "id": "english-01",
+  "unit": 1,
+  "order": 1,
+  "title": "My Name and My Family",
+  "scene": "自我介绍，介绍家里人",
+  "theme": "introducing yourself and your family",
+  "form": "narrative",
+  "properNames": [
+    "Ana"
+  ],
+  "patterns": [
+    {
+      "id": "p1",
+      "template": "My name is ___.",
+      "zh": "我叫___。"
+    },
+    {
+      "id": "p2",
+      "template": "I am ___ years old.",
+      "zh": "我___岁。"
+    },
+    {
+      "id": "p3",
+      "template": "This is my ___.",
+      "zh": "这是我的___。"
+    },
+    {
+      "id": "p4",
+      "template": "I have a ___.",
+      "zh": "我有一个___。"
+    }
+  ],
+  "vocab": {
+    "name": "名字",
+    "old": "…岁的；老的",
+    "family": "家；家人",
+    "father": "爸爸",
+    "mother": "妈妈",
+    "brother": "哥哥；弟弟",
+    "sister": "姐姐；妹妹",
+    "adult": "成年人",
+    "group": "一群；小组",
+    "child": "孩子",
+    "daughter": "女儿",
+    "son": "儿子",
+    "born": "出生",
+    "age": "年龄",
+    "parent": "父母",
+    "person": "人"
+  },
+  "sentences": [
+    {
+      "text": "My name is Ana.",
+      "gloss": "我叫安娜。",
+      "pattern": "p1",
+      "slots": [
+        "Ana"
+      ],
+      "targets": [
+        "name"
+      ]
+    },
+    {
+      "text": "I am ten years old.",
+      "gloss": "我十岁。",
+      "pattern": "p2",
+      "slots": [
+        "ten"
+      ],
+      "targets": [
+        "old"
+      ]
+    },
+    {
+      "text": "This is my family.",
+      "gloss": "这是我的家人。",
+      "pattern": "p3",
+      "slots": [
+        "family"
+      ],
+      "targets": [
+        "family"
+      ]
+    },
+    {
+      "text": "I have a father, a mother, a brother, and a sister.",
+      "gloss": "我有爸爸、妈妈、一个哥哥和一个妹妹。",
+      "pattern": "p4",
+      "slots": [
+        "father"
+      ],
+      "targets": [
+        "father",
+        "mother",
+        "brother",
+        "sister"
+      ]
+    },
+    {
+      "text": "My mother is an adult, and she cares for every child in her group.",
+      "gloss": "我妈妈是个大人，她照顾她那一组里的每个孩子。",
+      "targets": [
+        "adult",
+        "group",
+        "child"
+      ]
+    },
+    {
+      "text": "My father says I am his daughter, and my brother is his son.",
+      "gloss": "爸爸说我是他的女儿，我哥哥是他的儿子。",
+      "targets": [
+        "daughter",
+        "son"
+      ]
+    },
+    {
+      "text": "My brother was born two years ago, so his age is two.",
+      "gloss": "我哥哥两年前出生，所以他两岁。",
+      "targets": [
+        "born",
+        "age"
+      ]
+    },
+    {
+      "text": "My parents love every person in our family.",
+      "gloss": "我的爸爸妈妈爱家里的每一个人。",
+      "targets": [
+        "parent",
+        "person"
+      ]
+    }
+  ]
+}
