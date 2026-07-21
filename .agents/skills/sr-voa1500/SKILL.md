@@ -100,10 +100,34 @@ reappearing naturally in later passages. `coverage.mjs` reports words still unde
 `targets` are given as words; the saver converts them to word-token indices, which is what
 the reading/recitation projections consume.
 
+
+## State store — what the machine knows that the lessons cannot tell it
+
+`state.db` (SQLite, via Node 24's built-in `node:sqlite` — no dependency) holds the
+generation state that is NOT derivable from the lessons themselves: which lesson each
+word is PLANNED for, whether it has been dealt with, where it was rehomed from/to and
+why, and the log of generation actions. It is committed to git; because a binary db
+cannot be read in a diff, `state.mjs export` writes a reviewable `allocation.json`
+snapshot next to it — the db is the source of truth, the json is for humans.
+
+What it must NEVER store: which words were actually taught, coverage %, recurrence
+counts. Those are derived from the real lessons (`coverage.mjs`) — a second copy here
+would silently go stale the moment a passage is edited (charter · SSOT).
+
+`state.mjs reconcile` is the bridge: it reads what the written lessons ACTUALLY teach
+from Postgres and marks each planned word taught / orphaned, so the plan learns what
+really happened. A word whose lesson is written but which the passage skipped becomes
+an **orphan** — the exact failure that used to be silent.
+
+```
+node .agents/skills/sr-voa1500/scripts/state.mjs init|import <plan>|reconcile|word <w>|orphans|export|report
+```
+
 ## Scripts
 
 | File | Purpose |
 |---|---|
+| `state.db` / `state.mjs` | generation STATE — planned lesson per word, rehoming decisions, action log (never derivable facts) |
 | `outline.md` | **the 60-lesson curriculum SSOT** — the human-authored blueprint (v2): 场景 / 句型 / 新词 / 复用 per lesson. Human property, never machine-edited |
 | `scripts/vocab.mjs` | the VOA1500 gate — lemma resolution + out-of-vocabulary detection |
 | `scripts/tts.mjs` | one English sentence → mp3 bytes (Azure `gpt-4o-mini-tts`) |
