@@ -148,9 +148,14 @@ function EnglishReadView() {
         </header>
 
         <div className="sr-en-toolbar">
-          <button type="button" className="sr-btn primary" disabled>
+          <Link
+            to="/english/$id/recite"
+            params={{ id }}
+            className="sr-btn primary"
+            style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}
+          >
             {t(locale, 'en.ladder.enter')}
-          </button>
+          </Link>
           {reading.hasFullAudio && (
             <button
               type="button"

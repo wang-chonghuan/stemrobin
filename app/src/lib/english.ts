@@ -1,6 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { sql } from '~/lib/db'
 import { currentLocale } from '~/lib/locale.server'
+import { currentUserId } from '~/lib/session.server'
 
 // Short-text English lesson content shape (STEMROBIN-77, batch 0012).
 //
@@ -338,4 +339,57 @@ export const getRecitation = createServerFn({ method: 'GET' })
     `) as unknown as { content: unknown }[]
     if (!rows.length || !isShortText(rows[0].content)) return null
     return projectRecitation(rows[0].content, data.level)
+  })
+
+// ── Recitation (STEMROBIN-89) ────────────────────────────────────────────────
+// Grading is server-side and the passage never leaves the server during recitation:
+// the client posts what the learner typed, the server compares against the stored
+// text. `assisted` marks a sentence the learner only got through with a hint or by
+// revealing the answer — it is graded, but it does not count as an independent pass,
+// so the caller must queue it for a clean redo.
+export type ReciteResult = { isCorrect: boolean; wrong: number[] } | { error: string }
+
+export const recordRecite = createServerFn({ method: 'POST' })
+  .validator((d: { lessonId: string; level: Level; nodeId?: string; answers?: string[]; text?: string; assisted?: boolean }) => d)
+  .handler(async (ctx): Promise<ReciteResult> => {
+    const data = ctx.data
+    const rows = (await sql()`
+      select content from sr_lessons where id = ${data.lessonId} and subject = 'english'
+    `) as unknown as { content: unknown }[]
+    if (!rows.length || !isShortText(rows[0].content)) return { error: '课文不存在' }
+    const content = rows[0].content
+
+    let result: { isCorrect: boolean; wrong: number[] }
+    if (data.level === 5) {
+      // Whole-passage recitation: one continuous comparison over the joined text, so
+      // sentence order is part of what is graded.
+      const expected = content.sentences.map((s) => s.text).join(' ')
+      result = judgeFreeText(expected, data.text ?? '')
+    } else {
+      const sentence = content.sentences.find((s) => s.id === data.nodeId)
+      if (!sentence) return { error: '句子不存在' }
+      result = judgeSentence(sentence, data.level, data.answers ?? [])
+    }
+
+    const uid = currentUserId()
+    if (uid != null) {
+      await sql()`
+        insert into sr_recite_attempts (user_id, lesson_id, level, node_id, is_correct, assisted)
+        values (${uid}, ${data.lessonId}, ${data.level}, ${data.nodeId ?? null},
+                ${result.isCorrect}, ${data.assisted ?? false})
+      `
+    }
+    return result
+  })
+
+// The Chinese hint for one sentence — always available, at every level, but the
+// caller records that it was used so the sentence cannot count as an independent pass.
+export const getSentenceHint = createServerFn({ method: 'GET' })
+  .validator((d: { lessonId: string; nodeId: string }) => d)
+  .handler(async ({ data }): Promise<{ zh: string | null }> => {
+    const locale = currentLocale()
+    const rows = (await sql()`
+      select overlay from sr_lesson_i18n where lesson_id = ${data.lessonId} and locale = ${locale}
+    `) as unknown as { overlay: Overlay | null }[]
+    return { zh: rows[0]?.overlay?.[data.nodeId]?.t ?? null }
   })

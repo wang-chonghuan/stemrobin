@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
 import { Route as AppLessonIdRouteImport } from './routes/_app/lesson.$id'
 import { Route as AppEnglishIdRouteImport } from './routes/_app/english.$id'
+import { Route as AppEnglishIdReciteRouteImport } from './routes/_app/english.$id_.recite'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -39,18 +40,25 @@ const AppEnglishIdRoute = AppEnglishIdRouteImport.update({
   path: '/english/$id',
   getParentRoute: () => AppRoute,
 } as any)
+const AppEnglishIdReciteRoute = AppEnglishIdReciteRouteImport.update({
+  id: '/english/$id_/recite',
+  path: '/english/$id/recite',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
   '/english/$id': typeof AppEnglishIdRoute
   '/lesson/$id': typeof AppLessonIdRoute
+  '/english/$id/recite': typeof AppEnglishIdReciteRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/': typeof AppIndexRoute
   '/english/$id': typeof AppEnglishIdRoute
   '/lesson/$id': typeof AppLessonIdRoute
+  '/english/$id/recite': typeof AppEnglishIdReciteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -59,12 +67,14 @@ export interface FileRoutesById {
   '/_app/': typeof AppIndexRoute
   '/_app/english/$id': typeof AppEnglishIdRoute
   '/_app/lesson/$id': typeof AppLessonIdRoute
+  '/_app/english/$id_/recite': typeof AppEnglishIdReciteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/english/$id' | '/lesson/$id'
+  fullPaths:
+    '/' | '/login' | '/english/$id' | '/lesson/$id' | '/english/$id/recite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/english/$id' | '/lesson/$id'
+  to: '/login' | '/' | '/english/$id' | '/lesson/$id' | '/english/$id/recite'
   id:
     | '__root__'
     | '/_app'
@@ -72,6 +82,7 @@ export interface FileRouteTypes {
     | '/_app/'
     | '/_app/english/$id'
     | '/_app/lesson/$id'
+    | '/_app/english/$id_/recite'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -116,6 +127,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppEnglishIdRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/english/$id_/recite': {
+      id: '/_app/english/$id_/recite'
+      path: '/english/$id/recite'
+      fullPath: '/english/$id/recite'
+      preLoaderRoute: typeof AppEnglishIdReciteRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -123,12 +141,14 @@ interface AppRouteChildren {
   AppIndexRoute: typeof AppIndexRoute
   AppEnglishIdRoute: typeof AppEnglishIdRoute
   AppLessonIdRoute: typeof AppLessonIdRoute
+  AppEnglishIdReciteRoute: typeof AppEnglishIdReciteRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
   AppIndexRoute: AppIndexRoute,
   AppEnglishIdRoute: AppEnglishIdRoute,
   AppLessonIdRoute: AppLessonIdRoute,
+  AppEnglishIdReciteRoute: AppEnglishIdReciteRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
