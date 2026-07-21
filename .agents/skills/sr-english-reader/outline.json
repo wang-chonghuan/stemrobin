@@ -2,84 +2,497 @@
   "course": "VOA1500 短文背诵课程 · 60 课大纲",
   "audience": "8–12 岁中国学习者；语言理解力对标 12 岁（12 岁能懂的词即可入文）",
   "principles": [
-    "每课一个真实生活场景，学完当天就能用上——不是纯读故事",
+    "每课是一件具体发生的事，不是一个类目——写“马桶堵了”，不写“修东西和工具”；具体事件有画面、有情绪、有真实句子，既好背也真能用",
     "话题必须分散：覆盖日常生活大小事，不要长期停在同一类话题",
-    "难度由具体到抽象：4–51 课是具体生活场景，52–60 课进入社会/新闻话题",
-    "VOA1500 本身是新闻词表，约 200–300 个 vote/law/army/economy 类词集中安排在 52–60 课，不零散硬塞进小故事",
-    "每课 6–9 句、≤120 词、约 20–25 个新目标词；对话与短文都可以",
+    "难度由具体到抽象：4–54 课是身边发生的事，55–60 课把 VOA 的新闻/社会词收进孩子视角的事件（班里选班长、新闻说台风要来、爷爷的老照片）",
+    "VOA1500 本身是新闻词表，约 200–300 个 vote/law/army/economy 类词集中在末尾几课，不零散硬塞进小故事",
+    "每课 6–9 句、≤120 词、约 20–25 个新目标词；对话与短文都可以，冲突/麻烦类的写成对话更自然",
     "words 字段是该课必须引入（首次覆盖）的目标词；未填表示尚未分配"
   ],
-  "status_legend": { "written": "已生成入库", "planned": "已规划待写" },
+  "status_legend": {
+    "written": "已生成入库",
+    "planned": "已规划待写"
+  },
   "lessons": [
-    { "n": 1,  "domain": "每天的自己", "en": "The Little Cat", "zh": "放学路上的小猫", "use": "说放学路上遇到的事、害怕时找大人帮忙", "status": "written" },
-    { "n": 2,  "domain": "每天的自己", "en": "Cooking with Father", "zh": "和爸爸做饭", "use": "说做饭步骤、厨房用具、提醒小心", "status": "written" },
-    { "n": 3,  "domain": "学校", "en": "A New Friend", "zh": "认识新朋友", "use": "认识新同学、自我介绍、邀请一起玩", "status": "written" },
-
-    { "n": 4,  "domain": "每天的自己", "en": "Waking Up and Washing", "zh": "起床和洗漱", "use": "说早上起床、洗脸刷牙、赶时间", "status": "planned" },
-    { "n": 5,  "domain": "每天的自己", "en": "What to Wear", "zh": "穿什么衣服", "use": "说衣服、天气冷热、合不合身", "status": "planned" },
-    { "n": 6,  "domain": "每天的自己", "en": "Three Meals a Day", "zh": "一日三餐", "use": "说家里吃什么、饿了饱了、喜欢不喜欢", "status": "planned" },
-    { "n": 7,  "domain": "每天的自己", "en": "Ordering at a Restaurant", "zh": "在外面点餐", "use": "点菜、问价钱、要水要餐具", "status": "planned" },
-    { "n": 8,  "domain": "每天的自己", "en": "Bedtime", "zh": "睡觉和休息", "use": "说困了、睡不着、做梦、几点睡", "status": "planned" },
-    { "n": 9,  "domain": "每天的自己", "en": "My Body", "zh": "身体各部分", "use": "说身体部位、哪里疼、身体动作", "status": "planned" },
-
-    { "n": 10, "domain": "家和家人", "en": "Family and Relatives", "zh": "家人和亲戚", "use": "介绍家里有谁、各自做什么", "status": "planned" },
-    { "n": 11, "domain": "家和家人", "en": "My Room", "zh": "我的房间", "use": "说家具、东西放哪、收拾整理", "status": "planned" },
-    { "n": 12, "domain": "家和家人", "en": "Doing Chores", "zh": "做家务", "use": "扫地洗碗倒垃圾、分工帮忙", "status": "planned" },
-    { "n": 13, "domain": "家和家人", "en": "Fixing Things", "zh": "修东西和工具", "use": "东西坏了、修好它、用什么工具", "status": "planned" },
-    { "n": 14, "domain": "家和家人", "en": "Our Pet", "zh": "养宠物", "use": "喂养、遛狗、照顾小动物", "status": "planned" },
-    { "n": 15, "domain": "家和家人", "en": "Neighbours", "zh": "邻居和小区", "use": "和邻居打招呼、借东西、噪音", "status": "planned" },
-
-    { "n": 16, "domain": "学校", "en": "In the Classroom", "zh": "在教室里", "use": "上课、举手回答、听老师安排", "status": "planned" },
-    { "n": 17, "domain": "学校", "en": "Homework", "zh": "作业和复习", "use": "写作业、不会做、请教别人", "status": "planned" },
-    { "n": 18, "domain": "学校", "en": "The Test", "zh": "考试和成绩", "use": "考试、答对答错、分数进步", "status": "planned" },
-    { "n": 19, "domain": "学校", "en": "At the Library", "zh": "图书馆和读书", "use": "借书还书、查资料、保持安静", "status": "planned" },
-    { "n": 20, "domain": "学校", "en": "After-School Club", "zh": "课外活动", "use": "参加社团、练习、上台表演", "status": "planned" },
-
-    { "n": 21, "domain": "健康", "en": "Feeling Sick", "zh": "生病了", "use": "发烧咳嗽、哪里不舒服、请假", "status": "planned" },
-    { "n": 22, "domain": "健康", "en": "Seeing the Doctor", "zh": "看医生和吃药", "use": "描述症状、按时吃药、多休息", "status": "planned" },
-    { "n": 23, "domain": "健康", "en": "At the Hospital", "zh": "医院和牙医", "use": "挂号检查、打针、看牙", "status": "planned" },
-    { "n": 24, "domain": "健康", "en": "Getting Exercise", "zh": "运动和锻炼", "use": "跑步打球、累了、坚持练", "status": "planned" },
-    { "n": 25, "domain": "健康", "en": "Staying Safe", "zh": "安全和急救", "use": "小心危险、受伤了、叫人来帮忙", "status": "planned" },
-
-    { "n": 26, "domain": "买东西和钱", "en": "At the Supermarket", "zh": "逛超市", "use": "买菜、找东西、排队付钱", "status": "planned" },
-    { "n": 27, "domain": "买东西和钱", "en": "Buying Clothes", "zh": "买衣服", "use": "试穿、大小、颜色、贵还是便宜", "status": "planned" },
-    { "n": 28, "domain": "买东西和钱", "en": "Money and Saving", "zh": "钱和存钱", "use": "零花钱、存起来、买不起", "status": "planned" },
-    { "n": 29, "domain": "买东西和钱", "en": "Something Is Wrong with It", "zh": "退货和投诉", "use": "东西坏了、换货退钱、讲道理", "status": "planned" },
-    { "n": 30, "domain": "买东西和钱", "en": "At the Bank", "zh": "银行和付账", "use": "存钱取钱、账单、付费", "status": "planned" },
-
-    { "n": 31, "domain": "出门在外", "en": "Asking the Way", "zh": "问路", "use": "问路指路、左右转、还有多远", "status": "planned" },
-    { "n": 32, "domain": "出门在外", "en": "Taking the Bus", "zh": "坐公交和地铁", "use": "等车买票、坐过站、换乘", "status": "planned" },
-    { "n": 33, "domain": "出门在外", "en": "Cars and Traffic", "zh": "汽车和交通", "use": "开车、红灯、堵车、小事故", "status": "planned" },
-    { "n": 34, "domain": "出门在外", "en": "Going on a Trip", "zh": "旅行和机场", "use": "收拾行李、赶飞机、证件", "status": "planned" },
-    { "n": 35, "domain": "出门在外", "en": "Staying at a Hotel", "zh": "住旅馆", "use": "订房、房间有问题、退房", "status": "planned" },
-    { "n": 36, "domain": "出门在外", "en": "Around the City", "zh": "在城市里", "use": "街道建筑、公园广场、找地方", "status": "planned" },
-
-    { "n": 37, "domain": "和人打交道", "en": "Meeting Someone New", "zh": "认识新的人", "use": "自我介绍、礼貌用语", "status": "planned" },
-    { "n": 38, "domain": "和人打交道", "en": "On the Phone", "zh": "打电话和发消息", "use": "打电话、留言、发消息", "status": "planned" },
-    { "n": 39, "domain": "和人打交道", "en": "Sorry and Thank You", "zh": "道歉和请求帮助", "use": "道歉、请人帮忙、道谢", "status": "planned" },
-    { "n": 40, "domain": "和人打交道", "en": "Making Plans", "zh": "约时间和邀请", "use": "邀请、约几点、改时间", "status": "planned" },
-    { "n": 41, "domain": "和人打交道", "en": "How I Feel", "zh": "表达感受", "use": "高兴生气担心、安慰别人", "status": "planned" },
-    { "n": 42, "domain": "和人打交道", "en": "We Do Not Agree", "zh": "意见不同", "use": "表达看法、反对、讲理由", "status": "planned" },
-
-    { "n": 43, "domain": "时间和节日", "en": "Days and Months", "zh": "日期和月份", "use": "说日期星期、几点、多久", "status": "planned" },
-    { "n": 44, "domain": "时间和节日", "en": "A Birthday Party", "zh": "生日和聚会", "use": "过生日、送礼物、请客人", "status": "planned" },
-    { "n": 45, "domain": "时间和节日", "en": "Holidays", "zh": "节日和假期", "use": "放假、过节、走亲访友", "status": "planned" },
-    { "n": 46, "domain": "时间和节日", "en": "When I Was Small", "zh": "过去和回忆", "use": "讲过去的事、以前和现在", "status": "planned" },
-
-    { "n": 47, "domain": "自然和天气", "en": "Weather and Seasons", "zh": "天气和季节", "use": "刮风下雨、冷热、四季变化", "status": "planned" },
-    { "n": 48, "domain": "自然和天气", "en": "Plants and Trees", "zh": "植物和树木", "use": "种花种树、生长、开花结果", "status": "planned" },
-    { "n": 49, "domain": "自然和天气", "en": "At the Zoo", "zh": "动物和动物园", "use": "各种动物、样子和习性", "status": "planned" },
-    { "n": 50, "domain": "自然和天气", "en": "On the Farm", "zh": "农场和种地", "use": "种庄稼、收成、农具牲畜", "status": "planned" },
-    { "n": 51, "domain": "自然和天气", "en": "Keeping the Earth Clean", "zh": "环境和污染", "use": "垃圾污染、保护环境、节约", "status": "planned" },
-
-    { "n": 52, "domain": "更大的世界", "en": "Jobs People Do", "zh": "工作和职业", "use": "各行各业、上班、找工作", "status": "planned" },
-    { "n": 53, "domain": "更大的世界", "en": "At the Office", "zh": "公司和生意", "use": "开会、老板和员工、买卖", "status": "planned" },
-    { "n": 54, "domain": "更大的世界", "en": "Choosing a Leader", "zh": "政府和选举", "use": "投票选举、领导人、国家", "status": "planned" },
-    { "n": 55, "domain": "更大的世界", "en": "Rules and Laws", "zh": "法律和规则", "use": "守规矩、警察法庭、对与错", "status": "planned" },
-    { "n": 56, "domain": "更大的世界", "en": "In the News", "zh": "新闻和媒体", "use": "看新闻、报道、消息真假", "status": "planned" },
-    { "n": 57, "domain": "更大的世界", "en": "War and Peace", "zh": "战争与和平", "use": "冲突与和平、士兵、帮助受苦的人", "status": "planned" },
-    { "n": 58, "domain": "更大的世界", "en": "A Science Experiment", "zh": "科学和实验", "use": "做实验、观察、找出原因", "status": "planned" },
-    { "n": 59, "domain": "更大的世界", "en": "Space and the Stars", "zh": "太空和星球", "use": "地球月亮星星、火箭探索", "status": "planned" },
-    { "n": 60, "domain": "更大的世界", "en": "Long Ago", "zh": "历史和过去", "use": "很久以前、时代变化、纪念", "status": "planned" }
+    {
+      "n": 1,
+      "domain": "家里和每天",
+      "en": "The Little Cat",
+      "zh": "放学路上的小猫",
+      "use": "说放学路上遇到的事、害怕时找大人帮忙",
+      "status": "written"
+    },
+    {
+      "n": 2,
+      "domain": "家里和每天",
+      "en": "Cooking with Father",
+      "zh": "和爸爸做饭",
+      "use": "说做饭步骤、厨房用具、提醒小心",
+      "status": "written"
+    },
+    {
+      "n": 3,
+      "domain": "学校",
+      "en": "A New Friend",
+      "zh": "认识新朋友",
+      "use": "认识新同学、自我介绍、邀请一起玩",
+      "status": "written"
+    },
+    {
+      "n": 4,
+      "domain": "家里和每天",
+      "en": "Late for School",
+      "zh": "起床晚了快迟到",
+      "use": "说赖床、来不及、催人快点",
+      "status": "planned"
+    },
+    {
+      "n": 5,
+      "domain": "家里和每天",
+      "en": "I Cannot Find My Sock",
+      "zh": "找不到袜子",
+      "use": "找东西、翻抽屉、穿反了",
+      "status": "planned"
+    },
+    {
+      "n": 6,
+      "domain": "家里和每天",
+      "en": "I Spilled the Milk",
+      "zh": "打翻了牛奶",
+      "use": "洒了、擦干净、别踩到",
+      "status": "planned"
+    },
+    {
+      "n": 7,
+      "domain": "家里和每天",
+      "en": "The Toilet Is Blocked",
+      "zh": "马桶堵了",
+      "use": "堵了、水漫出来、叫人来修",
+      "status": "planned"
+    },
+    {
+      "n": 8,
+      "domain": "家里和每天",
+      "en": "Water on the Kitchen Floor",
+      "zh": "水槽堵了",
+      "use": "下水不通、地上都是水、关水阀",
+      "status": "planned"
+    },
+    {
+      "n": 9,
+      "domain": "家里和每天",
+      "en": "The Door Handle Came Off",
+      "zh": "门把手坏了",
+      "use": "把手掉了、门打不开、用工具装回去",
+      "status": "planned"
+    },
+    {
+      "n": 10,
+      "domain": "家里和每天",
+      "en": "The Lights Went Out",
+      "zh": "停电了",
+      "use": "突然黑了、找手电、等来电",
+      "status": "planned"
+    },
+    {
+      "n": 11,
+      "domain": "家里和每天",
+      "en": "Locked Out",
+      "zh": "没带钥匙进不了门",
+      "use": "锁在门外、等家人、去邻居家",
+      "status": "planned"
+    },
+    {
+      "n": 12,
+      "domain": "家里和每天",
+      "en": "I Cannot Sleep",
+      "zh": "睡不着",
+      "use": "翻来覆去、太吵、数数",
+      "status": "planned"
+    },
+    {
+      "n": 13,
+      "domain": "家里和每天",
+      "en": "My Room Is a Mess",
+      "zh": "房间太乱",
+      "use": "乱七八糟、收拾、放回原处",
+      "status": "planned"
+    },
+    {
+      "n": 14,
+      "domain": "家里和每天",
+      "en": "Our Dog Ran Away",
+      "zh": "狗跑丢了",
+      "use": "跑丢、到处找、贴寻狗启事",
+      "status": "planned"
+    },
+    {
+      "n": 15,
+      "domain": "家里和每天",
+      "en": "Feeding the Cat",
+      "zh": "喂猫",
+      "use": "喂食换水、照顾、别喂太多",
+      "status": "planned"
+    },
+    {
+      "n": 16,
+      "domain": "学校",
+      "en": "A Boy Hit Me",
+      "zh": "被同学打了",
+      "use": "被推被打、告诉老师、讲清楚经过",
+      "status": "planned"
+    },
+    {
+      "n": 17,
+      "domain": "学校",
+      "en": "I Forgot My Homework",
+      "zh": "忘带作业",
+      "use": "忘在家、跟老师说、明天补",
+      "status": "planned"
+    },
+    {
+      "n": 18,
+      "domain": "学校",
+      "en": "The Test Was Hard",
+      "zh": "考试很难",
+      "use": "题太难、时间不够、下次努力",
+      "status": "planned"
+    },
+    {
+      "n": 19,
+      "domain": "学校",
+      "en": "We Made Up",
+      "zh": "吵架后和好",
+      "use": "吵架、谁先道歉、又一起玩",
+      "status": "planned"
+    },
+    {
+      "n": 20,
+      "domain": "学校",
+      "en": "My Comic Book",
+      "zh": "看漫画书",
+      "use": "借漫画、看得入迷、上课偷看被发现",
+      "status": "planned"
+    },
+    {
+      "n": 21,
+      "domain": "学校",
+      "en": "We Won the Game",
+      "zh": "比赛赢了",
+      "use": "比分、最后一分钟、赢了很开心",
+      "status": "planned"
+    },
+    {
+      "n": 22,
+      "domain": "学校",
+      "en": "On the Stage",
+      "zh": "上台表演",
+      "use": "紧张、忘词、大家鼓掌",
+      "status": "planned"
+    },
+    {
+      "n": 23,
+      "domain": "学校",
+      "en": "Cleaning the Classroom",
+      "zh": "值日打扫",
+      "use": "扫地擦窗、分工、弄干净",
+      "status": "planned"
+    },
+    {
+      "n": 24,
+      "domain": "学校",
+      "en": "Asking the Teacher",
+      "zh": "向老师提问",
+      "use": "没听懂、举手问、再讲一遍",
+      "status": "planned"
+    },
+    {
+      "n": 25,
+      "domain": "健康",
+      "en": "I Hurt My Foot",
+      "zh": "扭到脚了",
+      "use": "崴了脚、肿了、冰敷休息",
+      "status": "planned"
+    },
+    {
+      "n": 26,
+      "domain": "健康",
+      "en": "A High Fever",
+      "zh": "发烧了",
+      "use": "量体温、请假、多喝水",
+      "status": "planned"
+    },
+    {
+      "n": 27,
+      "domain": "健康",
+      "en": "My Tooth Hurts",
+      "zh": "牙疼",
+      "use": "疼得厉害、看牙医、少吃糖",
+      "status": "planned"
+    },
+    {
+      "n": 28,
+      "domain": "健康",
+      "en": "The Needle",
+      "zh": "打针",
+      "use": "怕打针、忍一下、就一下下",
+      "status": "planned"
+    },
+    {
+      "n": 29,
+      "domain": "健康",
+      "en": "Wash Your Hands",
+      "zh": "讲卫生",
+      "use": "洗手、别用脏手、防生病",
+      "status": "planned"
+    },
+    {
+      "n": 30,
+      "domain": "健康",
+      "en": "Running Every Morning",
+      "zh": "每天跑步",
+      "use": "早起跑步、累、坚持下来",
+      "status": "planned"
+    },
+    {
+      "n": 31,
+      "domain": "买东西和钱",
+      "en": "Lost in the Supermarket",
+      "zh": "超市走散了",
+      "use": "找不到大人、去服务台、广播找人",
+      "status": "planned"
+    },
+    {
+      "n": 32,
+      "domain": "买东西和钱",
+      "en": "Not Enough Money",
+      "zh": "钱不够",
+      "use": "算价钱、差一点、放回去一样",
+      "status": "planned"
+    },
+    {
+      "n": 33,
+      "domain": "买东西和钱",
+      "en": "Something Is Wrong with It",
+      "zh": "买的东西坏了",
+      "use": "刚买就坏、拿发票、换货退钱",
+      "status": "planned"
+    },
+    {
+      "n": 34,
+      "domain": "买东西和钱",
+      "en": "Saving for a Bike",
+      "zh": "存钱买自行车",
+      "use": "攒零花钱、还差多少、终于买到",
+      "status": "planned"
+    },
+    {
+      "n": 35,
+      "domain": "买东西和钱",
+      "en": "At the Bank",
+      "zh": "跟妈妈去银行",
+      "use": "排队、存钱、填单子",
+      "status": "planned"
+    },
+    {
+      "n": 36,
+      "domain": "出门在外",
+      "en": "I Was Lost",
+      "zh": "迷路了",
+      "use": "找不到路、问路人、按指的方向走",
+      "status": "planned"
+    },
+    {
+      "n": 37,
+      "domain": "出门在外",
+      "en": "I Missed My Stop",
+      "zh": "坐过站了",
+      "use": "坐过头、下一站下、坐回去",
+      "status": "planned"
+    },
+    {
+      "n": 38,
+      "domain": "出门在外",
+      "en": "Caught in the Rain",
+      "zh": "下雨没带伞",
+      "use": "突然下雨、躲一躲、浑身湿透",
+      "status": "planned"
+    },
+    {
+      "n": 39,
+      "domain": "出门在外",
+      "en": "My Bike Broke",
+      "zh": "自行车坏了",
+      "use": "链子掉了、推着走、去修车",
+      "status": "planned"
+    },
+    {
+      "n": 40,
+      "domain": "出门在外",
+      "en": "Crossing the Street",
+      "zh": "过马路",
+      "use": "等红灯、看两边、别跑",
+      "status": "planned"
+    },
+    {
+      "n": 41,
+      "domain": "出门在外",
+      "en": "The Long Train Ride",
+      "zh": "坐火车出远门",
+      "use": "买票找座、看窗外、到站",
+      "status": "planned"
+    },
+    {
+      "n": 42,
+      "domain": "出门在外",
+      "en": "Waiting at the Airport",
+      "zh": "在机场等飞机",
+      "use": "晚点、等登机、行李",
+      "status": "planned"
+    },
+    {
+      "n": 43,
+      "domain": "和人打交道",
+      "en": "I Broke His Toy",
+      "zh": "弄坏了别人的东西",
+      "use": "不小心弄坏、道歉、赔一个",
+      "status": "planned"
+    },
+    {
+      "n": 44,
+      "domain": "和人打交道",
+      "en": "A Phone Call",
+      "zh": "打电话",
+      "use": "打给同学、没人接、留个话",
+      "status": "planned"
+    },
+    {
+      "n": 45,
+      "domain": "和人打交道",
+      "en": "Come to My Home",
+      "zh": "请朋友来家里",
+      "use": "邀请、招待、送客",
+      "status": "planned"
+    },
+    {
+      "n": 46,
+      "domain": "和人打交道",
+      "en": "They Got It Wrong",
+      "zh": "被误会了",
+      "use": "不是我做的、解释、说清楚",
+      "status": "planned"
+    },
+    {
+      "n": 47,
+      "domain": "和人打交道",
+      "en": "Helping a Neighbour",
+      "zh": "帮邻居",
+      "use": "帮着提东西、开门、道谢",
+      "status": "planned"
+    },
+    {
+      "n": 48,
+      "domain": "和人打交道",
+      "en": "I Was Angry",
+      "zh": "生气了",
+      "use": "很气、忍住、冷静下来再说",
+      "status": "planned"
+    },
+    {
+      "n": 49,
+      "domain": "时间和节日",
+      "en": "My Birthday",
+      "zh": "过生日",
+      "use": "请客人、蛋糕礼物、许愿",
+      "status": "planned"
+    },
+    {
+      "n": 50,
+      "domain": "时间和节日",
+      "en": "The Long Holiday",
+      "zh": "放长假",
+      "use": "放假计划、走亲戚、假期结束",
+      "status": "planned"
+    },
+    {
+      "n": 51,
+      "domain": "时间和节日",
+      "en": "When I Was Small",
+      "zh": "小时候的事",
+      "use": "以前和现在、长高了、老照片",
+      "status": "planned"
+    },
+    {
+      "n": 52,
+      "domain": "自然和天气",
+      "en": "The Big Storm",
+      "zh": "暴风雨",
+      "use": "刮大风下大雨、树倒了、待在家",
+      "status": "planned"
+    },
+    {
+      "n": 53,
+      "domain": "自然和天气",
+      "en": "My Plant Grew",
+      "zh": "种的植物长大了",
+      "use": "浇水、发芽、开花",
+      "status": "planned"
+    },
+    {
+      "n": 54,
+      "domain": "自然和天气",
+      "en": "On Grandpa's Farm",
+      "zh": "爷爷的农场",
+      "use": "种地喂牲口、收成、田里干活",
+      "status": "planned"
+    },
+    {
+      "n": 55,
+      "domain": "更大的世界",
+      "en": "Dad Changed His Job",
+      "zh": "爸爸换工作",
+      "use": "找工作、面试、新单位",
+      "status": "planned"
+    },
+    {
+      "n": 56,
+      "domain": "更大的世界",
+      "en": "Our Class Votes",
+      "zh": "班里选班长",
+      "use": "投票、数票、选出来的人",
+      "status": "planned"
+    },
+    {
+      "n": 57,
+      "domain": "更大的世界",
+      "en": "A New Rule in the Park",
+      "zh": "公园的新规定",
+      "use": "不许做什么、警察提醒、守规矩",
+      "status": "planned"
+    },
+    {
+      "n": 58,
+      "domain": "更大的世界",
+      "en": "The News Says a Storm Is Coming",
+      "zh": "新闻说台风要来",
+      "use": "看新闻、报道、提前准备",
+      "status": "planned"
+    },
+    {
+      "n": 59,
+      "domain": "更大的世界",
+      "en": "Grandpa's Old Photos",
+      "zh": "爷爷的老照片",
+      "use": "很久以前、打仗的年代、盼和平",
+      "status": "planned"
+    },
+    {
+      "n": 60,
+      "domain": "更大的世界",
+      "en": "Watching the Rocket",
+      "zh": "看火箭发射",
+      "use": "科学、发射、探索太空",
+      "status": "planned"
+    }
   ]
 }
