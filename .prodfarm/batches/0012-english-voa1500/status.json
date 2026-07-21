@@ -1,5 +1,5 @@
 {
-  "status": "running",
+  "status": "done",
   "seed": "STEMROBIN-75",
   "started_at": "2026-07-20",
   "progress": {
@@ -21,10 +21,25 @@
     "STEMROBIN-77": [],
     "STEMROBIN-78": [],
     "STEMROBIN-79": [],
-    "STEMROBIN-80": ["STEMROBIN-77", "STEMROBIN-78", "STEMROBIN-79"],
-    "STEMROBIN-81": ["STEMROBIN-80"],
-    "STEMROBIN-82": ["STEMROBIN-77"],
-    "STEMROBIN-83": ["STEMROBIN-81", "STEMROBIN-77"],
-    "STEMROBIN-84": ["STEMROBIN-83"]
-  }
+    "STEMROBIN-80": [
+      "STEMROBIN-77",
+      "STEMROBIN-78",
+      "STEMROBIN-79"
+    ],
+    "STEMROBIN-81": [
+      "STEMROBIN-80"
+    ],
+    "STEMROBIN-82": [
+      "STEMROBIN-77"
+    ],
+    "STEMROBIN-83": [
+      "STEMROBIN-81",
+      "STEMROBIN-77"
+    ],
+    "STEMROBIN-84": [
+      "STEMROBIN-83"
+    ]
+  },
+  "ended_at": "2026-07-21",
+  "outcome": "7 done; 81->superseded(STEMROBIN-91), 84->superseded(STEMROBIN-89) at boundary settlement for blueprint v2 (seed STEMROBIN-85 / batch 0013-voa1500-v2)"
 }

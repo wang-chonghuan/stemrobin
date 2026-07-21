@@ -1,0 +1,25 @@
+{
+  "status": "ready",
+  "seed": "STEMROBIN-85",
+  "started_at": "2026-07-21",
+  "tickets": [
+    "STEMROBIN-86",
+    "STEMROBIN-87",
+    "STEMROBIN-88",
+    "STEMROBIN-89",
+    "STEMROBIN-90",
+    "STEMROBIN-91"
+  ],
+  "blocked_on": {
+    "STEMROBIN-86": [],
+    "STEMROBIN-87": [],
+    "STEMROBIN-88": ["STEMROBIN-87"],
+    "STEMROBIN-89": ["STEMROBIN-87"],
+    "STEMROBIN-90": ["STEMROBIN-86", "STEMROBIN-87", "STEMROBIN-88", "STEMROBIN-89"],
+    "STEMROBIN-91": ["STEMROBIN-90"]
+  },
+  "supersedes": {
+    "STEMROBIN-89": "STEMROBIN-84",
+    "STEMROBIN-91": "STEMROBIN-81"
+  }
+}
