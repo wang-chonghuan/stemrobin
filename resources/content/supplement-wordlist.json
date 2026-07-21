@@ -1,0 +1,743 @@
+{
+  "source": "Everyday words the course needs that the VOA1500 news wordlist lacks",
+  "why": "VOA1500 is a NEWS vocabulary: it carries administration/guerrilla/asylum but not breakfast/park/sorry/phone. The blueprint's selection rule is the opposite — how often does a child actually meet this word — so 36% of the words its lesson cards name are absent from the list, and its passages could not even use them. Human ruling (2026-07-22): 以蓝图为准, whatever the blueprint requires must be supplemented, no quantity limit.",
+  "policy": "These are first-class course vocabulary: passages may use them and lessons may teach them. Coverage of the original 1541 VOA words is still reported separately, so the 100%-VOA goal is unaffected.",
+  "derivedFormsCovered": "Base forms are listed (tooth/mouse/goose/shelf/leaf/sock/stair/wake/draw/lay/ring/thief) so their irregular inflections resolve through the lemma rules rather than needing their own entries.",
+  "entries": [
+    {
+      "word": "afternoon",
+      "pos": "n.",
+      "definition": "the time between noon and evening"
+    },
+    {
+      "word": "ahead",
+      "pos": "ad.",
+      "definition": "in front; further forward"
+    },
+    {
+      "word": "anybody",
+      "pos": "pro.",
+      "definition": "any person"
+    },
+    {
+      "word": "anyone",
+      "pos": "pro.",
+      "definition": "any person"
+    },
+    {
+      "word": "anything",
+      "pos": "pro.",
+      "definition": "any thing at all"
+    },
+    {
+      "word": "anyway",
+      "pos": "ad.",
+      "definition": "in any case; all the same"
+    },
+    {
+      "word": "anywhere",
+      "pos": "ad.",
+      "definition": "in or to any place"
+    },
+    {
+      "word": "apple",
+      "pos": "n.",
+      "definition": "a round fruit with firm white flesh"
+    },
+    {
+      "word": "backpack",
+      "pos": "n.",
+      "definition": "a bag carried on the back"
+    },
+    {
+      "word": "bathroom",
+      "pos": "n.",
+      "definition": "a room for washing and the toilet"
+    },
+    {
+      "word": "beautiful",
+      "pos": "ad.",
+      "definition": "very pleasing to look at"
+    },
+    {
+      "word": "bedroom",
+      "pos": "n.",
+      "definition": "a room for sleeping"
+    },
+    {
+      "word": "beside",
+      "pos": "prep.",
+      "definition": "next to"
+    },
+    {
+      "word": "besides",
+      "pos": "ad.",
+      "definition": "in addition; also"
+    },
+    {
+      "word": "beyond",
+      "pos": "prep.",
+      "definition": "on the far side of"
+    },
+    {
+      "word": "bicycle",
+      "pos": "n.",
+      "definition": "a two-wheeled vehicle moved by pedals"
+    },
+    {
+      "word": "bike",
+      "pos": "n.",
+      "definition": "a bicycle"
+    },
+    {
+      "word": "birthday",
+      "pos": "n.",
+      "definition": "the day a person was born, kept each year"
+    },
+    {
+      "word": "blackboard",
+      "pos": "n.",
+      "definition": "a dark board a teacher writes on"
+    },
+    {
+      "word": "board",
+      "pos": "n.",
+      "definition": "a flat piece of wood or other material"
+    },
+    {
+      "word": "bored",
+      "pos": "ad.",
+      "definition": "tired because nothing interesting is happening"
+    },
+    {
+      "word": "breakfast",
+      "pos": "n.",
+      "definition": "the first meal of the day"
+    },
+    {
+      "word": "brush",
+      "pos": "v.",
+      "definition": "to clean or smooth with a brush; n. the tool used"
+    },
+    {
+      "word": "bye",
+      "pos": "interj.",
+      "definition": "a short word said when leaving"
+    },
+    {
+      "word": "candy",
+      "pos": "n.",
+      "definition": "a sweet food made with sugar"
+    },
+    {
+      "word": "cartoon",
+      "pos": "n.",
+      "definition": "a drawn film or picture story"
+    },
+    {
+      "word": "chair",
+      "pos": "n.",
+      "definition": "a seat for one person"
+    },
+    {
+      "word": "cheap",
+      "pos": "ad.",
+      "definition": "costing little money"
+    },
+    {
+      "word": "classroom",
+      "pos": "n.",
+      "definition": "a room where a class is taught"
+    },
+    {
+      "word": "cookie",
+      "pos": "n.",
+      "definition": "a small flat sweet cake"
+    },
+    {
+      "word": "cough",
+      "pos": "v.",
+      "definition": "to push air from the throat with a sharp sound"
+    },
+    {
+      "word": "dangerous",
+      "pos": "ad.",
+      "definition": "able to cause harm"
+    },
+    {
+      "word": "dear",
+      "pos": "ad.",
+      "definition": "much loved; also used to begin a letter"
+    },
+    {
+      "word": "delicious",
+      "pos": "ad.",
+      "definition": "very good to taste"
+    },
+    {
+      "word": "desk",
+      "pos": "n.",
+      "definition": "a table for writing or working"
+    },
+    {
+      "word": "doll",
+      "pos": "n.",
+      "definition": "a toy shaped like a person"
+    },
+    {
+      "word": "downstairs",
+      "pos": "ad.",
+      "definition": "on or to a lower floor"
+    },
+    {
+      "word": "draw",
+      "pos": "v.",
+      "definition": "to make a picture with lines"
+    },
+    {
+      "word": "dress",
+      "pos": "v.",
+      "definition": "to put clothes on; n. a piece of clothing worn by women or girls"
+    },
+    {
+      "word": "english",
+      "pos": "n.",
+      "definition": "the English language"
+    },
+    {
+      "word": "eraser",
+      "pos": "n.",
+      "definition": "a small object used to rub out writing"
+    },
+    {
+      "word": "evening",
+      "pos": "n.",
+      "definition": "the time between afternoon and night"
+    },
+    {
+      "word": "everybody",
+      "pos": "pro.",
+      "definition": "every person"
+    },
+    {
+      "word": "everyday",
+      "pos": "ad.",
+      "definition": "happening every day; ordinary"
+    },
+    {
+      "word": "everyone",
+      "pos": "pro.",
+      "definition": "every person"
+    },
+    {
+      "word": "everything",
+      "pos": "pro.",
+      "definition": "all things"
+    },
+    {
+      "word": "everywhere",
+      "pos": "ad.",
+      "definition": "in or to all places"
+    },
+    {
+      "word": "excited",
+      "pos": "ad.",
+      "definition": "feeling happy and eager"
+    },
+    {
+      "word": "expensive",
+      "pos": "ad.",
+      "definition": "costing a lot of money"
+    },
+    {
+      "word": "eye",
+      "pos": "n.",
+      "definition": "the part of the body used to see"
+    },
+    {
+      "word": "fever",
+      "pos": "n.",
+      "definition": "a body temperature higher than normal"
+    },
+    {
+      "word": "garden",
+      "pos": "n.",
+      "definition": "a piece of ground where plants are grown"
+    },
+    {
+      "word": "goodbye",
+      "pos": "interj.",
+      "definition": "a word said when leaving"
+    },
+    {
+      "word": "goose",
+      "pos": "n.",
+      "definition": "a large water bird with a long neck"
+    },
+    {
+      "word": "hand",
+      "pos": "n.",
+      "definition": "the part of the body at the end of the arm"
+    },
+    {
+      "word": "headache",
+      "pos": "n.",
+      "definition": "a pain in the head"
+    },
+    {
+      "word": "hello",
+      "pos": "interj.",
+      "definition": "a word said when meeting someone"
+    },
+    {
+      "word": "hi",
+      "pos": "interj.",
+      "definition": "a short greeting"
+    },
+    {
+      "word": "homework",
+      "pos": "n.",
+      "definition": "school work to be done at home"
+    },
+    {
+      "word": "hug",
+      "pos": "v.",
+      "definition": "to hold someone closely in the arms"
+    },
+    {
+      "word": "ill",
+      "pos": "ad.",
+      "definition": "not well; sick"
+    },
+    {
+      "word": "inside",
+      "pos": "prep.",
+      "definition": "within; in the inner part of"
+    },
+    {
+      "word": "into",
+      "pos": "prep.",
+      "definition": "to the inside of"
+    },
+    {
+      "word": "jacket",
+      "pos": "n.",
+      "definition": "a short coat"
+    },
+    {
+      "word": "juice",
+      "pos": "n.",
+      "definition": "the liquid from fruit or vegetables"
+    },
+    {
+      "word": "junk",
+      "pos": "n.",
+      "definition": "things of little worth; also food of little food value"
+    },
+    {
+      "word": "kitchen",
+      "pos": "n.",
+      "definition": "a room where food is cooked"
+    },
+    {
+      "word": "kitten",
+      "pos": "n.",
+      "definition": "a young cat"
+    },
+    {
+      "word": "knee",
+      "pos": "n.",
+      "definition": "the joint in the middle of the leg"
+    },
+    {
+      "word": "lay",
+      "pos": "v.",
+      "definition": "to put something down"
+    },
+    {
+      "word": "leaf",
+      "pos": "n.",
+      "definition": "a flat green part growing from a plant"
+    },
+    {
+      "word": "lot",
+      "pos": "n.",
+      "definition": "a large amount or number"
+    },
+    {
+      "word": "lunch",
+      "pos": "n.",
+      "definition": "the meal eaten in the middle of the day"
+    },
+    {
+      "word": "math",
+      "pos": "n.",
+      "definition": "the study of numbers and shapes"
+    },
+    {
+      "word": "maybe",
+      "pos": "ad.",
+      "definition": "possibly; perhaps"
+    },
+    {
+      "word": "mess",
+      "pos": "n.",
+      "definition": "a dirty or untidy state"
+    },
+    {
+      "word": "monday",
+      "pos": "n.",
+      "definition": "the day after Sunday"
+    },
+    {
+      "word": "mouse",
+      "pos": "n.",
+      "definition": "a small animal with a long tail"
+    },
+    {
+      "word": "nervous",
+      "pos": "ad.",
+      "definition": "worried and a little afraid"
+    },
+    {
+      "word": "nobody",
+      "pos": "pro.",
+      "definition": "no person"
+    },
+    {
+      "word": "none",
+      "pos": "pro.",
+      "definition": "not any"
+    },
+    {
+      "word": "notebook",
+      "pos": "n.",
+      "definition": "a book of blank pages for writing"
+    },
+    {
+      "word": "okay",
+      "pos": "ad.",
+      "definition": "all right; agreed"
+    },
+    {
+      "word": "onto",
+      "pos": "prep.",
+      "definition": "to a position on"
+    },
+    {
+      "word": "outside",
+      "pos": "prep.",
+      "definition": "beyond the limits of; not inside"
+    },
+    {
+      "word": "page",
+      "pos": "n.",
+      "definition": "one side of a sheet in a book"
+    },
+    {
+      "word": "park",
+      "pos": "n.",
+      "definition": "public ground with grass and trees"
+    },
+    {
+      "word": "pencil",
+      "pos": "n.",
+      "definition": "a thin tool for writing or drawing"
+    },
+    {
+      "word": "perhaps",
+      "pos": "ad.",
+      "definition": "possibly; maybe"
+    },
+    {
+      "word": "pet",
+      "pos": "n.",
+      "definition": "an animal kept at home for company"
+    },
+    {
+      "word": "phone",
+      "pos": "n.",
+      "definition": "a device for speaking to someone far away"
+    },
+    {
+      "word": "plate",
+      "pos": "n.",
+      "definition": "a flat dish for food"
+    },
+    {
+      "word": "playground",
+      "pos": "n.",
+      "definition": "an outdoor place where children play"
+    },
+    {
+      "word": "pocket",
+      "pos": "n.",
+      "definition": "a small bag sewn into clothing"
+    },
+    {
+      "word": "polite",
+      "pos": "ad.",
+      "definition": "showing good manners"
+    },
+    {
+      "word": "pot",
+      "pos": "n.",
+      "definition": "a deep round container used for cooking"
+    },
+    {
+      "word": "pretty",
+      "pos": "ad.",
+      "definition": "pleasing to look at"
+    },
+    {
+      "word": "puppy",
+      "pos": "n.",
+      "definition": "a young dog"
+    },
+    {
+      "word": "quite",
+      "pos": "ad.",
+      "definition": "to a certain degree; rather"
+    },
+    {
+      "word": "rabbit",
+      "pos": "n.",
+      "definition": "a small animal with long ears"
+    },
+    {
+      "word": "rather",
+      "pos": "ad.",
+      "definition": "to some degree; more willingly"
+    },
+    {
+      "word": "ring",
+      "pos": "v.",
+      "definition": "to make a clear sound like a bell; n. a round band"
+    },
+    {
+      "word": "sandwich",
+      "pos": "n.",
+      "definition": "food between two pieces of bread"
+    },
+    {
+      "word": "saturday",
+      "pos": "n.",
+      "definition": "the day after Friday"
+    },
+    {
+      "word": "scared",
+      "pos": "ad.",
+      "definition": "afraid"
+    },
+    {
+      "word": "screen",
+      "pos": "n.",
+      "definition": "the flat surface where pictures are shown"
+    },
+    {
+      "word": "shelf",
+      "pos": "n.",
+      "definition": "a flat board fixed to a wall for holding things"
+    },
+    {
+      "word": "shop",
+      "pos": "n.",
+      "definition": "a place where things are sold"
+    },
+    {
+      "word": "sidewalk",
+      "pos": "n.",
+      "definition": "a path at the side of a road for walking"
+    },
+    {
+      "word": "silly",
+      "pos": "ad.",
+      "definition": "foolish in a playful way"
+    },
+    {
+      "word": "smart",
+      "pos": "ad.",
+      "definition": "quick to learn and understand"
+    },
+    {
+      "word": "snack",
+      "pos": "n.",
+      "definition": "a small amount of food eaten between meals"
+    },
+    {
+      "word": "sock",
+      "pos": "n.",
+      "definition": "a soft covering for the foot"
+    },
+    {
+      "word": "somebody",
+      "pos": "pro.",
+      "definition": "some person"
+    },
+    {
+      "word": "someone",
+      "pos": "pro.",
+      "definition": "some person"
+    },
+    {
+      "word": "something",
+      "pos": "pro.",
+      "definition": "some thing"
+    },
+    {
+      "word": "sometimes",
+      "pos": "ad.",
+      "definition": "at times; now and then"
+    },
+    {
+      "word": "somewhere",
+      "pos": "ad.",
+      "definition": "in or to some place"
+    },
+    {
+      "word": "sorry",
+      "pos": "ad.",
+      "definition": "feeling regret for something one has done"
+    },
+    {
+      "word": "sour",
+      "pos": "ad.",
+      "definition": "having a sharp taste like a lemon"
+    },
+    {
+      "word": "spoon",
+      "pos": "n.",
+      "definition": "a tool with a round end used for eating"
+    },
+    {
+      "word": "stair",
+      "pos": "n.",
+      "definition": "a step, one of a set leading up or down"
+    },
+    {
+      "word": "stomach",
+      "pos": "n.",
+      "definition": "the part of the body where food goes"
+    },
+    {
+      "word": "sunday",
+      "pos": "n.",
+      "definition": "the day after Saturday"
+    },
+    {
+      "word": "table",
+      "pos": "n.",
+      "definition": "a piece of furniture with a flat top and legs"
+    },
+    {
+      "word": "therefore",
+      "pos": "ad.",
+      "definition": "for that reason"
+    },
+    {
+      "word": "thief",
+      "pos": "n.",
+      "definition": "a person who steals"
+    },
+    {
+      "word": "thirsty",
+      "pos": "ad.",
+      "definition": "wanting to drink"
+    },
+    {
+      "word": "though",
+      "pos": "conj.",
+      "definition": "in spite of the fact that"
+    },
+    {
+      "word": "throughout",
+      "pos": "prep.",
+      "definition": "in every part of; during the whole of"
+    },
+    {
+      "word": "ticket",
+      "pos": "n.",
+      "definition": "a printed piece of paper allowing entry or travel"
+    },
+    {
+      "word": "tidy",
+      "pos": "ad.",
+      "definition": "neat and in order"
+    },
+    {
+      "word": "till",
+      "pos": "prep.",
+      "definition": "until"
+    },
+    {
+      "word": "tooth",
+      "pos": "n.",
+      "definition": "one of the hard white parts in the mouth"
+    },
+    {
+      "word": "toy",
+      "pos": "n.",
+      "definition": "an object for a child to play with"
+    },
+    {
+      "word": "trash",
+      "pos": "n.",
+      "definition": "things thrown away; rubbish"
+    },
+    {
+      "word": "umbrella",
+      "pos": "n.",
+      "definition": "a folding cover held over the head against rain"
+    },
+    {
+      "word": "upon",
+      "pos": "prep.",
+      "definition": "on"
+    },
+    {
+      "word": "upstairs",
+      "pos": "ad.",
+      "definition": "on or to a higher floor"
+    },
+    {
+      "word": "wake",
+      "pos": "v.",
+      "definition": "to stop sleeping"
+    },
+    {
+      "word": "weekend",
+      "pos": "n.",
+      "definition": "Saturday and Sunday"
+    },
+    {
+      "word": "whatever",
+      "pos": "pro.",
+      "definition": "anything that"
+    },
+    {
+      "word": "whenever",
+      "pos": "ad.",
+      "definition": "at any time that"
+    },
+    {
+      "word": "where",
+      "pos": "ad.",
+      "definition": "in or to what place"
+    },
+    {
+      "word": "wherever",
+      "pos": "ad.",
+      "definition": "in or to any place that"
+    },
+    {
+      "word": "whoever",
+      "pos": "pro.",
+      "definition": "any person who"
+    },
+    {
+      "word": "within",
+      "pos": "prep.",
+      "definition": "inside; not beyond"
+    }
+  ]
+}

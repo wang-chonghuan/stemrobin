@@ -13,6 +13,20 @@ written under a **coverage budget**, not freely. The hard constraints come from 
 0012 release-gate ruling and are enforced by `save-lesson.mjs`, which refuses to write a
 non-conforming lesson rather than degrade it.
 
+## Two wordlists, one gate
+
+VOA1500 is a **news** vocabulary — it carries administration/guerrilla/asylum but not
+breakfast/park/sorry/phone. The blueprint selects the opposite way (how often does a
+child actually meet this), so 36% of the words its lesson cards name were absent, and
+its passages could not even use them: lesson 13 is "家里的早餐" but `breakfast` was
+unwritable, lesson 22 is "在公园" but `park` was, lesson 27 teaches declining an
+invitation but `sorry` was.
+
+`resources/content/supplement-wordlist.json` closes that gap (human ruling
+2026-07-22: 以蓝图为准，蓝图要求的都要补充). Both lists are teachable and both pass the
+gate; `loadVocab()` tags each entry's `origin` so coverage of the original 1541 VOA
+words is still reported on its own and the 100%-VOA goal is unaffected.
+
 ## Hard constraints (enforced, not advisory)
 
 | Constraint | Value |
@@ -20,7 +34,7 @@ non-conforming lesson rather than degrade it.
 | Sentences per lesson | 6–9 |
 | Words per lesson | ≤ 120 |
 | New target words introduced | ~20–25 |
-| Vocabulary | every word must resolve to `resources/content/voa1500-wordlist.json` |
+| Vocabulary | every word must resolve to `voa1500-wordlist.json` **or** `supplement-wordlist.json` |
 | Allowed outside the list | inflections of in-list words, declared proper names, numbers |
 | Gloss | every sentence needs a 中文 gloss |
 | Audience | 8–12 year olds; concrete life/dialogue themes |

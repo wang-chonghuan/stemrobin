@@ -10,7 +10,7 @@
 // stemming library: a dependency is inadmissible when the existing stack suffices
 // (charter · no gratuitous dependencies), and a transparent rule set is auditable.
 import { execFileSync } from 'node:child_process'
-import { readFileSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 
 export function repoRoot() {
@@ -162,9 +162,23 @@ export function lemmaCandidates(w) {
   return out
 }
 
+// The course vocabulary is TWO lists. VOA1500 is a news wordlist — it carries
+// administration/guerrilla/asylum but not breakfast/park/sorry/phone — while the
+// blueprint selects by how often a child meets a word, so 36% of the words its lesson
+// cards name were absent and its passages could not even use them. The supplement
+// closes that (human ruling 2026-07-22: 以蓝图为准，蓝图要求的都要补充).
+//
+// Both lists are teachable and both pass the gate; `origin` keeps them distinguishable
+// so coverage of the original 1541 can still be reported on its own.
 export function loadVocab() {
-  const path = join(repoRoot(), 'resources/content/voa1500-wordlist.json')
-  const doc = JSON.parse(readFileSync(path, 'utf8'))
+  const root = repoRoot()
+  const doc = JSON.parse(readFileSync(join(root, 'resources/content/voa1500-wordlist.json'), 'utf8'))
+  const supPath = join(root, 'resources/content/supplement-wordlist.json')
+  const sup = existsSync(supPath) ? JSON.parse(readFileSync(supPath, 'utf8')) : { entries: [] }
+  const origin = new Map()
+  for (const e of doc.entries) origin.set(e.word.toLowerCase(), 'voa')
+  for (const e of sup.entries) origin.set(e.word.toLowerCase(), 'supplement')
+  doc.entries = [...doc.entries, ...sup.entries]
   // headword -> canonical entry key. Multi-word headwords ("air force", "a (an)")
   // also register their component words so the gate accepts them in running text.
   const index = new Map()
@@ -176,7 +190,13 @@ export function loadVocab() {
     }
   }
   const pos = new Map(doc.entries.map((e) => [e.word.toLowerCase(), e.pos]))
-  return { index, pos, count: doc.entries.length, entryKeys: doc.entries.map((e) => e.word.toLowerCase()) }
+  return {
+    index, pos, origin,
+    count: doc.entries.length,
+    voaCount: [...origin.values()].filter((o) => o === 'voa').length,
+    entryKeys: doc.entries.map((e) => e.word.toLowerCase()),
+    voaKeys: doc.entries.map((e) => e.word.toLowerCase()).filter((w) => origin.get(w) === 'voa'),
+  }
 }
 
 // Surface forms that a suffix rule can decompose into an in-list word but that are a
