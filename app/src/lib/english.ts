@@ -213,6 +213,11 @@ export function judgeFreeText(expectedText: string, submitted: string): { isCorr
 // sr_lesson_audio, alongside the per-sentence clips.
 export const FULL_AUDIO_NODE = 'full'
 
+// Reserved node id for the 跟读练习音频 (STEMROBIN-107): the spoken lesson title, then
+// every sentence read twice with silence to speak into. Built by the skill at save time
+// and downloaded whole — see routes/english-audio.$id.ts.
+export const PRACTICE_AUDIO_NODE = 'practice'
+
 type Row = { title: string; content: unknown; overlay: unknown }
 export type EnglishVocab = { en: string; zh: string }
 
@@ -225,6 +230,7 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
     form: 'dialogue' | 'narrative'
     patterns: Pattern[]
     hasFullAudio: boolean
+    hasPracticeAudio: boolean
     newWords: EnglishVocab[]
     reviewWords: EnglishVocab[]
     sentences: ReadingSentence[]
@@ -280,6 +286,7 @@ export const getEnglishReading = createServerFn({ method: 'GET' })
       form: content.form ?? 'narrative',
       patterns,
       hasFullAudio: audioNodes.has(FULL_AUDIO_NODE),
+      hasPracticeAudio: audioNodes.has(PRACTICE_AUDIO_NODE),
       newWords,
       reviewWords,
       sentences: projectReading(content, overlay, audioNodes),

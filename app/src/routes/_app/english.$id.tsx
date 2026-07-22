@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Download, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
+import { ArrowLeft, Download, FileAudio, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
 
 import {
   getEnglishReading,
@@ -138,6 +138,19 @@ function EnglishReadView() {
         >
           <Download size={17} />
         </button>
+        {/* 跟读练习音频 (STEMROBIN-108): a plain link to the attachment route, so one
+            click saves the file — no player, no base64 round-trip through the page. */}
+        {reading.hasPracticeAudio && (
+          <a
+            className="sr-icontool"
+            href={`/english-audio/${id}`}
+            download
+            aria-label={t(locale, 'en.audio.download')}
+            title={t(locale, 'en.audio.download')}
+          >
+            <FileAudio size={17} />
+          </a>
+        )}
       </div>
 
       <div className="sr-d-scroll">

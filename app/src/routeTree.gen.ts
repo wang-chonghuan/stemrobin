@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as AppIndexRouteImport } from './routes/_app/index'
+import { Route as EnglishAudioIdRouteImport } from './routes/english-audio.$id'
 import { Route as AppLessonIdRouteImport } from './routes/_app/lesson.$id'
 import { Route as AppEnglishIdRouteImport } from './routes/_app/english.$id'
 import { Route as AppEnglishIdReciteRouteImport } from './routes/_app/english.$id_.recite'
@@ -29,6 +30,11 @@ const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppRoute,
+} as any)
+const EnglishAudioIdRoute = EnglishAudioIdRouteImport.update({
+  id: '/english-audio/$id',
+  path: '/english-audio/$id',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AppLessonIdRoute = AppLessonIdRouteImport.update({
   id: '/lesson/$id',
@@ -49,12 +55,14 @@ const AppEnglishIdReciteRoute = AppEnglishIdReciteRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof AppIndexRoute
   '/login': typeof LoginRoute
+  '/english-audio/$id': typeof EnglishAudioIdRoute
   '/english/$id': typeof AppEnglishIdRoute
   '/lesson/$id': typeof AppLessonIdRoute
   '/english/$id/recite': typeof AppEnglishIdReciteRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/english-audio/$id': typeof EnglishAudioIdRoute
   '/': typeof AppIndexRoute
   '/english/$id': typeof AppEnglishIdRoute
   '/lesson/$id': typeof AppLessonIdRoute
@@ -64,6 +72,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
+  '/english-audio/$id': typeof EnglishAudioIdRoute
   '/_app/': typeof AppIndexRoute
   '/_app/english/$id': typeof AppEnglishIdRoute
   '/_app/lesson/$id': typeof AppLessonIdRoute
@@ -72,13 +81,25 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/login' | '/english/$id' | '/lesson/$id' | '/english/$id/recite'
+    | '/'
+    | '/login'
+    | '/english-audio/$id'
+    | '/english/$id'
+    | '/lesson/$id'
+    | '/english/$id/recite'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/' | '/english/$id' | '/lesson/$id' | '/english/$id/recite'
+  to:
+    | '/login'
+    | '/english-audio/$id'
+    | '/'
+    | '/english/$id'
+    | '/lesson/$id'
+    | '/english/$id/recite'
   id:
     | '__root__'
     | '/_app'
     | '/login'
+    | '/english-audio/$id'
     | '/_app/'
     | '/_app/english/$id'
     | '/_app/lesson/$id'
@@ -88,6 +109,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   AppRoute: typeof AppRouteWithChildren
   LoginRoute: typeof LoginRoute
+  EnglishAudioIdRoute: typeof EnglishAudioIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -112,6 +134,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof AppRoute
+    }
+    '/english-audio/$id': {
+      id: '/english-audio/$id'
+      path: '/english-audio/$id'
+      fullPath: '/english-audio/$id'
+      preLoaderRoute: typeof EnglishAudioIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_app/lesson/$id': {
       id: '/_app/lesson/$id'
@@ -156,6 +185,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   AppRoute: AppRouteWithChildren,
   LoginRoute: LoginRoute,
+  EnglishAudioIdRoute: EnglishAudioIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
