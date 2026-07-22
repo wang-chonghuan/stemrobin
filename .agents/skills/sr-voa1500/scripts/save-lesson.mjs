@@ -19,6 +19,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import postgres from 'postgres'
 import { loadVocab, checkPassage, words, resolve, repoRoot } from './vocab.mjs'
+import { reconcileLesson, printReconcileReport } from './reconcile.mjs'
 import { synthesize } from './tts.mjs'
 
 function fail(m) { console.error(`✗ ${m}`); process.exit(1) }
@@ -91,14 +92,14 @@ if (spec.form === 'dialogue' && !spec.sentences.some((s0) => s0.speaker))
   problems.push('form=dialogue 但没有任何 speaker')
 
 // 本课生词 (中英对照): every target word introduced by this lesson must carry a
-// Chinese meaning, and every listed word must be a real VOA1500 word in the passage.
+// Chinese meaning, and every listed word must be a real course-wordlist word in the passage.
 const targetWords = [...new Set(spec.sentences.flatMap((s) => s.targets ?? []).map((w) => w.toLowerCase()))]
 const glossMap = new Map(Object.entries(spec.vocab ?? {}).map(([k, v]) => [k.toLowerCase(), v]))
 for (const w of targetWords) {
   if (!glossMap.has(w)) problems.push(`生词 "${w}" 缺中文释义 (spec.vocab)`)
 }
 for (const w of glossMap.keys()) {
-  if (!resolve(w, vocab)) problems.push(`生词 "${w}" 不在 VOA1500 词表`)
+  if (!resolve(w, vocab)) problems.push(`生词 "${w}" 不在课程词表`)
 }
 
 if (problems.length) {
@@ -123,7 +124,7 @@ const sentences = spec.sentences.map((s, i) => {
   }
 })
 // vocab list in first-appearance order; pos + entry-key from the wordlist. `key` is
-// the VOA headword ("hungry" -> "hunger"), so the app can match the same word across
+// the wordlist headword ("cities" -> "city"), so the app can match the same word across
 // lessons for the new-vs-review split.
 const vocabList = targetWords.map((w) => ({
   en: w,
@@ -131,7 +132,7 @@ const vocabList = targetWords.map((w) => ({
   pos: vocab.pos.get(resolve(w, vocab)) ?? '',
   zh: glossMap.get(w),
 }))
-// The VOA entry-keys the whole passage covers — the app intersects this with earlier
+// The wordlist entry-keys the whole passage covers — the app intersects this with earlier
 // lessons' vocab keys to find which words are review words.
 const coveredKeys = [...covered].sort()
 const content = {
@@ -174,7 +175,7 @@ function printHtml() {
     .vz { color: #4C5A58; font-size: 13px; }
   </style></head><body>
     <h1>${spec.order}. ${esc(spec.title)}</h1>
-    <p class="lead">VOA1500 · ${esc(spec.theme ?? '')}</p>
+    <p class="lead">A1A2 · ${esc(spec.theme ?? '')}</p>
     ${rows}
     <h2>本课生词</h2>
     <div class="vlist">${vrows}</div>
@@ -270,6 +271,15 @@ try {
     }
   })
   console.log(`✓ ${spec.id} 已保存 — ${sentences.length} 句 / ${totalWords} 词 / 覆盖 ${covered.size} 个词表词条 / ${audio.length - 1} 句朗读 + 整篇 / ${wordAudio.length} 个新单词发音`)
+
+  // 保存即对账 (STEMROBIN-96): a planned word the passage skipped must never disappear
+  // quietly. Reconcile against the plan right here, while the author is still at the
+  // keyboard, and print every orphan with a suggested new home.
+  const written = new Set((await sql`select id from sr_lessons where subject = 'english'`).map((r) => r.id))
+  const report = reconcileLesson({
+    lessonId: spec.id, coveredKeys, targets: vocabList.map((v) => v.key), written,
+  })
+  printReconcileReport(report, spec.id)
 } catch (e) {
   fail(`写库失败: ${e.message}`)
 } finally {

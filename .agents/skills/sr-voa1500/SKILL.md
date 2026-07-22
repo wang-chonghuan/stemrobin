@@ -82,7 +82,7 @@ node .agents/skills/sr-voa1500/scripts/audit-vocab.mjs [--verbose] [--emit-gaps]
 ## The outline is the plan — read it first
 
 **`outline.md` is this course's curriculum SSOT** — the human-authored blueprint
-(v2) for all 60 lessons, in 10 units. It is **human property: do not edit it, not by
+(v3) for all 84 lessons, in 12 units. It is **human property: do not edit it, not by
 one character.** Propose changes to the human; never rewrite it yourself.
 
 Each lesson card carries four fields, and they bind the passage:
@@ -100,12 +100,12 @@ a friend, screen time, overhearing the news) come early and repeat; rare errands
 (bank, post office) are deliberately out. Every passage is built around its 句型 —
 the patterns are the point, the words ride along. Roughly a third are dialogues
 〔对话〕, because speaking transfers far better from dialogue than from narration.
-Each unit closes with a 〔综合〕 lesson that recycles the whole unit. The abstract
-VOA news vocabulary lands in unit 10, seen from a child's eye.
+Each unit closes with a 〔综合〕 lesson that recycles the whole unit. The world/society
+topics land in the last units, seen from a child's eye.
 
 Never invent a lesson topic ad hoc: take 场景 and 句型 from `outline.md`. The 新词
-listed there are examples only — the authoritative per-lesson word set comes from
-the full 1500-word allocation (the blueprint's own next step), not from that line.
+listed there are examples only — the authoritative per-lesson word set is the plan in
+`course-wordlist.json`: every entry whose `lesson` is this lesson.
 
 ## Authoring order (patterns + scene first, never word-list-first)
 
@@ -119,15 +119,15 @@ The ruling is explicit: *课文不能按照词表机械拼接*. So:
 3. **Then** pull it toward the uncovered-word set: check `coverage.mjs`, and revise word
    choices to absorb still-uncovered entries **where the sentence stays natural**. Bend
    the wording to the word list; never bend the story into a word list.
-4. **Mark the target words** — this lesson's newly introduced VOA words. These are what
-   cloze level 1 hides first, so they should be the words worth recalling.
+4. **Mark the target words** — this lesson's newly introduced wordlist words. These are
+   what cloze level 1 hides first, so they should be the words worth recalling.
 5. **Write the 中文 gloss** per sentence: natural Chinese conveying the meaning, not a
    word-for-word transliteration. It exists to make the English understandable, and is
    available as a hint at every ladder level.
 
-Unit structure: 10 units × 6 lessons. Lessons 1–5 of a unit introduce new words; lesson 6
-mainly recycles that unit's vocabulary but is still **a genuine new story**, never a drill
-sheet.
+Unit structure: 12 units × 7 lessons (~22 new words per teaching lesson). Lessons 1–6 of a
+unit introduce new words; lesson 7 mainly recycles that unit's vocabulary but is still
+**a genuine new story**, never a drill sheet.
 
 Recurrence: a core word should appear in **≥3 different lessons** — introduced once, then
 reappearing naturally in later passages. `coverage.mjs` reports words still under 3.
@@ -152,34 +152,47 @@ reappearing naturally in later passages. `coverage.mjs` reports words still unde
 the reading/recitation projections consume.
 
 
-## State store — what the machine knows that the lessons cannot tell it
+## 保存即对账 — a planned word never disappears quietly
 
-`state.db` (SQLite, via Node 24's built-in `node:sqlite` — no dependency) holds the
-generation state that is NOT derivable from the lessons themselves: which lesson each
-word is PLANNED for, whether it has been dealt with, where it was rehomed from/to and
-why, and the log of generation actions. It is committed to git; because a binary db
-cannot be read in a diff, `state.mjs export` writes a reviewable `allocation.json`
-snapshot next to it — the db is the source of truth, the json is for humans.
+The plan and the state live in the wordlist itself (`lesson` = the lesson that first
+teaches the word, `state` = what became of that plan). There is no second store:
+SQLite was ruled out (2026-07-22) because one reviewable JSON is the whole truth.
 
-What it must NEVER store: which words were actually taught, coverage %, recurrence
-counts. Those are derived from the real lessons (`coverage.mjs`) — a second copy here
-would silently go stale the moment a passage is edited (charter · SSOT).
+`save-lesson.mjs` reconciles **at save time** (`reconcile.mjs`, STEMROBIN-96): it
+compares what the lesson was planned to teach against what the passage actually covers,
+and prints 计划 N 词 / 实教 M 词 plus every missed word with a suggested new home. This is
+the batch's whole reason to exist — two lessons silently dropped 16 planned words, which
+over 84 lessons is ~480 words that would never be taught.
 
-`state.mjs reconcile` is the bridge: it reads what the written lessons ACTUALLY teach
-from Postgres and marks each planned word taught / orphaned, so the plan learns what
-really happened. A word whose lesson is written but which the passage skipped becomes
-an **orphan** — the exact failure that used to be silent.
+| state | meaning |
+|---|---|
+| `unassigned` | not yet allocated to a lesson |
+| `planned` | allocated; its lesson is not written yet |
+| `taught` | its lesson is written and the passage really covers it |
+| `orphaned` | its lesson is written but the passage skipped it — **needs a disposition** |
+| `rehomed` → `planned` | moved to a still-unwritten lesson (`movedFrom` keeps the origin) |
+| `deferred` | explicitly parked: no better lesson exists yet |
+
+Disposition is explicit — write the word into the passage and re-save, or:
 
 ```
-node .agents/skills/sr-voa1500/scripts/state.mjs init|import <plan>|reconcile|word <w>|orphans|export|report
+node .agents/skills/sr-voa1500/scripts/reconcile.mjs --lesson english-u01-01   # re-check one lesson
+node .agents/skills/sr-voa1500/scripts/reconcile.mjs --rehome moon=english-u01-07,lamp=english-u01-07
+node .agents/skills/sr-voa1500/scripts/reconcile.mjs --defer moon --why "本单元无更合适场景"
+node .agents/skills/sr-voa1500/scripts/reconcile.mjs --status                  # exit 1 if any orphan is open
 ```
+
+What the wordlist must NEVER store: coverage %, recurrence counts, or a copy of what a
+lesson taught. Those are derived from the real lessons (`coverage.mjs`) — a second copy
+would go stale the moment a passage is edited (charter · SSOT).
 
 ## Scripts
 
 | File | Purpose |
 |---|---|
-| `state.db` / `state.mjs` | generation STATE — planned lesson per word, rehoming decisions, action log (never derivable facts) |
-| `outline.md` | **the 60-lesson curriculum SSOT** — the human-authored blueprint (v2): 场景 / 句型 / 新词 / 复用 per lesson. Human property, never machine-edited |
+| `resources/content/course-wordlist.json` | **the wordlist AND the plan** — level / pos / source / lesson / state / movedFrom per word |
+| `scripts/reconcile.mjs` | 保存即对账 — planned vs actually taught, orphan disposition (`--rehome` / `--defer` / `--status`) |
+| `outline.md` | **the 84-lesson curriculum SSOT** — the human-authored blueprint (v3): 场景 / 句型 / 新词 / 复用 per lesson. Human property, never machine-edited |
 | `scripts/vocab.mjs` | the course-wordlist gate — lemma resolution + out-of-vocabulary detection |
 | `scripts/audit-vocab.mjs` | stress-tests the resolver against generated inflections + common author English; classifies every failure as a resolver bug or a real list gap |
 | `known-gaps.json` | the words the course wordlist lacks, with a reword for each — read before writing, regenerate with `audit-vocab.mjs --emit-gaps` |
@@ -200,5 +213,5 @@ node .agents/skills/sr-voa1500/scripts/coverage.mjs --json <report.json>
 Never hand-write `sr_*` rows — persistence goes only through `save-lesson.mjs`. The
 recitation ladder, its masking and its grading live in the app
 (`app/src/lib/english.ts`), not here; this skill only produces content. If the coverage
-budget turns out to be unreachable inside 60 lessons × 120 words, that is a **stop and
+budget turns out to be unreachable inside 84 lessons × 120 words, that is a **stop and
 report to the human**, not a constraint to quietly relax.
