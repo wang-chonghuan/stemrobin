@@ -1593,6 +1593,11 @@ a.sr-out-lesson.ready:hover {
 }
 .sr-en-blank:focus { outline: 2px solid var(--sr-blue); outline-offset: 1px; }
 .sr-en-blank.bad { border-bottom-color: #B4342B; background: #FBE9E7; }
+/* a sentence already passed unaided at this level: locked, and quiet enough that the
+   rows still owed a pass stand out on the worksheet. */
+.sr-en-row.done .sr-en-en { color: var(--sr-ink-dim); }
+.sr-en-row.done .sr-en-num { background: var(--sr-green-tint); color: var(--sr-green); }
+.sr-en-row.done .sr-en-blank { border-bottom-color: var(--sr-green); background: var(--sr-green-tint); }
 .sr-en-badnote { margin: 8px 0 0; color: #B4342B; font-size: 12.5px; }
 .sr-en-assisted { margin: 8px 0 0; color: var(--sr-ink-dim); font-size: 12.5px; }
 .sr-en-fulltext {

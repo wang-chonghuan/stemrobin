@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, Check, Languages, Menu } from 'lucide-react'
 
@@ -14,7 +14,7 @@ import { useLayoutStore } from '~/lib/layout-store'
 //
 // Two rules from the course design shape the state here:
 //   * the 中文 hint is available at EVERY level, but a sentence answered with a hint
-//     (or after the answer was shown) is only "辅助完成" — it re-enters the queue and
+//     (or after the answer was shown) is only "辅助完成" — it stays outstanding and
 //     must be produced again cleanly before the level counts as passed;
 //   * a wrong answer marks POSITIONS, never the expected word — grading is server-side
 //     and the passage is not in the payload (see projectRecitation).
@@ -34,8 +34,10 @@ function ReciteView() {
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [level, setLevel] = useState<Level>(1)
   const [sentences, setSentences] = useState<Awaited<ReturnType<typeof getRecitation>>>(null)
-  // queue = sentence ids still owed a clean pass at this level
-  const [queue, setQueue] = useState<string[]>([])
+  // pending = sentence ids still owed a clean pass at this level. Every sentence of the
+  // level is on screen at once (STEMROBIN-105), so this is a set, not a queue: the
+  // learner picks the order, and a sentence leaves it only on an unaided pass.
+  const [pending, setPending] = useState<Set<string>>(new Set())
   const [assisted, setAssisted] = useState<Set<string>>(new Set())
   const [answers, setAnswers] = useState<Record<string, string[]>>({})
   const [wrong, setWrong] = useState<Record<string, number[]>>({})
@@ -46,51 +48,46 @@ function ReciteView() {
 
   useEffect(() => {
     let live = true
-    setSentences(null); setQueue([]); setAssisted(new Set()); setAnswers({})
+    setSentences(null); setPending(new Set()); setAssisted(new Set()); setAnswers({})
     setWrong({}); setHint({}); setFullText(''); setFullResult(null)
     getRecitation({ data: { lessonId: id, level } }).then((s) => {
       if (!live || !s) return
       setSentences(s)
-      setQueue(s.map((x) => x.id))
+      setPending(new Set(s.map((x) => x.id)))
     })
     return () => { live = false }
   }, [id, level])
 
   const total = sentences?.length ?? 0
-  const done = total - queue.length
-  const current = useMemo(() => sentences?.find((s) => s.id === queue[0]) ?? null, [sentences, queue])
+  const done = total - pending.size
 
   if (!reading) return <main className="sr-detail"><div className="sr-empty">课文暂不可用</div></main>
 
-  async function submitSentence() {
-    if (!current) return
-    const given = answers[current.id] ?? []
+  async function submitSentence(sid: string) {
     const res = await recordRecite({
-      data: { lessonId: id, level, nodeId: current.id, answers: given, assisted: assisted.has(current.id) },
+      data: { lessonId: id, level, nodeId: sid, answers: answers[sid] ?? [], assisted: assisted.has(sid) },
     })
     if ('error' in res) return
-    if (res.isCorrect) {
-      setWrong((w) => ({ ...w, [current.id]: [] }))
-      // A hinted sentence is graded but does not count: it goes to the back of the
-      // queue to be produced again without help.
-      if (assisted.has(current.id)) {
-        setQueue((q) => [...q.slice(1), current.id])
-        setAssisted((a) => { const n = new Set(a); n.delete(current.id); return n })
-        setAnswers((a) => ({ ...a, [current.id]: [] }))
-        setHint((h) => { const n = { ...h }; delete n[current.id]; return n })
-      } else {
-        setQueue((q) => q.slice(1))
-      }
+    if (!res.isCorrect) {
+      setWrong((w) => ({ ...w, [sid]: res.wrong }))
+      return
+    }
+    setWrong((w) => ({ ...w, [sid]: [] }))
+    // A hinted sentence is graded but does not count: it stays pending, is cleared, and
+    // must be produced again without help.
+    if (assisted.has(sid)) {
+      setAssisted((a) => { const n = new Set(a); n.delete(sid); return n })
+      setAnswers((a) => ({ ...a, [sid]: [] }))
+      setHint((h) => { const n = { ...h }; delete n[sid]; return n })
     } else {
-      setWrong((w) => ({ ...w, [current.id]: res.wrong }))
+      setPending((p) => { const n = new Set(p); n.delete(sid); return n })
     }
   }
 
-  async function askHint() {
-    if (!current) return
-    const { zh } = await getSentenceHint({ data: { lessonId: id, nodeId: current.id } })
-    if (zh) setHint((h) => ({ ...h, [current.id]: zh }))
-    setAssisted((a) => new Set(a).add(current.id))
+  async function askHint(sid: string) {
+    const { zh } = await getSentenceHint({ data: { lessonId: id, nodeId: sid } })
+    if (zh) setHint((h) => ({ ...h, [sid]: zh }))
+    setAssisted((a) => new Set(a).add(sid))
   }
 
   async function submitFull() {
@@ -100,12 +97,12 @@ function ReciteView() {
     if (res.isCorrect) setPassed((p) => new Set(p).add(5))
   }
 
-  // a level is passed when its queue empties (or, at L5, on a clean whole-text pass)
+  // a level is passed when nothing is pending (or, at L5, on a clean whole-text pass)
   useEffect(() => {
-    if (level < 5 && sentences && total > 0 && queue.length === 0) {
+    if (level < 5 && sentences && total > 0 && pending.size === 0) {
       setPassed((p) => new Set(p).add(level))
     }
-  }, [queue, sentences, total, level])
+  }, [pending, sentences, total, level])
 
   return (
     <main className="sr-detail sr-en-read">
@@ -150,56 +147,67 @@ function ReciteView() {
                 {t(locale, 'en.recite.progress', { done, total })}
               </span>
             </div>
-            {current ? (
-              <div className="sr-en-card">
-                <div className="sr-en-row">
-                  {current.speaker && <span className="sr-en-speaker">{current.speaker}:</span>}
-                  <p className="sr-en-en">
-                    {current.tokens.map((tok, i) =>
-                      'hidden' in tok ? (
-                        <input
-                          key={i}
-                          className={'sr-en-blank' + ((wrong[current.id] ?? []).includes(blankIndex(current.tokens, i)) ? ' bad' : '')}
-                          value={(answers[current.id] ?? [])[blankIndex(current.tokens, i)] ?? ''}
-                          onChange={(e) => {
-                            const bi = blankIndex(current.tokens, i)
-                            setAnswers((a) => {
-                              const cur = [...(a[current.id] ?? [])]
-                              cur[bi] = e.target.value
-                              return { ...a, [current.id]: cur }
-                            })
-                          }}
-                          aria-label={t(locale, 'en.recite.blank')}
-                        />
-                      ) : (
-                        <span key={i}>{tok.w}</span>
-                      ),
+            {/* Every sentence of the level, in passage order: the learner sees the whole
+                worksheet and picks where to start (STEMROBIN-105). A passed sentence keeps
+                its place, locked and ticked, so the passage stays readable as it fills in. */}
+            <div className="sr-en-card">
+              {(sentences ?? []).map((s, n) => {
+                const isDone = !pending.has(s.id)
+                return (
+                  <div key={s.id} className={'sr-en-row' + (isDone ? ' done' : '')}>
+                    <div className="sr-en-line">
+                      <span className="sr-en-num">{isDone ? <Check size={13} aria-hidden /> : n + 1}</span>
+                      {s.speaker && <span className="sr-en-speaker">{s.speaker}:</span>}
+                      <p className="sr-en-en">
+                        {s.tokens.map((tok, i) =>
+                          'hidden' in tok ? (
+                            <input
+                              key={i}
+                              className={'sr-en-blank' + ((wrong[s.id] ?? []).includes(blankIndex(s.tokens, i)) ? ' bad' : '')}
+                              value={(answers[s.id] ?? [])[blankIndex(s.tokens, i)] ?? ''}
+                              disabled={isDone}
+                              onChange={(e) => {
+                                const bi = blankIndex(s.tokens, i)
+                                setAnswers((a) => {
+                                  const cur = [...(a[s.id] ?? [])]
+                                  cur[bi] = e.target.value
+                                  return { ...a, [s.id]: cur }
+                                })
+                              }}
+                              aria-label={t(locale, 'en.recite.blank')}
+                            />
+                          ) : (
+                            <span key={i}>{tok.w}</span>
+                          ),
+                        )}
+                      </p>
+                    </div>
+                    {hint[s.id] && <p className="sr-en-zh">{hint[s.id]}</p>}
+                    {(wrong[s.id]?.length ?? 0) > 0 && (
+                      <p className="sr-en-badnote">{t(locale, 'en.recite.wrong')}</p>
                     )}
-                  </p>
-                  {hint[current.id] && <p className="sr-en-zh">{hint[current.id]}</p>}
-                  {(wrong[current.id]?.length ?? 0) > 0 && (
-                    <p className="sr-en-badnote">{t(locale, 'en.recite.wrong')}</p>
-                  )}
-                  {assisted.has(current.id) && (
-                    <p className="sr-en-assisted">{t(locale, 'en.recite.assisted')}</p>
-                  )}
-                  <div className="sr-en-actions">
-                    <button type="button" className="sr-btn primary" onClick={submitSentence}>
-                      {t(locale, 'en.recite.submit')}
-                    </button>
-                    <button type="button" className="sr-btn ghost" onClick={askHint}>
-                      <Languages size={15} aria-hidden /> {t(locale, 'en.recite.hint')}
-                    </button>
+                    {assisted.has(s.id) && (
+                      <p className="sr-en-assisted">{t(locale, 'en.recite.assisted')}</p>
+                    )}
+                    {!isDone && (
+                      <div className="sr-en-actions">
+                        <button type="button" className="sr-btn primary" onClick={() => submitSentence(s.id)}>
+                          {t(locale, 'en.recite.submit')}
+                        </button>
+                        <button type="button" className="sr-btn ghost" onClick={() => askHint(s.id)}>
+                          <Languages size={15} aria-hidden /> {t(locale, 'en.recite.hint')}
+                        </button>
+                      </div>
+                    )}
                   </div>
-                </div>
-              </div>
-            ) : (
-              <div className="sr-en-card">
+                )
+              })}
+              {total > 0 && pending.size === 0 && (
                 <div className="sr-en-row">
                   <p className="sr-en-en">{t(locale, 'en.recite.levelDone')}</p>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </>
         ) : (
           <div className="sr-en-card">
