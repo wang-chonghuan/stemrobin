@@ -1,11 +1,11 @@
-VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
+牛津 3000 A1+A2 · 84 篇生活短文 · 全文背诵课程蓝图（v3）
 给 12 岁中文孩子。选材只问一句话:这个词、这个场景，孩子多久用一次? 天天发生的（过马路、上课、吃饭、和朋友闹别扭、刷手机、听大人聊新闻）排在前面反复铺；一年去不了几次的（银行、邮局）不进正课。每篇都围绕 2–4 个能直接迁移到嘴上的句型 来写，而不只是装单词的盒子。
 相比初稿的四个变化
 
 * 频率优先，砍低频。 去掉银行/邮局这类偶发场景，换成过马路、坐公交、看天气穿衣、买零食、公园、屏幕时间等每日高频微场景。
 * 句型即模板。 句型用填空模板呈现（`___` 是可替换的槽），和"逐级挖空默写"的机制天然一致——背下来就能换词照说。
 * 约 1/3 写成对话体〔对话〕。 点餐、问路、看病、道歉、邀约——对话对"能开口"的迁移远高于自述。
-* 世界/新闻词保留，但落到孩子视角。 集中在第 10 单元:听到新闻、说不同国家、讲自己的看法、聊长大以后——让孩子能描述世界、听懂世界。
+* 世界/社会话题保留，但落到孩子视角。 集中在第 10 单元:听到新闻、说不同国家、讲自己的看法、聊长大以后——让孩子能描述世界、听懂世界。
 
 每篇卡片的四个字段
 
@@ -69,7 +69,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: work / job / teacher / doctor / driver / cook / like / he / she / what
 * 复用: family 词 / do
 
-06 · 一个家里的早晨〔综合〕
+06 · 睡觉前，说晚安
+
+* 场景: 睡前洗漱、上床、道晚安；睡不着怎么办。
+* 句型:
+   * `It's time for bed.`
+   * `I go to bed at ___.`
+   * `Good night!`
+   * `I can't sleep.`
+* 新词: night / bed / sleep / tired / dream / late / turn off / quiet / lie / rest
+* 复用: wash / brush / room / every day
+
+07 · 一个家里的早晨〔综合〕
 
 * 场景: 起床 → 洗漱 → 房间 → 家人 → 早饭，串成一个早晨的小故事。
 * 句型: （综合复用本单元全部句型）
@@ -78,7 +89,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 02 · 上学路上与学校
 词汇担当 · 街道安全、交通方式、教室、课堂用语、学科
-07 · 上学路上，过马路要小心〔对话〕
+08 · 上学路上，过马路要小心〔对话〕
 
 * 场景: 走去学校，过马路左右看、走人行道、等红灯。
 * 句型:
@@ -89,7 +100,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: road / cross / sidewalk / traffic light / red / green / wait / look / careful / before
 * 复用: morning / get up / ready
 
-08 · 坐车去学校
+09 · 坐车去学校
 
 * 场景: 走路 / 坐公交 / 骑车上学。
 * 句型:
@@ -99,7 +110,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: bus / bike / walk / ride / get on / get off / stop / way / near / far
 * 复用: cross / wait / road
 
-09 · 我的学校和教室
+10 · 我的学校和教室
 
 * 场景: 学校长什么样，教室里有什么。
 * 句型:
@@ -109,7 +120,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: school / classroom / floor / wall / board / desk / many / big / new / room
 * 复用: there is / on / in / big
 
-10 · 上课:听讲和提问
+11 · 上课:听讲和提问
 
 * 场景: 上课听老师；举手；听不懂就问。
 * 句型:
@@ -120,7 +131,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: listen / understand / answer / question / ask / raise / again / please / speak
 * 复用: teacher / look
 
-11 · 我的功课和课程表
+12 · 我的功课和课程表
 
 * 场景: 学哪些科目，哪天上什么，擅长什么。
 * 句型:
@@ -130,7 +141,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: subject / math / English / class / favorite / good / hard / easy / day / learn
 * 复用: school / book / learn
 
-12 · 忙碌的一天〔综合〕
+13 · 考试和成绩
+
+* 场景: 考试那天，题目难不难，考完等成绩，下次怎么办。
+* 句型:
+   * `I have a test today.`
+   * `It was ___.`
+   * `I got a good grade.`
+   * `Next time I will ___.`
+* 新词: test / grade / question / mistake / difficult / easy / study / remember / forget / try
+* 复用: subject / class / learn / hard / answer
+
+14 · 忙碌的一天〔综合〕
 
 * 场景: 从出门过马路到放学，串起路上、教室、上课、科目。
 * 句型: （综合）
@@ -139,7 +161,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 03 · 吃饭（全天高频）
 词汇担当 · 食物饮料、味道、厨房动作、喜好、点餐
-13 · 家里的早餐
+15 · 家里的早餐
 
 * 场景: 早饭吃什么、喝什么；饿了。
 * 句型:
@@ -149,7 +171,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: breakfast / egg / bread / milk / water / rice / hungry / want / some / drink
 * 复用: eat / morning / like
 
-14 · 我喜欢和不喜欢的食物
+16 · 我喜欢和不喜欢的食物
 
 * 场景: 说喜欢/不喜欢吃什么；饿、渴、饱。
 * 句型:
@@ -159,7 +181,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: food / fruit / apple / meat / vegetable / thirsty / full / best / sweet
 * 复用: like / want / hungry
 
-15 · 帮忙做饭（小心烫）
+17 · 帮忙做饭（小心烫）
 
 * 场景: 在厨房帮忙洗、切、煮；小心烫。
 * 句型:
@@ -169,7 +191,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: kitchen / cook / cut / wash / hot / cold / pot / put / help / careful
 * 复用: careful / hot / first…then / wash
 
-16 · 和朋友一起吃午饭
+18 · 和朋友一起吃午饭
 
 * 场景: 学校午饭，和朋友分享。
 * 句型:
@@ -179,7 +201,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: lunch / together / share / plate / spoon / delicious / taste / more / sit
 * 复用: eat / food / like / friend
 
-17 · 尝一样新食物
+19 · 尝一样新食物
 
 * 场景: 尝没吃过的东西，说味道。
 * 句型:
@@ -189,7 +211,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: try / taste / sweet / sour / salty / soft / new / too / feel / think
 * 复用: food / delicious / want
 
-18 · 在小吃店点东西〔对话〕
+20 · 在小吃店点东西〔对话〕
 
 * 场景: 在小吃店/面馆点餐、问价钱、付钱。
 * 句型:
@@ -200,9 +222,16 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: order / much / money / pay / price / cheap / here / change / welcome
 * 复用: food / drink 词 / please（综合）
 
+21 · 吃饭的一天〔综合〕
+
+* 场景: 早饭 → 喜欢的食物 → 帮忙做饭 → 和朋友午饭 → 点餐，串成一天的吃。
+* 句型: （综合）
+* 新词: 少量新词 + 旧词回收
+* 复用: 单元 3 全部
+
 单元 04 · 出门在外 · 街区
 词汇担当 · 买东西、问路方向、公交、公园、天气穿衣
-19 · 买点小东西〔对话〕
+22 · 买点小东西〔对话〕
 
 * 场景: 买零食/文具，问价、嫌贵、找零。
 * 句型:
@@ -213,7 +242,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: shop / buy / sell / expensive / cheap / dollar / need / want / pay
 * 复用: money / price / pay / how much
 
-20 · 问路〔对话〕
+23 · 问路〔对话〕
 
 * 场景: 找不到路，向别人问怎么走。
 * 句型:
@@ -223,7 +252,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: excuse / way / get to / straight / turn / left / right / next to / near / far
 * 复用: road / cross / near / far
 
-21 · 坐公交
+24 · 坐公交
 
 * 场景: 等车、上下车、坐到哪一站。
 * 句型:
@@ -233,7 +262,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: bus / stop / seat / ticket / next / free / which / get on / get off / wait
 * 复用: get on/off / stop / wait / way
 
-22 · 在公园/操场
+25 · 在公园/操场
 
 * 场景: 去公园玩，跑跳、和小伙伴玩、当心。
 * 句型:
@@ -243,7 +272,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: park / run / jump / play / grass / tree / ball / slow / fast / watch
 * 复用: play / friend / careful
 
-23 · 看天气，穿什么
+26 · 看天气，穿什么
 
 * 场景: 出门前看天气，冷热雨天带什么。
 * 句型:
@@ -253,7 +282,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: weather / sunny / rainy / windy / cloud / cold / warm / umbrella / wear / need
 * 复用: cold / hot / clothes / need
 
-24 · 出去玩的一个下午〔综合〕
+27 · 买衣服〔对话〕
+
+* 场景: 在店里试衣服，说大小、颜色、价钱，合不合身。
+* 句型:
+   * `Can I try it on?`
+   * `Do you have a bigger one?`
+   * `What color do you want?`
+   * `It fits me.`
+* 新词: clothes / shirt / pants / shoes / size / color / try on / fit / choose / wear
+* 复用: shop / buy / expensive / cheap / how much
+
+28 · 出去玩的一个下午〔综合〕
 
 * 场景: 看天气 → 坐车 → 问路 → 买东西 → 公园，串成一个下午。
 * 句型: （综合）
@@ -262,7 +302,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 05 · 时间 · 计划 · 朋友
 词汇担当 · 时间星期、约定、邀请、一起玩、描述人
-25 · 几点了？今天星期几？
+29 · 几点了？今天星期几？
 
 * 场景: 说时间、星期；每天什么时候做什么。
 * 句型:
@@ -273,7 +313,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: clock / hour / minute / week / Monday / night / o'clock / before / after
 * 复用: time / morning / night / every day
 
-26 · 和朋友约时间〔对话〕
+30 · 和朋友约时间〔对话〕
 
 * 场景: 约朋友周末一起做点什么。
 * 句型:
@@ -284,7 +324,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: meet / free / weekend / Saturday / Sunday / plan / when / where / then
 * 复用: together / friend / when / where
 
-27 · 邀请、答应、婉拒〔对话〕
+31 · 邀请、答应、婉拒〔对话〕
 
 * 场景: 邀请朋友，接受，或礼貌拒绝。
 * 句型:
@@ -295,7 +335,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: come / invite / party / sorry / maybe / next / love / sure / hope
 * 复用: want / free / then
 
-28 · 一起玩:轮流和输赢
+32 · 一起玩:轮流和输赢
 
 * 场景: 一起玩游戏，轮流，赢了输了。
 * 句型:
@@ -306,7 +346,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: game / turn / win / lose / rule / again / both / fun / try
 * 复用: play / together / again / try
 
-29 · 我最好的朋友
+33 · 我最好的朋友
 
 * 场景: 介绍好朋友长什么样、性格怎样。
 * 句型:
@@ -316,7 +356,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: kind / funny / tall / short / nice / smart / quiet / same / too
 * 复用: friend / like（描述词）
 
-30 · 和朋友的周末〔综合〕
+34 · 我的生日会
+
+* 场景: 过生日，请朋友来、切蛋糕、拆礼物、拍照。
+* 句型:
+   * `Today is my birthday.`
+   * `Happy birthday!`
+   * `Thank you for the ___.`
+   * `Let's take a photo.`
+* 新词: birthday / cake / gift / photo / sing / surprise / candle / age / guest / celebrate
+* 复用: invite / party / friend / together / thank
+
+35 · 和朋友的周末〔综合〕
 
 * 场景: 约时间 → 邀请 → 一起玩 → 输赢，串成周末。
 * 句型: （综合）
@@ -325,7 +376,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 06 · 情绪 · 相处
 词汇担当 · 情绪词、礼貌用语、道歉和好、求助帮忙、安慰
-31 · 我现在的心情
+36 · 我现在的心情
 
 * 场景: 说开心/难过/生气/害怕/紧张，并给原因。
 * 句型:
@@ -335,7 +386,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: feel / happy / sad / angry / scared / tired / bored / excited / why / because
 * 复用: think / feel / today
 
-32 · 请、谢谢、对不起
+37 · 请、谢谢、对不起
 
 * 场景: 每天都用的礼貌用语。
 * 句型:
@@ -347,7 +398,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: please / thank / welcome / excuse / sorry / polite / mind / sure
 * 复用: please / thank / sorry（强化）
 
-33 · 闹别扭又和好〔对话〕
+38 · 闹别扭又和好〔对话〕
 
 * 场景: 和朋友吵了小架，道歉、和好。
 * 句型:
@@ -358,7 +409,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: wrong / right / fight / forget / okay / make up / again
 * 复用: sorry / angry / friend / because
 
-34 · 求助与帮忙
+39 · 求助与帮忙
 
 * 场景: 请别人帮忙；主动帮别人。
 * 句型:
@@ -368,7 +419,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: help / need / carry / hold / open / close / so / much
 * 复用: help / need / please / thank
 
-35 · 安慰难过的朋友
+40 · 安慰难过的朋友
 
 * 场景: 朋友难过，去安慰、陪着他。
 * 句型:
@@ -379,7 +430,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: cry / worry / hug / better / everything / will / care
 * 复用: sad / feel / because / better
 
-36 · 不太顺但结局不错的一天〔综合〕
+41 · 有人欺负我〔对话〕
+
+* 场景: 在学校被推、被抢东西，告诉老师和爸妈，把经过说清楚。
+* 句型:
+   * `He pushed me.`
+   * `That's not fair.`
+   * `Please stop.`
+   * `I told the teacher.`
+* 新词: push / hit / fair / stop / tell / trouble / protect / afraid / safe / mean
+* 复用: angry / cry / help / sorry / because
+
+42 · 不太顺但结局不错的一天〔综合〕
 
 * 场景: 心情不好 → 闹别扭 → 被帮助 → 和好，串起来。
 * 句型: （综合）
@@ -388,7 +450,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 07 · 健康 · 身体 · 安全
 词汇担当 · 健康习惯、症状、看医生、受伤当心、整洁家务
-37 · 保持健康
+43 · 保持健康
 
 * 场景: 多运动、早睡、洗手、少吃垃圾食品。
 * 句型:
@@ -398,7 +460,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: healthy / exercise / sleep / strong / should / junk / keep / bad
 * 复用: every day / wash / food / good
 
-38 · 我不太舒服〔对话〕
+44 · 我不太舒服〔对话〕
 
 * 场景: 生病了，说哪里不舒服。
 * 句型:
@@ -409,7 +471,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: sick / ill / hurt / headache / cough / fever / stomach / well / long
 * 复用: feel / 身体部位 / have
 
-39 · 受伤了，要小心
+45 · 受伤了，要小心
 
 * 场景: 摔了/割到/烫到，为什么要小心。
 * 句型:
@@ -420,7 +482,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: fell / cut / touch / dangerous / blood / knee / sharp
 * 复用: careful / hot / 身体部位 / okay
 
-40 · 休息，好起来
+46 · 休息，好起来
 
 * 场景: 吃药、休息、慢慢好起来。
 * 句型:
@@ -431,7 +493,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: rest / medicine / take / better / soon / again
 * 复用: rest / better / well / drink
 
-41 · 干净整洁（每天的家务）
+47 · 干净整洁（每天的家务）
 
 * 场景: 洗手、收拾房间、别弄乱。
 * 句型:
@@ -441,7 +503,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: clean / tidy / mess / dirty / throw / put away / dust / keep
 * 复用: wash / clean / room / before
 
-42 · 生病又好起来〔综合〕
+48 · 牙疼，去看牙医〔对话〕
+
+* 场景: 牙疼得厉害，去看牙医，检查、治好，以后少吃糖。
+* 句型:
+   * `My tooth hurts.`
+   * `Open your mouth, please.`
+   * `Does it hurt here?`
+   * `You should eat less ___.`
+* 新词: tooth / dentist / mouth / sugar / check / less / fill / wait / brave / soon
+* 复用: doctor / medicine / brush / hurt / pain
+
+49 · 生病又好起来〔综合〕
 
 * 场景: 不舒服 → 看医生 → 休息 → 好起来。
 * 句型: （综合）
@@ -450,7 +523,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 08 · 自然 · 动物 · 季节
 词汇担当 · 季节天气变化、花草树木、动物宠物、户外；过去时起步
-43 · 四季与天气变化
+50 · 四季与天气变化
 
 * 场景: 春夏秋冬各是什么样。
 * 句型:
@@ -460,7 +533,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: season / spring / summer / autumn / winter / cool / change / get / leaves
 * 复用: weather / hot / cold / warm
 
-44 · 身边的花草树木
+51 · 身边的花草树木
 
 * 场景: 出门散步看到的自然。
 * 句型:
@@ -470,7 +543,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: flower / sky / river / mountain / green / grow / beautiful
 * 复用: park / tree / grass / big / tall
 
-45 · 动物和宠物
+52 · 动物和宠物
 
 * 场景: 喜欢的动物、家里的宠物。
 * 句型:
@@ -480,7 +553,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: animal / pet / dog / cat / bird / fish / feed / sound
 * 复用: like / have / run / sleep
 
-46 · 去户外/去乡下
+53 · 去户外/去乡下
 
 * 场景: 去公园或乡下玩了一天（过去时）。
 * 句型:
@@ -490,7 +563,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: yesterday / went / saw / was / were / country / farm
 * 复用: park / animal / tree（过去时起步）
 
-47 · 爱护大自然
+54 · 爱护大自然
 
 * 场景: 别浪费水、别乱扔垃圾、种树、干净空气。
 * 句型:
@@ -500,7 +573,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: waste / trash / ground / air / protect / plant / give / world
 * 复用: clean / throw / should / water
 
-48 · 我记得最棒的一次出去玩〔综合〕
+55 · 下大雨那天
+
+* 场景: 突然下大雨刮大风，躲在屋里，雨停后出去看（过去时）。
+* 句型:
+   * `It rained all day.`
+   * `We stayed inside.`
+   * `The wind was strong.`
+   * `After the rain, ___.`
+* 新词: rain / wind / storm / wet / strong / stay / inside / clear / sky / puddle
+* 复用: weather / cloud / umbrella / yesterday（过去时）
+
+56 · 我记得最棒的一次出去玩〔综合〕
 
 * 场景: 回忆一次最开心的户外经历（过去时叙述）。
 * 句型: （综合，过去时）
@@ -509,7 +593,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 09 · 手机 · 学习 · 钱
 词汇担当 · 手机网络、用电脑学习、读书、零花钱、想要 vs 需要
-49 · 我的手机和网络
+57 · 我的手机和网络
 
 * 场景: 用手机发消息、查东西、屏幕时间别太久。
 * 句型:
@@ -519,7 +603,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: phone / internet / message / send / look up / screen / off / call
 * 复用: use / too long / help
 
-50 · 用电脑学习
+58 · 用电脑学习
 
 * 场景: 上网找资料、看视频学东西。
 * 句型:
@@ -529,7 +613,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: computer / found / look for / watch / read / about / lot / show
 * 复用: learn / read / find / about
 
-51 · 读书和故事
+59 · 读书和故事
 
 * 场景: 在读的书、喜欢的故事。
 * 句型:
@@ -539,7 +623,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: book / story / interesting / page / end / who / tell
 * 复用: read / book / about / again
 
-52 · 零花钱:想要还是需要
+60 · 零花钱:想要还是需要
 
 * 场景: 有点零花钱，想买的东西，先存起来。
 * 句型:
@@ -549,7 +633,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: save / spend / enough / need / want / wait
 * 复用: money / buy / cheap / expensive
 
-53 · 买一样攒钱买的东西〔对话〕
+61 · 买一样攒钱买的东西〔对话〕
 
 * 场景: 攒够钱，去买想很久的东西。
 * 句型:
@@ -560,7 +644,18 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: enough / choose / new / happy / love / price
 * 复用: money / pay / buy / save / happy
 
-54 · 屏幕太多的一天〔综合〕
+62 · 我最喜欢的动画片
+
+* 场景: 看动画片和电影，讲里面的人物和好笑的地方。
+* 句型:
+   * `My favorite show is ___.`
+   * `It's about a ___.`
+   * `The funny part is when ___.`
+   * `I watch it on ___.`
+* 新词: show / movie / cartoon / character / funny / part / laugh / favorite / episode / boring
+* 复用: story / interesting / phone / computer / watch
+
+63 · 屏幕太多的一天〔综合〕
 
 * 场景: 一天看太多手机 → 眼睛累 → 出去走走，反思。
 * 句型: （综合）
@@ -569,7 +664,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 单元 10 · 更大的世界与未来
 词汇担当 · 新闻世界、国家人民、问题变化、表达观点、未来梦想（VOA 抽象/新闻词集中落地）
-55 · 今天发生了什么（新闻）
+64 · 今天发生了什么（新闻）
 
 * 场景: 听到/看到新闻，说发生了什么事。
 * 句型:
@@ -579,7 +674,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: news / happen / heard / report / city / people / true
 * 复用: today / hear / tell / story / about
 
-56 · 世界上的国家和人民
+65 · 世界上的国家和人民
 
 * 场景: 不同国家、不同语言，有同有异。
 * 句型:
@@ -589,7 +684,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: world / country / people / language / different / same / place / all
 * 复用: people / live / many / same
 
-57 · 世界上的问题，为什么重要
+66 · 世界上的问题，为什么重要
 
 * 场景: 世界上有些问题（缺水、污染），我们能做点什么。
 * 句型:
@@ -599,7 +694,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: problem / important / change / poor / danger / together
 * 复用: problem / help / save / clean
 
-58 · 我怎么想（表达观点）
+67 · 我怎么想（表达观点）
 
 * 场景: 就一件事说出看法、同意不同意、给理由。
 * 句型:
@@ -609,7 +704,7 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: agree / opinion / reason / maybe / sure
 * 复用: think / because / right / wrong / feel
 
-59 · 长大以后
+68 · 长大以后
 
 * 场景: 长大想做什么、梦想、以后的打算。
 * 句型:
@@ -619,7 +714,167 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 * 新词: grow up / dream / hope / future / job / become / one day
 * 复用: job / want / hope / world / help
 
-60 · 写给未来的自己〔综合·压轴〕
+69 · 各国的节日
+
+* 场景: 不同国家怎么过节，吃什么、做什么，和我们哪里一样、哪里不一样。
+* 句型:
+   * `In ___, people celebrate ___.`
+   * `They eat ___ on that day.`
+   * `It is like our ___.`
+* 新词: holiday / celebrate / special / tradition / dance / light / wish / visit / gift / together
+* 复用: world / country / different / same / people
+
+70 · 我们的世界〔综合〕
+
+* 场景: 听到新闻 → 说不同国家 → 世界上的问题 → 讲自己的看法，串起这个单元。
+* 句型: （综合）
+* 新词: 少量新词 + 旧词回收
+* 复用: 单元 10 全部
+
+单元 11 · 家里的事
+词汇担当 · 家里的东西坏了、修理工具、家务分工、水电、邻居往来
+71 · 马桶堵了〔对话〕
+
+* 场景: 马桶堵住了水要漫出来，赶紧喊大人、关水、找工具通开、擦干净。
+* 句型:
+   * `The toilet is blocked.`
+   * `Don't use it now.`
+   * `Can you help me fix it?`
+   * `Be careful, the floor is wet.`
+* 新词: toilet / block / floor / wet / fix / tool / clean / dry / smell / hurry
+* 复用: bathroom / water / help / please / careful
+
+72 · 门把手坏了
+
+* 场景: 门把手掉了，门打不开，找工具装回去。
+* 句型:
+   * `The ___ is broken.`
+   * `It doesn't work.`
+   * `I can fix it with a ___.`
+   * `Try turning it.`
+* 新词: break / handle / turn / open / close / fix / tool / screw / tight / loose
+* 复用: door / room / help / careful / work
+
+73 · 停电了
+
+* 场景: 突然停电，屋里全黑，找手电筒和蜡烛，等来电。
+* 句型:
+   * `The lights went out.`
+   * `It's dark in here.`
+   * `Where is the ___?`
+   * `The power is back.`
+* 新词: dark / power / candle / flashlight / find / wait / back / suddenly / quiet / scared
+* 复用: light / night / room / look for / help
+
+74 · 房间太乱，收拾东西
+
+* 场景: 房间乱七八糟，把东西放回原处，扫地擦桌子。
+* 句型:
+   * `My room is a mess.`
+   * `Please put it back.`
+   * `Where does this go?`
+   * `Now it's clean and tidy.`
+* 新词: mess / tidy / put away / shelf / box / sweep / dust / floor / place / neat
+* 复用: room / clean / thing / help / table
+
+75 · 帮忙做家务
+
+* 场景: 洗碗、倒垃圾、晾衣服，一家人分工轮流。
+* 句型:
+   * `It's my turn to ___.`
+   * `Can you help me with ___?`
+   * `I already did it.`
+   * `Thanks for helping.`
+* 新词: dish / trash / wash / dry / job / turn / finish / already / share / chore
+* 复用: help / kitchen / clothes / mother / thank
+
+76 · 邻居来敲门〔对话〕
+
+* 场景: 邻居来借东西或说事，礼貌应对，帮个小忙。
+* 句型:
+   * `Someone is at the door.`
+   * `Can I borrow your ___?`
+   * `Sure, here you are.`
+   * `Just bring it back later.`
+* 新词: neighbor / knock / borrow / lend / bring / later / noise / quiet / kind / return
+* 复用: door / please / thank / help / sorry
+
+77 · 家里忙乱的一天〔综合〕
+
+* 场景: 东西坏了 → 停电 → 收拾房间 → 邻居来帮忙，串成家里忙乱的一天。
+* 句型: （综合）
+* 新词: 少量新词 + 旧词回收
+* 复用: 单元 11 全部
+
+单元 12 · 玩和爱好
+词汇担当 · 运动比赛、看书画画音乐、学新本领、拍照留念、课外的快乐
+78 · 比赛赢了
+
+* 场景: 参加球赛，最后一分钟进球，赢了很开心。
+* 句型:
+   * `We won the game!`
+   * `The score was ___.`
+   * `I scored at the last minute.`
+   * `Good game!`
+* 新词: win / lose / score / team / player / match / last / cheer / proud / practice
+* 复用: game / play / together / try / happy
+
+79 · 我在读的漫画书
+
+* 场景: 借来一本漫画，看得入迷，讲给朋友听。
+* 句型:
+   * `I'm reading a ___.`
+   * `It's really funny.`
+   * `Can I borrow it?`
+   * `You should read it too.`
+* 新词: comic / page / picture / funny / borrow / lend / finish / hero / draw / series
+* 复用: book / story / interesting / friend / read
+
+80 · 学骑自行车
+
+* 场景: 学骑车，摔了好几次，最后终于学会了。
+* 句型:
+   * `I'm learning to ___.`
+   * `I fell down again.`
+   * `Don't give up.`
+   * `Now I can do it!`
+* 新词: ride / fall / practice / balance / hold / finally / give up / hurt / knee / brave
+* 复用: bike / learn / try / help / careful
+
+81 · 画画和音乐
+
+* 场景: 画一幅画、练一首曲子，说说喜欢什么颜色和声音。
+* 句型:
+   * `I like to draw ___.`
+   * `I'm learning the ___.`
+   * `It sounds nice.`
+   * `What do you think of it?`
+* 新词: draw / paint / color / music / song / sound / practice / instrument / art / beautiful
+* 复用: like / learn / show / friend / picture
+
+82 · 放学后去公园
+
+* 场景: 放学后和朋友去公园，跑跳玩到天快黑。
+* 句型:
+   * `Let's go to the park.`
+   * `Watch out!`
+   * `It's getting dark.`
+   * `See you tomorrow.`
+* 新词: park / grass / swing / climb / throw / catch / dark / tomorrow / fun / tired
+* 复用: play / run / jump / friend / together
+
+83 · 拍张照片留个纪念
+
+* 场景: 出去玩拍照，选地方、站好、把照片给家人看。
+* 句型:
+   * `Let's take a photo.`
+   * `Stand over there.`
+   * `Say cheese!`
+   * `I'll show it to ___.`
+* 新词: photo / camera / stand / smile / show / remember / print / album / moment / together
+* 复用: friend / family / happy / picture / day
+
+84 · 写给未来的自己〔综合·压轴〕
 
 * 场景: 给一年后的自己写封信——全课程高频词大回收。
 * 句型:
@@ -632,6 +887,6 @@ VOA 1500 · 60 篇生活短文 · 全文背诵课程蓝图（v2）
 
 这份蓝图之后的三步
 
-1. 全量词表映射 — 把 VOA 1500 按频率排序，逐篇分配 20–25 个新词，校验每词 ≥ 3 篇复现，生成"词 × 出现篇目"对照表。
+1. 全量词表映射 — 把牛津 A1+A2 词表逐篇分配 20–25 个新词，校验每词 ≥ 3 篇复现，生成"词 × 出现篇目"对照表。
 2. 写一篇成品样板 — 挑一篇（如第 07 篇"过马路"或第 20 篇"问路"）写成 100–120 词的完整课文 + 逐句中文 + 五级挖空，验证体感。
 3. 继续调结构 — 加/删/换主题、调单元顺序、改句型侧重，直接在这份蓝图上迭代。
