@@ -1,0 +1,8 @@
+{
+  "status": "ready",
+  "seed": "STEMROBIN-106",
+  "started_at": "2026-07-22",
+  "tickets": ["STEMROBIN-107", "STEMROBIN-108"],
+  "blocked_on": { "STEMROBIN-107": [], "STEMROBIN-108": ["STEMROBIN-107"] },
+  "note": "Seed 106 released at the human gate on 2026-07-22; batch 0014-voa1500-infra is paused for the duration."
+}

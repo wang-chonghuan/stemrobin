@@ -1,5 +1,5 @@
 {
-  "status": "ready",
+  "status": "paused",
   "seed": "STEMROBIN-92",
   "started_at": "2026-07-21",
   "tickets": [
@@ -40,7 +40,7 @@
     "STEMROBIN-95": "STEMROBIN-86, STEMROBIN-91",
     "STEMROBIN-96": "STEMROBIN-90"
   },
-  "note": "Wordlist switched VOA1500 -> Oxford 3000 A1+A2 on 2026-07-22; state kept in one JSON (no SQLite); scale recomputed to ~84 lessons. 2026-07-22: 100/96 done, 101 unit-01 only, 104 (unit 01 seven lessons) shipped and verified live.",
+  "note": "Wordlist switched VOA1500 -> Oxford 3000 A1+A2 on 2026-07-22; state kept in one JSON (no SQLite); scale recomputed to ~84 lessons. 2026-07-22: 100/96 done, 101 unit-01 only, 104 (unit 01 seven lessons) shipped and verified live. 2026-07-22: PAUSED at the human's ruling on seed STEMROBIN-106 — batch 0015-practice-audio goes first; 101 (units 02–12) / 97 / 98 / 103 resume after it.",
   "superseded": {
     "STEMROBIN-93": "STEMROBIN-100, STEMROBIN-103",
     "STEMROBIN-94": "STEMROBIN-100",
