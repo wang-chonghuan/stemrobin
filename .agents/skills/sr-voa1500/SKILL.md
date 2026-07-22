@@ -132,6 +132,21 @@ unit introduce new words; lesson 7 mainly recycles that unit's vocabulary but is
 Recurrence: a core word should appear in **≥3 different lessons** — introduced once, then
 reappearing naturally in later passages. `coverage.mjs` reports words still under 3.
 
+## 跟读练习音频
+
+Each lesson also carries a downloadable drill track under the reserved audio node
+`practice`: the spoken `Lesson <n>. <title>.`, then every sentence read twice with a
+1-second gap between the repeats and 2 seconds before the next sentence — room for the
+child to speak into. `save-lesson.mjs` builds it at save time; `practice-audio.mjs
+--lesson <id> | --all` backfills lessons written before it existed.
+
+The shape is `PRACTICE_CONFIG` in `practice-audio.mjs` (`repeats` / `gapBetweenRepeats`
+/ `gapAfterSentence` / `gapAfterIntro` / `intro`) — change it and regenerate. The track is
+built by concatenating the stored per-sentence clips with silence made of mp3 frames in
+the same format (same header, zeroed body), so it needs **no ffmpeg and no audio
+library**. Note the audible pause is slightly longer than the configured one: each TTS
+clip carries its own head/tail silence, which adds ~0.3–0.8s.
+
 ## Spec format
 
 ```json
@@ -197,6 +212,7 @@ would go stale the moment a passage is edited (charter · SSOT).
 | `scripts/audit-vocab.mjs` | stress-tests the resolver against generated inflections + common author English; classifies every failure as a resolver bug or a real list gap |
 | `known-gaps.json` | the words the course wordlist lacks, with a reword for each — read before writing, regenerate with `audit-vocab.mjs --emit-gaps` |
 | `scripts/tts.mjs` | one English sentence → mp3 bytes (Azure `gpt-4o-mini-tts`) |
+| `scripts/practice-audio.mjs` | 跟读练习音频 — 报课 + 每句 ×N 遍 + 可配置停顿，mp3 帧级拼接零依赖；`--lesson <id>` / `--all` 回填 |
 | `scripts/save-lesson.mjs` | validate → narrate → persist (content + zh overlay + audio) |
 | `scripts/coverage.mjs` | wordlist coverage across all saved lessons |
 

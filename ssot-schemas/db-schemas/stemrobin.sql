@@ -371,7 +371,10 @@ ALTER TABLE sr_lessons ADD  CONSTRAINT sr_lessons_subject_check
 -- English audio is the same whatever the learner's first language.
 CREATE TABLE IF NOT EXISTS sr_lesson_audio (
   lesson_id   TEXT NOT NULL REFERENCES sr_lessons(id) ON DELETE CASCADE,
-  node_id     TEXT NOT NULL,                        -- sentence node id in content.sentences[]
+  node_id     TEXT NOT NULL,                        -- sentence node id in content.sentences[],
+                                                    -- or a reserved node: 'full' (whole-passage
+                                                    -- narration) / 'practice' (跟读练习音频,
+                                                    -- STEMROBIN-107: 报课 + 每句连读 N 遍 + 留白)
   mime        TEXT NOT NULL DEFAULT 'audio/mpeg',
   bytes       BYTEA NOT NULL,                       -- the narration clip
   voice       TEXT,                                 -- tts voice used (provenance)

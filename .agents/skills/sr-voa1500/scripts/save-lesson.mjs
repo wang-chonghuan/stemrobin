@@ -20,6 +20,7 @@ import { join } from 'node:path'
 import postgres from 'postgres'
 import { loadVocab, checkPassage, words, resolve, repoRoot } from './vocab.mjs'
 import { reconcileLesson, printReconcileReport, planFor } from './reconcile.mjs'
+import { buildPracticeTrack, introText, PRACTICE_CONFIG, PRACTICE_NODE } from './practice-audio.mjs'
 import { synthesize } from './tts.mjs'
 
 function fail(m) { console.error(`✗ ${m}`); process.exit(1) }
@@ -234,6 +235,17 @@ const fullBytes = speakers.length > 1
   : await synthesize(sentences.map((s) => s.text).join(' '), { voice: VOICES[0] })
 audio.push({ node: 'full', bytes: fullBytes, voice: speakers.length > 1 ? VOICES.join('+') : VOICES[0] })
 console.log(`  full ${fullBytes.length}B`)
+
+// 跟读练习音频 (STEMROBIN-107), stored under the reserved node id 'practice': the
+// spoken lesson title, then every sentence read PRACTICE_CONFIG.repeats times with
+// silence to speak into. Built here so a newly written lesson is downloadable without
+// a second command; practice-audio.mjs --lesson backfills older ones.
+const intro = PRACTICE_CONFIG.intro
+  ? await synthesize(introText(spec.order, spec.title), { voice: VOICES[0] })
+  : null
+const practice = buildPracticeTrack({ clips: sentences.map((s) => audio.find((a) => a.node === s.id).bytes), intro })
+audio.push({ node: PRACTICE_NODE, bytes: practice.bytes, voice: VOICES[0] })
+console.log(`  practice ${Math.round(practice.seconds)}s / ${Math.round(practice.bytes.length / 1024)}KB`)
 
 // Course-global word pronunciation: synthesize only words not already in the shared
 // table, so "walk" is spoken once for the whole course.
