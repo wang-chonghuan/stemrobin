@@ -2,16 +2,47 @@
   "status": "ready",
   "seed": "STEMROBIN-92",
   "started_at": "2026-07-21",
-  "tickets": ["STEMROBIN-93","STEMROBIN-94","STEMROBIN-95","STEMROBIN-96","STEMROBIN-97","STEMROBIN-98","STEMROBIN-99"],
+  "tickets": [
+    "STEMROBIN-100",
+    "STEMROBIN-101",
+    "STEMROBIN-102",
+    "STEMROBIN-103",
+    "STEMROBIN-96",
+    "STEMROBIN-97",
+    "STEMROBIN-98"
+  ],
   "blocked_on": {
-    "STEMROBIN-93": [],
-    "STEMROBIN-94": [],
-    "STEMROBIN-95": ["STEMROBIN-93","STEMROBIN-94","STEMROBIN-99"],
-    "STEMROBIN-96": ["STEMROBIN-93","STEMROBIN-95"],
-    "STEMROBIN-97": ["STEMROBIN-96"],
-    "STEMROBIN-98": ["STEMROBIN-96"],
-    "STEMROBIN-99": ["STEMROBIN-95"]
+    "STEMROBIN-100": [],
+    "STEMROBIN-102": [
+      "STEMROBIN-101"
+    ],
+    "STEMROBIN-101": [
+      "STEMROBIN-100",
+      "STEMROBIN-102"
+    ],
+    "STEMROBIN-103": [
+      "STEMROBIN-100"
+    ],
+    "STEMROBIN-96": [
+      "STEMROBIN-100",
+      "STEMROBIN-101"
+    ],
+    "STEMROBIN-97": [
+      "STEMROBIN-96"
+    ],
+    "STEMROBIN-98": [
+      "STEMROBIN-96"
+    ]
   },
-  "supersedes": { "STEMROBIN-95": "STEMROBIN-86, STEMROBIN-91", "STEMROBIN-96": "STEMROBIN-90" },
-  "note": "95<->99 的互为前置以两阶段解开：95 先出难词初稿 -> 99 定稿 70 课蓝图 -> 95 出定稿分配表。"
+  "supersedes": {
+    "STEMROBIN-95": "STEMROBIN-86, STEMROBIN-91",
+    "STEMROBIN-96": "STEMROBIN-90"
+  },
+  "note": "Wordlist switched VOA1500 -> Oxford 3000 A1+A2 on 2026-07-22; state kept in one JSON (no SQLite); scale recomputed to ~84 lessons.",
+  "superseded": {
+    "STEMROBIN-93": "STEMROBIN-100, STEMROBIN-103",
+    "STEMROBIN-94": "STEMROBIN-100",
+    "STEMROBIN-95": "STEMROBIN-101",
+    "STEMROBIN-99": "STEMROBIN-102"
+  }
 }
