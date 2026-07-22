@@ -1,0 +1,86 @@
+{
+  "id": "english-u01-03",
+  "unit": 1,
+  "order": 3,
+  "title": "Ready for School",
+  "scene": "起床、穿衣、吃早饭、准备上学",
+  "theme": "起床，准备出门",
+  "form": "narrative",
+  "properNames": [],
+  "patterns": [
+    { "id": "p1", "template": "I wake up at ___.", "zh": "我___起床。" },
+    { "id": "p2", "template": "First ___, then ___.", "zh": "先___，然后___。" },
+    { "id": "p3", "template": "I am ready.", "zh": "我准备好了。" }
+  ],
+  "vocab": {
+    "wake": "醒来",
+    "early": "早",
+    "morning": "早上",
+    "first": "首先",
+    "put": "放；穿上",
+    "shirt": "衬衣",
+    "then": "然后",
+    "sock": "袜子",
+    "shoe": "鞋",
+    "coat": "外套",
+    "hat": "帽子",
+    "time": "时间；该…了",
+    "eat": "吃",
+    "breakfast": "早饭",
+    "bread": "面包",
+    "egg": "鸡蛋",
+    "milk": "牛奶",
+    "quick": "快的",
+    "late": "迟到；晚",
+    "clothes": "衣服",
+    "bag": "书包；包",
+    "ready": "准备好的"
+  },
+  "sentences": [
+    {
+      "text": "I wake up early every morning.",
+      "gloss": "我每天早上很早就醒。",
+      "pattern": "p1",
+      "slots": ["early"],
+      "targets": ["wake", "early", "morning"]
+    },
+    {
+      "text": "First I put on my shirt, then my socks and my shoes.",
+      "gloss": "我先穿上衬衣，然后穿袜子和鞋。",
+      "pattern": "p2",
+      "slots": ["shirt"],
+      "targets": ["first", "put", "shirt", "then", "sock", "shoe"]
+    },
+    {
+      "text": "It is cold, so I take my coat and my hat.",
+      "gloss": "天很冷，所以我拿上外套和帽子。",
+      "targets": ["coat", "hat"]
+    },
+    {
+      "text": "It is time to eat breakfast: bread, an egg and a cup of milk.",
+      "gloss": "该吃早饭了：面包、一个鸡蛋和一杯牛奶。",
+      "targets": ["time", "eat", "breakfast", "bread", "egg", "milk"]
+    },
+    {
+      "text": "I am quick, because I do not want to be late.",
+      "gloss": "我动作很快，因为我不想迟到。",
+      "targets": ["quick", "late"]
+    },
+    {
+      "text": "My clothes are on and my bag is in my hand.",
+      "gloss": "衣服穿好了，书包也拿在手上。",
+      "targets": ["clothes", "bag"]
+    },
+    {
+      "text": "I am ready!",
+      "gloss": "我准备好了！",
+      "pattern": "p3",
+      "targets": ["ready"]
+    },
+    {
+      "text": "\"Have a good day!\" says my mother.",
+      "gloss": "妈妈说：“今天要开心！”",
+      "targets": []
+    }
+  ]
+}

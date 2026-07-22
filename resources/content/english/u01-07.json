@@ -1,0 +1,71 @@
+{
+  "id": "english-u01-07",
+  "unit": 1,
+  "order": 7,
+  "title": "A Morning at Home",
+  "scene": "起床 → 洗漱 → 房间 → 家人 → 早饭，串成一个早晨的小故事",
+  "theme": "一个家里的早晨〔综合〕",
+  "form": "narrative",
+  "properNames": ["Ana"],
+  "patterns": [
+    { "id": "p1", "template": "It is time for ___.", "zh": "该___了。" },
+    { "id": "p2", "template": "First ___, then ___.", "zh": "先___，然后___。" },
+    { "id": "p3", "template": "This is ___.", "zh": "这就是___。" }
+  ],
+  "vocab": {
+    "everyone": "每个人；大家",
+    "always": "总是",
+    "sometimes": "有时候",
+    "together": "一起",
+    "happy": "开心的",
+    "smile": "微笑"
+  },
+  "sentences": [
+    {
+      "text": "It is seven o'clock, and everyone in my family wakes up.",
+      "gloss": "七点了，我家每个人都醒了。",
+      "targets": ["everyone"]
+    },
+    {
+      "text": "First I wash my face, then I brush my teeth.",
+      "gloss": "我先洗脸，然后刷牙。",
+      "pattern": "p2",
+      "slots": ["face"],
+      "targets": []
+    },
+    {
+      "text": "My baby brother always cries in his bed upstairs.",
+      "gloss": "我的小弟弟总是在楼上的床里哭。",
+      "targets": ["always"]
+    },
+    {
+      "text": "My sister sometimes helps him, and I put my books in my bag.",
+      "gloss": "我姐姐有时候会帮他，我把书放进书包里。",
+      "targets": ["sometimes"]
+    },
+    {
+      "text": "In the kitchen my father puts bread, eggs and milk on the table.",
+      "gloss": "在厨房里，爸爸把面包、鸡蛋和牛奶放到桌上。",
+      "targets": []
+    },
+    {
+      "text": "\"It is time for breakfast!\" he says. \"Are you ready, Ana?\"",
+      "gloss": "他说：“该吃早饭了！安娜，你准备好了吗？”",
+      "pattern": "p1",
+      "slots": ["breakfast"],
+      "targets": []
+    },
+    {
+      "text": "We eat together, and everyone is happy; my grandmother smiles at the door.",
+      "gloss": "我们一起吃饭，大家都很开心；奶奶在门口笑着。",
+      "targets": ["together", "happy", "smile"]
+    },
+    {
+      "text": "This is a morning in my home.",
+      "gloss": "这就是我家的一个早晨。",
+      "pattern": "p3",
+      "slots": ["morning"],
+      "targets": []
+    }
+  ]
+}

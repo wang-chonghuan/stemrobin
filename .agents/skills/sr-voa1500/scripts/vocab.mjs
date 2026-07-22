@@ -218,10 +218,13 @@ export function checkPassage(text, vocab, properNames = []) {
     // a declared proper name is allowed in its possessive form too ("Anna's book"),
     // otherwise every author hits this on their first dialogue.
     if (allowed.has(lw) || allowed.has(lw.replace(/'s$|s'$|'$/, ''))) continue
-    if (/^\d+$/.test(w) || NUMBER_WORDS.has(lw)) continue
+    // The wordlist is consulted BEFORE the number exemption: Oxford carries one/two/first
+    // as real headwords, and a lesson that teaches "first" must get credit for it. The
+    // exemption then only covers numbers the list does not have.
     const hit = resolve(w, vocab)
-    if (hit) covered.add(hit)
-    else oov.push(w)
+    if (hit) { covered.add(hit); continue }
+    if (/^\d+$/.test(w) || NUMBER_WORDS.has(lw)) continue
+    oov.push(w)
   }
   return { covered, oov }
 }

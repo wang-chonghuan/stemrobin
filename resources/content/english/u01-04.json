@@ -1,0 +1,129 @@
+{
+  "id": "english-u01-04",
+  "unit": 1,
+  "order": 4,
+  "title": "My Home and My Room",
+  "scene": "家里有哪些房间；我房间里的东西和方位",
+  "theme": "我的家和我的房间",
+  "form": "narrative",
+  "properNames": [],
+  "patterns": [
+    {
+      "id": "p1",
+      "template": "We live in a ___.",
+      "zh": "我们住在一个___里。"
+    },
+    {
+      "id": "p2",
+      "template": "There is a ___ in my room.",
+      "zh": "我房间里有一个___。"
+    },
+    {
+      "id": "p3",
+      "template": "It is on / in / under the ___.",
+      "zh": "它在___上面／里面／下面。"
+    }
+  ],
+  "vocab": {
+    "small": "小的",
+    "house": "房子",
+    "kitchen": "厨房",
+    "bathroom": "卫生间",
+    "bedroom": "卧室",
+    "upstairs": "楼上",
+    "room": "房间",
+    "door": "门",
+    "window": "窗户",
+    "big": "大的",
+    "light": "灯；光",
+    "there": "有；那里",
+    "bed": "床",
+    "wall": "墙",
+    "desk": "书桌",
+    "book": "书",
+    "toy": "玩具",
+    "box": "盒子；箱子",
+    "floor": "地板；楼层",
+    "table": "桌子",
+    "chair": "椅子",
+    "home": "家"
+  },
+  "sentences": [
+    {
+      "text": "We live in a small house.",
+      "gloss": "我们住在一座小房子里。",
+      "pattern": "p1",
+      "slots": [
+        "house"
+      ],
+      "targets": [
+        "small",
+        "house"
+      ]
+    },
+    {
+      "text": "It has a kitchen and a bathroom, and my bedroom is upstairs.",
+      "gloss": "房子里有厨房和卫生间，我的卧室在楼上。",
+      "targets": [
+        "kitchen",
+        "bathroom",
+        "bedroom",
+        "upstairs"
+      ]
+    },
+    {
+      "text": "My room has one door, one window and a big light.",
+      "gloss": "我的房间有一扇门、一扇窗和一盏大灯。",
+      "targets": [
+        "room",
+        "door",
+        "window",
+        "big",
+        "light"
+      ]
+    },
+    {
+      "text": "There is a bed by the wall, and my desk is under the window.",
+      "gloss": "墙边有一张床，我的书桌在窗户下面。",
+      "pattern": "p2",
+      "slots": [
+        "bed"
+      ],
+      "targets": [
+        "there",
+        "bed",
+        "wall",
+        "desk"
+      ]
+    },
+    {
+      "text": "My books are on the desk, and my toys are in a box on the floor.",
+      "gloss": "我的书在书桌上，玩具在地板上的一个箱子里。",
+      "pattern": "p3",
+      "slots": [
+        "desk"
+      ],
+      "targets": [
+        "book",
+        "toy",
+        "box",
+        "floor"
+      ]
+    },
+    {
+      "text": "In the kitchen there is a table with four chairs.",
+      "gloss": "厨房里有一张桌子和四把椅子。",
+      "targets": [
+        "table",
+        "chair"
+      ]
+    },
+    {
+      "text": "It is not a big house, but I love my home.",
+      "gloss": "这不是一座大房子，但我爱我的家。",
+      "targets": [
+        "home"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "english-u01-02",
+  "unit": 1,
+  "order": 2,
+  "title": "My Body Every Morning",
+  "scene": "说身体部位；早上洗脸、刷牙、洗手",
+  "theme": "我的身体，每天洗漱",
+  "form": "narrative",
+  "properNames": [],
+  "patterns": [
+    { "id": "p1", "template": "This is my ___.", "zh": "这是我的___。" },
+    { "id": "p2", "template": "I wash my ___.", "zh": "我洗我的___。" },
+    { "id": "p3", "template": "I brush my ___ every day.", "zh": "我每天刷我的___。" }
+  ],
+  "vocab": {
+    "body": "身体",
+    "head": "头",
+    "arm": "手臂",
+    "leg": "腿",
+    "foot": "脚",
+    "face": "脸",
+    "eye": "眼睛",
+    "ear": "耳朵",
+    "nose": "鼻子",
+    "mouth": "嘴",
+    "tooth": "牙齿",
+    "hair": "头发",
+    "hand": "手",
+    "finger": "手指",
+    "wash": "洗",
+    "water": "水",
+    "soap": "肥皂",
+    "towel": "毛巾",
+    "dry": "擦干；干的",
+    "brush": "刷",
+    "clean": "干净的",
+    "every": "每一"
+  },
+  "sentences": [
+    {
+      "text": "This is my body.",
+      "gloss": "这是我的身体。",
+      "pattern": "p1",
+      "slots": ["body"],
+      "targets": ["body"]
+    },
+    {
+      "text": "I have one head, two arms, two legs and two feet.",
+      "gloss": "我有一个头、两条手臂、两条腿和两只脚。",
+      "targets": ["head", "arm", "leg", "foot"]
+    },
+    {
+      "text": "On my face I have two eyes, two ears, a nose and a mouth.",
+      "gloss": "我脸上有两只眼睛、两只耳朵、一个鼻子和一张嘴。",
+      "targets": ["face", "eye", "ear", "nose", "mouth"]
+    },
+    {
+      "text": "Every morning I wash my face and my hands with water and soap.",
+      "gloss": "每天早上我用水和肥皂洗脸、洗手。",
+      "pattern": "p2",
+      "slots": ["face"],
+      "targets": ["every", "wash", "hand", "water", "soap"]
+    },
+    {
+      "text": "Then I dry my ten fingers on a towel.",
+      "gloss": "然后我用毛巾把十根手指擦干。",
+      "targets": ["dry", "finger", "towel"]
+    },
+    {
+      "text": "I brush my teeth every day, and I brush my hair too.",
+      "gloss": "我每天刷牙，也梳头发。",
+      "pattern": "p3",
+      "slots": ["teeth"],
+      "targets": ["brush", "tooth", "hair"]
+    },
+    {
+      "text": "Now I am clean from my head to my feet.",
+      "gloss": "现在我从头到脚都干干净净。",
+      "targets": ["clean"]
+    }
+  ]
+}

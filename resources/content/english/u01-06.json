@@ -1,0 +1,133 @@
+{
+  "id": "english-u01-06",
+  "unit": 1,
+  "order": 6,
+  "title": "Good Night",
+  "scene": "睡前洗漱、上床、道晚安；睡不着怎么办",
+  "theme": "睡觉前，说晚安",
+  "form": "narrative",
+  "properNames": [],
+  "patterns": [
+    {
+      "id": "p1",
+      "template": "It is time for ___.",
+      "zh": "该___了。"
+    },
+    {
+      "id": "p2",
+      "template": "I go to bed at ___.",
+      "zh": "我___上床睡觉。"
+    },
+    {
+      "id": "p3",
+      "template": "I can't sleep.",
+      "zh": "我睡不着。"
+    },
+    {
+      "id": "p4",
+      "template": "Good night!",
+      "zh": "晚安！"
+    }
+  ],
+  "vocab": {
+    "night": "夜晚；晚上",
+    "tired": "累的",
+    "tonight": "今晚",
+    "goodbye": "再见",
+    "story": "故事",
+    "minute": "分钟",
+    "turn": "转；关（灯）",
+    "off": "关掉；离开",
+    "lamp": "台灯",
+    "dark": "黑的",
+    "quiet": "安静的",
+    "warm": "暖和的",
+    "soft": "软的",
+    "lie": "躺",
+    "rest": "休息",
+    "sleep": "睡觉",
+    "moon": "月亮",
+    "hour": "小时",
+    "asleep": "睡着的",
+    "dream": "做梦；梦",
+    "tomorrow": "明天",
+    "again": "再一次"
+  },
+  "sentences": [
+    {
+      "text": "It is nine o'clock, and it is time for bed.",
+      "gloss": "九点了，该上床睡觉了。",
+      "pattern": "p1",
+      "slots": [
+        "bed"
+      ],
+      "targets": []
+    },
+    {
+      "text": "I am tired tonight, so I say goodbye to my toys.",
+      "gloss": "今晚我很累，所以我跟玩具们说再见。",
+      "targets": [
+        "tired",
+        "tonight",
+        "goodbye"
+      ]
+    },
+    {
+      "text": "My mother reads me a short story for ten minutes, then she turns off the lamp.",
+      "gloss": "妈妈给我读了十分钟的小故事，然后关上台灯。",
+      "targets": [
+        "story",
+        "minute",
+        "turn",
+        "off",
+        "lamp"
+      ]
+    },
+    {
+      "text": "My room is dark and quiet, and my bed is warm and soft.",
+      "gloss": "我的房间又黑又安静，我的床又暖又软。",
+      "targets": [
+        "dark",
+        "quiet",
+        "warm",
+        "soft"
+      ]
+    },
+    {
+      "text": "I lie down and rest, but I can't sleep.",
+      "gloss": "我躺下休息，可是睡不着。",
+      "pattern": "p3",
+      "targets": [
+        "lie",
+        "rest",
+        "sleep"
+      ]
+    },
+    {
+      "text": "I look out of the window at the moon.",
+      "gloss": "我看着窗外的月亮。",
+      "targets": [
+        "moon"
+      ]
+    },
+    {
+      "text": "Half an hour later I am asleep, and I dream about my friends.",
+      "gloss": "半小时后我睡着了，梦见了我的朋友们。",
+      "targets": [
+        "hour",
+        "asleep",
+        "dream"
+      ]
+    },
+    {
+      "text": "Good night! Tomorrow it all begins again.",
+      "gloss": "晚安！明天这一切又要重新开始。",
+      "pattern": "p4",
+      "targets": [
+        "night",
+        "tomorrow",
+        "again"
+      ]
+    }
+  ]
+}

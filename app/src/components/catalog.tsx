@@ -214,7 +214,7 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
 }
 
 // 短文学英语 (STEMROBIN-82). Its catalog is DB-driven rather than a static outline:
-// the 60 VOA1500 passages are generated, so their titles only exist once saved.
+// the 84 A1A2 passages are generated, so their titles only exist once saved.
 // Nothing is rendered until at least one lesson is in the DB — there is no static
 // list to show placeholders against, unlike math/physics. Lessons are a flat,
 // sequentially-numbered list (1, 2, 3 …), not grouped into units.
@@ -238,7 +238,7 @@ function EnglishOutline({
       <details className="sr-out-stage" open>
         <summary>
           <span className="sr-out-caret" aria-hidden />
-          <span className="sr-out-stage-name">VOA1500</span>
+          <span className="sr-out-stage-name">A1A2</span>
         </summary>
         <ul className="sr-out-lessons">
           {lessons.map((l) => (

@@ -1,0 +1,90 @@
+{
+  "id": "english-u01-01",
+  "unit": 1,
+  "order": 1,
+  "title": "My Name and My Family",
+  "scene": "自我介绍，介绍家里人",
+  "theme": "我叫什么，我家有谁",
+  "form": "narrative",
+  "properNames": ["Ana", "Ben"],
+  "patterns": [
+    { "id": "p1", "template": "My name is ___.", "zh": "我叫___。" },
+    { "id": "p2", "template": "I am ___ years old.", "zh": "我___岁。" },
+    { "id": "p3", "template": "This is my ___.", "zh": "这是我的___。" },
+    { "id": "p4", "template": "I have a ___.", "zh": "我有一个___。" }
+  ],
+  "vocab": {
+    "hello": "你好",
+    "name": "名字",
+    "old": "…岁的；老的",
+    "year": "年；岁",
+    "live": "住；生活",
+    "family": "家；家人",
+    "this": "这；这个",
+    "mother": "妈妈",
+    "father": "爸爸",
+    "have": "有",
+    "brother": "哥哥；弟弟",
+    "sister": "姐姐；妹妹",
+    "baby": "婴儿；宝宝",
+    "boy": "男孩",
+    "girl": "女孩",
+    "grandmother": "奶奶；外婆",
+    "grandfather": "爷爷；外公",
+    "aunt": "姑姑；阿姨",
+    "uncle": "叔叔；舅舅",
+    "friend": "朋友",
+    "love": "爱",
+    "meet": "见到；认识"
+  },
+  "sentences": [
+    {
+      "text": "Hello! My name is Ana.",
+      "gloss": "你好！我叫安娜。",
+      "pattern": "p1",
+      "slots": ["Ana"],
+      "targets": ["hello", "name"]
+    },
+    {
+      "text": "I am nine years old, and I live with my family.",
+      "gloss": "我九岁，和家人住在一起。",
+      "pattern": "p2",
+      "slots": ["nine"],
+      "targets": ["old", "year", "live", "family"]
+    },
+    {
+      "text": "This is my mother, and this is my father.",
+      "gloss": "这是我妈妈，这是我爸爸。",
+      "pattern": "p3",
+      "slots": ["mother"],
+      "targets": ["this", "mother", "father"]
+    },
+    {
+      "text": "I have one brother and one sister.",
+      "gloss": "我有一个弟弟和一个姐姐。",
+      "pattern": "p4",
+      "slots": ["brother"],
+      "targets": ["have", "brother", "sister"]
+    },
+    {
+      "text": "My brother is a baby boy, and my sister is a big girl.",
+      "gloss": "我弟弟是个小男婴，我姐姐是个大女孩。",
+      "targets": ["baby", "boy", "girl"]
+    },
+    {
+      "text": "My grandmother and my grandfather live near us.",
+      "gloss": "我奶奶和我爷爷住在我们附近。",
+      "targets": ["grandmother", "grandfather"]
+    },
+    {
+      "text": "On Sunday my aunt and my uncle come with my friend Ben.",
+      "gloss": "星期天，我姑姑和我叔叔会带着我的朋友本一起来。",
+      "targets": ["aunt", "uncle", "friend"]
+    },
+    {
+      "text": "I love my family, and I want you to meet them.",
+      "gloss": "我爱我的家人，我想让你见见他们。",
+      "targets": ["love", "meet"]
+    }
+  ]
+}

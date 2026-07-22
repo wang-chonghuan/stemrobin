@@ -65,6 +65,12 @@ export function suggestHome(lessonId, written) {
   return ids.slice(ids.indexOf(lessonId) + 1).find((id) => !written.has(id)) ?? null
 }
 
+// The words a lesson is planned to teach (read-only — used by --dry-run before a save).
+export function planFor(lessonId) {
+  const { doc } = loadWordlist()
+  return doc.words.filter((w) => w.lesson === lessonId).map((w) => w.word.toLowerCase())
+}
+
 // Reconcile one just-saved lesson against the plan. Mutates the wordlist doc and writes it.
 //   coveredKeys — wordlist entry keys the passage actually covers (from the gate)
 //   targets     — the entry keys this lesson puts on a 生词卡

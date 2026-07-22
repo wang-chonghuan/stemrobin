@@ -1,0 +1,87 @@
+{
+  "id": "english-u01-05",
+  "unit": 1,
+  "order": 5,
+  "title": "What My Family Does",
+  "scene": "家人各做什么工作、喜欢什么",
+  "theme": "我的家人，他们做什么",
+  "form": "narrative",
+  "properNames": [],
+  "patterns": [
+    { "id": "p1", "template": "What does your ___ do?", "zh": "你的___是做什么的？" },
+    { "id": "p2", "template": "My ___ works in a ___.", "zh": "我的___在___工作。" },
+    { "id": "p3", "template": "He / She likes ___.", "zh": "他／她喜欢___。" }
+  ],
+  "vocab": {
+    "what": "什么",
+    "doctor": "医生",
+    "work": "工作",
+    "hospital": "医院",
+    "teacher": "老师",
+    "like": "喜欢",
+    "job": "工作；职业",
+    "nurse": "护士",
+    "help": "帮助",
+    "week": "星期；周",
+    "farmer": "农民",
+    "farm": "农场",
+    "city": "城市",
+    "driver": "司机",
+    "cook": "厨师；做饭",
+    "shop": "商店",
+    "police": "警察",
+    "office": "办公室",
+    "worker": "工人；上班的人",
+    "busy": "忙的",
+    "money": "钱",
+    "study": "学习"
+  },
+  "sentences": [
+    {
+      "text": "\"What does your mother do?\" my friend asks.",
+      "gloss": "我朋友问：“你妈妈是做什么的？”",
+      "pattern": "p1",
+      "slots": ["mother"],
+      "targets": ["what"]
+    },
+    {
+      "text": "My mother is a doctor, and she works in a big hospital.",
+      "gloss": "我妈妈是医生，她在一家大医院工作。",
+      "pattern": "p2",
+      "slots": ["hospital"],
+      "targets": ["doctor", "work", "hospital"]
+    },
+    {
+      "text": "My father is a teacher, and he likes his job.",
+      "gloss": "我爸爸是老师，他喜欢他的工作。",
+      "pattern": "p3",
+      "slots": ["job"],
+      "targets": ["teacher", "like", "job"]
+    },
+    {
+      "text": "My aunt is a nurse, and she helps sick people every week.",
+      "gloss": "我姑姑是护士，她每周都照顾生病的人。",
+      "targets": ["nurse", "help", "week"]
+    },
+    {
+      "text": "My uncle is a farmer on a farm outside the city.",
+      "gloss": "我叔叔是农民，在城外的一个农场干活。",
+      "targets": ["farmer", "farm", "city"]
+    },
+    {
+      "text": "My grandfather was a bus driver, and my grandmother was a cook in a shop.",
+      "gloss": "我爷爷以前是公交车司机，我奶奶以前是一家店里的厨师。",
+      "targets": ["driver", "cook", "shop"]
+    },
+    {
+      "text": "One friend of my father is in the police, and one works in an office.",
+      "gloss": "我爸爸的一个朋友是警察，另一个在办公室上班。",
+      "targets": ["police", "office"]
+    },
+    {
+      "text": "Every worker is busy and makes money, and my job is to study.",
+      "gloss": "每个上班的人都很忙，都在挣钱；我的工作是学习。",
+      "targets": ["worker", "busy", "money", "study"]
+    }
+  ]
+}

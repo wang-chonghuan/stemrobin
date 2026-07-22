@@ -9,7 +9,7 @@
 // never silently relaxed to fit (charter · abort beats workaround).
 //
 // Usage (from repo root):
-//   node .agents/skills/sr-voa1500/scripts/save-lesson.mjs --spec <lesson.json> [--status draft]
+//   node .agents/skills/sr-voa1500/scripts/save-lesson.mjs --spec <lesson.json> [--status draft] [--dry-run]
 //
 // Spec shape:
 //   { "id":"english-u01-01", "unit":1, "order":1, "title":"...", "theme":"...",
@@ -19,7 +19,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import postgres from 'postgres'
 import { loadVocab, checkPassage, words, resolve, repoRoot } from './vocab.mjs'
-import { reconcileLesson, printReconcileReport } from './reconcile.mjs'
+import { reconcileLesson, printReconcileReport, planFor } from './reconcile.mjs'
 import { synthesize } from './tts.mjs'
 
 function fail(m) { console.error(`✗ ${m}`); process.exit(1) }
@@ -106,6 +106,17 @@ if (problems.length) {
   console.error('✗ 校验未通过，未写入任何数据：')
   for (const p of problems) console.error(`  · ${p}`)
   process.exit(1)
+}
+
+// --dry-run: gate + plan check only. Narration and PDF take minutes per lesson, so an
+// author iterating on the passage must be able to see the verdict without paying for them.
+if (argv.includes('--dry-run')) {
+  const plan = planFor(spec.id)
+  const missing = plan.filter((w) => !covered.has(w))
+  console.log(`✓ 校验通过 ${spec.id} — ${spec.sentences.length} 句 / ${totalWords} 词 / 覆盖 ${covered.size} 个词条 / 生词卡 ${targetWords.length} 个`)
+  console.log(`· 计划 ${plan.length} 词 / 正文覆盖 ${plan.length - missing.length} 词`)
+  if (missing.length) console.log(`  ⚠ 未教到 (${missing.length}): ${missing.join(', ')}`)
+  process.exit(0)
 }
 
 // target words -> 0-based word-token indices (the content shape's contract)
