@@ -10,7 +10,8 @@
     "STEMROBIN-96",
     "STEMROBIN-97",
     "STEMROBIN-98",
-    "STEMROBIN-104"
+    "STEMROBIN-104",
+    "STEMROBIN-105"
   ],
   "blocked_on": {
     "STEMROBIN-100": [],
@@ -51,7 +52,8 @@
       "STEMROBIN-102",
       "STEMROBIN-100",
       "STEMROBIN-96",
-      "STEMROBIN-104"
+      "STEMROBIN-104",
+      "STEMROBIN-105"
     ],
     "in_progress": [
       "STEMROBIN-101 (unit 01 allocated; units 02–12 pending)"
