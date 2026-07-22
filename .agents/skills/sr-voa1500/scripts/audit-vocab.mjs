@@ -111,15 +111,16 @@ const add = (form, base, kind, declared = base) =>
 
 // Gate generated inflections by part of speech so the corpus is *plausible* author
 // input, not a combinatorial explosion of non-words: a noun does not take -ed/-ing, an
-// article does not take -er. The list's pos tags are coarse ("ad." lumps adjective /
-// adverb / preposition), so this only prunes the obvious nonsense (crisis -> "crisissed",
-// people -> "peoply"); a little over-generation inside a category is harmless because a
-// non-word that never appears in real text costs nothing whether it resolves or not.
+// article does not take -er. Oxford tags a word with every part of speech it has
+// ("n., v.", "adj. , adv."), so membership is tested per tag, not by equality; this only
+// prunes the obvious nonsense (crisis -> "crisissed", people -> "peoply"); a little
+// over-generation inside a category is harmless because a non-word that never appears in
+// real text costs nothing whether it resolves or not.
 for (const key of vocab.entryKeys) {
-  const pos = vocab.pos.get(key) ?? ''
-  const isVerb = pos === 'v.'
-  const isNoun = pos === 'n.'
-  const isGradable = pos === 'ad.' || pos === 'adj.'
+  const tags = (vocab.pos.get(key) ?? '').split(/[,/]/).map((t) => t.trim())
+  const isVerb = tags.includes('v.')
+  const isNoun = tags.includes('n.')
+  const isGradable = tags.includes('adj.') || tags.includes('adv.')
   // multi-word / parenthetical headwords ("a (an)", "air force") are inflected through
   // their component words, which loadVocab already registers in the index.
   for (const part of key.replace(/[()]/g, ' ').split(/[\s/]+/)) {
@@ -302,7 +303,8 @@ const HAND = [
   ['sleepy', 'sleep'], ['tired', null, 'reword: "she wants to sleep"'],
   ['angry', 'anger'], ['excited', null, 'use "happy"'],
   ['scared', null, 'use "afraid" / "fear"'],
-  ['nervous', null, 'use "afraid"'], ['worried', 'worry'], ['lonely', 'alone'],
+  ['nervous', null, 'use "afraid"'], ['worried', 'worry'],
+  ['lonely', null, 'use "alone" — "lonely" is its own lexeme, not an inflection of it'],
   ['funny', 'fun'], ['silly', null, 'reword'], ['polite', null, 'reword'],
   ['birthday', null, 'reword: "the day she was born"'],
   ['holiday', null, 'use "day off" / name the day'],
@@ -345,9 +347,9 @@ function buildGapsDoc(gaps) {
     generated:
       'node .agents/skills/sr-voa1500/scripts/audit-vocab.mjs --emit-gaps (STEMROBIN-94). ' +
       'Words a children\'s-course author would plausibly write that resolve to NOTHING in ' +
-      'resources/content/voa1500-wordlist.json and are not inflections of anything in it. ' +
+      'resources/content/course-wordlist.json and are not inflections of anything in it. ' +
       'The gate rejects them; avoid them while writing instead of discovering them at save time.',
-    wordlist: `resources/content/voa1500-wordlist.json (${vocab.count} headwords)`,
+    wordlist: `resources/content/course-wordlist.json (${vocab.count} headwords)`,
     contractionPolicy:
       'RESOLVE — contractions are treated as inflections, so authors may write natural ' +
       'spoken English in the 〔对话〕 lessons instead of stilted expansions. vocab.mjs ' +
@@ -399,17 +401,26 @@ const MUST_RESOLVE = [
   ['hungry', 'hunger'], ['cannot', 'can'], ["i'm", 'i'], ["don't", 'do'],
   ["isn't", 'be'], ["can't", 'can'], ["it's", 'it'], ["we'll", 'we'],
 ]
+// Words a children's author could plausibly type that the Oxford A1+A2 list does NOT
+// have. The gate must keep rejecting them — this is the proof it is still a gate after
+// the wordlist swap (STEMROBIN-100). into/where/hello/homework used to live here: VOA
+// lacked them, Oxford has them, which is exactly why the list was replaced.
 const MUST_FAIL = [
-  'skateboard', 'gymnasium', 'into', 'onto', 'where', 'hello', 'homework',
+  'skateboard', 'gymnasium', 'pajamas', 'backpack', 'crayon', 'dinosaur',
   'skateboards', "skateboard's", 'skateboarding', 'gymnasiums',
-  // words a suffix rule could over-eagerly decompose into an in-list word
-  'hey', 'toy', 'evening', 'key', "skateboard'", 'skateboardly',
+  // forms a suffix rule could over-eagerly decompose into an in-list word
+  "skateboard'", 'skateboardly', 'backpacks', 'crayons',
 ]
 
+// A form that IS itself a headword must resolve to itself, not be forced back to the
+// base a smaller wordlist would have made it fall back to: Oxford lists my/me/his/its/
+// running/easily/hungry/cannot in their own right, VOA1500 did not. What the check
+// guards is that the form still resolves to *something* legal.
 const regressions = []
 for (const [form, want] of MUST_RESOLVE) {
+  const expect = vocab.index.get(form) ?? want
   const got = resolve(form, vocab)
-  if (got !== want) regressions.push(`resolve(${form}) = ${got ?? 'null'}, want ${want}`)
+  if (got !== expect) regressions.push(`resolve(${form}) = ${got ?? 'null'}, want ${expect}`)
 }
 for (const form of MUST_FAIL) {
   const got = resolve(form, vocab)
@@ -425,8 +436,8 @@ for (const form of MUST_FAIL) {
     ['Anna'],
   )
   if (ok.oov.length) regressions.push(`natural passage rejected: ${[...new Set(ok.oov)].join(', ')}`)
-  const bad = checkPassage('Anna rides her skateboard into the gymnasium.', vocab, ['Anna'])
-  for (const w of ['skateboard', 'into', 'gymnasium']) {
+  const bad = checkPassage('Anna rides her skateboard to the gymnasium with her backpack.', vocab, ['Anna'])
+  for (const w of ['skateboard', 'backpack', 'gymnasium']) {
     if (!bad.oov.includes(w)) regressions.push(`passage gate let "${w}" through`)
   }
 }
@@ -438,7 +449,7 @@ for (const form of MUST_FAIL) {
 const byKind = new Map()
 for (const f of inflectionFails) byKind.set(f.kind, (byKind.get(f.kind) ?? 0) + 1)
 
-console.log(`VOA1500 resolver audit — ${vocab.count} headwords`)
+console.log(`course wordlist resolver audit — ${vocab.count} headwords (Oxford A1+A2)`)
 console.log(`corpus              ${tested} surface forms`)
 console.log(`failures            ${failures.length}`)
 console.log(`  INFLECTION (bug)  ${inflectionFails.length}`)

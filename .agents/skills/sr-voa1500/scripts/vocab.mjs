@@ -1,8 +1,8 @@
-// sr-voa1500 — VOA1500 vocabulary gate (STEMROBIN-80).
+// sr-voa1500 — course vocabulary gate (STEMROBIN-80, retargeted to Oxford by STEMROBIN-100).
 //
-// Enforces the charter ruling "英文词元不得超出 VOA1500(允许其词形变化、专有名词、数字)":
+// Enforces the charter ruling "英文词元不得超出课程词表(允许其词形变化、专有名词、数字)":
 // every word of a generated passage must resolve to a headword in
-// resources/content/voa1500-wordlist.json, or be an allowed exception (proper name /
+// resources/content/course-wordlist.json, or be an allowed exception (proper name /
 // number). A word that resolves to nothing is reported, never silently accepted —
 // the author fixes the text, the gate does not widen.
 //
@@ -10,7 +10,7 @@
 // stemming library: a dependency is inadmissible when the existing stack suffices
 // (charter · no gratuitous dependencies), and a transparent rule set is auditable.
 import { execFileSync } from 'node:child_process'
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 export function repoRoot() {
@@ -127,11 +127,11 @@ export function lemmaCandidates(w) {
   if (s.endsWith('ied')) push(s.slice(0, -3) + 'y')
   if (s.endsWith('ed')) {
     push(s.slice(0, -2)); push(s.slice(0, -1))
-    if (/([bdgklmnprt])\1ed$/.test(s)) push(s.slice(0, -3)) // stopped -> stop
+    if (/([bdgklmnprst])\1ed$/.test(s)) push(s.slice(0, -3)) // stopped -> stop, focussed -> focus
   }
   if (s.endsWith('ing')) {
     push(s.slice(0, -3)); push(s.slice(0, -3) + 'e')
-    if (/([bdgklmnprt])\1ing$/.test(s)) push(s.slice(0, -4)) // running -> run
+    if (/([bdgklmnprst])\1ing$/.test(s)) push(s.slice(0, -4)) // running -> run, focussing -> focus
   }
   if (s.endsWith('ier')) push(s.slice(0, -3) + 'y')   // happier -> happy
   if (s.endsWith('iest')) push(s.slice(0, -4) + 'y')  // happiest -> happy
@@ -162,55 +162,40 @@ export function lemmaCandidates(w) {
   return out
 }
 
-// The course vocabulary is TWO lists. VOA1500 is a news wordlist — it carries
-// administration/guerrilla/asylum but not breakfast/park/sorry/phone — while the
-// blueprint selects by how often a child meets a word, so 36% of the words its lesson
-// cards name were absent and its passages could not even use them. The supplement
-// closes that (human ruling 2026-07-22: 以蓝图为准，蓝图要求的都要补充).
-//
-// Both lists are teachable and both pass the gate; `origin` keeps them distinguishable
-// so coverage of the original 1541 can still be reported on its own.
+// The course vocabulary is ONE list: `resources/content/course-wordlist.json` —
+// the Oxford 3000 A1+A2 subset (human ruling 2026-07-22). VOA1500 was abandoned because
+// it is a NEWS wordlist: it carries administration/guerrilla/asylum but not
+// breakfast/park/sorry/phone, while the blueprint selects by how often a child actually
+// meets a word. That file is the single source of truth for the whole course — it also
+// carries each word's CEFR level, its source (oxford / oxford-promoted / added-by-machine)
+// and its per-word生成 state (which lesson first teaches it), so no second copy exists.
 export function loadVocab() {
   const root = repoRoot()
-  const doc = JSON.parse(readFileSync(join(root, 'resources/content/voa1500-wordlist.json'), 'utf8'))
-  const supPath = join(root, 'resources/content/supplement-wordlist.json')
-  const sup = existsSync(supPath) ? JSON.parse(readFileSync(supPath, 'utf8')) : { entries: [] }
-  const origin = new Map()
-  for (const e of doc.entries) origin.set(e.word.toLowerCase(), 'voa')
-  for (const e of sup.entries) origin.set(e.word.toLowerCase(), 'supplement')
-  doc.entries = [...doc.entries, ...sup.entries]
-  // headword -> canonical entry key. Multi-word headwords ("air force", "a (an)")
+  const path = join(root, 'resources/content/course-wordlist.json')
+  const doc = JSON.parse(readFileSync(path, 'utf8'))
+  // headword -> canonical entry key. Multi-word headwords ("ice cream", "next to")
   // also register their component words so the gate accepts them in running text.
   const index = new Map()
-  for (const e of doc.entries) {
+  for (const e of doc.words) {
     const key = e.word.toLowerCase()
     index.set(key, key)
     for (const part of key.replace(/[()]/g, ' ').split(/[\s/]+/)) {
       if (part && !index.has(part)) index.set(part, key)
     }
   }
-  const pos = new Map(doc.entries.map((e) => [e.word.toLowerCase(), e.pos]))
+  const byKey = new Map(doc.words.map((e) => [e.word.toLowerCase(), e]))
   return {
-    index, pos, origin,
-    count: doc.entries.length,
-    voaCount: [...origin.values()].filter((o) => o === 'voa').length,
-    entryKeys: doc.entries.map((e) => e.word.toLowerCase()),
-    voaKeys: doc.entries.map((e) => e.word.toLowerCase()).filter((w) => origin.get(w) === 'voa'),
+    index, path, doc, byKey,
+    pos: new Map(doc.words.map((e) => [e.word.toLowerCase(), e.pos])),
+    level: new Map(doc.words.map((e) => [e.word.toLowerCase(), e.level])),
+    source: new Map(doc.words.map((e) => [e.word.toLowerCase(), e.source])),
+    count: doc.words.length,
+    entryKeys: doc.words.map((e) => e.word.toLowerCase()),
   }
 }
 
-// Surface forms that a suffix rule can decompose into an in-list word but that are a
-// separate lexeme the list simply does not have. Without this they would be silently
-// accepted, and an author would ship a word the learner's 1541-word world does not
-// contain. Keep this set tiny and evidenced — it is a correction, not a policy dial.
-const FALSE_FRIEND = new Set([
-  'evening', // "even" + -ing; VOA1500 has no "evening" — write "night"
-])
-
 // Resolve one surface word to the wordlist entry it covers, or null.
 export function resolve(word, vocab) {
-  const s = word.toLowerCase().replace(/[’]/g, "'")
-  if (FALSE_FRIEND.has(s) && !vocab.index.has(s)) return null
   for (const cand of lemmaCandidates(word)) {
     const hit = vocab.index.get(cand)
     if (hit) return hit

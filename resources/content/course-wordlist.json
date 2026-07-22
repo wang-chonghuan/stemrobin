@@ -16,17 +16,17 @@
   "rehomed": "已从原课次改嫁到别处（movedFrom 记录来源）"
  },
  "counts": {
-  "total": 1712,
+  "total": 1733,
   "byLevel": {
    "A1": 911,
-   "A2": 792,
-   "B1": 6,
-   "B2": 3
+   "A2": 800,
+   "B1": 16,
+   "B2": 6
   },
   "bySource": {
    "oxford": 1689,
-   "added-by-machine": 14,
-   "oxford-promoted": 9
+   "oxford-promoted": 22,
+   "added-by-machine": 22
   }
  },
  "words": [
@@ -377,6 +377,16 @@
    "level": "A1",
    "pos": "n.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "album",
+   "level": "B1",
+   "pos": "n.",
+   "source": "oxford-promoted",
+   "note": "蓝图第83 拍张照片留个纪念课点名要求，Oxford 原列于 B1，提升入表",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -1103,6 +1113,16 @@
    "movedFrom": null
   },
   {
+   "word": "balance",
+   "level": "B1",
+   "pos": "n., v.",
+   "source": "oxford-promoted",
+   "note": "蓝图第80 学骑自行车课点名要求，Oxford 原列于 B1，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "ball",
    "level": "A1",
    "pos": "n.",
@@ -1769,6 +1789,16 @@
    "movedFrom": null
   },
   {
+   "word": "brave",
+   "level": "B1",
+   "pos": "adj.",
+   "source": "oxford-promoted",
+   "note": "蓝图第48 牙疼，去看牙医课点名要求，Oxford 原列于 B1，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "bread",
    "level": "A1",
    "pos": "n.",
@@ -2052,6 +2082,16 @@
    "level": "A1",
    "pos": "modal v.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "candle",
+   "level": "A2",
+   "pos": "n.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第34 我的生日会课点名要求",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -2381,6 +2421,16 @@
    "movedFrom": null
   },
   {
+   "word": "cheer",
+   "level": "A2",
+   "pos": "v., n.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第78 比赛赢了课点名要求",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "cheese",
    "level": "A1",
    "pos": "n.",
@@ -2457,6 +2507,16 @@
    "level": "A1",
    "pos": "v.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "chore",
+   "level": "A2",
+   "pos": "n.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第75 帮忙做家务课点名要求",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -2772,6 +2832,16 @@
    "level": "A2",
    "pos": "adj.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "comic",
+   "level": "A2",
+   "pos": "n., adj.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第79 我在读的漫画书课点名要求",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -4491,6 +4561,16 @@
    "movedFrom": null
   },
   {
+   "word": "episode",
+   "level": "B1",
+   "pos": "n.",
+   "source": "oxford-promoted",
+   "note": "蓝图第62 我最喜欢的动画片课点名要求，Oxford 原列于 B1，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "equipment",
    "level": "A2",
    "pos": "n.",
@@ -5329,6 +5409,16 @@
    "movedFrom": null
   },
   {
+   "word": "flashlight",
+   "level": "A2",
+   "pos": "n.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第73 停电了课点名要求",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "flat",
    "level": "A2",
    "pos": "adj.",
@@ -5915,6 +6005,16 @@
    "movedFrom": null
   },
   {
+   "word": "grade",
+   "level": "B1",
+   "pos": "n. , v.",
+   "source": "oxford-promoted",
+   "note": "蓝图第13 考试和成绩课点名要求，Oxford 原列于 B1，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "grandfather",
    "level": "A1",
    "pos": "n.",
@@ -6126,6 +6226,16 @@
    "level": "A1",
    "pos": "n. , v.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "handle",
+   "level": "B2",
+   "pos": "v., n.",
+   "source": "oxford-promoted",
+   "note": "蓝图第72 门把手坏了课点名要求，Oxford 原列于 B2，提升入表",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -6640,6 +6750,16 @@
    "level": "A1",
    "pos": "adj.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "hurry",
+   "level": "B1",
+   "pos": "n., v.",
+   "source": "oxford-promoted",
+   "note": "蓝图第71 马桶堵了课点名要求，Oxford 原列于 B1，提升入表",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -7870,6 +7990,16 @@
    "movedFrom": null
   },
   {
+   "word": "loose",
+   "level": "B2",
+   "pos": "adj.",
+   "source": "oxford-promoted",
+   "note": "蓝图第72 门把手坏了课点名要求，Oxford 原列于 B2，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "lose",
    "level": "A1",
    "pos": "v.",
@@ -8802,6 +8932,16 @@
    "level": "A2",
    "pos": "adv.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "neat",
+   "level": "B1",
+   "pos": "adj.",
+   "source": "oxford-promoted",
+   "note": "蓝图第74 房间太乱，收拾东西课点名要求，Oxford 原列于 B1，提升入表",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -10619,6 +10759,16 @@
    "movedFrom": null
   },
   {
+   "word": "proud",
+   "level": "B1",
+   "pos": "adj.",
+   "source": "oxford-promoted",
+   "note": "蓝图第78 比赛赢了课点名要求，Oxford 原列于 B1，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "provide",
    "level": "A2",
    "pos": "v.",
@@ -10641,6 +10791,16 @@
    "level": "A2",
    "pos": "v.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "puddle",
+   "level": "A2",
+   "pos": "n.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第55 下大雨那天课点名要求",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -11693,6 +11853,16 @@
    "movedFrom": null
   },
   {
+   "word": "screw",
+   "level": "A2",
+   "pos": "n., v.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第72 门把手坏了课点名要求",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "sea",
    "level": "A2",
    "pos": "n.",
@@ -11968,6 +12138,16 @@
    "level": "A2",
    "pos": "n.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "shelf",
+   "level": "B1",
+   "pos": "n.",
+   "source": "oxford-promoted",
+   "note": "蓝图第74 房间太乱，收拾东西课点名要求，Oxford 原列于 B1，提升入表",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -13308,6 +13488,16 @@
    "movedFrom": null
   },
   {
+   "word": "sweep",
+   "level": "B2",
+   "pos": "v.",
+   "source": "oxford-promoted",
+   "note": "蓝图第74 房间太乱，收拾东西课点名要求，Oxford 原列于 B2，提升入表",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
    "word": "sweet",
    "level": "A2",
    "pos": "adj.",
@@ -13330,6 +13520,16 @@
    "level": "A1",
    "pos": "n.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "swing",
+   "level": "A2",
+   "pos": "v., n.",
+   "source": "added-by-machine",
+   "note": "不在 Oxford 3000；蓝图第82 放学后去公园课点名要求",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -13889,6 +14089,16 @@
    "level": "A2",
    "pos": "v., n.",
    "source": "oxford",
+   "lesson": null,
+   "state": "unassigned",
+   "movedFrom": null
+  },
+  {
+   "word": "tight",
+   "level": "B1",
+   "pos": "adj.",
+   "source": "oxford-promoted",
+   "note": "蓝图第72 门把手坏了课点名要求，Oxford 原列于 B1，提升入表",
    "lesson": null,
    "state": "unassigned",
    "movedFrom": null
@@ -15462,5 +15672,34 @@
    "movedFrom": null
   }
  ],
- "log": []
+ "log": [
+  {
+   "date": "2026-07-22",
+   "ticket": "STEMROBIN-100",
+   "action": "蓝图 v3（84 课）点名而 A1+A2 未收的 21 个词入表：Oxford 有的从 B1/B2 提升，Oxford 没有的标 added-by-machine",
+   "words": [
+    "grade",
+    "candle",
+    "brave",
+    "puddle",
+    "episode",
+    "hurry",
+    "handle",
+    "screw",
+    "tight",
+    "loose",
+    "flashlight",
+    "shelf",
+    "sweep",
+    "neat",
+    "chore",
+    "cheer",
+    "proud",
+    "comic",
+    "balance",
+    "swing",
+    "album"
+   ]
+  }
+ ]
 }
