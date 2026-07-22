@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { ArrowLeft, Check, Languages, Menu } from 'lucide-react'
+import { ArrowLeft, Check, CornerDownLeft, Languages, Menu } from 'lucide-react'
 
 import { getRecitation, recordRecite, getSentenceHint, getEnglishReading, type Level } from '~/lib/english'
 import { getLocale } from '~/lib/locale'
@@ -174,6 +174,7 @@ function ReciteView() {
                                   return { ...a, [s.id]: cur }
                                 })
                               }}
+                              onKeyDown={(e) => { if (e.key === 'Enter') submitSentence(s.id) }}
                               aria-label={t(locale, 'en.recite.blank')}
                             />
                           ) : (
@@ -181,6 +182,30 @@ function ReciteView() {
                           ),
                         )}
                       </p>
+                      {/* Same icon cluster as the reading page: with eight sentences on
+                          screen, a pair of full-size buttons per row buries the passage. */}
+                      {!isDone && (
+                        <div className="sr-en-actions">
+                          <button
+                            type="button"
+                            className={'sr-en-icon' + (assisted.has(s.id) ? ' on' : '')}
+                            onClick={() => askHint(s.id)}
+                            aria-label={t(locale, 'en.recite.hint')}
+                            title={t(locale, 'en.recite.hint')}
+                          >
+                            <Languages size={17} aria-hidden />
+                          </button>
+                          <button
+                            type="button"
+                            className="sr-en-icon"
+                            onClick={() => submitSentence(s.id)}
+                            aria-label={t(locale, 'en.recite.submit')}
+                            title={t(locale, 'en.recite.submit')}
+                          >
+                            <CornerDownLeft size={17} aria-hidden />
+                          </button>
+                        </div>
+                      )}
                     </div>
                     {hint[s.id] && <p className="sr-en-zh">{hint[s.id]}</p>}
                     {(wrong[s.id]?.length ?? 0) > 0 && (
@@ -188,16 +213,6 @@ function ReciteView() {
                     )}
                     {assisted.has(s.id) && (
                       <p className="sr-en-assisted">{t(locale, 'en.recite.assisted')}</p>
-                    )}
-                    {!isDone && (
-                      <div className="sr-en-actions">
-                        <button type="button" className="sr-btn primary" onClick={() => submitSentence(s.id)}>
-                          {t(locale, 'en.recite.submit')}
-                        </button>
-                        <button type="button" className="sr-btn ghost" onClick={() => askHint(s.id)}>
-                          <Languages size={15} aria-hidden /> {t(locale, 'en.recite.hint')}
-                        </button>
-                      </div>
                     )}
                   </div>
                 )
