@@ -210,7 +210,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': 'pts',
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
-    'ov.hero.badge': 'MynaTree · Secondary math & physics',
+    'ov.hero.badge': 'UbiSTEM · Secondary math & physics',
     'ov.hero.title.a':
       'Heir to the 20th century’s most rigorous tradition of mathematical thinking, rebuilt with AI — ',
     'ov.hero.title.b': 'a rigorous school of your own',

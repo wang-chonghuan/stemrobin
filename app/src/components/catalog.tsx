@@ -40,7 +40,7 @@ export function CatalogSidebar({
           <img
             className="sr-brand-img"
             src="/logo-mark.png"
-            alt="MynaTree"
+            alt="UbiSTEM"
             width={44}
             height={44}
           />
@@ -48,7 +48,7 @@ export function CatalogSidebar({
             <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
               {locale === 'en' ? (
                 <>
-                  Myna<b>Tree</b>
+                  Ubi<b>STEM</b>
                 </>
               ) : (
                 <>
