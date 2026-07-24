@@ -23,7 +23,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
   zh: {
     'switch.aria': '学习语言',
     'account.menu': '账户',
-    'brand.tagline': '你的家庭数学老师',
+    'brand.tagline': '严格数理传统，为你重建',
     'cat.open': '打开目录',
     'cat.close': '关闭目录',
     'cat.group.curriculum': '课程大纲',
@@ -62,10 +62,11 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': '点',
     'ov.stat.learned': '课文完成',
     'ov.stat.practiced': '练习完成',
-    'ov.hero.badge': '现已开放 · 初中数学',
-    'ov.hero.title.a': '为每个孩子量身定制的 ',
-    'ov.hero.title.b': 'AI 数学老师',
-    'ov.hero.desc': '理解先于刷题：卡片式一步步学懂，再练熟。AI 全程跟踪孩子的进度，识别薄弱、推荐下一课、生成针对性练习——为每个孩子定制学习路径，并带他持续超前。',
+    'ov.hero.badge': '知构 · 初高中数学与物理',
+    'ov.hero.title.a': '承袭 20 世纪最严格的数理思维传统，用 AI 重建——一所为你定制的',
+    'ov.hero.title.b': '数理名校',
+    'ov.hero.story.who': '教的不是刷题，而是理解、独立思考、在严格中养出直觉。',
+    'ov.hero.story.body': '20 世纪最严格的数理传统，培养的是能自己想通、而不是背套路的头脑。今天，我们用 AI 把这套信念，重建给每一个愿意认真学的孩子。',
     'ov.new': '新上线课程（{n}）',
     // overview — learning-principle column (growth)
     'ov.learn.eyebrow': '科学研究发现',
@@ -166,12 +167,12 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'practice.gate.cancel': '先看看',
     'ov.progress.guest': '登录后免费保存学习进度',
     'ov.progress.guest.cta': '登录',
-    'ov.hero.free': '完全免费，没有付费墙——登录只为保存孩子的学习进度。',
+    'ov.hero.free': '完全免费，没有付费墙——登录只为保存你的学习进度。',
   },
   en: {
     'switch.aria': 'Learning language',
     'account.menu': 'Account',
-    'brand.tagline': 'Your home math tutor',
+    'brand.tagline': 'The rigorous tradition, rebuilt for you',
     'cat.open': 'Open catalog',
     'cat.close': 'Close catalog',
     'cat.group.curriculum': 'Curriculum',
@@ -209,11 +210,14 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': 'pts',
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
-    'ov.hero.badge': 'Now open · Secondary math',
-    'ov.hero.title.a': 'An AI math tutor tailored to ',
-    'ov.hero.title.b': 'every child',
-    'ov.hero.desc':
-      'Understanding before drilling: learn each idea step by step, then practice it to fluency. The AI tracks your child’s progress the whole way — spotting weak points, recommending the next lesson, and generating targeted practice — a learning path built for each child, always keeping them a step ahead.',
+    'ov.hero.badge': 'MynaTree · Secondary math & physics',
+    'ov.hero.title.a':
+      'Heir to the 20th century’s most rigorous tradition of mathematical thinking, rebuilt with AI — ',
+    'ov.hero.title.b': 'a rigorous school of your own',
+    'ov.hero.story.who':
+      'It doesn’t drill for exams — it teaches understanding, independent thought, and intuition forged through rigor.',
+    'ov.hero.story.body':
+      'The most rigorous tradition of the 20th century built minds that reason things out instead of memorizing recipes. Today we’ve rebuilt that belief with AI — for every child willing to learn in earnest.',
     'ov.new': 'New lessons ({n})',
     'ov.learn.eyebrow': 'What the research shows',
     'ov.learn.title': 'The most effective learning isn’t re-reading — it’s recalling at every step',
@@ -311,7 +315,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'practice.gate.cancel': 'Not now',
     'ov.progress.guest': 'Sign in to save your progress — free',
     'ov.progress.guest.cta': 'Sign in',
-    'ov.hero.free': 'Completely free, no paywall — sign in only to save your child’s progress.',
+    'ov.hero.free': 'Completely free, no paywall — sign in only to save your progress.',
   },
 }
 

@@ -16,8 +16,8 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      { title: '八个树 MynaTree · AI 数学老师' },
-      { name: 'description', content: 'MynaTree — 孩子的私人 AI 数学老师：卡片式学习、即时反馈、讲到会为止、还能超前学。' },
+      { title: '知构 · 初高中数学与物理' },
+      { name: 'description', content: '知构 — 承袭 20 世纪最严格的数理思维传统，用 AI 重建的初高中数学与物理：教的不是刷题，而是理解、独立思考、在严格中养出直觉。' },
     ],
     links: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },

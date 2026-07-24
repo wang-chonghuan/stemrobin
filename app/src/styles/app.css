@@ -191,7 +191,7 @@ body {
 .sr-brand-name b {
   color: var(--sr-green-deep);
 }
-/* Chinese wordmark (八个树): the display font is Latin-only, so CJK falls back to
+/* Chinese wordmark (知构): the display font is Latin-only, so CJK falls back to
    the system font — sparse glyphs read thin and 3 chars run big. Heavier + a touch
    smaller + tighter so it reads as solid/compact as the old 知更 mark. English is
    unaffected. */
@@ -1002,20 +1002,34 @@ a.sr-out-lesson.ready:hover {
   margin-bottom: 12px;
 }
 .sr-hero-title {
-  margin: 0 0 9px;
+  margin: 0 0 12px;
   font-family: var(--sr-display);
-  font-size: 27px;
-  line-height: 1.18;
+  font-size: 24px;
+  line-height: 1.34;
   font-weight: 800;
   color: var(--sr-ink);
+  max-width: 34ch;
+  text-wrap: balance;
 }
 .sr-hero-accent { color: var(--sr-blue); }
-.sr-hero-desc {
+.sr-hero-story {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
+  padding-left: 14px;
+  border-left: 2px solid var(--sr-blue);
+  max-width: 52ch;
+}
+.sr-hero-story-who {
+  margin: 0 0 5px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--sr-ink);
+}
+.sr-hero-story-body {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
   color: var(--sr-ink-soft);
-  max-width: 48ch;
 }
 .sr-hero-art { flex: none; width: 208px; height: auto; }
 @media (max-width: 640px) {
