@@ -33,7 +33,15 @@ Run app commands from `app/` (or with `npm --prefix app`).
 - **Build invariant**: n-easyapp hard-codes Dockerfile + build context at the **repo root**. The
   root `Dockerfile` builds the standalone app: `npm ci` from `app/`'s manifest, `npm run build`,
   then ships only `app/.output`. Do not move the Dockerfile; keep it building `app/`.
-- Live URL: https://ca-stemrobin.kindsmoke-4d84c417.northeurope.azurecontainerapps.io
+- **Live URL: https://lemmadeck.com** (`www` 301s to the apex). Origin still answers at
+  https://ca-stemrobin.kindsmoke-4d84c417.northeurope.azurecontainerapps.io.
+- Domain layout (n-golive cap2, STEMROBIN-111): Cloudflare zone `lemmadeck.com` —
+  `A @ → 20.54.18.105` **DNS only (grey; the Azure managed cert needs to reach the origin)**,
+  `TXT asuid` = the container app's customDomainVerificationId, `CNAME www → lemmadeck.com`
+  **proxied (orange)** plus a redirect rule. Cert `mc-cae-easyapp-sh-lemmadeck-com-3571`
+  (DigiCert, auto-renewing) is bound `SniEnabled` on the shared env.
+- Retired 2026-07-25: `mynatree.com` and `stemrobin.com` serve nothing — no DNS records, no
+  hostname binding. Their Cloudflare zones are still in the account (re-pointable).
 
 ## Troubleshoot
 - Container logs: `az containerapp logs show -n ca-stemrobin -g rg-easyapp-shared --tail 50`
