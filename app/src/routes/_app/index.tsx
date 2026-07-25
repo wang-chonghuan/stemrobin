@@ -81,7 +81,11 @@ function Overview() {
             </h1>
             <div className="sr-hero-story">
               <p className="sr-hero-story-line">{t(locale, 'ov.hero.story.a')}</p>
-              <p className="sr-hero-story-line">{t(locale, 'ov.hero.story.b')}</p>
+              <p className="sr-hero-story-line">
+                {t(locale, 'ov.hero.story.b')}
+                <br />
+                {t(locale, 'ov.hero.story.c')}
+              </p>
             </div>
             <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
           </div>
