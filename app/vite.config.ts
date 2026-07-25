@@ -8,8 +8,10 @@ export default defineConfig({
   // app/ lives under an npm workspace; the shared .env stays at the repo root
   // (the content skills + n-easyapp read it there), so load env from the parent.
   envDir: '..',
+  // This project's fixed dev port (STEMROBIN-111) — the single source of truth;
+  // .claude/launch.json attaches here instead of passing --port.
   server: {
-    port: 3000,
+    port: 3200,
   },
   resolve: {
     alias: {

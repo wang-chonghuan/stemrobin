@@ -10,7 +10,9 @@
 
 export type Locale = 'zh' | 'en'
 export const LOCALES: Locale[] = ['zh', 'en']
-export const DEFAULT_LOCALE: Locale = 'zh'
+// The site opens in English (STEMROBIN-111); zh stays the source locale for
+// authoring/fallback, and the learner can switch to it at any time.
+export const DEFAULT_LOCALE: Locale = 'en'
 
 export function isLocale(v: unknown): v is Locale {
   return v === 'zh' || v === 'en'
@@ -23,7 +25,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
   zh: {
     'switch.aria': '学习语言',
     'account.menu': '账户',
-    'brand.tagline': '严格数理传统，为你重建',
+    'brand.tagline': '十年制体系，编成卡组',
     'cat.open': '打开目录',
     'cat.close': '关闭目录',
     'cat.group.curriculum': '课程大纲',
@@ -62,11 +64,12 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': '点',
     'ov.stat.learned': '课文完成',
     'ov.stat.practiced': '练习完成',
-    'ov.hero.badge': '知构 · 初高中数学与物理',
-    'ov.hero.title.a': '承袭 20 世纪最严格的数理思维传统，用 AI 重建——一所为你定制的',
-    'ov.hero.title.b': '数理名校',
-    'ov.hero.story.who': '教的不是刷题，而是理解、独立思考、在严格中养出直觉。',
-    'ov.hero.story.body': '20 世纪最严格的数理传统，培养的是能自己想通、而不是背套路的头脑。今天，我们用 AI 把这套信念，重建给每一个愿意认真学的孩子。',
+    'ov.hero.badge': '引理阶梯 · 中学数学与物理',
+    'ov.hero.title.a': '从算术到微积分，',
+    'ov.hero.title.b': '从杠杆到电磁场。',
+    'ov.hero.story.who': '一套中学数学与物理课程，承袭数学家柯尔莫戈洛夫主编的十年制体系。',
+    'ov.hero.story.body': '编成理解与练习的卡组，由 AI 带你真正掌握。',
+    'ov.hero.art.alt': '卡片式学习：答对即时反馈，一步步往上',
     'ov.new': '新上线课程（{n}）',
     // overview — learning-principle column (growth)
     'ov.learn.eyebrow': '科学研究发现',
@@ -172,7 +175,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
   en: {
     'switch.aria': 'Learning language',
     'account.menu': 'Account',
-    'brand.tagline': 'The rigorous tradition, rebuilt for you',
+    'brand.tagline': 'The ten-year system, as decks',
     'cat.open': 'Open catalog',
     'cat.close': 'Close catalog',
     'cat.group.curriculum': 'Curriculum',
@@ -210,14 +213,14 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': 'pts',
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
-    'ov.hero.badge': 'StemRobin · Secondary math & physics',
-    'ov.hero.title.a':
-      'Heir to the 20th century’s most rigorous tradition of mathematical thinking, rebuilt with AI — ',
-    'ov.hero.title.b': 'a rigorous school of your own',
+    'ov.hero.badge': 'LemmaDeck · Secondary math & physics',
+    'ov.hero.title.a': 'From arithmetic to calculus, ',
+    'ov.hero.title.b': 'from the lever to the electromagnetic field.',
     'ov.hero.story.who':
-      'It doesn’t drill for exams — it teaches understanding, independent thought, and intuition forged through rigor.',
+      'One secondary course in mathematics and physics, heir to the ten-year system edited by the mathematician Kolmogorov.',
     'ov.hero.story.body':
-      'The most rigorous tradition of the 20th century built minds that reason things out instead of memorizing recipes. Today we’ve rebuilt that belief with AI — for every child willing to learn in earnest.',
+      'Arranged into decks of understanding and practice, with AI to carry you through to real mastery.',
+    'ov.hero.art.alt': 'Card-based learning: instant feedback on a correct answer, one step up at a time',
     'ov.new': 'New lessons ({n})',
     'ov.learn.eyebrow': 'What the research shows',
     'ov.learn.title': 'The most effective learning isn’t re-reading — it’s recalling at every step',

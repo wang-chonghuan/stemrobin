@@ -82,7 +82,7 @@ function Overview() {
             </div>
             <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
           </div>
-          <HeroArt />
+          <HeroArt label={t(locale, 'ov.hero.art.alt')} />
         </section>
 
         {/* Progress — real, from getProgress() (STEMROBIN-30) */}
@@ -179,13 +179,13 @@ function Overview() {
 // On-brand "card → mastery" motif: a lesson card whose correct option is checked
 // (instant feedback), rising over ascending steps (keep going / learn ahead).
 // Three-hue DESIGN palette, inline SVG (no image files).
-function HeroArt() {
+function HeroArt({ label }: { label: string }) {
   return (
     <svg
       className="sr-hero-art"
       viewBox="0 0 300 210"
       role="img"
-      aria-label="卡片式学习：答对即时反馈，一步步往上"
+      aria-label={label}
     >
       {/* ascending steps + upward arrow (progress / learn ahead) */}
       <rect x="196" y="150" width="26" height="44" rx="6" fill="#E1F1F5" />

@@ -6,7 +6,7 @@ Run app commands from `app/` (or with `npm --prefix app`).
 
 ## Develop
 - `cd app && npm install` — install app deps (into `app/node_modules`)
-- `cd app && npm run dev` — vite dev server (default http://localhost:3000; check terminal output for the actual port)
+- `cd app && npm run dev` — vite dev server on this project's fixed port **3200** (http://localhost:3200; set in `app/vite.config.ts`, which is the single source of truth — do not pass `--port`)
 - Local-dev env: the app's SSR runtime auto-loads `.env` from its own project dir, so a
   gitignored symlink `app/.env → ../.env` shares the single root `.env`. Recreate it after a
   fresh clone: `ln -sf ../.env app/.env`. (The container gets env from Azure, not this file.)

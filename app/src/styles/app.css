@@ -34,7 +34,7 @@
 }
 
 :root {
-    /* shadcn neutral base, primary recolored to StemRobin teal-blue */
+    /* shadcn neutral base, primary recolored to LemmaDeck teal-blue */
     --background: oklch(1 0 0);
     --foreground: oklch(0.205 0.01 220);
     --card: oklch(1 0 0);
@@ -69,7 +69,7 @@
 }
 
 /* ====================================================================== */
-/*  StemRobin design tokens — source of truth for the app shell.          */
+/*  LemmaDeck design tokens — source of truth for the app shell.          */
 /*  Three colors: teal-blue, green, pure white. Compact, dense, school.   */
 /* ====================================================================== */
 :root {
@@ -191,9 +191,9 @@ body {
 .sr-brand-name b {
   color: var(--sr-green-deep);
 }
-/* Chinese wordmark (知构): the display font is Latin-only, so CJK falls back to
-   the system font — sparse glyphs read thin and 3 chars run big. Heavier + a touch
-   smaller + tighter so it reads as solid/compact as the old 知更 mark. English is
+/* Chinese wordmark (引理阶梯): the display font is Latin-only, so CJK falls back
+   to the system font — sparse glyphs read thin and run big. Heavier + a touch
+   smaller + tighter so it stays solid/compact next to the mark. English is
    unaffected. */
 .sr-brand-name-zh {
   font-size: 18px;

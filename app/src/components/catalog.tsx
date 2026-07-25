@@ -40,7 +40,7 @@ export function CatalogSidebar({
           <img
             className="sr-brand-img"
             src="/logo-mark.png"
-            alt="StemRobin"
+            alt="LemmaDeck"
             width={44}
             height={44}
           />
@@ -48,11 +48,11 @@ export function CatalogSidebar({
             <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
               {locale === 'en' ? (
                 <>
-                  Stem<b>Robin</b>
+                  Lemma<b>Deck</b>
                 </>
               ) : (
                 <>
-                  知<b>构</b>
+                  引理<b>阶梯</b>
                 </>
               )}
             </span>

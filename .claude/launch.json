@@ -5,12 +5,6 @@
       "name": "stemrobin-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "app", "run", "dev"],
-      "port": 3000
-    },
-    {
-      "name": "main-dev-3200",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "app", "run", "dev", "--", "--port", "3200", "--host", "127.0.0.1"],
       "port": 3200,
       "autoPort": false
     }

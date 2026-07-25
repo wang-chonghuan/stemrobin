@@ -16,8 +16,9 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
-      { title: '知构 · 初高中数学与物理' },
-      { name: 'description', content: '知构 — 承袭 20 世纪最严格的数理思维传统，用 AI 重建的初高中数学与物理：教的不是刷题，而是理解、独立思考、在严格中养出直觉。' },
+      // Static head (locale-unaware); the site now opens in English (STEMROBIN-111).
+      { title: 'LemmaDeck · Secondary math & physics' },
+      { name: 'description', content: 'LemmaDeck — from arithmetic to calculus, from the lever to the electromagnetic field: one secondary course in mathematics and physics, heir to the ten-year system edited by the mathematician Kolmogorov, arranged into decks of understanding and practice, with AI to carry you through to real mastery.' },
     ],
     links: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
