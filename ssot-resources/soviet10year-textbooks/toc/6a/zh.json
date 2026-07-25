@@ -17,10 +17,11 @@
     "tocPages": "PDF 物理页 p.0004–p.0006（书内目录页 1–3）"
   },
   "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。",
-  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷节号的用节号（printedSection，全书连续 1–17），没有节号的用原书印刷的名称（printedName）。",
-  "chapters": [
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷节号的用节号（printedSection，全书连续 1–17），没有节号的用原书印刷的名称（printedName）。 目录顶层（contents）是原书目录的第一级，条目未必都是章：`kind: \"chapter\"` 的带下级节，`kind: \"exercises\"` 的本身就是一条（如「难题」，原书里与各章同级且无章号，number 为 null）。",
+  "contents": [
     {
       "id": "alg6-c1",
+      "kind": "chapter",
       "number": 1,
       "title": "基本概念",
       "page": 1,
@@ -110,6 +111,7 @@
     },
     {
       "id": "alg6-c2",
+      "kind": "chapter",
       "number": 2,
       "title": "函数",
       "page": 44,
@@ -246,6 +248,7 @@
     },
     {
       "id": "alg6-c3",
+      "kind": "chapter",
       "number": 3,
       "title": "方程组",
       "page": 114,
@@ -328,6 +331,7 @@
     },
     {
       "id": "alg6-c4",
+      "kind": "chapter",
       "number": 4,
       "title": "自然数指数幂",
       "page": 152,
@@ -437,6 +441,7 @@
     },
     {
       "id": "alg6-c5",
+      "kind": "chapter",
       "number": 5,
       "title": "多项式",
       "page": 193,
@@ -587,9 +592,7 @@
           }
         }
       ]
-    }
-  ],
-  "extras": [
+    },
     {
       "id": "alg6-hard",
       "kind": "exercises",

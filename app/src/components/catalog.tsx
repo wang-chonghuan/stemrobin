@@ -3,7 +3,12 @@ import { Check, ChevronUp, Languages, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import type { EnglishLessonRef } from '~/lib/english'
-import { getTextbookOutline, type OutlineDiscipline } from '~/lib/textbooks'
+import {
+  bookLessons,
+  getTextbookOutline,
+  type OutlineDiscipline,
+  type OutlineLesson,
+} from '~/lib/textbooks'
 import { LOCALES, t, type Locale } from '~/lib/i18n'
 import { setLocale } from '~/lib/locale'
 import { logout, type CurrentUser } from '~/lib/session'
@@ -286,8 +291,41 @@ function EnglishOutline({
 
 const REFERENCE_LESSON = 'math-s10-02'
 
+// One outline row. A lesson links once the DB holds its id, and is plain text
+// until then; the number is blank for entries the book leaves unnumbered.
+function LessonRow({
+  lesson,
+  title,
+  onNavigate,
+}: {
+  lesson: Pick<OutlineLesson, 'id' | 'ready'>
+  title: string
+  onNavigate: () => void
+}) {
+  if (!lesson.ready) return <li className="sr-out-lesson">{title}</li>
+  return (
+    <li>
+      <Link
+        to="/lesson/$id"
+        params={{ id: lesson.id }}
+        className="sr-out-lesson ready"
+        activeProps={{ className: 'sr-out-lesson ready active' }}
+        onClick={onNavigate}
+      >
+        <span className="sr-out-dot" aria-hidden />
+        {title}
+      </Link>
+    </li>
+  )
+}
+
+const rowTitle = (l: OutlineLesson) => (l.number ? `${l.number} ${l.title}` : l.title)
+
 // 学科 → 册 → 章 → 课. The book is the middle level (its title already carries
 // the branch — "Algebra, Grade 6"), so the rail nests three deep, not four.
+// Within a book it renders whatever `contents` holds: the printed first level
+// mixes chapters with entries that are themselves a lesson, and the JSON says
+// which is which.
 function DisciplineOutline({
   discipline,
   locale,
@@ -299,7 +337,7 @@ function DisciplineOutline({
   defaultOpen: boolean
   onNavigate: () => void
 }) {
-  const lessons = discipline.books.flatMap((b) => b.chapters.flatMap((c) => c.lessons))
+  const lessons = discipline.books.flatMap(bookLessons)
   const ready = lessons.filter((l) => l.ready).length
   return (
     <details className="sr-out-subject" open={defaultOpen}>
@@ -314,60 +352,37 @@ function DisciplineOutline({
             <span className="sr-out-caret" aria-hidden />
             <span className="sr-out-stage-name">{book.title}</span>
           </summary>
-          {book.chapters.map((ch) => (
-            <details key={ch.id} className="sr-out-stage" open={ch.lessons.some((l) => l.ready)}>
-              <summary>
-                <span className="sr-out-caret" aria-hidden />
-                <span className="sr-out-stage-name">{ch.label}</span>
-              </summary>
-              <ul className="sr-out-lessons">
-                {ch.lessons.map((l) =>
-                  l.ready ? (
-                    <li key={l.id}>
-                      <Link
-                        to="/lesson/$id"
-                        params={{ id: l.id }}
-                        className="sr-out-lesson ready"
-                        activeProps={{ className: 'sr-out-lesson ready active' }}
-                        onClick={onNavigate}
-                      >
-                        <span className="sr-out-dot" aria-hidden />
-                        {l.number} {l.title}
-                      </Link>
-                    </li>
-                  ) : (
-                    <li key={l.id} className="sr-out-lesson">
-                      {l.number} {l.title}
-                    </li>
-                  ),
-                )}
+          {book.contents.map((node) =>
+            node.kind === 'chapter' ? (
+              <details
+                key={node.id}
+                className="sr-out-stage"
+                open={node.lessons.some((l) => l.ready)}
+              >
+                <summary>
+                  <span className="sr-out-caret" aria-hidden />
+                  <span className="sr-out-stage-name">{node.label}</span>
+                </summary>
+                <ul className="sr-out-lessons">
+                  {node.lessons.map((l) => (
+                    <LessonRow
+                      key={l.id}
+                      lesson={l}
+                      title={rowTitle(l)}
+                      onNavigate={onNavigate}
+                    />
+                  ))}
+                </ul>
+              </details>
+            ) : (
+              <ul key={node.lesson.id} className="sr-out-lessons sr-out-toplevel">
+                <LessonRow
+                  lesson={node.lesson}
+                  title={rowTitle(node.lesson)}
+                  onNavigate={onNavigate}
+                />
               </ul>
-            </details>
-          ))}
-          {/* Volume-level sets (the closing 难题) — they belong to no chapter. */}
-          {book.extras.length > 0 && (
-            <ul className="sr-out-lessons sr-out-extras">
-              {book.extras.map((l) =>
-                l.ready ? (
-                  <li key={l.id}>
-                    <Link
-                      to="/lesson/$id"
-                      params={{ id: l.id }}
-                      className="sr-out-lesson ready"
-                      activeProps={{ className: 'sr-out-lesson ready active' }}
-                      onClick={onNavigate}
-                    >
-                      <span className="sr-out-dot" aria-hidden />
-                      {l.title}
-                    </Link>
-                  </li>
-                ) : (
-                  <li key={l.id} className="sr-out-lesson">
-                    {l.title}
-                  </li>
-                ),
-              )}
-            </ul>
+            ),
           )}
         </details>
       ))}
