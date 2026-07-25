@@ -1165,6 +1165,75 @@
       "source": {
         "printedName": "本书中使用的符号"
       }
+    },
+    {
+      "id": "geo68-appendix",
+      "kind": "chapter",
+      "number": 11,
+      "title": "Appendix",
+      "page": 452,
+      "lessons": [
+        {
+          "id": "geo68-appendix-s1",
+          "kind": "section",
+          "number": "11.1",
+          "title": "On the logical structure of geometry",
+          "page": 452,
+          "source": {
+            "printedName": "关于几何的逻辑结构"
+          }
+        },
+        {
+          "id": "geo68-appendix-s2",
+          "kind": "section",
+          "number": "11.2",
+          "title": "The language of set theory in geometry",
+          "page": 456,
+          "source": {
+            "printedName": "几何中的集合论语言"
+          }
+        },
+        {
+          "id": "geo68-appendix-s3",
+          "kind": "section",
+          "number": "11.3",
+          "title": "Geometry formulas",
+          "page": 457,
+          "source": {
+            "printedName": "几何公式"
+          }
+        },
+        {
+          "id": "geo68-appendix-s4",
+          "kind": "section",
+          "number": "11.4",
+          "title": "Trigonometric formulas",
+          "page": 460,
+          "source": {
+            "printedName": "三角公式"
+          }
+        },
+        {
+          "id": "geo68-appendix-s5",
+          "kind": "section",
+          "number": "11.5",
+          "title": "The Greek alphabet",
+          "page": 461,
+          "source": {
+            "printedName": "希腊字母"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-glossary",
+      "kind": "section",
+      "number": null,
+      "title": "Index of translated terms",
+      "page": 464,
+      "source": {
+        "printedName": "译名索引"
+      }
     }
   ]
 }

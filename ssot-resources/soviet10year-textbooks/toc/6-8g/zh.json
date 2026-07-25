@@ -1165,6 +1165,75 @@
       "source": {
         "printedName": "本书中使用的符号"
       }
+    },
+    {
+      "id": "geo68-appendix",
+      "kind": "chapter",
+      "number": 11,
+      "title": "附录",
+      "page": 452,
+      "lessons": [
+        {
+          "id": "geo68-appendix-s1",
+          "kind": "section",
+          "number": "11.1",
+          "title": "关于几何的逻辑结构",
+          "page": 452,
+          "source": {
+            "printedName": "关于几何的逻辑结构"
+          }
+        },
+        {
+          "id": "geo68-appendix-s2",
+          "kind": "section",
+          "number": "11.2",
+          "title": "几何中的集合论语言",
+          "page": 456,
+          "source": {
+            "printedName": "几何中的集合论语言"
+          }
+        },
+        {
+          "id": "geo68-appendix-s3",
+          "kind": "section",
+          "number": "11.3",
+          "title": "几何公式",
+          "page": 457,
+          "source": {
+            "printedName": "几何公式"
+          }
+        },
+        {
+          "id": "geo68-appendix-s4",
+          "kind": "section",
+          "number": "11.4",
+          "title": "三角公式",
+          "page": 460,
+          "source": {
+            "printedName": "三角公式"
+          }
+        },
+        {
+          "id": "geo68-appendix-s5",
+          "kind": "section",
+          "number": "11.5",
+          "title": "希腊字母",
+          "page": 461,
+          "source": {
+            "printedName": "希腊字母"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-glossary",
+      "kind": "section",
+      "number": null,
+      "title": "译名索引",
+      "page": 464,
+      "source": {
+        "printedName": "译名索引"
+      }
     }
   ]
 }

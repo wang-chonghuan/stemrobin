@@ -722,6 +722,16 @@
       "source": {
         "printedName": "实验作业"
       }
+    },
+    {
+      "id": "phy8-appendix",
+      "kind": "section",
+      "number": null,
+      "title": "附录",
+      "page": 294,
+      "source": {
+        "printedName": "附录"
+      }
     }
   ]
 }

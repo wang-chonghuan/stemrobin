@@ -6,9 +6,12 @@ import {
   createRootRoute,
 } from '@tanstack/react-router'
 
+import { getLocale } from '~/lib/locale'
+import type { Locale } from '~/lib/i18n'
 import '~/styles/app.css'
 
 export const Route = createRootRoute({
+  loader: async () => ({ locale: await getLocale() }),
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
@@ -46,16 +49,24 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const { locale } = Route.useLoaderData()
   return (
-    <RootDocument>
+    <RootDocument locale={locale}>
       <Outlet />
     </RootDocument>
   )
 }
 
-function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+// `lang` was hardcoded zh-CN, which has said the wrong thing since the site
+// started opening in English (STEMROBIN-111). It is what a screen reader picks a
+// voice from and what a browser offers to translate from, so it follows the
+// locale the shell is actually rendered in.
+function RootDocument({
+  children,
+  locale,
+}: Readonly<{ children: ReactNode; locale: Locale }>) {
   return (
-    <html lang="zh-CN">
+    <html lang={locale === 'zh' ? 'zh-CN' : 'en'}>
       <head>
         <HeadContent />
       </head>

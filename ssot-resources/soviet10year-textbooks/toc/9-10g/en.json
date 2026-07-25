@@ -623,6 +623,105 @@
       "source": {
         "printedName": "本书中使用的符号"
       }
+    },
+    {
+      "id": "geo910-appendix",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Appendix",
+      "page": 295,
+      "lessons": [
+        {
+          "id": "geo910-appendix-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "The theorem on congruent figures (§31)",
+          "page": 295,
+          "source": {
+            "printedName": "关于合同图形的定理（§31）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "The projection of a vector on an axis (§26)",
+          "page": 298,
+          "source": {
+            "printedName": "向量在轴上的射影（§26）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "The law of cosines for a trihedral angle (§40)",
+          "page": 299,
+          "source": {
+            "printedName": "关于三面角的余弦定理（§40）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "Necessary and sufficient conditions for a trihedral angle to exist (§41)",
+          "page": 301,
+          "source": {
+            "printedName": "三面角存在的充分必要条件（§41）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s5",
+          "kind": "section",
+          "number": "3.5",
+          "title": "Properties of the face angles of a polyhedral angle (§41)",
+          "page": 302,
+          "source": {
+            "printedName": "多面角的面角的性质（§41）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s6",
+          "kind": "section",
+          "number": "3.6",
+          "title": "Solids (Chapters 5 and 6)",
+          "page": 304,
+          "source": {
+            "printedName": "几何体（第五章和第六章）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s7",
+          "kind": "section",
+          "number": "3.7",
+          "title": "The volume of a frustum, a spherical segment and a spherical sector (Chapter 6)",
+          "page": 306,
+          "source": {
+            "printedName": "圆台、球缺和球扇形的体积（第六章）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s8",
+          "kind": "section",
+          "number": "3.8",
+          "title": "The surface area of a cylinder, a cone and a spherical cap (Chapter 6)",
+          "page": 309,
+          "source": {
+            "printedName": "圆柱、圆锥和球冠的表面积（第六章）"
+          }
+        },
+        {
+          "id": "geo910-appendix-s9",
+          "kind": "section",
+          "number": "3.9",
+          "title": "Weyl’s axiom system for geometry",
+          "page": 313,
+          "source": {
+            "printedName": "韦尔提出的几何公理体系"
+          }
+        }
+      ]
     }
   ]
 }

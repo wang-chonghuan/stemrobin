@@ -316,6 +316,16 @@
       "source": {
         "printedName": "总的巩固练习"
       }
+    },
+    {
+      "id": "math3-appendix",
+      "kind": "section",
+      "number": null,
+      "title": "附录",
+      "page": 218,
+      "source": {
+        "printedName": "附录"
+      }
     }
   ]
 }

@@ -3,9 +3,9 @@
 
 validate.py checks a volume's shape; this checks that nothing was dropped while
 transcribing it. Every `- ` line of a printed volume's contents must turn up as a
-chapter, a lesson or a topic — or fall under one of the deliberate exclusions
-(answers, index, appendix, and everything nested beneath them). Anything else is
-a hole, and holes are silent: the shape stays valid while the book loses a page.
+chapter, a lesson or a topic — or be an answer key, the one thing deliberately
+left out. Anything else is a hole, and holes are silent: the shape stays valid
+while the book loses a page.
 
 Run from the repo root:
     python3 ssot-resources/soviet10year-textbooks/reconcile.py
@@ -17,7 +17,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
 SRC = ROOT.parent.parent / "resources/soviet10years/toc/苏联十年制学校教材-书名作者目录.md"
-EXCLUDE = re.compile(r"答案|索引|附录")
+EXCLUDE = re.compile(r"答案")
 
 # The printed heading carries an ordinal that the JSON keeps in `number` /
 # `source` / `printedNumber` rather than in the title, so strip it before
@@ -38,10 +38,10 @@ def norm(s: str) -> str:
 
 
 def source_slices() -> dict[str, list[str]]:
-    """Printed contents lines per book id, minus anything under an exclusion.
+    """Printed contents lines per book id, minus the answer keys.
 
-    An excluded heading takes its subtree with it: `附录` is one line but may
-    print nine children, and none of them belong in the outline either.
+    An excluded heading takes its subtree with it — an answer section may print
+    its own sub-headings, and none of those belong in the outline either.
     """
     out: dict[str, list[str]] = {}
     book, listing, cut_at = None, False, None

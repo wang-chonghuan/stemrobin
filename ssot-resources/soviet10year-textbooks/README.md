@@ -38,6 +38,11 @@ new language is a new file beside these two, never a change to the structure.
 
 ## What is not here
 
-Exercise answers. The books print them as back matter, separated from the
-exercises themselves; they enter as an input when a lesson's practice is built,
-bound to the exercise they answer — never as a browsable entry.
+Exercise answers, and nothing else. The books print them as back matter,
+separated from the exercises themselves; they enter as an input when a lesson's
+practice is built, bound to the exercise they answer — never as a browsable
+entry, which would hand over a master key to every read-check in the deck.
+
+Everything else the contents print is here, including the back matter that is
+not answers: appendices, symbol lists, term indexes, formula tables. They are
+part of the book.

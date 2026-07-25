@@ -661,6 +661,16 @@
       "source": {
         "printedName": "复习题"
       }
+    },
+    {
+      "id": "phy7-appendix",
+      "kind": "section",
+      "number": null,
+      "title": "附录",
+      "page": 462,
+      "source": {
+        "printedName": "附录"
+      }
     }
   ]
 }
