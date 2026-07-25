@@ -21,7 +21,10 @@ export const Route = createRootRoute({
       { name: 'description', content: 'LemmaDeck — from arithmetic to calculus, from the lever to the nucleus: one secondary course in mathematics and physics, heir to the ten-year system edited by Andrey Kolmogorov, arranged into a deck for understanding and practice, with an AI to guide you through to real mastery.' },
     ],
     links: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      // Exact tab sizes, so the browser never rescales the wordless mark itself.
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' },
       { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       {
         rel: 'stylesheet',
