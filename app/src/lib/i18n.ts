@@ -83,14 +83,11 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.stat.learned': '课文完成',
     'ov.stat.practiced': '练习完成',
     'ov.hero.badge': '引理阶梯 · 中学数学与物理',
-    // The hero headline breaks at the comma: line a, then b + the accented c.
-    'ov.hero.title.a': '中学数学与物理课程，',
-    'ov.hero.title.b': '承袭数学家',
-    'ov.hero.title.c': '柯尔莫戈洛夫主编的十年制体系。',
+    // The headline wraps to the copy column's width; `b` is the accented tail.
+    'ov.hero.title.a': '中学数学与物理课程，承袭数学家',
+    'ov.hero.title.b': '柯尔莫戈洛夫主编的十年制体系。',
     'ov.hero.story.a': '从算术到微积分，从杠杆到原子核。',
-    // Second statement, set on two lines (b then c).
-    'ov.hero.story.b': '编成理解与练习的卡组，',
-    'ov.hero.story.c': '由 AI 带你真正掌握。',
+    'ov.hero.story.b': '编成理解与练习的卡组，由 AI 带你真正掌握。',
     'ov.hero.art.alt': '一棵知识之树：枝干末端是一个个亮起的知识点，外围环绕着原子轨道',
     'ov.new': '新上线课程（{n}）',
     // overview — learning-principle column (growth)
@@ -254,12 +251,11 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
     'ov.hero.badge': 'LemmaDeck · Secondary math & physics',
-    'ov.hero.title.a': 'A secondary course in mathematics and physics, ',
-    'ov.hero.title.b': 'heir to ',
-    'ov.hero.title.c': 'the ten-year system edited by Andrey Kolmogorov.',
+    'ov.hero.title.a': 'A secondary course in mathematics and physics, heir to ',
+    'ov.hero.title.b': 'the ten-year system edited by Andrey Kolmogorov.',
     'ov.hero.story.a': 'From arithmetic to calculus, from the lever to the nucleus.',
-    'ov.hero.story.b': 'Arranged into a deck for understanding and practice,',
-    'ov.hero.story.c': 'with an AI to guide you through to real mastery.',
+    'ov.hero.story.b':
+      'Arranged into decks for understanding and practice, with an AI to guide you through to real mastery.',
     'ov.hero.art.alt': 'A tree of knowledge: every branch ends in a lit node, the whole ringed by atom orbits',
     'ov.new': 'New lessons ({n})',
     'ov.learn.eyebrow': 'What the research shows',
