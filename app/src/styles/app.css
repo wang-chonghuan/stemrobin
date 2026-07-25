@@ -1313,22 +1313,32 @@ a.sr-out-lesson.active {
 .sr-hero-accent { color: var(--sr-blue); }
 /* Copy runs the full width of its column — up to the illustration — and wraps
    where it lands. No authored breaks and no measure cap: the column beside a
-   180px image is already a readable width. */
-.sr-hero-story {
+   180px image is already a readable width.
+
+   The two half-lines and the line that closes them are set apart rather than
+   stacked into one block: the pair is the rhythm, and giving it the rule while
+   the closing line runs free is what makes the break audible. */
+.sr-hero-points {
+  list-style: none;
   margin: 0;
   padding-left: 14px;
   border-left: 2px solid var(--sr-blue);
 }
-/* Both quoted lines read as one voice — same type, same weight, same color. */
-.sr-hero-story-line {
-  margin: 0 0 6px;
+.sr-hero-points li {
+  margin-bottom: 4px;
   font-size: 15px;
-  line-height: 1.65;
+  line-height: 1.6;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--sr-ink);
 }
-.sr-hero-story-line:last-child { margin-bottom: 0; }
+.sr-hero-points li:last-child { margin-bottom: 0; }
+.sr-hero-close {
+  margin: 12px 0 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--sr-ink-soft);
+}
 /* The illustration is near-square (360×392), so its width is also roughly its
    height: 180px keeps it just under the copy column's height instead of
    towering over it the way the old 208px-wide, 146px-tall art never could. */
@@ -1593,7 +1603,7 @@ a.sr-out-lesson.active {
 }
 .sr-usermenu-langbtn:hover { background: var(--sr-panel); }
 
-.sr-hero-free { margin-top: 8px; font-size: 13.5px; font-weight: 600; color: var(--sr-green-deep); }
+.sr-hero-free { margin-top: 10px; font-size: 13.5px; font-weight: 600; color: var(--sr-green-deep); }
 .sr-login-free {
   align-self: center; margin: -2px 0 6px; padding: 3px 10px; border-radius: 999px;
   background: var(--sr-green-tint); color: var(--sr-green-deep);
