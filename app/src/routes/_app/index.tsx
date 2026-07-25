@@ -12,7 +12,7 @@ import {
 
 import { getAvailableTextbookLessons } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
-import { getProgress } from '~/lib/progress'
+import { deckPercentages, getDeckStats } from '~/lib/deck-stats'
 import { getLocale } from '~/lib/locale'
 import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
@@ -23,10 +23,37 @@ export const Route = createFileRoute('/_app/')({
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
     locale: await getLocale(),
-    progress: await getProgress(),
+    stats: await getDeckStats(),
     user: await getCurrentUser(),
   }),
 })
+
+// One of the three deck numbers: a bar, its percentage, and the denominator it
+// was taken over — a percentage alone hides whether it is 2 cards or 200.
+function Stat({
+  label,
+  pct,
+  sub,
+  tone,
+}: {
+  label: string
+  pct: number
+  sub: string
+  tone: 'progress' | 'accuracy' | 'mastery'
+}) {
+  return (
+    <div className="sr-stat">
+      <div className="sr-stat-top">
+        <span className="sr-stat-label">{label}</span>
+        <span className="sr-stat-pct sr-num">{pct}%</span>
+      </div>
+      <div className={'sr-stat-bar ' + tone}>
+        <span style={{ width: `${pct}%` }} />
+      </div>
+      <p className="sr-stat-sub">{sub}</p>
+    </div>
+  )
+}
 
 // Supporting principles under the retrieval-practice hero (i18n keys ov.learn.*).
 const PRINCIPLES = [
@@ -37,21 +64,13 @@ const PRINCIPLES = [
 ] as const
 
 function Overview() {
-  const { lessonIds, locale, progress, user } = Route.useLoaderData()
+  const { lessonIds, locale, stats, user } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const availableLessons = getAvailableTextbookLessons(lessonIds, locale)
   // Show only the 6 most-recent lessons (curriculum order is ascending, so the
   // newest live content is at the tail).
   const newLessons = availableLessons.slice(-6)
-  // Real learner progress (STEMROBIN-30): completed points over total points
-  // (2 × lessons). Reading points (all cards read) + practice points (latest
-  // attempt >= 80). Practice points can regress on a later low attempt.
-  const readingDone = progress.lessons.filter((l) => l.readingComplete).length
-  const practiceDone = progress.lessons.filter((l) => l.practiceComplete).length
-  const pctWidth =
-    progress.totalPoints > 0
-      ? (progress.completedPoints / progress.totalPoints) * 100
-      : 0
+  const pct = deckPercentages(stats)
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
@@ -102,35 +121,43 @@ function Overview() {
           />
         </section>
 
-        {/* Progress — real, from getProgress() (STEMROBIN-30) */}
-        <section className="sr-progress">
-          <div className="sr-progress-top">
-            <span className="sr-progress-title">{t(locale, 'ov.progress.title')}</span>
-            <span className="sr-progress-pct">
-              {progress.completedPoints}
-              <span> / {progress.totalPoints} {t(locale, 'ov.progress.unit')}</span>
-            </span>
+        {/* Three numbers over the card deck. Coverage, a rate, and a state —
+            different kinds of number, which is why each carries its own
+            denominator underneath rather than a bare percentage. */}
+        <section className="sr-stats">
+          <div className="sr-stats-top">
+            <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
+            {!user && (
+              <span className="sr-stats-guest">
+                {t(locale, 'ov.progress.guest')}{' '}
+                <Link to="/login" className="sr-progress-guest-cta">
+                  {t(locale, 'ov.progress.guest.cta')}
+                </Link>
+              </span>
+            )}
           </div>
-          <div className="sr-progress-bar">
-            <span style={{ width: `${pctWidth}%` }} />
-          </div>
-          {!user && (
-            <p className="sr-progress-guest">
-              {t(locale, 'ov.progress.guest')}{' '}
-              <Link to="/login" className="sr-progress-guest-cta">
-                {t(locale, 'ov.progress.guest.cta')}
-              </Link>
-            </p>
-          )}
-          <div className="sr-progress-stats">
-            <div className="sr-progress-stat">
-              <b>{readingDone}</b>
-              <span>{t(locale, 'ov.stat.learned')}</span>
-            </div>
-            <div className="sr-progress-stat">
-              <b>{practiceDone}</b>
-              <span>{t(locale, 'ov.stat.practiced')}</span>
-            </div>
+          <div className="sr-stats-row">
+            <Stat
+              label={t(locale, 'deck.stats.progress')}
+              pct={pct.progress}
+              tone="progress"
+              sub={t(locale, 'deck.stats.progress.sub', {
+                n: stats.seenCards,
+                total: stats.totalCards,
+              })}
+            />
+            <Stat
+              label={t(locale, 'deck.stats.accuracy')}
+              pct={pct.accuracy}
+              tone="accuracy"
+              sub={t(locale, 'deck.stats.accuracy.sub', { n: stats.answered })}
+            />
+            <Stat
+              label={t(locale, 'deck.stats.mastery')}
+              pct={pct.mastery}
+              tone="mastery"
+              sub={t(locale, 'deck.stats.mastery.sub', { n: stats.passedCards })}
+            />
           </div>
         </section>
 

@@ -215,6 +215,19 @@ export function findCard(cardId: string, locale: Locale): Card | null {
   return null
 }
 
+/** Every card id in the whole shelf, in reading order. The deck's denominator —
+ *  and, once a card's content is written, the id its row in sr_lessons takes, so
+ *  a card's answer events need no table of their own. */
+export function allCardIds(): string[] {
+  const seen = new Set<string>()
+  for (const localized of SHELF) {
+    const book = localized.zh ?? localized.en
+    if (!book) continue
+    for (const c of cardsOf(book, 'zh')) seen.add(c.id)
+  }
+  return [...seen]
+}
+
 /** Every lesson in a book, chapters and top-level entries alike. */
 export function bookLessons(book: OutlineBook): OutlineLesson[] {
   return book.contents.flatMap((n) => (n.kind === 'chapter' ? n.lessons : [n.lesson]))
