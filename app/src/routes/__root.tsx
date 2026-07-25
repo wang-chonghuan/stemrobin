@@ -18,7 +18,7 @@ export const Route = createRootRoute({
       },
       // Static head (locale-unaware); the site now opens in English (STEMROBIN-111).
       { title: 'LemmaDeck · Secondary math & physics' },
-      { name: 'description', content: 'LemmaDeck — from arithmetic to calculus, from the lever to the nucleus: one secondary course in mathematics and physics, heir to the ten-year system edited by the mathematician Kolmogorov, arranged into decks of understanding and practice, with AI to carry you through to real mastery.' },
+      { name: 'description', content: 'LemmaDeck — from arithmetic to calculus, from the lever to the nucleus: one secondary course in mathematics and physics, heir to the ten-year system edited by Andrey Kolmogorov, arranged into decks of understanding and practice, with AI to carry you through to real mastery.' },
     ],
     links: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
