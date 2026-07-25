@@ -1,0 +1,1256 @@
+{
+  "book": "10p",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "physics",
+  "grade": 10,
+  "title": "Physics, Grade 10",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "10p",
+    "printedTitle": "苏联中学课本 物理（十年级）",
+    "authors": "[苏] Г·Я·米亚基舍夫、Б·Б·布霍夫采夫 著",
+    "translators": "罗珚　陈君颖　林炎　李丕章　于连臣　译",
+    "translatorsNote": "待核：第一位译者名第二字为「王」旁加「囗」内一「大」，扫描分辨率所限，暂录作「珚」。",
+    "publisher": "文化教育出版社出版；新华书店北京发行所发行；人民教育出版社印刷厂印装。开本 787×1092 1/32，印张 13，插页 2，字数 268,000；1981 年 1 月第 1 版，1981 年 7 月第 1 次印刷；印数 1—15,000；书号 7057·026；定价 0.98 元。（本书译自 1977 年版的苏联十年级物理教科书）",
+    "toc": "resources/soviet10years/toc/10p.md",
+    "tocPages": "PDF 物理页 p.0004–p.0010（目录自身页码 1–7）",
+    "scan": "10p — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed item number where it has one (printedSection, running continuously 1–152 across the volume), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). The first level of the printed contents is four parts (振动和波, 光学, 原子物理与核物理, 物理学对于解释世界和发展社会生产力的意义), so one `contents` entry is one part; each printed 第N章 beneath it is a lesson (the chapter number survives in the lesson's title and in its `source`); the numbered items are that lesson's topics. Each topic carries its own id: `<lessonId>-n<printedNumber>` where the book numbers it, `<lessonId>-t<position>` where it does not (e.g. 练习 1). The four parts carry no printed page number, so each takes the page of its first entry.",
+  "contents": [
+    {
+      "id": "phy10-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Oscillations and Waves",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "phy10-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Introduction",
+          "page": 1,
+          "source": {
+            "printedName": "引言"
+          }
+        },
+        {
+          "id": "phy10-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Chapter 1 — Mechanical oscillations",
+          "page": 3,
+          "source": {
+            "printedName": "第一章　机械振动"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s2-n1",
+              "printedNumber": 1,
+              "title": "Free and forced oscillations",
+              "page": 3
+            },
+            {
+              "id": "phy10-c1-s2-n2",
+              "printedNumber": 2,
+              "title": "Conditions for free oscillations to arise",
+              "page": 5
+            },
+            {
+              "id": "phy10-c1-s2-n3",
+              "printedNumber": 3,
+              "title": "The simple pendulum",
+              "page": 8
+            },
+            {
+              "id": "phy10-c1-s2-n4",
+              "printedNumber": 4,
+              "title": "The equation of motion of a body oscillating under an elastic force",
+              "page": 10
+            },
+            {
+              "id": "phy10-c1-s2-n5",
+              "printedNumber": 5,
+              "title": "The equation of motion of a simple pendulum",
+              "page": 11
+            },
+            {
+              "id": "phy10-c1-s2-n6",
+              "printedNumber": 6,
+              "title": "Simple harmonic motion",
+              "page": 13
+            },
+            {
+              "id": "phy10-c1-s2-n7",
+              "printedNumber": 7,
+              "title": "The relation between simple harmonic motion and circular motion",
+              "page": 17
+            },
+            {
+              "id": "phy10-c1-s2-n8",
+              "printedNumber": 8,
+              "title": "The phase of an oscillation",
+              "page": 19
+            },
+            {
+              "id": "phy10-c1-s2-n9",
+              "printedNumber": 9,
+              "title": "Velocity and acceleration in simple harmonic motion",
+              "page": 22
+            },
+            {
+              "id": "phy10-c1-s2-n10",
+              "printedNumber": 10,
+              "title": "How the frequency and period of free harmonic oscillations depend on the properties of the system",
+              "page": 24
+            },
+            {
+              "id": "phy10-c1-s2-n11",
+              "printedNumber": 11,
+              "title": "Energy transformations in simple harmonic motion",
+              "page": 26
+            },
+            {
+              "id": "phy10-c1-s2-n12",
+              "printedNumber": 12,
+              "title": "Damped oscillations",
+              "page": 27
+            },
+            {
+              "id": "phy10-c1-s2-n13",
+              "printedNumber": 13,
+              "title": "Forced oscillations",
+              "page": 28
+            },
+            {
+              "id": "phy10-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "Resonance",
+              "page": 30
+            },
+            {
+              "id": "phy10-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "Making use of resonance and guarding against it",
+              "page": 32
+            },
+            {
+              "id": "phy10-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "The action of the pendulum in a clock — self-oscillations",
+              "page": 34
+            },
+            {
+              "id": "phy10-c1-s2-t17",
+              "title": "Exercises 1",
+              "page": 36
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Chapter 2 — Electrical oscillations",
+          "page": 38,
+          "source": {
+            "printedName": "第二章　电振荡"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s3-n17",
+              "printedNumber": 17,
+              "title": "Free and forced electrical oscillations",
+              "page": 38
+            },
+            {
+              "id": "phy10-c1-s3-n18",
+              "printedNumber": 18,
+              "title": "The oscillatory circuit",
+              "page": 40
+            },
+            {
+              "id": "phy10-c1-s3-n19",
+              "printedNumber": 19,
+              "title": "The analogy between mechanical and electrical oscillations",
+              "page": 42
+            },
+            {
+              "id": "phy10-c1-s3-n20",
+              "printedNumber": 20,
+              "title": "The period of free electrical oscillations — the equation describing the processes in an oscillatory circuit",
+              "page": 44
+            },
+            {
+              "id": "phy10-c1-s3-n21",
+              "printedNumber": 21,
+              "title": "Alternating current",
+              "page": 48
+            },
+            {
+              "id": "phy10-c1-s3-n22",
+              "printedNumber": 22,
+              "title": "Effective resistance in an alternating-current circuit",
+              "page": 50
+            },
+            {
+              "id": "phy10-c1-s3-n23",
+              "printedNumber": 23,
+              "title": "Root-mean-square values of current and voltage",
+              "page": 51
+            },
+            {
+              "id": "phy10-c1-s3-n24",
+              "printedNumber": 24,
+              "title": "Capacitance in an alternating-current circuit",
+              "page": 54
+            },
+            {
+              "id": "phy10-c1-s3-n25",
+              "printedNumber": 25,
+              "title": "Inductance in an alternating-current circuit",
+              "page": 57
+            },
+            {
+              "id": "phy10-c1-s3-n26",
+              "printedNumber": 26,
+              "title": "Ohm's law for an alternating-current circuit",
+              "page": 59
+            },
+            {
+              "id": "phy10-c1-s3-n27",
+              "printedNumber": 27,
+              "title": "Power in an alternating-current circuit",
+              "page": 63
+            },
+            {
+              "id": "phy10-c1-s3-n28",
+              "printedNumber": 28,
+              "title": "Electrical resonance",
+              "page": 67
+            },
+            {
+              "id": "phy10-c1-s3-n29",
+              "printedNumber": 29,
+              "title": "The triode",
+              "page": 71
+            },
+            {
+              "id": "phy10-c1-s3-n30",
+              "printedNumber": 30,
+              "title": "The vacuum-tube oscillator",
+              "page": 73
+            },
+            {
+              "id": "phy10-c1-s3-t15",
+              "title": "Exercises 2",
+              "page": 76
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Chapter 3 — The generation, transmission and use of electrical energy",
+          "page": 79,
+          "source": {
+            "printedName": "第三章　电能的生产、输送和利用"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s4-n31",
+              "printedNumber": 31,
+              "title": "The generation of electrical energy",
+              "page": 79
+            },
+            {
+              "id": "phy10-c1-s4-n32",
+              "printedNumber": 32,
+              "title": "The alternating-current generator",
+              "page": 80
+            },
+            {
+              "id": "phy10-c1-s4-n33",
+              "printedNumber": 33,
+              "title": "The transformer",
+              "page": 82
+            },
+            {
+              "id": "phy10-c1-s4-n34",
+              "printedNumber": 34,
+              "title": "The use and production of electrical energy",
+              "page": 86
+            },
+            {
+              "id": "phy10-c1-s4-n35",
+              "printedNumber": 35,
+              "title": "The transmission of electrical energy",
+              "page": 89
+            },
+            {
+              "id": "phy10-c1-s4-n36",
+              "printedNumber": 36,
+              "title": "Achievements and prospects of electrification in the USSR",
+              "page": 91
+            },
+            {
+              "id": "phy10-c1-s4-t7",
+              "title": "Exercises 3",
+              "page": 93
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "Chapter 4 — Mechanical waves, sound",
+          "page": 94,
+          "source": {
+            "printedName": "第四章　机械波　声"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s5-n37",
+              "printedNumber": 37,
+              "title": "Wave phenomena",
+              "page": 94
+            },
+            {
+              "id": "phy10-c1-s5-n38",
+              "printedNumber": 38,
+              "title": "The propagation of mechanical waves",
+              "page": 97
+            },
+            {
+              "id": "phy10-c1-s5-n39",
+              "printedNumber": 39,
+              "title": "Wavelength and wave speed",
+              "page": 100
+            },
+            {
+              "id": "phy10-c1-s5-n40",
+              "printedNumber": 40,
+              "title": "Waves in a medium",
+              "page": 102
+            },
+            {
+              "id": "phy10-c1-s5-n41",
+              "printedNumber": 41,
+              "title": "Sound waves",
+              "page": 105
+            },
+            {
+              "id": "phy10-c1-s5-n42",
+              "printedNumber": 42,
+              "title": "The speed of sound",
+              "page": 108
+            },
+            {
+              "id": "phy10-c1-s5-n43",
+              "printedNumber": 43,
+              "title": "Musical tones and noise — loudness and pitch",
+              "page": 110
+            },
+            {
+              "id": "phy10-c1-s5-n44",
+              "printedNumber": 44,
+              "title": "Acoustic resonance",
+              "page": 112
+            },
+            {
+              "id": "phy10-c1-s5-n45",
+              "printedNumber": 45,
+              "title": "Ultrasound",
+              "page": 112
+            },
+            {
+              "id": "phy10-c1-s5-n46",
+              "printedNumber": 46,
+              "title": "The interference of waves",
+              "page": 114
+            },
+            {
+              "id": "phy10-c1-s5-n47",
+              "printedNumber": 47,
+              "title": "Huygens' principle — the law of reflection of waves",
+              "page": 119
+            },
+            {
+              "id": "phy10-c1-s5-n48",
+              "printedNumber": 48,
+              "title": "Standing waves",
+              "page": 122
+            },
+            {
+              "id": "phy10-c1-s5-n49",
+              "printedNumber": 49,
+              "title": "The diffraction of waves",
+              "page": 125
+            },
+            {
+              "id": "phy10-c1-s5-t14",
+              "title": "Exercises 4",
+              "page": 127
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "Chapter 5 — Electromagnetic waves",
+          "page": 128,
+          "source": {
+            "printedName": "第五章　电磁波"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s6-n50",
+              "printedNumber": 50,
+              "title": "The connection between varying electric and magnetic fields",
+              "page": 128
+            },
+            {
+              "id": "phy10-c1-s6-n51",
+              "printedNumber": 51,
+              "title": "The electromagnetic field",
+              "page": 129
+            },
+            {
+              "id": "phy10-c1-s6-n52",
+              "printedNumber": 52,
+              "title": "How electromagnetic interaction is transmitted",
+              "page": 131
+            },
+            {
+              "id": "phy10-c1-s6-n53",
+              "printedNumber": 53,
+              "title": "Electromagnetic waves",
+              "page": 132
+            },
+            {
+              "id": "phy10-c1-s6-n54",
+              "printedNumber": 54,
+              "title": "The emission of electromagnetic waves",
+              "page": 134
+            },
+            {
+              "id": "phy10-c1-s6-n55",
+              "printedNumber": 55,
+              "title": "Hertz's experiments — the speed of electromagnetic waves",
+              "page": 137
+            },
+            {
+              "id": "phy10-c1-s6-n56",
+              "printedNumber": 56,
+              "title": "Popov's invention of radio",
+              "page": 139
+            },
+            {
+              "id": "phy10-c1-s6-n57",
+              "printedNumber": 57,
+              "title": "The principles of radio communication",
+              "page": 141
+            },
+            {
+              "id": "phy10-c1-s6-n58",
+              "printedNumber": 58,
+              "title": "Amplitude modulation",
+              "page": 144
+            },
+            {
+              "id": "phy10-c1-s6-n59",
+              "printedNumber": 59,
+              "title": "Detection",
+              "page": 145
+            },
+            {
+              "id": "phy10-c1-s6-n60",
+              "printedNumber": 60,
+              "title": "Observing the properties of electromagnetic waves",
+              "page": 147
+            },
+            {
+              "id": "phy10-c1-s6-n61",
+              "printedNumber": 61,
+              "title": "The propagation of radio waves",
+              "page": 148
+            },
+            {
+              "id": "phy10-c1-s6-n62",
+              "printedNumber": 62,
+              "title": "Radar",
+              "page": 150
+            },
+            {
+              "id": "phy10-c1-s6-n63",
+              "printedNumber": 63,
+              "title": "Television",
+              "page": 152
+            },
+            {
+              "id": "phy10-c1-s6-n64",
+              "printedNumber": 64,
+              "title": "The development of communications in the USSR",
+              "page": 154
+            },
+            {
+              "id": "phy10-c1-s6-t16",
+              "title": "Exercises 5",
+              "page": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy10-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Optics",
+      "page": 157,
+      "lessons": [
+        {
+          "id": "phy10-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Introduction",
+          "page": 157,
+          "source": {
+            "printedName": "引言"
+          }
+        },
+        {
+          "id": "phy10-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Chapter 6 — Geometrical optics",
+          "page": 161,
+          "source": {
+            "printedName": "第六章　几何光学"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s2-n65",
+              "printedNumber": 65,
+              "title": "Light rays",
+              "page": 161
+            },
+            {
+              "id": "phy10-c2-s2-n66",
+              "printedNumber": 66,
+              "title": "The rectilinear propagation of light",
+              "page": 162
+            },
+            {
+              "id": "phy10-c2-s2-n67",
+              "printedNumber": 67,
+              "title": "Photometry — luminous flux and luminous intensity",
+              "page": 163
+            },
+            {
+              "id": "phy10-c2-s2-n68",
+              "printedNumber": 68,
+              "title": "Illuminance",
+              "page": 166
+            },
+            {
+              "id": "phy10-c2-s2-t5",
+              "title": "Exercises 6",
+              "page": 169
+            },
+            {
+              "id": "phy10-c2-s2-n69",
+              "printedNumber": 69,
+              "title": "The law of reflection of light — images in a plane mirror",
+              "page": 170
+            },
+            {
+              "id": "phy10-c2-s2-n70",
+              "printedNumber": 70,
+              "title": "Spherical mirrors",
+              "page": 172
+            },
+            {
+              "id": "phy10-c2-s2-n71",
+              "printedNumber": 71,
+              "title": "Images formed by spherical mirrors",
+              "page": 175
+            },
+            {
+              "id": "phy10-c2-s2-t9",
+              "title": "Exercises 7",
+              "page": 177
+            },
+            {
+              "id": "phy10-c2-s2-n72",
+              "printedNumber": 72,
+              "title": "The law of refraction of light",
+              "page": 178
+            },
+            {
+              "id": "phy10-c2-s2-n73",
+              "printedNumber": 73,
+              "title": "Total internal reflection",
+              "page": 182
+            },
+            {
+              "id": "phy10-c2-s2-n74",
+              "printedNumber": 74,
+              "title": "The path of light through a prism",
+              "page": 185
+            },
+            {
+              "id": "phy10-c2-s2-t13",
+              "title": "Exercises 8",
+              "page": 186
+            },
+            {
+              "id": "phy10-c2-s2-n75",
+              "printedNumber": 75,
+              "title": "Lenses",
+              "page": 187
+            },
+            {
+              "id": "phy10-c2-s2-n76",
+              "printedNumber": 76,
+              "title": "Constructing images formed by lenses",
+              "page": 192
+            },
+            {
+              "id": "phy10-c2-s2-n77",
+              "printedNumber": 77,
+              "title": "The thin-lens formula — the magnification of a lens",
+              "page": 194
+            },
+            {
+              "id": "phy10-c2-s2-n78",
+              "printedNumber": 78,
+              "title": "The camera — the projector",
+              "page": 196
+            },
+            {
+              "id": "phy10-c2-s2-n79",
+              "printedNumber": 79,
+              "title": "The eye — spectacles",
+              "page": 199
+            },
+            {
+              "id": "phy10-c2-s2-n80",
+              "printedNumber": 80,
+              "title": "The magnifying glass — the microscope",
+              "page": 202
+            },
+            {
+              "id": "phy10-c2-s2-t20",
+              "title": "Exercises 9",
+              "page": 205
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Chapter 7 — Light waves",
+          "page": 207,
+          "source": {
+            "printedName": "第七章　光波"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s3-n81",
+              "printedNumber": 81,
+              "title": "The speed of light",
+              "page": 207
+            },
+            {
+              "id": "phy10-c2-s3-n82",
+              "printedNumber": 82,
+              "title": "Deriving the law of refraction of light",
+              "page": 210
+            },
+            {
+              "id": "phy10-c2-s3-n83",
+              "printedNumber": 83,
+              "title": "The dispersion of light",
+              "page": 212
+            },
+            {
+              "id": "phy10-c2-s3-n84",
+              "printedNumber": 84,
+              "title": "The interference of light",
+              "page": 215
+            },
+            {
+              "id": "phy10-c2-s3-n85",
+              "printedNumber": 85,
+              "title": "Newton's rings",
+              "page": 217
+            },
+            {
+              "id": "phy10-c2-s3-n86",
+              "printedNumber": 86,
+              "title": "The wavelength of light",
+              "page": 218
+            },
+            {
+              "id": "phy10-c2-s3-n87",
+              "printedNumber": 87,
+              "title": "Some applications of interference",
+              "page": 220
+            },
+            {
+              "id": "phy10-c2-s3-n88",
+              "printedNumber": 88,
+              "title": "The diffraction of light",
+              "page": 223
+            },
+            {
+              "id": "phy10-c2-s3-n89",
+              "printedNumber": 89,
+              "title": "The diffraction grating",
+              "page": 226
+            },
+            {
+              "id": "phy10-c2-s3-n90",
+              "printedNumber": 90,
+              "title": "The transverse nature of light waves — the polarization of light",
+              "page": 229
+            },
+            {
+              "id": "phy10-c2-s3-n91",
+              "printedNumber": 91,
+              "title": "The transverse nature of light waves and the electromagnetic theory of light",
+              "page": 233
+            },
+            {
+              "id": "phy10-c2-s3-t12",
+              "title": "Exercises 10",
+              "page": 234
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "Chapter 8 — The foundations of relativity",
+          "page": 235,
+          "source": {
+            "printedName": "第八章　相对论基础"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s4-n92",
+              "printedNumber": 92,
+              "title": "The laws of electrodynamics and the principle of relativity",
+              "page": 235
+            },
+            {
+              "id": "phy10-c2-s4-n93",
+              "printedNumber": 93,
+              "title": "Michelson's experiment",
+              "page": 238
+            },
+            {
+              "id": "phy10-c2-s4-n94",
+              "printedNumber": 94,
+              "title": "The postulates of the theory of relativity",
+              "page": 241
+            },
+            {
+              "id": "phy10-c2-s4-n95",
+              "printedNumber": 95,
+              "title": "The relativity of simultaneity",
+              "page": 243
+            },
+            {
+              "id": "phy10-c2-s4-n96",
+              "printedNumber": 96,
+              "title": "The relativity of time intervals",
+              "page": 246
+            },
+            {
+              "id": "phy10-c2-s4-n97",
+              "printedNumber": 97,
+              "title": "The relativity of distance",
+              "page": 249
+            },
+            {
+              "id": "phy10-c2-s4-n98",
+              "printedNumber": 98,
+              "title": "The relativistic law of addition of velocities",
+              "page": 252
+            },
+            {
+              "id": "phy10-c2-s4-n99",
+              "printedNumber": 99,
+              "title": "The dependence of mass on speed — relativistic dynamics",
+              "page": 254
+            },
+            {
+              "id": "phy10-c2-s4-n100",
+              "printedNumber": 100,
+              "title": "The synchrocyclotron",
+              "page": 257
+            },
+            {
+              "id": "phy10-c2-s4-n101",
+              "printedNumber": 101,
+              "title": "The relation between mass and energy",
+              "page": 259
+            },
+            {
+              "id": "phy10-c2-s4-t11",
+              "title": "Exercises 11",
+              "page": 262
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s5",
+          "kind": "section",
+          "number": "2.5",
+          "title": "Chapter 9 — Radiation and spectra",
+          "page": 263,
+          "source": {
+            "printedName": "第九章　辐射和光谱"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s5-n102",
+              "printedNumber": 102,
+              "title": "Types of radiation — sources of light",
+              "page": 263
+            },
+            {
+              "id": "phy10-c2-s5-n103",
+              "printedNumber": 103,
+              "title": "The distribution of energy in a spectrum",
+              "page": 265
+            },
+            {
+              "id": "phy10-c2-s5-n104",
+              "printedNumber": 104,
+              "title": "The spectroscope",
+              "page": 267
+            },
+            {
+              "id": "phy10-c2-s5-n105",
+              "printedNumber": 105,
+              "title": "Types of emission spectra",
+              "page": 269
+            },
+            {
+              "id": "phy10-c2-s5-n106",
+              "printedNumber": 106,
+              "title": "Spectral analysis",
+              "page": 271
+            },
+            {
+              "id": "phy10-c2-s5-n107",
+              "printedNumber": 107,
+              "title": "Absorption spectra",
+              "page": 272
+            },
+            {
+              "id": "phy10-c2-s5-n108",
+              "printedNumber": 108,
+              "title": "Infrared and ultraviolet radiation",
+              "page": 273
+            },
+            {
+              "id": "phy10-c2-s5-n109",
+              "printedNumber": 109,
+              "title": "X-rays",
+              "page": 274
+            },
+            {
+              "id": "phy10-c2-s5-n110",
+              "printedNumber": 110,
+              "title": "The scale of electromagnetic waves",
+              "page": 278
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s6",
+          "kind": "section",
+          "number": "2.6",
+          "title": "Chapter 10 — The actions of light, light quanta",
+          "page": 281,
+          "source": {
+            "printedName": "第十章　光的作用　光量子"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s6-n111",
+              "printedNumber": 111,
+              "title": "The beginnings of quantum theory",
+              "page": 281
+            },
+            {
+              "id": "phy10-c2-s6-n112",
+              "printedNumber": 112,
+              "title": "The photoelectric effect",
+              "page": 282
+            },
+            {
+              "id": "phy10-c2-s6-n113",
+              "printedNumber": 113,
+              "title": "The theory of the photoelectric effect",
+              "page": 286
+            },
+            {
+              "id": "phy10-c2-s6-n114",
+              "printedNumber": 114,
+              "title": "Photons",
+              "page": 288
+            },
+            {
+              "id": "phy10-c2-s6-n115",
+              "printedNumber": 115,
+              "title": "Applications of the photoelectric effect",
+              "page": 290
+            },
+            {
+              "id": "phy10-c2-s6-n116",
+              "printedNumber": 116,
+              "title": "Light pressure",
+              "page": 292
+            },
+            {
+              "id": "phy10-c2-s6-n117",
+              "printedNumber": 117,
+              "title": "The chemical action of light — photography",
+              "page": 294
+            },
+            {
+              "id": "phy10-c2-s6-n118",
+              "printedNumber": 118,
+              "title": "Recording and reproducing sound in the cinema",
+              "page": 296
+            },
+            {
+              "id": "phy10-c2-s6-t9",
+              "title": "Exercises 12",
+              "page": 298
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy10-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Atomic and Nuclear Physics",
+      "page": 300,
+      "lessons": [
+        {
+          "id": "phy10-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Introduction",
+          "page": 300,
+          "source": {
+            "printedName": "引言"
+          }
+        },
+        {
+          "id": "phy10-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Chapter 11 — Atomic physics",
+          "page": 301,
+          "source": {
+            "printedName": "第十一章　原子物理"
+          },
+          "topics": [
+            {
+              "id": "phy10-c3-s2-n119",
+              "printedNumber": 119,
+              "title": "The structure of the atom — Rutherford's experiment",
+              "page": 301
+            },
+            {
+              "id": "phy10-c3-s2-n120",
+              "printedNumber": 120,
+              "title": "The planetary model of the atom",
+              "page": 304
+            },
+            {
+              "id": "phy10-c3-s2-n121",
+              "printedNumber": 121,
+              "title": "Bohr's postulates",
+              "page": 305
+            },
+            {
+              "id": "phy10-c3-s2-n122",
+              "printedNumber": 122,
+              "title": "Bohr's model of the hydrogen atom",
+              "page": 307
+            },
+            {
+              "id": "phy10-c3-s2-n123",
+              "printedNumber": 123,
+              "title": "Experimental evidence for the existence of stationary states",
+              "page": 311
+            },
+            {
+              "id": "phy10-c3-s2-n124",
+              "printedNumber": 124,
+              "title": "Difficulties of Bohr's theory — quantum mechanics",
+              "page": 313
+            },
+            {
+              "id": "phy10-c3-s2-n125",
+              "printedNumber": 125,
+              "title": "The quantum light source — the laser",
+              "page": 314
+            },
+            {
+              "id": "phy10-c3-s2-t8",
+              "title": "Exercises 13",
+              "page": 318
+            }
+          ]
+        },
+        {
+          "id": "phy10-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "Chapter 12 — Nuclear physics",
+          "page": 320,
+          "source": {
+            "printedName": "第十二章　原子核物理"
+          },
+          "topics": [
+            {
+              "id": "phy10-c3-s3-n126",
+              "printedNumber": 126,
+              "title": "The atomic nucleus and elementary particles",
+              "page": 320
+            },
+            {
+              "id": "phy10-c3-s3-n127",
+              "printedNumber": 127,
+              "title": "Methods of observing and detecting elementary particles",
+              "page": 320
+            },
+            {
+              "id": "phy10-c3-s3-n128",
+              "printedNumber": 128,
+              "title": "The discovery of natural radioactivity",
+              "page": 325
+            },
+            {
+              "id": "phy10-c3-s3-n129",
+              "printedNumber": 129,
+              "title": "Alpha, beta and gamma rays",
+              "page": 327
+            },
+            {
+              "id": "phy10-c3-s3-n130",
+              "printedNumber": 130,
+              "title": "Radioactive transformations",
+              "page": 330
+            },
+            {
+              "id": "phy10-c3-s3-n131",
+              "printedNumber": 131,
+              "title": "The law of radioactive decay — half-life",
+              "page": 332
+            },
+            {
+              "id": "phy10-c3-s3-n132",
+              "printedNumber": 132,
+              "title": "Isotopes",
+              "page": 335
+            },
+            {
+              "id": "phy10-c3-s3-n133",
+              "printedNumber": 133,
+              "title": "The displacement rule",
+              "page": 337
+            },
+            {
+              "id": "phy10-c3-s3-n134",
+              "printedNumber": 134,
+              "title": "The artificial transformation of atomic nuclei",
+              "page": 337
+            },
+            {
+              "id": "phy10-c3-s3-n135",
+              "printedNumber": 135,
+              "title": "The discovery of the neutron",
+              "page": 339
+            },
+            {
+              "id": "phy10-c3-s3-n136",
+              "printedNumber": 136,
+              "title": "The structure of the nucleus — nuclear forces",
+              "page": 341
+            },
+            {
+              "id": "phy10-c3-s3-n137",
+              "printedNumber": 137,
+              "title": "The binding energy of the nucleus",
+              "page": 342
+            },
+            {
+              "id": "phy10-c3-s3-n138",
+              "printedNumber": 138,
+              "title": "Artificial radioactivity",
+              "page": 345
+            },
+            {
+              "id": "phy10-c3-s3-n139",
+              "printedNumber": 139,
+              "title": "Nuclear reactions",
+              "page": 346
+            },
+            {
+              "id": "phy10-c3-s3-n140",
+              "printedNumber": 140,
+              "title": "The fission of uranium nuclei",
+              "page": 348
+            },
+            {
+              "id": "phy10-c3-s3-n141",
+              "printedNumber": 141,
+              "title": "Nuclear chain reactions",
+              "page": 351
+            },
+            {
+              "id": "phy10-c3-s3-n142",
+              "printedNumber": 142,
+              "title": "The nuclear reactor",
+              "page": 353
+            },
+            {
+              "id": "phy10-c3-s3-n143",
+              "printedNumber": 143,
+              "title": "The use of nuclear energy",
+              "page": 357
+            },
+            {
+              "id": "phy10-c3-s3-n144",
+              "printedNumber": 144,
+              "title": "Applications of radioactive isotopes in science and technology",
+              "page": 358
+            },
+            {
+              "id": "phy10-c3-s3-n145",
+              "printedNumber": 145,
+              "title": "Thermonuclear reactions",
+              "page": 361
+            },
+            {
+              "id": "phy10-c3-s3-n146",
+              "printedNumber": 146,
+              "title": "The biological action of radiation",
+              "page": 363
+            },
+            {
+              "id": "phy10-c3-s3-t22",
+              "title": "Exercises 14",
+              "page": 365
+            }
+          ]
+        },
+        {
+          "id": "phy10-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "Chapter 13 — Elementary particles",
+          "page": 366,
+          "source": {
+            "printedName": "第十三章　基本粒子"
+          },
+          "topics": [
+            {
+              "id": "phy10-c3-s4-n147",
+              "printedNumber": 147,
+              "title": "What is an elementary particle?",
+              "page": 366
+            },
+            {
+              "id": "phy10-c3-s4-n148",
+              "printedNumber": 148,
+              "title": "The discovery of the positron — antiparticles",
+              "page": 369
+            },
+            {
+              "id": "phy10-c3-s4-n149",
+              "printedNumber": 149,
+              "title": "The decay of the neutron — the discovery of the neutrino",
+              "page": 371
+            },
+            {
+              "id": "phy10-c3-s4-n150",
+              "printedNumber": 150,
+              "title": "How many elementary particles are there?",
+              "page": 375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy10-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "The Significance of Physics for Explaining the World and Developing the Productive Forces of Society",
+      "page": 378,
+      "lessons": [
+        {
+          "id": "phy10-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "The unified physical picture of the world",
+          "page": 378,
+          "source": {
+            "printedSection": 151
+          }
+        },
+        {
+          "id": "phy10-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "Physics and the scientific and technological revolution",
+          "page": 382,
+          "source": {
+            "printedSection": 152
+          }
+        },
+        {
+          "id": "phy10-c4-s3",
+          "kind": "exercises",
+          "number": "4.3",
+          "title": "Review problems",
+          "page": 387,
+          "source": {
+            "printedName": "复习题"
+          }
+        },
+        {
+          "id": "phy10-c4-s4",
+          "kind": "exercises",
+          "number": "4.4",
+          "title": "Laboratory work",
+          "page": 392,
+          "source": {
+            "printedName": "实验作业"
+          }
+        }
+      ]
+    }
+  ]
+}

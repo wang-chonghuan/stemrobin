@@ -1,0 +1,666 @@
+{
+  "book": "7p",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "physics",
+  "grade": 7,
+  "title": "Physics, Grade 7",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "6-7p",
+    "printedTitle": "苏联中学课本 物理（六、七年级）",
+    "coverTitle": "苏联中学课本 物理 六-七年级",
+    "editor": "〔苏〕A.B. 别雷史金、H.A. 罗金娜（译自 1978 年版苏联中学 6、7 年级教科书）",
+    "translators": "常利",
+    "publisher": "文化教育出版社，1981 年 5 月第 1 版",
+    "toc": "resources/soviet10years/toc/6-7p.md",
+    "tocPages": "PDF 物理页 p.0006–p.0011（印刷页码 1–6）",
+    "scan": "6-7p — the printed volume, scanned; not kept in the repo",
+    "volumeNote": "本册与 7p 同出一本印刷书 6-7p（六、七年级合订），按年级拆分为两册。"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated. The printed book 6-7p binds grades 6 and 7 together and its contents open with 六年级 / 七年级; this file takes one grade, so every level below it moves up by one.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed number where it has one (printedSection), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). The book numbers its teaching items continuously across the whole bound volume (1–80 in grade 6, 81–164 in grade 7); splitting the grades does not renumber them, so printedNumber / printedSection are always as printed. A few printed items carry an unnumbered sub-item of their own (e.g. 布朗运动); the format has no level below a topic, so such a sub-item follows its parent as a topic in its own right, without a printedNumber.",
+  "contents": [
+    {
+      "id": "phy7-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Thermal Phenomena",
+      "page": 204,
+      "lessons": [
+        {
+          "id": "phy7-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Heat transfer and work",
+          "page": 204,
+          "source": {
+            "printedName": "热传递和功"
+          },
+          "topics": [
+            {
+              "id": "phy7-c1-s1-n81",
+              "printedNumber": 81,
+              "title": "Thermal motion",
+              "page": 204
+            },
+            {
+              "id": "phy7-c1-s1-n82",
+              "printedNumber": 82,
+              "title": "Conversion of mechanical energy into internal energy",
+              "page": 205
+            },
+            {
+              "id": "phy7-c1-s1-n83",
+              "printedNumber": 83,
+              "title": "Internal energy",
+              "page": 208
+            },
+            {
+              "id": "phy7-c1-s1-n84",
+              "printedNumber": 84,
+              "title": "Ways of changing the internal energy of a body",
+              "page": 209
+            },
+            {
+              "id": "phy7-c1-s1-n85",
+              "printedNumber": 85,
+              "title": "Conduction",
+              "page": 212
+            },
+            {
+              "id": "phy7-c1-s1-n86",
+              "printedNumber": 86,
+              "title": "Convection",
+              "page": 215
+            },
+            {
+              "id": "phy7-c1-s1-n87",
+              "printedNumber": 87,
+              "title": "Examples of convection in nature and in engineering",
+              "page": 218
+            },
+            {
+              "id": "phy7-c1-s1-n88",
+              "printedNumber": 88,
+              "title": "Radiation",
+              "page": 221
+            },
+            {
+              "id": "phy7-c1-s1-n89",
+              "printedNumber": 89,
+              "title": "Examples of the practical use of heat transfer",
+              "page": 223
+            },
+            {
+              "id": "phy7-c1-s1-n90",
+              "printedNumber": 90,
+              "title": "Quantity of heat",
+              "page": 225
+            },
+            {
+              "id": "phy7-c1-s1-n91",
+              "printedNumber": 91,
+              "title": "Units of quantity of heat",
+              "page": 228
+            },
+            {
+              "id": "phy7-c1-s1-n92",
+              "printedNumber": 92,
+              "title": "Specific heat",
+              "page": 229
+            },
+            {
+              "id": "phy7-c1-s1-n93",
+              "printedNumber": 93,
+              "title": "Calculating the heat absorbed as a body is heated and released as it cools",
+              "page": 231
+            },
+            {
+              "id": "phy7-c1-s1-n94",
+              "printedNumber": 94,
+              "title": "The energy of fuels — the heat of combustion of a fuel",
+              "page": 235
+            },
+            {
+              "id": "phy7-c1-s1-n95",
+              "printedNumber": 95,
+              "title": "The law of conservation and conversion of energy in mechanical and thermal processes",
+              "page": 237
+            },
+            {
+              "id": "phy7-c1-s1-t16",
+              "title": "The use of solar energy on Earth",
+              "page": 240
+            }
+          ]
+        },
+        {
+          "id": "phy7-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Changes in the state of aggregation of matter",
+          "page": 243,
+          "source": {
+            "printedName": "物质聚集态的变化"
+          },
+          "topics": [
+            {
+              "id": "phy7-c1-s2-n96",
+              "printedNumber": 96,
+              "title": "The states of aggregation of matter",
+              "page": 243
+            },
+            {
+              "id": "phy7-c1-s2-n97",
+              "printedNumber": 97,
+              "title": "Melting and solidification of crystals",
+              "page": 245
+            },
+            {
+              "id": "phy7-c1-s2-n98",
+              "printedNumber": 98,
+              "title": "Melting and solidification curves of crystals",
+              "page": 246
+            },
+            {
+              "id": "phy7-c1-s2-n99",
+              "printedNumber": 99,
+              "title": "Melting and solidification explained by the molecular theory of matter",
+              "page": 248
+            },
+            {
+              "id": "phy7-c1-s2-n100",
+              "printedNumber": 100,
+              "title": "The heat of fusion",
+              "page": 249
+            },
+            {
+              "id": "phy7-c1-s2-n101",
+              "printedNumber": 101,
+              "title": "Energy is released when a substance solidifies",
+              "page": 251
+            },
+            {
+              "id": "phy7-c1-s2-n102",
+              "printedNumber": 102,
+              "title": "Worked examples of heat calculations",
+              "page": 252
+            },
+            {
+              "id": "phy7-c1-s2-t8",
+              "title": "The casting of metals",
+              "page": 253
+            },
+            {
+              "id": "phy7-c1-s2-n103",
+              "printedNumber": 103,
+              "title": "Evaporation and condensation",
+              "page": 254
+            },
+            {
+              "id": "phy7-c1-s2-n104",
+              "printedNumber": 104,
+              "title": "Energy is absorbed when a liquid evaporates",
+              "page": 256
+            },
+            {
+              "id": "phy7-c1-s2-n105",
+              "printedNumber": 105,
+              "title": "The condensation of vapour",
+              "page": 258
+            },
+            {
+              "id": "phy7-c1-s2-t12",
+              "title": "The refrigerator",
+              "page": 259
+            },
+            {
+              "id": "phy7-c1-s2-n106",
+              "printedNumber": 106,
+              "title": "Boiling",
+              "page": 260
+            },
+            {
+              "id": "phy7-c1-s2-n107",
+              "printedNumber": 107,
+              "title": "The heat of vaporization and the heat of condensation",
+              "page": 263
+            },
+            {
+              "id": "phy7-c1-s2-n108",
+              "printedNumber": 108,
+              "title": "Worked examples of heat calculations",
+              "page": 265
+            }
+          ]
+        },
+        {
+          "id": "phy7-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Heat engines",
+          "page": 267,
+          "source": {
+            "printedName": "热机"
+          },
+          "topics": [
+            {
+              "id": "phy7-c1-s3-n109",
+              "printedNumber": 109,
+              "title": "The work done by an expanding gas or vapour",
+              "page": 267
+            },
+            {
+              "id": "phy7-c1-s3-n110",
+              "printedNumber": 110,
+              "title": "The internal combustion engine",
+              "page": 268
+            },
+            {
+              "id": "phy7-c1-s3-n111",
+              "printedNumber": 111,
+              "title": "The steam turbine",
+              "page": 272
+            },
+            {
+              "id": "phy7-c1-s3-n112",
+              "printedNumber": 112,
+              "title": "The efficiency of a heat engine",
+              "page": 274
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy7-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Electricity",
+      "page": 276,
+      "lessons": [
+        {
+          "id": "phy7-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "The structure of the atom",
+          "page": 276,
+          "source": {
+            "printedName": "原子结构"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s1-n113",
+              "printedNumber": 113,
+              "title": "Electrification by contact — electric charge",
+              "page": 276
+            },
+            {
+              "id": "phy7-c2-s1-n114",
+              "printedNumber": 114,
+              "title": "The two kinds of charge — interaction between charged bodies",
+              "page": 278
+            },
+            {
+              "id": "phy7-c2-s1-n115",
+              "printedNumber": 115,
+              "title": "The electroscope — conductors and non-conductors",
+              "page": 280
+            },
+            {
+              "id": "phy7-c2-s1-n116",
+              "printedNumber": 116,
+              "title": "The electric field",
+              "page": 282
+            },
+            {
+              "id": "phy7-c2-s1-n117",
+              "printedNumber": 117,
+              "title": "The divisibility of electric charge",
+              "page": 284
+            },
+            {
+              "id": "phy7-c2-s1-n118",
+              "printedNumber": 118,
+              "title": "The Ioffe and Millikan experiments — the electron",
+              "page": 286
+            },
+            {
+              "id": "phy7-c2-s1-n119",
+              "printedNumber": 119,
+              "title": "Rutherford's experiment — the nuclear model of the atom",
+              "page": 288
+            },
+            {
+              "id": "phy7-c2-s1-n120",
+              "printedNumber": 120,
+              "title": "The structure of the atom",
+              "page": 291
+            },
+            {
+              "id": "phy7-c2-s1-n121",
+              "printedNumber": 121,
+              "title": "Explaining the electrification of bodies",
+              "page": 294
+            }
+          ]
+        },
+        {
+          "id": "phy7-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Current, voltage, and resistance",
+          "page": 298,
+          "source": {
+            "printedName": "电流强度、电压和电阻"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s2-n122",
+              "printedNumber": 122,
+              "title": "Electric current",
+              "page": 298
+            },
+            {
+              "id": "phy7-c2-s2-n123",
+              "printedNumber": 123,
+              "title": "Sources of current",
+              "page": 299
+            },
+            {
+              "id": "phy7-c2-s2-n124",
+              "printedNumber": 124,
+              "title": "Primary cells and accumulators",
+              "page": 301
+            },
+            {
+              "id": "phy7-c2-s2-n125",
+              "printedNumber": 125,
+              "title": "The electric circuit and its parts",
+              "page": 305
+            },
+            {
+              "id": "phy7-c2-s2-n126",
+              "printedNumber": 126,
+              "title": "Current in metals",
+              "page": 307
+            },
+            {
+              "id": "phy7-c2-s2-n127",
+              "printedNumber": 127,
+              "title": "Current in electrolytes",
+              "page": 309
+            },
+            {
+              "id": "phy7-c2-s2-n128",
+              "printedNumber": 128,
+              "title": "The effects of an electric current",
+              "page": 311
+            },
+            {
+              "id": "phy7-c2-s2-n129",
+              "printedNumber": 129,
+              "title": "The direction of a current",
+              "page": 314
+            },
+            {
+              "id": "phy7-c2-s2-n130",
+              "printedNumber": 130,
+              "title": "Quantity of electricity and current",
+              "page": 315
+            },
+            {
+              "id": "phy7-c2-s2-n131",
+              "printedNumber": 131,
+              "title": "Units of current and units of quantity of electricity",
+              "page": 317
+            },
+            {
+              "id": "phy7-c2-s2-n132",
+              "printedNumber": 132,
+              "title": "The ammeter — measuring current",
+              "page": 319
+            },
+            {
+              "id": "phy7-c2-s2-n133",
+              "printedNumber": 133,
+              "title": "Voltage",
+              "page": 322
+            },
+            {
+              "id": "phy7-c2-s2-n134",
+              "printedNumber": 134,
+              "title": "Units of voltage",
+              "page": 324
+            },
+            {
+              "id": "phy7-c2-s2-n135",
+              "printedNumber": 135,
+              "title": "The voltmeter — measuring voltage",
+              "page": 326
+            },
+            {
+              "id": "phy7-c2-s2-n136",
+              "printedNumber": 136,
+              "title": "The relation between current and voltage",
+              "page": 328
+            },
+            {
+              "id": "phy7-c2-s2-n137",
+              "printedNumber": 137,
+              "title": "The resistance of a conductor — units of resistance",
+              "page": 330
+            },
+            {
+              "id": "phy7-c2-s2-n138",
+              "printedNumber": 138,
+              "title": "Ohm's law for part of a circuit",
+              "page": 333
+            },
+            {
+              "id": "phy7-c2-s2-n139",
+              "printedNumber": 139,
+              "title": "Calculating the resistance of a conductor — resistivity",
+              "page": 338
+            },
+            {
+              "id": "phy7-c2-s2-n140",
+              "printedNumber": 140,
+              "title": "Worked examples on the resistance of a conductor, current, and voltage",
+              "page": 341
+            },
+            {
+              "id": "phy7-c2-s2-n141",
+              "printedNumber": 141,
+              "title": "The rheostat",
+              "page": 344
+            },
+            {
+              "id": "phy7-c2-s2-n142",
+              "printedNumber": 142,
+              "title": "Conductors in series",
+              "page": 346
+            },
+            {
+              "id": "phy7-c2-s2-n143",
+              "printedNumber": 143,
+              "title": "Conductors in parallel",
+              "page": 350
+            }
+          ]
+        },
+        {
+          "id": "phy7-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Electrical work and electric power",
+          "page": 355,
+          "source": {
+            "printedName": "电功和电功率"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s3-n144",
+              "printedNumber": 144,
+              "title": "Electrical work",
+              "page": 355
+            },
+            {
+              "id": "phy7-c2-s3-n145",
+              "printedNumber": 145,
+              "title": "Electric power",
+              "page": 357
+            },
+            {
+              "id": "phy7-c2-s3-n146",
+              "printedNumber": 146,
+              "title": "Expressing electrical work in terms of power",
+              "page": 359
+            },
+            {
+              "id": "phy7-c2-s3-n147",
+              "printedNumber": 147,
+              "title": "The heating of a conductor by a current — the Joule–Lenz law",
+              "page": 361
+            },
+            {
+              "id": "phy7-c2-s3-n148",
+              "printedNumber": 148,
+              "title": "The incandescent lamp — electric heating appliances",
+              "page": 363
+            },
+            {
+              "id": "phy7-c2-s3-n149",
+              "printedNumber": 149,
+              "title": "Short circuits — fuses",
+              "page": 366
+            }
+          ]
+        },
+        {
+          "id": "phy7-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "Electromagnetic phenomena",
+          "page": 369,
+          "source": {
+            "printedName": "电磁现象"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s4-n150",
+              "printedNumber": 150,
+              "title": "The magnetic field",
+              "page": 369
+            },
+            {
+              "id": "phy7-c2-s4-n151",
+              "printedNumber": 151,
+              "title": "The magnetic field of a straight current — lines of magnetic force",
+              "page": 371
+            },
+            {
+              "id": "phy7-c2-s4-n152",
+              "printedNumber": 152,
+              "title": "The direction of a current and the direction of its magnetic lines of force",
+              "page": 372
+            },
+            {
+              "id": "phy7-c2-s4-n153",
+              "printedNumber": 153,
+              "title": "The magnetic field of a current-carrying solenoid",
+              "page": 374
+            },
+            {
+              "id": "phy7-c2-s4-n154",
+              "printedNumber": 154,
+              "title": "The electromagnet",
+              "page": 377
+            },
+            {
+              "id": "phy7-c2-s4-n155",
+              "printedNumber": 155,
+              "title": "The telegraph",
+              "page": 380
+            },
+            {
+              "id": "phy7-c2-s4-n156",
+              "printedNumber": 156,
+              "title": "The electromagnetic relay",
+              "page": 382
+            },
+            {
+              "id": "phy7-c2-s4-n157",
+              "printedNumber": 157,
+              "title": "Permanent magnets — the field of a permanent magnet",
+              "page": 383
+            },
+            {
+              "id": "phy7-c2-s4-n158",
+              "printedNumber": 158,
+              "title": "The Earth's magnetic field",
+              "page": 387
+            },
+            {
+              "id": "phy7-c2-s4-n159",
+              "printedNumber": 159,
+              "title": "The telephone",
+              "page": 389
+            },
+            {
+              "id": "phy7-c2-s4-n160",
+              "printedNumber": 160,
+              "title": "The force on a current-carrying conductor in a magnetic field — the rotation of a coil",
+              "page": 392
+            },
+            {
+              "id": "phy7-c2-s4-n161",
+              "printedNumber": 161,
+              "title": "The electric motor and its uses",
+              "page": 395
+            },
+            {
+              "id": "phy7-c2-s4-n162",
+              "printedNumber": 162,
+              "title": "Electromagnetic induction",
+              "page": 398
+            },
+            {
+              "id": "phy7-c2-s4-n163",
+              "printedNumber": 163,
+              "title": "The generator",
+              "page": 401
+            },
+            {
+              "id": "phy7-c2-s4-n164",
+              "printedNumber": 164,
+              "title": "The electrification of the USSR",
+              "page": 405
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy7-lab",
+      "kind": "exercises",
+      "number": null,
+      "title": "Laboratory assignments",
+      "page": 409,
+      "source": {
+        "printedName": "实验作业"
+      }
+    },
+    {
+      "id": "phy7-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "Review questions",
+      "page": 437,
+      "source": {
+        "printedName": "复习题"
+      }
+    }
+  ]
+}

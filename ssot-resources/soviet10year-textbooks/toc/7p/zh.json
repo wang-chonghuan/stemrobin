@@ -1,0 +1,666 @@
+{
+  "book": "7p",
+  "locale": "zh",
+  "authority": "extracted",
+  "subject": "physics",
+  "grade": 7,
+  "title": "物理 七年级",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "6-7p",
+    "printedTitle": "苏联中学课本 物理（六、七年级）",
+    "coverTitle": "苏联中学课本 物理 六-七年级",
+    "editor": "〔苏〕A.B. 别雷史金、H.A. 罗金娜（译自 1978 年版苏联中学 6、7 年级教科书）",
+    "translators": "常利",
+    "publisher": "文化教育出版社，1981 年 5 月第 1 版",
+    "toc": "resources/soviet10years/toc/6-7p.md",
+    "tocPages": "PDF 物理页 p.0006–p.0011（印刷页码 1–6）",
+    "scan": "6-7p — the printed volume, scanned; not kept in the repo",
+    "volumeNote": "本册与 7p 同出一本印刷书 6-7p（六、七年级合订），按年级拆分为两册。"
+  },
+  "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。原书 6-7p 是六、七年级合订的一本印刷书，目录第一级即「六年级」「七年级」，本册取其中一个年级，故其下各级依次上提一层。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷序号的用序号（printedSection），没有的用原书印刷的名称（printedName）。原书的教学条目在整本合订书里连续编号（六年级 1–80，七年级 81–164），拆分年级时不重新编号，printedNumber / printedSection 一律照印。原书中少数条目下还带一条无序号的附属条目（如「布朗运动」），格式中没有更低一级，故紧接其后作为同级 topic 收入，不给 printedNumber。",
+  "contents": [
+    {
+      "id": "phy7-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "热现象",
+      "page": 204,
+      "lessons": [
+        {
+          "id": "phy7-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "热传递和功",
+          "page": 204,
+          "source": {
+            "printedName": "热传递和功"
+          },
+          "topics": [
+            {
+              "id": "phy7-c1-s1-n81",
+              "printedNumber": 81,
+              "title": "热运动",
+              "page": 204
+            },
+            {
+              "id": "phy7-c1-s1-n82",
+              "printedNumber": 82,
+              "title": "机械能转化为内能",
+              "page": 205
+            },
+            {
+              "id": "phy7-c1-s1-n83",
+              "printedNumber": 83,
+              "title": "内能",
+              "page": 208
+            },
+            {
+              "id": "phy7-c1-s1-n84",
+              "printedNumber": 84,
+              "title": "改变物体内能的方法",
+              "page": 209
+            },
+            {
+              "id": "phy7-c1-s1-n85",
+              "printedNumber": 85,
+              "title": "热传导",
+              "page": 212
+            },
+            {
+              "id": "phy7-c1-s1-n86",
+              "printedNumber": 86,
+              "title": "对流",
+              "page": 215
+            },
+            {
+              "id": "phy7-c1-s1-n87",
+              "printedNumber": 87,
+              "title": "自然界及工程技术中的对流现象举例",
+              "page": 218
+            },
+            {
+              "id": "phy7-c1-s1-n88",
+              "printedNumber": 88,
+              "title": "辐射",
+              "page": 221
+            },
+            {
+              "id": "phy7-c1-s1-n89",
+              "printedNumber": 89,
+              "title": "热传递的实际应用举例",
+              "page": 223
+            },
+            {
+              "id": "phy7-c1-s1-n90",
+              "printedNumber": 90,
+              "title": "热量",
+              "page": 225
+            },
+            {
+              "id": "phy7-c1-s1-n91",
+              "printedNumber": 91,
+              "title": "热量的单位",
+              "page": 228
+            },
+            {
+              "id": "phy7-c1-s1-n92",
+              "printedNumber": 92,
+              "title": "比热",
+              "page": 229
+            },
+            {
+              "id": "phy7-c1-s1-n93",
+              "printedNumber": 93,
+              "title": "物体温度升高时所吸收的热量或温度降低时所放出的热量的计算",
+              "page": 231
+            },
+            {
+              "id": "phy7-c1-s1-n94",
+              "printedNumber": 94,
+              "title": "燃料的能量　燃料的燃烧值",
+              "page": 235
+            },
+            {
+              "id": "phy7-c1-s1-n95",
+              "printedNumber": 95,
+              "title": "机械过程和热过程中的能量守恒与转化定律",
+              "page": 237
+            },
+            {
+              "id": "phy7-c1-s1-t16",
+              "title": "在地球上对太阳能的利用",
+              "page": 240
+            }
+          ]
+        },
+        {
+          "id": "phy7-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "物质聚集态的变化",
+          "page": 243,
+          "source": {
+            "printedName": "物质聚集态的变化"
+          },
+          "topics": [
+            {
+              "id": "phy7-c1-s2-n96",
+              "printedNumber": 96,
+              "title": "物质的聚集态",
+              "page": 243
+            },
+            {
+              "id": "phy7-c1-s2-n97",
+              "printedNumber": 97,
+              "title": "晶体的熔解与凝固",
+              "page": 245
+            },
+            {
+              "id": "phy7-c1-s2-n98",
+              "printedNumber": 98,
+              "title": "晶体的熔解和凝固图线",
+              "page": 246
+            },
+            {
+              "id": "phy7-c1-s2-n99",
+              "printedNumber": 99,
+              "title": "用物质的分子结构学说解释熔解和凝固",
+              "page": 248
+            },
+            {
+              "id": "phy7-c1-s2-n100",
+              "printedNumber": 100,
+              "title": "熔解热",
+              "page": 249
+            },
+            {
+              "id": "phy7-c1-s2-n101",
+              "printedNumber": 101,
+              "title": "物质凝固时要释放能量",
+              "page": 251
+            },
+            {
+              "id": "phy7-c1-s2-n102",
+              "printedNumber": 102,
+              "title": "热量计算举例",
+              "page": 252
+            },
+            {
+              "id": "phy7-c1-s2-t8",
+              "title": "金属的铸造",
+              "page": 253
+            },
+            {
+              "id": "phy7-c1-s2-n103",
+              "printedNumber": 103,
+              "title": "蒸发与凝结",
+              "page": 254
+            },
+            {
+              "id": "phy7-c1-s2-n104",
+              "printedNumber": 104,
+              "title": "液体蒸发时要吸收能量",
+              "page": 256
+            },
+            {
+              "id": "phy7-c1-s2-n105",
+              "printedNumber": 105,
+              "title": "蒸汽的凝结",
+              "page": 258
+            },
+            {
+              "id": "phy7-c1-s2-t12",
+              "title": "致冷机",
+              "page": 259
+            },
+            {
+              "id": "phy7-c1-s2-n106",
+              "printedNumber": 106,
+              "title": "沸腾",
+              "page": 260
+            },
+            {
+              "id": "phy7-c1-s2-n107",
+              "printedNumber": 107,
+              "title": "汽化热与凝结热",
+              "page": 263
+            },
+            {
+              "id": "phy7-c1-s2-n108",
+              "printedNumber": 108,
+              "title": "热量计算举例",
+              "page": 265
+            }
+          ]
+        },
+        {
+          "id": "phy7-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "热机",
+          "page": 267,
+          "source": {
+            "printedName": "热机"
+          },
+          "topics": [
+            {
+              "id": "phy7-c1-s3-n109",
+              "printedNumber": 109,
+              "title": "气体及蒸汽膨胀时所做的功",
+              "page": 267
+            },
+            {
+              "id": "phy7-c1-s3-n110",
+              "printedNumber": 110,
+              "title": "内燃机",
+              "page": 268
+            },
+            {
+              "id": "phy7-c1-s3-n111",
+              "printedNumber": 111,
+              "title": "汽轮机",
+              "page": 272
+            },
+            {
+              "id": "phy7-c1-s3-n112",
+              "printedNumber": 112,
+              "title": "热机效率",
+              "page": 274
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy7-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "电学",
+      "page": 276,
+      "lessons": [
+        {
+          "id": "phy7-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "原子结构",
+          "page": 276,
+          "source": {
+            "printedName": "原子结构"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s1-n113",
+              "printedNumber": 113,
+              "title": "接触带电　电荷",
+              "page": 276
+            },
+            {
+              "id": "phy7-c2-s1-n114",
+              "printedNumber": 114,
+              "title": "两种电荷　带电物体间的相互作用",
+              "page": 278
+            },
+            {
+              "id": "phy7-c2-s1-n115",
+              "printedNumber": 115,
+              "title": "验电器　导体和非导体",
+              "page": 280
+            },
+            {
+              "id": "phy7-c2-s1-n116",
+              "printedNumber": 116,
+              "title": "电场",
+              "page": 282
+            },
+            {
+              "id": "phy7-c2-s1-n117",
+              "printedNumber": 117,
+              "title": "电荷的可分性",
+              "page": 284
+            },
+            {
+              "id": "phy7-c2-s1-n118",
+              "printedNumber": 118,
+              "title": "约飞实验与密立根实验　电子",
+              "page": 286
+            },
+            {
+              "id": "phy7-c2-s1-n119",
+              "printedNumber": 119,
+              "title": "卢瑟福实验　原子的核模型",
+              "page": 288
+            },
+            {
+              "id": "phy7-c2-s1-n120",
+              "printedNumber": 120,
+              "title": "原子结构",
+              "page": 291
+            },
+            {
+              "id": "phy7-c2-s1-n121",
+              "printedNumber": 121,
+              "title": "物体带电现象的解释",
+              "page": 294
+            }
+          ]
+        },
+        {
+          "id": "phy7-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "电流强度、电压和电阻",
+          "page": 298,
+          "source": {
+            "printedName": "电流强度、电压和电阻"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s2-n122",
+              "printedNumber": 122,
+              "title": "电流",
+              "page": 298
+            },
+            {
+              "id": "phy7-c2-s2-n123",
+              "printedNumber": 123,
+              "title": "电源",
+              "page": 299
+            },
+            {
+              "id": "phy7-c2-s2-n124",
+              "printedNumber": 124,
+              "title": "原电池和蓄电池",
+              "page": 301
+            },
+            {
+              "id": "phy7-c2-s2-n125",
+              "printedNumber": 125,
+              "title": "电路及其组成部分",
+              "page": 305
+            },
+            {
+              "id": "phy7-c2-s2-n126",
+              "printedNumber": 126,
+              "title": "金属中的电流",
+              "page": 307
+            },
+            {
+              "id": "phy7-c2-s2-n127",
+              "printedNumber": 127,
+              "title": "电解质中的电流",
+              "page": 309
+            },
+            {
+              "id": "phy7-c2-s2-n128",
+              "printedNumber": 128,
+              "title": "电流的效应",
+              "page": 311
+            },
+            {
+              "id": "phy7-c2-s2-n129",
+              "printedNumber": 129,
+              "title": "电流的方向",
+              "page": 314
+            },
+            {
+              "id": "phy7-c2-s2-n130",
+              "printedNumber": 130,
+              "title": "电量和电流强度",
+              "page": 315
+            },
+            {
+              "id": "phy7-c2-s2-n131",
+              "printedNumber": 131,
+              "title": "电流强度的单位和电量的单位",
+              "page": 317
+            },
+            {
+              "id": "phy7-c2-s2-n132",
+              "printedNumber": 132,
+              "title": "安培计　电流强度的测量",
+              "page": 319
+            },
+            {
+              "id": "phy7-c2-s2-n133",
+              "printedNumber": 133,
+              "title": "电压",
+              "page": 322
+            },
+            {
+              "id": "phy7-c2-s2-n134",
+              "printedNumber": 134,
+              "title": "电压的单位",
+              "page": 324
+            },
+            {
+              "id": "phy7-c2-s2-n135",
+              "printedNumber": 135,
+              "title": "伏特计　电压的测量",
+              "page": 326
+            },
+            {
+              "id": "phy7-c2-s2-n136",
+              "printedNumber": 136,
+              "title": "电流强度与电压的关系",
+              "page": 328
+            },
+            {
+              "id": "phy7-c2-s2-n137",
+              "printedNumber": 137,
+              "title": "导体的电阻　电阻的单位",
+              "page": 330
+            },
+            {
+              "id": "phy7-c2-s2-n138",
+              "printedNumber": 138,
+              "title": "部分电路的欧姆定律",
+              "page": 333
+            },
+            {
+              "id": "phy7-c2-s2-n139",
+              "printedNumber": 139,
+              "title": "导体电阻的计算　电阻率",
+              "page": 338
+            },
+            {
+              "id": "phy7-c2-s2-n140",
+              "printedNumber": 140,
+              "title": "导体的电阻、电流强度和电压计算举例",
+              "page": 341
+            },
+            {
+              "id": "phy7-c2-s2-n141",
+              "printedNumber": 141,
+              "title": "变阻器",
+              "page": 344
+            },
+            {
+              "id": "phy7-c2-s2-n142",
+              "printedNumber": 142,
+              "title": "导体的串联",
+              "page": 346
+            },
+            {
+              "id": "phy7-c2-s2-n143",
+              "printedNumber": 143,
+              "title": "导体的并联",
+              "page": 350
+            }
+          ]
+        },
+        {
+          "id": "phy7-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "电功和电功率",
+          "page": 355,
+          "source": {
+            "printedName": "电功和电功率"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s3-n144",
+              "printedNumber": 144,
+              "title": "电功",
+              "page": 355
+            },
+            {
+              "id": "phy7-c2-s3-n145",
+              "printedNumber": 145,
+              "title": "电功率",
+              "page": 357
+            },
+            {
+              "id": "phy7-c2-s3-n146",
+              "printedNumber": 146,
+              "title": "用电功率表示电功",
+              "page": 359
+            },
+            {
+              "id": "phy7-c2-s3-n147",
+              "printedNumber": 147,
+              "title": "电流使导体变热　焦耳-楞次定律",
+              "page": 361
+            },
+            {
+              "id": "phy7-c2-s3-n148",
+              "printedNumber": 148,
+              "title": "白炽灯　电热器",
+              "page": 363
+            },
+            {
+              "id": "phy7-c2-s3-n149",
+              "printedNumber": 149,
+              "title": "短路　保险器",
+              "page": 366
+            }
+          ]
+        },
+        {
+          "id": "phy7-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "电磁现象",
+          "page": 369,
+          "source": {
+            "printedName": "电磁现象"
+          },
+          "topics": [
+            {
+              "id": "phy7-c2-s4-n150",
+              "printedNumber": 150,
+              "title": "磁场",
+              "page": 369
+            },
+            {
+              "id": "phy7-c2-s4-n151",
+              "printedNumber": 151,
+              "title": "直线电流的磁场　磁力线",
+              "page": 371
+            },
+            {
+              "id": "phy7-c2-s4-n152",
+              "printedNumber": 152,
+              "title": "电流的方向与电流磁场的磁力线的方向",
+              "page": 372
+            },
+            {
+              "id": "phy7-c2-s4-n153",
+              "printedNumber": 153,
+              "title": "通电螺线管的磁场",
+              "page": 374
+            },
+            {
+              "id": "phy7-c2-s4-n154",
+              "printedNumber": 154,
+              "title": "电磁铁",
+              "page": 377
+            },
+            {
+              "id": "phy7-c2-s4-n155",
+              "printedNumber": 155,
+              "title": "电报",
+              "page": 380
+            },
+            {
+              "id": "phy7-c2-s4-n156",
+              "printedNumber": 156,
+              "title": "电磁继电器",
+              "page": 382
+            },
+            {
+              "id": "phy7-c2-s4-n157",
+              "printedNumber": 157,
+              "title": "永磁铁　永磁铁的磁场",
+              "page": 383
+            },
+            {
+              "id": "phy7-c2-s4-n158",
+              "printedNumber": 158,
+              "title": "地球的磁场",
+              "page": 387
+            },
+            {
+              "id": "phy7-c2-s4-n159",
+              "printedNumber": 159,
+              "title": "电话",
+              "page": 389
+            },
+            {
+              "id": "phy7-c2-s4-n160",
+              "printedNumber": 160,
+              "title": "通电导体在磁场中所受的力　线圈的转动",
+              "page": 392
+            },
+            {
+              "id": "phy7-c2-s4-n161",
+              "printedNumber": 161,
+              "title": "电动机及其应用",
+              "page": 395
+            },
+            {
+              "id": "phy7-c2-s4-n162",
+              "printedNumber": 162,
+              "title": "电磁感应现象",
+              "page": 398
+            },
+            {
+              "id": "phy7-c2-s4-n163",
+              "printedNumber": 163,
+              "title": "发电机",
+              "page": 401
+            },
+            {
+              "id": "phy7-c2-s4-n164",
+              "printedNumber": 164,
+              "title": "苏联的电气化",
+              "page": 405
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy7-lab",
+      "kind": "exercises",
+      "number": null,
+      "title": "实验作业",
+      "page": 409,
+      "source": {
+        "printedName": "实验作业"
+      }
+    },
+    {
+      "id": "phy7-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "复习题",
+      "page": 437,
+      "source": {
+        "printedName": "复习题"
+      }
+    }
+  ]
+}

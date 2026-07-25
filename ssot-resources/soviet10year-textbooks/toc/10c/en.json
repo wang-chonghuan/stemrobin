@@ -1,0 +1,748 @@
+{
+  "book": "10c",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "analysis",
+  "grade": 10,
+  "title": "Algebra and Elementary Analysis, Grade 10",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "10c",
+    "printedTitle": "苏联十年制学校数学教材·代数和分析初步（十年级）",
+    "coverTitle": "苏联十年制学校数学教材 代数和分析初步 十年级",
+    "editor": "А. Н. 柯尔莫柯洛夫 主编（据 1978 年第三版译出，并参照 1980 年第 5 版修订）",
+    "translators": "盛世雄",
+    "publisher": "人民教育出版社，1980 年 2 月第 1 版，1980 年 8 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/10c.md",
+    "tocPages": "PDF 物理页 p.0003–p.0006",
+    "scan": "10c — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 15–25 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while the rest are each a single entry carrying no chapter number, so their `number` is null. This volume continues the ninth-grade chapter numbering — its first printed chapter is 第六章, so chapter numbers start at 6 and the ids start at c6; 复习资料 carries no printed chapter number and takes the next chapter position, 10.",
+  "contents": [
+    {
+      "id": "ana10-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "Trigonometric Functions, their Graphs and Derivatives (continued)",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "ana10-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "The derivatives of the trigonometric functions",
+          "page": 1,
+          "source": {
+            "printedSection": 15
+          },
+          "topics": [
+            {
+              "id": "ana10-c6-s1-n75",
+              "printedNumber": 75,
+              "title": "The derivative of the sine function",
+              "page": 1
+            },
+            {
+              "id": "ana10-c6-s1-n76",
+              "printedNumber": 76,
+              "title": "The derivatives of the cosine, tangent and cotangent functions",
+              "page": 4
+            },
+            {
+              "id": "ana10-c6-s1-n77",
+              "printedNumber": 77,
+              "title": "The continuity of the trigonometric functions",
+              "page": 7
+            },
+            {
+              "id": "ana10-c6-s1-n78",
+              "printedNumber": 78,
+              "title": "The limit of the ratio of a chord to the arc it subtends",
+              "page": 10
+            }
+          ]
+        },
+        {
+          "id": "ana10-c6-s2",
+          "kind": "section",
+          "number": "6.2",
+          "title": "Harmonic oscillations",
+          "page": 13,
+          "source": {
+            "printedSection": 16
+          },
+          "topics": [
+            {
+              "id": "ana10-c6-s2-n79",
+              "printedNumber": 79,
+              "title": "The second derivative",
+              "page": 13
+            },
+            {
+              "id": "ana10-c6-s2-n80",
+              "printedNumber": 80,
+              "title": "The differential equation of harmonic oscillations",
+              "page": 16
+            },
+            {
+              "id": "ana10-c6-s2-n81",
+              "printedNumber": 81,
+              "title": "The graph of a harmonic oscillation",
+              "page": 22
+            },
+            {
+              "id": "ana10-c6-s2-n82",
+              "printedNumber": 82,
+              "title": "Composition of harmonic oscillations of the same period",
+              "page": 28
+            }
+          ]
+        },
+        {
+          "id": "ana10-c6-s3",
+          "kind": "section",
+          "number": "6.3",
+          "title": "The study of the trigonometric functions",
+          "page": 29,
+          "source": {
+            "printedSection": 17
+          },
+          "topics": [
+            {
+              "id": "ana10-c6-s3-n83",
+              "printedNumber": 83,
+              "title": "Reduction formulas",
+              "page": 29
+            },
+            {
+              "id": "ana10-c6-s3-n84",
+              "printedNumber": 84,
+              "title": "The inverse of a continuous increasing (decreasing) function",
+              "page": 35
+            },
+            {
+              "id": "ana10-c6-s3-n85",
+              "printedNumber": 85,
+              "title": "Properties and graph of the sine function. The arcsine and the solution of the equation sin x = a",
+              "page": 36
+            },
+            {
+              "id": "ana10-c6-s3-n86",
+              "printedNumber": 86,
+              "title": "Properties and graph of the cosine function. The arccosine and the solution of the equation cos x = a",
+              "page": 45
+            },
+            {
+              "id": "ana10-c6-s3-n87",
+              "printedNumber": 87,
+              "title": "Properties and graph of the tangent function. The arctangent and the solution of the equation tg x = a",
+              "page": 55
+            },
+            {
+              "id": "ana10-c6-s3-n88",
+              "printedNumber": 88,
+              "title": "Properties and graph of the cotangent function. The arccotangent and the solution of the equation ctg x = a",
+              "page": 61
+            }
+          ]
+        },
+        {
+          "id": "ana10-c6-s4",
+          "kind": "section",
+          "number": "6.4",
+          "title": "Trigonometric identities and trigonometric equations",
+          "page": 67,
+          "source": {
+            "printedSection": 18
+          },
+          "topics": [
+            {
+              "id": "ana10-c6-s4-n89",
+              "printedNumber": 89,
+              "title": "Relations between the trigonometric functions of the same angle",
+              "page": 67
+            },
+            {
+              "id": "ana10-c6-s4-n90",
+              "printedNumber": 90,
+              "title": "The trigonometric functions of a half angle",
+              "page": 72
+            },
+            {
+              "id": "ana10-c6-s4-n91",
+              "printedNumber": 91,
+              "title": "Expressing the trigonometric functions through the tangent of the half angle",
+              "page": 76
+            },
+            {
+              "id": "ana10-c6-s4-n92",
+              "printedNumber": 92,
+              "title": "Converting products of trigonometric functions into sums",
+              "page": 79
+            },
+            {
+              "id": "ana10-c6-s4-n93",
+              "printedNumber": 93,
+              "title": "Solving the simplest trigonometric inequalities",
+              "page": 82
+            },
+            {
+              "id": "ana10-c6-s4-n94",
+              "printedNumber": 94,
+              "title": "Examples of solving trigonometric equations",
+              "page": 86
+            },
+            {
+              "id": "ana10-c6-s4-n95",
+              "printedNumber": 95,
+              "title": "Proving trigonometric identities",
+              "page": 89
+            },
+            {
+              "id": "ana10-c6-s4-n96",
+              "printedNumber": 96,
+              "title": "Historical notes",
+              "page": 92
+            }
+          ]
+        },
+        {
+          "id": "ana10-c6-ex",
+          "kind": "exercises",
+          "number": "6.5",
+          "title": "Supplementary problems",
+          "page": 93,
+          "source": {
+            "printedName": "第六章补充题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana10-c7",
+      "kind": "chapter",
+      "number": 7,
+      "title": "Antiderivatives and the Integral",
+      "page": 98,
+      "lessons": [
+        {
+          "id": "ana10-c7-s1",
+          "kind": "section",
+          "number": "7.1",
+          "title": "Antiderivatives",
+          "page": 98,
+          "source": {
+            "printedSection": 19
+          },
+          "topics": [
+            {
+              "id": "ana10-c7-s1-n97",
+              "printedNumber": 97,
+              "title": "The antiderivative",
+              "page": 98
+            },
+            {
+              "id": "ana10-c7-s1-n98",
+              "printedNumber": 98,
+              "title": "The basic properties of antiderivatives",
+              "page": 100
+            },
+            {
+              "id": "ana10-c7-s1-n99",
+              "printedNumber": 99,
+              "title": "Three rules for finding antiderivatives",
+              "page": 104
+            },
+            {
+              "id": "ana10-c7-s1-n100",
+              "printedNumber": 100,
+              "title": "The area of a curvilinear trapezoid",
+              "page": 106
+            }
+          ]
+        },
+        {
+          "id": "ana10-c7-s2",
+          "kind": "section",
+          "number": "7.2",
+          "title": "The integral",
+          "page": 110,
+          "source": {
+            "printedSection": 20
+          },
+          "topics": [
+            {
+              "id": "ana10-c7-s2-n101",
+              "printedNumber": 101,
+              "title": "The Newton-Leibniz formula",
+              "page": 110
+            },
+            {
+              "id": "ana10-c7-s2-n102",
+              "printedNumber": 102,
+              "title": "The integral with a variable upper limit",
+              "page": 114
+            },
+            {
+              "id": "ana10-c7-s2-n103",
+              "printedNumber": 103,
+              "title": "Finding position from a known velocity and velocity from a known acceleration",
+              "page": 116
+            },
+            {
+              "id": "ana10-c7-s2-n104",
+              "printedNumber": 104,
+              "title": "The integral as the limit of a sum",
+              "page": 118
+            },
+            {
+              "id": "ana10-c7-s2-n105",
+              "printedNumber": 105,
+              "title": "The work done by a variable force",
+              "page": 121
+            },
+            {
+              "id": "ana10-c7-s2-n106",
+              "printedNumber": 106,
+              "title": "Three rules for computing integrals",
+              "page": 125
+            },
+            {
+              "id": "ana10-c7-s2-n107",
+              "printedNumber": 107,
+              "title": "Historical notes",
+              "page": 129
+            }
+          ]
+        },
+        {
+          "id": "ana10-c7-ex",
+          "kind": "exercises",
+          "number": "7.3",
+          "title": "Supplementary problems",
+          "page": 132,
+          "source": {
+            "printedName": "第七章补充题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana10-c8",
+      "kind": "chapter",
+      "number": 8,
+      "title": "Exponential, Logarithmic and Power Functions",
+      "page": 136,
+      "lessons": [
+        {
+          "id": "ana10-c8-s1",
+          "kind": "section",
+          "number": "8.1",
+          "title": "The derivative of the exponential function",
+          "page": 136,
+          "source": {
+            "printedSection": 21
+          },
+          "topics": [
+            {
+              "id": "ana10-c8-s1-n108",
+              "printedNumber": 108,
+              "title": "The exponential function",
+              "page": 136
+            },
+            {
+              "id": "ana10-c8-s1-n109",
+              "printedNumber": 109,
+              "title": "The derivative of the exponential function. The number e",
+              "page": 140
+            },
+            {
+              "id": "ana10-c8-s1-n110",
+              "printedNumber": 110,
+              "title": "The differential equation of exponential growth and decay",
+              "page": 145
+            }
+          ]
+        },
+        {
+          "id": "ana10-c8-s2",
+          "kind": "section",
+          "number": "8.2",
+          "title": "The logarithmic function and its derivative",
+          "page": 151,
+          "source": {
+            "printedSection": 22
+          },
+          "topics": [
+            {
+              "id": "ana10-c8-s2-n111",
+              "printedNumber": 111,
+              "title": "The logarithmic function",
+              "page": 151
+            },
+            {
+              "id": "ana10-c8-s2-n112",
+              "printedNumber": 112,
+              "title": "The derivative of an inverse function",
+              "page": 155
+            },
+            {
+              "id": "ana10-c8-s2-n113",
+              "printedNumber": 113,
+              "title": "The derivative of the logarithmic function. Properties of the logarithmic function",
+              "page": 157
+            },
+            {
+              "id": "ana10-c8-s2-n114",
+              "printedNumber": 114,
+              "title": "The natural logarithm as an integral with a variable upper limit",
+              "page": 162
+            }
+          ]
+        },
+        {
+          "id": "ana10-c8-s3",
+          "kind": "section",
+          "number": "8.3",
+          "title": "The power function",
+          "page": 165,
+          "source": {
+            "printedSection": 23
+          },
+          "topics": [
+            {
+              "id": "ana10-c8-s3-n115",
+              "printedNumber": 115,
+              "title": "The power function and its derivative",
+              "page": 165
+            },
+            {
+              "id": "ana10-c8-s3-n116",
+              "printedNumber": 116,
+              "title": "Irrational equations",
+              "page": 167
+            },
+            {
+              "id": "ana10-c8-s3-n117",
+              "printedNumber": 117,
+              "title": "Comparing logarithmic, power and exponential growth",
+              "page": 163,
+              "uncertain": true
+            },
+            {
+              "id": "ana10-c8-s3-n118",
+              "printedNumber": 118,
+              "title": "Historical notes",
+              "page": 171
+            }
+          ]
+        },
+        {
+          "id": "ana10-c8-ex",
+          "kind": "exercises",
+          "number": "8.4",
+          "title": "Supplementary problems",
+          "page": 172,
+          "source": {
+            "printedName": "第八章补充题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana10-c9",
+      "kind": "chapter",
+      "number": 9,
+      "title": "Systems of Equations and Systems of Inequalities",
+      "page": 176,
+      "lessons": [
+        {
+          "id": "ana10-c9-s1",
+          "kind": "section",
+          "number": "9.1",
+          "title": "Systems of equations",
+          "page": 176,
+          "source": {
+            "printedSection": 24
+          },
+          "topics": [
+            {
+              "id": "ana10-c9-s1-n119",
+              "printedNumber": 119,
+              "title": "Equivalent equations and equivalent systems of equations",
+              "page": 176
+            },
+            {
+              "id": "ana10-c9-s1-n120",
+              "printedNumber": 120,
+              "title": "Solving systems of linear equations by successive elimination of variables (Gauss's method)",
+              "page": 181
+            },
+            {
+              "id": "ana10-c9-s1-n121",
+              "printedNumber": 121,
+              "title": "A geometric interpretation of the solutions of systems of linear equations in two and three variables",
+              "page": 188
+            },
+            {
+              "id": "ana10-c9-s1-n122",
+              "printedNumber": 122,
+              "title": "Nonlinear equations and nonlinear systems of equations",
+              "page": 191
+            }
+          ]
+        },
+        {
+          "id": "ana10-c9-s2",
+          "kind": "section",
+          "number": "9.2",
+          "title": "Systems of inequalities",
+          "page": 201,
+          "source": {
+            "printedSection": 25
+          },
+          "topics": [
+            {
+              "id": "ana10-c9-s2-n123",
+              "printedNumber": 123,
+              "title": "Systems of inequalities",
+              "page": 201
+            },
+            {
+              "id": "ana10-c9-s2-n124",
+              "printedNumber": 124,
+              "title": "The idea of linear programming",
+              "page": 208
+            },
+            {
+              "id": "ana10-c9-s2-n125",
+              "printedNumber": 125,
+              "title": "Historical notes",
+              "page": 214
+            }
+          ]
+        },
+        {
+          "id": "ana10-c9-ex",
+          "kind": "exercises",
+          "number": "9.3",
+          "title": "Supplementary problems",
+          "page": 215,
+          "source": {
+            "printedName": "第九章补充题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana10-c10",
+      "kind": "chapter",
+      "number": 10,
+      "title": "Review Material",
+      "page": 217,
+      "lessons": [
+        {
+          "id": "ana10-c10-s1",
+          "kind": "section",
+          "number": "10.1",
+          "title": "Real numbers",
+          "page": 217,
+          "source": {
+            "printedName": "实数"
+          }
+        },
+        {
+          "id": "ana10-c10-s2",
+          "kind": "section",
+          "number": "10.2",
+          "title": "Functions",
+          "page": 224,
+          "source": {
+            "printedName": "函数"
+          }
+        },
+        {
+          "id": "ana10-c10-s3",
+          "kind": "section",
+          "number": "10.3",
+          "title": "Even functions. Odd functions",
+          "page": 230,
+          "source": {
+            "printedName": "偶函数．奇函数"
+          }
+        },
+        {
+          "id": "ana10-c10-s4",
+          "kind": "section",
+          "number": "10.4",
+          "title": "Periodic functions",
+          "page": 232,
+          "source": {
+            "printedName": "周期函数"
+          }
+        },
+        {
+          "id": "ana10-c10-s5",
+          "kind": "section",
+          "number": "10.5",
+          "title": "The general scheme for studying a function",
+          "page": 235,
+          "source": {
+            "printedName": "研究函数的一般步骤"
+          }
+        },
+        {
+          "id": "ana10-c10-s6",
+          "kind": "section",
+          "number": "10.6",
+          "title": "Direct proportionality",
+          "page": 236,
+          "source": {
+            "printedName": "正比例"
+          }
+        },
+        {
+          "id": "ana10-c10-s7",
+          "kind": "section",
+          "number": "10.7",
+          "title": "Inverse proportionality",
+          "page": 240,
+          "source": {
+            "printedName": "反比例"
+          }
+        },
+        {
+          "id": "ana10-c10-s8",
+          "kind": "section",
+          "number": "10.8",
+          "title": "The linear function",
+          "page": 243,
+          "source": {
+            "printedName": "线性函数"
+          }
+        },
+        {
+          "id": "ana10-c10-s9",
+          "kind": "section",
+          "number": "10.9",
+          "title": "Transformations of the graph of a function",
+          "page": 247,
+          "source": {
+            "printedName": "函数图象的变换"
+          }
+        },
+        {
+          "id": "ana10-c10-s10",
+          "kind": "section",
+          "number": "10.10",
+          "title": "The study of the quadratic trinomial",
+          "page": 252,
+          "source": {
+            "printedName": "二次三项式的研究"
+          }
+        },
+        {
+          "id": "ana10-c10-s11",
+          "kind": "section",
+          "number": "10.11",
+          "title": "The limit of a sequence",
+          "page": 260,
+          "source": {
+            "printedName": "数列的极限"
+          }
+        },
+        {
+          "id": "ana10-c10-s12",
+          "kind": "section",
+          "number": "10.12",
+          "title": "Mathematical induction",
+          "page": 268,
+          "source": {
+            "printedName": "数学归纳法"
+          }
+        },
+        {
+          "id": "ana10-c10-s13",
+          "kind": "section",
+          "number": "10.13",
+          "title": "Combinatorial analysis",
+          "page": 269,
+          "source": {
+            "printedName": "组合分析"
+          }
+        },
+        {
+          "id": "ana10-c10-s14",
+          "kind": "section",
+          "number": "10.14",
+          "title": "The limit and continuity of a function",
+          "page": 273,
+          "source": {
+            "printedName": "函数的极限和连续性"
+          }
+        },
+        {
+          "id": "ana10-c10-s15",
+          "kind": "section",
+          "number": "10.15",
+          "title": "The derivative, and its geometric and physical meaning",
+          "page": 277,
+          "source": {
+            "printedName": "导数，导数的几何意义和物理意义"
+          }
+        },
+        {
+          "id": "ana10-c10-s16",
+          "kind": "section",
+          "number": "10.16",
+          "title": "Extremal problems",
+          "page": 284,
+          "source": {
+            "printedName": "极值问题"
+          }
+        },
+        {
+          "id": "ana10-c10-s17",
+          "kind": "section",
+          "number": "10.17",
+          "title": "The addition theorems for the trigonometric functions",
+          "page": 287,
+          "source": {
+            "printedName": "三角函数的加法定理"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana10-reference",
+      "kind": "section",
+      "number": null,
+      "title": "Reference material",
+      "page": 291,
+      "source": {
+        "printedName": "参考资料"
+      }
+    },
+    {
+      "id": "ana10-final-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "Review problems for the whole course in algebra and elementary analysis",
+      "page": 297,
+      "source": {
+        "printedName": "代数和分析初步课程总复习题"
+      }
+    },
+    {
+      "id": "ana10-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "Symbols used in the textbook",
+      "page": 361,
+      "source": {
+        "printedName": "教材中使用的符号"
+      }
+    }
+  ]
+}

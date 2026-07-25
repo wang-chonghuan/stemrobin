@@ -1,0 +1,563 @@
+{
+  "book": "5m",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "early",
+  "grade": 5,
+  "title": "Mathematics, Grade 5",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "5m",
+    "printedTitle": "苏联十年制学校教材 · 数学（五年级）",
+    "coverTitle": "苏联十年制学校教材 数学 五年级",
+    "editor": "А. И. 马尔库舍维奇 主编（据 1979 年第 4 版译出）",
+    "translators": "北京景山学校 译（任志英、程凤阁 译，丁尔陞 校订）",
+    "publisher": "人民教育出版社，1980 年 5 月第 1 版",
+    "toc": "resources/soviet10years/toc/5m.md",
+    "tocPages": "PDF 物理页 p.0007–p.0009（书内页码 1–3）",
+    "scan": "5m — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–12 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while an entry with none is itself a single card, with `number` null.",
+  "contents": [
+    {
+      "id": "math5-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Positive and negative numbers",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "math5-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Operations on sets",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "Subsets",
+              "page": 1
+            },
+            {
+              "id": "math5-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "Intersection of sets",
+              "page": 4
+            },
+            {
+              "id": "math5-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "Union of sets",
+              "page": 8
+            },
+            {
+              "id": "math5-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "Constructing parallel lines",
+              "page": 10
+            },
+            {
+              "id": "math5-c1-s1-n5",
+              "printedNumber": 5,
+              "title": "Classification",
+              "page": 14
+            },
+            {
+              "id": "math5-c1-s1-n6",
+              "printedNumber": 6,
+              "title": "Classification of triangles",
+              "page": 17
+            },
+            {
+              "id": "math5-c1-s1-n7",
+              "printedNumber": 7,
+              "title": "Constructing a triangle from its three sides",
+              "page": 21
+            }
+          ]
+        },
+        {
+          "id": "math5-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Direction and number",
+          "page": 23,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s2-n8",
+              "printedNumber": 8,
+              "title": "To the right or to the left, up or down",
+              "page": 23
+            },
+            {
+              "id": "math5-c1-s2-n9",
+              "printedNumber": 9,
+              "title": "The number line",
+              "page": 28
+            },
+            {
+              "id": "math5-c1-s2-n10",
+              "printedNumber": 10,
+              "title": "Motion of a point along the number line",
+              "page": 33
+            },
+            {
+              "id": "math5-c1-s2-n11",
+              "printedNumber": 11,
+              "title": "Central symmetry",
+              "page": 35
+            },
+            {
+              "id": "math5-c1-s2-n12",
+              "printedNumber": 12,
+              "title": "Opposite numbers",
+              "page": 39
+            },
+            {
+              "id": "math5-c1-s2-n13",
+              "printedNumber": 13,
+              "title": "Absolute value",
+              "page": 42
+            },
+            {
+              "id": "math5-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "Comparing numbers",
+              "page": 46
+            },
+            {
+              "id": "math5-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "Translation",
+              "page": 51
+            },
+            {
+              "id": "math5-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "The coordinate plane",
+              "page": 55
+            }
+          ]
+        },
+        {
+          "id": "math5-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Addition and subtraction",
+          "page": 62,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s3-n17",
+              "printedNumber": 17,
+              "title": "Change of a quantity",
+              "page": 62
+            },
+            {
+              "id": "math5-c1-s3-n18",
+              "printedNumber": 18,
+              "title": "Adding numbers on the number line",
+              "page": 64
+            },
+            {
+              "id": "math5-c1-s3-n19",
+              "printedNumber": 19,
+              "title": "Addition of negative numbers",
+              "page": 68
+            },
+            {
+              "id": "math5-c1-s3-n20",
+              "printedNumber": 20,
+              "title": "Addition of two numbers with unlike signs",
+              "page": 71
+            },
+            {
+              "id": "math5-c1-s3-n21",
+              "printedNumber": 21,
+              "title": "Properties of addition",
+              "page": 76
+            },
+            {
+              "id": "math5-c1-s3-n22",
+              "printedNumber": 22,
+              "title": "Axial symmetry",
+              "page": 79
+            },
+            {
+              "id": "math5-c1-s3-n23",
+              "printedNumber": 23,
+              "title": "Subtraction",
+              "page": 85
+            },
+            {
+              "id": "math5-c1-s3-n24",
+              "printedNumber": 24,
+              "title": "Removing brackets",
+              "page": 94
+            },
+            {
+              "id": "math5-c1-s3-n25",
+              "printedNumber": 25,
+              "title": "Solving equations",
+              "page": 101
+            },
+            {
+              "id": "math5-c1-s3-n26",
+              "printedNumber": 26,
+              "title": "Constructing the axis of symmetry of two points",
+              "page": 105
+            }
+          ]
+        },
+        {
+          "id": "math5-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Multiplication and division",
+          "page": 108,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s4-n27",
+              "printedNumber": 27,
+              "title": "Multiplication",
+              "page": 108
+            },
+            {
+              "id": "math5-c1-s4-n28",
+              "printedNumber": 28,
+              "title": "The rule for division",
+              "page": 114
+            },
+            {
+              "id": "math5-c1-s4-n29",
+              "printedNumber": 29,
+              "title": "The commutative and associative laws of multiplication",
+              "page": 120
+            },
+            {
+              "id": "math5-c1-s4-n30",
+              "printedNumber": 30,
+              "title": "Coefficients",
+              "page": 124
+            },
+            {
+              "id": "math5-c1-s4-n31",
+              "printedNumber": 31,
+              "title": "The distributive law of multiplication",
+              "page": 128
+            },
+            {
+              "id": "math5-c1-s4-n32",
+              "printedNumber": 32,
+              "title": "Collecting like terms",
+              "page": 131
+            },
+            {
+              "id": "math5-c1-s4-n33",
+              "printedNumber": 33,
+              "title": "Bisecting a segment",
+              "page": 136
+            },
+            {
+              "id": "math5-c1-s4-n34",
+              "printedNumber": 34,
+              "title": "Solving equations",
+              "page": 138
+            },
+            {
+              "id": "math5-c1-s4-n35",
+              "printedNumber": 35,
+              "title": "Constructing a perpendicular to a line",
+              "page": 143
+            },
+            {
+              "id": "math5-c1-s4-n36",
+              "printedNumber": 36,
+              "title": "Graphs",
+              "page": 145
+            },
+            {
+              "id": "math5-c1-s4-n37",
+              "printedNumber": 37,
+              "title": "Review exercises",
+              "page": 151
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math5-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Rational numbers",
+      "page": 158,
+      "lessons": [
+        {
+          "id": "math5-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Equal fractions",
+          "page": 158,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s1-n38",
+              "printedNumber": 38,
+              "title": "The basic property of fractions",
+              "page": 158
+            },
+            {
+              "id": "math5-c2-s1-n39",
+              "printedNumber": 39,
+              "title": "Converting a fraction to a new denominator",
+              "page": 161
+            },
+            {
+              "id": "math5-c2-s1-n40",
+              "printedNumber": 40,
+              "title": "Reducing fractions",
+              "page": 164
+            },
+            {
+              "id": "math5-c2-s1-n41",
+              "printedNumber": 41,
+              "title": "Prime and composite numbers",
+              "page": 169
+            },
+            {
+              "id": "math5-c2-s1-n42",
+              "printedNumber": 42,
+              "title": "Factorization into primes",
+              "page": 171
+            },
+            {
+              "id": "math5-c2-s1-n43",
+              "printedNumber": 43,
+              "title": "Comparing fractions with unlike denominators",
+              "page": 175
+            },
+            {
+              "id": "math5-c2-s1-n44",
+              "printedNumber": 44,
+              "title": "Figures with an axis of symmetry",
+              "page": 178
+            }
+          ]
+        },
+        {
+          "id": "math5-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Multiplication and division",
+          "page": 182,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s2-n45",
+              "printedNumber": 45,
+              "title": "Multiplication of fractions",
+              "page": 182
+            },
+            {
+              "id": "math5-c2-s2-n46",
+              "printedNumber": 46,
+              "title": "Reciprocals",
+              "page": 191
+            },
+            {
+              "id": "math5-c2-s2-n47",
+              "printedNumber": 47,
+              "title": "Division of fractions",
+              "page": 194
+            },
+            {
+              "id": "math5-c2-s2-n48",
+              "printedNumber": 48,
+              "title": "Constructing the bisector of an angle",
+              "page": 201
+            },
+            {
+              "id": "math5-c2-s2-n49",
+              "printedNumber": 49,
+              "title": "Proportion",
+              "page": 204
+            },
+            {
+              "id": "math5-c2-s2-n50",
+              "printedNumber": 50,
+              "title": "Powers",
+              "page": 211
+            }
+          ]
+        },
+        {
+          "id": "math5-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Addition and subtraction",
+          "page": 216,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s3-n51",
+              "printedNumber": 51,
+              "title": "Addition and subtraction of fractions with unlike denominators",
+              "page": 216
+            },
+            {
+              "id": "math5-c2-s3-n52",
+              "printedNumber": 52,
+              "title": "The complement of a fraction",
+              "page": 222
+            },
+            {
+              "id": "math5-c2-s3-n53",
+              "printedNumber": 53,
+              "title": "Applying the commutative and associative laws of addition",
+              "page": 225
+            },
+            {
+              "id": "math5-c2-s3-n54",
+              "printedNumber": 54,
+              "title": "Applying the distributive law of multiplication",
+              "page": 231
+            },
+            {
+              "id": "math5-c2-s3-n55",
+              "printedNumber": 55,
+              "title": "The least common multiple",
+              "page": 239
+            },
+            {
+              "id": "math5-c2-s3-n56",
+              "printedNumber": 56,
+              "title": "Reducing fractions to a common denominator",
+              "page": 242
+            }
+          ]
+        },
+        {
+          "id": "math5-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "The circumference and the area of a circle",
+          "page": 245,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s4-n57",
+              "printedNumber": 57,
+              "title": "Powers of 10",
+              "page": 245
+            },
+            {
+              "id": "math5-c2-s4-n58",
+              "printedNumber": 58,
+              "title": "Infinite decimals",
+              "page": 248
+            },
+            {
+              "id": "math5-c2-s4-n59",
+              "printedNumber": 59,
+              "title": "The circumference of a circle",
+              "page": 252
+            },
+            {
+              "id": "math5-c2-s4-n60",
+              "printedNumber": 60,
+              "title": "The area of a circle",
+              "page": 255
+            },
+            {
+              "id": "math5-c2-s4-n61",
+              "printedNumber": 61,
+              "title": "Review exercises",
+              "page": 258
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math5-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Supplementary topics",
+      "page": 269,
+      "lessons": [
+        {
+          "id": "math5-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "The history of arithmetic and algebra",
+          "page": 269,
+          "source": {
+            "printedName": "62. 算术和代数的历史"
+          }
+        },
+        {
+          "id": "math5-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Geometry around us",
+          "page": 274,
+          "source": {
+            "printedName": "63. 我们周围的几何学"
+          }
+        },
+        {
+          "id": "math5-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "Surveying",
+          "page": 279,
+          "source": {
+            "printedName": "64. 大地测量"
+          }
+        },
+        {
+          "id": "math5-c3-ex4",
+          "kind": "exercises",
+          "number": "3.4",
+          "title": "More difficult problems",
+          "page": 282,
+          "source": {
+            "printedName": "65. 难度较大的问题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "math5-primes",
+      "kind": "section",
+      "number": null,
+      "title": "Table of primes",
+      "page": 301,
+      "source": {
+        "printedName": "质数表"
+      }
+    }
+  ]
+}

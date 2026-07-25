@@ -1,0 +1,1256 @@
+{
+  "book": "10p",
+  "locale": "zh",
+  "authority": "extracted",
+  "subject": "physics",
+  "grade": 10,
+  "title": "物理 十年级",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "10p",
+    "printedTitle": "苏联中学课本 物理（十年级）",
+    "authors": "[苏] Г·Я·米亚基舍夫、Б·Б·布霍夫采夫 著",
+    "translators": "罗珚　陈君颖　林炎　李丕章　于连臣　译",
+    "translatorsNote": "待核：第一位译者名第二字为「王」旁加「囗」内一「大」，扫描分辨率所限，暂录作「珚」。",
+    "publisher": "文化教育出版社出版；新华书店北京发行所发行；人民教育出版社印刷厂印装。开本 787×1092 1/32，印张 13，插页 2，字数 268,000；1981 年 1 月第 1 版，1981 年 7 月第 1 次印刷；印数 1—15,000；书号 7057·026；定价 0.98 元。（本书译自 1977 年版的苏联十年级物理教科书）",
+    "toc": "resources/soviet10years/toc/10p.md",
+    "tocPages": "PDF 物理页 p.0004–p.0010（目录自身页码 1–7）",
+    "scan": "10p — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷序号的用序号（printedSection，全书连续 1–152），没有序号的用原书印刷的名称（printedName，如「引言」「第一章　机械振动」「复习题」）。 本册目录的第一级是「振动和波」「光学」「原子物理与核物理」「物理学对于解释世界和发展社会生产力的意义」四个部分，所以 contents 的一条是一个部分；原书印刷的「第N章」在它下面，是一课（章号保留在课的标题和 source 里）；带序号的小节是这一课的 topic。 每个 topic 有自己的 id：有印刷序号的作 `<课id>-n<印刷序号>`，无序号的（如「练习 1」）作 `<课id>-t<在本课中的位次>`。 四个部分在原书目录里不印页码，这里取该部分第一条的页码。",
+  "contents": [
+    {
+      "id": "phy10-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "振动和波",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "phy10-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "引言",
+          "page": 1,
+          "source": {
+            "printedName": "引言"
+          }
+        },
+        {
+          "id": "phy10-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "第一章　机械振动",
+          "page": 3,
+          "source": {
+            "printedName": "第一章　机械振动"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s2-n1",
+              "printedNumber": 1,
+              "title": "自由振动和受迫振动",
+              "page": 3
+            },
+            {
+              "id": "phy10-c1-s2-n2",
+              "printedNumber": 2,
+              "title": "产生自由振动的条件",
+              "page": 5
+            },
+            {
+              "id": "phy10-c1-s2-n3",
+              "printedNumber": 3,
+              "title": "单摆",
+              "page": 8
+            },
+            {
+              "id": "phy10-c1-s2-n4",
+              "printedNumber": 4,
+              "title": "在弹力作用下振动物体的运动方程",
+              "page": 10
+            },
+            {
+              "id": "phy10-c1-s2-n5",
+              "printedNumber": 5,
+              "title": "单摆的运动方程",
+              "page": 11
+            },
+            {
+              "id": "phy10-c1-s2-n6",
+              "printedNumber": 6,
+              "title": "简谐振动",
+              "page": 13
+            },
+            {
+              "id": "phy10-c1-s2-n7",
+              "printedNumber": 7,
+              "title": "简谐振动与圆运动之间的关系",
+              "page": 17
+            },
+            {
+              "id": "phy10-c1-s2-n8",
+              "printedNumber": 8,
+              "title": "振动的相位",
+              "page": 19
+            },
+            {
+              "id": "phy10-c1-s2-n9",
+              "printedNumber": 9,
+              "title": "简谐振动的速度和加速度",
+              "page": 22
+            },
+            {
+              "id": "phy10-c1-s2-n10",
+              "printedNumber": 10,
+              "title": "自由简谐振动的频率和周期跟系统性质之间的关系",
+              "page": 24
+            },
+            {
+              "id": "phy10-c1-s2-n11",
+              "printedNumber": 11,
+              "title": "简谐振动中能量的转化",
+              "page": 26
+            },
+            {
+              "id": "phy10-c1-s2-n12",
+              "printedNumber": 12,
+              "title": "阻尼振动",
+              "page": 27
+            },
+            {
+              "id": "phy10-c1-s2-n13",
+              "printedNumber": 13,
+              "title": "受迫振动",
+              "page": 28
+            },
+            {
+              "id": "phy10-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "共振",
+              "page": 30
+            },
+            {
+              "id": "phy10-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "共振的利用和防止",
+              "page": 32
+            },
+            {
+              "id": "phy10-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "钟表内摆的作用　自振",
+              "page": 34
+            },
+            {
+              "id": "phy10-c1-s2-t17",
+              "title": "练习 1",
+              "page": 36
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "第二章　电振荡",
+          "page": 38,
+          "source": {
+            "printedName": "第二章　电振荡"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s3-n17",
+              "printedNumber": 17,
+              "title": "自由电振荡和受迫电振荡",
+              "page": 38
+            },
+            {
+              "id": "phy10-c1-s3-n18",
+              "printedNumber": 18,
+              "title": "振荡回路",
+              "page": 40
+            },
+            {
+              "id": "phy10-c1-s3-n19",
+              "printedNumber": 19,
+              "title": "机械振动和电振荡之间的相似性",
+              "page": 42
+            },
+            {
+              "id": "phy10-c1-s3-n20",
+              "printedNumber": 20,
+              "title": "自由电振荡的周期　描写振荡回路中过程的方程",
+              "page": 44
+            },
+            {
+              "id": "phy10-c1-s3-n21",
+              "printedNumber": 21,
+              "title": "交流电",
+              "page": 48
+            },
+            {
+              "id": "phy10-c1-s3-n22",
+              "printedNumber": 22,
+              "title": "交流电路中的有效电阻",
+              "page": 50
+            },
+            {
+              "id": "phy10-c1-s3-n23",
+              "printedNumber": 23,
+              "title": "电流强度和电压的有效值",
+              "page": 51
+            },
+            {
+              "id": "phy10-c1-s3-n24",
+              "printedNumber": 24,
+              "title": "交流电路中的电容",
+              "page": 54
+            },
+            {
+              "id": "phy10-c1-s3-n25",
+              "printedNumber": 25,
+              "title": "交流电路中的电感",
+              "page": 57
+            },
+            {
+              "id": "phy10-c1-s3-n26",
+              "printedNumber": 26,
+              "title": "交流电路的欧姆定律",
+              "page": 59
+            },
+            {
+              "id": "phy10-c1-s3-n27",
+              "printedNumber": 27,
+              "title": "交流电路中的功率",
+              "page": 63
+            },
+            {
+              "id": "phy10-c1-s3-n28",
+              "printedNumber": 28,
+              "title": "电谐振",
+              "page": 67
+            },
+            {
+              "id": "phy10-c1-s3-n29",
+              "printedNumber": 29,
+              "title": "三极电子管",
+              "page": 71
+            },
+            {
+              "id": "phy10-c1-s3-n30",
+              "printedNumber": 30,
+              "title": "电子管振荡器",
+              "page": 73
+            },
+            {
+              "id": "phy10-c1-s3-t15",
+              "title": "练习 2",
+              "page": 76
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "第三章　电能的生产、输送和利用",
+          "page": 79,
+          "source": {
+            "printedName": "第三章　电能的生产、输送和利用"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s4-n31",
+              "printedNumber": 31,
+              "title": "电能的产生",
+              "page": 79
+            },
+            {
+              "id": "phy10-c1-s4-n32",
+              "printedNumber": 32,
+              "title": "交流发电机",
+              "page": 80
+            },
+            {
+              "id": "phy10-c1-s4-n33",
+              "printedNumber": 33,
+              "title": "变压器",
+              "page": 82
+            },
+            {
+              "id": "phy10-c1-s4-n34",
+              "printedNumber": 34,
+              "title": "电能的利用和生产",
+              "page": 86
+            },
+            {
+              "id": "phy10-c1-s4-n35",
+              "printedNumber": 35,
+              "title": "电能的输送",
+              "page": 89
+            },
+            {
+              "id": "phy10-c1-s4-n36",
+              "printedNumber": 36,
+              "title": "苏联电气化的成就和远景",
+              "page": 91
+            },
+            {
+              "id": "phy10-c1-s4-t7",
+              "title": "练习 3",
+              "page": 93
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "第四章　机械波　声",
+          "page": 94,
+          "source": {
+            "printedName": "第四章　机械波　声"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s5-n37",
+              "printedNumber": 37,
+              "title": "波动现象",
+              "page": 94
+            },
+            {
+              "id": "phy10-c1-s5-n38",
+              "printedNumber": 38,
+              "title": "机械波的传播",
+              "page": 97
+            },
+            {
+              "id": "phy10-c1-s5-n39",
+              "printedNumber": 39,
+              "title": "波长、波速",
+              "page": 100
+            },
+            {
+              "id": "phy10-c1-s5-n40",
+              "printedNumber": 40,
+              "title": "媒质中的波",
+              "page": 102
+            },
+            {
+              "id": "phy10-c1-s5-n41",
+              "printedNumber": 41,
+              "title": "声波",
+              "page": 105
+            },
+            {
+              "id": "phy10-c1-s5-n42",
+              "printedNumber": 42,
+              "title": "声速",
+              "page": 108
+            },
+            {
+              "id": "phy10-c1-s5-n43",
+              "printedNumber": 43,
+              "title": "乐音和噪音　响度和音调",
+              "page": 110
+            },
+            {
+              "id": "phy10-c1-s5-n44",
+              "printedNumber": 44,
+              "title": "声的共鸣",
+              "page": 112
+            },
+            {
+              "id": "phy10-c1-s5-n45",
+              "printedNumber": 45,
+              "title": "超声波",
+              "page": 112
+            },
+            {
+              "id": "phy10-c1-s5-n46",
+              "printedNumber": 46,
+              "title": "波的干涉",
+              "page": 114
+            },
+            {
+              "id": "phy10-c1-s5-n47",
+              "printedNumber": 47,
+              "title": "惠更斯原理　波的反射定律",
+              "page": 119
+            },
+            {
+              "id": "phy10-c1-s5-n48",
+              "printedNumber": 48,
+              "title": "驻波",
+              "page": 122
+            },
+            {
+              "id": "phy10-c1-s5-n49",
+              "printedNumber": 49,
+              "title": "波的衍射",
+              "page": 125
+            },
+            {
+              "id": "phy10-c1-s5-t14",
+              "title": "练习 4",
+              "page": 127
+            }
+          ]
+        },
+        {
+          "id": "phy10-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "第五章　电磁波",
+          "page": 128,
+          "source": {
+            "printedName": "第五章　电磁波"
+          },
+          "topics": [
+            {
+              "id": "phy10-c1-s6-n50",
+              "printedNumber": 50,
+              "title": "交变电场和交变磁场间的联系",
+              "page": 128
+            },
+            {
+              "id": "phy10-c1-s6-n51",
+              "printedNumber": 51,
+              "title": "电磁场",
+              "page": 129
+            },
+            {
+              "id": "phy10-c1-s6-n52",
+              "printedNumber": 52,
+              "title": "电磁相互作用如何传递",
+              "page": 131
+            },
+            {
+              "id": "phy10-c1-s6-n53",
+              "printedNumber": 53,
+              "title": "电磁波",
+              "page": 132
+            },
+            {
+              "id": "phy10-c1-s6-n54",
+              "printedNumber": 54,
+              "title": "电磁波的发射",
+              "page": 134
+            },
+            {
+              "id": "phy10-c1-s6-n55",
+              "printedNumber": 55,
+              "title": "赫兹实验　电磁波的速度",
+              "page": 137
+            },
+            {
+              "id": "phy10-c1-s6-n56",
+              "printedNumber": 56,
+              "title": "波波夫发明无线电",
+              "page": 139
+            },
+            {
+              "id": "phy10-c1-s6-n57",
+              "printedNumber": 57,
+              "title": "无线电通讯原理",
+              "page": 141
+            },
+            {
+              "id": "phy10-c1-s6-n58",
+              "printedNumber": 58,
+              "title": "调幅",
+              "page": 144
+            },
+            {
+              "id": "phy10-c1-s6-n59",
+              "printedNumber": 59,
+              "title": "检波",
+              "page": 145
+            },
+            {
+              "id": "phy10-c1-s6-n60",
+              "printedNumber": 60,
+              "title": "观察电磁波的性质",
+              "page": 147
+            },
+            {
+              "id": "phy10-c1-s6-n61",
+              "printedNumber": 61,
+              "title": "无线电波的传播",
+              "page": 148
+            },
+            {
+              "id": "phy10-c1-s6-n62",
+              "printedNumber": 62,
+              "title": "无线电定位",
+              "page": 150
+            },
+            {
+              "id": "phy10-c1-s6-n63",
+              "printedNumber": 63,
+              "title": "电视",
+              "page": 152
+            },
+            {
+              "id": "phy10-c1-s6-n64",
+              "printedNumber": 64,
+              "title": "苏联通讯工具的发展",
+              "page": 154
+            },
+            {
+              "id": "phy10-c1-s6-t16",
+              "title": "练习 5",
+              "page": 155
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy10-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "光学",
+      "page": 157,
+      "lessons": [
+        {
+          "id": "phy10-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "引言",
+          "page": 157,
+          "source": {
+            "printedName": "引言"
+          }
+        },
+        {
+          "id": "phy10-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "第六章　几何光学",
+          "page": 161,
+          "source": {
+            "printedName": "第六章　几何光学"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s2-n65",
+              "printedNumber": 65,
+              "title": "光线",
+              "page": 161
+            },
+            {
+              "id": "phy10-c2-s2-n66",
+              "printedNumber": 66,
+              "title": "光的直线传播",
+              "page": 162
+            },
+            {
+              "id": "phy10-c2-s2-n67",
+              "printedNumber": 67,
+              "title": "光度学　光通量　发光强度",
+              "page": 163
+            },
+            {
+              "id": "phy10-c2-s2-n68",
+              "printedNumber": 68,
+              "title": "照度",
+              "page": 166
+            },
+            {
+              "id": "phy10-c2-s2-t5",
+              "title": "练习 6",
+              "page": 169
+            },
+            {
+              "id": "phy10-c2-s2-n69",
+              "printedNumber": 69,
+              "title": "光的反射定律　平面镜成像",
+              "page": 170
+            },
+            {
+              "id": "phy10-c2-s2-n70",
+              "printedNumber": 70,
+              "title": "球面镜",
+              "page": 172
+            },
+            {
+              "id": "phy10-c2-s2-n71",
+              "printedNumber": 71,
+              "title": "球面镜成像",
+              "page": 175
+            },
+            {
+              "id": "phy10-c2-s2-t9",
+              "title": "练习 7",
+              "page": 177
+            },
+            {
+              "id": "phy10-c2-s2-n72",
+              "printedNumber": 72,
+              "title": "光的折射定律",
+              "page": 178
+            },
+            {
+              "id": "phy10-c2-s2-n73",
+              "printedNumber": 73,
+              "title": "全反射",
+              "page": 182
+            },
+            {
+              "id": "phy10-c2-s2-n74",
+              "printedNumber": 74,
+              "title": "三棱镜中的光路",
+              "page": 185
+            },
+            {
+              "id": "phy10-c2-s2-t13",
+              "title": "练习 8",
+              "page": 186
+            },
+            {
+              "id": "phy10-c2-s2-n75",
+              "printedNumber": 75,
+              "title": "透镜",
+              "page": 187
+            },
+            {
+              "id": "phy10-c2-s2-n76",
+              "printedNumber": 76,
+              "title": "透镜成像作图法",
+              "page": 192
+            },
+            {
+              "id": "phy10-c2-s2-n77",
+              "printedNumber": 77,
+              "title": "薄透镜公式　透镜的放大率",
+              "page": 194
+            },
+            {
+              "id": "phy10-c2-s2-n78",
+              "printedNumber": 78,
+              "title": "照相机　投影仪",
+              "page": 196
+            },
+            {
+              "id": "phy10-c2-s2-n79",
+              "printedNumber": 79,
+              "title": "眼睛　眼镜",
+              "page": 199
+            },
+            {
+              "id": "phy10-c2-s2-n80",
+              "printedNumber": 80,
+              "title": "放大镜　显微镜",
+              "page": 202
+            },
+            {
+              "id": "phy10-c2-s2-t20",
+              "title": "练习 9",
+              "page": 205
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "第七章　光波",
+          "page": 207,
+          "source": {
+            "printedName": "第七章　光波"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s3-n81",
+              "printedNumber": 81,
+              "title": "光的速度",
+              "page": 207
+            },
+            {
+              "id": "phy10-c2-s3-n82",
+              "printedNumber": 82,
+              "title": "光的折射定律的推导",
+              "page": 210
+            },
+            {
+              "id": "phy10-c2-s3-n83",
+              "printedNumber": 83,
+              "title": "光的色散",
+              "page": 212
+            },
+            {
+              "id": "phy10-c2-s3-n84",
+              "printedNumber": 84,
+              "title": "光的干涉",
+              "page": 215
+            },
+            {
+              "id": "phy10-c2-s3-n85",
+              "printedNumber": 85,
+              "title": "牛顿环",
+              "page": 217
+            },
+            {
+              "id": "phy10-c2-s3-n86",
+              "printedNumber": 86,
+              "title": "光的波长",
+              "page": 218
+            },
+            {
+              "id": "phy10-c2-s3-n87",
+              "printedNumber": 87,
+              "title": "干涉的某些应用",
+              "page": 220
+            },
+            {
+              "id": "phy10-c2-s3-n88",
+              "printedNumber": 88,
+              "title": "光的衍射",
+              "page": 223
+            },
+            {
+              "id": "phy10-c2-s3-n89",
+              "printedNumber": 89,
+              "title": "衍射光栅",
+              "page": 226
+            },
+            {
+              "id": "phy10-c2-s3-n90",
+              "printedNumber": 90,
+              "title": "光波的横振性　光的偏振",
+              "page": 229
+            },
+            {
+              "id": "phy10-c2-s3-n91",
+              "printedNumber": 91,
+              "title": "光波的横振性和光的电磁理论",
+              "page": 233
+            },
+            {
+              "id": "phy10-c2-s3-t12",
+              "title": "练习 10",
+              "page": 234
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "第八章　相对论基础",
+          "page": 235,
+          "source": {
+            "printedName": "第八章　相对论基础"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s4-n92",
+              "printedNumber": 92,
+              "title": "电动力学定律和相对论原理",
+              "page": 235
+            },
+            {
+              "id": "phy10-c2-s4-n93",
+              "printedNumber": 93,
+              "title": "迈克尔孙的实验",
+              "page": 238
+            },
+            {
+              "id": "phy10-c2-s4-n94",
+              "printedNumber": 94,
+              "title": "相对论的假设",
+              "page": 241
+            },
+            {
+              "id": "phy10-c2-s4-n95",
+              "printedNumber": 95,
+              "title": "同时的相对性",
+              "page": 243
+            },
+            {
+              "id": "phy10-c2-s4-n96",
+              "printedNumber": 96,
+              "title": "时间间隔的相对性",
+              "page": 246
+            },
+            {
+              "id": "phy10-c2-s4-n97",
+              "printedNumber": 97,
+              "title": "距离的相对性",
+              "page": 249
+            },
+            {
+              "id": "phy10-c2-s4-n98",
+              "printedNumber": 98,
+              "title": "速度合成的相对论定律",
+              "page": 252
+            },
+            {
+              "id": "phy10-c2-s4-n99",
+              "printedNumber": 99,
+              "title": "质量与速度的关系　相对论动力学",
+              "page": 254
+            },
+            {
+              "id": "phy10-c2-s4-n100",
+              "printedNumber": 100,
+              "title": "同步回旋加速器",
+              "page": 257
+            },
+            {
+              "id": "phy10-c2-s4-n101",
+              "printedNumber": 101,
+              "title": "质能联系",
+              "page": 259
+            },
+            {
+              "id": "phy10-c2-s4-t11",
+              "title": "练习 11",
+              "page": 262
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s5",
+          "kind": "section",
+          "number": "2.5",
+          "title": "第九章　辐射和光谱",
+          "page": 263,
+          "source": {
+            "printedName": "第九章　辐射和光谱"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s5-n102",
+              "printedNumber": 102,
+              "title": "辐射的种类　光源",
+              "page": 263
+            },
+            {
+              "id": "phy10-c2-s5-n103",
+              "printedNumber": 103,
+              "title": "光谱中能量的分布",
+              "page": 265
+            },
+            {
+              "id": "phy10-c2-s5-n104",
+              "printedNumber": 104,
+              "title": "光谱仪",
+              "page": 267
+            },
+            {
+              "id": "phy10-c2-s5-n105",
+              "printedNumber": 105,
+              "title": "辐射光谱的类型",
+              "page": 269
+            },
+            {
+              "id": "phy10-c2-s5-n106",
+              "printedNumber": 106,
+              "title": "光谱分析",
+              "page": 271
+            },
+            {
+              "id": "phy10-c2-s5-n107",
+              "printedNumber": 107,
+              "title": "吸收光谱",
+              "page": 272
+            },
+            {
+              "id": "phy10-c2-s5-n108",
+              "printedNumber": 108,
+              "title": "红外线和紫外线",
+              "page": 273
+            },
+            {
+              "id": "phy10-c2-s5-n109",
+              "printedNumber": 109,
+              "title": "伦琴射线",
+              "page": 274
+            },
+            {
+              "id": "phy10-c2-s5-n110",
+              "printedNumber": 110,
+              "title": "电磁波的标度",
+              "page": 278
+            }
+          ]
+        },
+        {
+          "id": "phy10-c2-s6",
+          "kind": "section",
+          "number": "2.6",
+          "title": "第十章　光的作用　光量子",
+          "page": 281,
+          "source": {
+            "printedName": "第十章　光的作用　光量子"
+          },
+          "topics": [
+            {
+              "id": "phy10-c2-s6-n111",
+              "printedNumber": 111,
+              "title": "量子论的萌芽",
+              "page": 281
+            },
+            {
+              "id": "phy10-c2-s6-n112",
+              "printedNumber": 112,
+              "title": "光电效应",
+              "page": 282
+            },
+            {
+              "id": "phy10-c2-s6-n113",
+              "printedNumber": 113,
+              "title": "光电效应的理论",
+              "page": 286
+            },
+            {
+              "id": "phy10-c2-s6-n114",
+              "printedNumber": 114,
+              "title": "光子",
+              "page": 288
+            },
+            {
+              "id": "phy10-c2-s6-n115",
+              "printedNumber": 115,
+              "title": "光电效应的应用",
+              "page": 290
+            },
+            {
+              "id": "phy10-c2-s6-n116",
+              "printedNumber": 116,
+              "title": "光压",
+              "page": 292
+            },
+            {
+              "id": "phy10-c2-s6-n117",
+              "printedNumber": 117,
+              "title": "光的化学作用　摄影",
+              "page": 294
+            },
+            {
+              "id": "phy10-c2-s6-n118",
+              "printedNumber": 118,
+              "title": "电影中声音的录制和播送",
+              "page": 296
+            },
+            {
+              "id": "phy10-c2-s6-t9",
+              "title": "练习 12",
+              "page": 298
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy10-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "原子物理与核物理",
+      "page": 300,
+      "lessons": [
+        {
+          "id": "phy10-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "引言",
+          "page": 300,
+          "source": {
+            "printedName": "引言"
+          }
+        },
+        {
+          "id": "phy10-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "第十一章　原子物理",
+          "page": 301,
+          "source": {
+            "printedName": "第十一章　原子物理"
+          },
+          "topics": [
+            {
+              "id": "phy10-c3-s2-n119",
+              "printedNumber": 119,
+              "title": "原子的结构　卢瑟福实验",
+              "page": 301
+            },
+            {
+              "id": "phy10-c3-s2-n120",
+              "printedNumber": 120,
+              "title": "原子的行星模型",
+              "page": 304
+            },
+            {
+              "id": "phy10-c3-s2-n121",
+              "printedNumber": 121,
+              "title": "玻尔的假设",
+              "page": 305
+            },
+            {
+              "id": "phy10-c3-s2-n122",
+              "printedNumber": 122,
+              "title": "玻尔的氢原子模型",
+              "page": 307
+            },
+            {
+              "id": "phy10-c3-s2-n123",
+              "printedNumber": 123,
+              "title": "稳定态存在的实验证据",
+              "page": 311
+            },
+            {
+              "id": "phy10-c3-s2-n124",
+              "printedNumber": 124,
+              "title": "玻尔理论的困难　量子力学",
+              "page": 313
+            },
+            {
+              "id": "phy10-c3-s2-n125",
+              "printedNumber": 125,
+              "title": "量子光源——激光器",
+              "page": 314
+            },
+            {
+              "id": "phy10-c3-s2-t8",
+              "title": "练习 13",
+              "page": 318
+            }
+          ]
+        },
+        {
+          "id": "phy10-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "第十二章　原子核物理",
+          "page": 320,
+          "source": {
+            "printedName": "第十二章　原子核物理"
+          },
+          "topics": [
+            {
+              "id": "phy10-c3-s3-n126",
+              "printedNumber": 126,
+              "title": "原子核与基本粒子",
+              "page": 320
+            },
+            {
+              "id": "phy10-c3-s3-n127",
+              "printedNumber": 127,
+              "title": "基本粒子的观察和记录方法",
+              "page": 320
+            },
+            {
+              "id": "phy10-c3-s3-n128",
+              "printedNumber": 128,
+              "title": "天然放射现象的发现",
+              "page": 325
+            },
+            {
+              "id": "phy10-c3-s3-n129",
+              "printedNumber": 129,
+              "title": "α、β 和 γ 射线",
+              "page": 327
+            },
+            {
+              "id": "phy10-c3-s3-n130",
+              "printedNumber": 130,
+              "title": "放射性转变",
+              "page": 330
+            },
+            {
+              "id": "phy10-c3-s3-n131",
+              "printedNumber": 131,
+              "title": "放射性衰变定律　半衰期",
+              "page": 332
+            },
+            {
+              "id": "phy10-c3-s3-n132",
+              "printedNumber": 132,
+              "title": "同位素",
+              "page": 335
+            },
+            {
+              "id": "phy10-c3-s3-n133",
+              "printedNumber": 133,
+              "title": "位移定则",
+              "page": 337
+            },
+            {
+              "id": "phy10-c3-s3-n134",
+              "printedNumber": 134,
+              "title": "原子核的人工转变",
+              "page": 337
+            },
+            {
+              "id": "phy10-c3-s3-n135",
+              "printedNumber": 135,
+              "title": "中子的发现",
+              "page": 339
+            },
+            {
+              "id": "phy10-c3-s3-n136",
+              "printedNumber": 136,
+              "title": "原子核的结构　核力",
+              "page": 341
+            },
+            {
+              "id": "phy10-c3-s3-n137",
+              "printedNumber": 137,
+              "title": "原子核的结合能",
+              "page": 342
+            },
+            {
+              "id": "phy10-c3-s3-n138",
+              "printedNumber": 138,
+              "title": "人工放射性",
+              "page": 345
+            },
+            {
+              "id": "phy10-c3-s3-n139",
+              "printedNumber": 139,
+              "title": "核反应",
+              "page": 346
+            },
+            {
+              "id": "phy10-c3-s3-n140",
+              "printedNumber": 140,
+              "title": "铀核的裂变",
+              "page": 348
+            },
+            {
+              "id": "phy10-c3-s3-n141",
+              "printedNumber": 141,
+              "title": "核的链式反应",
+              "page": 351
+            },
+            {
+              "id": "phy10-c3-s3-n142",
+              "printedNumber": 142,
+              "title": "核反应堆",
+              "page": 353
+            },
+            {
+              "id": "phy10-c3-s3-n143",
+              "printedNumber": 143,
+              "title": "核能的利用",
+              "page": 357
+            },
+            {
+              "id": "phy10-c3-s3-n144",
+              "printedNumber": 144,
+              "title": "放射性同位素在科学技术中的应用",
+              "page": 358
+            },
+            {
+              "id": "phy10-c3-s3-n145",
+              "printedNumber": 145,
+              "title": "热核反应",
+              "page": 361
+            },
+            {
+              "id": "phy10-c3-s3-n146",
+              "printedNumber": 146,
+              "title": "放射线的生物作用",
+              "page": 363
+            },
+            {
+              "id": "phy10-c3-s3-t22",
+              "title": "练习 14",
+              "page": 365
+            }
+          ]
+        },
+        {
+          "id": "phy10-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "第十三章　基本粒子",
+          "page": 366,
+          "source": {
+            "printedName": "第十三章　基本粒子"
+          },
+          "topics": [
+            {
+              "id": "phy10-c3-s4-n147",
+              "printedNumber": 147,
+              "title": "什么是基本粒子？",
+              "page": 366
+            },
+            {
+              "id": "phy10-c3-s4-n148",
+              "printedNumber": 148,
+              "title": "正电子的发现　反粒子",
+              "page": 369
+            },
+            {
+              "id": "phy10-c3-s4-n149",
+              "printedNumber": 149,
+              "title": "中子的衰变　中微子的发现",
+              "page": 371
+            },
+            {
+              "id": "phy10-c3-s4-n150",
+              "printedNumber": 150,
+              "title": "基本粒子有多少？",
+              "page": 375
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy10-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "物理学对于解释世界和发展社会生产力的意义",
+      "page": 378,
+      "lessons": [
+        {
+          "id": "phy10-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "世界的统一物理图景",
+          "page": 378,
+          "source": {
+            "printedSection": 151
+          }
+        },
+        {
+          "id": "phy10-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "物理学与科学技术革命",
+          "page": 382,
+          "source": {
+            "printedSection": 152
+          }
+        },
+        {
+          "id": "phy10-c4-s3",
+          "kind": "exercises",
+          "number": "4.3",
+          "title": "复习题",
+          "page": 387,
+          "source": {
+            "printedName": "复习题"
+          }
+        },
+        {
+          "id": "phy10-c4-s4",
+          "kind": "exercises",
+          "number": "4.4",
+          "title": "实验作业",
+          "page": 392,
+          "source": {
+            "printedName": "实验作业"
+          }
+        }
+      ]
+    }
+  ]
+}

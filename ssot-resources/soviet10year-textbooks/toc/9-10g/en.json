@@ -1,0 +1,628 @@
+{
+  "book": "9-10g",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "geometry",
+  "grade": 9,
+  "title": "Geometry, Grades 9–10",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "9-10g",
+    "printedTitle": "苏联十年制学校数学教材·几何（9—10年级）",
+    "coverTitle": "苏联十年制学校数学教材 几何 9—10年级",
+    "editor": "З·А·斯科别兹（З. А. Скопец）主编（1980 年俄文版）",
+    "translators": "鲍珑、李慧君",
+    "publisher": "人民教育出版社，1982 年 9 月第 1 版，1983 年 8 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/9-10g.md",
+    "tocPages": "PDF 物理页 p.0004–p.0007",
+    "scan": "9-10g — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. The printed contents puts the two grade bands 九年级 / 十年级 at its first level, the six chapters and the grade's review material at its second, and the volume's continuously numbered sections §1–§69 together with each chapter's review exercises at its third. The levels are taken exactly as printed, so a grade band is a chapter, a chapter of the book is a lesson, and a § is a topic. None of the chapters or review sets carries a volume-wide printed section number, so every `source` uses printedName, the printed heading kept in the original Chinese — it is a pointer into the printed book. The two grade-band lines print no page, so their `page` is null.",
+  "contents": [
+    {
+      "id": "geo910-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Grade 9",
+      "page": null,
+      "lessons": [
+        {
+          "id": "geo910-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Basic concepts of solid geometry. Parallelism in space",
+          "page": 1,
+          "source": {
+            "printedName": "第一章　立体几何的基本概念．空间平行关系"
+          },
+          "topics": [
+            {
+              "id": "geo910-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "The logical structure of the solid geometry course. Basic concepts of solid geometry",
+              "page": 1
+            },
+            {
+              "id": "geo910-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "The axioms of solid geometry",
+              "page": 3
+            },
+            {
+              "id": "geo910-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "Consequences of the axioms",
+              "page": 8
+            },
+            {
+              "id": "geo910-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "Constructing a line in space parallel to a given line",
+              "page": 12
+            },
+            {
+              "id": "geo910-c1-s1-n5",
+              "printedNumber": 5,
+              "title": "Solving construction problems on sections of polyhedra",
+              "page": 14
+            },
+            {
+              "id": "geo910-c1-s1-n6",
+              "printedNumber": 6,
+              "title": "Skew lines. A test for skew lines",
+              "page": 16
+            },
+            {
+              "id": "geo910-c1-s1-n7",
+              "printedNumber": 7,
+              "title": "The relative position of a line and a plane. A test for a line parallel to a plane",
+              "page": 18
+            },
+            {
+              "id": "geo910-c1-s1-n8",
+              "printedNumber": 8,
+              "title": "Transitivity of parallelism. A pencil of parallel lines",
+              "page": 22
+            },
+            {
+              "id": "geo910-c1-s1-n9",
+              "printedNumber": 9,
+              "title": "The parallelepiped",
+              "page": 25
+            },
+            {
+              "id": "geo910-c1-s1-n10",
+              "printedNumber": 10,
+              "title": "The relative position of two planes. A test for parallel planes",
+              "page": 27
+            },
+            {
+              "id": "geo910-c1-s1-n11",
+              "printedNumber": 11,
+              "title": "Theorems on parallel planes",
+              "page": 30
+            },
+            {
+              "id": "geo910-c1-s1-n12",
+              "printedNumber": 12,
+              "title": "Parallel projection of a figure. Properties of parallel projection",
+              "page": 34
+            },
+            {
+              "id": "geo910-c1-s1-n13",
+              "printedNumber": 13,
+              "title": "Drawing figures in solid geometry",
+              "page": 36
+            },
+            {
+              "id": "geo910-c1-s1-t14",
+              "title": "Review exercises for Chapter 1",
+              "page": 42
+            }
+          ]
+        },
+        {
+          "id": "geo910-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Transformations of space. Vectors",
+          "page": 48,
+          "source": {
+            "printedName": "第二章　空间的变换．向量"
+          },
+          "topics": [
+            {
+              "id": "geo910-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "Mappings of figures. Transformations of space",
+              "page": 48
+            },
+            {
+              "id": "geo910-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "Displacements of space. Congruence of figures",
+              "page": 51
+            },
+            {
+              "id": "geo910-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "Directions in space",
+              "page": 53
+            },
+            {
+              "id": "geo910-c1-s2-n17",
+              "printedNumber": 17,
+              "title": "Vectors",
+              "page": 55
+            },
+            {
+              "id": "geo910-c1-s2-n18",
+              "printedNumber": 18,
+              "title": "Addition of vectors",
+              "page": 59
+            },
+            {
+              "id": "geo910-c1-s2-n19",
+              "printedNumber": 19,
+              "title": "Opposite vectors. Subtraction of vectors",
+              "page": 63
+            },
+            {
+              "id": "geo910-c1-s2-n20",
+              "printedNumber": 20,
+              "title": "Collinear vectors. Multiplication of a vector by a number",
+              "page": 64
+            },
+            {
+              "id": "geo910-c1-s2-n21",
+              "printedNumber": 21,
+              "title": "Coplanar vectors",
+              "page": 67
+            },
+            {
+              "id": "geo910-c1-s2-n22",
+              "printedNumber": 22,
+              "title": "Solving problems with vectors",
+              "page": 70
+            },
+            {
+              "id": "geo910-c1-s2-n23",
+              "printedNumber": 23,
+              "title": "The parallelepiped rule. Decomposition of a vector in terms of three non-coplanar vectors",
+              "page": 72
+            },
+            {
+              "id": "geo910-c1-s2-n24",
+              "printedNumber": 24,
+              "title": "The angle between two vectors",
+              "page": 75
+            },
+            {
+              "id": "geo910-c1-s2-n25",
+              "printedNumber": 25,
+              "title": "The scalar product of two vectors",
+              "page": 77
+            },
+            {
+              "id": "geo910-c1-s2-n26",
+              "printedNumber": 26,
+              "title": "Basic properties of the scalar product of vectors",
+              "page": 79
+            },
+            {
+              "id": "geo910-c1-s2-n27",
+              "printedNumber": 27,
+              "title": "Solving problems with vectors",
+              "page": 81
+            },
+            {
+              "id": "geo910-c1-s2-t15",
+              "title": "Review exercises for Chapter 2",
+              "page": 85
+            }
+          ]
+        },
+        {
+          "id": "geo910-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Perpendicularity in space. Dihedral and polyhedral angles",
+          "page": 91,
+          "source": {
+            "printedName": "第三章　空间的垂直关系．二面角和多面角"
+          },
+          "topics": [
+            {
+              "id": "geo910-c1-s3-n28",
+              "printedNumber": 28,
+              "title": "A test for a line perpendicular to a plane",
+              "page": 91
+            },
+            {
+              "id": "geo910-c1-s3-n29",
+              "printedNumber": 29,
+              "title": "Constructing a perpendicular to a plane",
+              "page": 94
+            },
+            {
+              "id": "geo910-c1-s3-n30",
+              "printedNumber": 30,
+              "title": "Two perpendiculars to a plane. Orthogonal projection onto a plane",
+              "page": 98
+            },
+            {
+              "id": "geo910-c1-s3-n31",
+              "printedNumber": 31,
+              "title": "Axial symmetry in space",
+              "page": 101
+            },
+            {
+              "id": "geo910-c1-s3-n32",
+              "printedNumber": 32,
+              "title": "Symmetry about a plane",
+              "page": 104
+            },
+            {
+              "id": "geo910-c1-s3-n33",
+              "printedNumber": 33,
+              "title": "Two planes perpendicular to the same line",
+              "page": 106
+            },
+            {
+              "id": "geo910-c1-s3-n34",
+              "printedNumber": 34,
+              "title": "The distance from a point to a plane",
+              "page": 108
+            },
+            {
+              "id": "geo910-c1-s3-n35",
+              "printedNumber": 35,
+              "title": "The common perpendicular of two skew lines",
+              "page": 111
+            },
+            {
+              "id": "geo910-c1-s3-n36",
+              "printedNumber": 36,
+              "title": "The theorem of three perpendiculars",
+              "page": 114
+            },
+            {
+              "id": "geo910-c1-s3-n37",
+              "printedNumber": 37,
+              "title": "The angle between an oblique line and a plane",
+              "page": 116
+            },
+            {
+              "id": "geo910-c1-s3-n38",
+              "printedNumber": 38,
+              "title": "Dihedral angles. Measuring a dihedral angle",
+              "page": 121
+            },
+            {
+              "id": "geo910-c1-s3-n39",
+              "printedNumber": 39,
+              "title": "A test for perpendicular planes",
+              "page": 128
+            },
+            {
+              "id": "geo910-c1-s3-n40",
+              "printedNumber": 40,
+              "title": "Polyhedral angles. Trihedral angles",
+              "page": 131
+            },
+            {
+              "id": "geo910-c1-s3-n41",
+              "printedNumber": 41,
+              "title": "Properties of the face angles of trihedral and polyhedral angles",
+              "page": 133
+            },
+            {
+              "id": "geo910-c1-s3-t15",
+              "title": "Review exercises for Chapter 3",
+              "page": 136
+            }
+          ]
+        },
+        {
+          "id": "geo910-c1-ex",
+          "kind": "exercises",
+          "number": "1.4",
+          "title": "Review exercises for Grade 9",
+          "page": 140,
+          "source": {
+            "printedName": "九年级复习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo910-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Grade 10",
+      "page": null,
+      "lessons": [
+        {
+          "id": "geo910-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "The coordinate method in space",
+          "page": 145,
+          "source": {
+            "printedName": "第四章　空间坐标方法"
+          },
+          "topics": [
+            {
+              "id": "geo910-c2-s1-n42",
+              "printedNumber": 42,
+              "title": "The coordinates of a vector. Rules for operations on vectors in coordinates",
+              "page": 145
+            },
+            {
+              "id": "geo910-c2-s1-n43",
+              "printedNumber": 43,
+              "title": "Computing the length of a vector and the angle between two vectors from their coordinates",
+              "page": 148
+            },
+            {
+              "id": "geo910-c2-s1-n44",
+              "printedNumber": 44,
+              "title": "Rectangular coordinate systems. The coordinates of a point",
+              "page": 149
+            },
+            {
+              "id": "geo910-c2-s1-n45",
+              "printedNumber": 45,
+              "title": "The equation of a plane",
+              "page": 152
+            },
+            {
+              "id": "geo910-c2-s1-n46",
+              "printedNumber": 46,
+              "title": "Coordinate formulas for transformations. Homothety",
+              "page": 156
+            },
+            {
+              "id": "geo910-c2-s1-t6",
+              "title": "Review exercises for Chapter 4",
+              "page": 159
+            }
+          ]
+        },
+        {
+          "id": "geo910-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Polyhedra",
+          "page": 162,
+          "source": {
+            "printedName": "第五章　多面体"
+          },
+          "topics": [
+            {
+              "id": "geo910-c2-s2-n47",
+              "printedNumber": 47,
+              "title": "Polyhedral surfaces. Polyhedra",
+              "page": 162
+            },
+            {
+              "id": "geo910-c2-s2-n48",
+              "printedNumber": 48,
+              "title": "The prism",
+              "page": 165
+            },
+            {
+              "id": "geo910-c2-s2-n49",
+              "printedNumber": 49,
+              "title": "Properties of the parallelepiped",
+              "page": 169
+            },
+            {
+              "id": "geo910-c2-s2-n50",
+              "printedNumber": 50,
+              "title": "The area of the orthogonal projection of a polygon",
+              "page": 174
+            },
+            {
+              "id": "geo910-c2-s2-n51",
+              "printedNumber": 51,
+              "title": "The surface area of a prism",
+              "page": 176
+            },
+            {
+              "id": "geo910-c2-s2-n52",
+              "printedNumber": 52,
+              "title": "The pyramid",
+              "page": 179
+            },
+            {
+              "id": "geo910-c2-s2-n53",
+              "printedNumber": 53,
+              "title": "The frustum of a pyramid",
+              "page": 183
+            },
+            {
+              "id": "geo910-c2-s2-n54",
+              "printedNumber": 54,
+              "title": "The concept of a regular polyhedron",
+              "page": 185
+            },
+            {
+              "id": "geo910-c2-s2-n55",
+              "printedNumber": 55,
+              "title": "General properties of the volume of a polyhedron. The volume of a rectangular parallelepiped",
+              "page": 187
+            },
+            {
+              "id": "geo910-c2-s2-n56",
+              "printedNumber": 56,
+              "title": "The volume of a right prism",
+              "page": 190
+            },
+            {
+              "id": "geo910-c2-s2-n57",
+              "printedNumber": 57,
+              "title": "The volume of an oblique prism",
+              "page": 193
+            },
+            {
+              "id": "geo910-c2-s2-n58",
+              "printedNumber": 58,
+              "title": "The volume of a pyramid",
+              "page": 195
+            },
+            {
+              "id": "geo910-c2-s2-t13",
+              "title": "Review exercises for Chapter 5",
+              "page": 198
+            }
+          ]
+        },
+        {
+          "id": "geo910-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Solids of revolution",
+          "page": 205,
+          "source": {
+            "printedName": "第六章　旋转图形"
+          },
+          "topics": [
+            {
+              "id": "geo910-c2-s3-n59",
+              "printedNumber": 59,
+              "title": "Drawing a circle. The ellipse",
+              "page": 205
+            },
+            {
+              "id": "geo910-c2-s3-n60",
+              "printedNumber": 60,
+              "title": "Solids of revolution. The cylinder",
+              "page": 208
+            },
+            {
+              "id": "geo910-c2-s3-n61",
+              "printedNumber": 61,
+              "title": "The cone. The frustum of a cone",
+              "page": 211
+            },
+            {
+              "id": "geo910-c2-s3-n62",
+              "printedNumber": 62,
+              "title": "The sphere and the ball",
+              "page": 215
+            },
+            {
+              "id": "geo910-c2-s3-n63",
+              "printedNumber": 63,
+              "title": "Sections of a sphere. Drawing a sphere in perspective",
+              "page": 217
+            },
+            {
+              "id": "geo910-c2-s3-n64",
+              "printedNumber": 64,
+              "title": "Planes tangent to a sphere",
+              "page": 219
+            },
+            {
+              "id": "geo910-c2-s3-n65",
+              "printedNumber": 65,
+              "title": "Extending the measurement of volume. The volume of a cylinder",
+              "page": 221
+            },
+            {
+              "id": "geo910-c2-s3-n66",
+              "printedNumber": 66,
+              "title": "The volume of a solid obtained by revolving a curvilinear trapezoid",
+              "page": 224
+            },
+            {
+              "id": "geo910-c2-s3-n67",
+              "printedNumber": 67,
+              "title": "The volume of a cone",
+              "page": 227
+            },
+            {
+              "id": "geo910-c2-s3-n68",
+              "printedNumber": 68,
+              "title": "The volume of a ball",
+              "page": 229
+            },
+            {
+              "id": "geo910-c2-s3-n69",
+              "printedNumber": 69,
+              "title": "The area of a sphere",
+              "page": 230
+            },
+            {
+              "id": "geo910-c2-s3-t12",
+              "title": "Review exercises for Chapter 6",
+              "page": 233
+            }
+          ]
+        },
+        {
+          "id": "geo910-c2-ex1",
+          "kind": "exercises",
+          "number": "2.4",
+          "title": "Review questions",
+          "page": 239,
+          "source": {
+            "printedName": "复习的问题"
+          }
+        },
+        {
+          "id": "geo910-c2-ex2",
+          "kind": "exercises",
+          "number": "2.5",
+          "title": "Review exercises for the Grade 10 course",
+          "page": 243,
+          "source": {
+            "printedName": "十年级课程复习题"
+          }
+        },
+        {
+          "id": "geo910-c2-s4",
+          "kind": "section",
+          "number": "2.6",
+          "title": "A historical outline",
+          "page": 255,
+          "source": {
+            "printedName": "历史概述"
+          }
+        },
+        {
+          "id": "geo910-c2-s5",
+          "kind": "section",
+          "number": "2.7",
+          "title": "A brief summary of the plane geometry course",
+          "page": 266,
+          "source": {
+            "printedName": "平面几何课程的简要总结"
+          }
+        },
+        {
+          "id": "geo910-c2-s6",
+          "kind": "section",
+          "number": "2.8",
+          "title": "Geometric formulas",
+          "page": 291,
+          "source": {
+            "printedName": "几何公式"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo910-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "Symbols used in this book",
+      "page": 333,
+      "source": {
+        "printedName": "本书中使用的符号"
+      }
+    }
+  ]
+}

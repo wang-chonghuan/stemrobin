@@ -1,0 +1,760 @@
+{
+  "book": "9c",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "analysis",
+  "grade": 9,
+  "title": "Algebra and Elementary Analysis, Grade 9",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "9c",
+    "printedTitle": "苏联十年制学校数学教材·代数和分析初步（九年级）",
+    "coverTitle": "苏联十年制学校数学教材 代数和分析初步 九年级",
+    "editor": "А. Н. 柯尔莫戈洛夫 主编（据 1978 年苏联版译出）",
+    "translators": "李文锦",
+    "publisher": "人民教育出版社，1980 年 4 月第 1 版，1980 年 8 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/9c.md",
+    "tocPages": "PDF 物理页 p.0004–p.0007",
+    "scan": "9c — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–14 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while the rest are each a single entry carrying no chapter number, so their `number` is null. Chapters 1–6 here carry the numbers the book itself prints.",
+  "contents": [
+    {
+      "id": "ana9-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "The Principle of Mathematical Induction",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "ana9-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "The principle of mathematical induction and its applications",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "ana9-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "The idea of complete and incomplete induction",
+              "page": 1
+            },
+            {
+              "id": "ana9-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "The principle of mathematical induction",
+              "page": 4
+            },
+            {
+              "id": "ana9-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "An extension of the principle of mathematical induction",
+              "page": 10
+            }
+          ]
+        },
+        {
+          "id": "ana9-c1-ex",
+          "kind": "exercises",
+          "number": "1.2",
+          "title": "Supplementary exercises",
+          "page": 11,
+          "source": {
+            "printedName": "第一章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Elements of Combinatorial Analysis",
+      "page": 15,
+      "lessons": [
+        {
+          "id": "ana9-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Ordered sets",
+          "page": 15,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "ana9-c2-s1-n4",
+              "printedNumber": 4,
+              "title": "Permutations. The number of permutations",
+              "page": 15
+            },
+            {
+              "id": "ana9-c2-s1-n5",
+              "printedNumber": 5,
+              "title": "Ordered sets and arrangements",
+              "page": 19
+            }
+          ]
+        },
+        {
+          "id": "ana9-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Combinations",
+          "page": 22,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "ana9-c2-s2-n6",
+              "printedNumber": 6,
+              "title": "The total number of subsets of a finite set",
+              "page": 22
+            },
+            {
+              "id": "ana9-c2-s2-n7",
+              "printedNumber": 7,
+              "title": "Some properties of the numbers of combinations",
+              "page": 26
+            },
+            {
+              "id": "ana9-c2-s2-n8",
+              "printedNumber": 8,
+              "title": "A recurrence formula for computing the numbers of combinations",
+              "page": 28
+            }
+          ]
+        },
+        {
+          "id": "ana9-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "The binomial theorem (Newton's formula)",
+          "page": 30,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "ana9-c2-s3-n9",
+              "printedNumber": 9,
+              "title": "Newton's formula. The principal corollaries",
+              "page": 30
+            },
+            {
+              "id": "ana9-c2-s3-n10",
+              "printedNumber": 10,
+              "title": "Historical notes. Combinatorial analysis applied to probability theory",
+              "page": 35
+            },
+            {
+              "id": "ana9-c2-s3-n11",
+              "printedNumber": 11,
+              "title": "Examples of more complicated applied problems in probability theory",
+              "page": 38
+            }
+          ]
+        },
+        {
+          "id": "ana9-c2-ex",
+          "kind": "exercises",
+          "number": "2.4",
+          "title": "Supplementary exercises",
+          "page": 42,
+          "source": {
+            "printedName": "第二章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Real Numbers. Infinite Sequences and their Limits",
+      "page": 45,
+      "lessons": [
+        {
+          "id": "ana9-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Real numbers",
+          "page": 45,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "ana9-c3-s1-n12",
+              "printedNumber": 12,
+              "title": "Introduction",
+              "page": 45
+            },
+            {
+              "id": "ana9-c3-s1-n13",
+              "printedNumber": 13,
+              "title": "Repeating decimals",
+              "page": 48
+            },
+            {
+              "id": "ana9-c3-s1-n14",
+              "printedNumber": 14,
+              "title": "Real numbers",
+              "page": 50
+            },
+            {
+              "id": "ana9-c3-s1-n15",
+              "printedNumber": 15,
+              "title": "Decimal approximations to a real number from below and from above. Arithmetic operations on real numbers",
+              "page": 52
+            },
+            {
+              "id": "ana9-c3-s1-n16",
+              "printedNumber": 16,
+              "title": "Representing numbers by points on a coordinate axis",
+              "page": 56
+            },
+            {
+              "id": "ana9-c3-s1-n17",
+              "printedNumber": 17,
+              "title": "The number line and the number plane",
+              "page": 59
+            },
+            {
+              "id": "ana9-c3-s1-n18",
+              "printedNumber": 18,
+              "title": "Some properties of the set of real numbers",
+              "page": 63
+            }
+          ]
+        },
+        {
+          "id": "ana9-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Infinite sequences. The limit of a sequence",
+          "page": 64,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "ana9-c3-s2-n19",
+              "printedNumber": 19,
+              "title": "Infinite sequences",
+              "page": 64
+            },
+            {
+              "id": "ana9-c3-s2-n20",
+              "printedNumber": 20,
+              "title": "A geometric picture of a sequence and an intuitive view of its limit",
+              "page": 67
+            },
+            {
+              "id": "ana9-c3-s2-n21",
+              "printedNumber": 21,
+              "title": "The definition of the limit of a sequence",
+              "page": 71
+            },
+            {
+              "id": "ana9-c3-s2-n22",
+              "printedNumber": 22,
+              "title": "Uniqueness of the limit. Convergent and divergent sequences",
+              "page": 75
+            },
+            {
+              "id": "ana9-c3-s2-n23",
+              "printedNumber": 23,
+              "title": "lim(n→∞) qⁿ = 0 when |q|<1",
+              "page": 76
+            },
+            {
+              "id": "ana9-c3-s2-n24",
+              "printedNumber": 24,
+              "title": "The sum of an infinite geometric progression when |q|<1",
+              "page": 78
+            },
+            {
+              "id": "ana9-c3-s2-n25",
+              "printedNumber": 25,
+              "title": "The idea of a numerical series",
+              "page": 80
+            }
+          ]
+        },
+        {
+          "id": "ana9-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "The existence of a limit and its computation",
+          "page": 84,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "ana9-c3-s3-n26",
+              "printedNumber": 26,
+              "title": "A necessary condition for convergence",
+              "page": 84
+            },
+            {
+              "id": "ana9-c3-s3-n27",
+              "printedNumber": 27,
+              "title": "Theorems on limits",
+              "page": 86
+            },
+            {
+              "id": "ana9-c3-s3-n28",
+              "printedNumber": 28,
+              "title": "Infinitesimal sequences",
+              "page": 88
+            },
+            {
+              "id": "ana9-c3-s3-n29",
+              "printedNumber": 29,
+              "title": "Examples of computing limits",
+              "page": 91
+            },
+            {
+              "id": "ana9-c3-s3-n30",
+              "printedNumber": 30,
+              "title": "Comparing the growth of arithmetic and geometric progressions",
+              "page": 93
+            },
+            {
+              "id": "ana9-c3-s3-n31",
+              "printedNumber": 31,
+              "title": "Monotone sequences",
+              "page": 95
+            },
+            {
+              "id": "ana9-c3-s3-n32",
+              "printedNumber": 32,
+              "title": "The existence of the limit of a bounded monotone sequence",
+              "page": 99
+            },
+            {
+              "id": "ana9-c3-s3-n33",
+              "printedNumber": 33,
+              "title": "The number π and the circumference of a circle",
+              "page": 103
+            }
+          ]
+        },
+        {
+          "id": "ana9-c3-ex",
+          "kind": "exercises",
+          "number": "3.4",
+          "title": "Supplementary exercises",
+          "page": 106,
+          "source": {
+            "printedName": "第三章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Limits of Functions and the Derivative",
+      "page": 115,
+      "lessons": [
+        {
+          "id": "ana9-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "First ideas of the derivative and the limit of a function",
+          "page": 115,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "ana9-c4-s1-n34",
+              "printedNumber": 34,
+              "title": "Numerical functions",
+              "page": 115
+            },
+            {
+              "id": "ana9-c4-s1-n35",
+              "printedNumber": 35,
+              "title": "The variation of a function. Its increase and decrease",
+              "page": 121
+            },
+            {
+              "id": "ana9-c4-s1-n36",
+              "printedNumber": 36,
+              "title": "The increment of a function",
+              "page": 123
+            },
+            {
+              "id": "ana9-c4-s1-n37",
+              "printedNumber": 37,
+              "title": "The derivative as the rate of change of a function",
+              "page": 128
+            },
+            {
+              "id": "ana9-c4-s1-n38",
+              "printedNumber": 38,
+              "title": "Continuous and discontinuous functions. The limit of a function",
+              "page": 134
+            },
+            {
+              "id": "ana9-c4-s1-n39",
+              "printedNumber": 39,
+              "title": "The theorem on the uniqueness of the limit",
+              "page": 139
+            },
+            {
+              "id": "ana9-c4-s1-n40",
+              "printedNumber": 40,
+              "title": "Theorems on limits",
+              "page": 142
+            },
+            {
+              "id": "ana9-c4-s1-n41",
+              "printedNumber": 41,
+              "title": "The continuity of rational functions",
+              "page": 144
+            }
+          ]
+        },
+        {
+          "id": "ana9-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "The derivative",
+          "page": 149,
+          "source": {
+            "printedSection": 9
+          },
+          "topics": [
+            {
+              "id": "ana9-c4-s2-n42",
+              "printedNumber": 42,
+              "title": "The definition of the derivative",
+              "page": 149
+            },
+            {
+              "id": "ana9-c4-s2-n43",
+              "printedNumber": 43,
+              "title": "Examples of finding derivatives",
+              "page": 151
+            },
+            {
+              "id": "ana9-c4-s2-n44",
+              "printedNumber": 44,
+              "title": "The derivative of a sum of functions",
+              "page": 155
+            },
+            {
+              "id": "ana9-c4-s2-n45",
+              "printedNumber": 45,
+              "title": "The derivative of a product of functions",
+              "page": 156
+            },
+            {
+              "id": "ana9-c4-s2-n46",
+              "printedNumber": 46,
+              "title": "The derivative of a polynomial",
+              "page": 159
+            },
+            {
+              "id": "ana9-c4-s2-n47",
+              "printedNumber": 47,
+              "title": "The derivative of a quotient",
+              "page": 160
+            },
+            {
+              "id": "ana9-c4-s2-n48",
+              "printedNumber": 48,
+              "title": "The derivative of a rational fractional function",
+              "page": 162
+            },
+            {
+              "id": "ana9-c4-s2-n49",
+              "printedNumber": 49,
+              "title": "Composite functions",
+              "page": 164
+            },
+            {
+              "id": "ana9-c4-s2-n50",
+              "printedNumber": 50,
+              "title": "The derivative of a composite function",
+              "page": 165
+            }
+          ]
+        },
+        {
+          "id": "ana9-c4-ex",
+          "kind": "exercises",
+          "number": "4.3",
+          "title": "Supplementary exercises",
+          "page": 167,
+          "source": {
+            "printedName": "第四章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "Applications of the Derivative",
+      "page": 172,
+      "lessons": [
+        {
+          "id": "ana9-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "Applications of the derivative in approximate computation, geometry and physics",
+          "page": 172,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "ana9-c5-s1-n51",
+              "printedNumber": 51,
+              "title": "The principal part of the increment of a function",
+              "page": 172
+            },
+            {
+              "id": "ana9-c5-s1-n52",
+              "printedNumber": 52,
+              "title": "The tangent to the graph of a function",
+              "page": 176
+            },
+            {
+              "id": "ana9-c5-s1-n53",
+              "printedNumber": 53,
+              "title": "Velocity and acceleration",
+              "page": 179
+            }
+          ]
+        },
+        {
+          "id": "ana9-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "Applications of the derivative to the study of functions",
+          "page": 183,
+          "source": {
+            "printedSection": 11
+          },
+          "topics": [
+            {
+              "id": "ana9-c5-s2-n54",
+              "printedNumber": 54,
+              "title": "The increase and decrease of a function",
+              "page": 183
+            },
+            {
+              "id": "ana9-c5-s2-n55",
+              "printedNumber": 55,
+              "title": "Critical points of a function. Maxima and minima",
+              "page": 187
+            },
+            {
+              "id": "ana9-c5-s2-n56",
+              "printedNumber": 56,
+              "title": "The study of the quadratic function",
+              "page": 192
+            },
+            {
+              "id": "ana9-c5-s2-n57",
+              "printedNumber": 57,
+              "title": "Solving quadratic inequalities",
+              "page": 195
+            },
+            {
+              "id": "ana9-c5-s2-n58",
+              "printedNumber": 58,
+              "title": "The general scheme for studying a function",
+              "page": 199
+            },
+            {
+              "id": "ana9-c5-s2-n59",
+              "printedNumber": 59,
+              "title": "The greatest and least values of a function",
+              "page": 202
+            },
+            {
+              "id": "ana9-c5-s2-n60",
+              "printedNumber": 60,
+              "title": "Historical notes",
+              "page": 207
+            }
+          ]
+        },
+        {
+          "id": "ana9-c5-ex",
+          "kind": "exercises",
+          "number": "5.3",
+          "title": "Supplementary exercises",
+          "page": 209,
+          "source": {
+            "printedName": "第五章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "Trigonometric Functions, their Graphs and Derivatives",
+      "page": 213,
+      "lessons": [
+        {
+          "id": "ana9-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "Trigonometric functions of a numerical variable",
+          "page": 213,
+          "source": {
+            "printedSection": 12
+          },
+          "topics": [
+            {
+              "id": "ana9-c6-s1-n61",
+              "printedNumber": 61,
+              "title": "Radian measure",
+              "page": 213
+            },
+            {
+              "id": "ana9-c6-s1-n62",
+              "printedNumber": 62,
+              "title": "The length of an arc and the area of a sector",
+              "page": 221
+            },
+            {
+              "id": "ana9-c6-s1-n63",
+              "printedNumber": 63,
+              "title": "The sine and cosine of a numerical variable",
+              "page": 223
+            },
+            {
+              "id": "ana9-c6-s1-n64",
+              "printedNumber": 64,
+              "title": "The graphs of the sine and cosine functions",
+              "page": 226
+            },
+            {
+              "id": "ana9-c6-s1-n65",
+              "printedNumber": 65,
+              "title": "The tangent and cotangent of a numerical variable",
+              "page": 229
+            },
+            {
+              "id": "ana9-c6-s1-n66",
+              "printedNumber": 66,
+              "title": "Tables of the trigonometric functions of a numerical variable",
+              "page": 232
+            }
+          ]
+        },
+        {
+          "id": "ana9-c6-s2",
+          "kind": "section",
+          "number": "6.2",
+          "title": "Basic properties of the trigonometric functions",
+          "page": 233,
+          "source": {
+            "printedSection": 13
+          },
+          "topics": [
+            {
+              "id": "ana9-c6-s2-n67",
+              "printedNumber": 67,
+              "title": "The signs of the values of the trigonometric functions",
+              "page": 233
+            },
+            {
+              "id": "ana9-c6-s2-n68",
+              "printedNumber": 68,
+              "title": "Evenness and oddness of the trigonometric functions",
+              "page": 237
+            },
+            {
+              "id": "ana9-c6-s2-n69",
+              "printedNumber": 69,
+              "title": "Periodicity of the trigonometric functions",
+              "page": 239
+            }
+          ]
+        },
+        {
+          "id": "ana9-c6-s3",
+          "kind": "section",
+          "number": "6.3",
+          "title": "The addition formulas and their corollaries",
+          "page": 243,
+          "source": {
+            "printedSection": 14
+          },
+          "topics": [
+            {
+              "id": "ana9-c6-s3-n70",
+              "printedNumber": 70,
+              "title": "The coordinates of a vector",
+              "page": 243
+            },
+            {
+              "id": "ana9-c6-s3-n71",
+              "printedNumber": 71,
+              "title": "The sine and cosine of a sum of two angles",
+              "page": 246
+            },
+            {
+              "id": "ana9-c6-s3-n72",
+              "printedNumber": 72,
+              "title": "The tangent of a sum of two angles",
+              "page": 251
+            },
+            {
+              "id": "ana9-c6-s3-n73",
+              "printedNumber": 73,
+              "title": "The trigonometric functions of a double angle",
+              "page": 253
+            },
+            {
+              "id": "ana9-c6-s3-n74",
+              "printedNumber": 74,
+              "title": "Formulas for the sum and difference of like trigonometric functions",
+              "page": 254
+            }
+          ]
+        },
+        {
+          "id": "ana9-c6-ex",
+          "kind": "exercises",
+          "number": "6.4",
+          "title": "Supplementary exercises",
+          "page": 257,
+          "source": {
+            "printedName": "第六章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "Symbols used in the text",
+      "page": 294,
+      "source": {
+        "printedName": "课文中使用的符号"
+      }
+    }
+  ]
+}

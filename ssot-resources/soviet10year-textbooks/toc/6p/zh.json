@@ -1,0 +1,926 @@
+{
+  "book": "6p",
+  "locale": "zh",
+  "authority": "extracted",
+  "subject": "physics",
+  "grade": 6,
+  "title": "物理 六年级",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "6-7p",
+    "printedTitle": "苏联中学课本 物理（六、七年级）",
+    "coverTitle": "苏联中学课本 物理 六-七年级",
+    "editor": "〔苏〕A.B. 别雷史金、H.A. 罗金娜（译自 1978 年版苏联中学 6、7 年级教科书）",
+    "translators": "常利",
+    "publisher": "文化教育出版社，1981 年 5 月第 1 版",
+    "toc": "resources/soviet10years/toc/6-7p.md",
+    "tocPages": "PDF 物理页 p.0006–p.0011（印刷页码 1–6）",
+    "scan": "6-7p — the printed volume, scanned; not kept in the repo",
+    "volumeNote": "本册与 7p 同出一本印刷书 6-7p（六、七年级合订），按年级拆分为两册。"
+  },
+  "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。原书 6-7p 是六、七年级合订的一本印刷书，目录第一级即「六年级」「七年级」，本册取其中一个年级，故其下各级依次上提一层。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷序号的用序号（printedSection），没有的用原书印刷的名称（printedName）。原书的教学条目在整本合订书里连续编号（六年级 1–80，七年级 81–164），拆分年级时不重新编号，printedNumber / printedSection 一律照印。原书中少数条目下还带一条无序号的附属条目（如「布朗运动」），格式中没有更低一级，故紧接其后作为同级 topic 收入，不给 printedNumber。",
+  "contents": [
+    {
+      "id": "phy6-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "导言",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "phy6-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "自然界和人",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "phy6-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "物理学是研究什么的",
+          "page": 2,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "phy6-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "物体、物质和实物",
+          "page": 4,
+          "source": {
+            "printedSection": 3
+          }
+        },
+        {
+          "id": "phy6-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "观察和实验",
+          "page": 5,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "phy6-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "物理量　物理量的测量",
+          "page": 7,
+          "source": {
+            "printedSection": 5
+          }
+        },
+        {
+          "id": "phy6-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "物理学与技术",
+          "page": 8,
+          "source": {
+            "printedSection": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "关于物质结构的初步知识",
+      "page": 12,
+      "lessons": [
+        {
+          "id": "phy6-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "为什么需要知道物质的结构",
+          "page": 12,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "phy6-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "物质结构",
+          "page": 13,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "phy6-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "分子",
+          "page": 15,
+          "source": {
+            "printedSection": 9
+          }
+        },
+        {
+          "id": "phy6-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "气体、液体及固体中的扩散现象",
+          "page": 18,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "phy6-c2-s4-t1",
+              "title": "布朗运动",
+              "page": 21
+            }
+          ]
+        },
+        {
+          "id": "phy6-c2-s5",
+          "kind": "section",
+          "number": "2.5",
+          "title": "分子运动的速度与物体的温度",
+          "page": 22,
+          "source": {
+            "printedSection": 11
+          }
+        },
+        {
+          "id": "phy6-c2-s6",
+          "kind": "section",
+          "number": "2.6",
+          "title": "分子间的相互吸引和相互排斥",
+          "page": 23,
+          "source": {
+            "printedSection": 12
+          }
+        },
+        {
+          "id": "phy6-c2-s7",
+          "kind": "section",
+          "number": "2.7",
+          "title": "物质的三态",
+          "page": 25,
+          "source": {
+            "printedSection": 13
+          }
+        },
+        {
+          "id": "phy6-c2-s8",
+          "kind": "section",
+          "number": "2.8",
+          "title": "固体、液体和气体分子结构的差别",
+          "page": 28,
+          "source": {
+            "printedSection": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "运动和力",
+      "page": 32,
+      "lessons": [
+        {
+          "id": "phy6-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "机械运动",
+          "page": 32,
+          "source": {
+            "printedSection": 15
+          }
+        },
+        {
+          "id": "phy6-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "匀速运动和变速运动",
+          "page": 34,
+          "source": {
+            "printedSection": 16
+          }
+        },
+        {
+          "id": "phy6-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "匀速运动的速度　速度的单位",
+          "page": 36,
+          "source": {
+            "printedSection": 17
+          }
+        },
+        {
+          "id": "phy6-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "变速运动的平均速度",
+          "page": 40,
+          "source": {
+            "printedSection": 18
+          }
+        },
+        {
+          "id": "phy6-c3-s5",
+          "kind": "section",
+          "number": "3.5",
+          "title": "路程及运动时间的计算",
+          "page": 42,
+          "source": {
+            "printedSection": 19
+          }
+        },
+        {
+          "id": "phy6-c3-s6",
+          "kind": "section",
+          "number": "3.6",
+          "title": "惯性",
+          "page": 44,
+          "source": {
+            "printedSection": 20
+          }
+        },
+        {
+          "id": "phy6-c3-s7",
+          "kind": "section",
+          "number": "3.7",
+          "title": "日常生活和工程技术中的惯性现象",
+          "page": 47,
+          "source": {
+            "printedSection": 21
+          }
+        },
+        {
+          "id": "phy6-c3-s8",
+          "kind": "section",
+          "number": "3.8",
+          "title": "物体的相互作用",
+          "page": 48,
+          "source": {
+            "printedSection": 22
+          }
+        },
+        {
+          "id": "phy6-c3-s9",
+          "kind": "section",
+          "number": "3.9",
+          "title": "物体的质量　质量单位",
+          "page": 51,
+          "source": {
+            "printedSection": 23
+          }
+        },
+        {
+          "id": "phy6-c3-s10",
+          "kind": "section",
+          "number": "3.10",
+          "title": "用天平和秤测量物体的质量",
+          "page": 53,
+          "source": {
+            "printedSection": 24
+          }
+        },
+        {
+          "id": "phy6-c3-s11",
+          "kind": "section",
+          "number": "3.11",
+          "title": "分子的质量",
+          "page": 55,
+          "source": {
+            "printedSection": 25
+          }
+        },
+        {
+          "id": "phy6-c3-s12",
+          "kind": "section",
+          "number": "3.12",
+          "title": "物质的密度",
+          "page": 56,
+          "source": {
+            "printedSection": 26
+          }
+        },
+        {
+          "id": "phy6-c3-s13",
+          "kind": "section",
+          "number": "3.13",
+          "title": "根据物体的密度计算物体的质量和体积",
+          "page": 61,
+          "source": {
+            "printedSection": 27
+          }
+        },
+        {
+          "id": "phy6-c3-s14",
+          "kind": "section",
+          "number": "3.14",
+          "title": "用分子的质量及单位体积中的分子数来表示物质的密度",
+          "page": 62,
+          "source": {
+            "printedSection": 28
+          }
+        },
+        {
+          "id": "phy6-c3-s15",
+          "kind": "section",
+          "number": "3.15",
+          "title": "力",
+          "page": 64,
+          "source": {
+            "printedSection": 29
+          }
+        },
+        {
+          "id": "phy6-c3-s16",
+          "kind": "section",
+          "number": "3.16",
+          "title": "万有引力现象　重力",
+          "page": 67,
+          "source": {
+            "printedSection": 30
+          }
+        },
+        {
+          "id": "phy6-c3-s17",
+          "kind": "section",
+          "number": "3.17",
+          "title": "弹力",
+          "page": 69,
+          "source": {
+            "printedSection": 31
+          }
+        },
+        {
+          "id": "phy6-c3-s18",
+          "kind": "section",
+          "number": "3.18",
+          "title": "物体的重量",
+          "page": 70,
+          "source": {
+            "printedSection": 32
+          },
+          "topics": [
+            {
+              "id": "phy6-c3-s18-t1",
+              "title": "失重",
+              "page": 71
+            }
+          ]
+        },
+        {
+          "id": "phy6-c3-s19",
+          "kind": "section",
+          "number": "3.19",
+          "title": "力的单位",
+          "page": 73,
+          "source": {
+            "printedSection": 33
+          },
+          "topics": [
+            {
+              "id": "phy6-c3-s19-t1",
+              "title": "其它行星上的重力",
+              "page": 76
+            }
+          ]
+        },
+        {
+          "id": "phy6-c3-s20",
+          "kind": "section",
+          "number": "3.20",
+          "title": "测力计",
+          "page": 78,
+          "source": {
+            "printedSection": 34
+          }
+        },
+        {
+          "id": "phy6-c3-s21",
+          "kind": "section",
+          "number": "3.21",
+          "title": "力是矢量",
+          "page": 80,
+          "source": {
+            "printedSection": 35
+          }
+        },
+        {
+          "id": "phy6-c3-s22",
+          "kind": "section",
+          "number": "3.22",
+          "title": "力的合成　合力",
+          "page": 81,
+          "source": {
+            "printedSection": 36
+          }
+        },
+        {
+          "id": "phy6-c3-s23",
+          "kind": "section",
+          "number": "3.23",
+          "title": "作用在同一条直线上的两个力的合成",
+          "page": 82,
+          "source": {
+            "printedSection": 37
+          }
+        },
+        {
+          "id": "phy6-c3-s24",
+          "kind": "section",
+          "number": "3.24",
+          "title": "摩擦力",
+          "page": 85,
+          "source": {
+            "printedSection": 38
+          }
+        },
+        {
+          "id": "phy6-c3-s25",
+          "kind": "section",
+          "number": "3.25",
+          "title": "怎样测量摩擦力",
+          "page": 87,
+          "source": {
+            "printedSection": 39
+          }
+        },
+        {
+          "id": "phy6-c3-s26",
+          "kind": "section",
+          "number": "3.26",
+          "title": "静摩擦",
+          "page": 89,
+          "source": {
+            "printedSection": 40
+          }
+        },
+        {
+          "id": "phy6-c3-s27",
+          "kind": "section",
+          "number": "3.27",
+          "title": "自然界和工程技术中的摩擦",
+          "page": 90,
+          "source": {
+            "printedSection": 41
+          }
+        },
+        {
+          "id": "phy6-c3-s28",
+          "kind": "section",
+          "number": "3.28",
+          "title": "分子间的相互作用力",
+          "page": 92,
+          "source": {
+            "printedSection": 42
+          }
+        },
+        {
+          "id": "phy6-c3-s29",
+          "kind": "section",
+          "number": "3.29",
+          "title": "浸润现象",
+          "page": 94,
+          "source": {
+            "printedSection": 43
+          }
+        },
+        {
+          "id": "phy6-c3-s30",
+          "kind": "section",
+          "number": "3.30",
+          "title": "压强",
+          "page": 95,
+          "source": {
+            "printedSection": 44
+          }
+        },
+        {
+          "id": "phy6-c3-s31",
+          "kind": "section",
+          "number": "3.31",
+          "title": "自然界和工程技术中的压强",
+          "page": 98,
+          "source": {
+            "printedSection": 45
+          }
+        },
+        {
+          "id": "phy6-c3-s32",
+          "kind": "section",
+          "number": "3.32",
+          "title": "气体的压强",
+          "page": 101,
+          "source": {
+            "printedSection": 46
+          }
+        },
+        {
+          "id": "phy6-c3-s33",
+          "kind": "section",
+          "number": "3.33",
+          "title": "气体的压强与什么有关",
+          "page": 103,
+          "source": {
+            "printedSection": 47
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "液体和气体的压强（液体与气体静力学）",
+      "page": 106,
+      "lessons": [
+        {
+          "id": "phy6-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "液体和气体对压强的传递　帕斯卡定律",
+          "page": 106,
+          "source": {
+            "printedSection": 48
+          }
+        },
+        {
+          "id": "phy6-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "液压机械",
+          "page": 109,
+          "source": {
+            "printedSection": 49
+          }
+        },
+        {
+          "id": "phy6-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "液压机",
+          "page": 111,
+          "source": {
+            "printedSection": 50
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s3-t1",
+              "title": "气动机械与气动工具",
+              "page": 113
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s4",
+          "kind": "section",
+          "number": "4.4",
+          "title": "液体的自由表面",
+          "page": 115,
+          "source": {
+            "printedSection": 51
+          }
+        },
+        {
+          "id": "phy6-c4-s5",
+          "kind": "section",
+          "number": "4.5",
+          "title": "液体和气体中的压强",
+          "page": 117,
+          "source": {
+            "printedSection": 52
+          }
+        },
+        {
+          "id": "phy6-c4-s6",
+          "kind": "section",
+          "number": "4.6",
+          "title": "液体对容器底及容器壁的压强的计算",
+          "page": 120,
+          "source": {
+            "printedSection": 53
+          }
+        },
+        {
+          "id": "phy6-c4-s7",
+          "kind": "section",
+          "number": "4.7",
+          "title": "流体静力学佯谬　帕斯卡实验",
+          "page": 124,
+          "source": {
+            "printedSection": 54
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s7-t1",
+              "title": "海底的压强　对海洋深处的考查",
+              "page": 128
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s8",
+          "kind": "section",
+          "number": "4.8",
+          "title": "连通器",
+          "page": 130,
+          "source": {
+            "printedSection": 55
+          }
+        },
+        {
+          "id": "phy6-c4-s9",
+          "kind": "section",
+          "number": "4.9",
+          "title": "大气压强",
+          "page": 136,
+          "source": {
+            "printedSection": 56
+          }
+        },
+        {
+          "id": "phy6-c4-s10",
+          "kind": "section",
+          "number": "4.10",
+          "title": "地球大气层的形成",
+          "page": 137,
+          "source": {
+            "printedSection": 57
+          }
+        },
+        {
+          "id": "phy6-c4-s11",
+          "kind": "section",
+          "number": "4.11",
+          "title": "大气压强的测量　托里拆利实验",
+          "page": 139,
+          "source": {
+            "printedSection": 58
+          }
+        },
+        {
+          "id": "phy6-c4-s12",
+          "kind": "section",
+          "number": "4.12",
+          "title": "无液气压计",
+          "page": 143,
+          "source": {
+            "printedSection": 59
+          }
+        },
+        {
+          "id": "phy6-c4-s13",
+          "kind": "section",
+          "number": "4.13",
+          "title": "不同高度处的大气压强",
+          "page": 145,
+          "source": {
+            "printedSection": 60
+          }
+        },
+        {
+          "id": "phy6-c4-s14",
+          "kind": "section",
+          "number": "4.14",
+          "title": "压强计",
+          "page": 147,
+          "source": {
+            "printedSection": 61
+          }
+        },
+        {
+          "id": "phy6-c4-s15",
+          "kind": "section",
+          "number": "4.15",
+          "title": "活塞式抽水机",
+          "page": 150,
+          "source": {
+            "printedSection": 62
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s15-t1",
+              "title": "大气压强发现的历史",
+              "page": 152
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s16",
+          "kind": "section",
+          "number": "4.16",
+          "title": "液体和气体对浸在它们之中的物体的作用",
+          "page": 154,
+          "source": {
+            "printedSection": 63
+          }
+        },
+        {
+          "id": "phy6-c4-s17",
+          "kind": "section",
+          "number": "4.17",
+          "title": "阿基米德力",
+          "page": 157,
+          "source": {
+            "printedSection": 64
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s17-t1",
+              "title": "关于阿基米德的传说",
+              "page": 160
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s18",
+          "kind": "section",
+          "number": "4.18",
+          "title": "物体的浮沉",
+          "page": 162,
+          "source": {
+            "printedSection": 65
+          }
+        },
+        {
+          "id": "phy6-c4-s19",
+          "kind": "section",
+          "number": "4.19",
+          "title": "船舶的漂浮",
+          "page": 166,
+          "source": {
+            "printedSection": 66
+          }
+        },
+        {
+          "id": "phy6-c4-s20",
+          "kind": "section",
+          "number": "4.20",
+          "title": "航空",
+          "page": 168,
+          "source": {
+            "printedSection": 67
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "功和功率、能量",
+      "page": 171,
+      "lessons": [
+        {
+          "id": "phy6-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "机械功　功的单位",
+          "page": 171,
+          "source": {
+            "printedSection": 68
+          }
+        },
+        {
+          "id": "phy6-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "功率　功率的单位",
+          "page": 175,
+          "source": {
+            "printedSection": 69
+          }
+        },
+        {
+          "id": "phy6-c5-s3",
+          "kind": "section",
+          "number": "5.3",
+          "title": "简单机械",
+          "page": 178,
+          "source": {
+            "printedSection": 70
+          }
+        },
+        {
+          "id": "phy6-c5-s4",
+          "kind": "section",
+          "number": "5.4",
+          "title": "杠杆　作用在杠杆上的力的平衡",
+          "page": 180,
+          "source": {
+            "printedSection": 71
+          }
+        },
+        {
+          "id": "phy6-c5-s5",
+          "kind": "section",
+          "number": "5.5",
+          "title": "杠杆在工程技术及日常生活中的应用",
+          "page": 183,
+          "source": {
+            "printedSection": 72
+          }
+        },
+        {
+          "id": "phy6-c5-s6",
+          "kind": "section",
+          "number": "5.6",
+          "title": "杠杆在天平及秤中的应用",
+          "page": 186,
+          "source": {
+            "printedSection": 73
+          }
+        },
+        {
+          "id": "phy6-c5-s7",
+          "kind": "section",
+          "number": "5.7",
+          "title": "杠杆平衡规律在滑轮中的应用",
+          "page": 187,
+          "source": {
+            "printedSection": 74
+          }
+        },
+        {
+          "id": "phy6-c5-s8",
+          "kind": "section",
+          "number": "5.8",
+          "title": "使用简单机械时的等功原理　力学的\"黄金定律\"",
+          "page": 189,
+          "source": {
+            "printedSection": 75
+          }
+        },
+        {
+          "id": "phy6-c5-s9",
+          "kind": "section",
+          "number": "5.9",
+          "title": "机械效率",
+          "page": 192,
+          "source": {
+            "printedSection": 76
+          }
+        },
+        {
+          "id": "phy6-c5-s10",
+          "kind": "section",
+          "number": "5.10",
+          "title": "能量",
+          "page": 193,
+          "source": {
+            "printedSection": 77
+          }
+        },
+        {
+          "id": "phy6-c5-s11",
+          "kind": "section",
+          "number": "5.11",
+          "title": "势能",
+          "page": 196,
+          "source": {
+            "printedSection": 78
+          }
+        },
+        {
+          "id": "phy6-c5-s12",
+          "kind": "section",
+          "number": "5.12",
+          "title": "动能",
+          "page": 197,
+          "source": {
+            "printedSection": 79
+          }
+        },
+        {
+          "id": "phy6-c5-s13",
+          "kind": "section",
+          "number": "5.13",
+          "title": "机械能从一种形式向另一种形式的转化",
+          "page": 198,
+          "source": {
+            "printedSection": 80
+          },
+          "topics": [
+            {
+              "id": "phy6-c5-s13-t1",
+              "title": "水流能及风能的利用　水力和风力发动机",
+              "page": 200
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

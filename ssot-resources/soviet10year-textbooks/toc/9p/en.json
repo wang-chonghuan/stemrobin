@@ -1,0 +1,1111 @@
+{
+  "book": "9p",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "physics",
+  "grade": 9,
+  "title": "Physics, Grade 9",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "9p",
+    "printedTitle": "苏联中学课本 物理（九年级）",
+    "authors": "〔苏〕Б. Б. 布霍弗采夫、Ю. Л. 克利蒙托维奇、Г. Я. 米亚基舍夫",
+    "translators": "阎金铎",
+    "publisher": "文化教育出版社出版，新华书店北京发行所发行，北京市房山县印刷厂印装；1980 年 5 月第 1 版，1980 年 9 月第 1 次印刷；书号 7057·05，定价 0.78 元。本书译自 1977 年苏联中学九年级物理教科书。",
+    "toc": "resources/soviet10years/toc/9p.md",
+    "tocPages": "PDF 物理页 p.0004–p.0009（书内目录页码 1–6）",
+    "scan": "9p — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). This volume's printed contents has three levels: a part, the printed 第N章 beneath it, and the continuously numbered teaching items beneath that; they are mapped as printed — the part is a `contents` entry, the printed chapter is a lesson (its chapter number survives in the title and in `source`), and the numbered items are its topics. A topic's `printedNumber` is the printed item number, continuous across the whole volume, and its id is `<lessonId>-n<printedNumber>`; items the book leaves unnumbered (引言, 第N章提要, 练习) carry no printedNumber and take the id `<lessonId>-t<position>`.",
+  "contents": [
+    {
+      "id": "phy9-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Part One. Thermal Phenomena — Molecular Physics",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "phy9-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Chapter 1. The development of ideas about the nature of heat — the basic principles of the kinetic theory",
+          "page": 1,
+          "source": {
+            "printedName": "第一章　热之本性学说的发展　分子运动论的基本原理"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "Mechanical phenomena and thermal phenomena",
+              "page": 1
+            },
+            {
+              "id": "phy9-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "An outline of how our understanding of the nature of heat developed",
+              "page": 3
+            },
+            {
+              "id": "phy9-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "Thermodynamics and the kinetic theory",
+              "page": 6
+            },
+            {
+              "id": "phy9-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "The basic content of the kinetic theory",
+              "page": 7
+            },
+            {
+              "id": "phy9-c1-s1-n5",
+              "printedNumber": 5,
+              "title": "Evidence that molecules exist — the size of molecules",
+              "page": 8
+            },
+            {
+              "id": "phy9-c1-s1-n6",
+              "printedNumber": 6,
+              "title": "The mass of a molecule — Avogadro's number",
+              "page": 11
+            },
+            {
+              "id": "phy9-c1-s1-n7",
+              "printedNumber": 7,
+              "title": "Brownian motion",
+              "page": 13
+            },
+            {
+              "id": "phy9-c1-s1-n8",
+              "printedNumber": 8,
+              "title": "The forces of interaction between molecules",
+              "page": 15
+            },
+            {
+              "id": "phy9-c1-s1-n9",
+              "printedNumber": 9,
+              "title": "The structure of gases, liquids and solids",
+              "page": 17
+            },
+            {
+              "id": "phy9-c1-s1-t10",
+              "title": "Exercises 1",
+              "page": 21
+            }
+          ]
+        },
+        {
+          "id": "phy9-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Chapter 2. Fundamentals of thermodynamics",
+          "page": 22,
+          "source": {
+            "printedName": "第二章　热力学基础"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s2-n10",
+              "printedNumber": 10,
+              "title": "Thermodynamic parameters",
+              "page": 22
+            },
+            {
+              "id": "phy9-c1-s2-n11",
+              "printedNumber": 11,
+              "title": "Temperature — thermal equilibrium",
+              "page": 23
+            },
+            {
+              "id": "phy9-c1-s2-n12",
+              "printedNumber": 12,
+              "title": "The gas laws — Boyle's law",
+              "page": 25
+            },
+            {
+              "id": "phy9-c1-s2-n13",
+              "printedNumber": 13,
+              "title": "Boyle's law explained by the kinetic theory",
+              "page": 27
+            },
+            {
+              "id": "phy9-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "Gay-Lussac's law — the ideal gas",
+              "page": 28
+            },
+            {
+              "id": "phy9-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "Absolute temperature",
+              "page": 31
+            },
+            {
+              "id": "phy9-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "Avogadro's law",
+              "page": 33
+            },
+            {
+              "id": "phy9-c1-s2-n17",
+              "printedNumber": 17,
+              "title": "The equation of state of an ideal gas",
+              "page": 33
+            },
+            {
+              "id": "phy9-c1-s2-n18",
+              "printedNumber": 18,
+              "title": "Charles's law",
+              "page": 38
+            },
+            {
+              "id": "phy9-c1-s2-n19",
+              "printedNumber": 19,
+              "title": "Properties of gases used in engineering",
+              "page": 39
+            },
+            {
+              "id": "phy9-c1-s2-n20",
+              "printedNumber": 20,
+              "title": "Applications of gases in engineering",
+              "page": 42
+            },
+            {
+              "id": "phy9-c1-s2-t12",
+              "title": "Exercises 2",
+              "page": 45
+            },
+            {
+              "id": "phy9-c1-s2-n21",
+              "printedNumber": 21,
+              "title": "Work in thermodynamics",
+              "page": 47
+            },
+            {
+              "id": "phy9-c1-s2-n22",
+              "printedNumber": 22,
+              "title": "Quantity of heat — the heat balance equation",
+              "page": 50
+            },
+            {
+              "id": "phy9-c1-s2-n23",
+              "printedNumber": 23,
+              "title": "The mechanical equivalent of heat",
+              "page": 53
+            },
+            {
+              "id": "phy9-c1-s2-n24",
+              "printedNumber": 24,
+              "title": "The law of conservation of energy — internal energy",
+              "page": 55
+            },
+            {
+              "id": "phy9-c1-s2-n25",
+              "printedNumber": 25,
+              "title": "The first law of thermodynamics",
+              "page": 57
+            },
+            {
+              "id": "phy9-c1-s2-n26",
+              "printedNumber": 26,
+              "title": "Adiabatic processes",
+              "page": 59
+            },
+            {
+              "id": "phy9-c1-s2-n27",
+              "printedNumber": 27,
+              "title": "The working principle of a heat engine",
+              "page": 60
+            },
+            {
+              "id": "phy9-c1-s2-n28",
+              "printedNumber": 28,
+              "title": "The maximum efficiency of a heat engine",
+              "page": 61
+            },
+            {
+              "id": "phy9-c1-s2-t21",
+              "title": "Exercises 3",
+              "page": 64
+            }
+          ]
+        },
+        {
+          "id": "phy9-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Chapter 3. The kinetic theory of an ideal gas",
+          "page": 66,
+          "source": {
+            "printedName": "第三章　理想气体分子运动论"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s3-n29",
+              "printedNumber": 29,
+              "title": "Systems of many particles and the laws of mechanics",
+              "page": 66
+            },
+            {
+              "id": "phy9-c1-s3-n30",
+              "printedNumber": 30,
+              "title": "The ideal gas of the kinetic theory",
+              "page": 68
+            },
+            {
+              "id": "phy9-c1-s3-n31",
+              "printedNumber": 31,
+              "title": "The thermal motion of molecules",
+              "page": 69
+            },
+            {
+              "id": "phy9-c1-s3-n32",
+              "printedNumber": 32,
+              "title": "The fundamental equation of the kinetic theory of gases",
+              "page": 71
+            },
+            {
+              "id": "phy9-c1-s3-n33",
+              "printedNumber": 33,
+              "title": "Temperature as a measure of the average kinetic energy of molecules",
+              "page": 74
+            },
+            {
+              "id": "phy9-c1-s3-n34",
+              "printedNumber": 34,
+              "title": "Boltzmann's constant",
+              "page": 76
+            },
+            {
+              "id": "phy9-c1-s3-n35",
+              "printedNumber": 35,
+              "title": "Measuring the speeds of gas molecules",
+              "page": 78
+            },
+            {
+              "id": "phy9-c1-s3-n36",
+              "printedNumber": 36,
+              "title": "The internal energy of a monatomic ideal gas",
+              "page": 81
+            },
+            {
+              "id": "phy9-c1-s3-t9",
+              "title": "Exercises 4",
+              "page": 83
+            }
+          ]
+        },
+        {
+          "id": "phy9-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Chapter 4. Transitions between liquids and gases",
+          "page": 84,
+          "source": {
+            "printedName": "第四章　液体和气体的相互转变"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s4-n37",
+              "printedNumber": 37,
+              "title": "The heat of vaporization and the heat of condensation",
+              "page": 84
+            },
+            {
+              "id": "phy9-c1-s4-n38",
+              "printedNumber": 38,
+              "title": "Isotherms of a real gas",
+              "page": 85
+            },
+            {
+              "id": "phy9-c1-s4-n39",
+              "printedNumber": 39,
+              "title": "The critical temperature",
+              "page": 88
+            },
+            {
+              "id": "phy9-c1-s4-n40",
+              "printedNumber": 40,
+              "title": "Diagrams of the equilibrium states of a gas and a liquid",
+              "page": 90
+            },
+            {
+              "id": "phy9-c1-s4-n41",
+              "printedNumber": 41,
+              "title": "How the pressure and density of a saturated vapour depend on temperature — boiling",
+              "page": 92
+            },
+            {
+              "id": "phy9-c1-s4-n42",
+              "printedNumber": 42,
+              "title": "The humidity of the air",
+              "page": 95
+            },
+            {
+              "id": "phy9-c1-s4-t7",
+              "title": "Exercises 5",
+              "page": 99
+            }
+          ]
+        },
+        {
+          "id": "phy9-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "Chapter 5. Surface phenomena in liquids",
+          "page": 101,
+          "source": {
+            "printedName": "第五章　液体的表面现象"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s5-n43",
+              "printedNumber": 43,
+              "title": "Surface phenomena",
+              "page": 101
+            },
+            {
+              "id": "phy9-c1-s5-n44",
+              "printedNumber": 44,
+              "title": "Molecules in the surface layer",
+              "page": 103
+            },
+            {
+              "id": "phy9-c1-s5-n45",
+              "printedNumber": 45,
+              "title": "Surface energy",
+              "page": 104
+            },
+            {
+              "id": "phy9-c1-s5-n46",
+              "printedNumber": 46,
+              "title": "Surface tension",
+              "page": 106
+            },
+            {
+              "id": "phy9-c1-s5-n47",
+              "printedNumber": 47,
+              "title": "Capillary phenomena",
+              "page": 107
+            },
+            {
+              "id": "phy9-c1-s5-t6",
+              "title": "Exercises 6",
+              "page": 111
+            }
+          ]
+        },
+        {
+          "id": "phy9-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "Chapter 6. Solids and the solid–liquid transition",
+          "page": 112,
+          "source": {
+            "printedName": "第六章　固体和固-液转变"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s6-n48",
+              "printedNumber": 48,
+              "title": "Crystals",
+              "page": 112
+            },
+            {
+              "id": "phy9-c1-s6-n49",
+              "printedNumber": 49,
+              "title": "Amorphous bodies",
+              "page": 114
+            },
+            {
+              "id": "phy9-c1-s6-n50",
+              "printedNumber": 50,
+              "title": "Types of deformation of solids — stress",
+              "page": 115
+            },
+            {
+              "id": "phy9-c1-s6-n51",
+              "printedNumber": 51,
+              "title": "Strength — the safety factor",
+              "page": 118
+            },
+            {
+              "id": "phy9-c1-s6-n52",
+              "printedNumber": 52,
+              "title": "Plasticity and brittleness",
+              "page": 120
+            },
+            {
+              "id": "phy9-c1-s6-n53",
+              "printedNumber": 53,
+              "title": "The mechanism of plastic deformation",
+              "page": 122
+            },
+            {
+              "id": "phy9-c1-s6-n54",
+              "printedNumber": 54,
+              "title": "The melting of crystals and the solidification of liquids",
+              "page": 123
+            },
+            {
+              "id": "phy9-c1-s6-t8",
+              "title": "Exercises 7",
+              "page": 126
+            }
+          ]
+        },
+        {
+          "id": "phy9-c1-s7",
+          "kind": "section",
+          "number": "1.7",
+          "title": "Chapter 7. The thermal expansion of solids and liquids",
+          "page": 128,
+          "source": {
+            "printedName": "第七章　固体和液体的热膨胀"
+          },
+          "topics": [
+            {
+              "id": "phy9-c1-s7-n55",
+              "printedNumber": 55,
+              "title": "Thermal expansion",
+              "page": 128
+            },
+            {
+              "id": "phy9-c1-s7-n56",
+              "printedNumber": 56,
+              "title": "Linear expansion",
+              "page": 131
+            },
+            {
+              "id": "phy9-c1-s7-n57",
+              "printedNumber": 57,
+              "title": "Volume expansion",
+              "page": 132
+            },
+            {
+              "id": "phy9-c1-s7-t4",
+              "title": "Exercises 8",
+              "page": 134
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy9-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Part Two. Foundations of Electrodynamics",
+      "page": 136,
+      "lessons": [
+        {
+          "id": "phy9-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "What does electrodynamics study?",
+          "page": 136,
+          "source": {
+            "printedSection": 58
+          }
+        },
+        {
+          "id": "phy9-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Chapter 8. Electrostatics",
+          "page": 138,
+          "source": {
+            "printedName": "第八章　静电学"
+          },
+          "topics": [
+            {
+              "id": "phy9-c2-s2-n59",
+              "printedNumber": 59,
+              "title": "Electric charge and elementary particles",
+              "page": 138
+            },
+            {
+              "id": "phy9-c2-s2-n60",
+              "printedNumber": 60,
+              "title": "Charged bodies — electrifying a body",
+              "page": 140
+            },
+            {
+              "id": "phy9-c2-s2-n61",
+              "printedNumber": 61,
+              "title": "The law of conservation of charge",
+              "page": 143
+            },
+            {
+              "id": "phy9-c2-s2-n62",
+              "printedNumber": 62,
+              "title": "The fundamental law of electrostatics — Coulomb's law",
+              "page": 143
+            },
+            {
+              "id": "phy9-c2-s2-n63",
+              "printedNumber": 63,
+              "title": "The unit of electric charge",
+              "page": 146
+            },
+            {
+              "id": "phy9-c2-s2-n64",
+              "printedNumber": 64,
+              "title": "The interaction of static charges inside a uniform dielectric",
+              "page": 149
+            },
+            {
+              "id": "phy9-c2-s2-t7",
+              "title": "Exercises 9",
+              "page": 152
+            },
+            {
+              "id": "phy9-c2-s2-n65",
+              "printedNumber": 65,
+              "title": "Action through a medium and action at a distance",
+              "page": 153
+            },
+            {
+              "id": "phy9-c2-s2-n66",
+              "printedNumber": 66,
+              "title": "The electric field",
+              "page": 156
+            },
+            {
+              "id": "phy9-c2-s2-n67",
+              "printedNumber": 67,
+              "title": "Electric field strength — the principle of superposition of fields",
+              "page": 159
+            },
+            {
+              "id": "phy9-c2-s2-n68",
+              "printedNumber": 68,
+              "title": "Lines of electric force",
+              "page": 162
+            },
+            {
+              "id": "phy9-c2-s2-n69",
+              "printedNumber": 69,
+              "title": "Conductors in an electrostatic field",
+              "page": 164
+            },
+            {
+              "id": "phy9-c2-s2-n70",
+              "printedNumber": 70,
+              "title": "The field of a uniformly charged sphere and of an infinite plane",
+              "page": 166
+            },
+            {
+              "id": "phy9-c2-s2-n71",
+              "printedNumber": 71,
+              "title": "Dielectrics in an electric field — the two types of dielectric",
+              "page": 168
+            },
+            {
+              "id": "phy9-c2-s2-n72",
+              "printedNumber": 72,
+              "title": "The polarization of a dielectric",
+              "page": 170
+            },
+            {
+              "id": "phy9-c2-s2-n73",
+              "printedNumber": 73,
+              "title": "The potential energy of a charged body in a uniform electric field",
+              "page": 172
+            },
+            {
+              "id": "phy9-c2-s2-n74",
+              "printedNumber": 74,
+              "title": "Potential and potential difference",
+              "page": 175
+            },
+            {
+              "id": "phy9-c2-s2-n75",
+              "printedNumber": 75,
+              "title": "The potential of the field of a point charge",
+              "page": 177
+            },
+            {
+              "id": "phy9-c2-s2-n76",
+              "printedNumber": 76,
+              "title": "The relation between field strength and potential difference — equipotential surfaces",
+              "page": 179
+            },
+            {
+              "id": "phy9-c2-s2-n77",
+              "printedNumber": 77,
+              "title": "Measuring potential difference",
+              "page": 182
+            },
+            {
+              "id": "phy9-c2-s2-t21",
+              "title": "Exercises 10",
+              "page": 185
+            },
+            {
+              "id": "phy9-c2-s2-n78",
+              "printedNumber": 78,
+              "title": "Capacitance",
+              "page": 186
+            },
+            {
+              "id": "phy9-c2-s2-n79",
+              "printedNumber": 79,
+              "title": "The unit of capacitance",
+              "page": 189
+            },
+            {
+              "id": "phy9-c2-s2-n80",
+              "printedNumber": 80,
+              "title": "Capacitors",
+              "page": 190
+            },
+            {
+              "id": "phy9-c2-s2-n81",
+              "printedNumber": 81,
+              "title": "The capacitance of a parallel-plate capacitor",
+              "page": 191
+            },
+            {
+              "id": "phy9-c2-s2-n82",
+              "printedNumber": 82,
+              "title": "Connecting capacitors — types of capacitor",
+              "page": 193
+            },
+            {
+              "id": "phy9-c2-s2-n83",
+              "printedNumber": 83,
+              "title": "The energy of a charged capacitor — uses of capacitors",
+              "page": 195
+            },
+            {
+              "id": "phy9-c2-s2-n84",
+              "printedNumber": 84,
+              "title": "The energy of an electric field",
+              "page": 197
+            },
+            {
+              "id": "phy9-c2-s2-t29",
+              "title": "Exercises 11",
+              "page": 199
+            }
+          ]
+        },
+        {
+          "id": "phy9-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Chapter 9. Steady electric current",
+          "page": 201,
+          "source": {
+            "printedName": "第九章　稳恒电流"
+          },
+          "topics": [
+            {
+              "id": "phy9-c2-s3-n85",
+              "printedNumber": 85,
+              "title": "What is an electric current?",
+              "page": 201
+            },
+            {
+              "id": "phy9-c2-s3-n86",
+              "printedNumber": 86,
+              "title": "Current strength",
+              "page": 202
+            },
+            {
+              "id": "phy9-c2-s3-n87",
+              "printedNumber": 87,
+              "title": "The conditions needed to maintain a current",
+              "page": 204
+            },
+            {
+              "id": "phy9-c2-s3-n88",
+              "printedNumber": 88,
+              "title": "The electric field of a current-carrying conductor",
+              "page": 205
+            },
+            {
+              "id": "phy9-c2-s3-n89",
+              "printedNumber": 89,
+              "title": "The drift velocity of electrons in a conductor",
+              "page": 208
+            },
+            {
+              "id": "phy9-c2-s3-n90",
+              "printedNumber": 90,
+              "title": "Ohm's law for part of a circuit — resistance",
+              "page": 209
+            },
+            {
+              "id": "phy9-c2-s3-n91",
+              "printedNumber": 91,
+              "title": "How resistance depends on temperature",
+              "page": 211
+            },
+            {
+              "id": "phy9-c2-s3-n92",
+              "printedNumber": 92,
+              "title": "Superconductivity",
+              "page": 213
+            },
+            {
+              "id": "phy9-c2-s3-n93",
+              "printedNumber": 93,
+              "title": "Electric circuits — conductors in series and in parallel",
+              "page": 214
+            },
+            {
+              "id": "phy9-c2-s3-n94",
+              "printedNumber": 94,
+              "title": "The work and power of a steady current",
+              "page": 217
+            },
+            {
+              "id": "phy9-c2-s3-t11",
+              "title": "Exercises 12",
+              "page": 221
+            },
+            {
+              "id": "phy9-c2-s3-n95",
+              "printedNumber": 95,
+              "title": "Electromotive force",
+              "page": 223
+            },
+            {
+              "id": "phy9-c2-s3-n96",
+              "printedNumber": 96,
+              "title": "Ohm's law for a complete circuit",
+              "page": 225
+            },
+            {
+              "id": "phy9-c2-s3-t14",
+              "title": "Exercises 13",
+              "page": 229
+            }
+          ]
+        },
+        {
+          "id": "phy9-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "Chapter 10. Electric current in various media",
+          "page": 230,
+          "source": {
+            "printedName": "第十章　各种介质中的电流"
+          },
+          "topics": [
+            {
+              "id": "phy9-c2-s4-n97",
+              "printedNumber": 97,
+              "title": "The electrical conductivity of different substances",
+              "page": 230
+            },
+            {
+              "id": "phy9-c2-s4-n98",
+              "printedNumber": 98,
+              "title": "Electric current in metals",
+              "page": 231
+            },
+            {
+              "id": "phy9-c2-s4-n99",
+              "printedNumber": 99,
+              "title": "Ohm's law explained by the kinetic theory",
+              "page": 232
+            },
+            {
+              "id": "phy9-c2-s4-n100",
+              "printedNumber": 100,
+              "title": "Electric current in liquids",
+              "page": 235
+            },
+            {
+              "id": "phy9-c2-s4-n101",
+              "printedNumber": 101,
+              "title": "Faraday's laws",
+              "page": 238
+            },
+            {
+              "id": "phy9-c2-s4-n102",
+              "printedNumber": 102,
+              "title": "Electric current in gases",
+              "page": 241
+            },
+            {
+              "id": "phy9-c2-s4-n103",
+              "printedNumber": 103,
+              "title": "Non-self-sustained and self-sustained discharges",
+              "page": 243
+            },
+            {
+              "id": "phy9-c2-s4-n104",
+              "printedNumber": 104,
+              "title": "Types of self-sustained discharge",
+              "page": 246
+            },
+            {
+              "id": "phy9-c2-s4-n105",
+              "printedNumber": 105,
+              "title": "Plasma",
+              "page": 251
+            },
+            {
+              "id": "phy9-c2-s4-n106",
+              "printedNumber": 106,
+              "title": "Electric current in a vacuum",
+              "page": 253
+            },
+            {
+              "id": "phy9-c2-s4-n107",
+              "printedNumber": 107,
+              "title": "The two-electrode valve — the diode",
+              "page": 254
+            },
+            {
+              "id": "phy9-c2-s4-n108",
+              "printedNumber": 108,
+              "title": "Electron beams — the cathode-ray tube",
+              "page": 257
+            },
+            {
+              "id": "phy9-c2-s4-n109",
+              "printedNumber": 109,
+              "title": "Electric current in semiconductors",
+              "page": 260
+            },
+            {
+              "id": "phy9-c2-s4-n110",
+              "printedNumber": 110,
+              "title": "The conductivity of semiconductors with impurities",
+              "page": 262
+            },
+            {
+              "id": "phy9-c2-s4-n111",
+              "printedNumber": 111,
+              "title": "Current across the junction between p-type and n-type semiconductors",
+              "page": 264
+            },
+            {
+              "id": "phy9-c2-s4-n112",
+              "printedNumber": 112,
+              "title": "The semiconductor diode",
+              "page": 265
+            },
+            {
+              "id": "phy9-c2-s4-n113",
+              "printedNumber": 113,
+              "title": "Thermistors and photoresistors",
+              "page": 267
+            },
+            {
+              "id": "phy9-c2-s4-t18",
+              "title": "Exercises 14",
+              "page": 269
+            }
+          ]
+        },
+        {
+          "id": "phy9-c2-s5",
+          "kind": "section",
+          "number": "2.5",
+          "title": "Chapter 11. The magnetic field of an electric current",
+          "page": 271,
+          "source": {
+            "printedName": "第十一章　电流的磁场"
+          },
+          "topics": [
+            {
+              "id": "phy9-c2-s5-n114",
+              "printedNumber": 114,
+              "title": "Magnetic interaction",
+              "page": 271
+            },
+            {
+              "id": "phy9-c2-s5-n115",
+              "printedNumber": 115,
+              "title": "The magnetic field",
+              "page": 272
+            },
+            {
+              "id": "phy9-c2-s5-n116",
+              "printedNumber": 116,
+              "title": "The direction of the magnetic induction vector",
+              "page": 275
+            },
+            {
+              "id": "phy9-c2-s5-n117",
+              "printedNumber": 117,
+              "title": "The magnetic induction vector as the basic quantity describing a magnetic field",
+              "page": 278
+            },
+            {
+              "id": "phy9-c2-s5-n118",
+              "printedNumber": 118,
+              "title": "Magnetic lines of force",
+              "page": 280
+            },
+            {
+              "id": "phy9-c2-s5-n119",
+              "printedNumber": 119,
+              "title": "The magnetic field of an electric current",
+              "page": 283
+            },
+            {
+              "id": "phy9-c2-s5-n120",
+              "printedNumber": 120,
+              "title": "Ampère's law",
+              "page": 283
+            },
+            {
+              "id": "phy9-c2-s5-n121",
+              "printedNumber": 121,
+              "title": "The action of a magnetic field on a moving charge — the Lorentz force",
+              "page": 287
+            },
+            {
+              "id": "phy9-c2-s5-n122",
+              "printedNumber": 122,
+              "title": "Measuring the charge-to-mass ratio of the electron — the cyclotron",
+              "page": 289
+            },
+            {
+              "id": "phy9-c2-s5-t10",
+              "title": "Exercises 15",
+              "page": 293
+            }
+          ]
+        },
+        {
+          "id": "phy9-c2-s6",
+          "kind": "section",
+          "number": "2.6",
+          "title": "Chapter 12. Electromagnetic induction",
+          "page": 295,
+          "source": {
+            "printedName": "第十二章　电磁感应"
+          },
+          "topics": [
+            {
+              "id": "phy9-c2-s6-n123",
+              "printedNumber": 123,
+              "title": "The discovery of electromagnetic induction",
+              "page": 295
+            },
+            {
+              "id": "phy9-c2-s6-n124",
+              "printedNumber": 124,
+              "title": "Magnetic flux",
+              "page": 298
+            },
+            {
+              "id": "phy9-c2-s6-n125",
+              "printedNumber": 125,
+              "title": "The direction of an induced current — Lenz's law",
+              "page": 298
+            },
+            {
+              "id": "phy9-c2-s6-n126",
+              "printedNumber": 126,
+              "title": "The law of electromagnetic induction",
+              "page": 301
+            },
+            {
+              "id": "phy9-c2-s6-n127",
+              "printedNumber": 127,
+              "title": "The units of magnetic induction and magnetic flux",
+              "page": 303
+            },
+            {
+              "id": "phy9-c2-s6-n127a",
+              "printedNumber": "127a",
+              "title": "The vortex electric field",
+              "page": 303
+            },
+            {
+              "id": "phy9-c2-s6-n128",
+              "printedNumber": 128,
+              "title": "The induced e.m.f. in a moving conductor",
+              "page": 305
+            },
+            {
+              "id": "phy9-c2-s6-n129",
+              "printedNumber": 129,
+              "title": "Self-induction",
+              "page": 307
+            },
+            {
+              "id": "phy9-c2-s6-n130",
+              "printedNumber": 130,
+              "title": "Inductance",
+              "page": 309
+            },
+            {
+              "id": "phy9-c2-s6-n131",
+              "printedNumber": 131,
+              "title": "The energy of an electric current",
+              "page": 311
+            },
+            {
+              "id": "phy9-c2-s6-t11",
+              "title": "Exercises 16",
+              "page": 314
+            }
+          ]
+        },
+        {
+          "id": "phy9-c2-s7",
+          "kind": "section",
+          "number": "2.7",
+          "title": "Chapter 13. The magnetic properties of matter",
+          "page": 316,
+          "source": {
+            "printedName": "第十三章　物质的磁性"
+          },
+          "topics": [
+            {
+              "id": "phy9-c2-s7-n132",
+              "printedNumber": 132,
+              "title": "Ampère's hypothesis",
+              "page": 316
+            },
+            {
+              "id": "phy9-c2-s7-n133",
+              "printedNumber": 133,
+              "title": "Measuring the magnetic permeability of iron",
+              "page": 318
+            },
+            {
+              "id": "phy9-c2-s7-n134",
+              "printedNumber": 134,
+              "title": "The basic properties of ferromagnetic materials",
+              "page": 318
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "phy9-conclusion",
+      "kind": "section",
+      "number": null,
+      "title": "Concluding remarks",
+      "page": 322,
+      "source": {
+        "printedName": "结束语"
+      }
+    },
+    {
+      "id": "phy9-labs",
+      "kind": "exercises",
+      "number": null,
+      "title": "Laboratory assignments",
+      "page": 323,
+      "source": {
+        "printedName": "实验作业"
+      }
+    }
+  ]
+}

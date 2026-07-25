@@ -1,0 +1,628 @@
+{
+  "book": "9-10g",
+  "locale": "zh",
+  "authority": "extracted",
+  "subject": "geometry",
+  "grade": 9,
+  "title": "几何 九—十年级",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "9-10g",
+    "printedTitle": "苏联十年制学校数学教材·几何（9—10年级）",
+    "coverTitle": "苏联十年制学校数学教材 几何 9—10年级",
+    "editor": "З·А·斯科别兹（З. А. Скопец）主编（1980 年俄文版）",
+    "translators": "鲍珑、李慧君",
+    "publisher": "人民教育出版社，1982 年 9 月第 1 版，1983 年 8 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/9-10g.md",
+    "tocPages": "PDF 物理页 p.0004–p.0007",
+    "scan": "9-10g — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——本册目录的第一级是「九年级」「十年级」两个年级栏，第二级才是第一章—第六章及各年级的复习材料，第三级是全书连续编号的 §1—§69 各节和各章复习题；层级按原书印刷的缩进照排，故年级栏是 chapter，各章是 lesson，各 § 是 topic。各章、各复习材料都没有全书连续的印刷节号，故 source 一律用原书印刷的名称 printedName。「九年级」「十年级」两行原书未印页码，page 为 null。",
+  "contents": [
+    {
+      "id": "geo910-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "九年级",
+      "page": null,
+      "lessons": [
+        {
+          "id": "geo910-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "立体几何的基本概念．空间平行关系",
+          "page": 1,
+          "source": {
+            "printedName": "第一章　立体几何的基本概念．空间平行关系"
+          },
+          "topics": [
+            {
+              "id": "geo910-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "关于立体几何课程的逻辑结构．立体几何的基本概念",
+              "page": 1
+            },
+            {
+              "id": "geo910-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "立体几何的公理",
+              "page": 3
+            },
+            {
+              "id": "geo910-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "公理的推论",
+              "page": 8
+            },
+            {
+              "id": "geo910-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "在空间里作直线平行于已知直线",
+              "page": 12
+            },
+            {
+              "id": "geo910-c1-s1-n5",
+              "printedNumber": 5,
+              "title": "多面体的截面的作图问题的解法",
+              "page": 14
+            },
+            {
+              "id": "geo910-c1-s1-n6",
+              "printedNumber": 6,
+              "title": "异面直线．异面直线的判定",
+              "page": 16
+            },
+            {
+              "id": "geo910-c1-s1-n7",
+              "printedNumber": 7,
+              "title": "直线和平面的相关位置．直线和平面平行的判定",
+              "page": 18
+            },
+            {
+              "id": "geo910-c1-s1-n8",
+              "printedNumber": 8,
+              "title": "平行线的传递性．平行线束",
+              "page": 22
+            },
+            {
+              "id": "geo910-c1-s1-n9",
+              "printedNumber": 9,
+              "title": "平行六面体",
+              "page": 25
+            },
+            {
+              "id": "geo910-c1-s1-n10",
+              "printedNumber": 10,
+              "title": "两个平面的相关位置．平面平行的判定",
+              "page": 27
+            },
+            {
+              "id": "geo910-c1-s1-n11",
+              "printedNumber": 11,
+              "title": "关于平行平面的定理",
+              "page": 30
+            },
+            {
+              "id": "geo910-c1-s1-n12",
+              "printedNumber": 12,
+              "title": "图形的平行投影．平行投影的性质",
+              "page": 34
+            },
+            {
+              "id": "geo910-c1-s1-n13",
+              "printedNumber": 13,
+              "title": "立体几何中图形的画法",
+              "page": 36
+            },
+            {
+              "id": "geo910-c1-s1-t14",
+              "title": "第一章复习题",
+              "page": 42
+            }
+          ]
+        },
+        {
+          "id": "geo910-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "空间的变换．向量",
+          "page": 48,
+          "source": {
+            "printedName": "第二章　空间的变换．向量"
+          },
+          "topics": [
+            {
+              "id": "geo910-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "图形的映射．空间的变换",
+              "page": 48
+            },
+            {
+              "id": "geo910-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "空间的位移．图形的合同",
+              "page": 51
+            },
+            {
+              "id": "geo910-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "空间的方向",
+              "page": 53
+            },
+            {
+              "id": "geo910-c1-s2-n17",
+              "printedNumber": 17,
+              "title": "向量",
+              "page": 55
+            },
+            {
+              "id": "geo910-c1-s2-n18",
+              "printedNumber": 18,
+              "title": "向量的加法",
+              "page": 59
+            },
+            {
+              "id": "geo910-c1-s2-n19",
+              "printedNumber": 19,
+              "title": "相反的向量．向量的减法",
+              "page": 63
+            },
+            {
+              "id": "geo910-c1-s2-n20",
+              "printedNumber": 20,
+              "title": "共线向量．数和向量的乘法",
+              "page": 64
+            },
+            {
+              "id": "geo910-c1-s2-n21",
+              "printedNumber": 21,
+              "title": "共面的向量",
+              "page": 67
+            },
+            {
+              "id": "geo910-c1-s2-n22",
+              "printedNumber": 22,
+              "title": "应用向量解题",
+              "page": 70
+            },
+            {
+              "id": "geo910-c1-s2-n23",
+              "printedNumber": 23,
+              "title": "平行六面体法则．向量关于三个不共面向量的分解式",
+              "page": 72
+            },
+            {
+              "id": "geo910-c1-s2-n24",
+              "printedNumber": 24,
+              "title": "两个向量的夹角",
+              "page": 75
+            },
+            {
+              "id": "geo910-c1-s2-n25",
+              "printedNumber": 25,
+              "title": "两个向量的数性积",
+              "page": 77
+            },
+            {
+              "id": "geo910-c1-s2-n26",
+              "printedNumber": 26,
+              "title": "向量的数性乘法的基本性质",
+              "page": 79
+            },
+            {
+              "id": "geo910-c1-s2-n27",
+              "printedNumber": 27,
+              "title": "应用向量解题",
+              "page": 81
+            },
+            {
+              "id": "geo910-c1-s2-t15",
+              "title": "第二章复习题",
+              "page": 85
+            }
+          ]
+        },
+        {
+          "id": "geo910-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "空间的垂直关系．二面角和多面角",
+          "page": 91,
+          "source": {
+            "printedName": "第三章　空间的垂直关系．二面角和多面角"
+          },
+          "topics": [
+            {
+              "id": "geo910-c1-s3-n28",
+              "printedNumber": 28,
+              "title": "直线和平面垂直的判定",
+              "page": 91
+            },
+            {
+              "id": "geo910-c1-s3-n29",
+              "printedNumber": 29,
+              "title": "平面的垂线的作法",
+              "page": 94
+            },
+            {
+              "id": "geo910-c1-s3-n30",
+              "printedNumber": 30,
+              "title": "平面的两条垂线．在平面上的正射影",
+              "page": 98
+            },
+            {
+              "id": "geo910-c1-s3-n31",
+              "printedNumber": 31,
+              "title": "空间的轴对称",
+              "page": 101
+            },
+            {
+              "id": "geo910-c1-s3-n32",
+              "printedNumber": 32,
+              "title": "关于平面的对称",
+              "page": 104
+            },
+            {
+              "id": "geo910-c1-s3-n33",
+              "printedNumber": 33,
+              "title": "垂直于同一条直线的两个平面",
+              "page": 106
+            },
+            {
+              "id": "geo910-c1-s3-n34",
+              "printedNumber": 34,
+              "title": "点到平面的距离",
+              "page": 108
+            },
+            {
+              "id": "geo910-c1-s3-n35",
+              "printedNumber": 35,
+              "title": "异面直线的公垂线",
+              "page": 111
+            },
+            {
+              "id": "geo910-c1-s3-n36",
+              "printedNumber": 36,
+              "title": "三垂线定理",
+              "page": 114
+            },
+            {
+              "id": "geo910-c1-s3-n37",
+              "printedNumber": 37,
+              "title": "斜线和平面所成的角",
+              "page": 116
+            },
+            {
+              "id": "geo910-c1-s3-n38",
+              "printedNumber": 38,
+              "title": "二面角．二面角的度量",
+              "page": 121
+            },
+            {
+              "id": "geo910-c1-s3-n39",
+              "printedNumber": 39,
+              "title": "平面垂直的判定",
+              "page": 128
+            },
+            {
+              "id": "geo910-c1-s3-n40",
+              "printedNumber": 40,
+              "title": "多面角．三面角",
+              "page": 131
+            },
+            {
+              "id": "geo910-c1-s3-n41",
+              "printedNumber": 41,
+              "title": "三面角和多面角的面角的性质",
+              "page": 133
+            },
+            {
+              "id": "geo910-c1-s3-t15",
+              "title": "第三章复习题",
+              "page": 136
+            }
+          ]
+        },
+        {
+          "id": "geo910-c1-ex",
+          "kind": "exercises",
+          "number": "1.4",
+          "title": "九年级复习题",
+          "page": 140,
+          "source": {
+            "printedName": "九年级复习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo910-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "十年级",
+      "page": null,
+      "lessons": [
+        {
+          "id": "geo910-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "空间坐标方法",
+          "page": 145,
+          "source": {
+            "printedName": "第四章　空间坐标方法"
+          },
+          "topics": [
+            {
+              "id": "geo910-c2-s1-n42",
+              "printedNumber": 42,
+              "title": "向量坐标．用坐标给出的向量的运算法则",
+              "page": 145
+            },
+            {
+              "id": "geo910-c2-s1-n43",
+              "printedNumber": 43,
+              "title": "根据向量的坐标计算向量的长和两个向量的夹角",
+              "page": 148
+            },
+            {
+              "id": "geo910-c2-s1-n44",
+              "printedNumber": 44,
+              "title": "直角坐标系．点的坐标",
+              "page": 149
+            },
+            {
+              "id": "geo910-c2-s1-n45",
+              "printedNumber": 45,
+              "title": "平面的方程",
+              "page": 152
+            },
+            {
+              "id": "geo910-c2-s1-n46",
+              "printedNumber": 46,
+              "title": "变换的坐标公式．位似",
+              "page": 156
+            },
+            {
+              "id": "geo910-c2-s1-t6",
+              "title": "第四章复习题",
+              "page": 159
+            }
+          ]
+        },
+        {
+          "id": "geo910-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "多面体",
+          "page": 162,
+          "source": {
+            "printedName": "第五章　多面体"
+          },
+          "topics": [
+            {
+              "id": "geo910-c2-s2-n47",
+              "printedNumber": 47,
+              "title": "多面形．多面体",
+              "page": 162
+            },
+            {
+              "id": "geo910-c2-s2-n48",
+              "printedNumber": 48,
+              "title": "棱柱",
+              "page": 165
+            },
+            {
+              "id": "geo910-c2-s2-n49",
+              "printedNumber": 49,
+              "title": "平行六面体的性质",
+              "page": 169
+            },
+            {
+              "id": "geo910-c2-s2-n50",
+              "printedNumber": 50,
+              "title": "多边形正射影的面积",
+              "page": 174
+            },
+            {
+              "id": "geo910-c2-s2-n51",
+              "printedNumber": 51,
+              "title": "棱柱的表面积",
+              "page": 176
+            },
+            {
+              "id": "geo910-c2-s2-n52",
+              "printedNumber": 52,
+              "title": "棱锥",
+              "page": 179
+            },
+            {
+              "id": "geo910-c2-s2-n53",
+              "printedNumber": 53,
+              "title": "棱台",
+              "page": 183
+            },
+            {
+              "id": "geo910-c2-s2-n54",
+              "printedNumber": 54,
+              "title": "正多面体的概念",
+              "page": 185
+            },
+            {
+              "id": "geo910-c2-s2-n55",
+              "printedNumber": 55,
+              "title": "多面体体积的一般性质．长方体的体积",
+              "page": 187
+            },
+            {
+              "id": "geo910-c2-s2-n56",
+              "printedNumber": 56,
+              "title": "直棱柱的体积",
+              "page": 190
+            },
+            {
+              "id": "geo910-c2-s2-n57",
+              "printedNumber": 57,
+              "title": "斜棱柱的体积",
+              "page": 193
+            },
+            {
+              "id": "geo910-c2-s2-n58",
+              "printedNumber": 58,
+              "title": "棱锥的体积",
+              "page": 195
+            },
+            {
+              "id": "geo910-c2-s2-t13",
+              "title": "第五章复习题",
+              "page": 198
+            }
+          ]
+        },
+        {
+          "id": "geo910-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "旋转图形",
+          "page": 205,
+          "source": {
+            "printedName": "第六章　旋转图形"
+          },
+          "topics": [
+            {
+              "id": "geo910-c2-s3-n59",
+              "printedNumber": 59,
+              "title": "圆的画法．椭圆",
+              "page": 205
+            },
+            {
+              "id": "geo910-c2-s3-n60",
+              "printedNumber": 60,
+              "title": "旋转图形．圆柱体",
+              "page": 208
+            },
+            {
+              "id": "geo910-c2-s3-n61",
+              "printedNumber": 61,
+              "title": "圆锥．圆台",
+              "page": 211
+            },
+            {
+              "id": "geo910-c2-s3-n62",
+              "printedNumber": 62,
+              "title": "球面和球体",
+              "page": 215
+            },
+            {
+              "id": "geo910-c2-s3-n63",
+              "printedNumber": 63,
+              "title": "球面的截线．球面直观图的画法",
+              "page": 217
+            },
+            {
+              "id": "geo910-c2-s3-n64",
+              "printedNumber": 64,
+              "title": "与球面相切的平面",
+              "page": 219
+            },
+            {
+              "id": "geo910-c2-s3-n65",
+              "printedNumber": 65,
+              "title": "体积的度量问题的推广．圆柱体的体积",
+              "page": 221
+            },
+            {
+              "id": "geo910-c2-s3-n66",
+              "printedNumber": 66,
+              "title": "曲边梯形旋转得到的图形的体积",
+              "page": 224
+            },
+            {
+              "id": "geo910-c2-s3-n67",
+              "printedNumber": 67,
+              "title": "圆锥的体积",
+              "page": 227
+            },
+            {
+              "id": "geo910-c2-s3-n68",
+              "printedNumber": 68,
+              "title": "球体的体积",
+              "page": 229
+            },
+            {
+              "id": "geo910-c2-s3-n69",
+              "printedNumber": 69,
+              "title": "球面的面积",
+              "page": 230
+            },
+            {
+              "id": "geo910-c2-s3-t12",
+              "title": "第六章复习题",
+              "page": 233
+            }
+          ]
+        },
+        {
+          "id": "geo910-c2-ex1",
+          "kind": "exercises",
+          "number": "2.4",
+          "title": "复习的问题",
+          "page": 239,
+          "source": {
+            "printedName": "复习的问题"
+          }
+        },
+        {
+          "id": "geo910-c2-ex2",
+          "kind": "exercises",
+          "number": "2.5",
+          "title": "十年级课程复习题",
+          "page": 243,
+          "source": {
+            "printedName": "十年级课程复习题"
+          }
+        },
+        {
+          "id": "geo910-c2-s4",
+          "kind": "section",
+          "number": "2.6",
+          "title": "历史概述",
+          "page": 255,
+          "source": {
+            "printedName": "历史概述"
+          }
+        },
+        {
+          "id": "geo910-c2-s5",
+          "kind": "section",
+          "number": "2.7",
+          "title": "平面几何课程的简要总结",
+          "page": 266,
+          "source": {
+            "printedName": "平面几何课程的简要总结"
+          }
+        },
+        {
+          "id": "geo910-c2-s6",
+          "kind": "section",
+          "number": "2.8",
+          "title": "几何公式",
+          "page": 291,
+          "source": {
+            "printedName": "几何公式"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo910-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "本书中使用的符号",
+      "page": 333,
+      "source": {
+        "printedName": "本书中使用的符号"
+      }
+    }
+  ]
+}

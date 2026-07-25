@@ -1,0 +1,1170 @@
+{
+  "book": "6-8g",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "geometry",
+  "grade": 6,
+  "title": "Geometry, Grades 6–8",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "6-8g",
+    "printedTitle": "苏联十年制学校数学教材·几何（6—8年级）",
+    "coverTitle": "苏联十年制学校数学教材 几何 6—8年级",
+    "editor": "А·Н·柯尔莫戈洛夫（A. N. Kolmogorov）主编（1979 年俄文版）",
+    "translators": "钟善基、刘远图、饶汉昌、鲍龙、陈宏伯、王正旭（全书经刘远图统一校阅）",
+    "publisher": "人民教育出版社，1981 年 5 月第 1 版，1981 年 12 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/6-8g.md",
+    "tocPages": "PDF 物理页 p.0005–p.0010",
+    "scan": "6-8g — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: the book numbers its sections continuously 1–100 across the volume, so an entry that carries such a number uses printedSection, while the rest (the §1, §2 … sections inside a chapter, and each chapter's supplementary exercises) use printedName, the printed heading kept in the original Chinese — it is a pointer into the printed book. Chapters 1 and 5 print no § level, so their numbered sections sit directly under the chapter and are lessons; in every other chapter the numbered sections sit under a §, so they are topics (`<lessonId>-n<printedNumber>`). The printed contents groups the ten chapters under the headings 六 年 级 / 七 年 级 / 八 年 级; those three lines are not entries (no page, not siblings of the chapters), so they do not appear, and chapter numbers run 1–10 across the whole volume. A ▼ on a section number marks optional material in the original; the title is transcribed as printed and the number kept as an integer.",
+  "contents": [
+    {
+      "id": "geo68-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Basic Concepts of Geometry",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "geo68-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "What is a geometric figure",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "geo68-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Undefined basic concepts",
+          "page": 5,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "geo68-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Magnitudes and numbers",
+          "page": 6,
+          "source": {
+            "printedSection": 3
+          }
+        },
+        {
+          "id": "geo68-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Basic properties of distance",
+          "page": 8,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "geo68-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "The arrangement of three points on a line. The triangle inequality",
+          "page": 13,
+          "source": {
+            "printedSection": 5
+          }
+        },
+        {
+          "id": "geo68-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "Segments and rays",
+          "page": 16,
+          "source": {
+            "printedSection": 6
+          }
+        },
+        {
+          "id": "geo68-c1-s7",
+          "kind": "section",
+          "number": "1.7",
+          "title": "Coordinates on a line",
+          "page": 20,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "geo68-c1-s8",
+          "kind": "section",
+          "number": "1.8",
+          "title": "Broken lines",
+          "page": 23,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "geo68-c1-s9",
+          "kind": "section",
+          "number": "1.9",
+          "title": "The plane. Plane geometry",
+          "page": 28,
+          "source": {
+            "printedSection": 9
+          }
+        },
+        {
+          "id": "geo68-c1-s10",
+          "kind": "section",
+          "number": "1.10",
+          "title": "Regions",
+          "page": 33,
+          "source": {
+            "printedSection": 10
+          }
+        },
+        {
+          "id": "geo68-c1-s11",
+          "kind": "section",
+          "number": "1.11",
+          "title": "Polygons",
+          "page": 37,
+          "source": {
+            "printedSection": 11
+          }
+        },
+        {
+          "id": "geo68-c1-s12",
+          "kind": "section",
+          "number": "1.12",
+          "title": "Half-planes. Angles",
+          "page": 41,
+          "source": {
+            "printedSection": 12
+          }
+        },
+        {
+          "id": "geo68-c1-s13",
+          "kind": "section",
+          "number": "1.13",
+          "title": "The relative position of two circles",
+          "page": 46,
+          "source": {
+            "printedSection": 13
+          }
+        },
+        {
+          "id": "geo68-c1-s14",
+          "kind": "section",
+          "number": "1.14",
+          "title": "A brief history of geometry",
+          "page": 49,
+          "source": {
+            "printedSection": 14
+          }
+        },
+        {
+          "id": "geo68-c1-ex",
+          "kind": "exercises",
+          "number": "1.15",
+          "title": "Supplementary exercises",
+          "page": 53,
+          "source": {
+            "printedName": "第一章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Congruence and Displacement of Figures",
+      "page": 58,
+      "lessons": [
+        {
+          "id": "geo68-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Congruence",
+          "page": 58,
+          "source": {
+            "printedName": "§1. 合同"
+          },
+          "topics": [
+            {
+              "id": "geo68-c2-s1-n15",
+              "printedNumber": 15,
+              "title": "Mappings of figures",
+              "page": 58
+            },
+            {
+              "id": "geo68-c2-s1-n16",
+              "printedNumber": 16,
+              "title": "Distance-preserving mappings",
+              "page": 64
+            },
+            {
+              "id": "geo68-c2-s1-n17",
+              "printedNumber": 17,
+              "title": "Congruent figures",
+              "page": 69
+            },
+            {
+              "id": "geo68-c2-s1-n18",
+              "printedNumber": 18,
+              "title": "Measuring angles",
+              "page": 73
+            }
+          ]
+        },
+        {
+          "id": "geo68-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Displacements",
+          "page": 79,
+          "source": {
+            "printedName": "§2. 位移"
+          },
+          "topics": [
+            {
+              "id": "geo68-c2-s2-n19",
+              "printedNumber": 19,
+              "title": "Rotation",
+              "page": 79
+            },
+            {
+              "id": "geo68-c2-s2-n20",
+              "printedNumber": 20,
+              "title": "Central symmetry",
+              "page": 85
+            },
+            {
+              "id": "geo68-c2-s2-n21",
+              "printedNumber": 21,
+              "title": "Axial symmetry",
+              "page": 90
+            },
+            {
+              "id": "geo68-c2-s2-n22",
+              "printedNumber": 22,
+              "title": "Constructing triangles",
+              "page": 95
+            }
+          ]
+        },
+        {
+          "id": "geo68-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Symmetry of figures",
+          "page": 102,
+          "source": {
+            "printedName": "§3. 图形的对称"
+          },
+          "topics": [
+            {
+              "id": "geo68-c2-s3-n23",
+              "printedNumber": 23,
+              "title": "Axes of symmetry of a circle",
+              "page": 102
+            },
+            {
+              "id": "geo68-c2-s3-n24",
+              "printedNumber": 24,
+              "title": "The axis of symmetry of a segment",
+              "page": 105
+            },
+            {
+              "id": "geo68-c2-s3-n25",
+              "printedNumber": 25,
+              "title": "Axes of symmetry of an angle and of an isosceles triangle",
+              "page": 108
+            },
+            {
+              "id": "geo68-c2-s3-n26",
+              "printedNumber": 26,
+              "title": "The distance from a point to a line. Properties of the angle bisector",
+              "page": 112
+            },
+            {
+              "id": "geo68-c2-s3-n27",
+              "printedNumber": 27,
+              "title": "Symmetric figures",
+              "page": 117
+            }
+          ]
+        },
+        {
+          "id": "geo68-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "The circle",
+          "page": 122,
+          "source": {
+            "printedName": "§4. 圆周"
+          },
+          "topics": [
+            {
+              "id": "geo68-c2-s4-n28",
+              "printedNumber": 28,
+              "title": "The degree measure of an arc of a circle",
+              "page": 122
+            },
+            {
+              "id": "geo68-c2-s4-n29",
+              "printedNumber": 29,
+              "title": "The relative position of a line and a circle",
+              "page": 125
+            },
+            {
+              "id": "geo68-c2-s4-n30",
+              "printedNumber": 30,
+              "title": "Construction problems",
+              "page": 128
+            }
+          ]
+        },
+        {
+          "id": "geo68-c2-ex",
+          "kind": "exercises",
+          "number": "2.5",
+          "title": "Supplementary exercises",
+          "page": 132,
+          "source": {
+            "printedName": "第二章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Parallelism and Translation",
+      "page": 139,
+      "lessons": [
+        {
+          "id": "geo68-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Parallel lines",
+          "page": 139,
+          "source": {
+            "printedName": "§1. 平行线"
+          },
+          "topics": [
+            {
+              "id": "geo68-c3-s1-n31",
+              "printedNumber": 31,
+              "title": "Parallelism of lines and central symmetry",
+              "page": 139
+            },
+            {
+              "id": "geo68-c3-s1-n32",
+              "printedNumber": 32,
+              "title": "The parallel postulate",
+              "page": 142
+            },
+            {
+              "id": "geo68-c3-s1-n33",
+              "printedNumber": 33,
+              "title": "Non-Euclidean geometry. Geometry and physics",
+              "page": 145
+            }
+          ]
+        },
+        {
+          "id": "geo68-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Translation",
+          "page": 149,
+          "source": {
+            "printedName": "§2. 平移"
+          },
+          "topics": [
+            {
+              "id": "geo68-c3-s2-n34",
+              "printedNumber": 34,
+              "title": "Equivalence relations",
+              "page": 149
+            },
+            {
+              "id": "geo68-c3-s2-n35",
+              "printedNumber": 35,
+              "title": "Directions",
+              "page": 151
+            },
+            {
+              "id": "geo68-c3-s2-n36",
+              "printedNumber": 36,
+              "title": "Translation",
+              "page": 155
+            },
+            {
+              "id": "geo68-c3-s2-n37",
+              "printedNumber": 37,
+              "title": "The angle between two directions",
+              "page": 161
+            },
+            {
+              "id": "geo68-c3-s2-n38",
+              "printedNumber": 38,
+              "title": "The sum of the interior angles of a polygon",
+              "page": 164
+            }
+          ]
+        },
+        {
+          "id": "geo68-c3-ex",
+          "kind": "exercises",
+          "number": "3.3",
+          "title": "Supplementary exercises",
+          "page": 168,
+          "source": {
+            "printedName": "第三章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Polygons",
+      "page": 173,
+      "lessons": [
+        {
+          "id": "geo68-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "Triangles",
+          "page": 173,
+          "source": {
+            "printedName": "§1. 三角形"
+          },
+          "topics": [
+            {
+              "id": "geo68-c4-s1-n39",
+              "printedNumber": 39,
+              "title": "The elements that determine a triangle",
+              "page": 173
+            },
+            {
+              "id": "geo68-c4-s1-n40",
+              "printedNumber": 40,
+              "title": "Relations between the sides and angles of a triangle",
+              "page": 178
+            }
+          ]
+        },
+        {
+          "id": "geo68-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "Quadrilaterals",
+          "page": 181,
+          "source": {
+            "printedName": "§2. 四边形"
+          },
+          "topics": [
+            {
+              "id": "geo68-c4-s2-n41",
+              "printedNumber": 41,
+              "title": "The parallelogram",
+              "page": 181
+            },
+            {
+              "id": "geo68-c4-s2-n42",
+              "printedNumber": 42,
+              "title": "Converse theorems",
+              "page": 185
+            },
+            {
+              "id": "geo68-c4-s2-n43",
+              "printedNumber": 43,
+              "title": "Necessary and sufficient conditions",
+              "page": 190
+            },
+            {
+              "id": "geo68-c4-s2-n44",
+              "printedNumber": 44,
+              "title": "The rectangle",
+              "page": 193
+            },
+            {
+              "id": "geo68-c4-s2-n45",
+              "printedNumber": 45,
+              "title": "The rhombus",
+              "page": 197
+            },
+            {
+              "id": "geo68-c4-s2-n46",
+              "printedNumber": 46,
+              "title": "The square",
+              "page": 199
+            },
+            {
+              "id": "geo68-c4-s2-n47",
+              "printedNumber": 47,
+              "title": "The theorem of Thales",
+              "page": 202
+            },
+            {
+              "id": "geo68-c4-s2-n48",
+              "printedNumber": 48,
+              "title": "The trapezoid",
+              "page": 205
+            }
+          ]
+        },
+        {
+          "id": "geo68-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "Areas of polygons",
+          "page": 208,
+          "source": {
+            "printedName": "§3. 多边形的面积"
+          },
+          "topics": [
+            {
+              "id": "geo68-c4-s3-n49",
+              "printedNumber": 49,
+              "title": "General facts about the area of a figure",
+              "page": 208
+            },
+            {
+              "id": "geo68-c4-s3-n50",
+              "printedNumber": 50,
+              "title": "The area of a parallelogram",
+              "page": 214
+            },
+            {
+              "id": "geo68-c4-s3-n51",
+              "printedNumber": 51,
+              "title": "The area of a triangle",
+              "page": 216
+            },
+            {
+              "id": "geo68-c4-s3-n52",
+              "printedNumber": 52,
+              "title": "The area of a trapezoid",
+              "page": 219
+            },
+            {
+              "id": "geo68-c4-s3-n53",
+              "printedNumber": 53,
+              "title": "The area of a polygon",
+              "page": 220
+            }
+          ]
+        },
+        {
+          "id": "geo68-c4-ex",
+          "kind": "exercises",
+          "number": "4.4",
+          "title": "Supplementary exercises",
+          "page": 222,
+          "source": {
+            "printedName": "第四章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "Vectors",
+      "page": 229,
+      "lessons": [
+        {
+          "id": "geo68-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "Composition of displacements",
+          "page": 229,
+          "source": {
+            "printedSection": 54
+          }
+        },
+        {
+          "id": "geo68-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "Vectors and how they are represented",
+          "page": 235,
+          "source": {
+            "printedSection": 55
+          }
+        },
+        {
+          "id": "geo68-c5-s3",
+          "kind": "section",
+          "number": "5.3",
+          "title": "The sum of vectors",
+          "page": 240,
+          "source": {
+            "printedSection": 56
+          }
+        },
+        {
+          "id": "geo68-c5-s4",
+          "kind": "section",
+          "number": "5.4",
+          "title": "The laws of vector addition. Subtraction of vectors",
+          "page": 244,
+          "source": {
+            "printedSection": 57
+          }
+        },
+        {
+          "id": "geo68-c5-s5",
+          "kind": "section",
+          "number": "5.5",
+          "title": "Multiplication of a vector by a number",
+          "page": 249,
+          "source": {
+            "printedSection": 58
+          }
+        },
+        {
+          "id": "geo68-c5-s6",
+          "kind": "section",
+          "number": "5.6",
+          "title": "The coordinates of a vector",
+          "page": 252,
+          "source": {
+            "printedSection": 59
+          }
+        },
+        {
+          "id": "geo68-c5-s7",
+          "kind": "section",
+          "number": "5.7",
+          "title": "Vectors and vector quantities in physics",
+          "page": 256,
+          "source": {
+            "printedSection": 60
+          }
+        },
+        {
+          "id": "geo68-c5-ex",
+          "kind": "exercises",
+          "number": "5.8",
+          "title": "Supplementary exercises",
+          "page": 258,
+          "source": {
+            "printedName": "第五章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "Similarity",
+      "page": 262,
+      "lessons": [
+        {
+          "id": "geo68-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "Similarity and homothety",
+          "page": 262,
+          "source": {
+            "printedName": "§1. 相似和位似"
+          },
+          "topics": [
+            {
+              "id": "geo68-c6-s1-n61",
+              "printedNumber": 61,
+              "title": "Similar figures",
+              "page": 262
+            },
+            {
+              "id": "geo68-c6-s1-n62",
+              "printedNumber": 62,
+              "title": "Homothety",
+              "page": 267
+            },
+            {
+              "id": "geo68-c6-s1-n63",
+              "printedNumber": 63,
+              "title": "Properties of homothety",
+              "page": 271
+            },
+            {
+              "id": "geo68-c6-s1-n64",
+              "printedNumber": 64,
+              "title": "Proportional segments",
+              "page": 275
+            },
+            {
+              "id": "geo68-c6-s1-n65",
+              "printedNumber": 65,
+              "title": "Similarity transformations",
+              "page": 280
+            }
+          ]
+        },
+        {
+          "id": "geo68-c6-s2",
+          "kind": "section",
+          "number": "6.2",
+          "title": "Similar polygons",
+          "page": 283,
+          "source": {
+            "printedName": "§2. 相似多边形"
+          },
+          "topics": [
+            {
+              "id": "geo68-c6-s2-n66",
+              "printedNumber": 66,
+              "title": "Tests for the similarity of triangles",
+              "page": 283
+            },
+            {
+              "id": "geo68-c6-s2-n67",
+              "printedNumber": 67,
+              "title": "The Pythagorean theorem",
+              "page": 292
+            },
+            {
+              "id": "geo68-c6-s2-n68",
+              "printedNumber": 68,
+              "title": "Similar polygons",
+              "page": 296
+            },
+            {
+              "id": "geo68-c6-s2-n69",
+              "printedNumber": 69,
+              "title": "Surveying work",
+              "page": 302
+            }
+          ]
+        },
+        {
+          "id": "geo68-c6-ex",
+          "kind": "exercises",
+          "number": "6.3",
+          "title": "Supplementary exercises",
+          "page": 310,
+          "source": {
+            "printedName": "第六章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c7",
+      "kind": "chapter",
+      "number": 7,
+      "title": "Rotations and Trigonometric Functions",
+      "page": 313,
+      "lessons": [
+        {
+          "id": "geo68-c7-s1",
+          "kind": "section",
+          "number": "7.1",
+          "title": "Rotations and the composition of rotations",
+          "page": 313,
+          "source": {
+            "printedName": "§1. 旋转和旋转的合成"
+          },
+          "topics": [
+            {
+              "id": "geo68-c7-s1-n70",
+              "printedNumber": 70,
+              "title": "Ways of specifying a rotation",
+              "page": 313
+            },
+            {
+              "id": "geo68-c7-s1-n71",
+              "printedNumber": 71,
+              "title": "The magnitude of an angle. Radian measure",
+              "page": 316
+            },
+            {
+              "id": "geo68-c7-s1-n72",
+              "printedNumber": 72,
+              "title": "Composition of rotations about a common center",
+              "page": 319
+            }
+          ]
+        },
+        {
+          "id": "geo68-c7-s2",
+          "kind": "section",
+          "number": "7.2",
+          "title": "Trigonometric functions",
+          "page": 322,
+          "source": {
+            "printedName": "§2. 三角函数"
+          },
+          "topics": [
+            {
+              "id": "geo68-c7-s2-n73",
+              "printedNumber": 73,
+              "title": "Displacements expressed in coordinates",
+              "page": 322
+            },
+            {
+              "id": "geo68-c7-s2-n74",
+              "printedNumber": 74,
+              "title": "Sine and cosine",
+              "page": 324
+            },
+            {
+              "id": "geo68-c7-s2-n75",
+              "printedNumber": 75,
+              "title": "Some identities for sine and cosine",
+              "page": 330
+            },
+            {
+              "id": "geo68-c7-s2-n76",
+              "printedNumber": 76,
+              "title": "Tables of sines and cosines",
+              "page": 334
+            },
+            {
+              "id": "geo68-c7-s2-n77",
+              "printedNumber": 77,
+              "title": "The tangent",
+              "page": 336
+            },
+            {
+              "id": "geo68-c7-s2-n78",
+              "printedNumber": 78,
+              "title": "Relations between the sides and angles of a right triangle",
+              "page": 339
+            }
+          ]
+        },
+        {
+          "id": "geo68-c7-ex",
+          "kind": "exercises",
+          "number": "7.3",
+          "title": "Supplementary exercises",
+          "page": 343,
+          "source": {
+            "printedName": "第七章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c8",
+      "kind": "chapter",
+      "number": 8,
+      "title": "Metric Relations in a Triangle",
+      "page": 345,
+      "lessons": [
+        {
+          "id": "geo68-c8-s1",
+          "kind": "section",
+          "number": "8.1",
+          "title": "The law of sines and the law of cosines",
+          "page": 345,
+          "source": {
+            "printedName": "§1. 正弦定理和余弦定理"
+          },
+          "topics": [
+            {
+              "id": "geo68-c8-s1-n79",
+              "printedNumber": 79,
+              "title": "The law of sines",
+              "page": 345
+            },
+            {
+              "id": "geo68-c8-s1-n80",
+              "printedNumber": 80,
+              "title": "Formulas for the area of a triangle",
+              "page": 348
+            },
+            {
+              "id": "geo68-c8-s1-n81",
+              "printedNumber": 81,
+              "title": "The law of sines",
+              "page": 350
+            }
+          ]
+        },
+        {
+          "id": "geo68-c8-s2",
+          "kind": "section",
+          "number": "8.2",
+          "title": "Some applications of similarity and of the trigonometric formulas",
+          "page": 352,
+          "source": {
+            "printedName": "§2. 相似与三角公式的一些应用"
+          },
+          "topics": [
+            {
+              "id": "geo68-c8-s2-n82",
+              "printedNumber": 82,
+              "title": "Applications of similarity to problem solving",
+              "page": 352
+            },
+            {
+              "id": "geo68-c8-s2-n83",
+              "printedNumber": 83,
+              "title": "Surveying work",
+              "page": 360
+            },
+            {
+              "id": "geo68-c8-s2-n84",
+              "printedNumber": 84,
+              "title": "Solving triangles",
+              "page": 362
+            }
+          ]
+        },
+        {
+          "id": "geo68-c8-ex",
+          "kind": "exercises",
+          "number": "8.3",
+          "title": "Supplementary exercises",
+          "page": 366,
+          "source": {
+            "printedName": "第八章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c9",
+      "kind": "chapter",
+      "number": 9,
+      "title": "Inscribed and Circumscribed Polygons",
+      "page": 368,
+      "lessons": [
+        {
+          "id": "geo68-c9-s1",
+          "kind": "section",
+          "number": "9.1",
+          "title": "Triangles and quadrilaterals",
+          "page": 368,
+          "source": {
+            "printedName": "§1. 三角形和四边形"
+          },
+          "topics": [
+            {
+              "id": "geo68-c9-s1-n85",
+              "printedNumber": 85,
+              "title": "Inscribed angles",
+              "page": 368
+            },
+            {
+              "id": "geo68-c9-s1-n86",
+              "printedNumber": 86,
+              "title": "Inscribed and circumscribed triangles",
+              "page": 371
+            },
+            {
+              "id": "geo68-c9-s1-n87",
+              "printedNumber": 87,
+              "title": "Inscribed and circumscribed quadrilaterals",
+              "page": 374
+            }
+          ]
+        },
+        {
+          "id": "geo68-c9-s2",
+          "kind": "section",
+          "number": "9.2",
+          "title": "Regular polygons",
+          "page": 378,
+          "source": {
+            "printedName": "§2. 正多边形"
+          },
+          "topics": [
+            {
+              "id": "geo68-c9-s2-n88",
+              "printedNumber": 88,
+              "title": "Constructing regular polygons",
+              "page": 378
+            },
+            {
+              "id": "geo68-c9-s2-n89",
+              "printedNumber": 89,
+              "title": "Formulas for the side and the area of a regular polygon",
+              "page": 381
+            }
+          ]
+        },
+        {
+          "id": "geo68-c9-s3",
+          "kind": "section",
+          "number": "9.3",
+          "title": "The circumference and the area of a circle",
+          "page": 385,
+          "source": {
+            "printedName": "§3. 圆周长和圆面积"
+          },
+          "topics": [
+            {
+              "id": "geo68-c9-s3-n90",
+              "printedNumber": 90,
+              "title": "The circumference of a circle",
+              "page": 385
+            },
+            {
+              "id": "geo68-c9-s3-n91",
+              "printedNumber": 91,
+              "title": "The area of a circle",
+              "page": 390
+            }
+          ]
+        },
+        {
+          "id": "geo68-c9-ex",
+          "kind": "exercises",
+          "number": "9.4",
+          "title": "Supplementary exercises",
+          "page": 392,
+          "source": {
+            "printedName": "第九章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-c10",
+      "kind": "chapter",
+      "number": 10,
+      "title": "First Notions of Solid Geometry",
+      "page": 395,
+      "lessons": [
+        {
+          "id": "geo68-c10-s1",
+          "kind": "section",
+          "number": "10.1",
+          "title": "Lines and planes in space",
+          "page": 395,
+          "source": {
+            "printedName": "§1. 空间的直线和平面"
+          },
+          "topics": [
+            {
+              "id": "geo68-c10-s1-n92",
+              "printedNumber": 92,
+              "title": "The relative position of planes in space",
+              "page": 395
+            },
+            {
+              "id": "geo68-c10-s1-n93",
+              "printedNumber": 93,
+              "title": "Parallel lines in space",
+              "page": 397
+            },
+            {
+              "id": "geo68-c10-s1-n94",
+              "printedNumber": 94,
+              "title": "Perpendicularity of a line and a plane",
+              "page": 399
+            }
+          ]
+        },
+        {
+          "id": "geo68-c10-s2",
+          "kind": "section",
+          "number": "10.2",
+          "title": "Polyhedra",
+          "page": 402,
+          "source": {
+            "printedName": "§2. 多面体"
+          },
+          "topics": [
+            {
+              "id": "geo68-c10-s2-n95",
+              "printedNumber": 95,
+              "title": "The right prism",
+              "page": 402
+            },
+            {
+              "id": "geo68-c10-s2-n96",
+              "printedNumber": 96,
+              "title": "The pyramid",
+              "page": 406
+            },
+            {
+              "id": "geo68-c10-s2-n97",
+              "printedNumber": 97,
+              "title": "General properties of volume",
+              "page": 410
+            }
+          ]
+        },
+        {
+          "id": "geo68-c10-s3",
+          "kind": "section",
+          "number": "10.3",
+          "title": "Solids of revolution",
+          "page": 412,
+          "source": {
+            "printedName": "§3. 旋转图形"
+          },
+          "topics": [
+            {
+              "id": "geo68-c10-s3-n98",
+              "printedNumber": 98,
+              "title": "The cylinder",
+              "page": 412
+            },
+            {
+              "id": "geo68-c10-s3-n99",
+              "printedNumber": 99,
+              "title": "The cone",
+              "page": 415
+            },
+            {
+              "id": "geo68-c10-s3-n100",
+              "printedNumber": 100,
+              "title": "The sphere",
+              "page": 418
+            }
+          ]
+        },
+        {
+          "id": "geo68-c10-ex",
+          "kind": "exercises",
+          "number": "10.4",
+          "title": "Supplementary exercises",
+          "page": 420,
+          "source": {
+            "printedName": "第十章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "geo68-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "Review exercises for the geometry course of Grades 6–8",
+      "page": 424,
+      "source": {
+        "printedName": "六——八年级几何课程的复习题"
+      }
+    },
+    {
+      "id": "geo68-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "Symbols used in this book",
+      "page": 462,
+      "source": {
+        "printedName": "本书中使用的符号"
+      }
+    }
+  ]
+}

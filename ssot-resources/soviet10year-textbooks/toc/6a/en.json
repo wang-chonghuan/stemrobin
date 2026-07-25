@@ -13,8 +13,9 @@
     "editor": "А. И. 马尔库雪维奇 主编（1977 年俄文版）",
     "translators": "刘远图、何绍庚",
     "publisher": "人民教育出版社，1978 年 4 月第 1 版",
-    "pdf": "resources/soviet10years/pdf/6a 苏联十年制学校数学教材 代数 六年级.pdf",
-    "tocPages": "PDF 物理页 p.0004–p.0006（书内目录页 1–3）"
+    "toc": "resources/soviet10years/toc/6a.md",
+    "tocPages": "PDF 物理页 p.0004–p.0006（书内目录页 1–3）",
+    "scan": "6a — the printed volume, scanned; not kept in the repo"
   },
   "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
   "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–17 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while `kind: \"exercises\"` is itself a single entry — 难题 sits at the same indent as the five chapters and carries no chapter number, so its `number` is null.",

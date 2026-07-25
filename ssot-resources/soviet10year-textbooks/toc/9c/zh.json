@@ -1,0 +1,760 @@
+{
+  "book": "9c",
+  "locale": "zh",
+  "authority": "extracted",
+  "subject": "analysis",
+  "grade": 9,
+  "title": "代数和分析初步 九年级",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "9c",
+    "printedTitle": "苏联十年制学校数学教材·代数和分析初步（九年级）",
+    "coverTitle": "苏联十年制学校数学教材 代数和分析初步 九年级",
+    "editor": "А. Н. 柯尔莫戈洛夫 主编（据 1978 年苏联版译出）",
+    "translators": "李文锦",
+    "publisher": "人民教育出版社，1980 年 4 月第 1 版，1980 年 8 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/9c.md",
+    "tocPages": "PDF 物理页 p.0004–p.0007",
+    "scan": "9c — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷节号的用节号（printedSection，全书连续 1–14），没有节号的用原书印刷的名称（printedName）。 每个 topic 也有自己的 id（`<课id>-n<印刷序号>`），它是可寻址的卡片。目录顶层（contents）是原书目录的第一级，条目未必都是章：`kind: \"chapter\"` 的带下级节，其余的本身就是一条（无章号，number 为 null）。 本册的章号 1—6 与原书印刷的章号一致。",
+  "contents": [
+    {
+      "id": "ana9-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "数学归纳法原理",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "ana9-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "数学归纳法原理及其应用",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "ana9-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "完全归纳法和不完全归纳法的概念",
+              "page": 1
+            },
+            {
+              "id": "ana9-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "数学归纳法原理",
+              "page": 4
+            },
+            {
+              "id": "ana9-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "数学归纳法原理的推广",
+              "page": 10
+            }
+          ]
+        },
+        {
+          "id": "ana9-c1-ex",
+          "kind": "exercises",
+          "number": "1.2",
+          "title": "第一章补充习题",
+          "page": 11,
+          "source": {
+            "printedName": "第一章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "组合分析初步",
+      "page": 15,
+      "lessons": [
+        {
+          "id": "ana9-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "有序集合",
+          "page": 15,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "ana9-c2-s1-n4",
+              "printedNumber": 4,
+              "title": "全排列·全排列数",
+              "page": 15
+            },
+            {
+              "id": "ana9-c2-s1-n5",
+              "printedNumber": 5,
+              "title": "有序集合与排列",
+              "page": 19
+            }
+          ]
+        },
+        {
+          "id": "ana9-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "组合",
+          "page": 22,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "ana9-c2-s2-n6",
+              "printedNumber": 6,
+              "title": "有限集合的子集总数",
+              "page": 22
+            },
+            {
+              "id": "ana9-c2-s2-n7",
+              "printedNumber": 7,
+              "title": "组合数的几个性质",
+              "page": 26
+            },
+            {
+              "id": "ana9-c2-s2-n8",
+              "printedNumber": 8,
+              "title": "计算组合数的递推公式",
+              "page": 28
+            }
+          ]
+        },
+        {
+          "id": "ana9-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "二项式定理（牛顿公式）",
+          "page": 30,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "ana9-c2-s3-n9",
+              "printedNumber": 9,
+              "title": "牛顿公式·主要推论",
+              "page": 30
+            },
+            {
+              "id": "ana9-c2-s3-n10",
+              "printedNumber": 10,
+              "title": "历史知识·组合分析在概率论中的应用",
+              "page": 35
+            },
+            {
+              "id": "ana9-c2-s3-n11",
+              "printedNumber": 11,
+              "title": "概率论中比较复杂的应用问题举例",
+              "page": 38
+            }
+          ]
+        },
+        {
+          "id": "ana9-c2-ex",
+          "kind": "exercises",
+          "number": "2.4",
+          "title": "第二章补充习题",
+          "page": 42,
+          "source": {
+            "printedName": "第二章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "实数·无穷数列和它的极限",
+      "page": 45,
+      "lessons": [
+        {
+          "id": "ana9-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "实数",
+          "page": 45,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "ana9-c3-s1-n12",
+              "printedNumber": 12,
+              "title": "引言",
+              "page": 45
+            },
+            {
+              "id": "ana9-c3-s1-n13",
+              "printedNumber": 13,
+              "title": "循环小数",
+              "page": 48
+            },
+            {
+              "id": "ana9-c3-s1-n14",
+              "printedNumber": 14,
+              "title": "实数",
+              "page": 50
+            },
+            {
+              "id": "ana9-c3-s1-n15",
+              "printedNumber": 15,
+              "title": "实数的不足近似小数和过剩近似小数·实数的算术运算",
+              "page": 52
+            },
+            {
+              "id": "ana9-c3-s1-n16",
+              "printedNumber": 16,
+              "title": "用坐标轴上的点表示数",
+              "page": 56
+            },
+            {
+              "id": "ana9-c3-s1-n17",
+              "printedNumber": 17,
+              "title": "数直线和数平面",
+              "page": 59
+            },
+            {
+              "id": "ana9-c3-s1-n18",
+              "printedNumber": 18,
+              "title": "实数集合的某些性质",
+              "page": 63
+            }
+          ]
+        },
+        {
+          "id": "ana9-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "无穷数列·数列的极限",
+          "page": 64,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "ana9-c3-s2-n19",
+              "printedNumber": 19,
+              "title": "无穷数列",
+              "page": 64
+            },
+            {
+              "id": "ana9-c3-s2-n20",
+              "printedNumber": 20,
+              "title": "数列的几何图示和数列极限的直观表示",
+              "page": 67
+            },
+            {
+              "id": "ana9-c3-s2-n21",
+              "printedNumber": 21,
+              "title": "数列的极限的定义",
+              "page": 71
+            },
+            {
+              "id": "ana9-c3-s2-n22",
+              "printedNumber": 22,
+              "title": "极限的唯一性·收敛数列和发散数列",
+              "page": 75
+            },
+            {
+              "id": "ana9-c3-s2-n23",
+              "printedNumber": 23,
+              "title": "当 |q|<1 时 lim(n→∞) qⁿ = 0",
+              "page": 76
+            },
+            {
+              "id": "ana9-c3-s2-n24",
+              "printedNumber": 24,
+              "title": "当 |q|<1 时无穷等比数列的和",
+              "page": 78
+            },
+            {
+              "id": "ana9-c3-s2-n25",
+              "printedNumber": 25,
+              "title": "数值级数的概念",
+              "page": 80
+            }
+          ]
+        },
+        {
+          "id": "ana9-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "极限的存在性及其计算",
+          "page": 84,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "ana9-c3-s3-n26",
+              "printedNumber": 26,
+              "title": "收敛的必要条件",
+              "page": 84
+            },
+            {
+              "id": "ana9-c3-s3-n27",
+              "printedNumber": 27,
+              "title": "关于极限的定理",
+              "page": 86
+            },
+            {
+              "id": "ana9-c3-s3-n28",
+              "printedNumber": 28,
+              "title": "无穷小数列",
+              "page": 88
+            },
+            {
+              "id": "ana9-c3-s3-n29",
+              "printedNumber": 29,
+              "title": "计算极限举例",
+              "page": 91
+            },
+            {
+              "id": "ana9-c3-s3-n30",
+              "printedNumber": 30,
+              "title": "等差数列和等比数列增长的比较",
+              "page": 93
+            },
+            {
+              "id": "ana9-c3-s3-n31",
+              "printedNumber": 31,
+              "title": "单调数列",
+              "page": 95
+            },
+            {
+              "id": "ana9-c3-s3-n32",
+              "printedNumber": 32,
+              "title": "单调有界数列的极限的存在性",
+              "page": 99
+            },
+            {
+              "id": "ana9-c3-s3-n33",
+              "printedNumber": 33,
+              "title": "数 π 和圆周长",
+              "page": 103
+            }
+          ]
+        },
+        {
+          "id": "ana9-c3-ex",
+          "kind": "exercises",
+          "number": "3.4",
+          "title": "第三章补充习题",
+          "page": 106,
+          "source": {
+            "printedName": "第三章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "函数的极限和导数",
+      "page": 115,
+      "lessons": [
+        {
+          "id": "ana9-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "函数的导数和极限的初步知识",
+          "page": 115,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "ana9-c4-s1-n34",
+              "printedNumber": 34,
+              "title": "数值函数",
+              "page": 115
+            },
+            {
+              "id": "ana9-c4-s1-n35",
+              "printedNumber": 35,
+              "title": "函数的变化·它的递增和递减",
+              "page": 121
+            },
+            {
+              "id": "ana9-c4-s1-n36",
+              "printedNumber": 36,
+              "title": "函数的改变量",
+              "page": 123
+            },
+            {
+              "id": "ana9-c4-s1-n37",
+              "printedNumber": 37,
+              "title": "作为函数变化的速度的导数",
+              "page": 128
+            },
+            {
+              "id": "ana9-c4-s1-n38",
+              "printedNumber": 38,
+              "title": "连续函数和间断函数·函数的极限",
+              "page": 134
+            },
+            {
+              "id": "ana9-c4-s1-n39",
+              "printedNumber": 39,
+              "title": "极限的唯一性定理",
+              "page": 139
+            },
+            {
+              "id": "ana9-c4-s1-n40",
+              "printedNumber": 40,
+              "title": "关于极限的定理",
+              "page": 142
+            },
+            {
+              "id": "ana9-c4-s1-n41",
+              "printedNumber": 41,
+              "title": "有理函数的连续性",
+              "page": 144
+            }
+          ]
+        },
+        {
+          "id": "ana9-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "导数",
+          "page": 149,
+          "source": {
+            "printedSection": 9
+          },
+          "topics": [
+            {
+              "id": "ana9-c4-s2-n42",
+              "printedNumber": 42,
+              "title": "导数的定义",
+              "page": 149
+            },
+            {
+              "id": "ana9-c4-s2-n43",
+              "printedNumber": 43,
+              "title": "求导数的例子",
+              "page": 151
+            },
+            {
+              "id": "ana9-c4-s2-n44",
+              "printedNumber": 44,
+              "title": "函数的和的导数",
+              "page": 155
+            },
+            {
+              "id": "ana9-c4-s2-n45",
+              "printedNumber": 45,
+              "title": "函数的积的导数",
+              "page": 156
+            },
+            {
+              "id": "ana9-c4-s2-n46",
+              "printedNumber": 46,
+              "title": "多项式的导数",
+              "page": 159
+            },
+            {
+              "id": "ana9-c4-s2-n47",
+              "printedNumber": 47,
+              "title": "商的导数",
+              "page": 160
+            },
+            {
+              "id": "ana9-c4-s2-n48",
+              "printedNumber": 48,
+              "title": "有理分式函数的导数",
+              "page": 162
+            },
+            {
+              "id": "ana9-c4-s2-n49",
+              "printedNumber": 49,
+              "title": "复合函数",
+              "page": 164
+            },
+            {
+              "id": "ana9-c4-s2-n50",
+              "printedNumber": 50,
+              "title": "复合函数的导数",
+              "page": 165
+            }
+          ]
+        },
+        {
+          "id": "ana9-c4-ex",
+          "kind": "exercises",
+          "number": "4.3",
+          "title": "第四章补充习题",
+          "page": 167,
+          "source": {
+            "printedName": "第四章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "导数的应用",
+      "page": 172,
+      "lessons": [
+        {
+          "id": "ana9-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "导数在近似计算·几何和物理中的应用",
+          "page": 172,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "ana9-c5-s1-n51",
+              "printedNumber": 51,
+              "title": "函数改变量的主要部分",
+              "page": 172
+            },
+            {
+              "id": "ana9-c5-s1-n52",
+              "printedNumber": 52,
+              "title": "函数图象的切线",
+              "page": 176
+            },
+            {
+              "id": "ana9-c5-s1-n53",
+              "printedNumber": 53,
+              "title": "速度和加速度",
+              "page": 179
+            }
+          ]
+        },
+        {
+          "id": "ana9-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "导数在研究函数中的应用",
+          "page": 183,
+          "source": {
+            "printedSection": 11
+          },
+          "topics": [
+            {
+              "id": "ana9-c5-s2-n54",
+              "printedNumber": 54,
+              "title": "函数的递增和递减",
+              "page": 183
+            },
+            {
+              "id": "ana9-c5-s2-n55",
+              "printedNumber": 55,
+              "title": "函数的临界点·极大值和极小值",
+              "page": 187
+            },
+            {
+              "id": "ana9-c5-s2-n56",
+              "printedNumber": 56,
+              "title": "二次函数的讨论",
+              "page": 192
+            },
+            {
+              "id": "ana9-c5-s2-n57",
+              "printedNumber": 57,
+              "title": "二次不等式的解法",
+              "page": 195
+            },
+            {
+              "id": "ana9-c5-s2-n58",
+              "printedNumber": 58,
+              "title": "研究函数的一般步骤",
+              "page": 199
+            },
+            {
+              "id": "ana9-c5-s2-n59",
+              "printedNumber": 59,
+              "title": "函数的最大值和最小值",
+              "page": 202
+            },
+            {
+              "id": "ana9-c5-s2-n60",
+              "printedNumber": 60,
+              "title": "历史知识",
+              "page": 207
+            }
+          ]
+        },
+        {
+          "id": "ana9-c5-ex",
+          "kind": "exercises",
+          "number": "5.3",
+          "title": "第五章补充习题",
+          "page": 209,
+          "source": {
+            "printedName": "第五章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "三角函数及其图象和导数",
+      "page": 213,
+      "lessons": [
+        {
+          "id": "ana9-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "数值变量的三角函数",
+          "page": 213,
+          "source": {
+            "printedSection": 12
+          },
+          "topics": [
+            {
+              "id": "ana9-c6-s1-n61",
+              "printedNumber": 61,
+              "title": "弧度制",
+              "page": 213
+            },
+            {
+              "id": "ana9-c6-s1-n62",
+              "printedNumber": 62,
+              "title": "圆弧的长和扇形的面积",
+              "page": 221
+            },
+            {
+              "id": "ana9-c6-s1-n63",
+              "printedNumber": 63,
+              "title": "数值变量的正弦和余弦",
+              "page": 223
+            },
+            {
+              "id": "ana9-c6-s1-n64",
+              "printedNumber": 64,
+              "title": "正弦和余弦函数的图象",
+              "page": 226
+            },
+            {
+              "id": "ana9-c6-s1-n65",
+              "printedNumber": 65,
+              "title": "数值变量的正切和余切",
+              "page": 229
+            },
+            {
+              "id": "ana9-c6-s1-n66",
+              "printedNumber": 66,
+              "title": "数值变量的三角函数表",
+              "page": 232
+            }
+          ]
+        },
+        {
+          "id": "ana9-c6-s2",
+          "kind": "section",
+          "number": "6.2",
+          "title": "三角函数的基本性质",
+          "page": 233,
+          "source": {
+            "printedSection": 13
+          },
+          "topics": [
+            {
+              "id": "ana9-c6-s2-n67",
+              "printedNumber": 67,
+              "title": "三角函数值的符号",
+              "page": 233
+            },
+            {
+              "id": "ana9-c6-s2-n68",
+              "printedNumber": 68,
+              "title": "三角函数的奇偶性",
+              "page": 237
+            },
+            {
+              "id": "ana9-c6-s2-n69",
+              "printedNumber": 69,
+              "title": "三角函数的周期性",
+              "page": 239
+            }
+          ]
+        },
+        {
+          "id": "ana9-c6-s3",
+          "kind": "section",
+          "number": "6.3",
+          "title": "加法公式及其推论",
+          "page": 243,
+          "source": {
+            "printedSection": 14
+          },
+          "topics": [
+            {
+              "id": "ana9-c6-s3-n70",
+              "printedNumber": 70,
+              "title": "向量的坐标",
+              "page": 243
+            },
+            {
+              "id": "ana9-c6-s3-n71",
+              "printedNumber": 71,
+              "title": "两角和的正弦和余弦",
+              "page": 246
+            },
+            {
+              "id": "ana9-c6-s3-n72",
+              "printedNumber": 72,
+              "title": "两角和的正切",
+              "page": 251
+            },
+            {
+              "id": "ana9-c6-s3-n73",
+              "printedNumber": 73,
+              "title": "倍角的三角函数",
+              "page": 253
+            },
+            {
+              "id": "ana9-c6-s3-n74",
+              "printedNumber": 74,
+              "title": "同名三角函数的和与差的公式",
+              "page": 254
+            }
+          ]
+        },
+        {
+          "id": "ana9-c6-ex",
+          "kind": "exercises",
+          "number": "6.4",
+          "title": "第六章补充习题",
+          "page": 257,
+          "source": {
+            "printedName": "第六章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "ana9-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "课文中使用的符号",
+      "page": 294,
+      "source": {
+        "printedName": "课文中使用的符号"
+      }
+    }
+  ]
+}

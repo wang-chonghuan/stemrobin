@@ -1,0 +1,321 @@
+{
+  "book": "3m",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "early",
+  "grade": 3,
+  "title": "Mathematics, Grade 3",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "3m",
+    "printedTitle": "苏联十年制学校教材·数学（三年级）",
+    "coverTitle": "苏联十年制学校教材 数学 三年级",
+    "editor": "А. С. 普乔科、М. А. 班托娃、М. И. 莫罗、А. М. 佩什卡洛 编（据原书 1980 年第 11 版译出）",
+    "translators": "北京景山学校 译（陈美斌、徐仁声 译，丁尔陞 校订）",
+    "publisher": "人民教育出版社，1981 年 1 月第 1 版",
+    "toc": "resources/soviet10years/toc/3m.md",
+    "tocPages": "PDF 物理页 p.0006–p.0007",
+    "scan": "3m — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents; this volume prints no section numbers, so every entry uses its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has lessons beneath it, while an entry with none is itself a single card (`kind: \"exercises\"` or `kind: \"section\"`, with `number` null).",
+  "contents": [
+    {
+      "id": "math3-multidigit",
+      "kind": "section",
+      "number": null,
+      "title": "Multi-digit numbers",
+      "page": 6,
+      "source": {
+        "printedName": "多位数"
+      }
+    },
+    {
+      "id": "math3-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Numeration",
+      "page": 6,
+      "lessons": [
+        {
+          "id": "math3-c1-ex1",
+          "kind": "exercises",
+          "number": "1.1",
+          "title": "Consolidation exercises",
+          "page": 26,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Units of length",
+          "page": 30,
+          "source": {
+            "printedName": "长度单位"
+          }
+        },
+        {
+          "id": "math3-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Units of weight",
+          "page": 33,
+          "source": {
+            "printedName": "重量单位"
+          }
+        },
+        {
+          "id": "math3-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Units of time, the second",
+          "page": 38,
+          "source": {
+            "printedName": "时间单位，秒"
+          }
+        },
+        {
+          "id": "math3-c1-ex5",
+          "kind": "exercises",
+          "number": "1.5",
+          "title": "Consolidation exercises",
+          "page": 40,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        }
+      ]
+    },
+    {
+      "id": "math3-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Addition and subtraction of multi-digit numbers",
+      "page": 43,
+      "lessons": [
+        {
+          "id": "math3-c2-ex1",
+          "kind": "exercises",
+          "number": "2.1",
+          "title": "Consolidation exercises",
+          "page": 64,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Speed, time, distance",
+          "page": 68,
+          "source": {
+            "printedName": "速度，时间，距离"
+          }
+        }
+      ]
+    },
+    {
+      "id": "math3-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Multiplication and division",
+      "page": 73,
+      "lessons": [
+        {
+          "id": "math3-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Multiplication by a one-digit number",
+          "page": 73,
+          "source": {
+            "printedName": "乘数是一位数的乘法"
+          }
+        },
+        {
+          "id": "math3-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "The area of a figure, the square centimetre",
+          "page": 79,
+          "source": {
+            "printedName": "图形的面积，平方厘米"
+          }
+        },
+        {
+          "id": "math3-c3-ex3",
+          "kind": "exercises",
+          "number": "3.3",
+          "title": "Consolidation exercises",
+          "page": 87,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "Division by a one-digit number",
+          "page": 90,
+          "source": {
+            "printedName": "除数是一位数的除法"
+          }
+        },
+        {
+          "id": "math3-c3-ex5",
+          "kind": "exercises",
+          "number": "3.5",
+          "title": "Consolidation exercises",
+          "page": 108,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c3-s6",
+          "kind": "section",
+          "number": "3.6",
+          "title": "Fractions",
+          "page": 112,
+          "source": {
+            "printedName": "分数"
+          }
+        },
+        {
+          "id": "math3-c3-s7",
+          "kind": "section",
+          "number": "3.7",
+          "title": "Multiplying a number by a product",
+          "page": 122,
+          "source": {
+            "printedName": "一个数乘以积"
+          }
+        },
+        {
+          "id": "math3-c3-s8",
+          "kind": "section",
+          "number": "3.8",
+          "title": "Multiplication of numbers ending in zeros",
+          "page": 124,
+          "source": {
+            "printedName": "末尾有零的数的乘法"
+          }
+        },
+        {
+          "id": "math3-c3-s9",
+          "kind": "section",
+          "number": "3.9",
+          "title": "Dividing a number by a product",
+          "page": 130,
+          "source": {
+            "printedName": "一个数除以积"
+          }
+        },
+        {
+          "id": "math3-c3-s10",
+          "kind": "section",
+          "number": "3.10",
+          "title": "Division of numbers ending in zeros",
+          "page": 132,
+          "source": {
+            "printedName": "末尾有零的数的除法"
+          }
+        },
+        {
+          "id": "math3-c3-ex11",
+          "kind": "exercises",
+          "number": "3.11",
+          "title": "Consolidation exercises",
+          "page": 139,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c3-s12",
+          "kind": "section",
+          "number": "3.12",
+          "title": "Multiplication by two-digit and three-digit numbers",
+          "page": 145,
+          "source": {
+            "printedName": "乘数是两位数和三位数的乘法"
+          }
+        },
+        {
+          "id": "math3-c3-s13",
+          "kind": "section",
+          "number": "3.13",
+          "title": "Calculating area, the square decimetre",
+          "page": 153,
+          "source": {
+            "printedName": "面积计算，平方分米"
+          }
+        },
+        {
+          "id": "math3-c3-ex14",
+          "kind": "exercises",
+          "number": "3.14",
+          "title": "Consolidation exercises",
+          "page": 156,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c3-s15",
+          "kind": "section",
+          "number": "3.15",
+          "title": "Division by two-digit and three-digit numbers",
+          "page": 160,
+          "source": {
+            "printedName": "除数是两位数和三位数的除法"
+          }
+        },
+        {
+          "id": "math3-c3-ex16",
+          "kind": "exercises",
+          "number": "3.16",
+          "title": "Consolidation exercises",
+          "page": 173,
+          "source": {
+            "printedName": "巩固练习"
+          }
+        },
+        {
+          "id": "math3-c3-s17",
+          "kind": "section",
+          "number": "3.17",
+          "title": "Calculating area, the square metre",
+          "page": 178,
+          "source": {
+            "printedName": "面积计算，平方米"
+          }
+        },
+        {
+          "id": "math3-c3-s18",
+          "kind": "section",
+          "number": "3.18",
+          "title": "Units of time",
+          "page": 189,
+          "source": {
+            "printedName": "时间单位"
+          }
+        }
+      ]
+    },
+    {
+      "id": "math3-general-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "General consolidation exercises",
+      "page": 205,
+      "source": {
+        "printedName": "总的巩固练习"
+      }
+    }
+  ]
+}

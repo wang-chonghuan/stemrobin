@@ -1,0 +1,707 @@
+{
+  "book": "4m",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "early",
+  "grade": 4,
+  "title": "Mathematics, Grade 4",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "4m",
+    "printedTitle": "苏联十年制学校教材 数学 四年级",
+    "coverTitle": "苏联十年制学校教材 数学 四年级",
+    "editor": "А. И. 马尔库舍维奇 主编（1979 年俄文版）",
+    "translators": "北京景山学校 译（孙文俊 译，丁尔陞 校订）",
+    "publisher": "人民教育出版社，1980 年 7 月第 1 版",
+    "toc": "resources/soviet10years/toc/4m.md",
+    "tocPages": "PDF 物理页 p.0006–p.0009（印刷页码 1–4）",
+    "scan": "4m — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–12 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while an entry with none is itself a single card, with `number` null.",
+  "contents": [
+    {
+      "id": "math4-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Natural numbers and fractions",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "math4-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Numbers and sets",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "Notation for natural numbers",
+              "page": 1
+            },
+            {
+              "id": "math4-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "Notation for fractions",
+              "page": 4
+            },
+            {
+              "id": "math4-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "A segment and its length",
+              "page": 8
+            },
+            {
+              "id": "math4-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "Scales",
+              "page": 11
+            },
+            {
+              "id": "math4-c1-s1-n5",
+              "printedNumber": 5,
+              "title": "The straight line",
+              "page": 15
+            },
+            {
+              "id": "math4-c1-s1-n6",
+              "printedNumber": 6,
+              "title": "The ray",
+              "page": 19
+            },
+            {
+              "id": "math4-c1-s1-n7",
+              "printedNumber": 7,
+              "title": "Infinite scales",
+              "page": 21
+            },
+            {
+              "id": "math4-c1-s1-n8",
+              "printedNumber": 8,
+              "title": "Sets of numbers",
+              "page": 24
+            },
+            {
+              "id": "math4-c1-s1-n9",
+              "printedNumber": 9,
+              "title": "Sets of arbitrary elements",
+              "page": 27
+            },
+            {
+              "id": "math4-c1-s1-n10",
+              "printedNumber": 10,
+              "title": "The symbols ∈ and ∉",
+              "page": 31
+            }
+          ]
+        },
+        {
+          "id": "math4-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Equalities and inequalities",
+          "page": 33,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s2-n11",
+              "printedNumber": 11,
+              "title": "Congruent figures",
+              "page": 33
+            },
+            {
+              "id": "math4-c1-s2-n12",
+              "printedNumber": 12,
+              "title": "Less than or greater than",
+              "page": 37
+            },
+            {
+              "id": "math4-c1-s2-n13",
+              "printedNumber": 13,
+              "title": "True or false",
+              "page": 41
+            },
+            {
+              "id": "math4-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "The rectangular parallelepiped",
+              "page": 43
+            },
+            {
+              "id": "math4-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "Variables",
+              "page": 46
+            },
+            {
+              "id": "math4-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "Sentences containing variables",
+              "page": 48
+            }
+          ]
+        },
+        {
+          "id": "math4-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Equations and inequalities",
+          "page": 51,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s3-n17",
+              "printedNumber": 17,
+              "title": "Numerical expressions",
+              "page": 51
+            },
+            {
+              "id": "math4-c1-s3-n18",
+              "printedNumber": 18,
+              "title": "Expressions containing variables",
+              "page": 54
+            },
+            {
+              "id": "math4-c1-s3-n19",
+              "printedNumber": 19,
+              "title": "Equations",
+              "page": 57
+            },
+            {
+              "id": "math4-c1-s3-n20",
+              "printedNumber": 20,
+              "title": "Inequalities",
+              "page": 62
+            },
+            {
+              "id": "math4-c1-s3-n21",
+              "printedNumber": 21,
+              "title": "Area",
+              "page": 65
+            },
+            {
+              "id": "math4-c1-s3-n22",
+              "printedNumber": 22,
+              "title": "The symbols ≤ and ≥",
+              "page": 69
+            },
+            {
+              "id": "math4-c1-s3-n23",
+              "printedNumber": 23,
+              "title": "Proper and improper fractions",
+              "page": 71
+            },
+            {
+              "id": "math4-c1-s3-n24",
+              "printedNumber": 24,
+              "title": "Volume",
+              "page": 74
+            },
+            {
+              "id": "math4-c1-s3-n25",
+              "printedNumber": 25,
+              "title": "Double inequalities",
+              "page": 77
+            },
+            {
+              "id": "math4-c1-s3-n26",
+              "printedNumber": 26,
+              "title": "The volume of a rectangular parallelepiped",
+              "page": 81
+            },
+            {
+              "id": "math4-c1-s3-n27",
+              "printedNumber": 27,
+              "title": "Approximate values",
+              "page": 84
+            }
+          ]
+        },
+        {
+          "id": "math4-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Addition and subtraction",
+          "page": 87,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s4-n28",
+              "printedNumber": 28,
+              "title": "Intersection and union of figures",
+              "page": 87
+            },
+            {
+              "id": "math4-c1-s4-n29",
+              "printedNumber": 29,
+              "title": "Addition",
+              "page": 90
+            },
+            {
+              "id": "math4-c1-s4-n30",
+              "printedNumber": 30,
+              "title": "The laws of addition",
+              "page": 97
+            },
+            {
+              "id": "math4-c1-s4-n31",
+              "printedNumber": 31,
+              "title": "Angles",
+              "page": 102
+            },
+            {
+              "id": "math4-c1-s4-n32",
+              "printedNumber": 32,
+              "title": "Subtraction",
+              "page": 106
+            },
+            {
+              "id": "math4-c1-s4-n33",
+              "printedNumber": 33,
+              "title": "Comparing angles. The bisector",
+              "page": 113
+            }
+          ]
+        },
+        {
+          "id": "math4-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "Multiplication and its properties",
+          "page": 118,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s5-n34",
+              "printedNumber": 34,
+              "title": "Multiplication",
+              "page": 118
+            },
+            {
+              "id": "math4-c1-s5-n35",
+              "printedNumber": 35,
+              "title": "The associative law of multiplication",
+              "page": 125
+            },
+            {
+              "id": "math4-c1-s5-n36",
+              "printedNumber": 36,
+              "title": "The straight angle",
+              "page": 128
+            },
+            {
+              "id": "math4-c1-s5-n37",
+              "printedNumber": 37,
+              "title": "Writing products with letter factors",
+              "page": 130
+            },
+            {
+              "id": "math4-c1-s5-n38",
+              "printedNumber": 38,
+              "title": "The distributive law of multiplication",
+              "page": 133
+            }
+          ]
+        },
+        {
+          "id": "math4-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "Applying the laws of addition and multiplication",
+          "page": 137,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s6-n39",
+              "printedNumber": 39,
+              "title": "Addition and multiplication of multi-digit numbers",
+              "page": 137
+            },
+            {
+              "id": "math4-c1-s6-n40",
+              "printedNumber": 40,
+              "title": "Simplifying expressions",
+              "page": 141
+            },
+            {
+              "id": "math4-c1-s6-n41",
+              "printedNumber": 41,
+              "title": "The right angle",
+              "page": 149
+            }
+          ]
+        },
+        {
+          "id": "math4-c1-s7",
+          "kind": "section",
+          "number": "1.7",
+          "title": "Division and its properties",
+          "page": 151,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "math4-c1-s7-n42",
+              "printedNumber": 42,
+              "title": "Division",
+              "page": 151
+            },
+            {
+              "id": "math4-c1-s7-n43",
+              "printedNumber": 43,
+              "title": "Acute and obtuse angles",
+              "page": 156
+            },
+            {
+              "id": "math4-c1-s7-n44",
+              "printedNumber": 44,
+              "title": "Division with a remainder",
+              "page": 158
+            },
+            {
+              "id": "math4-c1-s7-n45",
+              "printedNumber": 45,
+              "title": "Divisors and multiples",
+              "page": 161
+            },
+            {
+              "id": "math4-c1-s7-n46",
+              "printedNumber": 46,
+              "title": "Tests for divisibility by 10, 5 and 2",
+              "page": 164
+            },
+            {
+              "id": "math4-c1-s7-n47",
+              "printedNumber": 47,
+              "title": "Tests for divisibility by 3",
+              "page": 166
+            },
+            {
+              "id": "math4-c1-s7-n48",
+              "printedNumber": 48,
+              "title": "Division and fractions",
+              "page": 168
+            },
+            {
+              "id": "math4-c1-s7-n49",
+              "printedNumber": 49,
+              "title": "Converting a number to an improper fraction",
+              "page": 172
+            },
+            {
+              "id": "math4-c1-s7-n50",
+              "printedNumber": 50,
+              "title": "Addition and subtraction of fractions",
+              "page": 174
+            },
+            {
+              "id": "math4-c1-s7-n51",
+              "printedNumber": 51,
+              "title": "Review exercises",
+              "page": 178
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math4-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Decimal fractions",
+      "page": 184,
+      "lessons": [
+        {
+          "id": "math4-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "The decimal system and measurement",
+          "page": 184,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "math4-c2-s1-n52",
+              "printedNumber": 52,
+              "title": "The metric system",
+              "page": 184
+            },
+            {
+              "id": "math4-c2-s1-n53",
+              "printedNumber": 53,
+              "title": "Converting fractions to decimals",
+              "page": 187
+            },
+            {
+              "id": "math4-c2-s1-n54",
+              "printedNumber": 54,
+              "title": "Comparing decimals",
+              "page": 192
+            },
+            {
+              "id": "math4-c2-s1-n55",
+              "printedNumber": 55,
+              "title": "Decimal places",
+              "page": 196
+            },
+            {
+              "id": "math4-c2-s1-n56",
+              "printedNumber": 56,
+              "title": "Measuring angles",
+              "page": 199
+            },
+            {
+              "id": "math4-c2-s1-n57",
+              "printedNumber": 57,
+              "title": "The protractor",
+              "page": 201
+            }
+          ]
+        },
+        {
+          "id": "math4-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Addition and subtraction",
+          "page": 204,
+          "source": {
+            "printedSection": 9
+          },
+          "topics": [
+            {
+              "id": "math4-c2-s2-n58",
+              "printedNumber": 58,
+              "title": "Addition of decimals",
+              "page": 204
+            },
+            {
+              "id": "math4-c2-s2-n59",
+              "printedNumber": 59,
+              "title": "Subtraction of decimals",
+              "page": 207
+            },
+            {
+              "id": "math4-c2-s2-n60",
+              "printedNumber": 60,
+              "title": "Rounding numbers",
+              "page": 212
+            }
+          ]
+        },
+        {
+          "id": "math4-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Multiplication",
+          "page": 215,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "math4-c2-s3-n61",
+              "printedNumber": 61,
+              "title": "Multiplication of decimals",
+              "page": 215
+            },
+            {
+              "id": "math4-c2-s3-n62",
+              "printedNumber": 62,
+              "title": "Special cases of decimal multiplication",
+              "page": 224
+            },
+            {
+              "id": "math4-c2-s3-n63",
+              "printedNumber": 63,
+              "title": "Adjacent supplementary angles",
+              "page": 226
+            }
+          ]
+        },
+        {
+          "id": "math4-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "Division",
+          "page": 229,
+          "source": {
+            "printedSection": 11
+          },
+          "topics": [
+            {
+              "id": "math4-c2-s4-n64",
+              "printedNumber": 64,
+              "title": "Dividing a decimal by a natural number",
+              "page": 229
+            },
+            {
+              "id": "math4-c2-s4-n65",
+              "printedNumber": 65,
+              "title": "Dividing a decimal by 10, 100, 1000 and so on",
+              "page": 234
+            },
+            {
+              "id": "math4-c2-s4-n66",
+              "printedNumber": 66,
+              "title": "Perpendicular lines",
+              "page": 236
+            },
+            {
+              "id": "math4-c2-s4-n67",
+              "printedNumber": 67,
+              "title": "Percentages",
+              "page": 238
+            },
+            {
+              "id": "math4-c2-s4-n68",
+              "printedNumber": 68,
+              "title": "Pie charts",
+              "page": 243
+            },
+            {
+              "id": "math4-c2-s4-n69",
+              "printedNumber": 69,
+              "title": "Division by a decimal",
+              "page": 247
+            }
+          ]
+        },
+        {
+          "id": "math4-c2-s5",
+          "kind": "section",
+          "number": "2.5",
+          "title": "Calculation and construction",
+          "page": 253,
+          "source": {
+            "printedSection": 12
+          },
+          "topics": [
+            {
+              "id": "math4-c2-s5-n70",
+              "printedNumber": 70,
+              "title": "Scale",
+              "page": 253
+            },
+            {
+              "id": "math4-c2-s5-n71",
+              "printedNumber": 71,
+              "title": "Constructing triangles",
+              "page": 256
+            },
+            {
+              "id": "math4-c2-s5-n72",
+              "printedNumber": 72,
+              "title": "The arithmetic mean",
+              "page": 258
+            },
+            {
+              "id": "math4-c2-s5-n73",
+              "printedNumber": 73,
+              "title": "Formulas",
+              "page": 263
+            },
+            {
+              "id": "math4-c2-s5-n74",
+              "printedNumber": 74,
+              "title": "The area of a right triangle",
+              "page": 267
+            },
+            {
+              "id": "math4-c2-s5-n75",
+              "printedNumber": 75,
+              "title": "The sum of the angles of a triangle",
+              "page": 269
+            },
+            {
+              "id": "math4-c2-s5-n76",
+              "printedNumber": 76,
+              "title": "Word problems on percentages",
+              "page": 271
+            },
+            {
+              "id": "math4-c2-s5-n77",
+              "printedNumber": 77,
+              "title": "Review exercises",
+              "page": 277
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math4-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Supplementary topics",
+      "page": 287,
+      "lessons": [
+        {
+          "id": "math4-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "How people learned to count",
+          "page": 287,
+          "source": {
+            "printedName": "78. 人类是怎样学会计数的"
+          }
+        },
+        {
+          "id": "math4-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "How geometry came about",
+          "page": 292,
+          "source": {
+            "printedName": "79. 几何学是怎样产生的"
+          }
+        },
+        {
+          "id": "math4-c3-ex3",
+          "kind": "exercises",
+          "number": "3.3",
+          "title": "More difficult exercises",
+          "page": 294,
+          "source": {
+            "printedName": "80. 难度较大的习题"
+          }
+        },
+        {
+          "id": "math4-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "Some material from the mathematics course of grades 1 to 3",
+          "page": 303,
+          "source": {
+            "printedName": "81. 一至三年级数学课程中的一些知识"
+          }
+        }
+      ]
+    },
+    {
+      "id": "math4-plates",
+      "kind": "section",
+      "number": null,
+      "title": "Plates",
+      "page": 313,
+      "source": {
+        "printedName": "附图"
+      }
+    }
+  ]
+}

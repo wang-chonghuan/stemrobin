@@ -1,0 +1,715 @@
+{
+  "book": "8a",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "algebra",
+  "grade": 8,
+  "title": "Algebra, Grade 8",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "8a",
+    "printedTitle": "苏联十年制学校数学教材 · 代数（八年级）",
+    "coverTitle": "苏联十年制学校数学教材 代数（八年级）",
+    "editor": "А. И. 马尔库雪维奇 主编（А. И. Маркушевич）",
+    "translators": "盛世雄",
+    "publisher": "人民教育出版社，1980 年 7 月第 1 版，1980 年 11 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/8a.md",
+    "tocPages": "PDF 物理页 p.0005–p.0007",
+    "scan": "8a — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–16 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`, continuous 1–51 across the book) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: 复习题 sits at the same indent as the six chapters and carries no printed chapter number, but it holds six groups of problems beneath it, so it is carried as a chapter and continues the numbering as 7; 难题 is itself a single entry, so its `number` is null.",
+  "contents": [
+    {
+      "id": "alg8-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Quadratic Functions",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "alg8-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "The quadratic trinomial",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "alg8-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "Quadratic equations (review)",
+              "page": 1
+            },
+            {
+              "id": "alg8-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "Roots of a polynomial",
+              "page": 4
+            },
+            {
+              "id": "alg8-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "Factoring a quadratic trinomial",
+              "page": 7
+            }
+          ]
+        },
+        {
+          "id": "alg8-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "The graph of a quadratic function",
+          "page": 12,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "alg8-c1-s2-n4",
+              "printedNumber": 4,
+              "title": "The graph of the function y = a(x − m)² + n",
+              "page": 12
+            },
+            {
+              "id": "alg8-c1-s2-n5",
+              "printedNumber": 5,
+              "title": "The graph of the function y = ax² + bx + c",
+              "page": 18
+            },
+            {
+              "id": "alg8-c1-s2-n6",
+              "printedNumber": 6,
+              "title": "Solving quadratic inequalities in one variable",
+              "page": 23
+            }
+          ]
+        },
+        {
+          "id": "alg8-c1-ex",
+          "kind": "exercises",
+          "number": "1.3",
+          "title": "Supplementary exercises",
+          "page": 28,
+          "source": {
+            "printedName": "第一章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Equations and Inequalities in Two Variables",
+      "page": 35,
+      "lessons": [
+        {
+          "id": "alg8-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Equations in two variables and systems of them",
+          "page": 35,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "alg8-c2-s1-n7",
+              "printedNumber": 7,
+              "title": "Equations in two variables and their graphs",
+              "page": 35
+            },
+            {
+              "id": "alg8-c2-s1-n8",
+              "printedNumber": 8,
+              "title": "Systems of equations in two variables",
+              "page": 40
+            }
+          ]
+        },
+        {
+          "id": "alg8-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Inequalities in two variables and systems of them",
+          "page": 47,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "alg8-c2-s2-n9",
+              "printedNumber": 9,
+              "title": "Inequalities in two variables",
+              "page": 47
+            },
+            {
+              "id": "alg8-c2-s2-n10",
+              "printedNumber": 10,
+              "title": "Systems of inequalities in two variables",
+              "page": 53
+            }
+          ]
+        },
+        {
+          "id": "alg8-c2-ex",
+          "kind": "exercises",
+          "number": "2.3",
+          "title": "Supplementary exercises",
+          "page": 56,
+          "source": {
+            "printedName": "第二章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Arithmetic and Geometric Progressions",
+      "page": 67,
+      "lessons": [
+        {
+          "id": "alg8-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Sequences",
+          "page": 67,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "alg8-c3-s1-n11",
+              "printedNumber": 11,
+              "title": "The concept of a sequence",
+              "page": 67
+            },
+            {
+              "id": "alg8-c3-s1-n12",
+              "printedNumber": 12,
+              "title": "Ways of defining a sequence",
+              "page": 74
+            },
+            {
+              "id": "alg8-c3-s1-n13",
+              "printedNumber": 13,
+              "title": "Defining a sequence by a recurrence",
+              "page": 78
+            }
+          ]
+        },
+        {
+          "id": "alg8-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Arithmetic progressions",
+          "page": 81,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "alg8-c3-s2-n14",
+              "printedNumber": 14,
+              "title": "The definition of an arithmetic progression",
+              "page": 81
+            },
+            {
+              "id": "alg8-c3-s2-n15",
+              "printedNumber": 15,
+              "title": "The formula for the nth term of an arithmetic progression",
+              "page": 84
+            },
+            {
+              "id": "alg8-c3-s2-n16",
+              "printedNumber": 16,
+              "title": "The formula for the sum of the first n terms of an arithmetic progression",
+              "page": 90
+            }
+          ]
+        },
+        {
+          "id": "alg8-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "Geometric progressions",
+          "page": 95,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "alg8-c3-s3-n17",
+              "printedNumber": 17,
+              "title": "The definition of a geometric progression",
+              "page": 95
+            },
+            {
+              "id": "alg8-c3-s3-n18",
+              "printedNumber": 18,
+              "title": "The formula for the nth term of a geometric progression",
+              "page": 98
+            },
+            {
+              "id": "alg8-c3-s3-n19",
+              "printedNumber": 19,
+              "title": "The formula for the sum of the first n terms of a geometric progression",
+              "page": 103
+            },
+            {
+              "id": "alg8-c3-s3-n20",
+              "printedNumber": 20,
+              "title": "The identities (a − b)(a² + ab + b²) = a³ − b³ and (a + b)(a² − ab + b²) = a³ + b³",
+              "page": 106
+            }
+          ]
+        },
+        {
+          "id": "alg8-c3-ex",
+          "kind": "exercises",
+          "number": "3.4",
+          "title": "Supplementary exercises",
+          "page": 110,
+          "source": {
+            "printedName": "第三章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Powers with Rational Exponents",
+      "page": 127,
+      "lessons": [
+        {
+          "id": "alg8-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "The inverse of a given function",
+          "page": 127,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "alg8-c4-s1-n21",
+              "printedNumber": 21,
+              "title": "The inverse of a given relation",
+              "page": 127
+            },
+            {
+              "id": "alg8-c4-s1-n22",
+              "printedNumber": 22,
+              "title": "The concept of the inverse of a given function",
+              "page": 133
+            }
+          ]
+        },
+        {
+          "id": "alg8-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "nth roots and their properties",
+          "page": 140,
+          "source": {
+            "printedSection": 9
+          },
+          "topics": [
+            {
+              "id": "alg8-c4-s2-n23",
+              "printedNumber": 23,
+              "title": "The function y = xⁿ",
+              "page": 140
+            },
+            {
+              "id": "alg8-c4-s2-n24",
+              "printedNumber": 24,
+              "title": "The concept of an nth root",
+              "page": 144
+            },
+            {
+              "id": "alg8-c4-s2-n25",
+              "printedNumber": 25,
+              "title": "The function y = ⁿ√x",
+              "page": 149
+            },
+            {
+              "id": "alg8-c4-s2-n26",
+              "printedNumber": 26,
+              "title": "Properties of the arithmetic nth root",
+              "page": 152
+            }
+          ]
+        },
+        {
+          "id": "alg8-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "Powers with rational exponents",
+          "page": 158,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "alg8-c4-s3-n27",
+              "printedNumber": 27,
+              "title": "The function y = aˣ (x ∈ Z) and its properties",
+              "page": 158
+            },
+            {
+              "id": "alg8-c4-s3-n28",
+              "printedNumber": 28,
+              "title": "The definition of a power with a fractional exponent",
+              "page": 163
+            },
+            {
+              "id": "alg8-c4-s3-n29",
+              "printedNumber": 29,
+              "title": "Properties of powers with rational exponents",
+              "page": 169
+            },
+            {
+              "id": "alg8-c4-s3-n30",
+              "printedNumber": 30,
+              "title": "Transforming expressions containing fractional exponents",
+              "page": 174
+            }
+          ]
+        },
+        {
+          "id": "alg8-c4-ex",
+          "kind": "exercises",
+          "number": "4.4",
+          "title": "Supplementary exercises",
+          "page": 179,
+          "source": {
+            "printedName": "第四章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "Exponential Functions",
+      "page": 191,
+      "lessons": [
+        {
+          "id": "alg8-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "Properties of the exponential function",
+          "page": 191,
+          "source": {
+            "printedSection": 11
+          },
+          "topics": [
+            {
+              "id": "alg8-c5-s1-n31",
+              "printedNumber": 31,
+              "title": "The function y = 2ˣ",
+              "page": 191
+            },
+            {
+              "id": "alg8-c5-s1-n32",
+              "printedNumber": 32,
+              "title": "The function y = aˣ and its properties",
+              "page": 196
+            }
+          ]
+        },
+        {
+          "id": "alg8-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "The exponential function with base 10",
+          "page": 206,
+          "source": {
+            "printedSection": 12
+          },
+          "topics": [
+            {
+              "id": "alg8-c5-s2-n33",
+              "printedNumber": 33,
+              "title": "The integer and fractional parts of a number",
+              "page": 206
+            },
+            {
+              "id": "alg8-c5-s2-n34",
+              "printedNumber": 34,
+              "title": "The function y = 10ˣ",
+              "page": 210
+            },
+            {
+              "id": "alg8-c5-s2-n35",
+              "printedNumber": 35,
+              "title": "A table of values of the function y = 10ˣ",
+              "page": 215
+            }
+          ]
+        },
+        {
+          "id": "alg8-c5-ex",
+          "kind": "exercises",
+          "number": "5.3",
+          "title": "Supplementary exercises",
+          "page": 217,
+          "source": {
+            "printedName": "第五章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "Common Logarithms. Carrying Out Computations",
+      "page": 224,
+      "lessons": [
+        {
+          "id": "alg8-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "The logarithmic function",
+          "page": 224,
+          "source": {
+            "printedSection": 13
+          },
+          "topics": [
+            {
+              "id": "alg8-c6-s1-n36",
+              "printedNumber": 36,
+              "title": "The concept of a logarithm",
+              "page": 224
+            },
+            {
+              "id": "alg8-c6-s1-n37",
+              "printedNumber": 37,
+              "title": "Common logarithms",
+              "page": 227
+            },
+            {
+              "id": "alg8-c6-s1-n38",
+              "printedNumber": 38,
+              "title": "The function y = lg x",
+              "page": 230
+            },
+            {
+              "id": "alg8-c6-s1-n39",
+              "printedNumber": 39,
+              "title": "Finding the logarithm of a number",
+              "page": 236
+            },
+            {
+              "id": "alg8-c6-s1-n40",
+              "printedNumber": 40,
+              "title": "Finding a number from its logarithm",
+              "page": 240
+            }
+          ]
+        },
+        {
+          "id": "alg8-c6-s2",
+          "kind": "section",
+          "number": "6.2",
+          "title": "Logarithm tables",
+          "page": 245,
+          "source": {
+            "printedSection": 14
+          },
+          "topics": [
+            {
+              "id": "alg8-c6-s2-n41",
+              "printedNumber": 41,
+              "title": "The characteristic and mantissa of a logarithm",
+              "page": 245
+            },
+            {
+              "id": "alg8-c6-s2-n42",
+              "printedNumber": 42,
+              "title": "Four-figure logarithm tables",
+              "page": 247
+            },
+            {
+              "id": "alg8-c6-s2-n43",
+              "printedNumber": 43,
+              "title": "Computing with four-figure logarithm tables",
+              "page": 250
+            }
+          ]
+        },
+        {
+          "id": "alg8-c6-s3",
+          "kind": "section",
+          "number": "6.3",
+          "title": "The slide rule",
+          "page": 255,
+          "source": {
+            "printedSection": 15
+          },
+          "topics": [
+            {
+              "id": "alg8-c6-s3-n44",
+              "printedNumber": 44,
+              "title": "The logarithmic scale",
+              "page": 255
+            },
+            {
+              "id": "alg8-c6-s3-n45",
+              "printedNumber": 45,
+              "title": "The basic scales of the slide rule",
+              "page": 258
+            },
+            {
+              "id": "alg8-c6-s3-n46",
+              "printedNumber": 46,
+              "title": "Multiplying numbers with the slide rule",
+              "page": 261
+            },
+            {
+              "id": "alg8-c6-s3-n47",
+              "printedNumber": 47,
+              "title": "Dividing numbers with the slide rule",
+              "page": 266
+            },
+            {
+              "id": "alg8-c6-s3-n48",
+              "printedNumber": 48,
+              "title": "Combined multiplication and division with the slide rule",
+              "page": 269
+            }
+          ]
+        },
+        {
+          "id": "alg8-c6-s4",
+          "kind": "section",
+          "number": "6.4",
+          "title": "An introduction to algorithms and programming",
+          "page": 272,
+          "source": {
+            "printedSection": 16
+          },
+          "topics": [
+            {
+              "id": "alg8-c6-s4-n49",
+              "printedNumber": 49,
+              "title": "The concept of an algorithm and how it is written down",
+              "page": 273
+            },
+            {
+              "id": "alg8-c6-s4-n50",
+              "printedNumber": 50,
+              "title": "Flowcharts of algorithms",
+              "page": 281
+            },
+            {
+              "id": "alg8-c6-s4-n51",
+              "printedNumber": 51,
+              "title": "First ideas of programming a computer",
+              "page": 286
+            }
+          ]
+        },
+        {
+          "id": "alg8-c6-ex",
+          "kind": "exercises",
+          "number": "6.5",
+          "title": "Supplementary exercises",
+          "page": 293,
+          "source": {
+            "printedName": "第六章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-review",
+      "kind": "chapter",
+      "number": 7,
+      "title": "Review Problems",
+      "page": 304,
+      "lessons": [
+        {
+          "id": "alg8-review-s1",
+          "kind": "exercises",
+          "number": "7.1",
+          "title": "Computation",
+          "page": 304,
+          "source": {
+            "printedName": "计算题"
+          }
+        },
+        {
+          "id": "alg8-review-s2",
+          "kind": "exercises",
+          "number": "7.2",
+          "title": "Identical transformations",
+          "page": 305,
+          "source": {
+            "printedName": "恒等变形"
+          }
+        },
+        {
+          "id": "alg8-review-s3",
+          "kind": "exercises",
+          "number": "7.3",
+          "title": "Equations in one variable",
+          "page": 308,
+          "source": {
+            "printedName": "一元方程"
+          }
+        },
+        {
+          "id": "alg8-review-s4",
+          "kind": "exercises",
+          "number": "7.4",
+          "title": "Inequalities in one variable",
+          "page": 313,
+          "source": {
+            "printedName": "一元不等式"
+          }
+        },
+        {
+          "id": "alg8-review-s5",
+          "kind": "exercises",
+          "number": "7.5",
+          "title": "Equations and inequalities in two variables. Systems of equations and inequalities in two variables",
+          "page": 318,
+          "source": {
+            "printedName": "二元方程和二元不等式·二元方程组和二元不等式组"
+          }
+        },
+        {
+          "id": "alg8-review-s6",
+          "kind": "exercises",
+          "number": "7.6",
+          "title": "Functions",
+          "page": 322,
+          "source": {
+            "printedName": "函数"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg8-hard",
+      "kind": "exercises",
+      "number": null,
+      "title": "Harder problems",
+      "page": 327,
+      "source": {
+        "printedName": "难题"
+      }
+    }
+  ]
+}

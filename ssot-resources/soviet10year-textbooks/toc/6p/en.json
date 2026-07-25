@@ -1,0 +1,926 @@
+{
+  "book": "6p",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "physics",
+  "grade": 6,
+  "title": "Physics, Grade 6",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "6-7p",
+    "printedTitle": "苏联中学课本 物理（六、七年级）",
+    "coverTitle": "苏联中学课本 物理 六-七年级",
+    "editor": "〔苏〕A.B. 别雷史金、H.A. 罗金娜（译自 1978 年版苏联中学 6、7 年级教科书）",
+    "translators": "常利",
+    "publisher": "文化教育出版社，1981 年 5 月第 1 版",
+    "toc": "resources/soviet10years/toc/6-7p.md",
+    "tocPages": "PDF 物理页 p.0006–p.0011（印刷页码 1–6）",
+    "scan": "6-7p — the printed volume, scanned; not kept in the repo",
+    "volumeNote": "本册与 7p 同出一本印刷书 6-7p（六、七年级合订），按年级拆分为两册。"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated. The printed book 6-7p binds grades 6 and 7 together and its contents open with 六年级 / 七年级; this file takes one grade, so every level below it moves up by one.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed number where it has one (printedSection), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). The book numbers its teaching items continuously across the whole bound volume (1–80 in grade 6, 81–164 in grade 7); splitting the grades does not renumber them, so printedNumber / printedSection are always as printed. A few printed items carry an unnumbered sub-item of their own (e.g. 布朗运动); the format has no level below a topic, so such a sub-item follows its parent as a topic in its own right, without a printedNumber.",
+  "contents": [
+    {
+      "id": "phy6-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Introduction",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "phy6-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Nature and man",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "phy6-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "What physics studies",
+          "page": 2,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "phy6-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Bodies, matter, and substance",
+          "page": 4,
+          "source": {
+            "printedSection": 3
+          }
+        },
+        {
+          "id": "phy6-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Observation and experiment",
+          "page": 5,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "phy6-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "Physical quantities — measuring physical quantities",
+          "page": 7,
+          "source": {
+            "printedSection": 5
+          }
+        },
+        {
+          "id": "phy6-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "Physics and technology",
+          "page": 8,
+          "source": {
+            "printedSection": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "First Ideas About the Structure of Matter",
+      "page": 12,
+      "lessons": [
+        {
+          "id": "phy6-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Why we need to know the structure of matter",
+          "page": 12,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "phy6-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "The structure of matter",
+          "page": 13,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "phy6-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "Molecules",
+          "page": 15,
+          "source": {
+            "printedSection": 9
+          }
+        },
+        {
+          "id": "phy6-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "Diffusion in gases, liquids, and solids",
+          "page": 18,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "phy6-c2-s4-t1",
+              "title": "Brownian motion",
+              "page": 21
+            }
+          ]
+        },
+        {
+          "id": "phy6-c2-s5",
+          "kind": "section",
+          "number": "2.5",
+          "title": "The speed of molecular motion and the temperature of a body",
+          "page": 22,
+          "source": {
+            "printedSection": 11
+          }
+        },
+        {
+          "id": "phy6-c2-s6",
+          "kind": "section",
+          "number": "2.6",
+          "title": "Attraction and repulsion between molecules",
+          "page": 23,
+          "source": {
+            "printedSection": 12
+          }
+        },
+        {
+          "id": "phy6-c2-s7",
+          "kind": "section",
+          "number": "2.7",
+          "title": "The three states of matter",
+          "page": 25,
+          "source": {
+            "printedSection": 13
+          }
+        },
+        {
+          "id": "phy6-c2-s8",
+          "kind": "section",
+          "number": "2.8",
+          "title": "Differences in the molecular structure of solids, liquids, and gases",
+          "page": 28,
+          "source": {
+            "printedSection": 14
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Motion and Forces",
+      "page": 32,
+      "lessons": [
+        {
+          "id": "phy6-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Mechanical motion",
+          "page": 32,
+          "source": {
+            "printedSection": 15
+          }
+        },
+        {
+          "id": "phy6-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Uniform and non-uniform motion",
+          "page": 34,
+          "source": {
+            "printedSection": 16
+          }
+        },
+        {
+          "id": "phy6-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "The speed of uniform motion — units of speed",
+          "page": 36,
+          "source": {
+            "printedSection": 17
+          }
+        },
+        {
+          "id": "phy6-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "Average speed in non-uniform motion",
+          "page": 40,
+          "source": {
+            "printedSection": 18
+          }
+        },
+        {
+          "id": "phy6-c3-s5",
+          "kind": "section",
+          "number": "3.5",
+          "title": "Calculating distance travelled and time of motion",
+          "page": 42,
+          "source": {
+            "printedSection": 19
+          }
+        },
+        {
+          "id": "phy6-c3-s6",
+          "kind": "section",
+          "number": "3.6",
+          "title": "Inertia",
+          "page": 44,
+          "source": {
+            "printedSection": 20
+          }
+        },
+        {
+          "id": "phy6-c3-s7",
+          "kind": "section",
+          "number": "3.7",
+          "title": "Inertia in everyday life and in engineering",
+          "page": 47,
+          "source": {
+            "printedSection": 21
+          }
+        },
+        {
+          "id": "phy6-c3-s8",
+          "kind": "section",
+          "number": "3.8",
+          "title": "The interaction of bodies",
+          "page": 48,
+          "source": {
+            "printedSection": 22
+          }
+        },
+        {
+          "id": "phy6-c3-s9",
+          "kind": "section",
+          "number": "3.9",
+          "title": "The mass of a body — units of mass",
+          "page": 51,
+          "source": {
+            "printedSection": 23
+          }
+        },
+        {
+          "id": "phy6-c3-s10",
+          "kind": "section",
+          "number": "3.10",
+          "title": "Measuring the mass of a body with a balance and with scales",
+          "page": 53,
+          "source": {
+            "printedSection": 24
+          }
+        },
+        {
+          "id": "phy6-c3-s11",
+          "kind": "section",
+          "number": "3.11",
+          "title": "The mass of a molecule",
+          "page": 55,
+          "source": {
+            "printedSection": 25
+          }
+        },
+        {
+          "id": "phy6-c3-s12",
+          "kind": "section",
+          "number": "3.12",
+          "title": "The density of a substance",
+          "page": 56,
+          "source": {
+            "printedSection": 26
+          }
+        },
+        {
+          "id": "phy6-c3-s13",
+          "kind": "section",
+          "number": "3.13",
+          "title": "Calculating the mass and volume of a body from its density",
+          "page": 61,
+          "source": {
+            "printedSection": 27
+          }
+        },
+        {
+          "id": "phy6-c3-s14",
+          "kind": "section",
+          "number": "3.14",
+          "title": "Expressing density in terms of molecular mass and the number of molecules per unit volume",
+          "page": 62,
+          "source": {
+            "printedSection": 28
+          }
+        },
+        {
+          "id": "phy6-c3-s15",
+          "kind": "section",
+          "number": "3.15",
+          "title": "Force",
+          "page": 64,
+          "source": {
+            "printedSection": 29
+          }
+        },
+        {
+          "id": "phy6-c3-s16",
+          "kind": "section",
+          "number": "3.16",
+          "title": "Universal gravitation — gravity",
+          "page": 67,
+          "source": {
+            "printedSection": 30
+          }
+        },
+        {
+          "id": "phy6-c3-s17",
+          "kind": "section",
+          "number": "3.17",
+          "title": "Elastic force",
+          "page": 69,
+          "source": {
+            "printedSection": 31
+          }
+        },
+        {
+          "id": "phy6-c3-s18",
+          "kind": "section",
+          "number": "3.18",
+          "title": "The weight of a body",
+          "page": 70,
+          "source": {
+            "printedSection": 32
+          },
+          "topics": [
+            {
+              "id": "phy6-c3-s18-t1",
+              "title": "Weightlessness",
+              "page": 71
+            }
+          ]
+        },
+        {
+          "id": "phy6-c3-s19",
+          "kind": "section",
+          "number": "3.19",
+          "title": "Units of force",
+          "page": 73,
+          "source": {
+            "printedSection": 33
+          },
+          "topics": [
+            {
+              "id": "phy6-c3-s19-t1",
+              "title": "Gravity on other planets",
+              "page": 76
+            }
+          ]
+        },
+        {
+          "id": "phy6-c3-s20",
+          "kind": "section",
+          "number": "3.20",
+          "title": "The dynamometer",
+          "page": 78,
+          "source": {
+            "printedSection": 34
+          }
+        },
+        {
+          "id": "phy6-c3-s21",
+          "kind": "section",
+          "number": "3.21",
+          "title": "Force is a vector",
+          "page": 80,
+          "source": {
+            "printedSection": 35
+          }
+        },
+        {
+          "id": "phy6-c3-s22",
+          "kind": "section",
+          "number": "3.22",
+          "title": "Composition of forces — the resultant",
+          "page": 81,
+          "source": {
+            "printedSection": 36
+          }
+        },
+        {
+          "id": "phy6-c3-s23",
+          "kind": "section",
+          "number": "3.23",
+          "title": "Composition of two forces acting along the same straight line",
+          "page": 82,
+          "source": {
+            "printedSection": 37
+          }
+        },
+        {
+          "id": "phy6-c3-s24",
+          "kind": "section",
+          "number": "3.24",
+          "title": "The force of friction",
+          "page": 85,
+          "source": {
+            "printedSection": 38
+          }
+        },
+        {
+          "id": "phy6-c3-s25",
+          "kind": "section",
+          "number": "3.25",
+          "title": "How the force of friction is measured",
+          "page": 87,
+          "source": {
+            "printedSection": 39
+          }
+        },
+        {
+          "id": "phy6-c3-s26",
+          "kind": "section",
+          "number": "3.26",
+          "title": "Static friction",
+          "page": 89,
+          "source": {
+            "printedSection": 40
+          }
+        },
+        {
+          "id": "phy6-c3-s27",
+          "kind": "section",
+          "number": "3.27",
+          "title": "Friction in nature and in engineering",
+          "page": 90,
+          "source": {
+            "printedSection": 41
+          }
+        },
+        {
+          "id": "phy6-c3-s28",
+          "kind": "section",
+          "number": "3.28",
+          "title": "Forces of interaction between molecules",
+          "page": 92,
+          "source": {
+            "printedSection": 42
+          }
+        },
+        {
+          "id": "phy6-c3-s29",
+          "kind": "section",
+          "number": "3.29",
+          "title": "Wetting",
+          "page": 94,
+          "source": {
+            "printedSection": 43
+          }
+        },
+        {
+          "id": "phy6-c3-s30",
+          "kind": "section",
+          "number": "3.30",
+          "title": "Pressure",
+          "page": 95,
+          "source": {
+            "printedSection": 44
+          }
+        },
+        {
+          "id": "phy6-c3-s31",
+          "kind": "section",
+          "number": "3.31",
+          "title": "Pressure in nature and in engineering",
+          "page": 98,
+          "source": {
+            "printedSection": 45
+          }
+        },
+        {
+          "id": "phy6-c3-s32",
+          "kind": "section",
+          "number": "3.32",
+          "title": "The pressure of a gas",
+          "page": 101,
+          "source": {
+            "printedSection": 46
+          }
+        },
+        {
+          "id": "phy6-c3-s33",
+          "kind": "section",
+          "number": "3.33",
+          "title": "What the pressure of a gas depends on",
+          "page": 103,
+          "source": {
+            "printedSection": 47
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Pressure in Liquids and Gases (Hydrostatics and Aerostatics)",
+      "page": 106,
+      "lessons": [
+        {
+          "id": "phy6-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "Transmission of pressure by liquids and gases — Pascal's law",
+          "page": 106,
+          "source": {
+            "printedSection": 48
+          }
+        },
+        {
+          "id": "phy6-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "Hydraulic machinery",
+          "page": 109,
+          "source": {
+            "printedSection": 49
+          }
+        },
+        {
+          "id": "phy6-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "The hydraulic press",
+          "page": 111,
+          "source": {
+            "printedSection": 50
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s3-t1",
+              "title": "Pneumatic machines and pneumatic tools",
+              "page": 113
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s4",
+          "kind": "section",
+          "number": "4.4",
+          "title": "The free surface of a liquid",
+          "page": 115,
+          "source": {
+            "printedSection": 51
+          }
+        },
+        {
+          "id": "phy6-c4-s5",
+          "kind": "section",
+          "number": "4.5",
+          "title": "Pressure inside liquids and gases",
+          "page": 117,
+          "source": {
+            "printedSection": 52
+          }
+        },
+        {
+          "id": "phy6-c4-s6",
+          "kind": "section",
+          "number": "4.6",
+          "title": "Calculating the pressure of a liquid on the bottom and walls of a vessel",
+          "page": 120,
+          "source": {
+            "printedSection": 53
+          }
+        },
+        {
+          "id": "phy6-c4-s7",
+          "kind": "section",
+          "number": "4.7",
+          "title": "The hydrostatic paradox — Pascal's experiment",
+          "page": 124,
+          "source": {
+            "printedSection": 54
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s7-t1",
+              "title": "Pressure at the sea floor — exploring the ocean depths",
+              "page": 128
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s8",
+          "kind": "section",
+          "number": "4.8",
+          "title": "Communicating vessels",
+          "page": 130,
+          "source": {
+            "printedSection": 55
+          }
+        },
+        {
+          "id": "phy6-c4-s9",
+          "kind": "section",
+          "number": "4.9",
+          "title": "Atmospheric pressure",
+          "page": 136,
+          "source": {
+            "printedSection": 56
+          }
+        },
+        {
+          "id": "phy6-c4-s10",
+          "kind": "section",
+          "number": "4.10",
+          "title": "How the Earth's atmosphere was formed",
+          "page": 137,
+          "source": {
+            "printedSection": 57
+          }
+        },
+        {
+          "id": "phy6-c4-s11",
+          "kind": "section",
+          "number": "4.11",
+          "title": "Measuring atmospheric pressure — Torricelli's experiment",
+          "page": 139,
+          "source": {
+            "printedSection": 58
+          }
+        },
+        {
+          "id": "phy6-c4-s12",
+          "kind": "section",
+          "number": "4.12",
+          "title": "The aneroid barometer",
+          "page": 143,
+          "source": {
+            "printedSection": 59
+          }
+        },
+        {
+          "id": "phy6-c4-s13",
+          "kind": "section",
+          "number": "4.13",
+          "title": "Atmospheric pressure at different altitudes",
+          "page": 145,
+          "source": {
+            "printedSection": 60
+          }
+        },
+        {
+          "id": "phy6-c4-s14",
+          "kind": "section",
+          "number": "4.14",
+          "title": "Manometers",
+          "page": 147,
+          "source": {
+            "printedSection": 61
+          }
+        },
+        {
+          "id": "phy6-c4-s15",
+          "kind": "section",
+          "number": "4.15",
+          "title": "The piston pump",
+          "page": 150,
+          "source": {
+            "printedSection": 62
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s15-t1",
+              "title": "The history of the discovery of atmospheric pressure",
+              "page": 152
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s16",
+          "kind": "section",
+          "number": "4.16",
+          "title": "The action of liquids and gases on a body immersed in them",
+          "page": 154,
+          "source": {
+            "printedSection": 63
+          }
+        },
+        {
+          "id": "phy6-c4-s17",
+          "kind": "section",
+          "number": "4.17",
+          "title": "The Archimedean force",
+          "page": 157,
+          "source": {
+            "printedSection": 64
+          },
+          "topics": [
+            {
+              "id": "phy6-c4-s17-t1",
+              "title": "The legend of Archimedes",
+              "page": 160
+            }
+          ]
+        },
+        {
+          "id": "phy6-c4-s18",
+          "kind": "section",
+          "number": "4.18",
+          "title": "The floating and sinking of bodies",
+          "page": 162,
+          "source": {
+            "printedSection": 65
+          }
+        },
+        {
+          "id": "phy6-c4-s19",
+          "kind": "section",
+          "number": "4.19",
+          "title": "The floating of ships",
+          "page": 166,
+          "source": {
+            "printedSection": 66
+          }
+        },
+        {
+          "id": "phy6-c4-s20",
+          "kind": "section",
+          "number": "4.20",
+          "title": "Aeronautics",
+          "page": 168,
+          "source": {
+            "printedSection": 67
+          }
+        }
+      ]
+    },
+    {
+      "id": "phy6-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "Work, Power, and Energy",
+      "page": 171,
+      "lessons": [
+        {
+          "id": "phy6-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "Mechanical work — units of work",
+          "page": 171,
+          "source": {
+            "printedSection": 68
+          }
+        },
+        {
+          "id": "phy6-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "Power — units of power",
+          "page": 175,
+          "source": {
+            "printedSection": 69
+          }
+        },
+        {
+          "id": "phy6-c5-s3",
+          "kind": "section",
+          "number": "5.3",
+          "title": "Simple machines",
+          "page": 178,
+          "source": {
+            "printedSection": 70
+          }
+        },
+        {
+          "id": "phy6-c5-s4",
+          "kind": "section",
+          "number": "5.4",
+          "title": "The lever — equilibrium of the forces acting on a lever",
+          "page": 180,
+          "source": {
+            "printedSection": 71
+          }
+        },
+        {
+          "id": "phy6-c5-s5",
+          "kind": "section",
+          "number": "5.5",
+          "title": "The lever in engineering and in everyday life",
+          "page": 183,
+          "source": {
+            "printedSection": 72
+          }
+        },
+        {
+          "id": "phy6-c5-s6",
+          "kind": "section",
+          "number": "5.6",
+          "title": "The lever in balances and scales",
+          "page": 186,
+          "source": {
+            "printedSection": 73
+          }
+        },
+        {
+          "id": "phy6-c5-s7",
+          "kind": "section",
+          "number": "5.7",
+          "title": "The law of lever equilibrium applied to pulleys",
+          "page": 187,
+          "source": {
+            "printedSection": 74
+          }
+        },
+        {
+          "id": "phy6-c5-s8",
+          "kind": "section",
+          "number": "5.8",
+          "title": "The principle of equal work in simple machines — the \"golden rule\" of mechanics",
+          "page": 189,
+          "source": {
+            "printedSection": 75
+          }
+        },
+        {
+          "id": "phy6-c5-s9",
+          "kind": "section",
+          "number": "5.9",
+          "title": "Mechanical efficiency",
+          "page": 192,
+          "source": {
+            "printedSection": 76
+          }
+        },
+        {
+          "id": "phy6-c5-s10",
+          "kind": "section",
+          "number": "5.10",
+          "title": "Energy",
+          "page": 193,
+          "source": {
+            "printedSection": 77
+          }
+        },
+        {
+          "id": "phy6-c5-s11",
+          "kind": "section",
+          "number": "5.11",
+          "title": "Potential energy",
+          "page": 196,
+          "source": {
+            "printedSection": 78
+          }
+        },
+        {
+          "id": "phy6-c5-s12",
+          "kind": "section",
+          "number": "5.12",
+          "title": "Kinetic energy",
+          "page": 197,
+          "source": {
+            "printedSection": 79
+          }
+        },
+        {
+          "id": "phy6-c5-s13",
+          "kind": "section",
+          "number": "5.13",
+          "title": "Conversion of mechanical energy from one form to another",
+          "page": 198,
+          "source": {
+            "printedSection": 80
+          },
+          "topics": [
+            {
+              "id": "phy6-c5-s13-t1",
+              "title": "Using the energy of flowing water and of wind — water and wind engines",
+              "page": 200
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

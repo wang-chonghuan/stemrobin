@@ -1,0 +1,563 @@
+{
+  "book": "5m",
+  "locale": "zh",
+  "authority": "extracted",
+  "subject": "early",
+  "grade": 5,
+  "title": "数学 五年级",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "5m",
+    "printedTitle": "苏联十年制学校教材 · 数学（五年级）",
+    "coverTitle": "苏联十年制学校教材 数学 五年级",
+    "editor": "А. И. 马尔库舍维奇 主编（据 1979 年第 4 版译出）",
+    "translators": "北京景山学校 译（任志英、程凤阁 译，丁尔陞 校订）",
+    "publisher": "人民教育出版社，1980 年 5 月第 1 版",
+    "toc": "resources/soviet10years/toc/5m.md",
+    "tocPages": "PDF 物理页 p.0007–p.0009（书内页码 1–3）",
+    "scan": "5m — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷节号的用节号（printedSection，全书连续 1–12），没有节号的用原书印刷的名称（printedName）。每个 topic 也有自己的 id（`<课id>-n<印刷序号>`），它是可寻址的卡片。目录顶层（contents）是原书目录的第一级，条目未必都是章：`kind: \"chapter\"` 的带下级节，没有下级的本身就是一条（number 为 null）。",
+  "contents": [
+    {
+      "id": "math5-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "正数和负数",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "math5-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "集合的运算",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "子集",
+              "page": 1
+            },
+            {
+              "id": "math5-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "交集",
+              "page": 4
+            },
+            {
+              "id": "math5-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "并集",
+              "page": 8
+            },
+            {
+              "id": "math5-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "作平行线",
+              "page": 10
+            },
+            {
+              "id": "math5-c1-s1-n5",
+              "printedNumber": 5,
+              "title": "分类",
+              "page": 14
+            },
+            {
+              "id": "math5-c1-s1-n6",
+              "printedNumber": 6,
+              "title": "三角形的分类",
+              "page": 17
+            },
+            {
+              "id": "math5-c1-s1-n7",
+              "printedNumber": 7,
+              "title": "已知三边作三角形",
+              "page": 21
+            }
+          ]
+        },
+        {
+          "id": "math5-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "方向和数",
+          "page": 23,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s2-n8",
+              "printedNumber": 8,
+              "title": "向右或向左，向上或向下",
+              "page": 23
+            },
+            {
+              "id": "math5-c1-s2-n9",
+              "printedNumber": 9,
+              "title": "数轴",
+              "page": 28
+            },
+            {
+              "id": "math5-c1-s2-n10",
+              "printedNumber": 10,
+              "title": "点在数轴上的移动",
+              "page": 33
+            },
+            {
+              "id": "math5-c1-s2-n11",
+              "printedNumber": 11,
+              "title": "中心对称",
+              "page": 35
+            },
+            {
+              "id": "math5-c1-s2-n12",
+              "printedNumber": 12,
+              "title": "相反数",
+              "page": 39
+            },
+            {
+              "id": "math5-c1-s2-n13",
+              "printedNumber": 13,
+              "title": "绝对值",
+              "page": 42
+            },
+            {
+              "id": "math5-c1-s2-n14",
+              "printedNumber": 14,
+              "title": "比较数的大小",
+              "page": 46
+            },
+            {
+              "id": "math5-c1-s2-n15",
+              "printedNumber": 15,
+              "title": "平移",
+              "page": 51
+            },
+            {
+              "id": "math5-c1-s2-n16",
+              "printedNumber": 16,
+              "title": "坐标平面",
+              "page": 55
+            }
+          ]
+        },
+        {
+          "id": "math5-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "加法和减法",
+          "page": 62,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s3-n17",
+              "printedNumber": 17,
+              "title": "量的变化",
+              "page": 62
+            },
+            {
+              "id": "math5-c1-s3-n18",
+              "printedNumber": 18,
+              "title": "用数轴做数的加法",
+              "page": 64
+            },
+            {
+              "id": "math5-c1-s3-n19",
+              "printedNumber": 19,
+              "title": "负数的加法",
+              "page": 68
+            },
+            {
+              "id": "math5-c1-s3-n20",
+              "printedNumber": 20,
+              "title": "异号两数的加法",
+              "page": 71
+            },
+            {
+              "id": "math5-c1-s3-n21",
+              "printedNumber": 21,
+              "title": "加法的性质",
+              "page": 76
+            },
+            {
+              "id": "math5-c1-s3-n22",
+              "printedNumber": 22,
+              "title": "轴对称",
+              "page": 79
+            },
+            {
+              "id": "math5-c1-s3-n23",
+              "printedNumber": 23,
+              "title": "减法",
+              "page": 85
+            },
+            {
+              "id": "math5-c1-s3-n24",
+              "printedNumber": 24,
+              "title": "去括号",
+              "page": 94
+            },
+            {
+              "id": "math5-c1-s3-n25",
+              "printedNumber": 25,
+              "title": "解方程",
+              "page": 101
+            },
+            {
+              "id": "math5-c1-s3-n26",
+              "printedNumber": 26,
+              "title": "作两点的对称轴",
+              "page": 105
+            }
+          ]
+        },
+        {
+          "id": "math5-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "乘法和除法",
+          "page": 108,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "math5-c1-s4-n27",
+              "printedNumber": 27,
+              "title": "乘法",
+              "page": 108
+            },
+            {
+              "id": "math5-c1-s4-n28",
+              "printedNumber": 28,
+              "title": "除法法则",
+              "page": 114
+            },
+            {
+              "id": "math5-c1-s4-n29",
+              "printedNumber": 29,
+              "title": "乘法的交换律和结合律",
+              "page": 120
+            },
+            {
+              "id": "math5-c1-s4-n30",
+              "printedNumber": 30,
+              "title": "系数",
+              "page": 124
+            },
+            {
+              "id": "math5-c1-s4-n31",
+              "printedNumber": 31,
+              "title": "乘法分配律",
+              "page": 128
+            },
+            {
+              "id": "math5-c1-s4-n32",
+              "printedNumber": 32,
+              "title": "合并同类项",
+              "page": 131
+            },
+            {
+              "id": "math5-c1-s4-n33",
+              "printedNumber": 33,
+              "title": "平分线段",
+              "page": 136
+            },
+            {
+              "id": "math5-c1-s4-n34",
+              "printedNumber": 34,
+              "title": "解方程",
+              "page": 138
+            },
+            {
+              "id": "math5-c1-s4-n35",
+              "printedNumber": 35,
+              "title": "作直线的垂线",
+              "page": 143
+            },
+            {
+              "id": "math5-c1-s4-n36",
+              "printedNumber": 36,
+              "title": "图象",
+              "page": 145
+            },
+            {
+              "id": "math5-c1-s4-n37",
+              "printedNumber": 37,
+              "title": "复习题",
+              "page": 151
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math5-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "有理数",
+      "page": 158,
+      "lessons": [
+        {
+          "id": "math5-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "相等的分数",
+          "page": 158,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s1-n38",
+              "printedNumber": 38,
+              "title": "分数的基本性质",
+              "page": 158
+            },
+            {
+              "id": "math5-c2-s1-n39",
+              "printedNumber": 39,
+              "title": "把分数化成新分母的分数",
+              "page": 161
+            },
+            {
+              "id": "math5-c2-s1-n40",
+              "printedNumber": 40,
+              "title": "约分",
+              "page": 164
+            },
+            {
+              "id": "math5-c2-s1-n41",
+              "printedNumber": 41,
+              "title": "质数与合数",
+              "page": 169
+            },
+            {
+              "id": "math5-c2-s1-n42",
+              "printedNumber": 42,
+              "title": "分解质因数",
+              "page": 171
+            },
+            {
+              "id": "math5-c2-s1-n43",
+              "printedNumber": 43,
+              "title": "比较异分母分数的大小",
+              "page": 175
+            },
+            {
+              "id": "math5-c2-s1-n44",
+              "printedNumber": 44,
+              "title": "轴对称图形",
+              "page": 178
+            }
+          ]
+        },
+        {
+          "id": "math5-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "乘法和除法",
+          "page": 182,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s2-n45",
+              "printedNumber": 45,
+              "title": "分数乘法",
+              "page": 182
+            },
+            {
+              "id": "math5-c2-s2-n46",
+              "printedNumber": 46,
+              "title": "互为倒数",
+              "page": 191
+            },
+            {
+              "id": "math5-c2-s2-n47",
+              "printedNumber": 47,
+              "title": "分数除法",
+              "page": 194
+            },
+            {
+              "id": "math5-c2-s2-n48",
+              "printedNumber": 48,
+              "title": "作角的平分线",
+              "page": 201
+            },
+            {
+              "id": "math5-c2-s2-n49",
+              "printedNumber": 49,
+              "title": "比例",
+              "page": 204
+            },
+            {
+              "id": "math5-c2-s2-n50",
+              "printedNumber": 50,
+              "title": "幂",
+              "page": 211
+            }
+          ]
+        },
+        {
+          "id": "math5-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "加法和减法",
+          "page": 216,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s3-n51",
+              "printedNumber": 51,
+              "title": "异分母分数的加法和减法",
+              "page": 216
+            },
+            {
+              "id": "math5-c2-s3-n52",
+              "printedNumber": 52,
+              "title": "分数的补数",
+              "page": 222
+            },
+            {
+              "id": "math5-c2-s3-n53",
+              "printedNumber": 53,
+              "title": "加法交换律和结合律的应用",
+              "page": 225
+            },
+            {
+              "id": "math5-c2-s3-n54",
+              "printedNumber": 54,
+              "title": "乘法分配律的应用",
+              "page": 231
+            },
+            {
+              "id": "math5-c2-s3-n55",
+              "printedNumber": 55,
+              "title": "最小公倍数",
+              "page": 239
+            },
+            {
+              "id": "math5-c2-s3-n56",
+              "printedNumber": 56,
+              "title": "通分",
+              "page": 242
+            }
+          ]
+        },
+        {
+          "id": "math5-c2-s4",
+          "kind": "section",
+          "number": "2.4",
+          "title": "圆周长和圆的面积",
+          "page": 245,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "math5-c2-s4-n57",
+              "printedNumber": 57,
+              "title": "10 的幂",
+              "page": 245
+            },
+            {
+              "id": "math5-c2-s4-n58",
+              "printedNumber": 58,
+              "title": "无限小数",
+              "page": 248
+            },
+            {
+              "id": "math5-c2-s4-n59",
+              "printedNumber": 59,
+              "title": "圆周长",
+              "page": 252
+            },
+            {
+              "id": "math5-c2-s4-n60",
+              "printedNumber": 60,
+              "title": "圆的面积",
+              "page": 255
+            },
+            {
+              "id": "math5-c2-s4-n61",
+              "printedNumber": 61,
+              "title": "复习题",
+              "page": 258
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "math5-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "补充问题",
+      "page": 269,
+      "lessons": [
+        {
+          "id": "math5-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "算术和代数的历史",
+          "page": 269,
+          "source": {
+            "printedName": "62. 算术和代数的历史"
+          }
+        },
+        {
+          "id": "math5-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "我们周围的几何学",
+          "page": 274,
+          "source": {
+            "printedName": "63. 我们周围的几何学"
+          }
+        },
+        {
+          "id": "math5-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "大地测量",
+          "page": 279,
+          "source": {
+            "printedName": "64. 大地测量"
+          }
+        },
+        {
+          "id": "math5-c3-ex4",
+          "kind": "exercises",
+          "number": "3.4",
+          "title": "难度较大的问题",
+          "page": 282,
+          "source": {
+            "printedName": "65. 难度较大的问题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "math5-primes",
+      "kind": "section",
+      "number": null,
+      "title": "质数表",
+      "page": 301,
+      "source": {
+        "printedName": "质数表"
+      }
+    }
+  ]
+}

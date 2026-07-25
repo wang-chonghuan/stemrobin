@@ -1,0 +1,576 @@
+{
+  "book": "7a",
+  "locale": "en",
+  "authority": "translated",
+  "subject": "algebra",
+  "grade": 7,
+  "title": "Algebra, Grade 7",
+  "source": {
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "7a",
+    "printedTitle": "苏联十年制学校数学教材 代数 七年级",
+    "coverTitle": "苏联十年制学校数学教材 代数 七年级",
+    "editor": "А. И. 马尔库雪维奇 主编（А. И. Маркушевич；据 1978 年俄文版《代数（七年级）》译出）",
+    "translators": "何绍庚、盛世雄",
+    "publisher": "人民教育出版社，1979 年 3 月第 1 版，1979 年 12 月第 1 次印刷",
+    "toc": "resources/soviet10years/toc/7a.md",
+    "tocPages": "PDF 物理页 p.0004–p.0006",
+    "scan": "7a — the printed volume, scanned; not kept in the repo"
+  },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–12 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`, continuous 1–47 across the book) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while the remaining entries — 难题 and the reference tables at the back — sit at the same indent as the four chapters and carry no chapter number, so their `number` is null.",
+  "contents": [
+    {
+      "id": "alg7-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Rational Fractions",
+      "page": 1,
+      "lessons": [
+        {
+          "id": "alg7-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Transforming rational expressions",
+          "page": 1,
+          "source": {
+            "printedSection": 1
+          },
+          "topics": [
+            {
+              "id": "alg7-c1-s1-n1",
+              "printedNumber": 1,
+              "title": "Rational expressions",
+              "page": 1
+            },
+            {
+              "id": "alg7-c1-s1-n2",
+              "printedNumber": 2,
+              "title": "The sum of fractions with the same denominator",
+              "page": 4
+            },
+            {
+              "id": "alg7-c1-s1-n3",
+              "printedNumber": 3,
+              "title": "The sum of fractions with different denominators",
+              "page": 10
+            },
+            {
+              "id": "alg7-c1-s1-n4",
+              "printedNumber": 4,
+              "title": "Identical transformations of rational expressions",
+              "page": 16
+            }
+          ]
+        },
+        {
+          "id": "alg7-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Equivalent sentences",
+          "page": 21,
+          "source": {
+            "printedSection": 2
+          },
+          "topics": [
+            {
+              "id": "alg7-c1-s2-n5",
+              "printedNumber": 5,
+              "title": "Implication and equivalence",
+              "page": 21
+            },
+            {
+              "id": "alg7-c1-s2-n6",
+              "printedNumber": 6,
+              "title": "The truth set of a sentence containing variables",
+              "page": 27
+            },
+            {
+              "id": "alg7-c1-s2-n7",
+              "printedNumber": 7,
+              "title": "Equivalent equations",
+              "page": 30
+            }
+          ]
+        },
+        {
+          "id": "alg7-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Fractional equations with the unknown in the denominator",
+          "page": 33,
+          "source": {
+            "printedSection": 3
+          },
+          "topics": [
+            {
+              "id": "alg7-c1-s3-n8",
+              "printedNumber": 8,
+              "title": "The condition for a fraction to equal zero",
+              "page": 33
+            },
+            {
+              "id": "alg7-c1-s3-n9",
+              "printedNumber": 9,
+              "title": "Solving fractional equations with the unknown in the denominator",
+              "page": 37
+            },
+            {
+              "id": "alg7-c1-s3-n10",
+              "printedNumber": 10,
+              "title": "Solving equations in one variable graphically",
+              "page": 43
+            }
+          ]
+        },
+        {
+          "id": "alg7-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "Powers with integer exponents",
+          "page": 46,
+          "source": {
+            "printedSection": 4
+          },
+          "topics": [
+            {
+              "id": "alg7-c1-s4-n11",
+              "printedNumber": 11,
+              "title": "The concept of a power with a negative integer exponent",
+              "page": 46
+            },
+            {
+              "id": "alg7-c1-s4-n12",
+              "printedNumber": 12,
+              "title": "Properties of powers with integer exponents",
+              "page": 50
+            },
+            {
+              "id": "alg7-c1-s4-n13",
+              "printedNumber": 13,
+              "title": "Standard form of a number",
+              "page": 55
+            }
+          ]
+        },
+        {
+          "id": "alg7-c1-ex",
+          "kind": "exercises",
+          "number": "1.5",
+          "title": "Supplementary exercises",
+          "page": 59,
+          "source": {
+            "printedName": "第一章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg7-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Inequalities",
+      "page": 84,
+      "lessons": [
+        {
+          "id": "alg7-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "The relations “less than” and “greater than” and their properties",
+          "page": 84,
+          "source": {
+            "printedSection": 5
+          },
+          "topics": [
+            {
+              "id": "alg7-c2-s1-n14",
+              "printedNumber": 14,
+              "title": "The relations “less than” and “greater than”",
+              "page": 84
+            },
+            {
+              "id": "alg7-c2-s1-n15",
+              "printedNumber": 15,
+              "title": "Properties of the relations “less than” and “greater than”",
+              "page": 89
+            },
+            {
+              "id": "alg7-c2-s1-n16",
+              "printedNumber": 16,
+              "title": "Properties of the relations “less than” and “greater than” (continued)",
+              "page": 92
+            }
+          ]
+        },
+        {
+          "id": "alg7-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Inequalities in one variable",
+          "page": 97,
+          "source": {
+            "printedSection": 6
+          },
+          "topics": [
+            {
+              "id": "alg7-c2-s2-n17",
+              "printedNumber": 17,
+              "title": "Solving linear inequalities in one variable",
+              "page": 97
+            },
+            {
+              "id": "alg7-c2-s2-n18",
+              "printedNumber": 18,
+              "title": "Solving systems of inequalities in one variable",
+              "page": 104
+            },
+            {
+              "id": "alg7-c2-s2-n19",
+              "printedNumber": 19,
+              "title": "Examples of solving more complicated inequalities",
+              "page": 112
+            },
+            {
+              "id": "alg7-c2-s2-n20",
+              "printedNumber": 20,
+              "title": "Inequalities with a variable under an absolute value sign",
+              "page": 118
+            }
+          ]
+        },
+        {
+          "id": "alg7-c2-ex",
+          "kind": "exercises",
+          "number": "2.3",
+          "title": "Supplementary exercises",
+          "page": 123,
+          "source": {
+            "printedName": "第二章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg7-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Approximate Computation",
+      "page": 140,
+      "lessons": [
+        {
+          "id": "alg7-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "The method of bounds",
+          "page": 140,
+          "source": {
+            "printedSection": 7
+          },
+          "topics": [
+            {
+              "id": "alg7-c3-s1-n21",
+              "printedNumber": 21,
+              "title": "Bounds of a quantity",
+              "page": 140
+            },
+            {
+              "id": "alg7-c3-s1-n22",
+              "printedNumber": 22,
+              "title": "Adding and multiplying two inequalities term by term",
+              "page": 144
+            },
+            {
+              "id": "alg7-c3-s1-n23",
+              "printedNumber": 23,
+              "title": "Estimating the range of a sum, difference, product and quotient",
+              "page": 147
+            }
+          ]
+        },
+        {
+          "id": "alg7-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "Absolute and relative error",
+          "page": 152,
+          "source": {
+            "printedSection": 8
+          },
+          "topics": [
+            {
+              "id": "alg7-c3-s2-n24",
+              "printedNumber": 24,
+              "title": "Absolute error",
+              "page": 152
+            },
+            {
+              "id": "alg7-c3-s2-n25",
+              "printedNumber": 25,
+              "title": "Relative error",
+              "page": 161
+            }
+          ]
+        },
+        {
+          "id": "alg7-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "Practical methods of approximate computation",
+          "page": 164,
+          "source": {
+            "printedSection": 9
+          },
+          "topics": [
+            {
+              "id": "alg7-c3-s3-n26",
+              "printedNumber": 26,
+              "title": "Writing approximate numbers",
+              "page": 164
+            },
+            {
+              "id": "alg7-c3-s3-n27",
+              "printedNumber": 27,
+              "title": "Adding and subtracting approximate numbers",
+              "page": 168
+            },
+            {
+              "id": "alg7-c3-s3-n28",
+              "printedNumber": 28,
+              "title": "Multiplying and dividing approximate numbers",
+              "page": 173
+            }
+          ]
+        },
+        {
+          "id": "alg7-c3-ex",
+          "kind": "exercises",
+          "number": "3.4",
+          "title": "Supplementary exercises",
+          "page": 178,
+          "source": {
+            "printedName": "第三章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg7-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Square Roots and Quadratic Equations",
+      "page": 189,
+      "lessons": [
+        {
+          "id": "alg7-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "Square roots",
+          "page": 189,
+          "source": {
+            "printedSection": 10
+          },
+          "topics": [
+            {
+              "id": "alg7-c4-s1-n29",
+              "printedNumber": 29,
+              "title": "Rational numbers",
+              "page": 189
+            },
+            {
+              "id": "alg7-c4-s1-n30",
+              "printedNumber": 30,
+              "title": "The concept of the arithmetic square root",
+              "page": 192
+            },
+            {
+              "id": "alg7-c4-s1-n31",
+              "printedNumber": 31,
+              "title": "The identity (√a)² = a (a ≥ 0)",
+              "page": 199
+            },
+            {
+              "id": "alg7-c4-s1-n32",
+              "printedNumber": 32,
+              "title": "Approximate values of square roots",
+              "page": 201
+            },
+            {
+              "id": "alg7-c4-s1-n33",
+              "printedNumber": 33,
+              "title": "Finding approximate values of square roots by successive approximation",
+              "page": 205
+            },
+            {
+              "id": "alg7-c4-s1-n34",
+              "printedNumber": 34,
+              "title": "Increasing and decreasing functions",
+              "page": 208
+            },
+            {
+              "id": "alg7-c4-s1-n35",
+              "printedNumber": 35,
+              "title": "The function y = √x and its graph",
+              "page": 214
+            }
+          ]
+        },
+        {
+          "id": "alg7-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "Transforming expressions containing square roots",
+          "page": 217,
+          "source": {
+            "printedSection": 11
+          },
+          "topics": [
+            {
+              "id": "alg7-c4-s2-n36",
+              "printedNumber": 36,
+              "title": "Identities",
+              "page": 217
+            },
+            {
+              "id": "alg7-c4-s2-n37",
+              "printedNumber": 37,
+              "title": "The square root of a product and of a fraction",
+              "page": 221
+            },
+            {
+              "id": "alg7-c4-s2-n38",
+              "printedNumber": 38,
+              "title": "Table of squares",
+              "page": 228
+            },
+            {
+              "id": "alg7-c4-s2-n39",
+              "printedNumber": 39,
+              "title": "Table of square roots",
+              "page": 231
+            },
+            {
+              "id": "alg7-c4-s2-n40",
+              "printedNumber": 40,
+              "title": "Taking a factor out from under the radical and putting a factor under the radical",
+              "page": 236
+            },
+            {
+              "id": "alg7-c4-s2-n41",
+              "printedNumber": 41,
+              "title": "Transforming expressions containing square roots",
+              "page": 240
+            }
+          ]
+        },
+        {
+          "id": "alg7-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "Quadratic equations",
+          "page": 246,
+          "source": {
+            "printedSection": 12
+          },
+          "topics": [
+            {
+              "id": "alg7-c4-s3-n42",
+              "printedNumber": 42,
+              "title": "The concept of a quadratic equation",
+              "page": 246
+            },
+            {
+              "id": "alg7-c4-s3-n43",
+              "printedNumber": 43,
+              "title": "Solving quadratic equations by completing the square",
+              "page": 249
+            },
+            {
+              "id": "alg7-c4-s3-n44",
+              "printedNumber": 44,
+              "title": "The formula for the roots of a quadratic equation",
+              "page": 252
+            },
+            {
+              "id": "alg7-c4-s3-n45",
+              "printedNumber": 45,
+              "title": "Problems that reduce to solving a quadratic equation",
+              "page": 260
+            },
+            {
+              "id": "alg7-c4-s3-n46",
+              "printedNumber": 46,
+              "title": "Vieta's theorem",
+              "page": 267
+            },
+            {
+              "id": "alg7-c4-s3-n47",
+              "printedNumber": 47,
+              "title": "Equations that reduce to quadratic equations",
+              "page": 272
+            }
+          ]
+        },
+        {
+          "id": "alg7-c4-ex",
+          "kind": "exercises",
+          "number": "4.4",
+          "title": "Supplementary exercises",
+          "page": 275,
+          "source": {
+            "printedName": "第四章补充习题"
+          }
+        }
+      ]
+    },
+    {
+      "id": "alg7-hard",
+      "kind": "exercises",
+      "number": null,
+      "title": "Harder problems",
+      "page": 309,
+      "source": {
+        "printedName": "难题"
+      }
+    },
+    {
+      "id": "alg7-symbols",
+      "kind": "section",
+      "number": null,
+      "title": "Mathematical symbols used in this book",
+      "page": 336,
+      "source": {
+        "printedName": "本书中用到的数学符号"
+      }
+    },
+    {
+      "id": "alg7-functions",
+      "kind": "section",
+      "number": null,
+      "title": "What we know about functions",
+      "page": 337,
+      "source": {
+        "printedName": "关于函数的知识"
+      }
+    },
+    {
+      "id": "alg7-reciprocals",
+      "kind": "section",
+      "number": null,
+      "title": "Table of reciprocals of the natural numbers 1–99",
+      "page": 339,
+      "source": {
+        "printedName": "自然数 1—99 的倒数表"
+      }
+    },
+    {
+      "id": "alg7-square-roots",
+      "kind": "section",
+      "number": null,
+      "title": "Table of square roots of the natural numbers 1–99",
+      "page": 340,
+      "source": {
+        "printedName": "自然数 1—99 的平方根表"
+      }
+    }
+  ]
+}
