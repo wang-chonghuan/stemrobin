@@ -10,7 +10,7 @@ import {
   Zap,
 } from 'lucide-react'
 
-import { getAvailableLessons } from '~/lib/curriculum'
+import { getAvailableTextbookLessons } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { getProgress } from '~/lib/progress'
 import { getLocale } from '~/lib/locale'
@@ -39,7 +39,7 @@ const PRINCIPLES = [
 function Overview() {
   const { lessonIds, locale, progress, user } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
-  const availableLessons = getAvailableLessons(lessonIds, locale)
+  const availableLessons = getAvailableTextbookLessons(lessonIds, locale)
   // Show only the 6 most-recent lessons (curriculum order is ascending, so the
   // newest live content is at the tail).
   const newLessons = availableLessons.slice(-6)
@@ -136,28 +136,33 @@ function Overview() {
 
         {/* Learn: pedagogy explainer (left, growth) + new lessons (right).
             Desktop = two columns; mobile = lessons first, principle below. */}
-        <section className="sr-section-gap sr-learn">
-          <div className="sr-learn-courses">
-            <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
-            <div className="sr-grid">
-              {newLessons.map((l) => (
-                <Link
-                  key={l.id}
-                  to="/lesson/$id"
-                  params={{ id: l.id }}
-                  className="sr-card sr-lesson-card"
-                >
-                  <span className="sr-lesson-card-ico">
-                    <FileText size={17} />
-                  </span>
-                  <span className="sr-lesson-card-body">
-                    <span className="sr-card-title">{l.title}</span>
-                    <span className="sr-note">{l.subject}</span>
-                  </span>
-                </Link>
-              ))}
+        {/* The lesson grid is omitted entirely while no outline lesson has
+            content yet, so the principle column takes the full width rather
+            than sitting beside an empty half. */}
+        <section className={'sr-section-gap sr-learn' + (newLessons.length ? '' : ' sr-learn-solo')}>
+          {newLessons.length > 0 && (
+            <div className="sr-learn-courses">
+              <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
+              <div className="sr-grid">
+                {newLessons.map((l) => (
+                  <Link
+                    key={l.id}
+                    to="/lesson/$id"
+                    params={{ id: l.id }}
+                    className="sr-card sr-lesson-card"
+                  >
+                    <span className="sr-lesson-card-ico">
+                      <FileText size={17} />
+                    </span>
+                    <span className="sr-lesson-card-body">
+                      <span className="sr-card-title">{l.title}</span>
+                      <span className="sr-note">{l.subject}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
 
           <aside className="sr-learn-principle sr-card">
             <div className="sr-eyebrow accent">{t(locale, 'ov.learn.eyebrow')}</div>

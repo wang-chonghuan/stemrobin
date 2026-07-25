@@ -272,12 +272,14 @@ body {
   font-weight: 700;
 }
 
-/* ---- curriculum outline (collapsible) ---- */
+/* ---- curriculum outline (collapsible): discipline → book → chapter → lesson ---- */
 .sr-out-subject,
+.sr-out-book,
 .sr-out-stage {
   margin: 0;
 }
 .sr-out-subject > summary,
+.sr-out-book > summary,
 .sr-out-stage > summary {
   display: flex;
   align-items: center;
@@ -288,6 +290,7 @@ body {
   user-select: none;
 }
 .sr-out-subject > summary::-webkit-details-marker,
+.sr-out-book > summary::-webkit-details-marker,
 .sr-out-stage > summary::-webkit-details-marker {
   display: none;
 }
@@ -300,11 +303,24 @@ body {
   font-weight: 600;
 }
 .sr-out-subject > summary:hover,
+.sr-out-book > summary:hover,
 .sr-out-stage > summary:hover {
   background: var(--sr-card);
 }
 .sr-out-subject-name {
   flex: 1 1 auto;
+}
+/* Book level — one printed volume ("Algebra, Grade 6"). Sits between the
+   discipline and its chapters, so it reads a shade lighter than the discipline
+   and a shade stronger than a chapter. */
+.sr-out-book {
+  margin-left: 6px;
+}
+.sr-out-book > summary {
+  padding: 6px 10px;
+  color: var(--sr-ink);
+  font-size: 13px;
+  font-weight: 600;
 }
 .sr-out-stage {
   margin-left: 6px;
@@ -1057,6 +1073,10 @@ a.sr-out-lesson.ready:hover {
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   align-items: start;
+}
+/* No lesson grid to sit beside — the principle column takes the row. */
+.sr-learn.sr-learn-solo {
+  grid-template-columns: 1fr;
 }
 /* Desktop: principle left, courses right. DOM order is courses-first so the
    mobile stack (below) shows lessons on top without extra markup. */

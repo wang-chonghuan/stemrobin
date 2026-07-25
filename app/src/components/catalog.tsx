@@ -2,8 +2,8 @@ import { Link, useRouter } from '@tanstack/react-router'
 import { Check, ChevronUp, Languages, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
-import { type OutlineSubject, parseLessonNumber, withAvailableLessonIds } from '~/lib/curriculum'
 import type { EnglishLessonRef } from '~/lib/english'
+import { getTextbookOutline, type OutlineDiscipline } from '~/lib/textbooks'
 import { LOCALES, t, type Locale } from '~/lib/i18n'
 import { setLocale } from '~/lib/locale'
 import { logout, type CurrentUser } from '~/lib/session'
@@ -32,7 +32,7 @@ export function CatalogSidebar({
   drawerOpen: boolean
   onNavigate: () => void
 }) {
-  const curriculum = withAvailableLessonIds(lessonIds, locale)
+  const outline = getTextbookOutline(lessonIds, locale)
   return (
     <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`}>
       <div className="sr-cat-head">
@@ -63,12 +63,12 @@ export function CatalogSidebar({
 
       <div className="sr-cat-scroll">
         <div className="sr-cat-group">{t(locale, 'cat.group.curriculum')}</div>
-        {curriculum.map((subj) => (
-          <SubjectOutline
-            key={subj.subject}
-            subj={subj}
+        {outline.map((d) => (
+          <DisciplineOutline
+            key={d.discipline}
+            discipline={d}
             locale={locale}
-            defaultOpen={subj.subject === 'math'}
+            defaultOpen={d.discipline === 'math'}
             onNavigate={onNavigate}
           />
         ))}
@@ -257,49 +257,98 @@ function EnglishOutline({
           ))}
         </ul>
       </details>
+      {/* One math lesson from the retired outline is parked here as a worked
+          sample of the card format (STEMROBIN-113). It is a reference, not part
+          of the English course. */}
+      <details className="sr-out-stage">
+        <summary>
+          <span className="sr-out-caret" aria-hidden />
+          <span className="sr-out-stage-name">{t(locale, 'cat.ref')}</span>
+        </summary>
+        <ul className="sr-out-lessons">
+          <li>
+            <Link
+              to="/lesson/$id"
+              params={{ id: REFERENCE_LESSON }}
+              className="sr-out-lesson ready"
+              activeProps={{ className: 'sr-out-lesson ready active' }}
+              onClick={onNavigate}
+            >
+              <span className="sr-out-dot" aria-hidden />
+              {t(locale, `cat.ref.${REFERENCE_LESSON}`)}
+            </Link>
+          </li>
+        </ul>
+      </details>
     </details>
   )
 }
 
-function SubjectOutline({
-  subj,
+const REFERENCE_LESSON = 'math-s10-02'
+
+// 学科 → 册 → 章 → 课. The book is the middle level (its title already carries
+// the branch — "Algebra, Grade 6"), so the rail nests three deep, not four.
+function DisciplineOutline({
+  discipline,
   locale,
   defaultOpen,
   onNavigate,
 }: {
-  subj: OutlineSubject
+  discipline: OutlineDiscipline
   locale: Locale
   defaultOpen: boolean
   onNavigate: () => void
 }) {
-  const total = subj.stages.reduce((n, s) => n + s.lessons.length, 0)
-  const ready = subj.stages.reduce((n, s) => n + s.lessons.filter((l) => l.id).length, 0)
+  const lessons = discipline.books.flatMap((b) => b.chapters.flatMap((c) => c.lessons))
+  const ready = lessons.filter((l) => l.ready).length
   return (
     <details className="sr-out-subject" open={defaultOpen}>
       <summary>
         <span className="sr-out-caret" aria-hidden />
-        <span className="sr-out-subject-name">{subj.label}</span>
-        <span className="sr-count">{ready > 0 ? `${ready}/${total}` : total}</span>
+        <span className="sr-out-subject-name">{discipline.label}</span>
+        <span className="sr-count">{ready > 0 ? `${ready}/${lessons.length}` : lessons.length}</span>
       </summary>
-      {subj.stages.map((stage, i) => {
-        const hasReady = stage.lessons.some((l) => l.id)
-        // Stage number from a real lesson id when present, so a filtered locale
-        // outline (untranslated stages dropped) keeps the true stage number.
-        const readyId = stage.lessons.find((l) => l.id)?.id
-        const stageNo = (readyId && parseLessonNumber(readyId)?.stage) || i + 1
-        return (
-          <details key={stage.title} className="sr-out-stage" open={hasReady}>
-            <summary>
-              <span className="sr-out-caret" aria-hidden />
-              <span className="sr-out-stage-name">
-                {t(locale, 'cat.stage', { n: stageNo, title: stage.title })}
-              </span>
-            </summary>
-            <ul className="sr-out-lessons">
-              {stage.lessons.map((l, j) => {
-                const num = l.id ? parseLessonNumber(l.id) : null
-                const label = num ? `${num.stage}.${num.order}` : `${stageNo}.${j + 1}`
-                return l.id ? (
+      {discipline.books.map((book) => (
+        <details key={book.book} className="sr-out-book" open={discipline.books.length === 1}>
+          <summary>
+            <span className="sr-out-caret" aria-hidden />
+            <span className="sr-out-stage-name">{book.title}</span>
+          </summary>
+          {book.chapters.map((ch) => (
+            <details key={ch.id} className="sr-out-stage" open={ch.lessons.some((l) => l.ready)}>
+              <summary>
+                <span className="sr-out-caret" aria-hidden />
+                <span className="sr-out-stage-name">{ch.label}</span>
+              </summary>
+              <ul className="sr-out-lessons">
+                {ch.lessons.map((l) =>
+                  l.ready ? (
+                    <li key={l.id}>
+                      <Link
+                        to="/lesson/$id"
+                        params={{ id: l.id }}
+                        className="sr-out-lesson ready"
+                        activeProps={{ className: 'sr-out-lesson ready active' }}
+                        onClick={onNavigate}
+                      >
+                        <span className="sr-out-dot" aria-hidden />
+                        {l.number} {l.title}
+                      </Link>
+                    </li>
+                  ) : (
+                    <li key={l.id} className="sr-out-lesson">
+                      {l.number} {l.title}
+                    </li>
+                  ),
+                )}
+              </ul>
+            </details>
+          ))}
+          {/* Volume-level sets (the closing 难题) — they belong to no chapter. */}
+          {book.extras.length > 0 && (
+            <ul className="sr-out-lessons sr-out-extras">
+              {book.extras.map((l) =>
+                l.ready ? (
                   <li key={l.id}>
                     <Link
                       to="/lesson/$id"
@@ -309,19 +358,19 @@ function SubjectOutline({
                       onClick={onNavigate}
                     >
                       <span className="sr-out-dot" aria-hidden />
-                      {label} {l.title}
+                      {l.title}
                     </Link>
                   </li>
                 ) : (
-                  <li key={l.title} className="sr-out-lesson">
-                    {label} {l.title}
+                  <li key={l.id} className="sr-out-lesson">
+                    {l.title}
                   </li>
-                )
-              })}
+                ),
+              )}
             </ul>
-          </details>
-        )
-      })}
+          )}
+        </details>
+      ))}
     </details>
   )
 }
