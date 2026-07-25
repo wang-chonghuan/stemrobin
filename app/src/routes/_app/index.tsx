@@ -74,7 +74,10 @@ function Overview() {
             <span className="sr-hero-badge">{t(locale, 'ov.hero.badge')}</span>
             <h1 className="sr-hero-title">
               {t(locale, 'ov.hero.title.a')}
-              <span className="sr-hero-accent">{t(locale, 'ov.hero.title.b')}</span>
+              {/* Fixed break at the comma; on phones it wraps naturally instead. */}
+              <br className="sr-hero-title-br" />
+              {t(locale, 'ov.hero.title.b')}
+              <span className="sr-hero-accent">{t(locale, 'ov.hero.title.c')}</span>
             </h1>
             <div className="sr-hero-story">
               <p className="sr-hero-story-line">{t(locale, 'ov.hero.story.a')}</p>

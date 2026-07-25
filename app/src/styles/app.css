@@ -988,7 +988,8 @@ a.sr-out-lesson.ready:hover {
   border: 1px solid var(--sr-line);
   border-radius: 14px;
 }
-.sr-hero-copy { flex: 1; min-width: 0; }
+/* Container for the headline's authored line break (see .sr-hero-title-br). */
+.sr-hero-copy { flex: 1; min-width: 0; container-type: inline-size; }
 .sr-hero-badge {
   display: inline-block;
   font-size: 11.5px;
@@ -1008,8 +1009,16 @@ a.sr-out-lesson.ready:hover {
   line-height: 1.34;
   font-weight: 800;
   color: var(--sr-ink);
-  max-width: 34ch;
+  max-width: 62ch;
   text-wrap: balance;
+}
+/* The headline is authored as two lines, broken at the comma. The second line
+   ("heir to …") needs ~640px; where the copy column is narrower — phones,
+   narrow windows — the break is dropped and the headline wraps on its own. */
+.sr-hero-title-br { display: none; }
+@container (min-width: 660px) {
+  .sr-hero-title { text-wrap: initial; }
+  .sr-hero-title-br { display: inline; }
 }
 .sr-hero-accent { color: var(--sr-blue); }
 .sr-hero-story {
@@ -1031,6 +1040,9 @@ a.sr-out-lesson.ready:hover {
 .sr-hero-art { flex: none; width: 208px; height: auto; }
 @media (max-width: 640px) {
   .sr-hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px; }
+  /* The column stack is flex-start, so the copy's width would come from its own
+     content — which inline-size containment hides. Stretch it back to full. */
+  .sr-hero-copy { align-self: stretch; }
   .sr-hero-title { font-size: 22px; }
   .sr-hero-art { width: 168px; align-self: center; }
 }
