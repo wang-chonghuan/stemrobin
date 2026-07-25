@@ -17,7 +17,7 @@
     "tocPages": "PDF 物理页 p.0004–p.0006（书内目录页 1–3）"
   },
   "note": "本文件是从扫描件目录逐条提取的原书目录，是本册的权威件；en.json 是它的译本，结构必须逐字段一致。",
-  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷节号的用节号（printedSection，全书连续 1–17），没有节号的用原书印刷的名称（printedName）。 目录顶层（contents）是原书目录的第一级，条目未必都是章：`kind: \"chapter\"` 的带下级节，`kind: \"exercises\"` 的本身就是一条（如「难题」，原书里与各章同级且无章号，number 为 null）。",
+  "numbering": "`number`（如 2.3）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷节号的用节号（printedSection，全书连续 1–17），没有节号的用原书印刷的名称（printedName）。 每个 topic 也有自己的 id（`<课id>-n<印刷序号>`），它是可寻址的卡片。目录顶层（contents）是原书目录的第一级，条目未必都是章：`kind: \"chapter\"` 的带下级节，`kind: \"exercises\"` 的本身就是一条（如「难题」，原书里与各章同级且无章号，number 为 null）。",
   "contents": [
     {
       "id": "alg6-c1",
@@ -37,11 +37,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c1-s1-n1",
               "printedNumber": 1,
               "title": "数式",
               "page": 1
             },
             {
+              "id": "alg6-c1-s1-n2",
               "printedNumber": 2,
               "title": "含有变量的式",
               "page": 4
@@ -59,16 +61,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c1-s2-n3",
               "printedNumber": 3,
               "title": "含有变量的命题和语句",
               "page": 10
             },
             {
+              "id": "alg6-c1-s2-n4",
               "printedNumber": 4,
               "title": "一元方程",
               "page": 14
             },
             {
+              "id": "alg6-c1-s2-n5",
               "printedNumber": 5,
               "title": "一元不等式. 数区间",
               "page": 18
@@ -86,11 +91,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c1-s3-n6",
               "printedNumber": 6,
               "title": "关系的概念",
               "page": 22
             },
             {
+              "id": "alg6-c1-s3-n7",
               "printedNumber": 7,
               "title": "数和数之间的关系的图象",
               "page": 29
@@ -127,21 +134,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s1-n8",
               "printedNumber": 8,
               "title": "什么是函数？",
               "page": 44
             },
             {
+              "id": "alg6-c2-s1-n9",
               "printedNumber": 9,
               "title": "用列数对的方法给出函数",
               "page": 48
             },
             {
+              "id": "alg6-c2-s1-n10",
               "printedNumber": 10,
               "title": "用式给出函数",
               "page": 50
             },
             {
+              "id": "alg6-c2-s1-n11",
               "printedNumber": 11,
               "title": "用图象给出函数",
               "page": 53
@@ -159,21 +170,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s2-n12",
               "printedNumber": 12,
               "title": "正比例关系的概念",
               "page": 60
             },
             {
+              "id": "alg6-c2-s2-n13",
               "printedNumber": 13,
               "title": "正比例函数的性质",
               "page": 65
             },
             {
+              "id": "alg6-c2-s2-n14",
               "printedNumber": 14,
               "title": "把一个数分成和几个已知数成比例的几部分",
               "page": 68
             },
             {
+              "id": "alg6-c2-s2-n15",
               "printedNumber": 15,
               "title": "正比例函数的图象",
               "page": 69
@@ -191,16 +206,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s3-n16",
               "printedNumber": 16,
               "title": "反比例函数的概念",
               "page": 75
             },
             {
+              "id": "alg6-c2-s3-n17",
               "printedNumber": 17,
               "title": "反比例函数的性质",
               "page": 78
             },
             {
+              "id": "alg6-c2-s3-n18",
               "printedNumber": 18,
               "title": "反比例函数的图象",
               "page": 81
@@ -218,16 +236,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s4-n19",
               "printedNumber": 19,
               "title": "线性函数的性质",
               "page": 86
             },
             {
+              "id": "alg6-c2-s4-n20",
               "printedNumber": 20,
               "title": "线性函数的图象",
               "page": 88
             },
             {
+              "id": "alg6-c2-s4-n21",
               "printedNumber": 21,
               "title": "直线的斜率",
               "page": 92
@@ -264,21 +285,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c3-s1-n22",
               "printedNumber": 22,
               "title": "二元方程",
               "page": 114
             },
             {
+              "id": "alg6-c3-s1-n23",
               "printedNumber": 23,
               "title": "二元方程给出的关系的图象",
               "page": 117
             },
             {
+              "id": "alg6-c3-s1-n24",
               "printedNumber": 24,
               "title": "二元线性方程",
               "page": 120
             },
             {
+              "id": "alg6-c3-s1-n25",
               "printedNumber": 25,
               "title": "二元方程组的概念. 用作图法解二元方程组",
               "page": 123
@@ -296,21 +321,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c3-s2-n26",
               "printedNumber": 26,
               "title": "由两个二元线性方程组成的方程组解的个数",
               "page": 126
             },
             {
+              "id": "alg6-c3-s2-n27",
               "printedNumber": 27,
               "title": "线性方程组的特殊情形",
               "page": 130
             },
             {
+              "id": "alg6-c3-s2-n28",
               "printedNumber": 28,
               "title": "加减消元法",
               "page": 132
             },
             {
+              "id": "alg6-c3-s2-n29",
               "printedNumber": 29,
               "title": "列方程组解应用题",
               "page": 139
@@ -347,26 +376,31 @@
           },
           "topics": [
             {
+              "id": "alg6-c4-s1-n30",
               "printedNumber": 30,
               "title": "自然数指数幂",
               "page": 152
             },
             {
+              "id": "alg6-c4-s1-n31",
               "printedNumber": 31,
               "title": "幂的基本性质",
               "page": 156
             },
             {
+              "id": "alg6-c4-s1-n32",
               "printedNumber": 32,
               "title": "幂的乘方",
               "page": 158
             },
             {
+              "id": "alg6-c4-s1-n33",
               "printedNumber": 33,
               "title": "积的乘方",
               "page": 160
             },
             {
+              "id": "alg6-c4-s1-n34",
               "printedNumber": 34,
               "title": "同底数的幂的商",
               "page": 162
@@ -384,21 +418,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c4-s2-n35",
               "printedNumber": 35,
               "title": "分式化简",
               "page": 165
             },
             {
+              "id": "alg6-c4-s2-n36",
               "printedNumber": 36,
               "title": "两个分式的积",
               "page": 167
             },
             {
+              "id": "alg6-c4-s2-n37",
               "printedNumber": 37,
               "title": "两个分式的商",
               "page": 169
             },
             {
+              "id": "alg6-c4-s2-n38",
               "printedNumber": 38,
               "title": "分式的乘方",
               "page": 170
@@ -416,11 +454,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c4-s3-n39",
               "printedNumber": 39,
               "title": "式 y=ax² 给出的函数及其图象",
               "page": 172
             },
             {
+              "id": "alg6-c4-s3-n40",
               "printedNumber": 40,
               "title": "式 y=ax³ 给出的函数及其图象",
               "page": 180
@@ -457,21 +497,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s1-n41",
               "printedNumber": 41,
               "title": "关系的一些性质",
               "page": 193
             },
             {
+              "id": "alg6-c5-s1-n42",
               "printedNumber": 42,
               "title": "恒等式的概念",
               "page": 197
             },
             {
+              "id": "alg6-c5-s1-n43",
               "printedNumber": 43,
               "title": "单项式的概念",
               "page": 200
             },
             {
+              "id": "alg6-c5-s1-n44",
               "printedNumber": 44,
               "title": "多项式的概念",
               "page": 201
@@ -489,11 +533,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s2-n45",
               "printedNumber": 45,
               "title": "去括号",
               "page": 204
             },
             {
+              "id": "alg6-c5-s2-n46",
               "printedNumber": 46,
               "title": "添括号",
               "page": 209
@@ -511,16 +557,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s3-n47",
               "printedNumber": 47,
               "title": "单项式和多项式的乘积化成标准形式的多项式",
               "page": 211
             },
             {
+              "id": "alg6-c5-s3-n48",
               "printedNumber": 48,
               "title": "提出公因式",
               "page": 215
             },
             {
+              "id": "alg6-c5-s3-n49",
               "printedNumber": 49,
               "title": "用因式分解法解方程",
               "page": 221
@@ -538,11 +587,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s4-n50",
               "printedNumber": 50,
               "title": "把两个多项式的积变换成标准形式的多项式",
               "page": 224
             },
             {
+              "id": "alg6-c5-s4-n51",
               "printedNumber": 51,
               "title": "用分组法分解多项式的因式",
               "page": 229
@@ -560,21 +611,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s5-n52",
               "printedNumber": 52,
               "title": "两个单项式的和与差的积",
               "page": 233
             },
             {
+              "id": "alg6-c5-s5-n53",
               "printedNumber": 53,
               "title": "两个式子的平方差",
               "page": 236
             },
             {
+              "id": "alg6-c5-s5-n54",
               "printedNumber": 54,
               "title": "二项式的平方变换成多项式",
               "page": 240
             },
             {
+              "id": "alg6-c5-s5-n55",
               "printedNumber": 55,
               "title": "把形式如 a²+2ab+b² 的三项式变换成二项式的平方",
               "page": 245

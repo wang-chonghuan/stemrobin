@@ -17,7 +17,7 @@
     "tocPages": "PDF 物理页 p.0004–p.0006（书内目录页 1–3）"
   },
   "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
-  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–17 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while `kind: \"exercises\"` is itself a single entry — 难题 sits at the same indent as the five chapters and carries no chapter number, so its `number` is null.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–17 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book). Each topic carries its own id (`<lessonId>-n<printedNumber>`) — it is an addressable card. The top level (`contents`) is the printed table of contents' first level, and not every entry there is a chapter: `kind: \"chapter\"` has sections beneath it, while `kind: \"exercises\"` is itself a single entry — 难题 sits at the same indent as the five chapters and carries no chapter number, so its `number` is null.",
   "contents": [
     {
       "id": "alg6-c1",
@@ -37,11 +37,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c1-s1-n1",
               "printedNumber": 1,
               "title": "Numerical expressions",
               "page": 1
             },
             {
+              "id": "alg6-c1-s1-n2",
               "printedNumber": 2,
               "title": "Expressions containing variables",
               "page": 4
@@ -59,16 +61,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c1-s2-n3",
               "printedNumber": 3,
               "title": "Propositions and open sentences with variables",
               "page": 10
             },
             {
+              "id": "alg6-c1-s2-n4",
               "printedNumber": 4,
               "title": "Equations in one variable",
               "page": 14
             },
             {
+              "id": "alg6-c1-s2-n5",
               "printedNumber": 5,
               "title": "Inequalities in one variable. Number intervals",
               "page": 18
@@ -86,11 +91,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c1-s3-n6",
               "printedNumber": 6,
               "title": "The concept of a relation",
               "page": 22
             },
             {
+              "id": "alg6-c1-s3-n7",
               "printedNumber": 7,
               "title": "Graphs of relations between numbers",
               "page": 29
@@ -127,21 +134,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s1-n8",
               "printedNumber": 8,
               "title": "What is a function?",
               "page": 44
             },
             {
+              "id": "alg6-c2-s1-n9",
               "printedNumber": 9,
               "title": "Defining a function by a table of number pairs",
               "page": 48
             },
             {
+              "id": "alg6-c2-s1-n10",
               "printedNumber": 10,
               "title": "Defining a function by a formula",
               "page": 50
             },
             {
+              "id": "alg6-c2-s1-n11",
               "printedNumber": 11,
               "title": "Defining a function by a graph",
               "page": 53
@@ -159,21 +170,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s2-n12",
               "printedNumber": 12,
               "title": "The concept of direct proportionality",
               "page": 60
             },
             {
+              "id": "alg6-c2-s2-n13",
               "printedNumber": 13,
               "title": "Properties of direct proportionality",
               "page": 65
             },
             {
+              "id": "alg6-c2-s2-n14",
               "printedNumber": 14,
               "title": "Dividing a number into parts proportional to given numbers",
               "page": 68
             },
             {
+              "id": "alg6-c2-s2-n15",
               "printedNumber": 15,
               "title": "The graph of a direct proportionality",
               "page": 69
@@ -191,16 +206,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s3-n16",
               "printedNumber": 16,
               "title": "The concept of inverse proportionality",
               "page": 75
             },
             {
+              "id": "alg6-c2-s3-n17",
               "printedNumber": 17,
               "title": "Properties of inverse proportionality",
               "page": 78
             },
             {
+              "id": "alg6-c2-s3-n18",
               "printedNumber": 18,
               "title": "The graph of an inverse proportionality",
               "page": 81
@@ -218,16 +236,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c2-s4-n19",
               "printedNumber": 19,
               "title": "Properties of a linear function",
               "page": 86
             },
             {
+              "id": "alg6-c2-s4-n20",
               "printedNumber": 20,
               "title": "The graph of a linear function",
               "page": 88
             },
             {
+              "id": "alg6-c2-s4-n21",
               "printedNumber": 21,
               "title": "The slope of a line",
               "page": 92
@@ -264,21 +285,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c3-s1-n22",
               "printedNumber": 22,
               "title": "Equations in two variables",
               "page": 114
             },
             {
+              "id": "alg6-c3-s1-n23",
               "printedNumber": 23,
               "title": "Graphs of relations given by an equation in two variables",
               "page": 117
             },
             {
+              "id": "alg6-c3-s1-n24",
               "printedNumber": 24,
               "title": "Linear equations in two variables",
               "page": 120
             },
             {
+              "id": "alg6-c3-s1-n25",
               "printedNumber": 25,
               "title": "The concept of a system in two variables. Solving a system graphically",
               "page": 123
@@ -296,21 +321,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c3-s2-n26",
               "printedNumber": 26,
               "title": "The number of solutions of a system of two linear equations in two variables",
               "page": 126
             },
             {
+              "id": "alg6-c3-s2-n27",
               "printedNumber": 27,
               "title": "Special cases of systems of linear equations",
               "page": 130
             },
             {
+              "id": "alg6-c3-s2-n28",
               "printedNumber": 28,
               "title": "Solving by elimination",
               "page": 132
             },
             {
+              "id": "alg6-c3-s2-n29",
               "printedNumber": 29,
               "title": "Solving word problems with systems of equations",
               "page": 139
@@ -347,26 +376,31 @@
           },
           "topics": [
             {
+              "id": "alg6-c4-s1-n30",
               "printedNumber": 30,
               "title": "Powers with natural exponents",
               "page": 152
             },
             {
+              "id": "alg6-c4-s1-n31",
               "printedNumber": 31,
               "title": "The basic property of powers",
               "page": 156
             },
             {
+              "id": "alg6-c4-s1-n32",
               "printedNumber": 32,
               "title": "A power of a power",
               "page": 158
             },
             {
+              "id": "alg6-c4-s1-n33",
               "printedNumber": 33,
               "title": "A power of a product",
               "page": 160
             },
             {
+              "id": "alg6-c4-s1-n34",
               "printedNumber": 34,
               "title": "The quotient of powers with the same base",
               "page": 162
@@ -384,21 +418,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c4-s2-n35",
               "printedNumber": 35,
               "title": "Simplifying fractions",
               "page": 165
             },
             {
+              "id": "alg6-c4-s2-n36",
               "printedNumber": 36,
               "title": "The product of two fractions",
               "page": 167
             },
             {
+              "id": "alg6-c4-s2-n37",
               "printedNumber": 37,
               "title": "The quotient of two fractions",
               "page": 169
             },
             {
+              "id": "alg6-c4-s2-n38",
               "printedNumber": 38,
               "title": "A power of a fraction",
               "page": 170
@@ -416,11 +454,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c4-s3-n39",
               "printedNumber": 39,
               "title": "The function given by y = ax² and its graph",
               "page": 172
             },
             {
+              "id": "alg6-c4-s3-n40",
               "printedNumber": 40,
               "title": "The function given by y = ax³ and its graph",
               "page": 180
@@ -457,21 +497,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s1-n41",
               "printedNumber": 41,
               "title": "Some properties of relations",
               "page": 193
             },
             {
+              "id": "alg6-c5-s1-n42",
               "printedNumber": 42,
               "title": "The concept of an identity",
               "page": 197
             },
             {
+              "id": "alg6-c5-s1-n43",
               "printedNumber": 43,
               "title": "The concept of a monomial",
               "page": 200
             },
             {
+              "id": "alg6-c5-s1-n44",
               "printedNumber": 44,
               "title": "The concept of a polynomial",
               "page": 201
@@ -489,11 +533,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s2-n45",
               "printedNumber": 45,
               "title": "Removing brackets",
               "page": 204
             },
             {
+              "id": "alg6-c5-s2-n46",
               "printedNumber": 46,
               "title": "Inserting brackets",
               "page": 209
@@ -511,16 +557,19 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s3-n47",
               "printedNumber": 47,
               "title": "Reducing the product of a monomial and a polynomial to standard form",
               "page": 211
             },
             {
+              "id": "alg6-c5-s3-n48",
               "printedNumber": 48,
               "title": "Taking out a common factor",
               "page": 215
             },
             {
+              "id": "alg6-c5-s3-n49",
               "printedNumber": 49,
               "title": "Solving equations by factoring",
               "page": 221
@@ -538,11 +587,13 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s4-n50",
               "printedNumber": 50,
               "title": "Reducing the product of two polynomials to standard form",
               "page": 224
             },
             {
+              "id": "alg6-c5-s4-n51",
               "printedNumber": 51,
               "title": "Factoring a polynomial by grouping",
               "page": 229
@@ -560,21 +611,25 @@
           },
           "topics": [
             {
+              "id": "alg6-c5-s5-n52",
               "printedNumber": 52,
               "title": "The product of the sum and difference of two monomials",
               "page": 233
             },
             {
+              "id": "alg6-c5-s5-n53",
               "printedNumber": 53,
               "title": "The difference of squares of two expressions",
               "page": 236
             },
             {
+              "id": "alg6-c5-s5-n54",
               "printedNumber": 54,
               "title": "Expanding the square of a binomial",
               "page": 240
             },
             {
+              "id": "alg6-c5-s5-n55",
               "printedNumber": 55,
               "title": "Writing a trinomial a² + 2ab + b² as the square of a binomial",
               "page": 245

@@ -26,7 +26,7 @@
 import { t, type Locale } from '~/lib/i18n'
 
 type SourceRef = { printedSection: number } | { printedName: string }
-type RawTopic = { printedNumber: number; title: string; page: number }
+type RawTopic = { id: string; printedNumber: number; title: string; page: number }
 type RawLesson = {
   id: string
   kind: 'section' | 'exercises'
@@ -92,7 +92,7 @@ const SHELF: Partial<Record<Locale, RawBook>>[] = (() => {
  *  lesson with the printed numbering, which runs continuously across the whole
  *  volume (1–55 in Algebra 6), so a topic is addressed by its lesson's id plus
  *  that number. They are not pages of their own. */
-export type OutlineTopic = { number: number; title: string }
+export type OutlineTopic = { id: string; number: number; title: string }
 export type OutlineLesson = {
   id: string
   number: string
@@ -124,7 +124,11 @@ export function getTextbookOutline(
       number: l.number ?? '',
       title: l.title,
       ready: available.has(l.id),
-      topics: (l.topics ?? []).map((tp) => ({ number: tp.printedNumber, title: tp.title })),
+      topics: (l.topics ?? []).map((tp) => ({
+        id: tp.id,
+        number: tp.printedNumber,
+        title: tp.title,
+      })),
     })
     const contents: OutlineNode[] = book.contents.map((e) =>
       e.kind === 'chapter'
@@ -147,6 +151,52 @@ export function getTextbookOutline(
     const books = byDiscipline.get(d)
     return books?.length ? [{ discipline: d, label: t(locale, `cat.disc.${d}`), books }] : []
   })
+}
+
+/** One card, resolved for its own page: where it sits, and its neighbours in
+ *  reading order across the whole volume — a card's next is the first card of
+ *  the following section once its own runs out. */
+export type Card = {
+  id: string
+  number: number
+  title: string
+  book: string
+  chapter: string
+  section: string
+  prev: { id: string; title: string } | null
+  next: { id: string; title: string } | null
+}
+
+export function findCard(cardId: string, locale: Locale): Card | null {
+  for (const localized of SHELF) {
+    const book = localized[locale] ?? localized.zh ?? localized.en
+    if (!book) continue
+    // Reading order for the whole volume, so prev/next cross section and
+    // chapter boundaries the way turning a page does.
+    const flat = book.contents.flatMap((e) =>
+      e.kind === 'chapter'
+        ? e.lessons.flatMap((l) =>
+            (l.topics ?? []).map((tp) => ({ topic: tp, chapter: e, lesson: l })),
+          )
+        : [],
+    )
+    const i = flat.findIndex((c) => c.topic.id === cardId)
+    if (i < 0) continue
+    const at = flat[i]
+    const ref = (n: number) =>
+      flat[n] ? { id: flat[n].topic.id, title: flat[n].topic.title } : null
+    return {
+      id: at.topic.id,
+      number: at.topic.printedNumber,
+      title: at.topic.title,
+      book: book.title,
+      chapter: t(locale, 'cat.chapter', { n: at.chapter.number, title: at.chapter.title }),
+      section: at.lesson.number ? `${at.lesson.number} ${at.lesson.title}` : at.lesson.title,
+      prev: ref(i - 1),
+      next: ref(i + 1),
+    }
+  }
+  return null
 }
 
 /** Every lesson in a book, chapters and top-level entries alike. */

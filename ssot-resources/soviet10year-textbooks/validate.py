@@ -34,7 +34,7 @@ def skeleton(doc: dict) -> list:
                         l.get("number"),
                         l.get("page"),
                         json.dumps(l["source"], ensure_ascii=False, sort_keys=True),
-                        tuple(t["printedNumber"] for t in l.get("topics", [])),
+                        tuple((t["id"], t["printedNumber"]) for t in l.get("topics", [])),
                     )
                 )
         else:
@@ -80,6 +80,13 @@ def check_book(d: pathlib.Path) -> None:
                 fail(book, f'{l["id"]}: source must carry printedSection or printedName')
             if "page" not in l:
                 fail(book, f'{l["id"]}: missing page')
+            for tp in l.get("topics", []):
+                want = f'{l["id"]}-n{tp["printedNumber"]}'
+                if tp.get("id") != want:
+                    fail(book, f'topic under {l["id"]}: id should be {want}, got {tp.get("id")!r}')
+                if tp["id"] in ids:
+                    fail(book, f'duplicate id {tp["id"]}')
+                ids.add(tp["id"])
 
     base = skeleton(zh)
     for loc, doc in docs.items():

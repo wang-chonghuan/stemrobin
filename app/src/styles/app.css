@@ -370,10 +370,22 @@ details[open] > summary > .sr-out-caret {
 .sr-out-topic {
   display: flex;
   gap: 7px;
-  padding: 2px 8px;
-  color: var(--sr-ink-dim);
-  font-size: 11.5px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  color: var(--sr-ink-soft);
+  font-size: 12px;
   line-height: 1.45;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sr-out-topic:hover {
+  background: var(--sr-card);
+  color: var(--sr-ink);
+}
+.sr-out-topic.active {
+  background: var(--sr-blue-tint);
+  color: var(--sr-blue-deep);
+  font-weight: 600;
 }
 .sr-out-topic-n {
   flex: none;
@@ -383,7 +395,109 @@ details[open] > summary > .sr-out-caret {
   font-size: 10.5px;
   font-weight: 600;
   color: var(--sr-ink-dim);
-  opacity: 0.65;
+}
+.sr-out-topic:hover .sr-out-topic-n,
+.sr-out-topic.active .sr-out-topic-n {
+  color: inherit;
+}
+
+/* ---- one card ---- */
+/* Fills the detail pane: the body takes whatever height is left so the actions
+   sit at the bottom of the area rather than under a short block of text. */
+.sr-deck {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 2px 2px 0;
+}
+/* One line, scrolled rather than wrapped or truncated — swipe/scroll to read the
+   front of it. It is scrolled to its end on mount (see the ref), because the
+   section is the part that says where you are. */
+.sr-deck-where {
+  display: flex;
+  gap: 8px;
+  white-space: nowrap;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+  color: var(--sr-ink-dim);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+.sr-deck-where::-webkit-scrollbar {
+  display: none;
+}
+.sr-deck-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin: 10px 0 2px;
+  font-family: var(--sr-display);
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--sr-ink);
+}
+.sr-deck-n {
+  flex: none;
+  color: var(--sr-blue);
+  font-size: 22px;
+}
+.sr-deck-id {
+  margin: 0;
+  color: var(--sr-ink-dim);
+  font-size: 11px;
+}
+.sr-deck-body {
+  flex: 1 1 auto;
+  min-height: 200px;
+  margin: 16px 0;
+  padding: 22px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--sr-line);
+  border-radius: 14px;
+  background: var(--sr-panel);
+}
+.sr-deck-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid var(--sr-line);
+}
+.sr-deck-spacer {
+  flex: 1 1 auto;
+}
+.sr-deck-turn {
+  display: inline-flex;
+  gap: 8px;
+}
+.sr-deck-act {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border: 1px solid var(--sr-line);
+  border-radius: 999px;
+  background: var(--sr-card);
+  color: var(--sr-ink-soft);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.sr-deck-act:hover {
+  border-color: var(--sr-blue);
+  color: var(--sr-blue-deep);
+}
+.sr-deck-act.disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* A contents entry that is a lesson rather than a chapter (难题) is a peer of the
@@ -520,6 +634,15 @@ a.sr-out-lesson.ready:hover {
   min-height: 0;
   overflow: auto;
   padding: 20px;
+}
+/* For a page whose content should occupy the pane rather than stack from the
+   top — the child is free to be 100% tall. */
+.sr-d-scroll-fill {
+  display: flex;
+  flex-direction: column;
+}
+.sr-d-scroll-fill > * {
+  flex: 1 1 auto;
 }
 
 .sr-eyebrow {

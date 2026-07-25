@@ -323,9 +323,17 @@ function LessonRow({
       {lesson.topics.length > 0 && (
         <ol className="sr-out-topics">
           {lesson.topics.map((tp) => (
-            <li key={tp.number} className="sr-out-topic">
-              <span className="sr-out-topic-n">{tp.number}</span>
-              {tp.title}
+            <li key={tp.id}>
+              <Link
+                to="/card/$id"
+                params={{ id: tp.id }}
+                className="sr-out-topic"
+                activeProps={{ className: 'sr-out-topic active' }}
+                onClick={onNavigate}
+              >
+                <span className="sr-out-topic-n">{tp.number}</span>
+                {tp.title}
+              </Link>
             </li>
           ))}
         </ol>
