@@ -1,0 +1,303 @@
+{
+  "book": "6a",
+  "subject": "algebra",
+  "grade": 6,
+  "title": "Algebra, Grade 6",
+  "source": {
+    "series": "Soviet ten-year school textbooks (Chinese translation)",
+    "printedTitle": "苏联十年制学校数学课本 代数（六年级）",
+    "editor": "A. I. Markushevich (ed.), 1977 Russian edition",
+    "translators": "刘远图, 何绍庚",
+    "publisher": "人民教育出版社, 1978",
+    "toc": "resources/soviet10years/toc/苏联十年制学校教材-书名作者目录.md#6a",
+    "note": "Titles here are English renderings of the printed Chinese table of contents; the printed Chinese is carried in 6a.zh.json. `page` is the printed page number, kept for locating the scan — it is not displayed."
+  },
+  "chapters": [
+    {
+      "n": 1,
+      "id": "alg6-c1",
+      "title": "Basic Concepts",
+      "page": 1,
+      "entries": [
+        {
+          "id": "alg6-s01",
+          "kind": "section",
+          "n": 1,
+          "title": "Expressions and their values",
+          "page": 1,
+          "items": [
+            { "n": 1, "title": "Numerical expressions", "page": 1 },
+            { "n": 2, "title": "Expressions containing variables", "page": 4 }
+          ]
+        },
+        {
+          "id": "alg6-s02",
+          "kind": "section",
+          "n": 2,
+          "title": "Sentences containing variables",
+          "page": 10,
+          "items": [
+            { "n": 3, "title": "Propositions and open sentences with variables", "page": 10 },
+            { "n": 4, "title": "Equations in one variable", "page": 14 },
+            { "n": 5, "title": "Inequalities in one variable. Number intervals", "page": 18 }
+          ]
+        },
+        {
+          "id": "alg6-s03",
+          "kind": "section",
+          "n": 3,
+          "title": "Relations",
+          "page": 22,
+          "items": [
+            { "n": 6, "title": "The concept of a relation", "page": 22 },
+            { "n": 7, "title": "Graphs of relations between numbers", "page": 29 }
+          ]
+        },
+        {
+          "id": "alg6-c1-ex",
+          "kind": "exercises",
+          "title": "Supplementary exercises for Chapter 1",
+          "page": 32
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "id": "alg6-c2",
+      "title": "Functions",
+      "page": 44,
+      "entries": [
+        {
+          "id": "alg6-s04",
+          "kind": "section",
+          "n": 4,
+          "title": "The concept of a function. Ways of defining a function",
+          "page": 44,
+          "items": [
+            { "n": 8, "title": "What is a function?", "page": 44 },
+            { "n": 9, "title": "Defining a function by a table of number pairs", "page": 48 },
+            { "n": 10, "title": "Defining a function by a formula", "page": 50 },
+            { "n": 11, "title": "Defining a function by a graph", "page": 53 }
+          ]
+        },
+        {
+          "id": "alg6-s05",
+          "kind": "section",
+          "n": 5,
+          "title": "Direct proportionality",
+          "page": 60,
+          "items": [
+            { "n": 12, "title": "The concept of direct proportionality", "page": 60 },
+            { "n": 13, "title": "Properties of direct proportionality", "page": 65 },
+            { "n": 14, "title": "Dividing a number into parts proportional to given numbers", "page": 68 },
+            { "n": 15, "title": "The graph of a direct proportionality", "page": 69 }
+          ]
+        },
+        {
+          "id": "alg6-s06",
+          "kind": "section",
+          "n": 6,
+          "title": "Inverse proportionality",
+          "page": 75,
+          "items": [
+            { "n": 16, "title": "The concept of inverse proportionality", "page": 75 },
+            { "n": 17, "title": "Properties of inverse proportionality", "page": 78 },
+            { "n": 18, "title": "The graph of an inverse proportionality", "page": 81 }
+          ]
+        },
+        {
+          "id": "alg6-s07",
+          "kind": "section",
+          "n": 7,
+          "title": "Linear functions",
+          "page": 86,
+          "items": [
+            { "n": 19, "title": "Properties of a linear function", "page": 86 },
+            { "n": 20, "title": "The graph of a linear function", "page": 88 },
+            { "n": 21, "title": "The slope of a line", "page": 92 }
+          ]
+        },
+        {
+          "id": "alg6-c2-ex",
+          "kind": "exercises",
+          "title": "Supplementary exercises for Chapter 2",
+          "page": 95
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "id": "alg6-c3",
+      "title": "Systems of Equations",
+      "page": 114,
+      "entries": [
+        {
+          "id": "alg6-s08",
+          "kind": "section",
+          "n": 8,
+          "title": "The concept of a system of equations in two variables",
+          "page": 114,
+          "items": [
+            { "n": 22, "title": "Equations in two variables", "page": 114 },
+            { "n": 23, "title": "Graphs of relations given by an equation in two variables", "page": 117 },
+            { "n": 24, "title": "Linear equations in two variables", "page": 120 },
+            { "n": 25, "title": "The concept of a system in two variables. Solving a system graphically", "page": 123 }
+          ]
+        },
+        {
+          "id": "alg6-s09",
+          "kind": "section",
+          "n": 9,
+          "title": "Systems of linear equations",
+          "page": 126,
+          "items": [
+            { "n": 26, "title": "The number of solutions of a system of two linear equations in two variables", "page": 126 },
+            { "n": 27, "title": "Special cases of systems of linear equations", "page": 130 },
+            { "n": 28, "title": "Solving by elimination", "page": 132 },
+            { "n": 29, "title": "Solving word problems with systems of equations", "page": 139 }
+          ]
+        },
+        {
+          "id": "alg6-c3-ex",
+          "kind": "exercises",
+          "title": "Supplementary exercises for Chapter 3",
+          "page": 143
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "id": "alg6-c4",
+      "title": "Powers with Natural Exponents",
+      "page": 152,
+      "entries": [
+        {
+          "id": "alg6-s10",
+          "kind": "section",
+          "n": 10,
+          "title": "The definition and properties of a power",
+          "page": 152,
+          "items": [
+            { "n": 30, "title": "Powers with natural exponents", "page": 152 },
+            { "n": 31, "title": "The basic property of powers", "page": 156 },
+            { "n": 32, "title": "A power of a power", "page": 158 },
+            { "n": 33, "title": "A power of a product", "page": 160 },
+            { "n": 34, "title": "The quotient of powers with the same base", "page": 162 }
+          ]
+        },
+        {
+          "id": "alg6-s11",
+          "kind": "section",
+          "n": 11,
+          "title": "Simplifying fractions; the product and quotient of two fractions",
+          "page": 165,
+          "items": [
+            { "n": 35, "title": "Simplifying fractions", "page": 165 },
+            { "n": 36, "title": "The product of two fractions", "page": 167 },
+            { "n": 37, "title": "The quotient of two fractions", "page": 169 },
+            { "n": 38, "title": "A power of a fraction", "page": 170 }
+          ]
+        },
+        {
+          "id": "alg6-s12",
+          "kind": "section",
+          "n": 12,
+          "title": "The functions given by y = ax² and y = ax³",
+          "page": 172,
+          "items": [
+            { "n": 39, "title": "The function given by y = ax² and its graph", "page": 172 },
+            { "n": 40, "title": "The function given by y = ax³ and its graph", "page": 180 }
+          ]
+        },
+        {
+          "id": "alg6-c4-ex",
+          "kind": "exercises",
+          "title": "Supplementary exercises for Chapter 4",
+          "page": 183
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "id": "alg6-c5",
+      "title": "Polynomials",
+      "page": 193,
+      "entries": [
+        {
+          "id": "alg6-s13",
+          "kind": "section",
+          "n": 13,
+          "title": "Monomials and polynomials",
+          "page": 193,
+          "items": [
+            { "n": 41, "title": "Some properties of relations", "page": 193 },
+            { "n": 42, "title": "The concept of an identity", "page": 197 },
+            { "n": 43, "title": "The concept of a monomial", "page": 200 },
+            { "n": 44, "title": "The concept of a polynomial", "page": 201 }
+          ]
+        },
+        {
+          "id": "alg6-s14",
+          "kind": "section",
+          "n": 14,
+          "title": "Reducing sums and differences of polynomials to standard form",
+          "page": 204,
+          "items": [
+            { "n": 45, "title": "Removing brackets", "page": 204 },
+            { "n": 46, "title": "Inserting brackets", "page": 209 }
+          ]
+        },
+        {
+          "id": "alg6-s15",
+          "kind": "section",
+          "n": 15,
+          "title": "The product of a monomial and a polynomial",
+          "page": 211,
+          "items": [
+            { "n": 47, "title": "Reducing the product of a monomial and a polynomial to standard form", "page": 211 },
+            { "n": 48, "title": "Taking out a common factor", "page": 215 },
+            { "n": 49, "title": "Solving equations by factoring", "page": 221 }
+          ]
+        },
+        {
+          "id": "alg6-s16",
+          "kind": "section",
+          "n": 16,
+          "title": "The product of polynomials",
+          "page": 224,
+          "items": [
+            { "n": 50, "title": "Reducing the product of two polynomials to standard form", "page": 224 },
+            { "n": 51, "title": "Factoring a polynomial by grouping", "page": 229 }
+          ]
+        },
+        {
+          "id": "alg6-s17",
+          "kind": "section",
+          "n": 17,
+          "title": "Identities for special products",
+          "page": 233,
+          "items": [
+            { "n": 52, "title": "The product of the sum and difference of two monomials", "page": 233 },
+            { "n": 53, "title": "The difference of squares of two expressions", "page": 236 },
+            { "n": 54, "title": "Expanding the square of a binomial", "page": 240 },
+            { "n": 55, "title": "Writing a trinomial a² + 2ab + b² as the square of a binomial", "page": 245 }
+          ]
+        },
+        {
+          "id": "alg6-c5-ex",
+          "kind": "exercises",
+          "title": "Supplementary exercises for Chapter 5",
+          "page": 249
+        }
+      ]
+    }
+  ],
+  "extras": [
+    {
+      "id": "alg6-hard",
+      "kind": "exercises",
+      "title": "Harder problems",
+      "page": 267
+    }
+  ]
+}
