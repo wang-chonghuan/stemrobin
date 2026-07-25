@@ -515,14 +515,21 @@ details[open] > summary > .sr-out-caret {
   pointer-events: none;
 }
 
-/* A contents entry that is a lesson rather than a chapter (难题) is a peer of the
-   chapters, so it lines up with their headings and carries no section rail. */
+/* A contents entry that is a card rather than a chapter (难题) is still a peer of
+   the chapters — it belongs to none of them — so it is set in their type and
+   aligned with their headings. Size says where a row sits; being clickable says
+   what it is. */
 .sr-out-lessons.sr-out-toplevel {
   margin-left: 6px;
   /* Aligns its text with the chapter headings it sits beside — they spend their
      first 12px on a caret that this row does not have. */
   padding-left: 14px;
   border-left: 0;
+}
+.sr-out-toplevel .sr-out-lesson {
+  padding: 6px 8px;
+  font-size: 12.5px;
+  font-weight: 600;
 }
 .sr-out-lesson {
   display: flex;
