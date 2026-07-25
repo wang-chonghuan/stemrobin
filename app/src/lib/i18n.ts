@@ -175,7 +175,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
   en: {
     'switch.aria': 'Learning language',
     'account.menu': 'Account',
-    'brand.tagline': 'The lemma to science.',
+    'brand.tagline': 'The lemma to science',
     'cat.open': 'Open catalog',
     'cat.close': 'Close catalog',
     'cat.group.curriculum': 'Curriculum',
