@@ -218,7 +218,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.hero.title.b': 'the ten-year system edited by Andrey Kolmogorov.',
     'ov.hero.story.a': 'From arithmetic to calculus, from the lever to the nucleus.',
     'ov.hero.story.b':
-      'Arranged into decks of understanding and practice, with AI to carry you through to real mastery.',
+      'Arranged into a deck of lessons and exercises, with an AI to guide you through to real mastery.',
     'ov.hero.art.alt': 'Card-based learning: instant feedback on a correct answer, one step up at a time',
     'ov.new': 'New lessons ({n})',
     'ov.learn.eyebrow': 'What the research shows',
