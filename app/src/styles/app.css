@@ -1020,9 +1020,9 @@ a.sr-out-lesson.ready:hover {
 }
 /* Both quoted lines read as one voice — same type, same weight, same color. */
 .sr-hero-story-line {
-  margin: 0 0 5px;
-  font-size: 13px;
-  line-height: 1.7;
+  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.65;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--sr-ink);
