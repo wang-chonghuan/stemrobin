@@ -41,8 +41,10 @@ export function CatalogSidebar({
   // The card being read, so the rail can unfold the section holding it. Loose
   // params: this component is mounted for every route under _app, not just /card.
   const openCard = useParams({ strict: false }).id
+  const { railRef, gripProps } = useRailWidth()
   return (
-    <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`}>
+    <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`} ref={railRef}>
+      <div {...gripProps} />
       <div className="sr-cat-head">
         <Link className="sr-brand-link" to="/" onClick={onNavigate} aria-label={t(locale, 'ov.title')}>
           <img
@@ -87,6 +89,59 @@ export function CatalogSidebar({
       <UserMenu user={user} locale={locale} />
     </aside>
   )
+}
+
+const RAIL_MIN = 236
+const RAIL_KEY = 'sr_rail_w'
+
+// Drag the rail's right edge. The width is written as a custom property on the
+// element rather than through React state, so a drag repaints without
+// re-rendering the whole outline; CSS clamps it between the floor and 30vw. The
+// chosen width is remembered, or a reload would undo the drag.
+function useRailWidth() {
+  const railRef = useRef<HTMLElement>(null)
+  const [dragging, setDragging] = useState(false)
+
+  useEffect(() => {
+    const saved = Number(localStorage.getItem(RAIL_KEY))
+    if (saved >= RAIL_MIN) railRef.current?.style.setProperty('--sr-rail-w', `${saved}px`)
+  }, [])
+
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    const rail = railRef.current
+    if (!rail) return
+    e.preventDefault()
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId)
+    } catch {
+      // Capture is an optimisation — the window listeners below do the work.
+    }
+    setDragging(true)
+    const left = rail.getBoundingClientRect().left
+    const move = (ev: PointerEvent) => {
+      rail.style.setProperty('--sr-rail-w', `${Math.max(RAIL_MIN, ev.clientX - left)}px`)
+    }
+    const up = () => {
+      setDragging(false)
+      // Store what the browser settled on, not what the pointer asked for: the
+      // ceiling is a vw clamp that CSS applies, so the two differ at the top end.
+      localStorage.setItem(RAIL_KEY, String(Math.round(rail.getBoundingClientRect().width)))
+      window.removeEventListener('pointermove', move)
+      window.removeEventListener('pointerup', up)
+    }
+    window.addEventListener('pointermove', move)
+    window.addEventListener('pointerup', up)
+  }
+
+  return {
+    railRef,
+    gripProps: {
+      className: 'sr-rail-grip' + (dragging ? ' dragging' : ''),
+      onPointerDown,
+      role: 'separator' as const,
+      'aria-orientation': 'vertical' as const,
+    },
+  }
 }
 
 // Sidebar account control: an avatar + name button that opens an upward popover
