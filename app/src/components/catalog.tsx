@@ -291,30 +291,45 @@ function EnglishOutline({
 
 const REFERENCE_LESSON = 'math-s10-02'
 
-// One outline row. A lesson links once the DB holds its id, and is plain text
-// until then; the number is blank for entries the book leaves unnumbered.
+// One outline row, plus the book's own numbered items beneath it. A lesson links
+// once the DB holds its id, and is plain text until then; the number is blank for
+// entries the book leaves unnumbered. The topics are what the lesson is made of,
+// not destinations, so they never link.
 function LessonRow({
   lesson,
   title,
   onNavigate,
 }: {
-  lesson: Pick<OutlineLesson, 'id' | 'ready'>
+  lesson: OutlineLesson
   title: string
   onNavigate: () => void
 }) {
-  if (!lesson.ready) return <li className="sr-out-lesson">{title}</li>
   return (
     <li>
-      <Link
-        to="/lesson/$id"
-        params={{ id: lesson.id }}
-        className="sr-out-lesson ready"
-        activeProps={{ className: 'sr-out-lesson ready active' }}
-        onClick={onNavigate}
-      >
-        <span className="sr-out-dot" aria-hidden />
-        {title}
-      </Link>
+      {lesson.ready ? (
+        <Link
+          to="/lesson/$id"
+          params={{ id: lesson.id }}
+          className="sr-out-lesson ready"
+          activeProps={{ className: 'sr-out-lesson ready active' }}
+          onClick={onNavigate}
+        >
+          <span className="sr-out-dot" aria-hidden />
+          {title}
+        </Link>
+      ) : (
+        <span className="sr-out-lesson">{title}</span>
+      )}
+      {lesson.topics.length > 0 && (
+        <ol className="sr-out-topics">
+          {lesson.topics.map((tp) => (
+            <li key={tp.number} className="sr-out-topic">
+              <span className="sr-out-topic-n">{tp.number}</span>
+              {tp.title}
+            </li>
+          ))}
+        </ol>
+      )}
     </li>
   )
 }

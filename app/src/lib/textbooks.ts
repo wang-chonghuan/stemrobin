@@ -87,7 +87,19 @@ const SHELF: Partial<Record<Locale, RawBook>>[] = (() => {
   })
 })()
 
-export type OutlineLesson = { id: string; number: string; title: string; ready: boolean }
+/** `topics` are the book's own numbered teaching items inside a section — the
+ *  card boundaries the lesson will be built from. They are shown under the
+ *  lesson with the printed numbering, which runs continuously across the whole
+ *  volume (1–55 in Algebra 6), so a topic is addressed by its lesson's id plus
+ *  that number. They are not pages of their own. */
+export type OutlineTopic = { number: number; title: string }
+export type OutlineLesson = {
+  id: string
+  number: string
+  title: string
+  ready: boolean
+  topics: OutlineTopic[]
+}
 /** A book's contents, mirroring the printed first level: a chapter with sections
  *  beneath it, or an entry that is itself a lesson. */
 export type OutlineNode =
@@ -112,6 +124,7 @@ export function getTextbookOutline(
       number: l.number ?? '',
       title: l.title,
       ready: available.has(l.id),
+      topics: (l.topics ?? []).map((tp) => ({ number: tp.printedNumber, title: tp.title })),
     })
     const contents: OutlineNode[] = book.contents.map((e) =>
       e.kind === 'chapter'

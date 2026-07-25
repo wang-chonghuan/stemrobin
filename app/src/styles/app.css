@@ -357,6 +357,35 @@ details[open] > summary > .sr-out-caret {
   border-left: 1px solid var(--sr-line-soft);
   margin-left: 16px;
 }
+/* The book's own numbered items inside a lesson — the card boundaries. Shown so
+   the outline says what a lesson is made of; they are parts, not destinations,
+   so they are quieter than a lesson row and never look clickable. The number
+   runs continuously across the volume, so it gets a fixed column to keep the
+   titles aligned once it reaches two digits. */
+.sr-out-topics {
+  list-style: none;
+  margin: 1px 0 4px;
+  padding: 0 0 0 8px;
+}
+.sr-out-topic {
+  display: flex;
+  gap: 7px;
+  padding: 2px 8px;
+  color: var(--sr-ink-dim);
+  font-size: 11.5px;
+  line-height: 1.45;
+}
+.sr-out-topic-n {
+  flex: none;
+  min-width: 16px;
+  text-align: right;
+  font-family: var(--sr-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--sr-ink-dim);
+  opacity: 0.65;
+}
+
 /* A contents entry that is a lesson rather than a chapter (难题) is a peer of the
    chapters, so it lines up with their headings and carries no section rail. */
 .sr-out-lessons.sr-out-toplevel {
