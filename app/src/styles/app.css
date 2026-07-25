@@ -202,9 +202,9 @@ body {
 }
 
 .sr-tagline {
-  margin-top: 1px;
+  margin-top: 2px;
   color: var(--sr-ink-dim);
-  font-size: 10.5px;
+  font-size: 12px;
   font-weight: 600;
 }
 
