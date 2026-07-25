@@ -67,7 +67,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.hero.badge': '引理阶梯 · 中学数学与物理',
     'ov.hero.title.a': '中学数学与物理课程，承袭数学家',
     'ov.hero.title.b': '柯尔莫戈洛夫主编的十年制体系。',
-    'ov.hero.story.a': '从算术到微积分，从杠杆到电磁场。',
+    'ov.hero.story.a': '从算术到微积分，从杠杆到原子核。',
     'ov.hero.story.b': '编成理解与练习的卡组，由 AI 带你真正掌握。',
     'ov.hero.art.alt': '卡片式学习：答对即时反馈，一步步往上',
     'ov.new': '新上线课程（{n}）',
