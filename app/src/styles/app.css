@@ -220,7 +220,7 @@ body {
 
 .sr-cat-group {
   margin: 12px 8px 4px;
-  color: var(--sr-ink-dim);
+  color: var(--sr-ink);
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -272,15 +272,20 @@ body {
   font-weight: 700;
 }
 
-/* ---- curriculum outline (collapsible): discipline → book → chapter → lesson ---- */
+/* ---- curriculum outline: discipline → book → chapter → section → card ----
+   One rule throughout: a row with children folds, a row without children is a
+   card and links. Everything is set in ink — the levels are told apart by size
+   and indent, not by fading out. Only the row you are on is coloured. */
 .sr-out-subject,
 .sr-out-book,
-.sr-out-stage {
+.sr-out-stage,
+.sr-out-section {
   margin: 0;
 }
 .sr-out-subject > summary,
 .sr-out-book > summary,
-.sr-out-stage > summary {
+.sr-out-stage > summary,
+.sr-out-section > summary {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -291,7 +296,8 @@ body {
 }
 .sr-out-subject > summary::-webkit-details-marker,
 .sr-out-book > summary::-webkit-details-marker,
-.sr-out-stage > summary::-webkit-details-marker {
+.sr-out-stage > summary::-webkit-details-marker,
+.sr-out-section > summary::-webkit-details-marker {
   display: none;
 }
 .sr-out-subject > summary {
@@ -304,7 +310,8 @@ body {
 }
 .sr-out-subject > summary:hover,
 .sr-out-book > summary:hover,
-.sr-out-stage > summary:hover {
+.sr-out-stage > summary:hover,
+.sr-out-section > summary:hover {
   background: var(--sr-card);
 }
 .sr-out-subject-name {
@@ -327,9 +334,18 @@ body {
 }
 .sr-out-stage > summary {
   padding: 6px 10px;
-  color: var(--sr-ink-soft);
+  color: var(--sr-ink);
   font-size: 12.5px;
   font-weight: 600;
+}
+/* Section: a fold, never a destination — its cards are the destinations. */
+.sr-out-section > summary {
+  padding: 0;
+  gap: 4px;
+}
+.sr-out-section > summary .sr-out-lesson {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .sr-out-stage-name {
   flex: 1 1 auto;
@@ -372,7 +388,7 @@ details[open] > summary > .sr-out-caret {
   gap: 7px;
   padding: 3px 8px;
   border-radius: 6px;
-  color: var(--sr-ink-soft);
+  color: var(--sr-ink);
   font-size: 12px;
   line-height: 1.45;
   text-decoration: none;
@@ -380,7 +396,6 @@ details[open] > summary > .sr-out-caret {
 }
 .sr-out-topic:hover {
   background: var(--sr-card);
-  color: var(--sr-ink);
 }
 .sr-out-topic.active {
   background: var(--sr-blue-tint);
@@ -394,10 +409,6 @@ details[open] > summary > .sr-out-caret {
   font-family: var(--sr-mono);
   font-size: 10.5px;
   font-weight: 600;
-  color: var(--sr-ink-dim);
-}
-.sr-out-topic:hover .sr-out-topic-n,
-.sr-out-topic.active .sr-out-topic-n {
   color: inherit;
 }
 
@@ -519,28 +530,21 @@ details[open] > summary > .sr-out-caret {
   gap: 7px;
   padding: 5px 8px;
   border-radius: 6px;
-  color: var(--sr-ink-dim);
+  color: var(--sr-ink);
   font-size: 12px;
   line-height: 1.35;
   text-decoration: none;
 }
-/* Every outline row is reachable, so every row is a link. `ready` is not what
-   makes it clickable — it says the content behind it exists. */
+/* `ready` no longer decides whether a row is clickable — it says the content
+   behind it exists, and shows as the dot plus a little more weight. */
 a.sr-out-lesson {
   cursor: pointer;
-  color: var(--sr-ink-soft);
 }
 a.sr-out-lesson.ready {
-  color: var(--sr-blue-deep);
   font-weight: 600;
 }
 a.sr-out-lesson:hover {
   background: var(--sr-card);
-  color: var(--sr-ink);
-}
-a.sr-out-lesson.ready:hover {
-  background: var(--sr-blue-tint);
-  color: var(--sr-blue-deep);
 }
 a.sr-out-lesson.active {
   background: var(--sr-blue-tint);

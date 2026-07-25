@@ -1,4 +1,4 @@
-import { Link, useRouter } from '@tanstack/react-router'
+import { Link, useParams, useRouter } from '@tanstack/react-router'
 import { Check, ChevronUp, Languages, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
@@ -38,6 +38,9 @@ export function CatalogSidebar({
   onNavigate: () => void
 }) {
   const outline = getTextbookOutline(lessonIds, locale)
+  // The card being read, so the rail can unfold the section holding it. Loose
+  // params: this component is mounted for every route under _app, not just /card.
+  const openCard = useParams({ strict: false }).id
   return (
     <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`}>
       <div className="sr-cat-head">
@@ -74,6 +77,7 @@ export function CatalogSidebar({
             discipline={d}
             locale={locale}
             defaultOpen={d.discipline === 'math'}
+            openCard={openCard}
             onNavigate={onNavigate}
           />
         ))}
@@ -291,32 +295,49 @@ function EnglishOutline({
 
 const REFERENCE_LESSON = 'math-s10-02'
 
-// One outline row, plus the book's own numbered items beneath it. Every row is
-// reachable: a lesson with numbered items opens at the first of them, and one
-// the book left unnumbered — a chapter's exercise set — is itself a card and
-// opens directly. The dot marks a row whose content exists.
+// One outline row. The rail follows a single rule: a row with children folds,
+// a row without children is a card. So a section with numbered items is a
+// collapsible group and never a destination, while an entry the book left
+// unnumbered — a chapter's exercise set, the volume's closing set — is itself
+// the card. The dot marks a card whose content exists.
 function LessonRow({
   lesson,
   title,
+  openCard,
   onNavigate,
 }: {
   lesson: OutlineLesson
   title: string
+  /** The card being read, so its section is unfolded on arrival. */
+  openCard: string | undefined
   onNavigate: () => void
 }) {
+  if (lesson.topics.length === 0) {
+    return (
+      <li>
+        <Link
+          to="/card/$id"
+          params={{ id: lesson.cardId }}
+          className={'sr-out-lesson' + (lesson.ready ? ' ready' : '')}
+          activeProps={{ className: 'active' }}
+          onClick={onNavigate}
+        >
+          {lesson.ready && <span className="sr-out-dot" aria-hidden />}
+          {title}
+        </Link>
+      </li>
+    )
+  }
   return (
     <li>
-      <Link
-        to="/card/$id"
-        params={{ id: lesson.cardId }}
-        className={'sr-out-lesson' + (lesson.ready ? ' ready' : '')}
-        activeProps={{ className: 'active' }}
-        onClick={onNavigate}
+      <details
+        className="sr-out-section"
+        open={lesson.topics.some((tp) => tp.id === openCard)}
       >
-        {lesson.ready && <span className="sr-out-dot" aria-hidden />}
-        {title}
-      </Link>
-      {lesson.topics.length > 0 && (
+        <summary>
+          <span className="sr-out-caret" aria-hidden />
+          <span className="sr-out-lesson">{title}</span>
+        </summary>
         <ol className="sr-out-topics">
           {lesson.topics.map((tp) => (
             <li key={tp.id}>
@@ -333,7 +354,7 @@ function LessonRow({
             </li>
           ))}
         </ol>
-      )}
+      </details>
     </li>
   )
 }
@@ -349,11 +370,13 @@ function DisciplineOutline({
   discipline,
   locale,
   defaultOpen,
+  openCard,
   onNavigate,
 }: {
   discipline: OutlineDiscipline
   locale: Locale
   defaultOpen: boolean
+  openCard: string | undefined
   onNavigate: () => void
 }) {
   const lessons = discipline.books.flatMap(bookLessons)
@@ -376,7 +399,14 @@ function DisciplineOutline({
               <details
                 key={node.id}
                 className="sr-out-stage"
-                open={node.lessons.some((l) => l.ready)}
+                // Open when it holds what is being read, so arriving by link or
+                // reload does not leave the rail folded shut around you.
+                open={node.lessons.some(
+                  (l) =>
+                    l.ready ||
+                    l.id === openCard ||
+                    l.topics.some((tp) => tp.id === openCard),
+                )}
               >
                 <summary>
                   <span className="sr-out-caret" aria-hidden />
@@ -388,6 +418,7 @@ function DisciplineOutline({
                       key={l.id}
                       lesson={l}
                       title={rowTitle(l)}
+                      openCard={openCard}
                       onNavigate={onNavigate}
                     />
                   ))}
@@ -398,6 +429,7 @@ function DisciplineOutline({
                 <LessonRow
                   lesson={node.lesson}
                   title={rowTitle(node.lesson)}
+                  openCard={openCard}
                   onNavigate={onNavigate}
                 />
               </ul>
