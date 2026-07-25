@@ -73,7 +73,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     // Second statement, set on two lines (b then c).
     'ov.hero.story.b': '编成理解与练习的卡组，',
     'ov.hero.story.c': '由 AI 带你真正掌握。',
-    'ov.hero.art.alt': '卡片式学习：答对即时反馈，一步步往上',
+    'ov.hero.art.alt': '一棵知识之树：枝干末端是一个个亮起的知识点，外围环绕着原子轨道',
     'ov.new': '新上线课程（{n}）',
     // overview — learning-principle column (growth)
     'ov.learn.eyebrow': '科学研究发现',
@@ -224,7 +224,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.hero.story.a': 'From arithmetic to calculus, from the lever to the nucleus.',
     'ov.hero.story.b': 'Arranged into a deck for understanding and practice,',
     'ov.hero.story.c': 'with an AI to guide you through to real mastery.',
-    'ov.hero.art.alt': 'Card-based learning: instant feedback on a correct answer, one step up at a time',
+    'ov.hero.art.alt': 'A tree of knowledge: every branch ends in a lit node, the whole ringed by atom orbits',
     'ov.new': 'New lessons ({n})',
     'ov.learn.eyebrow': 'What the research shows',
     'ov.learn.title': 'The most effective learning isn’t re-reading — it’s recalling at every step',

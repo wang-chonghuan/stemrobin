@@ -1037,14 +1037,17 @@ a.sr-out-lesson.ready:hover {
   color: var(--sr-ink);
 }
 .sr-hero-story-line:last-child { margin-bottom: 0; }
-.sr-hero-art { flex: none; width: 208px; height: auto; }
+/* The illustration is near-square (360×392), so its width is also roughly its
+   height: 180px keeps it just under the copy column's height instead of
+   towering over it the way the old 208px-wide, 146px-tall art never could. */
+.sr-hero-art { flex: none; width: 180px; height: auto; }
 @media (max-width: 640px) {
   .sr-hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px; }
   /* The column stack is flex-start, so the copy's width would come from its own
      content — which inline-size containment hides. Stretch it back to full. */
   .sr-hero-copy { align-self: stretch; }
   .sr-hero-title { font-size: 22px; }
-  .sr-hero-art { width: 168px; align-self: center; }
+  .sr-hero-art { width: 148px; align-self: center; }
 }
 
 /* ── Learn row: pedagogy explainer (left) + new lessons (right) ──

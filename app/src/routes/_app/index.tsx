@@ -89,7 +89,17 @@ function Overview() {
             </div>
             <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
           </div>
-          <HeroArt label={t(locale, 'ov.hero.art.alt')} />
+          {/* Brand illustration: a tree of knowledge whose branches end in lit
+              nodes, wrapped in atom orbits. Intrinsic size is stated so the
+              hero never reflows once the image lands; CSS sets the display
+              width (see .sr-hero-art). */}
+          <img
+            className="sr-hero-art"
+            src="/hero-art.png"
+            alt={t(locale, 'ov.hero.art.alt')}
+            width={360}
+            height={392}
+          />
         </section>
 
         {/* Progress — real, from getProgress() (STEMROBIN-30) */}
@@ -180,41 +190,5 @@ function Overview() {
         </section>
       </div>
     </main>
-  )
-}
-
-// On-brand "card → mastery" motif: a lesson card whose correct option is checked
-// (instant feedback), rising over ascending steps (keep going / learn ahead).
-// Three-hue DESIGN palette, inline SVG (no image files).
-function HeroArt({ label }: { label: string }) {
-  return (
-    <svg
-      className="sr-hero-art"
-      viewBox="0 0 300 210"
-      role="img"
-      aria-label={label}
-    >
-      {/* ascending steps + upward arrow (progress / learn ahead) */}
-      <rect x="196" y="150" width="26" height="44" rx="6" fill="#E1F1F5" />
-      <rect x="228" y="118" width="26" height="76" rx="6" fill="#E1F1F5" />
-      <rect x="260" y="86" width="26" height="108" rx="6" fill="#CFE8F0" />
-      <path
-        d="M198 150 L284 74"
-        fill="none"
-        stroke="#0A5E76"
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      <path d="M284 74 L270 76 M284 74 L282 88" fill="none" stroke="#0A5E76" strokeWidth="3" strokeLinecap="round" />
-      {/* lesson card */}
-      <rect x="14" y="26" width="172" height="158" rx="16" fill="#FFFFFF" stroke="#0E7C9B" strokeWidth="2.5" />
-      <rect x="34" y="48" width="118" height="9" rx="4.5" fill="#E3EAE9" />
-      <rect x="34" y="65" width="88" height="9" rx="4.5" fill="#E3EAE9" />
-      <rect x="34" y="92" width="132" height="22" rx="8" fill="#F5F9F9" stroke="#E3EAE9" />
-      <rect x="34" y="122" width="132" height="22" rx="8" fill="#E4F6EE" stroke="#15A06A" strokeWidth="1.6" />
-      <circle cx="151" cy="133" r="9.5" fill="#15A06A" />
-      <path d="M147 133 l3 3 l5 -6" fill="none" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-      <rect x="34" y="152" width="132" height="22" rx="8" fill="#F5F9F9" stroke="#E3EAE9" />
-    </svg>
   )
 }
