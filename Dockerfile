@@ -7,6 +7,10 @@ WORKDIR /app
 COPY app/package.json app/package-lock.json ./
 RUN npm ci
 COPY app/ ./
+# Repo-level source of truth the app imports through the @ssot alias. Mirrors the
+# repo layout — repo root → /, app/ → /app — so ../ssot-resources resolves here
+# exactly as it does in a checkout.
+COPY ssot-resources/ /ssot-resources/
 RUN npm run build
 
 FROM node:24-alpine AS runtime

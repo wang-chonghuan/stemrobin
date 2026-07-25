@@ -1,17 +1,23 @@
 {
   "book": "6a",
+  "locale": "en",
+  "authority": "translated",
   "subject": "algebra",
   "grade": 6,
   "title": "Algebra, Grade 6",
   "source": {
-    "series": "Soviet ten-year school textbooks (Chinese translation)",
+    "series": "苏联十年制学校教材（中译本）",
+    "bookId": "6a",
     "printedTitle": "苏联十年制学校数学课本 代数（六年级）",
-    "editor": "A. I. Markushevich (ed.), 1977 Russian edition",
-    "translators": "刘远图, 何绍庚",
-    "publisher": "人民教育出版社, 1978",
-    "toc": "resources/soviet10years/toc/苏联十年制学校教材-书名作者目录.md#6a",
-    "note": "Titles here are English renderings of the printed Chinese table of contents; the printed Chinese is an overlay in 6a.zh.json. Ids encode position (c<chapter>-s<section>) and the display number is derived from them — the book is a 1978 fixed edition, so positions never move. `printedSection` / `printedNumber` keep the book's own continuous numbering for locating the scan; `page` is the printed page number. Neither is displayed."
+    "coverTitle": "苏联十年制学校数学教材 代数 六年级",
+    "editor": "А. И. 马尔库雪维奇 主编（1977 年俄文版）",
+    "translators": "刘远图、何绍庚",
+    "publisher": "人民教育出版社，1978 年 4 月第 1 版",
+    "pdf": "resources/soviet10years/pdf/6a 苏联十年制学校数学教材 代数 六年级.pdf",
+    "tocPages": "PDF 物理页 p.0004–p.0006（书内目录页 1–3）"
   },
+  "note": "A translation of zh.json, which is the authority (extracted from the scanned table of contents). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 2.3) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed table of contents: its printed section number where it has one (printedSection, continuous 1–17 across the book), otherwise its printed heading (printedName, kept in the original Chinese — it is a pointer into the printed book).",
   "chapters": [
     {
       "id": "alg6-c1",
@@ -22,9 +28,12 @@
         {
           "id": "alg6-c1-s1",
           "kind": "section",
+          "number": "1.1",
           "title": "Expressions and their values",
           "page": 1,
-          "printedSection": 1,
+          "source": {
+            "printedSection": 1
+          },
           "topics": [
             {
               "printedNumber": 1,
@@ -41,9 +50,12 @@
         {
           "id": "alg6-c1-s2",
           "kind": "section",
+          "number": "1.2",
           "title": "Sentences containing variables",
           "page": 10,
-          "printedSection": 2,
+          "source": {
+            "printedSection": 2
+          },
           "topics": [
             {
               "printedNumber": 3,
@@ -65,9 +77,12 @@
         {
           "id": "alg6-c1-s3",
           "kind": "section",
+          "number": "1.3",
           "title": "Relations",
           "page": 22,
-          "printedSection": 3,
+          "source": {
+            "printedSection": 3
+          },
           "topics": [
             {
               "printedNumber": 6,
@@ -84,8 +99,12 @@
         {
           "id": "alg6-c1-ex",
           "kind": "exercises",
+          "number": "1.4",
           "title": "Supplementary exercises",
-          "page": 32
+          "page": 32,
+          "source": {
+            "printedName": "第一章补充习题"
+          }
         }
       ]
     },
@@ -98,9 +117,12 @@
         {
           "id": "alg6-c2-s1",
           "kind": "section",
+          "number": "2.1",
           "title": "The concept of a function. Ways of defining a function",
           "page": 44,
-          "printedSection": 4,
+          "source": {
+            "printedSection": 4
+          },
           "topics": [
             {
               "printedNumber": 8,
@@ -127,9 +149,12 @@
         {
           "id": "alg6-c2-s2",
           "kind": "section",
+          "number": "2.2",
           "title": "Direct proportionality",
           "page": 60,
-          "printedSection": 5,
+          "source": {
+            "printedSection": 5
+          },
           "topics": [
             {
               "printedNumber": 12,
@@ -156,9 +181,12 @@
         {
           "id": "alg6-c2-s3",
           "kind": "section",
+          "number": "2.3",
           "title": "Inverse proportionality",
           "page": 75,
-          "printedSection": 6,
+          "source": {
+            "printedSection": 6
+          },
           "topics": [
             {
               "printedNumber": 16,
@@ -180,9 +208,12 @@
         {
           "id": "alg6-c2-s4",
           "kind": "section",
+          "number": "2.4",
           "title": "Linear functions",
           "page": 86,
-          "printedSection": 7,
+          "source": {
+            "printedSection": 7
+          },
           "topics": [
             {
               "printedNumber": 19,
@@ -204,8 +235,12 @@
         {
           "id": "alg6-c2-ex",
           "kind": "exercises",
+          "number": "2.5",
           "title": "Supplementary exercises",
-          "page": 95
+          "page": 95,
+          "source": {
+            "printedName": "第二章补充习题"
+          }
         }
       ]
     },
@@ -218,9 +253,12 @@
         {
           "id": "alg6-c3-s1",
           "kind": "section",
+          "number": "3.1",
           "title": "The concept of a system of equations in two variables",
           "page": 114,
-          "printedSection": 8,
+          "source": {
+            "printedSection": 8
+          },
           "topics": [
             {
               "printedNumber": 22,
@@ -247,9 +285,12 @@
         {
           "id": "alg6-c3-s2",
           "kind": "section",
+          "number": "3.2",
           "title": "Systems of linear equations",
           "page": 126,
-          "printedSection": 9,
+          "source": {
+            "printedSection": 9
+          },
           "topics": [
             {
               "printedNumber": 26,
@@ -276,8 +317,12 @@
         {
           "id": "alg6-c3-ex",
           "kind": "exercises",
+          "number": "3.3",
           "title": "Supplementary exercises",
-          "page": 143
+          "page": 143,
+          "source": {
+            "printedName": "第三章补充习题"
+          }
         }
       ]
     },
@@ -290,9 +335,12 @@
         {
           "id": "alg6-c4-s1",
           "kind": "section",
+          "number": "4.1",
           "title": "The definition and properties of a power",
           "page": 152,
-          "printedSection": 10,
+          "source": {
+            "printedSection": 10
+          },
           "topics": [
             {
               "printedNumber": 30,
@@ -324,9 +372,12 @@
         {
           "id": "alg6-c4-s2",
           "kind": "section",
+          "number": "4.2",
           "title": "Simplifying fractions; the product and quotient of two fractions",
           "page": 165,
-          "printedSection": 11,
+          "source": {
+            "printedSection": 11
+          },
           "topics": [
             {
               "printedNumber": 35,
@@ -353,9 +404,12 @@
         {
           "id": "alg6-c4-s3",
           "kind": "section",
+          "number": "4.3",
           "title": "The functions given by y = ax² and y = ax³",
           "page": 172,
-          "printedSection": 12,
+          "source": {
+            "printedSection": 12
+          },
           "topics": [
             {
               "printedNumber": 39,
@@ -372,8 +426,12 @@
         {
           "id": "alg6-c4-ex",
           "kind": "exercises",
+          "number": "4.4",
           "title": "Supplementary exercises",
-          "page": 183
+          "page": 183,
+          "source": {
+            "printedName": "第四章补充习题"
+          }
         }
       ]
     },
@@ -386,9 +444,12 @@
         {
           "id": "alg6-c5-s1",
           "kind": "section",
+          "number": "5.1",
           "title": "Monomials and polynomials",
           "page": 193,
-          "printedSection": 13,
+          "source": {
+            "printedSection": 13
+          },
           "topics": [
             {
               "printedNumber": 41,
@@ -415,9 +476,12 @@
         {
           "id": "alg6-c5-s2",
           "kind": "section",
+          "number": "5.2",
           "title": "Reducing sums and differences of polynomials to standard form",
           "page": 204,
-          "printedSection": 14,
+          "source": {
+            "printedSection": 14
+          },
           "topics": [
             {
               "printedNumber": 45,
@@ -434,9 +498,12 @@
         {
           "id": "alg6-c5-s3",
           "kind": "section",
+          "number": "5.3",
           "title": "The product of a monomial and a polynomial",
           "page": 211,
-          "printedSection": 15,
+          "source": {
+            "printedSection": 15
+          },
           "topics": [
             {
               "printedNumber": 47,
@@ -458,9 +525,12 @@
         {
           "id": "alg6-c5-s4",
           "kind": "section",
+          "number": "5.4",
           "title": "The product of polynomials",
           "page": 224,
-          "printedSection": 16,
+          "source": {
+            "printedSection": 16
+          },
           "topics": [
             {
               "printedNumber": 50,
@@ -477,9 +547,12 @@
         {
           "id": "alg6-c5-s5",
           "kind": "section",
+          "number": "5.5",
           "title": "Identities for special products",
           "page": 233,
-          "printedSection": 17,
+          "source": {
+            "printedSection": 17
+          },
           "topics": [
             {
               "printedNumber": 52,
@@ -506,8 +579,12 @@
         {
           "id": "alg6-c5-ex",
           "kind": "exercises",
+          "number": "5.6",
           "title": "Supplementary exercises",
-          "page": 249
+          "page": 249,
+          "source": {
+            "printedName": "第五章补充习题"
+          }
         }
       ]
     }
@@ -516,8 +593,12 @@
     {
       "id": "alg6-hard",
       "kind": "exercises",
+      "number": null,
       "title": "Harder problems",
-      "page": 267
+      "page": 267,
+      "source": {
+        "printedName": "难题"
+      }
     }
   ]
 }

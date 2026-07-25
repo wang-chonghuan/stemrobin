@@ -1,45 +1,50 @@
 // The curriculum outline shown in the left catalog (STEMROBIN-113).
 //
-// The outline is the Soviet ten-year school series, one JSON per printed book in
-// ~/content/curriculum/. English is canonical; every other locale is an overlay
-// keyed by the same ids, so adding a language is adding a file — never editing
-// the structure.
+// The outline is the Soviet ten-year school series. Its transcription is a
+// repo-level source of truth, not app data: ssot-resources/soviet10year-textbooks/
+// toc/<bookId>/<locale>.json, imported through the @ssot alias. Each locale is a
+// complete file — zh.json is what the book prints (extracted from the scan, the
+// authority), en.json is its translation — so adding a language adds a file and
+// changes no structure. See that directory's README.
 //
 // Depth is 学科 → 册 → 章 → 课. The branch (代数 / 几何 / …) is folded into the
 // book's own title ("Algebra, Grade 6") rather than being a fourth level: a
 // 236px rail cannot indent four times and still read, and the branch is legible
 // from the title anyway.
 //
-// A lesson is a printed section; its displayed number (2.3) is derived from its
-// position, which the id already encodes. The book's own continuous section
-// numbering and its page numbers stay in the JSON for locating the scan.
+// A lesson's displayed number (2.3) is authored in the JSON, next to the
+// `source` ref that identifies the same entry in the printed contents. Neither
+// the source ref nor the page number is displayed; both exist to get back to the
+// scan.
 //
 // Availability is DB-driven, exactly as before: an outline lesson becomes a link
 // when sr_lessons holds its id, and is plain text otherwise.
 
-import book6a from '~/content/curriculum/6a.json'
-import book6aZh from '~/content/curriculum/6a.zh.json'
+import alg6En from '@ssot/soviet10year-textbooks/toc/6a/en.json'
+import alg6Zh from '@ssot/soviet10year-textbooks/toc/6a/zh.json'
 import { t, type Locale } from '~/lib/i18n'
 
+type SourceRef = { printedSection: number } | { printedName: string }
 type RawTopic = { printedNumber: number; title: string; page: number }
 type RawLesson = {
   id: string
   kind: 'section' | 'exercises'
+  number: string | null
   title: string
   page: number
-  printedSection?: number
+  source: SourceRef
   topics?: RawTopic[]
 }
 type RawChapter = { id: string; number: number; title: string; page: number; lessons: RawLesson[] }
 type RawBook = {
   book: string
+  locale: Locale
   subject: string
   grade: number
   title: string
   chapters: RawChapter[]
   extras: RawLesson[]
 }
-type Overlay = { title: string; titles: Record<string, string> }
 
 export type Discipline = 'math' | 'physics'
 
@@ -54,10 +59,10 @@ const DISCIPLINE_OF: Record<string, Discipline> = {
   physics: 'physics',
 }
 
-// Shelf order. Only books with a JSON appear; the rest of the series lands here
-// as it is transcribed.
-const SHELF: { raw: RawBook; overlays: Partial<Record<Locale, Overlay>> }[] = [
-  { raw: book6a as RawBook, overlays: { zh: book6aZh as Overlay } },
+// Shelf order. One entry per printed volume, carrying every locale of it; the
+// rest of the series lands here as it is transcribed.
+const SHELF: Record<Locale, RawBook>[] = [
+  { zh: alg6Zh as RawBook, en: alg6En as RawBook },
 ]
 
 export type OutlineLesson = { id: string; number: string; title: string; ready: boolean }
@@ -72,10 +77,6 @@ export type OutlineBook = {
 }
 export type OutlineDiscipline = { discipline: Discipline; label: string; books: OutlineBook[] }
 
-function localize(overlay: Overlay | undefined, id: string, fallback: string): string {
-  return overlay?.titles[id] ?? fallback
-}
-
 /** The catalog tree, localized, with availability resolved against the DB ids. */
 export function getTextbookOutline(
   lessonIds: readonly string[],
@@ -84,30 +85,27 @@ export function getTextbookOutline(
   const available = new Set(lessonIds)
   const byDiscipline = new Map<Discipline, OutlineBook[]>()
 
-  for (const { raw, overlays } of SHELF) {
-    const overlay = overlays[locale]
-    const chapters = raw.chapters.map((ch) => ({
-      id: ch.id,
-      label: t(locale, 'cat.chapter', {
-        n: ch.number,
-        title: localize(overlay, ch.id, ch.title),
-      }),
-      lessons: ch.lessons.map((l, i) => ({
-        id: l.id,
-        number: `${ch.number}.${i + 1}`,
-        title: localize(overlay, l.id, l.title),
-        ready: available.has(l.id),
-      })),
-    }))
-    const extras = raw.extras.map((l) => ({
+  for (const localized of SHELF) {
+    const book = localized[locale] ?? localized.zh
+    const lesson = (l: RawLesson): OutlineLesson => ({
       id: l.id,
-      number: '',
-      title: localize(overlay, l.id, l.title),
+      number: l.number ?? '',
+      title: l.title,
       ready: available.has(l.id),
+    })
+    const chapters = book.chapters.map((ch) => ({
+      id: ch.id,
+      label: t(locale, 'cat.chapter', { n: ch.number, title: ch.title }),
+      lessons: ch.lessons.map(lesson),
     }))
-    const discipline = DISCIPLINE_OF[raw.subject] ?? 'math'
+    const discipline = DISCIPLINE_OF[book.subject] ?? 'math'
     const shelf = byDiscipline.get(discipline) ?? []
-    shelf.push({ book: raw.book, title: overlay?.title ?? raw.title, chapters, extras })
+    shelf.push({
+      book: book.book,
+      title: book.title,
+      chapters,
+      extras: book.extras.map(lesson),
+    })
     byDiscipline.set(discipline, shelf)
   }
 
@@ -118,7 +116,7 @@ export function getTextbookOutline(
   })
 }
 
-/** Outline lessons that have content, newest last — the overview's lesson grid. */
+/** Outline lessons that have content, in book order — the overview's lesson grid. */
 export function getAvailableTextbookLessons(
   lessonIds: readonly string[],
   locale: Locale,
