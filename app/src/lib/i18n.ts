@@ -25,7 +25,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
   zh: {
     'switch.aria': '学习语言',
     'account.menu': '账户',
-    'brand.tagline': '十年制体系，编成卡组',
+    'brand.tagline': '通向科学的引理',
     'cat.open': '打开目录',
     'cat.close': '关闭目录',
     'cat.group.curriculum': '课程大纲',
@@ -175,7 +175,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
   en: {
     'switch.aria': 'Learning language',
     'account.menu': 'Account',
-    'brand.tagline': 'The ten-year system, as decks',
+    'brand.tagline': 'The lemma to science.',
     'cat.open': 'Open catalog',
     'cat.close': 'Close catalog',
     'cat.group.curriculum': 'Curriculum',
