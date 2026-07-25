@@ -689,7 +689,9 @@ a.sr-out-lesson.active {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 18px;
+  /* The language switch is laid over the right end of this bar, so the bar keeps
+     that much clear rather than letting a long title run underneath it. */
+  padding: 10px 104px 10px 18px;
   border-bottom: 1px solid var(--sr-line-soft);
   background: var(--sr-panel);
 }
@@ -753,6 +755,10 @@ a.sr-out-lesson.active {
 }
 
 .sr-d-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   color: var(--sr-ink);
   font-family: var(--sr-display);
   font-size: 16px;
@@ -1271,20 +1277,6 @@ a.sr-out-lesson.active {
   color: var(--sr-ink); background: var(--sr-panel);
   border: 1px solid var(--sr-line); border-radius: var(--sr-radius-sm);
 }
-
-/* ── Homepage: hero + multi-card ── */
-.sr-hero { padding: 4px 0 2px; margin-bottom: 22px; }
-.sr-hero-title {
-  margin: 8px 0 10px; max-width: 30ch;
-  font-family: var(--sr-display);
-  font-size: 27px; line-height: 1.25; font-weight: 700; letter-spacing: -0.02em;
-  color: var(--sr-ink);
-}
-.sr-hero-strike { color: var(--sr-ink-dim); text-decoration: line-through; text-decoration-thickness: 1.5px; }
-.sr-hero-dim { color: var(--sr-ink-dim); }
-.sr-hero-hl { color: var(--sr-blue-deep); }
-.sr-hero-hl.green { color: var(--sr-green-deep); }
-.sr-hero-sub { max-width: 44ch; color: var(--sr-ink-soft); font-size: 14.5px; line-height: 1.6; }
 
 /* ── Home hero (product intro) ── */
 .sr-hero {
@@ -1955,3 +1947,57 @@ a.sr-out-lesson.active {
   resize: vertical;
 }
 .sr-en-fulltext:focus { outline: 2px solid var(--sr-blue); outline-offset: 1px; }
+
+/* ── Learning-language switch, pinned to the top-right of the detail pane ──
+   It belongs to the shell, not to any one route: five routes render their own
+   top bar and the control is identical on all of them. Positioned over that bar
+   rather than placed inside it, so no route has to make room. */
+.sr-langmenu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 43px;
+  display: flex;
+  align-items: center;
+  padding-right: 14px;
+  z-index: 20;
+}
+.sr-langmenu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--sr-ink-soft);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sr-langmenu-btn:hover,
+.sr-langmenu-btn.open {
+  background: var(--sr-card);
+  border-color: var(--sr-line);
+  color: var(--sr-ink);
+}
+.sr-langmenu-pop {
+  position: absolute;
+  top: calc(100% - 4px);
+  right: 14px;
+  min-width: 150px;
+  padding: 5px;
+  background: var(--sr-card);
+  border: 1px solid var(--sr-line);
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(21, 32, 31, 0.14), 0 1px 3px rgba(21, 32, 31, 0.08);
+  z-index: 30;
+}
+
+@media (max-width: 1199px) {
+  /* Narrow: the globe alone. The current language is one tap away and the title
+     is what the learner needs the width for. */
+  .sr-langmenu-btn span { display: none; }
+  .sr-d-top { padding-right: 54px; }
+}

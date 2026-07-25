@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { CatalogSidebar } from '~/components/catalog'
+import { LocaleMenu } from '~/components/locale-menu'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { listEnglishLessons } from '~/lib/english'
 import { getLocale } from '~/lib/locale'
@@ -63,6 +64,9 @@ function AppShell() {
         onNavigate={() => isMobile && setDrawer(false)}
       />
       <Outlet />
+      {/* Pinned to the top-right of the detail pane. It lives here, not in the
+          five routes that each render their own top bar. */}
+      <LocaleMenu locale={locale} />
     </div>
   )
 }

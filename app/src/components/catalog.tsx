@@ -1,5 +1,5 @@
 import { Link, useParams, useRouter } from '@tanstack/react-router'
-import { Check, ChevronUp, Languages, LogIn, LogOut } from 'lucide-react'
+import { ChevronUp, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import type { EnglishLessonRef } from '~/lib/english'
@@ -9,19 +9,12 @@ import {
   type OutlineDiscipline,
   type OutlineLesson,
 } from '~/lib/textbooks'
-import { LOCALES, t, type Locale } from '~/lib/i18n'
-import { setLocale } from '~/lib/locale'
+import { t, type Locale } from '~/lib/i18n'
 import { logout, type CurrentUser } from '~/lib/session'
 
-// Language names are shown in their own language (self-referential), so they are
-// not routed through the i18n table.
-const LOCALE_NAME: Record<Locale, string> = { zh: '中文', en: 'English' }
-
-// The persistent left catalog: the curriculum outline (math + physics),
-// collapsible by subject and stage. Lives in the _app layout so it stays mounted
-// across navigation (outline open/closed state survives opening a lesson). The
-// language switch lives in the header; picking a locale re-renders the whole
-// shell (catalog + detail) in that language.
+// The persistent left catalog: the curriculum outline (maths, physics, English),
+// collapsible at every level. Lives in the _app layout so it stays mounted across
+// navigation — which is what lets an open chapter survive opening a card.
 export function CatalogSidebar({
   lessonIds,
   englishLessons,
@@ -144,10 +137,9 @@ function useRailWidth() {
   }
 }
 
-// Sidebar account control: an avatar + name button that opens an upward popover
-// with the language switch (folded in from the old header control) and logout.
-// No display-name field exists (sr_users has only email), so the name is the
-// email's local-part and the avatar is its first letter.
+// Sidebar account control: an avatar + name button opening an upward popover with
+// sign-out. No display-name field exists (sr_users has only email), so the name is
+// the email's local-part and the avatar is its first letter.
 function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }) {
   const router = useRouter()
   const [open, setOpen] = useState(false)
@@ -167,40 +159,11 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
     }
   }, [open])
 
-  async function pickLocale(next: Locale) {
-    setOpen(false)
-    if (next === locale) return
-    await setLocale({ data: next })
-    await router.invalidate()
-  }
-
-  // Open access (STEMROBIN-68): logged-out visitors see a prominent sign-in CTA
-  // (browsing is free) plus the language switch, folded into a small globe popover.
+  // Open access (STEMROBIN-68): logged-out visitors get a prominent sign-in CTA;
+  // browsing is free. The language switch moved to the top bar (LocaleMenu).
   if (!user) {
     return (
       <div className="sr-usermenu sr-usermenu-guest" ref={rootRef}>
-        {open && (
-          <div className="sr-usermenu-pop" role="menu" aria-label={t(locale, 'switch.aria')}>
-            <div className="sr-usermenu-section">
-              <span className="sr-usermenu-label">
-                <Languages size={13} aria-hidden /> {t(locale, 'switch.aria')}
-              </span>
-              {LOCALES.map((l) => (
-                <button
-                  key={l}
-                  type="button"
-                  role="menuitemradio"
-                  aria-checked={l === locale}
-                  className={'sr-usermenu-item' + (l === locale ? ' active' : '')}
-                  onClick={() => pickLocale(l)}
-                >
-                  <span>{LOCALE_NAME[l]}</span>
-                  {l === locale && <Check size={15} aria-hidden />}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
         <Link to="/login" className="sr-usermenu-trigger sr-usermenu-login">
           <span className="sr-avatar" aria-hidden>
             <LogIn size={16} />
@@ -210,16 +173,6 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
             <small>{t(locale, 'cat.login.sub')}</small>
           </span>
         </Link>
-        <button
-          type="button"
-          className="sr-usermenu-langbtn"
-          aria-label={t(locale, 'switch.aria')}
-          aria-haspopup="menu"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <Languages size={16} aria-hidden />
-        </button>
       </div>
     )
   }
@@ -237,25 +190,6 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
     <div className="sr-usermenu" ref={rootRef}>
       {open && (
         <div className="sr-usermenu-pop" role="menu" aria-label={t(locale, 'account.menu')}>
-          <div className="sr-usermenu-section">
-            <span className="sr-usermenu-label">
-              <Languages size={13} aria-hidden /> {t(locale, 'switch.aria')}
-            </span>
-            {LOCALES.map((l) => (
-              <button
-                key={l}
-                type="button"
-                role="menuitemradio"
-                aria-checked={l === locale}
-                className={'sr-usermenu-item' + (l === locale ? ' active' : '')}
-                onClick={() => pickLocale(l)}
-              >
-                <span>{LOCALE_NAME[l]}</span>
-                {l === locale && <Check size={15} aria-hidden />}
-              </button>
-            ))}
-          </div>
-          <div className="sr-usermenu-sep" />
           <button type="button" role="menuitem" className="sr-usermenu-item danger" onClick={signOut}>
             <LogOut size={15} aria-hidden /> {t(locale, 'login.logout')}
           </button>
