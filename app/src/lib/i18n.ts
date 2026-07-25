@@ -216,7 +216,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.hero.badge': 'LemmaDeck · Secondary math & physics',
     'ov.hero.title.a': 'A secondary course in mathematics and physics, heir to ',
     'ov.hero.title.b': 'the ten-year system edited by the mathematician Kolmogorov.',
-    'ov.hero.story.a': 'From arithmetic to calculus, from the lever to the electromagnetic field.',
+    'ov.hero.story.a': 'From arithmetic to calculus, from the lever to the nucleus.',
     'ov.hero.story.b':
       'Arranged into decks of understanding and practice, with AI to carry you through to real mastery.',
     'ov.hero.art.alt': 'Card-based learning: instant feedback on a correct answer, one step up at a time',
