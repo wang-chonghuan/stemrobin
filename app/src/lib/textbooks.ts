@@ -98,6 +98,9 @@ export type OutlineLesson = {
   number: string
   title: string
   ready: boolean
+  /** Where the row goes: its first card, or itself when the book gave it no
+   *  numbered items and it is therefore one card. */
+  cardId: string
   topics: OutlineTopic[]
 }
 /** A book's contents, mirroring the printed first level: a chapter with sections
@@ -124,6 +127,7 @@ export function getTextbookOutline(
       number: l.number ?? '',
       title: l.title,
       ready: available.has(l.id),
+      cardId: l.topics?.length ? l.topics[0].id : l.id,
       topics: (l.topics ?? []).map((tp) => ({
         id: tp.id,
         number: tp.printedNumber,
@@ -158,43 +162,55 @@ export function getTextbookOutline(
  *  the following section once its own runs out. */
 export type Card = {
   id: string
-  number: number
+  /** The book's own number, where it has one. A section's exercise set and the
+   *  volume's closing set are unnumbered. */
+  number: number | null
   title: string
-  book: string
-  chapter: string
-  section: string
+  /** The trail down to the card: volume, then whatever levels apply. */
+  trail: string[]
   prev: { id: string; title: string } | null
   next: { id: string; title: string } | null
+}
+
+type FlatCard = { id: string; number: number | null; title: string; trail: string[] }
+
+/** Every card in a volume, in reading order.
+ *
+ *  A card is the atom of content, so anything the book gives content to is one:
+ *  a section's numbered items are its cards, and an entry the book leaves
+ *  unnumbered — a chapter's exercise set, the volume's closing 难题 — is itself
+ *  a single card rather than an empty container. That is what keeps every row
+ *  of the outline reachable. */
+function cardsOf(book: RawBook, locale: Locale): FlatCard[] {
+  const chapterLabel = (n: number, title: string) => t(locale, 'cat.chapter', { n, title })
+  const sectionLabel = (l: RawLesson) => (l.number ? `${l.number} ${l.title}` : l.title)
+  return book.contents.flatMap((e) => {
+    if (e.kind !== 'chapter') {
+      return [{ id: e.id, number: null, title: e.title, trail: [book.title] }]
+    }
+    const ch = chapterLabel(e.number, e.title)
+    return e.lessons.flatMap((l) =>
+      l.topics?.length
+        ? l.topics.map((tp) => ({
+            id: tp.id,
+            number: tp.printedNumber,
+            title: tp.title,
+            trail: [book.title, ch, sectionLabel(l)],
+          }))
+        : [{ id: l.id, number: null, title: l.title, trail: [book.title, ch] }],
+    )
+  })
 }
 
 export function findCard(cardId: string, locale: Locale): Card | null {
   for (const localized of SHELF) {
     const book = localized[locale] ?? localized.zh ?? localized.en
     if (!book) continue
-    // Reading order for the whole volume, so prev/next cross section and
-    // chapter boundaries the way turning a page does.
-    const flat = book.contents.flatMap((e) =>
-      e.kind === 'chapter'
-        ? e.lessons.flatMap((l) =>
-            (l.topics ?? []).map((tp) => ({ topic: tp, chapter: e, lesson: l })),
-          )
-        : [],
-    )
-    const i = flat.findIndex((c) => c.topic.id === cardId)
+    const flat = cardsOf(book, locale)
+    const i = flat.findIndex((c) => c.id === cardId)
     if (i < 0) continue
-    const at = flat[i]
-    const ref = (n: number) =>
-      flat[n] ? { id: flat[n].topic.id, title: flat[n].topic.title } : null
-    return {
-      id: at.topic.id,
-      number: at.topic.printedNumber,
-      title: at.topic.title,
-      book: book.title,
-      chapter: t(locale, 'cat.chapter', { n: at.chapter.number, title: at.chapter.title }),
-      section: at.lesson.number ? `${at.lesson.number} ${at.lesson.title}` : at.lesson.title,
-      prev: ref(i - 1),
-      next: ref(i + 1),
-    }
+    const ref = (n: number) => (flat[n] ? { id: flat[n].id, title: flat[n].title } : null)
+    return { ...flat[i], prev: ref(i - 1), next: ref(i + 1) }
   }
   return null
 }

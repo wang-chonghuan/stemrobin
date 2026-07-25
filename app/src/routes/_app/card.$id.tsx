@@ -76,7 +76,7 @@ function CardPage() {
 
   return (
     <main className="sr-detail">
-      {top(card.section)}
+      {top(card.trail[card.trail.length - 1])}
       <div className="sr-d-scroll sr-d-scroll-fill">
         <article className="sr-deck">
           {/* Where this card sits, in the book's own words. It scrolls rather
@@ -87,15 +87,18 @@ function CardPage() {
             aria-label={t(locale, 'cat.group.curriculum')}
             ref={where}
           >
-            <span>{card.book}</span>
-            <span aria-hidden>/</span>
-            <span>{card.chapter}</span>
-            <span aria-hidden>/</span>
-            <span>{card.section}</span>
+            {card.trail.map((step, i) => (
+              <span key={step} className="sr-deck-step">
+                {i > 0 && <span aria-hidden>/</span>}
+                {step}
+              </span>
+            ))}
           </nav>
 
           <h1 className="sr-deck-title">
-            <span className="sr-deck-n sr-num">{card.number}</span>
+            {/* Only where the book numbers it — a chapter's exercise set and the
+                volume's closing set carry no number of their own. */}
+            {card.number !== null && <span className="sr-deck-n sr-num">{card.number}</span>}
             {card.title}
           </h1>
           <p className="sr-deck-id sr-num">{card.id}</p>

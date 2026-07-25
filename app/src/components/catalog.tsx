@@ -291,10 +291,10 @@ function EnglishOutline({
 
 const REFERENCE_LESSON = 'math-s10-02'
 
-// One outline row, plus the book's own numbered items beneath it. A lesson links
-// once the DB holds its id, and is plain text until then; the number is blank for
-// entries the book leaves unnumbered. The topics are what the lesson is made of,
-// not destinations, so they never link.
+// One outline row, plus the book's own numbered items beneath it. Every row is
+// reachable: a lesson with numbered items opens at the first of them, and one
+// the book left unnumbered — a chapter's exercise set — is itself a card and
+// opens directly. The dot marks a row whose content exists.
 function LessonRow({
   lesson,
   title,
@@ -306,20 +306,16 @@ function LessonRow({
 }) {
   return (
     <li>
-      {lesson.ready ? (
-        <Link
-          to="/lesson/$id"
-          params={{ id: lesson.id }}
-          className="sr-out-lesson ready"
-          activeProps={{ className: 'sr-out-lesson ready active' }}
-          onClick={onNavigate}
-        >
-          <span className="sr-out-dot" aria-hidden />
-          {title}
-        </Link>
-      ) : (
-        <span className="sr-out-lesson">{title}</span>
-      )}
+      <Link
+        to="/card/$id"
+        params={{ id: lesson.cardId }}
+        className={'sr-out-lesson' + (lesson.ready ? ' ready' : '')}
+        activeProps={{ className: 'active' }}
+        onClick={onNavigate}
+      >
+        {lesson.ready && <span className="sr-out-dot" aria-hidden />}
+        {title}
+      </Link>
       {lesson.topics.length > 0 && (
         <ol className="sr-out-topics">
           {lesson.topics.map((tp) => (
@@ -328,7 +324,7 @@ function LessonRow({
                 to="/card/$id"
                 params={{ id: tp.id }}
                 className="sr-out-topic"
-                activeProps={{ className: 'sr-out-topic active' }}
+                activeProps={{ className: 'active' }}
                 onClick={onNavigate}
               >
                 <span className="sr-out-topic-n">{tp.number}</span>
