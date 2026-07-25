@@ -1018,19 +1018,16 @@ a.sr-out-lesson.ready:hover {
   border-left: 2px solid var(--sr-blue);
   max-width: 52ch;
 }
-.sr-hero-story-who {
+/* Both quoted lines read as one voice — same type, same weight, same color. */
+.sr-hero-story-line {
   margin: 0 0 5px;
   font-size: 13px;
+  line-height: 1.7;
   font-weight: 600;
   letter-spacing: 0.01em;
   color: var(--sr-ink);
 }
-.sr-hero-story-body {
-  margin: 0;
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: var(--sr-ink-soft);
-}
+.sr-hero-story-line:last-child { margin-bottom: 0; }
 .sr-hero-art { flex: none; width: 208px; height: auto; }
 @media (max-width: 640px) {
   .sr-hero { flex-direction: column; align-items: flex-start; gap: 14px; padding: 18px; }

@@ -65,10 +65,10 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.stat.learned': '课文完成',
     'ov.stat.practiced': '练习完成',
     'ov.hero.badge': '引理阶梯 · 中学数学与物理',
-    'ov.hero.title.a': '从算术到微积分，',
-    'ov.hero.title.b': '从杠杆到电磁场。',
-    'ov.hero.story.who': '一套中学数学与物理课程，承袭数学家柯尔莫戈洛夫主编的十年制体系。',
-    'ov.hero.story.body': '编成理解与练习的卡组，由 AI 带你真正掌握。',
+    'ov.hero.title.a': '中学数学与物理课程，承袭数学家',
+    'ov.hero.title.b': '柯尔莫戈洛夫主编的十年制体系。',
+    'ov.hero.story.a': '从算术到微积分，从杠杆到电磁场。',
+    'ov.hero.story.b': '编成理解与练习的卡组，由 AI 带你真正掌握。',
     'ov.hero.art.alt': '卡片式学习：答对即时反馈，一步步往上',
     'ov.new': '新上线课程（{n}）',
     // overview — learning-principle column (growth)
@@ -214,11 +214,10 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
     'ov.hero.badge': 'LemmaDeck · Secondary math & physics',
-    'ov.hero.title.a': 'From arithmetic to calculus, ',
-    'ov.hero.title.b': 'from the lever to the electromagnetic field.',
-    'ov.hero.story.who':
-      'One secondary course in mathematics and physics, heir to the ten-year system edited by the mathematician Kolmogorov.',
-    'ov.hero.story.body':
+    'ov.hero.title.a': 'A secondary course in mathematics and physics, heir to ',
+    'ov.hero.title.b': 'the ten-year system edited by the mathematician Kolmogorov.',
+    'ov.hero.story.a': 'From arithmetic to calculus, from the lever to the electromagnetic field.',
+    'ov.hero.story.b':
       'Arranged into decks of understanding and practice, with AI to carry you through to real mastery.',
     'ov.hero.art.alt': 'Card-based learning: instant feedback on a correct answer, one step up at a time',
     'ov.new': 'New lessons ({n})',

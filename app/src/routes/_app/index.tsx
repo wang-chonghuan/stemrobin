@@ -77,8 +77,8 @@ function Overview() {
               <span className="sr-hero-accent">{t(locale, 'ov.hero.title.b')}</span>
             </h1>
             <div className="sr-hero-story">
-              <p className="sr-hero-story-who">{t(locale, 'ov.hero.story.who')}</p>
-              <p className="sr-hero-story-body">{t(locale, 'ov.hero.story.body')}</p>
+              <p className="sr-hero-story-line">{t(locale, 'ov.hero.story.a')}</p>
+              <p className="sr-hero-story-line">{t(locale, 'ov.hero.story.b')}</p>
             </div>
             <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
           </div>
