@@ -90,10 +90,10 @@ function Overview() {
         {/* Hero — product intro (STEMROBIN-57) */}
         <section className="sr-hero">
           <div className="sr-hero-copy">
-            <span className="sr-hero-badge">{t(locale, 'ov.hero.badge')}</span>
             <h1 className="sr-hero-title">
               {t(locale, 'ov.hero.title.a')}
               <span className="sr-hero-accent">{t(locale, 'ov.hero.title.b')}</span>
+              {t(locale, 'ov.hero.title.c')}
             </h1>
             {/* Two parallel half-lines, then one longer line to close — the
                 staggered rhythm is the point, so they are not one block. */}
