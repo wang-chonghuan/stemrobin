@@ -25,6 +25,7 @@ SRCS = [
     REPO / "resources/tyurin-probability/toc/图林-概率论与统计-书名作者目录.md",
 ]
 EXCLUDE = re.compile(r"答案|Ответы|От авторов")
+IGNORE_BELOW = "<!-- reconcile:ignore-below -->"
 
 # The printed heading carries an ordinal that the JSON keeps in `number` /
 # `source` / `printedNumber` rather than in the title, so strip it before
@@ -54,6 +55,12 @@ def source_slices() -> dict[str, list[str]]:
     for src in SRCS:
         book, listing, cut_at = None, False, None
         for ln in src.read_text(encoding="utf-8").split("\n"):
+            # A printed-contents file may carry trailing material that is for
+            # people, not for this checker — a translated reading copy, notes.
+            # Everything below the marker is ignored, so such a section cannot
+            # silently attach itself to the last book's listing.
+            if ln.startswith(IGNORE_BELOW):
+                break
             if m := re.match(r"^# ([\w\-]+) — ", ln):
                 book, listing, cut_at = m.group(1), False, None
                 out[book] = []

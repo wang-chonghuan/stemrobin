@@ -16,6 +16,8 @@ import {
   Brain,
   ChevronDown,
   FileText,
+  Menu,
+  X,
   Infinity as InfinityIcon,
   Layers,
   Lightbulb,
@@ -89,6 +91,8 @@ const S = {
     ready: (n: number) => `${n} lessons ready`,
     comingSoon: 'Coming soon',
     langButton: '中文',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
     zoomIn: 'Zoom in',
     zoomOut: 'Zoom out',
     reset: 'Reset view',
@@ -134,6 +138,8 @@ const S = {
     ready: (n: number) => `${n} 节课已上线`,
     comingSoon: '即将上线',
     langButton: 'EN',
+    openMenu: '打开菜单',
+    closeMenu: '关闭菜单',
     zoomIn: '放大',
     zoomOut: '缩小',
     reset: '复位视角',
@@ -149,6 +155,7 @@ function Landing() {
   const router = useRouter()
   const t = S[locale]
   const [menuOpen, setMenuOpen] = useState(false)
+  const [navOpen, setNavOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState<GalaxyFilter>('all')
   const navRef = useRef<HTMLElement>(null)
@@ -169,6 +176,13 @@ function Landing() {
       document.removeEventListener('keydown', onKey)
     }
   }, [menuOpen])
+
+  useEffect(() => {
+    if (!navOpen) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setNavOpen(false)
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [navOpen])
 
   async function switchLocale() {
     await setLocale({ data: locale === 'zh' ? 'en' : 'zh' })
@@ -197,6 +211,63 @@ function Landing() {
     <div className="lp-page">
       <div className="lp-bg" aria-hidden />
 
+      {/* Tablet / phone navigation: a drawer holding what the top bar drops. */}
+      <button
+        type="button"
+        className={'lp-scrim' + (navOpen ? ' show' : '')}
+        aria-label={t.closeMenu}
+        tabIndex={navOpen ? 0 : -1}
+        onClick={() => setNavOpen(false)}
+      />
+      <aside className={'lp-drawer' + (navOpen ? ' open' : '')} aria-hidden={!navOpen}>
+        <nav className="lp-drawer-links">
+          <button type="button">{t.navCurriculum}</button>
+          <button type="button">{t.navHow}</button>
+          <button type="button">{t.navAbout}</button>
+          <button type="button">{t.navPricing}</button>
+        </nav>
+        <div className="lp-drawer-books">
+          {outline.map((d) => (
+            <div key={d.discipline}>
+              <div className={'lp-mega-head ' + d.discipline}>{d.label}</div>
+              {d.books.map((b) => {
+                const ready = bookLessons(b).filter((l) => l.ready)
+                const first = ready[0]
+                return first ? (
+                  <Link
+                    key={b.book}
+                    to="/lesson/$id"
+                    params={{ id: first.id }}
+                    className="lp-mega-item"
+                    onClick={() => setNavOpen(false)}
+                  >
+                    <span>{b.title}</span>
+                    <small>{t.ready(ready.length)}</small>
+                  </Link>
+                ) : (
+                  <div key={b.book} className="lp-mega-item off">
+                    <span>{b.title}</span>
+                    <small>{t.comingSoon}</small>
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+        </div>
+        <div className="lp-drawer-ctas">
+          <button type="button" className="lp-btn ghost" onClick={switchLocale}>
+            {t.langButton}
+          </button>
+          <Link to="/login" className="lp-btn ghost" onClick={() => setNavOpen(false)}>
+            {t.signIn}
+          </Link>
+          <button type="button" className="lp-btn solid">
+            {t.startFree}
+            <Sparkles size={14} aria-hidden />
+          </button>
+        </div>
+      </aside>
+
       <div className="lp-shell">
         <header className="lp-nav" ref={navRef}>
           <Link to="/" className="lp-brand">
@@ -206,6 +277,17 @@ function Landing() {
               <small>{t.tagline}</small>
             </span>
           </Link>
+          {/* Below the desktop breakpoint everything else folds into a drawer;
+              the burger sits next to the mark, as the only bar control. */}
+          <button
+            type="button"
+            className="lp-burger"
+            aria-label={navOpen ? t.closeMenu : t.openMenu}
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen((v) => !v)}
+          >
+            {navOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
           <nav className="lp-nav-links">
             <button
               type="button"
