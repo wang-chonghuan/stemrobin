@@ -20,6 +20,7 @@ BRANCH = {
     "algebra": ("math", "代数"),
     "analysis": ("math", "代数与分析初步"),
     "geometry": ("math", "几何"),
+    "probability": ("math", "概率论与统计"),
     "physics": ("physics", "物理"),
 }
 
