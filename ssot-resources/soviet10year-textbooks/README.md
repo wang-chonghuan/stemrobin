@@ -33,6 +33,22 @@ volume names it in `extractedLocale`:
   the authority and both `zh.json` and `en.json` are translations. Marking `zh`
   as extracted there would dress a translation up as the printed page.
 
+## Grades are the shelf's, not the edition's
+
+`grade` is where a volume sits in **this** ladder, and the ladder is the Soviet
+ten-year school: a 1—3 primary school, algebra starting in grade 6. Modern Russia
+runs a 1—4 primary, so its whole secondary sequence is a year later than the same
+content here — Алгебра 7—9 класс covers what 代数 6/7/8年级 covers, and Алгебра и
+начала анализа 10—11 covers 代数和分析初步 9/10年级. The correspondence is exact,
+three volumes to three grades and two to two.
+
+So a book printed for the 11-year system is shelved one grade earlier, and its
+`grade` and its translated titles say the shelf's grade. The extracted file keeps
+the printed title untouched — `7-9pr/ru.json` still reads «7—9 классы» — and every
+locale carries a `gradeAlignment` note stating the printed band, the shelf band,
+and why they differ. Nothing is renamed in the transcription; only the placement
+is the shelf's to decide.
+
 ## More than one printed series
 
 The shelf is not only the Soviet set. Probability and statistics is the one

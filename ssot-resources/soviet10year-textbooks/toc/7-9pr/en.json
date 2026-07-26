@@ -4,8 +4,9 @@
   "authority": "translated",
   "extractedLocale": "ru",
   "subject": "probability",
-  "grade": 7,
-  "title": "Probability Theory and Statistics, Grades 7–9",
+  "grade": 6,
+  "gradeAlignment": "The book prints “7—9 класс”; that is Grades 6–8 in the Soviet ten-year school this shelf is built on — the series here assumes a 1—3 primary school, modern Russia a 1—4 one, so the whole secondary sequence shifts by a year. ru.json keeps the printed title; zh/en and the `grade` field state the shelf’s Soviet grade.",
+  "title": "Probability Theory and Statistics, Grades 6–8",
   "source": {
     "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
     "bookId": "7-9pr",
@@ -16,7 +17,7 @@
     "scan": "7-9pr — 印刷本未存入仓库"
   },
   "note": "A translation of ru.json, which is the authority (the printed Russian contents, transcribed). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
-  "numbering": "`number` (e.g. 3.5) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed contents: its printed number (printedSection, continuous across the volume) where it has one, otherwise its printed heading (printedName, kept in Russian in every locale — it is a pointer into the printed book). The appendix and «Самостоятельные и контрольные работы» carry no chapter number in the book, so their `number` and their sections’ `number` are null. In the 7–9 volume a star on items 15 and 16 marks optional material; the title is transcribed as printed.",
+  "numbering": "`number` (e.g. 3.5) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed contents: its printed number (printedSection, continuous across the volume) where it has one, otherwise its printed heading (printedName, kept in Russian in every locale — it is a pointer into the printed book). The appendix and «Самостоятельные и контрольные работы» carry no chapter number in the book, so their `number` and their sections’ `number` are null. In this volume (printed 7—9 класс, shelved as Grades 6–8) a star on items 15 and 16 marks optional material; the title is transcribed as printed.",
   "contents": [
     {
       "id": "7-9pr-c1",

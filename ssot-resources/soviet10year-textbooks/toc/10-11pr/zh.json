@@ -4,8 +4,9 @@
   "authority": "translated",
   "extractedLocale": "ru",
   "subject": "probability",
-  "grade": 10,
-  "title": "概率论与统计 10—11年级",
+  "grade": 9,
+  "gradeAlignment": "原书印作「10—11 класс」，对应苏联十年制的 **9—10 年级**：本仓库这套教材是小学 1—3 年制，现行俄罗斯是 1—4 年制，中学序列整体顺延一年。ru.json 的书名保留印刷原样，zh/en 的年级按本书架的苏联年级标注，`grade` 字段同。",
+  "title": "概率论与统计 9–10年级",
   "source": {
     "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
     "bookId": "10-11pr",

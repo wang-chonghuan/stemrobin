@@ -4,8 +4,9 @@
   "authority": "translated",
   "extractedLocale": "ru",
   "subject": "probability",
-  "grade": 10,
-  "title": "Probability Theory and Statistics, Grades 10–11",
+  "grade": 9,
+  "gradeAlignment": "The book prints “10—11 класс”; that is Grades 9–10 in the Soviet ten-year school this shelf is built on — the series here assumes a 1—3 primary school, modern Russia a 1—4 one, so the whole secondary sequence shifts by a year. ru.json keeps the printed title; zh/en and the `grade` field state the shelf’s Soviet grade.",
+  "title": "Probability Theory and Statistics, Grades 9–10",
   "source": {
     "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
     "bookId": "10-11pr",
