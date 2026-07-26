@@ -2060,3 +2060,929 @@ a.sr-out-lesson.active {
 @media (max-width: 720px) {
   .sr-galaxy { aspect-ratio: 4 / 3; }
 }
+
+/* ================= Landing (ld-) =================
+   Full-bleed dark marketing page, rendered outside the app shell.
+   Layers: .ld-bg (fixed photo) < .ld-starmap-layer (SVG, no pointer
+   events, screen-blended) < .ld-content (everything interactive). */
+.ld-page {
+  position: relative;
+  height: 100vh;
+  /* html/body are overflow:hidden for the app shell's internal scrolling, so
+     pages outside the shell bring their own scroll container. */
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #050a17;
+  color: #dfe8ff;
+}
+.ld-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('/landing-bg.webp') no-repeat center right / cover;
+}
+.ld-bg::after {
+  /* keep the left column quiet and the foot readable */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgba(4, 8, 18, 0.55) 0%, rgba(4, 8, 18, 0.1) 45%, rgba(4, 8, 18, 0) 70%);
+}
+/* The constellation's invisible card: a normal hero-row column with no painted
+   surface — only the SVG shows. The wrap kills pointer events so the card
+   never intercepts anything; the Explore button opts back in. */
+.ld-starmap-card {
+  position: relative;
+  min-width: 0;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+.ld-starmap-wrap {
+  width: 100%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.ld-starmap {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 18px rgba(110, 200, 255, 0.12));
+}
+.ld-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0 42px;
+}
+
+/* ---- nav ---- */
+.ld-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  padding: 14px 0;
+  backdrop-filter: blur(10px);
+  background: rgba(5, 9, 20, 0.45);
+}
+.ld-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.ld-brand-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: #f2f6ff;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+.ld-brand-name em {
+  font-style: normal;
+  color: #2fd9c0;
+}
+.ld-brand-name small {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #7f8db3;
+  letter-spacing: 0.02em;
+}
+.ld-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+.ld-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px 2px;
+  font-size: 14.5px;
+  color: #c6d2f2;
+  cursor: pointer;
+}
+.ld-nav-link:hover { color: #fff; }
+.ld-nav-link.dropdown svg { transition: transform 0.18s ease; }
+.ld-nav-link.dropdown.open svg { transform: rotate(180deg); }
+.ld-nav-actions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ld-lang {
+  background: rgba(12, 20, 42, 0.6);
+  border: 1px solid rgba(140, 165, 255, 0.25);
+  border-radius: 999px;
+  color: #aab6e8;
+  font-size: 12.5px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.ld-lang:hover { color: #fff; border-color: rgba(160, 185, 255, 0.5); }
+
+/* ---- buttons ---- */
+.ld-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 20px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, color 0.15s ease;
+}
+.ld-btn.ghost {
+  border-color: rgba(150, 180, 255, 0.28);
+  color: #e6eeff;
+  background: rgba(10, 18, 40, 0.4);
+}
+.ld-btn.ghost:hover { border-color: rgba(170, 200, 255, 0.6); }
+.ld-btn.solid {
+  background: linear-gradient(135deg, #35e2c8, #1fb9ab);
+  color: #04222b;
+  box-shadow: 0 4px 22px rgba(47, 217, 192, 0.35);
+}
+.ld-btn.solid:hover { box-shadow: 0 4px 30px rgba(47, 217, 192, 0.55); }
+.ld-btn.lg { padding: 12px 26px; font-size: 15px; }
+
+/* ---- curriculum mega-dropdown ---- */
+.ld-mega {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 8px 30px;
+  background: rgba(8, 13, 30, 0.97);
+  border: 1px solid rgba(120, 150, 255, 0.22);
+  border-radius: 14px;
+  padding: 20px 24px;
+  max-height: min(70vh, 640px);
+  overflow: auto;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+.ld-mega-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 16px;
+  align-content: start;
+}
+.ld-mega-col:last-child { grid-template-columns: 1fr; }
+.ld-mega-head {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px 8px;
+}
+.ld-mega-head.math { color: #ffc46b; }
+.ld-mega-head.physics { color: #6bc8ff; }
+.ld-mega-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 7px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.ld-mega-item span { font-size: 13.5px; color: #dfe8ff; }
+.ld-mega-item small { font-size: 11px; color: #6f7ea6; }
+a.ld-mega-item:hover { background: rgba(120, 150, 255, 0.14); }
+.ld-mega-item.off { opacity: 0.5; }
+
+/* ---- hero ---- */
+.ld-hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 620px) minmax(0, 1fr);
+  gap: 30px;
+  align-items: center;
+  padding: 42px 0 26px;
+}
+.ld-hero-card {
+  width: min(640px, 100%);
+  background: rgba(233, 243, 246, 0.97);
+  color: #16233a;
+  border-radius: 20px;
+  padding: 36px 40px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+.ld-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: #ffffffb0;
+  border: 1px solid rgba(20, 60, 80, 0.14);
+  border-radius: 999px;
+  padding: 5px 13px;
+  font-size: 12.5px;
+  color: #10666b;
+}
+.ld-hero-card h1 {
+  margin: 18px 0 14px;
+  font-size: clamp(30px, 3.3vw, 44px);
+  line-height: 1.16;
+  letter-spacing: -0.01em;
+  color: #10203a;
+}
+.ld-hero-card h1 em {
+  font-style: normal;
+  color: #0aa79e;
+}
+.ld-hero-sub {
+  margin: 0;
+  font-size: 15.5px;
+  line-height: 1.68;
+  color: #33445f;
+  max-width: 56ch;
+}
+.ld-hero-ctas {
+  display: flex;
+  gap: 14px;
+  margin: 24px 0 20px;
+  flex-wrap: wrap;
+}
+.ld-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid rgba(20, 50, 80, 0.1);
+  list-style: none;
+}
+.ld-checks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #3a4f66;
+}
+.ld-checks svg { color: #0aa79e; }
+.ld-explore-universe {
+  position: absolute;
+  top: 20px;
+  right: 4px;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+/* ---- galaxy light theme (Seneca-style white ground) ---- */
+.sr-galaxy.light { background: #f6f8fd; }
+.sr-galaxy.light .sr-galaxy-hublabel {
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.95), 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+.sr-galaxy.light .sr-galaxy-hublabel.hot {
+  color: #2b3355 !important;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 1), 0 1px 2px rgba(255, 255, 255, 1);
+}
+.sr-galaxy.light .sr-galaxy-hublabel.dim { opacity: 0.25; }
+.sr-galaxy.light .sr-galaxy-starlabel {
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.95), 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+.sr-galaxy.light .sr-galaxy-search {
+  background: #ffffff;
+  border-color: #dfe5f5;
+  color: #8892b8;
+  box-shadow: 0 2px 10px rgba(80, 100, 160, 0.08);
+}
+.sr-galaxy.light .sr-galaxy-search input { color: #3d4566; }
+.sr-galaxy.light .sr-galaxy-search input::placeholder { color: #9aa4c8; }
+.sr-galaxy.light .sr-galaxy-search-pop {
+  background: #ffffff;
+  border-color: #dfe5f5;
+  box-shadow: 0 10px 34px rgba(80, 100, 160, 0.18);
+}
+.sr-galaxy.light .sr-galaxy-search-pop button { color: #3d4566; }
+.sr-galaxy.light .sr-galaxy-search-pop button:hover { background: #eef2fd; }
+.sr-galaxy.light .sr-galaxy-zoom button {
+  background: #ffffff;
+  border-color: #dfe5f5;
+  color: #5a6488;
+  box-shadow: 0 2px 8px rgba(80, 100, 160, 0.08);
+}
+.sr-galaxy.light .sr-galaxy-zoom button:hover { color: #2b3355; border-color: #b9c4ea; }
+.sr-galaxy.light .sr-galaxy-legend { color: #5a6488; }
+.sr-galaxy.light .sr-galaxy-legend.chips span {
+  background: #ffffff;
+  border-color: #dfe5f5;
+  box-shadow: 0 2px 8px rgba(80, 100, 160, 0.08);
+}
+.sr-galaxy.light .sr-galaxy-legend i.cross {
+  background: linear-gradient(90deg, #f08c1a, #4a7df7);
+}
+.sr-galaxy.light .sr-galaxy-hint { color: #9aa4c8; }
+.sr-galaxy.light .sr-galaxy-tooltip {
+  background: #ffffff;
+  border-color: #dfe5f5;
+  color: #3d4566;
+  box-shadow: 0 6px 24px rgba(80, 100, 160, 0.2);
+}
+.sr-galaxy.light .sr-galaxy-tooltip .trail { color: #8892b8; }
+
+/* ---- starmap light-variant preview (dev route /starmap-preview) ---- */
+.sp-page {
+  height: 100vh;
+  overflow-y: auto; /* html/body are overflow:hidden (app shell) */
+  background: #f6f8fd;
+  padding: 48px clamp(20px, 5vw, 80px);
+  font-family: inherit;
+}
+.sp-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
+  gap: 40px;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px 48px;
+  box-shadow: 0 10px 40px rgba(80, 100, 160, 0.1);
+}
+.sp-copy h1 {
+  margin: 0 0 14px;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.2;
+  color: #3e4763;
+}
+.sp-copy h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #8a63e8, #e070c8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sp-copy p {
+  margin: 0 0 22px;
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: #6a7391;
+}
+.sp-cta {
+  background: #4a7df7;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 13px 28px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(74, 125, 247, 0.35);
+}
+.sp-map { pointer-events: none; min-width: 0; }
+.sp-map .ld-starmap { width: 100%; height: auto; display: block; }
+.sp-universe {
+  margin-top: 36px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(80, 100, 160, 0.1);
+}
+.sp-universe h2 { margin: 0 0 4px; font-size: 19px; color: #3e4763; }
+.sp-universe > p { margin: 0 0 14px; font-size: 13px; color: #6a7391; }
+.sp-dark-ref {
+  margin-top: 36px;
+  background: #0a1020;
+  border-radius: 24px;
+  padding: 28px 48px;
+  position: relative;
+}
+.sp-ref-label {
+  position: absolute;
+  top: 14px;
+  left: 20px;
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #55608a;
+}
+@media (max-width: 1000px) {
+  .sp-hero { grid-template-columns: 1fr; }
+}
+
+/* ================= Landing, glass edition (lp-) =================
+   The galaxy photograph runs full-bleed behind everything; the UI floats on
+   top as frosted white cards. Accent: teal. The knowledge galaxy keeps its
+   dark skin inside a light card; its chrome (search/chips/zoom) is page-level. */
+.lp-page {
+  height: 100vh;
+  overflow-y: auto; /* html/body are overflow:hidden (app shell) */
+  overflow-x: hidden;
+  color: #16233a;
+}
+.lp-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: url('/landing-bg.webp') no-repeat center / cover;
+}
+.lp-shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 14px clamp(14px, 3vw, 36px) 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* frosted card base (the hero opts out — it fades to fully transparent) */
+.lp-nav,
+.lp-universe-card,
+.lp-rigor {
+  background: rgba(244, 249, 255, 0.86);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
+  box-shadow: 0 12px 40px rgba(10, 25, 60, 0.25);
+}
+
+/* ---- nav ---- */
+.lp-nav {
+  position: sticky;
+  top: 10px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 10px 22px;
+}
+.lp-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.lp-brand-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: #16233a;
+  line-height: 1.05;
+}
+.lp-brand-name em { font-style: normal; color: #0eb5a6; }
+.lp-brand-name small {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: #6d7b9c;
+}
+.lp-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0 auto;
+}
+.lp-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 8px 2px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: #33436e;
+  cursor: pointer;
+}
+.lp-nav-link:hover { color: #10203a; }
+.lp-nav-link.dropdown svg { transition: transform 0.18s ease; }
+.lp-nav-link.dropdown.open svg { transform: rotate(180deg); }
+.lp-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.lp-lang {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #d6def0;
+  border-radius: 999px;
+  color: #5a6488;
+  font-size: 12.5px;
+  padding: 6px 13px;
+  cursor: pointer;
+}
+.lp-lang:hover { color: #16233a; border-color: #aebadd; }
+
+/* ---- buttons ---- */
+.lp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 18px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.lp-btn.ghost {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: #d6def0;
+  color: #24355c;
+}
+.lp-btn.ghost:hover { border-color: #aebadd; }
+.lp-btn.solid {
+  background: linear-gradient(135deg, #23d3bd, #0fae9f);
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(16, 180, 163, 0.45);
+}
+.lp-btn.solid:hover {
+  box-shadow: 0 8px 28px rgba(16, 180, 163, 0.6);
+  transform: translateY(-1px);
+}
+.lp-btn.lg { padding: 12px 26px; font-size: 15px; border-radius: 14px; }
+
+/* ---- curriculum mega-dropdown ---- */
+.lp-mega {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 8px 30px;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid #e0e7f6;
+  border-radius: 16px;
+  padding: 20px 26px 24px;
+  max-height: min(70vh, 640px);
+  overflow: auto;
+  box-shadow: 0 30px 70px rgba(10, 25, 60, 0.3);
+}
+.lp-mega-col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2px 16px;
+  align-content: start;
+}
+.lp-mega-col:last-child { grid-template-columns: 1fr; }
+.lp-mega-head {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px 8px;
+}
+.lp-mega-head.math { color: #d97a0b; }
+.lp-mega-head.physics { color: #2f5fd9; }
+.lp-mega-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 7px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.lp-mega-item span { font-size: 13.5px; color: #2b3a63; }
+.lp-mega-item small { font-size: 11px; color: #93a0c4; }
+a.lp-mega-item:hover { background: #eef4fd; }
+.lp-mega-item.off { opacity: 0.55; }
+
+/* ---- hero ----
+   Not a card: no border, no surface of its own. A single masked layer carries
+   both the frost and the white, fading out to the right — so the right side is
+   genuinely transparent and shows the page background's own stars, rather than
+   a second copy of the photograph. */
+.lp-hero {
+  position: relative;
+  min-height: 430px;
+  display: flex;
+  align-items: center;
+  border: none;
+  box-shadow: none;
+  background: none;
+}
+.lp-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 18px;
+  background: rgba(244, 249, 255, 0.93);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 63%, rgba(0, 0, 0, 0.5) 78%, transparent 92%);
+  mask-image: linear-gradient(90deg, #000 0%, #000 63%, rgba(0, 0, 0, 0.5) 78%, transparent 92%);
+  pointer-events: none;
+}
+.lp-hero-copy {
+  position: relative;
+  z-index: 1;
+  padding: 40px 44px;
+  /* 60% of the hero card on desktop (user ruling) — a fixed cap wrapped too early */
+  width: 60%;
+  max-width: none;
+}
+.lp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #d9e2f2;
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #0f9e91;
+}
+.lp-hero h1 {
+  margin: 16px 0 14px;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.14;
+  letter-spacing: -0.015em;
+  color: #10203a;
+}
+.lp-hero h1 em { font-style: normal; color: #0eb5a6; }
+/* The two selling points, as a rule-marked list rather than a paragraph. */
+.lp-hero-points {
+  margin: 0;
+  padding: 0 0 0 15px;
+  list-style: none;
+  border-left: 2px solid rgba(14, 181, 166, 0.45);
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.lp-hero-points li {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #33445f;
+  max-width: 54ch;
+}
+.lp-ctas {
+  display: flex;
+  gap: 13px;
+  margin: 22px 0 18px;
+  flex-wrap: wrap;
+}
+/* Five capability claims, always on one line. The row is allowed to run a
+   little past the copy column into the frost's soft edge — still fully
+   legible there, and it keeps the claims from breaking into a second row. */
+.lp-checks {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: calc(100% + 96px);
+  gap: 16px;
+  margin: 0;
+  padding: 14px 0 0;
+  border-top: 1px solid rgba(20, 50, 80, 0.1);
+  list-style: none;
+}
+.lp-checks li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  font-size: 11.5px;
+  color: #33445f;
+}
+.lp-checks svg { color: #0eb5a6; flex: none; }
+
+/* ---- bottom row: universe + rigor ---- */
+.lp-bottom {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 370px;
+  gap: 16px;
+  align-items: stretch;
+}
+.lp-universe-card { padding: 20px 22px 22px; }
+.lp-universe-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.lp-universe-titles h2 {
+  margin: 0 0 4px;
+  font-size: 19px;
+  color: #10203a;
+}
+.lp-universe-titles p {
+  margin: 0;
+  font-size: 12.5px;
+  color: #5f6b8a;
+}
+.lp-universe-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.lp-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #d6def0;
+  border-radius: 999px;
+  padding: 7px 14px;
+  color: #8892b8;
+}
+.lp-search input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #24355c;
+  font-size: 13px;
+  width: 150px;
+}
+.lp-search input::placeholder { color: #9aa4c8; }
+.lp-search-pop {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 300px;
+  background: #ffffff;
+  border: 1px solid #dfe5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 20;
+  box-shadow: 0 10px 34px rgba(10, 25, 60, 0.2);
+}
+.lp-search-pop button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 13px;
+  background: none;
+  border: none;
+  color: #24355c;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+}
+.lp-search-pop button:hover { background: #eef4fd; }
+.lp-search-pop i {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+.lp-search-pop i.math { background: #ffc46b; }
+.lp-search-pop i.physics { background: #6bc8ff; }
+.lp-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.lp-chip {
+  background: #ffffff;
+  border: 1px solid #d6def0;
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #4d5b83;
+  cursor: pointer;
+}
+.lp-chip:hover { border-color: #aebadd; }
+.lp-chip.active {
+  background: #0eb5a6;
+  border-color: #0eb5a6;
+  color: #fff;
+}
+.lp-galaxy-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.lp-galaxy-frame .sr-galaxy { border-radius: 14px; }
+.lp-galaxy-zoom {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lp-galaxy-zoom button {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: rgba(14, 22, 44, 0.8);
+  border: 1px solid rgba(140, 165, 255, 0.3);
+  color: #d5def5;
+  cursor: pointer;
+}
+.lp-galaxy-zoom button:hover { color: #fff; border-color: rgba(170, 195, 255, 0.6); }
+
+/* ---- rigor card ---- */
+.lp-rigor { padding: 22px; align-self: stretch; }
+.lp-rigor h2 {
+  margin: 0 0 6px;
+  font-size: 19px;
+  color: #10203a;
+}
+.lp-rigor-sub {
+  margin: 0 0 16px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #5f6b8a;
+}
+/* Plain rows — the column is already a card, so nothing inside is one. */
+.lp-why {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid rgba(20, 50, 90, 0.09);
+}
+.lp-why li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(20, 50, 90, 0.09);
+}
+.lp-why-ico {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: #dcf3f0;
+  color: #0d9488;
+}
+.lp-why-txt { min-width: 0; }
+.lp-why-txt strong {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #14263f;
+  margin-bottom: 2px;
+}
+.lp-why-txt small {
+  display: block;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #52627c;
+}
+.lp-rigor blockquote {
+  margin: 16px 0 0;
+  padding: 0;
+}
+.lp-rigor blockquote p {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  font-style: italic;
+  line-height: 1.65;
+  color: #0f9e91;
+}
+.lp-rigor cite {
+  font-style: normal;
+  font-size: 11.5px;
+  color: #5f6b8a;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1100px) {
+  .lp-nav-link:not(.dropdown) { display: none; }
+  .lp-hero-copy { width: 74%; }
+  .lp-bottom { grid-template-columns: 1fr; }
+  .lp-mega { grid-template-columns: 1fr; }
+  .lp-hero::before { background-position: right 20%; }
+}
+@media (max-width: 640px) {
+  .lp-brand-name small { display: none; }
+  .lp-nav { gap: 12px; }
+  .lp-nav-actions { gap: 8px; }
+  .lp-nav-actions .lp-btn.solid { display: none; }
+  .lp-mega-col { grid-template-columns: 1fr; }
+  .lp-hero-copy { padding: 26px 22px; width: 100%; }
+  /* narrow: the copy fills the hero, so the frost covers it all — no fade,
+     otherwise the trust row falls into the transparent zone and vanishes */
+  .lp-hero::before {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  /* brand, actions, then the Curriculum control on its own row */
+  .lp-nav { flex-wrap: wrap; }
+  .lp-nav-links { margin: 0; order: 3; width: 100%; }
+  .lp-search input { width: 110px; }
+}
+
+/* hub labels knocked out by the discipline filter */
+.sr-galaxy-hublabel.filtered { opacity: 0.14 !important; }

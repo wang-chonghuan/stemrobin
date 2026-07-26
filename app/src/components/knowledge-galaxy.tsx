@@ -10,26 +10,69 @@
 // Data comes from /galaxy.json (public/), rebuilt by
 // prototypes/knowledge-galaxy/pipeline/build_galaxy.py.
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Maximize2, Minus, Plus, Search } from 'lucide-react'
 import type { Locale } from '~/lib/i18n'
 
-// Discipline colors. Math is the house subject, so it wears the warm gold that
-// carries more visual weight on the dark field; physics recedes into blue.
-const COLORS: Record<string, string> = {
-  math: '#ffc46b',
-  physics: '#6bc8ff',
+// Discipline colors per theme. Dark: math wears the warm gold that carries
+// more visual weight on the dark field; physics recedes into blue. Light
+// (Seneca-style white UI): math violet, physics bright blue — saturated enough
+// to read on white, where additive glow is unavailable.
+type GalaxyTheme = 'dark' | 'light'
+const PALETTES: Record<GalaxyTheme, Record<string, string>> = {
+  dark: { math: '#ffc46b', physics: '#6bc8ff' },
+  // Orange/blue (user ruling): complementary hues, unmistakable on white.
+  light: { math: '#f08c1a', physics: '#4a7df7' },
 }
+// Scene + edge tuning that differs between the two grounds. Additive blending
+// is what makes stars glow on dark — on white it adds toward invisibility, so
+// the light theme flips to normal alpha blending with dimmer halos and
+// slightly stronger edge lines.
+const SCENES = {
+  dark: {
+    bg: 0x05070f,
+    halo: 0.35,
+    edgeBase: 0.1,
+    edgeDim: 0.03,
+    edgeHot: 0.75,
+    labelLift: 0.18, // hub label text vs discipline color: lighten on dark…
+    starLabelLift: 0.22,
+    hubLift: 0.1,
+    jitterL: 0.12,
+  },
+  light: {
+    bg: 0xf6f8fd,
+    halo: 0.16,
+    edgeBase: 0.22,
+    edgeDim: 0.06,
+    edgeHot: 0.9,
+    labelLift: -0.12, // …darken on white
+    starLabelLift: -0.1,
+    hubLift: -0.04,
+    jitterL: 0.07,
+  },
+} as const
 
 const STRINGS = {
   en: {
     hint: 'Drag to orbit · Right-drag to pan · Click a star to centre it · Pinch or ⌘+scroll to zoom',
     math: 'Mathematics',
     physics: 'Physics',
+    cross: 'Cross-links',
+    search: 'Search concepts…',
+    zoomIn: 'Zoom in',
+    zoomOut: 'Zoom out',
+    reset: 'Reset view',
   },
   zh: {
     hint: '拖拽旋转 · 右键拖拽平移 · 点击星星居中 · 双指或 ⌘+滚轮缩放',
     math: '数学',
     physics: '物理',
+    cross: '跨学科连接',
+    search: '搜索概念…',
+    zoomIn: '放大',
+    zoomOut: '缩小',
+    reset: '复位视角',
   },
 } as const
 
@@ -50,10 +93,40 @@ type Star = {
 type Hub = { cluster: number; name: string; nameEn: string; discipline: 'math' | 'physics'; size: number; x: number; y: number }
 type Galaxy = { hubs: Hub[]; edges: { a: number; b: number; w: number }[]; stars: Star[] }
 
-export function KnowledgeGalaxy({ locale }: { locale: Locale }) {
+// What build() hands back to React so search boxes and zoom buttons — the
+// component's own or a parent page's — can drive the scene without touching
+// three directly.
+export type GalaxyFilter = 'all' | 'math' | 'physics' | 'cross'
+export type GalaxyApi = {
+  stars: Star[]
+  focusStar: (index: number) => void
+  zoomBy: (factor: number) => void
+  resetView: () => void
+  setFilter: (f: GalaxyFilter) => void
+}
+
+export function KnowledgeGalaxy({
+  locale,
+  controls,
+  theme = 'dark',
+  bare,
+  apiRef: externalApiRef,
+}: {
+  locale: Locale
+  controls?: boolean
+  theme?: GalaxyTheme
+  /** render nothing but the scene — the parent brings its own chrome */
+  bare?: boolean
+  /** hand the GalaxyApi to the parent (for external search/zoom/filter UI) */
+  apiRef?: { current: GalaxyApi | null }
+}) {
+  const COLORS = PALETTES[theme]
   const hostRef = useRef<HTMLDivElement>(null)
   const localeRef = useRef(locale)
   const relabelRef = useRef<() => void>(() => {})
+  const internalApiRef = useRef<GalaxyApi | null>(null)
+  const apiRef = externalApiRef ?? internalApiRef
+  const [query, setQuery] = useState('')
 
   localeRef.current = locale
   useEffect(() => relabelRef.current(), [locale])
@@ -73,7 +146,7 @@ export function KnowledgeGalaxy({ locale }: { locale: Locale }) {
         fetch('/galaxy.json').then((r) => r.json() as Promise<Galaxy>),
       ])
       if (disposed) return
-      cleanup = build(host, THREE, OrbitControls, galaxy, localeRef, relabelRef)
+      cleanup = build(host, THREE, OrbitControls, galaxy, localeRef, relabelRef, apiRef, theme)
     })
     io.observe(host)
 
@@ -84,18 +157,93 @@ export function KnowledgeGalaxy({ locale }: { locale: Locale }) {
     }
   }, [])
 
+  if (bare) {
+    return <div ref={hostRef} className={'sr-galaxy' + (theme === 'light' ? ' light' : '')} />
+  }
+
   const s = STRINGS[locale]
+  const q = query.trim().toLowerCase()
+  const matches =
+    controls && q && apiRef.current
+      ? apiRef.current.stars
+          .map((star, index) => ({ star, index }))
+          .filter(
+            ({ star }) =>
+              star.title.toLowerCase().includes(q) ||
+              (star.titleEn ?? '').toLowerCase().includes(q),
+          )
+          .slice(0, 8)
+      : []
+
   return (
-    <div ref={hostRef} className="sr-galaxy">
-      <div className="sr-galaxy-hint">{s.hint}</div>
-      <div className="sr-galaxy-legend">
-        <span>
-          <i style={{ background: COLORS.math }} /> {s.math}
-        </span>
-        <span>
-          <i style={{ background: COLORS.physics }} /> {s.physics}
-        </span>
-      </div>
+    <div ref={hostRef} className={'sr-galaxy' + (theme === 'light' ? ' light' : '')}>
+      {controls && (
+        <>
+          <div className="sr-galaxy-search">
+            <Search size={14} aria-hidden />
+            <input
+              type="search"
+              value={query}
+              placeholder={s.search}
+              onChange={(e) => setQuery(e.target.value)}
+              aria-label={s.search}
+            />
+            {matches.length > 0 && (
+              <div className="sr-galaxy-search-pop" role="listbox">
+                {matches.map(({ star, index }) => (
+                  <button
+                    key={star.id}
+                    type="button"
+                    role="option"
+                    aria-selected="false"
+                    onClick={() => {
+                      apiRef.current?.focusStar(index)
+                      setQuery('')
+                    }}
+                  >
+                    <span>{locale === 'zh' ? star.title : (star.titleEn ?? star.title)}</span>
+                    <i style={{ background: COLORS[star.discipline] }} />
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="sr-galaxy-zoom">
+            <button type="button" aria-label={s.zoomIn} onClick={() => apiRef.current?.zoomBy(0.78)}>
+              <Plus size={15} />
+            </button>
+            <button type="button" aria-label={s.zoomOut} onClick={() => apiRef.current?.zoomBy(1.28)}>
+              <Minus size={15} />
+            </button>
+            <button type="button" aria-label={s.reset} onClick={() => apiRef.current?.resetView()}>
+              <Maximize2 size={14} />
+            </button>
+          </div>
+        </>
+      )}
+      {controls ? (
+        <div className="sr-galaxy-legend chips">
+          <span>
+            <i style={{ background: COLORS.math }} /> {s.math}
+          </span>
+          <span>
+            <i style={{ background: COLORS.physics }} /> {s.physics}
+          </span>
+          <span>
+            <i className="cross" /> {s.cross}
+          </span>
+        </div>
+      ) : (
+        <div className="sr-galaxy-legend">
+          <span>
+            <i style={{ background: COLORS.math }} /> {s.math}
+          </span>
+          <span>
+            <i style={{ background: COLORS.physics }} /> {s.physics}
+          </span>
+        </div>
+      )}
+      <div className={'sr-galaxy-hint' + (controls ? ' right' : '')}>{s.hint}</div>
     </div>
   )
 }
@@ -108,7 +256,12 @@ function build(
   data: Galaxy,
   localeRef: { current: Locale },
   relabelRef: { current: () => void },
+  apiRef: { current: GalaxyApi | null },
+  theme: GalaxyTheme,
 ) {
+  const PALETTE = PALETTES[theme]
+  const SC = SCENES[theme]
+  const blending = theme === 'dark' ? THREE.AdditiveBlending : THREE.NormalBlending
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' })
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
   renderer.setSize(host.clientWidth, host.clientHeight)
@@ -124,8 +277,8 @@ function build(
   host.appendChild(tooltip)
 
   const scene = new THREE.Scene()
-  scene.background = new THREE.Color(0x05070f)
-  scene.fog = new THREE.Fog(0x05070f, 70, 190)
+  scene.background = new THREE.Color(SC.bg)
+  scene.fog = new THREE.Fog(SC.bg, 70, 190)
 
   const camera = new THREE.PerspectiveCamera(46, host.clientWidth / host.clientHeight, 0.1, 500)
   camera.position.set(0, 46, 78)
@@ -173,7 +326,7 @@ function build(
   const size = new Float32Array(N)
   const phase = new Float32Array(N)
   const starWorld: InstanceType<typeof THREE.Vector3>[] = []
-  const color = (d: string) => new THREE.Color(COLORS[d] ?? '#ffffff')
+  const color = (d: string) => new THREE.Color(PALETTE[d] ?? '#ffffff')
 
   for (let i = 0; i < N; i++) {
     const s = stars[i]
@@ -183,7 +336,7 @@ function build(
     pos.set([x, y, z], i * 3)
     starWorld.push(new THREE.Vector3(x, y, z))
     const c = color(s.discipline)
-    c.offsetHSL((rand() - 0.5) * 0.05, (rand() - 0.5) * 0.15, (rand() - 0.5) * 0.12)
+    c.offsetHSL((rand() - 0.5) * 0.05, (rand() - 0.5) * 0.15, (rand() - 0.5) * SC.jitterL)
     col.set([c.r, c.g, c.b], i * 3)
     size[i] = s.kind === 'section' ? 1.5 : 1.05 + rand() * 0.7
     phase[i] = rand() * Math.PI * 2
@@ -198,8 +351,12 @@ function build(
   const starMat = new THREE.ShaderMaterial({
     transparent: true,
     depthWrite: false,
-    blending: THREE.AdditiveBlending,
-    uniforms: { uTime: { value: 0 }, uPx: { value: renderer.getPixelRatio() } },
+    blending,
+    uniforms: {
+      uTime: { value: 0 },
+      uPx: { value: renderer.getPixelRatio() },
+      uHalo: { value: SC.halo },
+    },
     vertexShader: /* glsl */ `
       attribute vec3 aColor; attribute float aSize; attribute float aPhase;
       uniform float uTime, uPx;
@@ -217,11 +374,12 @@ function build(
       }`,
     fragmentShader: /* glsl */ `
       varying vec3 vColor; varying float vTw;
+      uniform float uHalo;
       void main() {
         vec2 uv = gl_PointCoord - 0.5;
         float d = length(uv);
         float core = smoothstep(0.5, 0.05, d);
-        float halo = smoothstep(0.5, 0.0, d) * 0.35;
+        float halo = smoothstep(0.5, 0.0, d) * uHalo;
         gl_FragColor = vec4(vColor, (core + halo) * (0.55 + 0.45 * vTw));
       }`,
   })
@@ -237,7 +395,7 @@ function build(
   const hphase = new Float32Array(hubs.length)
   hubs.forEach((h, i) => {
     hpos.set([hubWorld[i].x, 0, hubWorld[i].z], i * 3)
-    const c = color(h.discipline).offsetHSL(0, 0.05, 0.1)
+    const c = color(h.discipline).offsetHSL(0, 0.05, SC.hubLift)
     hcol.set([c.r, c.g, c.b], i * 3)
     hsize[i] = 3.2 + Math.sqrt(h.size) * 0.55
     hphase[i] = rand() * Math.PI * 2
@@ -250,7 +408,13 @@ function build(
   scene.add(new THREE.Points(hubGeo, hubMat))
 
   // ----- hub-hub edges (arcs above the plane) ---------------------------------
-  const edgeMeta: { line: InstanceType<typeof THREE.Line>; a: number; b: number }[] = []
+  const edgeMeta: {
+    line: InstanceType<typeof THREE.Line>
+    a: number
+    b: number
+    cross: boolean
+    base: number
+  }[] = []
   for (const e of edges) {
     const a = hubWorld[e.a]
     const b = hubWorld[e.b]
@@ -271,13 +435,19 @@ function build(
       new THREE.LineBasicMaterial({
         vertexColors: true,
         transparent: true,
-        opacity: 0.1,
-        blending: THREE.AdditiveBlending,
+        opacity: SC.edgeBase,
+        blending,
         depthWrite: false,
       }),
     )
     scene.add(line)
-    edgeMeta.push({ line, a: e.a, b: e.b })
+    edgeMeta.push({
+      line,
+      a: e.a,
+      b: e.b,
+      cross: hubs[e.a].discipline !== hubs[e.b].discipline,
+      base: SC.edgeBase,
+    })
   }
 
   // ----- labels ---------------------------------------------------------------
@@ -285,7 +455,7 @@ function build(
     const el = document.createElement('div')
     el.className = 'sr-galaxy-hublabel'
     el.style.fontSize = `${Math.round(11 + Math.sqrt(h.size) * 0.85)}px`
-    el.style.color = `#${color(h.discipline).offsetHSL(0, 0, 0.18).getHexString()}`
+    el.style.color = `#${color(h.discipline).offsetHSL(0, 0, SC.labelLift).getHexString()}`
     labelLayer.appendChild(el)
     return el
   })
@@ -328,6 +498,7 @@ function build(
   // Click (as opposed to drag) recentres on whatever is under the cursor: the
   // hot hub, or a raycast dust star. The camera glides over in the frame loop.
   let focusTo: InstanceType<typeof THREE.Vector3> | null = null
+  let distTo: number | null = null // camera-distance glide target (search/reset)
   let downAt = { x: 0, y: 0 }
   // Keep any camera target on the disc and inside its rim, so neither panning
   // nor click-to-centre can walk off into the void.
@@ -399,7 +570,11 @@ function build(
     })
     for (const e of edgeMeta) {
       const on = h >= 0 && (e.a === h || e.b === h)
-      ;(e.line.material as InstanceType<typeof THREE.LineBasicMaterial>).opacity = on ? 0.75 : h >= 0 ? 0.03 : 0.1
+      ;(e.line.material as InstanceType<typeof THREE.LineBasicMaterial>).opacity = on
+        ? SC.edgeHot
+        : h >= 0
+          ? Math.min(SC.edgeDim, e.base)
+          : e.base
     }
     host.style.cursor = h >= 0 ? 'pointer' : ''
   }
@@ -427,6 +602,13 @@ function build(
         controls.target.add(step)
         camera.position.add(step)
       }
+    }
+    if (distTo != null) {
+      const dir = camera.position.clone().sub(controls.target)
+      const d = dir.length()
+      const nd = d + (distTo - d) * 0.08
+      camera.position.copy(controls.target).addScaledVector(dir.normalize(), nd)
+      if (Math.abs(nd - distTo) < 0.3) distTo = null
     }
     clampToDisc(controls.target)
 
@@ -513,7 +695,7 @@ function build(
         el.style.left = `${c.sx}px`
         el.style.top = `${c.sy}px`
         el.style.opacity = (0.85 * zoomT).toFixed(2)
-        el.style.color = `#${color(s.discipline).offsetHSL(0, -0.05, 0.22).getHexString()}`
+        el.style.color = `#${color(s.discipline).offsetHSL(0, -0.05, SC.starLabelLift).getHexString()}`
       }
     }
     for (; li < STAR_LABELS; li++) starLabelEls[li].style.display = 'none'
@@ -545,6 +727,70 @@ function build(
   }
   document.addEventListener('visibilitychange', onVisibility)
 
+  // Discipline filter: recolor stars/hubs toward the background for the
+  // filtered-out side, re-base edge opacities (cross-links get their own
+  // mode), and fade the losing hub labels. Hover dimming stacks on top.
+  const baseStarCol = col.slice()
+  const baseHubCol = hcol.slice()
+  const bgColor = new THREE.Color(SC.bg)
+  const dimTriplet = (out: Float32Array, base: Float32Array, i: number, keep: boolean) => {
+    if (keep) {
+      out[i * 3] = base[i * 3]
+      out[i * 3 + 1] = base[i * 3 + 1]
+      out[i * 3 + 2] = base[i * 3 + 2]
+    } else {
+      out[i * 3] = base[i * 3] * 0.22 + bgColor.r * 0.78
+      out[i * 3 + 1] = base[i * 3 + 1] * 0.22 + bgColor.g * 0.78
+      out[i * 3 + 2] = base[i * 3 + 2] * 0.22 + bgColor.b * 0.78
+    }
+  }
+  const applyFilter = (f: GalaxyFilter) => {
+    const keepStar = (d: string) => f === 'all' || (f === 'cross' ? true : d === f)
+    for (let i = 0; i < N; i++) dimTriplet(col, baseStarCol, i, keepStar(stars[i].discipline))
+    starGeo.getAttribute('aColor').needsUpdate = true
+    hubs.forEach((h, i) => {
+      dimTriplet(hcol, baseHubCol, i, keepStar(h.discipline))
+      hubLabelEls[i].classList.toggle('filtered', !keepStar(h.discipline))
+    })
+    hubGeo.getAttribute('aColor').needsUpdate = true
+    for (const e of edgeMeta) {
+      e.base =
+        f === 'all'
+          ? SC.edgeBase
+          : f === 'cross'
+            ? e.cross
+              ? SC.edgeHot * 0.7
+              : SC.edgeDim
+            : hubs[e.a].discipline === f && hubs[e.b].discipline === f
+              ? SC.edgeBase
+              : SC.edgeDim
+      ;(e.line.material as InstanceType<typeof THREE.LineBasicMaterial>).opacity = e.base
+    }
+  }
+
+  // React-side controls (search / zoom buttons) drive the scene through this.
+  apiRef.current = {
+    stars,
+    focusStar: (index: number) => {
+      const p = starWorld[index]
+      if (!p) return
+      focusTo = clampToDisc(new THREE.Vector3(p.x, 0, p.z))
+      distTo = 40 // close enough that the semantic-zoom label of the hit appears
+      controls.autoRotate = false
+      clearTimeout(idleTimer)
+      idleTimer = setTimeout(() => (controls.autoRotate = true), 6000)
+    },
+    zoomBy: (factor: number) => {
+      const dir = camera.position.clone().sub(controls.target)
+      distTo = THREE.MathUtils.clamp(dir.length() * factor, 26, 130)
+    },
+    resetView: () => {
+      focusTo = clampToDisc(new THREE.Vector3(0, 0, 0))
+      distTo = 90
+    },
+    setFilter: applyFilter,
+  }
+
   const ro = new ResizeObserver(() => {
     const w = host.clientWidth
     const h = host.clientHeight
@@ -556,6 +802,7 @@ function build(
   ro.observe(host)
 
   return () => {
+    apiRef.current = null
     running = false
     cancelAnimationFrame(raf)
     document.removeEventListener('visibilitychange', onVisibility)
