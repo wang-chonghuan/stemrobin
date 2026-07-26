@@ -57,11 +57,19 @@ series against its own printed-contents file.
 
 ## What is not here
 
-Exercise answers, and nothing else. The books print them as back matter,
-separated from the exercises themselves; they enter as an input when a lesson's
-practice is built, bound to the exercise they answer — never as a browsable
-entry, which would hand over a master key to every read-check in the deck.
+Two things, for two different reasons.
+
+**Exercise answers.** The books print them as back matter, separated from the
+exercises themselves; they enter as an input when a lesson's practice is built,
+bound to the exercise they answer — never as a browsable entry, which would hand
+over a master key to every read-check in the deck.
+
+**The authors' foreword** (`От авторов`, and any preface a future volume prints).
+It addresses the teacher about the edition, not the learner about the subject, so
+it is the one printed heading that would become a card with nothing to learn on
+it. Excluded at the outline, not lost: it stays in the printed-contents file, and
+`reconcile.py` skips it by name the way it skips answers.
 
 Everything else the contents print is here, including the back matter that is
-not answers: appendices, symbol lists, term indexes, formula tables. They are
-part of the book.
+neither of those: appendices, symbol lists, term indexes, formula tables,
+glossaries, assessment sets. They are part of the book.

@@ -20,16 +20,6 @@
   "numbering": "`number` (e.g. 3.5) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed contents: its printed number (printedSection, continuous across the volume) where it has one, otherwise its printed heading (printedName, kept in Russian in every locale — it is a pointer into the printed book). The appendix and «Самостоятельные и контрольные работы» carry no chapter number in the book, so their `number` and their sections’ `number` are null. In the 7–9 volume a star on items 15 and 16 marks optional material; the title is transcribed as printed.",
   "contents": [
     {
-      "id": "10-11pr-authors",
-      "kind": "section",
-      "number": null,
-      "title": "From the authors",
-      "page": 3,
-      "source": {
-        "printedName": "От авторов"
-      }
-    },
-    {
       "id": "10-11pr-c1",
       "kind": "chapter",
       "number": 1,

@@ -19,16 +19,6 @@
   "numbering": "`number`（如 3.5）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷编号的用编号（printedSection，全书连续），没有的用原书印刷的名称（printedName，各语言文件中一律保留俄文，因为它是指回原书的指针）。「Приложение」和「Самостоятельные и контрольные работы」在原书中不带章号，故其 number 及其下各条的 number 均为 null。7—9 册中 15、16 两条印刷时带星号，表示选学内容，标题按原样转写。",
   "contents": [
     {
-      "id": "7-9pr-authors",
-      "kind": "section",
-      "number": null,
-      "title": "作者的话",
-      "page": 3,
-      "source": {
-        "printedName": "От авторов"
-      }
-    },
-    {
       "id": "7-9pr-c1",
       "kind": "chapter",
       "number": 1,

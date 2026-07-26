@@ -24,7 +24,7 @@ SRCS = [
     REPO / "resources/soviet10years/toc/苏联十年制学校教材-书名作者目录.md",
     REPO / "resources/tyurin-probability/toc/图林-概率论与统计-书名作者目录.md",
 ]
-EXCLUDE = re.compile(r"答案|Ответы")
+EXCLUDE = re.compile(r"答案|Ответы|От авторов")
 
 # The printed heading carries an ordinal that the JSON keeps in `number` /
 # `source` / `printedNumber` rather than in the title, so strip it before
