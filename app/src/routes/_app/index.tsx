@@ -91,9 +91,10 @@ function Overview() {
         <section className="sr-hero">
           <div className="sr-hero-copy">
             <h1 className="sr-hero-title">
-              {t(locale, 'ov.hero.title.a')}
-              <span className="sr-hero-accent">{t(locale, 'ov.hero.title.b')}</span>
-              {t(locale, 'ov.hero.title.c')}
+              <span className="sr-hero-accent">{t(locale, 'ov.hero.title.subject')}</span>
+              {t(locale, 'ov.hero.title.mid')}
+              <span className="sr-hero-accent">{t(locale, 'ov.hero.title.quality')}</span>
+              {t(locale, 'ov.hero.title.tail')}
             </h1>
             {/* Two parallel half-lines, then one longer line to close — the
                 staggered rhythm is the point, so they are not one block. */}
