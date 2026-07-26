@@ -82,11 +82,11 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': '点',
     'ov.stat.learned': '课文完成',
     'ov.stat.practiced': '练习完成',
-    // The headline wraps to the copy column's width. Only the name is accented —
-    // `b` sits between the lead `a` and the tail `c`.
-    'ov.hero.title.a': '中学数学与物理，承袭数学巨匠',
-    'ov.hero.title.b': '柯尔莫戈洛夫',
-    'ov.hero.title.c': '领衔的精英理科课程。',
+    // The headline wraps to the copy column's width. The subject is what carries
+    // the accent — `b` sits between the lead `a` and the tail `c`.
+    'ov.hero.title.a': '',
+    'ov.hero.title.b': '中学数学与物理',
+    'ov.hero.title.c': '，承袭数学巨匠柯尔莫戈洛夫领衔的精英理科课程。',
     'ov.hero.point.a': '从算术到微积分。',
     'ov.hero.point.b': '从杠杆到原子核。',
     'ov.hero.close': '编成直观、高频复现的学习卡组——由 AI 带你真正掌握。',
@@ -252,10 +252,10 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.progress.unit': 'pts',
     'ov.stat.learned': 'Reading done',
     'ov.stat.practiced': 'Practice done',
-    'ov.hero.title.a':
-      'Secondary math & physics, inspired by the elite STEM curriculum led by math legend ',
-    'ov.hero.title.b': 'Andrey Kolmogorov',
-    'ov.hero.title.c': '.',
+    'ov.hero.title.a': '',
+    'ov.hero.title.b': 'Secondary math & physics',
+    'ov.hero.title.c':
+      ', inspired by the elite STEM curriculum led by math legend Andrey Kolmogorov.',
     'ov.hero.point.a': 'From arithmetic to calculus.',
     'ov.hero.point.b': 'From levers to atomic nucleus.',
     'ov.hero.close':
