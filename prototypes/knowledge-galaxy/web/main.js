@@ -3,6 +3,20 @@ import { OrbitControls } from './node_modules/three/examples/jsm/controls/OrbitC
 
 const data = await (await fetch('./galaxy.json')).json()
 
+// ---------- adjustable config ----------
+// Discipline colors — tweak here (or call window.galaxySetColors({math, physics})
+// from the console) and everything recolors: stars, hubs, edges, labels, legend.
+const COLORS = {
+  math: '#6bc8ff',    // blue
+  physics: '#ffc46b', // gold
+}
+
+const I18N = {
+  en: { hint: 'Drag to orbit · Scroll to zoom · Hover to explore', math: 'Mathematics', physics: 'Physics', lang: '中文' },
+  zh: { hint: '拖拽旋转 · 滚轮缩放 · 悬停查看', math: '数学', physics: '物理', lang: 'EN' },
+}
+let locale = 'en'
+
 // ---------- scene ----------
 const stage = document.getElementById('stage')
 const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' })
@@ -34,35 +48,30 @@ controls.addEventListener('end', () => { idleTimer = setTimeout(() => (controls.
 const S = 30 // world units per UMAP unit
 const rand = (seed => () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646)(42)
 
-const DISC_COLOR = {
-  math: new THREE.Color(0xffc46b),
-  physics: new THREE.Color(0x6bc8ff),
-}
-
 const stars = data.stars
+const hubs = data.hubs
 const N = stars.length
+
+// per-star deterministic jitter, kept so recoloring reproduces the same variation
+const starJitter = []
 const pos = new Float32Array(N * 3)
-const col = new Float32Array(N * 3)
 const size = new Float32Array(N)
 const phase = new Float32Array(N)
 const starWorld = []
-
 for (let i = 0; i < N; i++) {
   const s = stars[i]
   const x = s.x * S, z = s.y * S
   const y = (rand() - 0.5) * 3.2
   pos.set([x, y, z], i * 3)
   starWorld.push(new THREE.Vector3(x, y, z))
-  const c = DISC_COLOR[s.discipline].clone()
-  c.offsetHSL((rand() - 0.5) * 0.05, (rand() - 0.5) * 0.15, (rand() - 0.5) * 0.12)
-  col.set([c.r, c.g, c.b], i * 3)
+  starJitter.push([(rand() - 0.5) * 0.05, (rand() - 0.5) * 0.15, (rand() - 0.5) * 0.12])
   size[i] = s.kind === 'section' ? 1.5 : 1.05 + rand() * 0.7
   phase[i] = rand() * Math.PI * 2
 }
 
 const starGeo = new THREE.BufferGeometry()
 starGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3))
-starGeo.setAttribute('aColor', new THREE.BufferAttribute(col, 3))
+starGeo.setAttribute('aColor', new THREE.BufferAttribute(new Float32Array(N * 3), 3))
 starGeo.setAttribute('aSize', new THREE.BufferAttribute(size, 1))
 starGeo.setAttribute('aPhase', new THREE.BufferAttribute(phase, 1))
 
@@ -70,7 +79,7 @@ const starMat = new THREE.ShaderMaterial({
   transparent: true,
   depthWrite: false,
   blending: THREE.AdditiveBlending,
-  uniforms: { uTime: { value: 0 }, uPx: { value: renderer.getPixelRatio() }, uDim: { value: -1 } },
+  uniforms: { uTime: { value: 0 }, uPx: { value: renderer.getPixelRatio() } },
   vertexShader: /* glsl */ `
     attribute vec3 aColor; attribute float aSize; attribute float aPhase;
     uniform float uTime, uPx;
@@ -101,20 +110,16 @@ const starPoints = new THREE.Points(starGeo, starMat)
 scene.add(starPoints)
 
 // ---------- hubs ----------
-const hubs = data.hubs
 const hubWorld = hubs.map(h => new THREE.Vector3(h.x * S, 0, h.y * S))
 const hubGeo = new THREE.BufferGeometry()
 const hpos = new Float32Array(hubs.length * 3)
-const hcol = new Float32Array(hubs.length * 3)
 const hsize = new Float32Array(hubs.length)
 hubs.forEach((h, i) => {
   hpos.set([hubWorld[i].x, 0, hubWorld[i].z], i * 3)
-  const c = DISC_COLOR[h.discipline].clone().offsetHSL(0, 0.05, 0.1)
-  hcol.set([c.r, c.g, c.b], i * 3)
   hsize[i] = 3.2 + Math.sqrt(h.size) * 0.55
 })
 hubGeo.setAttribute('position', new THREE.BufferAttribute(hpos, 3))
-hubGeo.setAttribute('aColor', new THREE.BufferAttribute(hcol, 3))
+hubGeo.setAttribute('aColor', new THREE.BufferAttribute(new Float32Array(hubs.length * 3), 3))
 hubGeo.setAttribute('aSize', new THREE.BufferAttribute(hsize, 1))
 hubGeo.setAttribute('aPhase', new THREE.BufferAttribute(new Float32Array(hubs.length).map(() => rand() * 6.28), 1))
 const hubMat = starMat.clone()
@@ -132,33 +137,81 @@ for (const e of data.edges) {
   const curve = new THREE.QuadraticBezierCurve3(a, mid, b)
   const pts = curve.getPoints(28)
   const g = new THREE.BufferGeometry().setFromPoints(pts)
-  const ca = DISC_COLOR[hubs[e.a].discipline], cb = DISC_COLOR[hubs[e.b].discipline]
-  const cols = new Float32Array(pts.length * 3)
-  pts.forEach((_, i) => {
-    const c = ca.clone().lerp(cb, i / (pts.length - 1))
-    cols.set([c.r, c.g, c.b], i * 3)
-  })
-  g.setAttribute('color', new THREE.BufferAttribute(cols, 3))
+  g.setAttribute('color', new THREE.BufferAttribute(new Float32Array(pts.length * 3), 3))
   const m = new THREE.LineBasicMaterial({
     vertexColors: true, transparent: true, opacity: 0.10,
     blending: THREE.AdditiveBlending, depthWrite: false,
   })
   const line = new THREE.Line(g, m)
   edgeGroup.add(line)
-  edgeMeta.push({ line, a: e.a, b: e.b, w: e.w })
+  edgeMeta.push({ line, a: e.a, b: e.b, w: e.w, count: pts.length })
 }
 
 // ---------- hub labels (HTML overlay) ----------
 const labelLayer = document.getElementById('labels')
-const labelEls = hubs.map((h, i) => {
+const labelEls = hubs.map(h => {
   const el = document.createElement('div')
   el.className = 'hub-label'
-  el.textContent = h.name
-  el.style.color = `#${DISC_COLOR[h.discipline].clone().offsetHSL(0, 0, 0.18).getHexString()}`
   el.style.fontSize = `${Math.round(12 + Math.sqrt(h.size) * 0.9)}px`
   labelLayer.appendChild(el)
   return el
 })
+
+// ---------- colors (rebuildable) ----------
+const disciplineColor = {}
+function applyColors(next = {}) {
+  Object.assign(COLORS, next)
+  for (const d of Object.keys(COLORS)) disciplineColor[d] = new THREE.Color(COLORS[d])
+
+  const col = starGeo.getAttribute('aColor')
+  for (let i = 0; i < N; i++) {
+    const c = disciplineColor[stars[i].discipline].clone()
+    const [h, s, l] = starJitter[i]
+    c.offsetHSL(h, s, l)
+    col.setXYZ(i, c.r, c.g, c.b)
+  }
+  col.needsUpdate = true
+
+  const hcol = hubGeo.getAttribute('aColor')
+  hubs.forEach((h, i) => {
+    const c = disciplineColor[h.discipline].clone().offsetHSL(0, 0.05, 0.1)
+    hcol.setXYZ(i, c.r, c.g, c.b)
+  })
+  hcol.needsUpdate = true
+
+  for (const e of edgeMeta) {
+    const ca = disciplineColor[hubs[e.a].discipline], cb = disciplineColor[hubs[e.b].discipline]
+    const attr = e.line.geometry.getAttribute('color')
+    for (let i = 0; i < e.count; i++) {
+      const c = ca.clone().lerp(cb, i / (e.count - 1))
+      attr.setXYZ(i, c.r, c.g, c.b)
+    }
+    attr.needsUpdate = true
+  }
+
+  hubs.forEach((h, i) => {
+    labelEls[i].style.color = `#${disciplineColor[h.discipline].clone().offsetHSL(0, 0, 0.18).getHexString()}`
+  })
+  document.getElementById('dot-math').style.background = COLORS.math
+  document.getElementById('dot-physics').style.background = COLORS.physics
+}
+window.galaxySetColors = applyColors
+
+// ---------- locale ----------
+function applyLocale(next) {
+  locale = next
+  const t = I18N[locale]
+  hubs.forEach((h, i) => { labelEls[i].textContent = locale === 'zh' ? h.name : h.nameEn })
+  document.getElementById('hint').textContent = t.hint
+  document.getElementById('legend-math').textContent = t.math
+  document.getElementById('legend-physics').textContent = t.physics
+  document.getElementById('lang').textContent = t.lang
+  document.documentElement.lang = locale
+}
+document.getElementById('lang').addEventListener('click', () => applyLocale(locale === 'zh' ? 'en' : 'zh'))
+
+applyColors()
+applyLocale('en')
 
 // ---------- interaction ----------
 const tooltip = document.getElementById('tooltip')
@@ -194,7 +247,6 @@ function setHotHub(h) {
     const on = h >= 0 && (e.a === h || e.b === h)
     e.line.material.opacity = on ? 0.75 : h >= 0 ? 0.03 : 0.10
   })
-  starMat.uniforms.uDim.value = -1 // reserved for cluster dimming pass
   document.body.style.cursor = h >= 0 ? 'pointer' : ''
 }
 
@@ -225,7 +277,7 @@ function tick() {
       sx: (proj.x * 0.5 + 0.5) * innerWidth,
       sy: (-proj.y * 0.5 + 0.5) * innerHeight,
       visible: proj.z < 1,
-      w: labelEls[i].offsetWidth || h.name.length * 14,
+      w: labelEls[i].offsetWidth || (locale === 'zh' ? h.name.length * 14 : h.nameEn.length * 8),
     }
   })
   // big hubs claim space first; overlapping smaller labels hide (hot hub always wins)
@@ -253,10 +305,13 @@ function tick() {
     const hit = raycaster.intersectObject(starPoints, false)[0]
     if (hit && hit.distanceToRay < 0.9) {
       const s = stars[hit.index]
+      const title = locale === 'zh' ? s.title : (s.titleEn ?? s.title)
+      const book = locale === 'zh' ? s.bookTitle : (s.bookTitleEn ?? s.bookTitle)
+      const chapter = locale === 'zh' ? s.chapter : (s.chapterEn ?? s.chapter)
       tooltip.style.display = 'block'
       tooltip.style.left = `${mousePx.x + 14}px`
       tooltip.style.top = `${mousePx.y + 14}px`
-      tooltip.innerHTML = `<div>${s.title}</div><div class="trail">${s.bookTitle ?? s.book} · ${s.chapter ?? ''}</div>`
+      tooltip.innerHTML = `<div>${title}</div><div class="trail">${book}${chapter ? ' · ' + chapter : ''}</div>`
     } else tooltip.style.display = 'none'
   } else tooltip.style.display = 'none'
 

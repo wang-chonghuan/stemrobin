@@ -447,8 +447,9 @@ details[open] > summary > .sr-out-caret {
    blue for coverage, green for what is held (the app's mastery colour), and a
    neutral for the rate, which is not an achievement and should not read as one. */
 .sr-stats {
+  flex: 0 0 auto;
+  width: 232px;
   padding: 16px 18px;
-  margin-bottom: 18px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
   border-radius: 14px;
@@ -475,10 +476,11 @@ details[open] > summary > .sr-out-caret {
   font-size: 12.5px;
   font-weight: 600;
 }
+/* Stacked, not side by side: three bars in a 232px column would each be too
+   short to read as a proportion. */
 .sr-stats-row {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 18px;
+  gap: 14px;
 }
 .sr-stat-top {
   display: flex;
@@ -1283,12 +1285,22 @@ a.sr-out-lesson.active {
 }
 
 /* ── Home hero (product intro) ── */
+/* The pitch and the numbers share the first row. The hero takes what is left
+   after the stats card, which asks for only the width its labels need. */
+.sr-home-top {
+  display: flex;
+  align-items: stretch;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
 /* The tree sets the height. The copy column stretches to it and spaces itself
    out, so the sign-in line lands level with the foot of the tree and the box is
    never taller than the illustration inside it. */
 .sr-hero {
+  flex: 1;
+  min-width: 0;
   padding: 20px 26px;
-  margin-bottom: 18px;
   background: var(--sr-blue-tint);
   border: 1px solid var(--sr-line);
   border-radius: 14px;
@@ -1340,6 +1352,13 @@ a.sr-out-lesson.active {
    height: 180px keeps it just under the copy column's height instead of
    towering over it the way the old 208px-wide, 146px-tall art never could. */
 .sr-hero-art { flex: none; width: 180px; height: auto; }
+@media (max-width: 1100px) {
+  /* Too narrow to carry both: the numbers drop below the pitch and spread out
+     again across the full width. */
+  .sr-home-top { flex-direction: column; }
+  .sr-stats { width: auto; }
+  .sr-stats-row { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; }
+}
 @media (max-width: 640px) {
   .sr-hero { padding: 18px; }
   /* Stacked: nothing to stretch against, so the column just flows. */

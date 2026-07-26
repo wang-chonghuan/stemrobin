@@ -70,80 +70,84 @@ function Overview() {
       </div>
 
       <div className="sr-d-scroll">
-        {/* Hero — product intro (STEMROBIN-57) */}
-        <section className="sr-hero">
-          <div className="sr-hero-main">
-            <div className="sr-hero-copy">
-              <h1 className="sr-hero-title">
-                <span className="sr-hero-accent">{t(locale, 'ov.hero.title.subject')}</span>
-                {t(locale, 'ov.hero.title.mid')}
-                <span className="sr-hero-accent">{t(locale, 'ov.hero.title.quality')}</span>
-                {t(locale, 'ov.hero.title.tail')}
-              </h1>
-              {/* What the course spans, then how it is built — both inside the
-                rule, one line each. */}
-              <ul className="sr-hero-points">
-                <li>{t(locale, 'ov.hero.line.a')}</li>
-                <li>{t(locale, 'ov.hero.line.b')}</li>
-              </ul>
-              {/* Last in the column, and the column stretches to the art's
-                  height — so it lands level with the foot of the tree without
-                  making the box any taller than the tree already does. */}
-              <p className="sr-hero-free">
-                {t(locale, 'ov.hero.free.a')}
-                <Link to="/login" className="sr-textbtn">
-                  {t(locale, 'ov.hero.free.cta')}
-                </Link>
-                {t(locale, 'ov.hero.free.b')}
-              </p>
+        {/* Hero and the deck's numbers share the first row: the pitch, and how
+            far you are into it. */}
+        <div className="sr-home-top">
+          <section className="sr-hero">
+            <div className="sr-hero-main">
+              <div className="sr-hero-copy">
+                <h1 className="sr-hero-title">
+                  <span className="sr-hero-accent">{t(locale, 'ov.hero.title.subject')}</span>
+                  {t(locale, 'ov.hero.title.mid')}
+                  <span className="sr-hero-accent">{t(locale, 'ov.hero.title.quality')}</span>
+                  {t(locale, 'ov.hero.title.tail')}
+                </h1>
+                {/* What the course spans, then how it is built — both inside the
+                  rule, one line each. */}
+                <ul className="sr-hero-points">
+                  <li>{t(locale, 'ov.hero.line.a')}</li>
+                  <li>{t(locale, 'ov.hero.line.b')}</li>
+                </ul>
+                {/* Last in the column, and the column stretches to the art's
+                    height — so it lands level with the foot of the tree without
+                    making the box any taller than the tree already does. */}
+                <p className="sr-hero-free">
+                  {t(locale, 'ov.hero.free.a')}
+                  <Link to="/login" className="sr-textbtn">
+                    {t(locale, 'ov.hero.free.cta')}
+                  </Link>
+                  {t(locale, 'ov.hero.free.b')}
+                </p>
+              </div>
+              {/* Brand illustration: a tree of knowledge whose branches end in lit
+                nodes, wrapped in atom orbits. Intrinsic size is stated so the
+                hero never reflows once the image lands; CSS sets the display
+                width (see .sr-hero-art). */}
+              <img
+                className="sr-hero-art"
+                src="/hero-art.png"
+                alt={t(locale, 'ov.hero.art.alt')}
+                width={360}
+                height={392}
+              />
             </div>
-            {/* Brand illustration: a tree of knowledge whose branches end in lit
-              nodes, wrapped in atom orbits. Intrinsic size is stated so the
-              hero never reflows once the image lands; CSS sets the display
-              width (see .sr-hero-art). */}
-            <img
-              className="sr-hero-art"
-              src="/hero-art.png"
-              alt={t(locale, 'ov.hero.art.alt')}
-              width={360}
-              height={392}
-            />
-          </div>
-        </section>
+          </section>
 
-        {/* Three numbers over the card deck. Coverage, a rate, and a state —
-            different kinds of number, which is why each carries its own
-            denominator underneath rather than a bare percentage. */}
-        <section className="sr-stats">
-          <div className="sr-stats-top">
-            <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
-          </div>
-          <div className="sr-stats-row">
-            <Stat
-              label={t(locale, 'deck.stats.progress')}
-              pct={pct.progress}
-              tone="progress"
-              sub={t(locale, 'deck.stats.progress.sub', {
-                n: stats.seenCards,
-                total: stats.totalCards,
-              })}
-            />
-            <Stat
-              label={t(locale, 'deck.stats.accuracy')}
-              pct={pct.accuracy}
-              tone="accuracy"
-              sub={t(locale, 'deck.stats.accuracy.sub', { n: stats.answered })}
-            />
-            <Stat
-              label={t(locale, 'deck.stats.mastery')}
-              pct={pct.mastery}
-              tone="mastery"
-              sub={t(locale, 'deck.stats.mastery.sub', {
-                n: stats.passedCards,
-              })}
-            />
-          </div>
-        </section>
+          {/* Three numbers over the card deck. Coverage, a rate, and a state —
+              different kinds of number, which is why each carries its own
+              denominator underneath rather than a bare percentage. Stacked, since
+              the card takes only the width it needs beside the hero. */}
+          <section className="sr-stats">
+            <div className="sr-stats-top">
+              <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
+            </div>
+            <div className="sr-stats-row">
+              <Stat
+                label={t(locale, 'deck.stats.progress')}
+                pct={pct.progress}
+                tone="progress"
+                sub={t(locale, 'deck.stats.progress.sub', {
+                  n: stats.seenCards,
+                  total: stats.totalCards,
+                })}
+              />
+              <Stat
+                label={t(locale, 'deck.stats.accuracy')}
+                pct={pct.accuracy}
+                tone="accuracy"
+                sub={t(locale, 'deck.stats.accuracy.sub', { n: stats.answered })}
+              />
+              <Stat
+                label={t(locale, 'deck.stats.mastery')}
+                pct={pct.mastery}
+                tone="mastery"
+                sub={t(locale, 'deck.stats.mastery.sub', {
+                  n: stats.passedCards,
+                })}
+              />
+            </div>
+          </section>
+        </div>
 
         {/* Lessons that have content, newest last. Nothing renders while the
             deck is still an outline. */}

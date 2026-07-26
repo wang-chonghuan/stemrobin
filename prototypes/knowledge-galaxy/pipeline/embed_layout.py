@@ -63,7 +63,7 @@ for c in clusters:
 
 out = {
     "nodes": [
-        {**{k: n[k] for k in ("id", "title", "kind", "discipline", "branch", "grade", "book", "chapter")},
+        {**{k: n[k] for k in ("id", "title", "titleEn", "kind", "discipline", "branch", "grade", "book", "chapter", "chapterEn")},
          "x": float(xy[i][0]), "y": float(xy[i][1]), "cluster": int(labels[i])}
         for i, n in enumerate(nodes)
     ],
