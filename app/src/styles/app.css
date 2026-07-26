@@ -1283,10 +1283,11 @@ a.sr-out-lesson.active {
 }
 
 /* ── Home hero (product intro) ── */
-/* The box is a column: copy beside the art, then one line across the foot of
-   both — it speaks for the whole hero, not for the copy. */
+/* The tree sets the height. The copy column stretches to it and spaces itself
+   out, so the sign-in line lands level with the foot of the tree and the box is
+   never taller than the illustration inside it. */
 .sr-hero {
-  padding: 22px 26px;
+  padding: 20px 26px;
   margin-bottom: 18px;
   background: var(--sr-blue-tint);
   border: 1px solid var(--sr-line);
@@ -1294,10 +1295,16 @@ a.sr-out-lesson.active {
 }
 .sr-hero-main {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: 24px;
 }
-.sr-hero-copy { flex: 1; min-width: 0; }
+.sr-hero-copy {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 .sr-hero-title {
   margin: 0 0 12px;
   font-family: var(--sr-display);
@@ -1335,7 +1342,9 @@ a.sr-out-lesson.active {
 .sr-hero-art { flex: none; width: 180px; height: auto; }
 @media (max-width: 640px) {
   .sr-hero { padding: 18px; }
+  /* Stacked: nothing to stretch against, so the column just flows. */
   .sr-hero-main { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .sr-hero-copy { display: block; }
   /* The stack is flex-start, so the copy would otherwise be as wide as its
      longest line rather than the pane. */
   .sr-hero-copy { align-self: stretch; }

@@ -7,6 +7,13 @@
       "runtimeArgs": ["--prefix", "app", "run", "dev"],
       "port": 3200,
       "autoPort": false
+    },
+    {
+      "name": "galaxy-prototype",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8765", "-d", "prototypes/knowledge-galaxy/web"],
+      "port": 8765,
+      "autoPort": false
     }
   ]
 }

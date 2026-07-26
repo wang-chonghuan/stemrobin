@@ -1,24 +1,15 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  BookOpen,
-  Brain,
-  FileText,
-  GraduationCap,
-  Layers,
-  Menu,
-  Sparkles,
-  Zap,
-} from "lucide-react";
+import { createFileRoute, Link } from '@tanstack/react-router'
+import { BookOpen, Brain, FileText, GraduationCap, Layers, Menu, Sparkles, Zap } from 'lucide-react'
 
-import { getAvailableTextbookLessons } from "~/lib/textbooks";
-import { listAvailableLessonIds } from "~/lib/lessons";
-import { deckPercentages, getDeckStats } from "~/lib/deck-stats";
-import { getLocale } from "~/lib/locale";
-import { getCurrentUser } from "~/lib/session";
-import { t } from "~/lib/i18n";
-import { useLayoutStore } from "~/lib/layout-store";
+import { getAvailableTextbookLessons } from '~/lib/textbooks'
+import { listAvailableLessonIds } from '~/lib/lessons'
+import { deckPercentages, getDeckStats } from '~/lib/deck-stats'
+import { getLocale } from '~/lib/locale'
+import { getCurrentUser } from '~/lib/session'
+import { t } from '~/lib/i18n'
+import { useLayoutStore } from '~/lib/layout-store'
 
-export const Route = createFileRoute("/_app/")({
+export const Route = createFileRoute('/_app/')({
   component: Overview,
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
@@ -26,7 +17,7 @@ export const Route = createFileRoute("/_app/")({
     stats: await getDeckStats(),
     user: await getCurrentUser(),
   }),
-});
+})
 
 // One of the three deck numbers: a bar, its percentage, and the denominator it
 // was taken over — a percentage alone hides whether it is 2 cards or 200.
@@ -36,10 +27,10 @@ function Stat({
   sub,
   tone,
 }: {
-  label: string;
-  pct: number;
-  sub: string;
-  tone: "progress" | "accuracy" | "mastery";
+  label: string
+  pct: number
+  sub: string
+  tone: 'progress' | 'accuracy' | 'mastery'
 }) {
   return (
     <div className="sr-stat">
@@ -47,43 +38,43 @@ function Stat({
         <span className="sr-stat-label">{label}</span>
         <span className="sr-stat-pct sr-num">{pct}%</span>
       </div>
-      <div className={"sr-stat-bar " + tone}>
+      <div className={'sr-stat-bar ' + tone}>
         <span style={{ width: `${pct}%` }} />
       </div>
       <p className="sr-stat-sub">{sub}</p>
     </div>
-  );
+  )
 }
 
 // Supporting principles under the retrieval-practice hero (i18n keys ov.learn.*).
 const PRINCIPLES = [
-  { k: "p1", icon: Layers },
-  { k: "p2", icon: Zap },
-  { k: "p3", icon: GraduationCap },
-  { k: "p4", icon: Sparkles },
-] as const;
+  { k: 'p1', icon: Layers },
+  { k: 'p2', icon: Zap },
+  { k: 'p3', icon: GraduationCap },
+  { k: 'p4', icon: Sparkles },
+] as const
 
 function Overview() {
-  const { lessonIds, locale, stats, user } = Route.useLoaderData();
-  const setDrawer = useLayoutStore((s) => s.setDrawer);
-  const availableLessons = getAvailableTextbookLessons(lessonIds, locale);
+  const { lessonIds, locale, stats, user } = Route.useLoaderData()
+  const setDrawer = useLayoutStore((s) => s.setDrawer)
+  const availableLessons = getAvailableTextbookLessons(lessonIds, locale)
   // Show only the 6 most-recent lessons (curriculum order is ascending, so the
   // newest live content is at the tail).
-  const newLessons = availableLessons.slice(-6);
-  const pct = deckPercentages(stats);
+  const newLessons = availableLessons.slice(-6)
+  const pct = deckPercentages(stats)
   return (
     <main className="sr-detail">
       <div className="sr-d-top">
         <button
           className="sr-navtoggle"
-          aria-label={t(locale, "cat.open")}
+          aria-label={t(locale, 'cat.open')}
           type="button"
           onClick={() => setDrawer(true)}
         >
           <Menu size={18} />
         </button>
         <BookOpen size={18} color="var(--sr-blue)" />
-        <span className="sr-d-title">{t(locale, "ov.title")}</span>
+        <span className="sr-d-title">{t(locale, 'ov.title')}</span>
       </div>
 
       <div className="sr-d-scroll">
@@ -92,21 +83,27 @@ function Overview() {
           <div className="sr-hero-main">
             <div className="sr-hero-copy">
               <h1 className="sr-hero-title">
-                <span className="sr-hero-accent">
-                  {t(locale, "ov.hero.title.subject")}
-                </span>
-                {t(locale, "ov.hero.title.mid")}
-                <span className="sr-hero-accent">
-                  {t(locale, "ov.hero.title.quality")}
-                </span>
-                {t(locale, "ov.hero.title.tail")}
+                <span className="sr-hero-accent">{t(locale, 'ov.hero.title.subject')}</span>
+                {t(locale, 'ov.hero.title.mid')}
+                <span className="sr-hero-accent">{t(locale, 'ov.hero.title.quality')}</span>
+                {t(locale, 'ov.hero.title.tail')}
               </h1>
               {/* What the course spans, then how it is built — both inside the
                 rule, one line each. */}
               <ul className="sr-hero-points">
-                <li>{t(locale, "ov.hero.line.a")}</li>
-                <li>{t(locale, "ov.hero.line.b")}</li>
+                <li>{t(locale, 'ov.hero.line.a')}</li>
+                <li>{t(locale, 'ov.hero.line.b')}</li>
               </ul>
+              {/* Last in the column, and the column stretches to the art's
+                  height — so it lands level with the foot of the tree without
+                  making the box any taller than the tree already does. */}
+              <p className="sr-hero-free">
+                {t(locale, 'ov.hero.free.a')}
+                <Link to="/login" className="sr-textbtn">
+                  {t(locale, 'ov.hero.free.cta')}
+                </Link>
+                {t(locale, 'ov.hero.free.b')}
+              </p>
             </div>
             {/* Brand illustration: a tree of knowledge whose branches end in lit
               nodes, wrapped in atom orbits. Intrinsic size is stated so the
@@ -115,20 +112,11 @@ function Overview() {
             <img
               className="sr-hero-art"
               src="/hero-art.png"
-              alt={t(locale, "ov.hero.art.alt")}
+              alt={t(locale, 'ov.hero.art.alt')}
               width={360}
               height={392}
             />
           </div>
-          {/* Foot of the box, under both columns — it speaks for the whole hero,
-              not for the column of copy. */}
-          <p className="sr-hero-free">
-            {t(locale, "ov.hero.free.a")}
-            <Link to="/login" className="sr-textbtn">
-              {t(locale, "ov.hero.free.cta")}
-            </Link>
-            {t(locale, "ov.hero.free.b")}
-          </p>
         </section>
 
         {/* Three numbers over the card deck. Coverage, a rate, and a state —
@@ -136,29 +124,29 @@ function Overview() {
             denominator underneath rather than a bare percentage. */}
         <section className="sr-stats">
           <div className="sr-stats-top">
-            <span className="sr-stats-title">{t(locale, "deck.stats")}</span>
+            <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
           </div>
           <div className="sr-stats-row">
             <Stat
-              label={t(locale, "deck.stats.progress")}
+              label={t(locale, 'deck.stats.progress')}
               pct={pct.progress}
               tone="progress"
-              sub={t(locale, "deck.stats.progress.sub", {
+              sub={t(locale, 'deck.stats.progress.sub', {
                 n: stats.seenCards,
                 total: stats.totalCards,
               })}
             />
             <Stat
-              label={t(locale, "deck.stats.accuracy")}
+              label={t(locale, 'deck.stats.accuracy')}
               pct={pct.accuracy}
               tone="accuracy"
-              sub={t(locale, "deck.stats.accuracy.sub", { n: stats.answered })}
+              sub={t(locale, 'deck.stats.accuracy.sub', { n: stats.answered })}
             />
             <Stat
-              label={t(locale, "deck.stats.mastery")}
+              label={t(locale, 'deck.stats.mastery')}
               pct={pct.mastery}
               tone="mastery"
-              sub={t(locale, "deck.stats.mastery.sub", {
+              sub={t(locale, 'deck.stats.mastery.sub', {
                 n: stats.passedCards,
               })}
             />
@@ -171,16 +159,11 @@ function Overview() {
             content yet, so the principle column takes the full width rather
             than sitting beside an empty half. */}
         <section
-          className={
-            "sr-section-gap sr-learn" +
-            (newLessons.length ? "" : " sr-learn-solo")
-          }
+          className={'sr-section-gap sr-learn' + (newLessons.length ? '' : ' sr-learn-solo')}
         >
           {newLessons.length > 0 && (
             <div className="sr-learn-courses">
-              <div className="sr-eyebrow">
-                {t(locale, "ov.new", { n: newLessons.length })}
-              </div>
+              <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
               <div className="sr-grid">
                 {newLessons.map((l) => (
                   <Link
@@ -203,19 +186,17 @@ function Overview() {
           )}
 
           <aside className="sr-learn-principle sr-card">
-            <div className="sr-eyebrow accent">
-              {t(locale, "ov.learn.eyebrow")}
-            </div>
-            <h2 className="sr-learn-title">{t(locale, "ov.learn.title")}</h2>
-            <p className="sr-learn-sub">{t(locale, "ov.learn.sub")}</p>
+            <div className="sr-eyebrow accent">{t(locale, 'ov.learn.eyebrow')}</div>
+            <h2 className="sr-learn-title">{t(locale, 'ov.learn.title')}</h2>
+            <p className="sr-learn-sub">{t(locale, 'ov.learn.sub')}</p>
 
             {/* hero principle — retrieval practice (the star) */}
             <div className="sr-learn-hero">
               <div className="sr-learn-hero-head">
                 <Brain size={17} />
-                <b>{t(locale, "ov.learn.p0.t")}</b>
+                <b>{t(locale, 'ov.learn.p0.t')}</b>
               </div>
-              <p>{t(locale, "ov.learn.p0.d")}</p>
+              <p>{t(locale, 'ov.learn.p0.d')}</p>
             </div>
 
             <ul className="sr-learn-list">
@@ -235,5 +216,5 @@ function Overview() {
         </section>
       </div>
     </main>
-  );
+  )
 }
