@@ -129,14 +129,6 @@ function Overview() {
         <section className="sr-stats">
           <div className="sr-stats-top">
             <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
-            {!user && (
-              <span className="sr-stats-guest">
-                {t(locale, 'ov.progress.guest')}{' '}
-                <Link to="/login" className="sr-progress-guest-cta">
-                  {t(locale, 'ov.progress.guest.cta')}
-                </Link>
-              </span>
-            )}
           </div>
           <div className="sr-stats-row">
             <Stat
@@ -161,6 +153,16 @@ function Overview() {
               sub={t(locale, 'deck.stats.mastery.sub', { n: stats.passedCards })}
             />
           </div>
+          {/* Under the bars, where it reads as the consequence of them being
+              empty rather than as a label on the card. */}
+          {!user && (
+            <p className="sr-stats-guest">
+              {t(locale, 'ov.progress.guest')}{' '}
+              <Link to="/login" className="sr-textbtn">
+                {t(locale, 'ov.progress.guest.cta')}
+              </Link>
+            </p>
+          )}
         </section>
 
         {/* Learn: pedagogy explainer (left, growth) + new lessons (right).
