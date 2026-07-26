@@ -57,8 +57,8 @@ export type Discipline = 'math' | 'physics'
 const BRANCH: Record<string, { discipline: Discipline; rank: number }> = {
   early: { discipline: 'math', rank: 0 },
   algebra: { discipline: 'math', rank: 1 },
-  analysis: { discipline: 'math', rank: 2 },
-  geometry: { discipline: 'math', rank: 3 },
+  geometry: { discipline: 'math', rank: 2 },
+  analysis: { discipline: 'math', rank: 3 },
   physics: { discipline: 'physics', rank: 0 },
 }
 
