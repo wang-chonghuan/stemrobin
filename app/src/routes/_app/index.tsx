@@ -8,6 +8,7 @@ import { getLocale } from '~/lib/locale'
 import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
+import { KnowledgeGalaxy } from '~/components/knowledge-galaxy'
 
 export const Route = createFileRoute('/_app/')({
   component: Overview,
@@ -148,6 +149,13 @@ function Overview() {
             </div>
           </section>
         </div>
+
+        {/* The whole shelf as a galaxy: every topic a star, laid out by
+            semantic similarity. Full width under the hero row; three.js loads
+            lazily when this scrolls into view. */}
+        <section className="sr-section-gap">
+          <KnowledgeGalaxy locale={locale} />
+        </section>
 
         {/* Lessons that have content, newest last. Nothing renders while the
             deck is still an outline. */}

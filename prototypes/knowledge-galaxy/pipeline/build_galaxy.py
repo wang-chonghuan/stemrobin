@@ -76,16 +76,31 @@ for s, a, b in cross:
 
 edges = [{"a": a, "b": b, "w": w} for (a, b), w in sorted(chosen.items(), key=lambda kv: -kv[1])]
 
+# Content-free nodes (exercise sets, reviews, summaries, forewords) are dropped
+# from the galaxy entirely — they took part in the embedding/clustering, but are
+# neither stars nor labels.
+import re
+NO_CONTENT_ZH = re.compile(r"练习|复习题|习题|问题解答|小结|提要|引言|附录")
+NO_CONTENT_EN = re.compile(r"exercise|review|problems|summary|introduction|appendix", re.I)
+
 stars = []
+dropped = 0
 for n in layout["nodes"]:
+    if NO_CONTENT_ZH.search(n["title"]) or NO_CONTENT_EN.search(n.get("titleEn") or ""):
+        dropped += 1
+        continue
     r = raw[n["id"]]
     stars.append({**n, "bookTitle": r["bookTitle"], "bookTitleEn": r.get("bookTitleEn", r["bookTitle"])})
 
 galaxy = {"hubs": hubs, "edges": edges, "stars": stars}
-with open(f"{WEB}/galaxy.json", "w") as f:
-    json.dump(galaxy, f, ensure_ascii=False)
+APP_PUBLIC = os.path.join(HERE, "..", "..", "..", "app", "public")
+for dest in (f"{WEB}/galaxy.json", os.path.join(APP_PUBLIC, "galaxy.json")):
+    with open(dest, "w") as f:
+        json.dump(galaxy, f, ensure_ascii=False)
 
 cross_named = [(NAMES[e['a']], NAMES[e['b']], e['w']) for e in edges if disc[e['a']] != disc[e['b']]]
-print(f"hubs={len(hubs)} edges={len(edges)} stars={len(stars)}")
+from collections import Counter
+by_disc = Counter(s["discipline"] for s in stars)
+print(f"hubs={len(hubs)} edges={len(edges)} stars={len(stars)} dropped={dropped} {dict(by_disc)}")
 print("cross-discipline edges:", cross_named)
 print("size:", os.path.getsize(f'{WEB}/galaxy.json') // 1024, "KB")

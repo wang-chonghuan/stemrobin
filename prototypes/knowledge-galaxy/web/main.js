@@ -7,8 +7,8 @@ const data = await (await fetch('./galaxy.json')).json()
 // Discipline colors — tweak here (or call window.galaxySetColors({math, physics})
 // from the console) and everything recolors: stars, hubs, edges, labels, legend.
 const COLORS = {
-  math: '#6bc8ff',    // blue
-  physics: '#ffc46b', // gold
+  math: '#ffc46b',    // gold
+  physics: '#6bc8ff', // blue
 }
 
 const I18N = {
@@ -333,6 +333,8 @@ function tick() {
       const s = stars[c.i]
       if (isExercise(s)) continue
       const title = locale === 'zh' ? s.title : (s.titleEn ?? s.title)
+      const hubName = locale === 'zh' ? hubs[s.cluster]?.name : hubs[s.cluster]?.nameEn
+      if (hubName && title.toLowerCase() === hubName.toLowerCase()) continue
       const w = title.length * (locale === 'zh' ? 12 : 6.5)
       const collide = placed.some(p =>
         Math.abs(p.sy - c.sy) < 20 && Math.abs(p.sx - c.sx) < (p.w + w) / 2 + 8)
