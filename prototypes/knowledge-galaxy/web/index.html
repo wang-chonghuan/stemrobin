@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>知识星图 · 原型</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #05070f; overflow: hidden; }
+  #stage { position: fixed; inset: 0; }
+  canvas { display: block; }
+  #labels { position: fixed; inset: 0; pointer-events: none; overflow: hidden; }
+  .hub-label {
+    position: absolute; transform: translate(-50%, -140%);
+    color: rgba(235, 240, 255, 0.92); white-space: nowrap;
+    font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+    text-shadow: 0 0 6px rgba(0,0,0,.9), 0 1px 2px rgba(0,0,0,.9);
+    letter-spacing: 0.06em; user-select: none;
+    transition: opacity .25s ease, color .25s ease;
+  }
+  .hub-label.dim { opacity: 0.22; }
+  .hub-label.hot { color: #fff; text-shadow: 0 0 14px currentColor, 0 1px 2px rgba(0,0,0,.9); }
+  #tooltip {
+    position: fixed; pointer-events: none; display: none; max-width: 300px;
+    background: rgba(10, 14, 28, 0.92); border: 1px solid rgba(120,150,255,0.25);
+    border-radius: 8px; padding: 8px 12px; color: #dfe6ff;
+    font: 13px/1.5 "PingFang SC", "Noto Sans SC", sans-serif;
+    box-shadow: 0 4px 24px rgba(0,0,0,.5); z-index: 10;
+  }
+  #tooltip .trail { color: #8b97c9; font-size: 11px; margin-top: 2px; }
+  #hint {
+    position: fixed; left: 16px; bottom: 14px; color: #55608a;
+    font: 12px/1.6 "PingFang SC", sans-serif; pointer-events: none;
+  }
+  #legend {
+    position: fixed; right: 16px; bottom: 14px; color: #8b97c9;
+    font: 12px/1.8 "PingFang SC", sans-serif; pointer-events: none; text-align: right;
+  }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<div id="labels"></div>
+<div id="tooltip"></div>
+<div id="hint">拖拽旋转 · 滚轮缩放 · 悬停查看</div>
+<div id="legend">
+  <div><span class="dot" style="background:#ffc46b"></span>数学</div>
+  <div><span class="dot" style="background:#6bc8ff"></span>物理</div>
+</div>
+<script type="importmap">
+  { "imports": { "three": "./node_modules/three/build/three.module.js" } }
+</script>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

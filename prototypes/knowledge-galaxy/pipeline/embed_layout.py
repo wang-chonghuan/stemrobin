@@ -55,15 +55,9 @@ for k in range(K):
         "centroid": cent,
     })
 
-# hub-hub edge candidates by centroid cosine similarity
+# full hub-hub centroid cosine similarity matrix
 cents = np.stack([c["centroid"] for c in clusters])
 sim = cents @ cents.T
-edges = []
-for a in range(K):
-    for b in range(a + 1, K):
-        edges.append((float(sim[a, b]), a, b))
-edges.sort(reverse=True)
-
 for c in clusters:
     del c["centroid"]
 
@@ -74,7 +68,7 @@ out = {
         for i, n in enumerate(nodes)
     ],
     "clusters": clusters,
-    "edgeCandidates": [{"a": a, "b": b, "sim": round(s, 4)} for s, a, b in edges[:140]],
+    "simMatrix": [[round(float(v), 4) for v in row] for row in sim],
 }
 with open(f"{OUT}/layout.json", "w") as f:
     json.dump(out, f, ensure_ascii=False)

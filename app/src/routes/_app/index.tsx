@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { BookOpen, Brain, FileText, GraduationCap, Layers, Menu, Sparkles, Zap } from 'lucide-react'
+import { BookOpen, FileText, Menu } from 'lucide-react'
 
 import { getAvailableTextbookLessons } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
@@ -45,14 +45,6 @@ function Stat({
     </div>
   )
 }
-
-// Supporting principles under the retrieval-practice hero (i18n keys ov.learn.*).
-const PRINCIPLES = [
-  { k: 'p1', icon: Layers },
-  { k: 'p2', icon: Zap },
-  { k: 'p3', icon: GraduationCap },
-  { k: 'p4', icon: Sparkles },
-] as const
 
 function Overview() {
   const { lessonIds, locale, stats, user } = Route.useLoaderData()
@@ -153,67 +145,31 @@ function Overview() {
           </div>
         </section>
 
-        {/* Learn: pedagogy explainer (left, growth) + new lessons (right).
-            Desktop = two columns; mobile = lessons first, principle below. */}
-        {/* The lesson grid is omitted entirely while no outline lesson has
-            content yet, so the principle column takes the full width rather
-            than sitting beside an empty half. */}
-        <section
-          className={'sr-section-gap sr-learn' + (newLessons.length ? '' : ' sr-learn-solo')}
-        >
-          {newLessons.length > 0 && (
-            <div className="sr-learn-courses">
-              <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
-              <div className="sr-grid">
-                {newLessons.map((l) => (
-                  <Link
-                    key={l.id}
-                    to="/lesson/$id"
-                    params={{ id: l.id }}
-                    className="sr-card sr-lesson-card"
-                  >
-                    <span className="sr-lesson-card-ico">
-                      <FileText size={17} />
-                    </span>
-                    <span className="sr-lesson-card-body">
-                      <span className="sr-card-title">{l.title}</span>
-                      <span className="sr-note">{l.subject}</span>
-                    </span>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <aside className="sr-learn-principle sr-card">
-            <div className="sr-eyebrow accent">{t(locale, 'ov.learn.eyebrow')}</div>
-            <h2 className="sr-learn-title">{t(locale, 'ov.learn.title')}</h2>
-            <p className="sr-learn-sub">{t(locale, 'ov.learn.sub')}</p>
-
-            {/* hero principle — retrieval practice (the star) */}
-            <div className="sr-learn-hero">
-              <div className="sr-learn-hero-head">
-                <Brain size={17} />
-                <b>{t(locale, 'ov.learn.p0.t')}</b>
-              </div>
-              <p>{t(locale, 'ov.learn.p0.d')}</p>
-            </div>
-
-            <ul className="sr-learn-list">
-              {PRINCIPLES.map((p) => (
-                <li key={p.k}>
-                  <span className="sr-learn-ic">
-                    <p.icon size={15} />
+        {/* Lessons that have content, newest last. Nothing renders while the
+            deck is still an outline. */}
+        {newLessons.length > 0 && (
+          <section className="sr-section-gap">
+            <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
+            <div className="sr-grid">
+              {newLessons.map((l) => (
+                <Link
+                  key={l.id}
+                  to="/lesson/$id"
+                  params={{ id: l.id }}
+                  className="sr-card sr-lesson-card"
+                >
+                  <span className="sr-lesson-card-ico">
+                    <FileText size={17} />
                   </span>
-                  <span className="sr-learn-item-body">
-                    <b>{t(locale, `ov.learn.${p.k}.t`)}</b>
-                    <span>{t(locale, `ov.learn.${p.k}.d`)}</span>
+                  <span className="sr-lesson-card-body">
+                    <span className="sr-card-title">{l.title}</span>
+                    <span className="sr-note">{l.subject}</span>
                   </span>
-                </li>
+                </Link>
               ))}
-            </ul>
-          </aside>
-        </section>
+            </div>
+          </section>
+        )}
       </div>
     </main>
   )
