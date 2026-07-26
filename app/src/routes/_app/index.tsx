@@ -96,13 +96,12 @@ function Overview() {
               <span className="sr-hero-accent">{t(locale, 'ov.hero.title.quality')}</span>
               {t(locale, 'ov.hero.title.tail')}
             </h1>
-            {/* Two parallel half-lines, then one longer line to close — the
-                staggered rhythm is the point, so they are not one block. */}
+            {/* What the course spans, then how it is built — both inside the
+                rule, one line each. */}
             <ul className="sr-hero-points">
-              <li>{t(locale, 'ov.hero.point.a')}</li>
-              <li>{t(locale, 'ov.hero.point.b')}</li>
+              <li>{t(locale, 'ov.hero.line.a')}</li>
+              <li>{t(locale, 'ov.hero.line.b')}</li>
             </ul>
-            <p className="sr-hero-close">{t(locale, 'ov.hero.close')}</p>
             <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
           </div>
           {/* Brand illustration: a tree of knowledge whose branches end in lit

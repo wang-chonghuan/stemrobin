@@ -86,12 +86,12 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     // teaches and how good it is — with plain text between and after them. The
     // order differs by language, which is why they are named, not lettered.
     'ov.hero.title.subject': '中学数学与物理',
-    'ov.hero.title.mid': '，承袭数学家柯尔莫戈洛夫主持制定的',
+    'ov.hero.title.mid': '，承袭数学家柯尔莫戈洛夫制定的',
     'ov.hero.title.quality': '精英理科大纲',
     'ov.hero.title.tail': '。',
-    'ov.hero.point.a': '从算术到微积分。',
-    'ov.hero.point.b': '从杠杆到原子核。',
-    'ov.hero.close': '编成直观、高频复现的学习卡组——由 AI 带你真正掌握。',
+    // Both lines sit inside the rule; the range is one sentence, not two.
+    'ov.hero.line.a': '从算术到微积分，从杠杆到原子核。',
+    'ov.hero.line.b': '编成结构化、高频复现的学习卡组——由 AI 带你真正掌握。',
     'ov.hero.art.alt': '一棵知识之树：枝干末端是一个个亮起的知识点，外围环绕着原子轨道',
     'ov.new': '新上线课程（{n}）',
     // overview — learning-principle column (growth)
@@ -258,10 +258,9 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.hero.title.mid': ', inspired by ',
     'ov.hero.title.quality': 'the elite STEM curriculum',
     'ov.hero.title.tail': ' led by math legend Andrey Kolmogorov.',
-    'ov.hero.point.a': 'From arithmetic to calculus.',
-    'ov.hero.point.b': 'From levers to atomic nucleus.',
-    'ov.hero.close':
-      'Formatted into intuitive, high-repetition learning decks—guided by AI for true mastery.',
+    'ov.hero.line.a': 'From arithmetic to calculus, from levers to atomic nucleus.',
+    'ov.hero.line.b':
+      'Formatted into structured, high-repetition learning decks—guided by AI for true mastery.',
     'ov.hero.art.alt': 'A tree of knowledge: every branch ends in a lit node, the whole ringed by atom orbits',
     'ov.new': 'New lessons ({n})',
     'ov.learn.eyebrow': 'What the research shows',
