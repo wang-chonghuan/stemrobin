@@ -1294,18 +1294,21 @@ a.sr-out-lesson.active {
   margin-bottom: 18px;
 }
 
-/* The tree sets the height. The copy column stretches to it and spaces itself
-   out, so the sign-in line lands level with the foot of the tree and the box is
-   never taller than the illustration inside it. */
+/* The tree sets the height on its own; where the stats card beside it is taller,
+   the row grows to match and the copy spreads through the extra space rather
+   than bunching at the top of it. */
 .sr-hero {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
   padding: 20px 26px;
   background: var(--sr-blue-tint);
   border: 1px solid var(--sr-line);
   border-radius: 14px;
 }
 .sr-hero-main {
+  flex: 1;
   display: flex;
   align-items: stretch;
   gap: 24px;
@@ -1351,7 +1354,9 @@ a.sr-out-lesson.active {
 /* The illustration is near-square (360×392), so its width is also roughly its
    height: 180px keeps it just under the copy column's height instead of
    towering over it the way the old 208px-wide, 146px-tall art never could. */
-.sr-hero-art { flex: none; width: 180px; height: auto; }
+/* Centred, not stretched — `stretch` on the row would pull the image out of
+   its aspect ratio once the row is taller than the art. */
+.sr-hero-art { flex: none; align-self: center; width: 180px; height: auto; }
 @media (max-width: 1100px) {
   /* Too narrow to carry both: the numbers drop below the pitch and spread out
      again across the full width. */
