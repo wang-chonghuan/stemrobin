@@ -1321,11 +1321,13 @@ a.sr-out-lesson.active {
   color: var(--sr-ink);
 }
 .sr-hero-points li:last-child { margin-bottom: 0; }
+/* Same ink as the pair above it — it is the third statement, not a caption.
+   Size and weight already place it below them. */
 .sr-hero-close {
   margin: 12px 0 0;
   font-size: 14.5px;
   line-height: 1.6;
-  color: var(--sr-ink-soft);
+  color: var(--sr-ink);
 }
 /* The illustration is near-square (360×392), so its width is also roughly its
    height: 180px keeps it just under the copy column's height instead of
