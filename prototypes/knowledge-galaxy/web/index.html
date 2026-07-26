@@ -19,6 +19,12 @@
   }
   .hub-label.dim { opacity: 0.22; }
   .hub-label.hot { color: #fff; text-shadow: 0 0 14px currentColor, 0 1px 2px rgba(0,0,0,.9); }
+  .star-label {
+    position: absolute; transform: translate(-50%, -160%); white-space: nowrap;
+    font-family: "PingFang SC", "Noto Sans SC", sans-serif; font-size: 11px;
+    text-shadow: 0 0 5px rgba(0,0,0,.95), 0 1px 2px rgba(0,0,0,.95);
+    letter-spacing: 0.03em; user-select: none; transition: opacity .25s ease;
+  }
   #tooltip {
     position: fixed; pointer-events: none; display: none; max-width: 300px;
     background: rgba(10, 14, 28, 0.92); border: 1px solid rgba(120,150,255,0.25);

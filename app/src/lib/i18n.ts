@@ -86,8 +86,8 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     // teaches and how good it is — with plain text between and after them. The
     // order differs by language, which is why they are named, not lettered.
     'ov.hero.title.subject': '中学数学与物理',
-    'ov.hero.title.mid': '，源自数学家柯尔莫戈洛夫主编的',
-    'ov.hero.title.quality': '精英理科课程',
+    'ov.hero.title.mid': '，源自数学家柯尔莫戈洛夫制定的',
+    'ov.hero.title.quality': '精英理科大纲',
     'ov.hero.title.tail': '。',
     // Both lines sit inside the rule; the range is one sentence, not two.
     'ov.hero.line.a': '从算术到微积分，从杠杆到原子核。',

@@ -213,6 +213,17 @@ document.getElementById('lang').addEventListener('click', () => applyLocale(loca
 applyColors()
 applyLocale('en')
 
+// ---------- star labels: semantic zoom (appear as the camera closes in) ----------
+const STAR_LABELS = 30
+const starLabelEls = Array.from({ length: STAR_LABELS }, () => {
+  const el = document.createElement('div')
+  el.className = 'star-label'
+  el.style.display = 'none'
+  labelLayer.appendChild(el)
+  return el
+})
+const isExercise = s => /^练习|^复习题|^习题|^Exercise|^Review/i.test(s.title) || /^Exercise/i.test(s.titleEn ?? '')
+
 // ---------- interaction ----------
 const tooltip = document.getElementById('tooltip')
 const raycaster = new THREE.Raycaster()
@@ -298,6 +309,43 @@ function tick() {
     if (d < bestD) { bestD = d; best = s.i }
   }
   setHotHub(best)
+
+  // semantic zoom: below this camera distance, nearby topic stars label themselves
+  const camDist = camera.position.distanceTo(controls.target)
+  const zoomT = THREE.MathUtils.clamp((62 - camDist) / 18, 0, 1)
+  let li = 0
+  if (zoomT > 0.05) {
+    const cands = []
+    for (let i = 0; i < N; i++) {
+      proj.copy(starWorld[i]).project(camera)
+      if (proj.z > 1) continue
+      const sx = (proj.x * 0.5 + 0.5) * innerWidth
+      const sy = (-proj.y * 0.5 + 0.5) * innerHeight
+      if (sx < 40 || sx > innerWidth - 40 || sy < 40 || sy > innerHeight - 40) continue
+      const dx = sx - innerWidth / 2, dy = sy - innerHeight / 2
+      cands.push({ i, sx, sy, d: dx * dx + dy * dy })
+    }
+    cands.sort((a, b) => a.d - b.d)
+    for (const c of cands) {
+      if (li >= STAR_LABELS) break
+      const s = stars[c.i]
+      if (isExercise(s)) continue
+      const title = locale === 'zh' ? s.title : (s.titleEn ?? s.title)
+      const w = title.length * (locale === 'zh' ? 12 : 6.5)
+      const collide = placed.some(p =>
+        Math.abs(p.sy - c.sy) < 20 && Math.abs(p.sx - c.sx) < (p.w + w) / 2 + 8)
+      if (collide) continue
+      placed.push({ sx: c.sx, sy: c.sy, w })
+      const el = starLabelEls[li++]
+      el.textContent = title
+      el.style.display = ''
+      el.style.left = `${c.sx}px`
+      el.style.top = `${c.sy}px`
+      el.style.opacity = (0.85 * zoomT).toFixed(2)
+      el.style.color = `#${disciplineColor[s.discipline].clone().offsetHSL(0, -0.05, 0.22).getHexString()}`
+    }
+  }
+  for (; li < STAR_LABELS; li++) starLabelEls[li].style.display = 'none'
 
   // topic star tooltip (only when not on a hub)
   if (best < 0) {
