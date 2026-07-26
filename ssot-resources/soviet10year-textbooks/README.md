@@ -14,14 +14,33 @@ toc/<bookId>/en.json     a translation of zh.json
 `<bookId>` is the PDF's own id (`6a`, `9c`, `6-8g`, `10p`, …) — the text before
 the first space in its filename under `resources/soviet10years/pdf/`.
 
-## The two files are not peers
+## The files are not peers
 
-`zh.json` carries `"authority": "extracted"`. It is what the book prints, read
-off the scanned contents pages; it is the file a dispute is settled against.
+Exactly one locale per volume carries `"authority": "extracted"`. It is what the
+book prints, read off the contents pages; it is the file a dispute is settled
+against. Every other locale carries `"authority": "translated"`, and its
+structure, ids, `number`s and `source` refs must match the extracted file field
+for field — **only titles differ**. A new language is a new file beside the
+others, never a change to the structure.
 
-`en.json` carries `"authority": "translated"`. Its structure, ids, `number`s and
-`source` refs must match `zh.json` field for field — **only titles differ**. A
-new language is a new file beside these two, never a change to the structure.
+Which locale that is depends on the edition transcribed, and every file in the
+volume names it in `extractedLocale`:
+
+- The Soviet ten-year series was read off its **printed Chinese editions**
+  (人民教育出版社), so `zh` is the authority. The field may be omitted there; it
+  defaults to `zh`.
+- The probability pair (`7-9pr`, `10-11pr`) has no Chinese edition, so `ru` is
+  the authority and both `zh.json` and `en.json` are translations. Marking `zh`
+  as extracted there would dress a translation up as the printed page.
+
+## More than one printed series
+
+The shelf is not only the Soviet set. Probability and statistics is the one
+branch that series never carried, and it is filled by Ю. Н. Тюрин et al.,
+*Теория вероятностей и статистика* (7—9 and 10—11), transcribed under the same
+rules. The directory keeps its name for the sake of stable paths; the volumes
+say which book they came from in `source.series`, and `reconcile.py` checks each
+series against its own printed-contents file.
 
 ## Two numbering systems, deliberately
 

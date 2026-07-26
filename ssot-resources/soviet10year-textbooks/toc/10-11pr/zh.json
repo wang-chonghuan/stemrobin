@@ -1,0 +1,479 @@
+{
+  "book": "10-11pr",
+  "locale": "zh",
+  "authority": "translated",
+  "extractedLocale": "ru",
+  "subject": "probability",
+  "grade": 10,
+  "title": "概率论与统计 10—11年级",
+  "source": {
+    "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
+    "bookId": "10-11pr",
+    "printedTitle": "Теория вероятностей и статистика. Экспериментальное учебное пособие для 10 и 11 классов общеобразовательных учреждений",
+    "authors": "Ю. Н. Тюрин, А. А. Макаров, И. Р. Высоцкий, И. В. Ященко <!-- 待核：用户仅确认第一作者 Ю. Н. Тюрин -->",
+    "publisher": "МЦНМО <!-- 待核：版次、年份未确认 -->",
+    "edition": "Экспериментальное учебное пособие（实验教学用书，非正式教材 учебник）",
+    "toc": "用户提供的印刷目录转写；见 resources/tyurin-probability/toc/10-11pr.md",
+    "scan": "10-11pr — 印刷本未存入仓库"
+  },
+  "note": "本文件是 ru.json 的译本。ru.json 是原书印刷目录的逐条转写，是本册的权威件；本文件的结构、id、number、source 必须与之逐字段一致，只有标题是译文。",
+  "numbering": "`number`（如 3.5）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷编号的用编号（printedSection，全书连续），没有的用原书印刷的名称（printedName，各语言文件中一律保留俄文，因为它是指回原书的指针）。「Приложение」和「Самостоятельные и контрольные работы」在原书中不带章号，故其 number 及其下各条的 number 均为 null。7—9 册中 15、16 两条印刷时带星号，表示选学内容，标题按原样转写。",
+  "contents": [
+    {
+      "id": "10-11pr-authors",
+      "kind": "section",
+      "number": null,
+      "title": "作者的话",
+      "page": 3,
+      "source": {
+        "printedName": "От авторов"
+      }
+    },
+    {
+      "id": "10-11pr-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "随机事件与概率（基本概念复习）",
+      "page": 6,
+      "lessons": [
+        {
+          "id": "10-11pr-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "随机试验与随机事件",
+          "page": 6,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "10-11pr-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "事件的概率",
+          "page": 14,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "10-11pr-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "频率与概率的接近",
+          "page": 24,
+          "source": {
+            "printedSection": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "事件的数学描述",
+      "page": 28,
+      "lessons": [
+        {
+          "id": "10-11pr-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "事件的运算",
+          "page": 28,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "10-11pr-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "概率加法公式",
+          "page": 37,
+          "source": {
+            "printedSection": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "条件概率",
+      "page": 50,
+      "lessons": [
+        {
+          "id": "10-11pr-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "条件概率",
+          "page": 50,
+          "source": {
+            "printedSection": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "随机变量与分布",
+      "page": 71,
+      "lessons": [
+        {
+          "id": "10-11pr-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "随机变量",
+          "page": 71,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "10-11pr-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "概率分布",
+          "page": 77,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "10-11pr-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "随机变量的特征",
+          "page": 84,
+          "source": {
+            "printedSection": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "多个随机变量",
+      "page": 97,
+      "lessons": [
+        {
+          "id": "10-11pr-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "联合分布",
+          "page": 97,
+          "source": {
+            "printedSection": 10
+          }
+        },
+        {
+          "id": "10-11pr-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "随机变量之和的数学期望与方差",
+          "page": 102,
+          "source": {
+            "printedSection": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "独立随机变量",
+      "page": 111,
+      "lessons": [
+        {
+          "id": "10-11pr-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "随机变量的独立性",
+          "page": 111,
+          "source": {
+            "printedSection": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c7",
+      "kind": "chapter",
+      "number": 7,
+      "title": "几何分布",
+      "page": 119,
+      "lessons": [
+        {
+          "id": "10-11pr-c7-s1",
+          "kind": "section",
+          "number": "7.1",
+          "title": "首次成功前的试验次数",
+          "page": 119,
+          "source": {
+            "printedSection": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c8",
+      "kind": "chapter",
+      "number": 8,
+      "title": "组合学",
+      "page": 124,
+      "lessons": [
+        {
+          "id": "10-11pr-c8-s1",
+          "kind": "section",
+          "number": "8.1",
+          "title": "基本知识",
+          "page": 124,
+          "source": {
+            "printedSection": 14
+          }
+        },
+        {
+          "id": "10-11pr-c8-s2",
+          "kind": "section",
+          "number": "8.2",
+          "title": "排列数·阶乘",
+          "page": 131,
+          "source": {
+            "printedSection": 15
+          }
+        },
+        {
+          "id": "10-11pr-c8-s3",
+          "kind": "section",
+          "number": "8.3",
+          "title": "组合数 Cᵏₙ",
+          "page": 133,
+          "source": {
+            "printedSection": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c9",
+      "kind": "chapter",
+      "number": 9,
+      "title": "伯努利试验与二项分布",
+      "page": 141,
+      "lessons": [
+        {
+          "id": "10-11pr-c9-s1",
+          "kind": "section",
+          "number": "9.1",
+          "title": "伯努利试验",
+          "page": 141,
+          "source": {
+            "printedSection": 17
+          }
+        },
+        {
+          "id": "10-11pr-c9-s2",
+          "kind": "section",
+          "number": "9.2",
+          "title": "随机变量「成功次数」",
+          "page": 143,
+          "source": {
+            "printedSection": 18
+          }
+        },
+        {
+          "id": "10-11pr-c9-s3",
+          "kind": "section",
+          "number": "9.3",
+          "title": "成功次数的数学期望与方差",
+          "page": 148,
+          "source": {
+            "printedSection": 19
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c10",
+      "kind": "chapter",
+      "number": 10,
+      "title": "大数定律",
+      "page": 152,
+      "lessons": [
+        {
+          "id": "10-11pr-c10-s1",
+          "kind": "section",
+          "number": "10.1",
+          "title": "切比雪夫不等式",
+          "page": 152,
+          "source": {
+            "printedSection": 20
+          }
+        },
+        {
+          "id": "10-11pr-c10-s2",
+          "kind": "section",
+          "number": "10.2",
+          "title": "切比雪夫定理",
+          "page": 154,
+          "source": {
+            "printedSection": 21
+          }
+        },
+        {
+          "id": "10-11pr-c10-s3",
+          "kind": "section",
+          "number": "10.3",
+          "title": "伯努利定理",
+          "page": 156,
+          "source": {
+            "printedSection": 22
+          }
+        },
+        {
+          "id": "10-11pr-c10-s4",
+          "kind": "section",
+          "number": "10.4",
+          "title": "抽样方法",
+          "page": 157,
+          "source": {
+            "printedSection": 23
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c11",
+      "kind": "chapter",
+      "number": 11,
+      "title": "连续随机变量",
+      "page": 160,
+      "lessons": [
+        {
+          "id": "10-11pr-c11-s1",
+          "kind": "section",
+          "number": "11.1",
+          "title": "连续随机变量的概念",
+          "page": 160,
+          "source": {
+            "printedSection": 24
+          }
+        },
+        {
+          "id": "10-11pr-c11-s2",
+          "kind": "section",
+          "number": "11.2",
+          "title": "均匀分布",
+          "page": 163,
+          "source": {
+            "printedSection": 25
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c12",
+      "kind": "chapter",
+      "number": 12,
+      "title": "正态分布",
+      "page": 166,
+      "lessons": [
+        {
+          "id": "10-11pr-c12-s1",
+          "kind": "section",
+          "number": "12.1",
+          "title": "正态分布的概念",
+          "page": 166,
+          "source": {
+            "printedSection": 26
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c13",
+      "kind": "chapter",
+      "number": 13,
+      "title": "指数分布",
+      "page": 183,
+      "lessons": [
+        {
+          "id": "10-11pr-c13-s1",
+          "kind": "section",
+          "number": "13.1",
+          "title": "等待时间",
+          "page": 183,
+          "source": {
+            "printedSection": 27
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c14",
+      "kind": "chapter",
+      "number": 14,
+      "title": "线性回归与样本相关系数",
+      "page": 192,
+      "lessons": [
+        {
+          "id": "10-11pr-c14-s1",
+          "kind": "section",
+          "number": "14.1",
+          "title": "两个变量的联合观测与线性回归",
+          "page": 192,
+          "source": {
+            "printedSection": 28
+          }
+        },
+        {
+          "id": "10-11pr-c14-s2",
+          "kind": "section",
+          "number": "14.2",
+          "title": "样本相关系数",
+          "page": 197,
+          "source": {
+            "printedSection": 29
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-normal-table",
+      "kind": "section",
+      "number": null,
+      "title": "标准正态分布函数 y = Ф(x) 数值表（精确到 0,0001）",
+      "page": 200,
+      "source": {
+        "printedName": "Таблица значений функции y = Ф(x) стандартного нормального распределения с точностью до 0,0001"
+      }
+    },
+    {
+      "id": "10-11pr-glossary",
+      "kind": "section",
+      "number": null,
+      "title": "术语表",
+      "page": 202,
+      "source": {
+        "printedName": "Словарь терминов"
+      }
+    },
+    {
+      "id": "10-11pr-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "复习题、检测题与独立作业题",
+      "page": 213,
+      "source": {
+        "printedName": "Задачи для повторения, для проверочных и самостоятельных работ"
+      }
+    }
+  ]
+}

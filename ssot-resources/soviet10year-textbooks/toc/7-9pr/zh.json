@@ -1,0 +1,877 @@
+{
+  "book": "7-9pr",
+  "locale": "zh",
+  "authority": "translated",
+  "extractedLocale": "ru",
+  "subject": "probability",
+  "grade": 7,
+  "title": "概率论与统计 7—9年级",
+  "source": {
+    "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
+    "bookId": "7-9pr",
+    "printedTitle": "Математика. 7—9 класс. Теория вероятностей и статистика",
+    "authors": "Ю. Н. Тюрин, А. А. Макаров, И. Р. Высоцкий, И. В. Ященко <!-- 待核：用户仅确认第一作者 Ю. Н. Тюрин -->",
+    "publisher": "МЦНМО <!-- 待核：版次、年份未确认 -->",
+    "toc": "用户提供的印刷目录转写；见 resources/tyurin-probability/toc/7-9pr.md",
+    "scan": "7-9pr — 印刷本未存入仓库"
+  },
+  "note": "本文件是 ru.json 的译本。ru.json 是原书印刷目录的逐条转写，是本册的权威件；本文件的结构、id、number、source 必须与之逐字段一致，只有标题是译文。",
+  "numbering": "`number`（如 3.5）是界面显示用的层级编号，由 id 里的位置决定；`source` 指回原书目录中唯一确定这一条的东西——有印刷编号的用编号（printedSection，全书连续），没有的用原书印刷的名称（printedName，各语言文件中一律保留俄文，因为它是指回原书的指针）。「Приложение」和「Самостоятельные и контрольные работы」在原书中不带章号，故其 number 及其下各条的 number 均为 null。7—9 册中 15、16 两条印刷时带星号，表示选学内容，标题按原样转写。",
+  "contents": [
+    {
+      "id": "7-9pr-authors",
+      "kind": "section",
+      "number": null,
+      "title": "作者的话",
+      "page": 3,
+      "source": {
+        "printedName": "От авторов"
+      }
+    },
+    {
+      "id": "7-9pr-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "表格",
+      "page": 6,
+      "lessons": [
+        {
+          "id": "7-9pr-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "表格中的统计数据",
+          "page": 6,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "7-9pr-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "在表格中查找信息",
+          "page": 10,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "7-9pr-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "表格中的计算",
+          "page": 13,
+          "source": {
+            "printedSection": 3
+          }
+        },
+        {
+          "id": "7-9pr-c1-s4",
+          "kind": "section",
+          "number": "1.4",
+          "title": "俄罗斯最大的城市",
+          "page": 17,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "7-9pr-c1-s5",
+          "kind": "section",
+          "number": "1.5",
+          "title": "计数结果表",
+          "page": 18,
+          "source": {
+            "printedSection": 5
+          }
+        },
+        {
+          "id": "7-9pr-c1-s6",
+          "kind": "section",
+          "number": "1.6",
+          "title": "测量结果表",
+          "page": 20,
+          "source": {
+            "printedSection": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "统计图",
+      "page": 27,
+      "lessons": [
+        {
+          "id": "7-9pr-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "条形图",
+          "page": 27,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "7-9pr-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "扇形图",
+          "page": 33,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "7-9pr-c2-s3",
+          "kind": "section",
+          "number": "2.3",
+          "title": "散点图",
+          "page": 39,
+          "source": {
+            "printedSection": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "描述统计",
+      "page": 44,
+      "lessons": [
+        {
+          "id": "7-9pr-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "平均值",
+          "page": 44,
+          "source": {
+            "printedSection": 10
+          }
+        },
+        {
+          "id": "7-9pr-c3-s2",
+          "kind": "section",
+          "number": "3.2",
+          "title": "中位数",
+          "page": 48,
+          "source": {
+            "printedSection": 11
+          }
+        },
+        {
+          "id": "7-9pr-c3-s3",
+          "kind": "section",
+          "number": "3.3",
+          "title": "最大值和最小值·极差",
+          "page": 54,
+          "source": {
+            "printedSection": 12
+          }
+        },
+        {
+          "id": "7-9pr-c3-s4",
+          "kind": "section",
+          "number": "3.4",
+          "title": "偏差",
+          "page": 56,
+          "source": {
+            "printedSection": 13
+          }
+        },
+        {
+          "id": "7-9pr-c3-s5",
+          "kind": "section",
+          "number": "3.5",
+          "title": "方差",
+          "page": 57,
+          "source": {
+            "printedSection": 14
+          }
+        },
+        {
+          "id": "7-9pr-c3-s6",
+          "kind": "section",
+          "number": "3.6",
+          "title": "记号和公式",
+          "page": 60,
+          "source": {
+            "printedSection": 15
+          }
+        },
+        {
+          "id": "7-9pr-c3-s7",
+          "kind": "section",
+          "number": "3.7",
+          "title": "算术平均数和方差的性质",
+          "page": 61,
+          "source": {
+            "printedSection": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "随机变异性",
+      "page": 63,
+      "lessons": [
+        {
+          "id": "7-9pr-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "随机变异性的例子",
+          "page": 63,
+          "source": {
+            "printedSection": 17
+          }
+        },
+        {
+          "id": "7-9pr-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "人的身高",
+          "page": 67,
+          "source": {
+            "printedSection": 18
+          }
+        },
+        {
+          "id": "7-9pr-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "测量的精度",
+          "page": 71,
+          "source": {
+            "printedSection": 19
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "随机事件与概率",
+      "page": 75,
+      "lessons": [
+        {
+          "id": "7-9pr-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "随机事件",
+          "page": 75,
+          "source": {
+            "printedSection": 20
+          }
+        },
+        {
+          "id": "7-9pr-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "概率与频率",
+          "page": 76,
+          "source": {
+            "printedSection": 21
+          }
+        },
+        {
+          "id": "7-9pr-c5-s3",
+          "kind": "section",
+          "number": "5.3",
+          "title": "概率论中的硬币与骰子",
+          "page": 79,
+          "source": {
+            "printedSection": 22
+          }
+        },
+        {
+          "id": "7-9pr-c5-s4",
+          "kind": "section",
+          "number": "5.4",
+          "title": "如何求出事件的概率？",
+          "page": 84,
+          "source": {
+            "printedSection": 23
+          }
+        },
+        {
+          "id": "7-9pr-c5-s5",
+          "kind": "section",
+          "number": "5.5",
+          "title": "为什么需要知道事件的概率？",
+          "page": 86,
+          "source": {
+            "printedSection": 24
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "随机现象的数学描述",
+      "page": 89,
+      "lessons": [
+        {
+          "id": "7-9pr-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "随机试验",
+          "page": 89,
+          "source": {
+            "printedSection": 25
+          }
+        },
+        {
+          "id": "7-9pr-c6-s2",
+          "kind": "section",
+          "number": "6.2",
+          "title": "基本事件",
+          "page": 90,
+          "source": {
+            "printedSection": 26
+          }
+        },
+        {
+          "id": "7-9pr-c6-s3",
+          "kind": "section",
+          "number": "6.3",
+          "title": "等可能基本事件",
+          "page": 94,
+          "source": {
+            "printedSection": 27
+          }
+        },
+        {
+          "id": "7-9pr-c6-s4",
+          "kind": "section",
+          "number": "6.4",
+          "title": "基本事件的概率",
+          "page": 95,
+          "source": {
+            "printedSection": 28
+          }
+        },
+        {
+          "id": "7-9pr-c6-s5",
+          "kind": "section",
+          "number": "6.5",
+          "title": "有利基本事件",
+          "page": 98,
+          "source": {
+            "printedSection": 29
+          }
+        },
+        {
+          "id": "7-9pr-c6-s6",
+          "kind": "section",
+          "number": "6.6",
+          "title": "事件的概率",
+          "page": 103,
+          "source": {
+            "printedSection": 30
+          }
+        },
+        {
+          "id": "7-9pr-c6-s7",
+          "kind": "section",
+          "number": "6.7",
+          "title": "具有等可能基本事件的试验",
+          "page": 106,
+          "source": {
+            "printedSection": 31
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c7",
+      "kind": "chapter",
+      "number": 7,
+      "title": "随机事件的概率·概率的加法与乘法",
+      "page": 113,
+      "lessons": [
+        {
+          "id": "7-9pr-c7-s1",
+          "kind": "section",
+          "number": "7.1",
+          "title": "对立事件·欧拉图",
+          "page": 113,
+          "source": {
+            "printedSection": 32
+          }
+        },
+        {
+          "id": "7-9pr-c7-s2",
+          "kind": "section",
+          "number": "7.2",
+          "title": "事件的并",
+          "page": 118,
+          "source": {
+            "printedSection": 33
+          }
+        },
+        {
+          "id": "7-9pr-c7-s3",
+          "kind": "section",
+          "number": "7.3",
+          "title": "事件的交",
+          "page": 123,
+          "source": {
+            "printedSection": 34
+          }
+        },
+        {
+          "id": "7-9pr-c7-s4",
+          "kind": "section",
+          "number": "7.4",
+          "title": "互斥事件·概率加法法则",
+          "page": 127,
+          "source": {
+            "printedSection": 35
+          }
+        },
+        {
+          "id": "7-9pr-c7-s5",
+          "kind": "section",
+          "number": "7.5",
+          "title": "概率加法公式",
+          "page": 130,
+          "source": {
+            "printedSection": 36
+          }
+        },
+        {
+          "id": "7-9pr-c7-s6",
+          "kind": "section",
+          "number": "7.6",
+          "title": "随机选取",
+          "page": 133,
+          "source": {
+            "printedSection": 37
+          }
+        },
+        {
+          "id": "7-9pr-c7-s7",
+          "kind": "section",
+          "number": "7.7",
+          "title": "独立事件·概率的乘法",
+          "page": 135,
+          "source": {
+            "printedSection": 38
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c8",
+      "kind": "chapter",
+      "number": 8,
+      "title": "组合学初步",
+      "page": 146,
+      "lessons": [
+        {
+          "id": "7-9pr-c8-s1",
+          "kind": "section",
+          "number": "8.1",
+          "title": "乘法法则",
+          "page": 146,
+          "source": {
+            "printedSection": 39
+          }
+        },
+        {
+          "id": "7-9pr-c8-s2",
+          "kind": "section",
+          "number": "8.2",
+          "title": "排列·阶乘",
+          "page": 148,
+          "source": {
+            "printedSection": 40
+          }
+        },
+        {
+          "id": "7-9pr-c8-s3",
+          "kind": "section",
+          "number": "8.3",
+          "title": "乘法法则与排列在概率计算问题中的应用",
+          "page": 151,
+          "source": {
+            "printedSection": 41
+          }
+        },
+        {
+          "id": "7-9pr-c8-s4",
+          "kind": "section",
+          "number": "8.4",
+          "title": "组合",
+          "page": 154,
+          "source": {
+            "printedSection": 42
+          }
+        },
+        {
+          "id": "7-9pr-c8-s5",
+          "kind": "section",
+          "number": "8.5",
+          "title": "组合在概率计算问题中的应用",
+          "page": 157,
+          "source": {
+            "printedSection": 43
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c9",
+      "kind": "chapter",
+      "number": 9,
+      "title": "几何概率",
+      "page": 160,
+      "lessons": [
+        {
+          "id": "7-9pr-c9-s1",
+          "kind": "section",
+          "number": "9.1",
+          "title": "从平面图形中取点",
+          "page": 160,
+          "source": {
+            "printedSection": 44
+          }
+        },
+        {
+          "id": "7-9pr-c9-s2",
+          "kind": "section",
+          "number": "9.2",
+          "title": "从线段和圆弧上取点",
+          "page": 163,
+          "source": {
+            "printedSection": 45
+          }
+        },
+        {
+          "id": "7-9pr-c9-s3",
+          "kind": "section",
+          "number": "9.3",
+          "title": "从数轴区间上取点",
+          "page": 165,
+          "source": {
+            "printedSection": 46
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c10",
+      "kind": "chapter",
+      "number": 10,
+      "title": "伯努利试验",
+      "page": 170,
+      "lessons": [
+        {
+          "id": "7-9pr-c10-s1",
+          "kind": "section",
+          "number": "10.1",
+          "title": "成功与失败",
+          "page": 170,
+          "source": {
+            "printedSection": 47
+          }
+        },
+        {
+          "id": "7-9pr-c10-s2",
+          "kind": "section",
+          "number": "10.2",
+          "title": "伯努利试验中的成功次数",
+          "page": 173,
+          "source": {
+            "printedSection": 48
+          }
+        },
+        {
+          "id": "7-9pr-c10-s3",
+          "kind": "section",
+          "number": "10.3",
+          "title": "伯努利试验中事件的概率",
+          "page": 176,
+          "source": {
+            "printedSection": 49
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c11",
+      "kind": "chapter",
+      "number": 11,
+      "title": "随机变量",
+      "page": 179,
+      "lessons": [
+        {
+          "id": "7-9pr-c11-s1",
+          "kind": "section",
+          "number": "11.1",
+          "title": "随机变量的例子",
+          "page": 179,
+          "source": {
+            "printedSection": 50
+          }
+        },
+        {
+          "id": "7-9pr-c11-s2",
+          "kind": "section",
+          "number": "11.2",
+          "title": "随机变量的概率分布",
+          "page": 182,
+          "source": {
+            "printedSection": 51
+          }
+        },
+        {
+          "id": "7-9pr-c11-s3",
+          "kind": "section",
+          "number": "11.3",
+          "title": "二项分布",
+          "page": 186,
+          "source": {
+            "printedSection": 52
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c12",
+      "kind": "chapter",
+      "number": 12,
+      "title": "随机变量的数字特征",
+      "page": 189,
+      "lessons": [
+        {
+          "id": "7-9pr-c12-s1",
+          "kind": "section",
+          "number": "12.1",
+          "title": "随机变量的数学期望",
+          "page": 189,
+          "source": {
+            "printedSection": 53
+          }
+        },
+        {
+          "id": "7-9pr-c12-s2",
+          "kind": "section",
+          "number": "12.2",
+          "title": "数学期望的性质",
+          "page": 193,
+          "source": {
+            "printedSection": 54
+          }
+        },
+        {
+          "id": "7-9pr-c12-s3",
+          "kind": "section",
+          "number": "12.3",
+          "title": "取值的离散·定量分装机检验问题",
+          "page": 195,
+          "source": {
+            "printedSection": 55
+          }
+        },
+        {
+          "id": "7-9pr-c12-s4",
+          "kind": "section",
+          "number": "12.4",
+          "title": "方差与标准差",
+          "page": 197,
+          "source": {
+            "printedSection": 56
+          }
+        },
+        {
+          "id": "7-9pr-c12-s5",
+          "kind": "section",
+          "number": "12.5",
+          "title": "方差的性质",
+          "page": 198,
+          "source": {
+            "printedSection": 57
+          }
+        },
+        {
+          "id": "7-9pr-c12-s6",
+          "kind": "section",
+          "number": "12.6",
+          "title": "伯努利试验序列中成功次数的数学期望",
+          "page": 201,
+          "source": {
+            "printedSection": 58
+          }
+        },
+        {
+          "id": "7-9pr-c12-s7",
+          "kind": "section",
+          "number": "12.7",
+          "title": "成功次数的方差",
+          "page": 203,
+          "source": {
+            "printedSection": 59
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-c13",
+      "kind": "chapter",
+      "number": 13,
+      "title": "统计中的随机变量",
+      "page": 205,
+      "lessons": [
+        {
+          "id": "7-9pr-c13-s1",
+          "kind": "section",
+          "number": "13.1",
+          "title": "概率的测定",
+          "page": 205,
+          "source": {
+            "printedSection": 60
+          }
+        },
+        {
+          "id": "7-9pr-c13-s2",
+          "kind": "section",
+          "number": "13.2",
+          "title": "逼近的精度",
+          "page": 208,
+          "source": {
+            "printedSection": 61
+          }
+        },
+        {
+          "id": "7-9pr-c13-s3",
+          "kind": "section",
+          "number": "13.3",
+          "title": "社会调查",
+          "page": 209,
+          "source": {
+            "printedSection": 62
+          }
+        },
+        {
+          "id": "7-9pr-c13-s4",
+          "kind": "section",
+          "number": "13.4",
+          "title": "大数定律",
+          "page": 211,
+          "source": {
+            "printedSection": 63
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-app",
+      "kind": "chapter",
+      "number": null,
+      "title": "附录",
+      "page": 215,
+      "lessons": [
+        {
+          "id": "7-9pr-app-s1",
+          "kind": "section",
+          "number": null,
+          "title": "组合数 Cᵏₙ",
+          "page": 215,
+          "source": {
+            "printedSection": 64
+          }
+        },
+        {
+          "id": "7-9pr-app-s2",
+          "kind": "section",
+          "number": null,
+          "title": "牛顿二项式公式",
+          "page": 216,
+          "source": {
+            "printedSection": 65
+          }
+        },
+        {
+          "id": "7-9pr-app-s3",
+          "kind": "section",
+          "number": null,
+          "title": "二项式系数的性质",
+          "page": 220,
+          "source": {
+            "printedSection": 66
+          }
+        },
+        {
+          "id": "7-9pr-app-s4",
+          "kind": "section",
+          "number": null,
+          "title": "帕斯卡三角形",
+          "page": 223,
+          "source": {
+            "printedSection": 67
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-works",
+      "kind": "chapter",
+      "number": null,
+      "title": "独立作业与检测题",
+      "page": 227,
+      "lessons": [
+        {
+          "id": "7-9pr-works-s1",
+          "kind": "exercises",
+          "number": null,
+          "title": "7年级",
+          "page": 227,
+          "source": {
+            "printedName": "7 класс"
+          }
+        },
+        {
+          "id": "7-9pr-works-s2",
+          "kind": "exercises",
+          "number": null,
+          "title": "8年级",
+          "page": 231,
+          "source": {
+            "printedName": "8 класс"
+          }
+        },
+        {
+          "id": "7-9pr-works-s3",
+          "kind": "exercises",
+          "number": null,
+          "title": "9年级",
+          "page": 234,
+          "source": {
+            "printedName": "9 класс"
+          }
+        }
+      ]
+    },
+    {
+      "id": "7-9pr-glossary",
+      "kind": "section",
+      "number": null,
+      "title": "术语表",
+      "page": 237,
+      "source": {
+        "printedName": "Словарь терминов"
+      }
+    }
+  ]
+}

@@ -10,7 +10,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
 TOC = ROOT / "toc"
-SUBJECTS = {"early", "algebra", "analysis", "geometry", "physics"}
+SUBJECTS = {"early", "algebra", "analysis", "geometry", "physics", "probability"}
 KINDS = {"chapter", "exercises", "section"}
 
 errors: list[str] = []
@@ -45,18 +45,29 @@ def skeleton(doc: dict) -> list:
 def check_book(d: pathlib.Path) -> None:
     book = d.name
     files = {p.stem: p for p in d.glob("*.json")}
-    if "zh" not in files:
-        return fail(book, "no zh.json — the extracted file is the authority and must exist")
     docs = {}
     for loc, p in files.items():
         try:
             docs[loc] = json.loads(p.read_text(encoding="utf-8"))
         except json.JSONDecodeError as exc:
             return fail(book, f"{p.name} is not valid JSON: {exc}")
+    if not docs:
+        return fail(book, "no locale files")
 
-    zh = docs["zh"]
+    # Which locale is the printed one. The Soviet series was read off Chinese
+    # editions, so zh is the authority there and the field may be omitted; a book
+    # transcribed from another language names it, and every file must agree —
+    # otherwise two files could each claim to be what the book prints.
+    declared = {doc.get("extractedLocale", "zh") for doc in docs.values()}
+    if len(declared) > 1:
+        return fail(book, f"locales disagree on extractedLocale: {sorted(declared)}")
+    src_loc = declared.pop()
+    if src_loc not in docs:
+        return fail(book, f"extractedLocale is {src_loc!r} but there is no {src_loc}.json")
+
+    zh = docs[src_loc]
     if zh.get("authority") != "extracted":
-        fail(book, 'zh.json must carry "authority": "extracted"')
+        fail(book, f'{src_loc}.json must carry "authority": "extracted"')
     if zh.get("book") != book:
         fail(book, f'book field {zh.get("book")!r} does not match its directory')
     if zh.get("subject") not in SUBJECTS:
@@ -96,7 +107,7 @@ def check_book(d: pathlib.Path) -> None:
 
     base = skeleton(zh)
     for loc, doc in docs.items():
-        if loc == "zh":
+        if loc == src_loc:
             continue
         if doc.get("authority") != "translated":
             fail(book, f'{loc}.json must carry "authority": "translated"')

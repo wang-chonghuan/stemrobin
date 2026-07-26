@@ -37,7 +37,18 @@ type RawLesson = {
   topics?: RawTopic[]
 }
 type RawEntry =
-  | { id: string; kind: 'chapter'; number: number; title: string; page: number; lessons: RawLesson[] }
+  | {
+      id: string
+      kind: 'chapter'
+      /** Null where the book gives a container no chapter number of its own —
+       *  Приложение and Самостоятельные и контрольные работы sit level with the
+       *  numbered chapters but carry no number, so the rail shows the bare title
+       *  rather than inventing an ordinal for them. */
+      number: number | null
+      title: string
+      page: number
+      lessons: RawLesson[]
+    }
   | (RawLesson & { kind: 'exercises' })
 type RawBook = {
   book: string
@@ -59,6 +70,10 @@ const BRANCH: Record<string, { discipline: Discipline; rank: number }> = {
   algebra: { discipline: 'math', rank: 1 },
   geometry: { discipline: 'math', rank: 2 },
   analysis: { discipline: 'math', rank: 3 },
+  // Probability is the one branch the Soviet series never carried, so it comes
+  // from a different pair of books (Тюрин et al.) and sits last — it depends on
+  // the combinatorics and limits the branches above it build.
+  probability: { discipline: 'math', rank: 4 },
   physics: { discipline: 'physics', rank: 0 },
 }
 
@@ -111,6 +126,12 @@ export type OutlineNode =
 export type OutlineBook = { book: string; title: string; contents: OutlineNode[] }
 export type OutlineDiscipline = { discipline: Discipline; label: string; books: OutlineBook[] }
 
+/** How a chapter reads in the rail and in a card's trail. An unnumbered container
+ *  is shown by name alone — "第 null 章" would be worse than no ordinal. */
+function chapterLabel(locale: Locale, n: number | null, title: string): string {
+  return n === null ? title : t(locale, 'cat.chapter', { n, title })
+}
+
 /** The catalog tree, localized, with availability resolved against the DB ids. */
 export function getTextbookOutline(
   lessonIds: readonly string[],
@@ -139,7 +160,7 @@ export function getTextbookOutline(
         ? {
             kind: 'chapter' as const,
             id: e.id,
-            label: t(locale, 'cat.chapter', { n: e.number, title: e.title }),
+            label: chapterLabel(locale, e.number, e.title),
             lessons: e.lessons.map(lesson),
           }
         : { kind: 'lesson' as const, lesson: lesson(e) },
@@ -182,14 +203,13 @@ type FlatCard = { id: string; number: number | null; title: string; trail: strin
  *  a single card rather than an empty container. That is what keeps every row
  *  of the outline reachable. */
 function cardsOf(book: RawBook, locale: Locale): FlatCard[] {
-  const chapterLabel = (n: number, title: string) => t(locale, 'cat.chapter', { n, title })
   const sectionLabel = (l: RawLesson) => (l.number ? `${l.number} ${l.title}` : l.title)
   return book.contents.flatMap((e) => {
     if (e.kind !== 'chapter') {
       return [{ id: e.id, number: null, title: e.title, trail: [book.title] }]
     }
-    const ch = chapterLabel(e.number, e.title)
-    return e.lessons.flatMap((l) =>
+    const ch = chapterLabel(locale, e.number, e.title)
+    return e.lessons.flatMap((l): FlatCard[] =>
       l.topics?.length
         ? l.topics.map((tp) => ({
             id: tp.id,

@@ -1,0 +1,479 @@
+{
+  "book": "10-11pr",
+  "locale": "ru",
+  "authority": "extracted",
+  "extractedLocale": "ru",
+  "subject": "probability",
+  "grade": 10,
+  "title": "Теория вероятностей и статистика. 10—11 классы",
+  "source": {
+    "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
+    "bookId": "10-11pr",
+    "printedTitle": "Теория вероятностей и статистика. Экспериментальное учебное пособие для 10 и 11 классов общеобразовательных учреждений",
+    "authors": "Ю. Н. Тюрин, А. А. Макаров, И. Р. Высоцкий, И. В. Ященко <!-- 待核：用户仅确认第一作者 Ю. Н. Тюрин -->",
+    "publisher": "МЦНМО <!-- 待核：版次、年份未确认 -->",
+    "edition": "Экспериментальное учебное пособие（实验教学用书，非正式教材 учебник）",
+    "toc": "用户提供的印刷目录转写；见 resources/tyurin-probability/toc/10-11pr.md",
+    "scan": "10-11pr — 印刷本未存入仓库"
+  },
+  "note": "Печатное оглавление, перенесённое построчно. Это авторитетный файл тома; zh.json и en.json — его переводы, структура которых должна совпадать поле в поле.",
+  "numbering": "`number` (например 3.5) — отображаемый иерархический номер, определяемый позицией в id. `source` указывает на то, что однозначно определяет запись в печатном оглавлении: печатный номер (printedSection, сквозной по всему тому), иначе печатный заголовок (printedName, сохраняемый по-русски во всех локалях — это указатель в книгу). Приложение и «Самостоятельные и контрольные работы» в книге без номера главы, поэтому их `number` равен null, как и у их разделов. В 7—9 звёздочка при номерах 15 и 16 отмечает необязательный материал; заголовок перенесён как напечатано.",
+  "contents": [
+    {
+      "id": "10-11pr-authors",
+      "kind": "section",
+      "number": null,
+      "title": "От авторов",
+      "page": 3,
+      "source": {
+        "printedName": "От авторов"
+      }
+    },
+    {
+      "id": "10-11pr-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Случайные события и вероятность (повторение основных понятий)",
+      "page": 6,
+      "lessons": [
+        {
+          "id": "10-11pr-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Случайные эксперименты и случайные события",
+          "page": 6,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "10-11pr-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Вероятности событий",
+          "page": 14,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "10-11pr-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "Близость частоты и вероятности",
+          "page": 24,
+          "source": {
+            "printedSection": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Математическое описание событий",
+      "page": 28,
+      "lessons": [
+        {
+          "id": "10-11pr-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Операции с событиями",
+          "page": 28,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "10-11pr-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "Формула сложения вероятностей",
+          "page": 37,
+          "source": {
+            "printedSection": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Условная вероятность",
+      "page": 50,
+      "lessons": [
+        {
+          "id": "10-11pr-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Условная вероятность",
+          "page": 50,
+          "source": {
+            "printedSection": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Случайные величины и распределения",
+      "page": 71,
+      "lessons": [
+        {
+          "id": "10-11pr-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "Случайные величины",
+          "page": 71,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "10-11pr-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "Распределение вероятностей",
+          "page": 77,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "10-11pr-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "Характеристики случайных величин",
+          "page": 84,
+          "source": {
+            "printedSection": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "Несколько случайных величин",
+      "page": 97,
+      "lessons": [
+        {
+          "id": "10-11pr-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "Совместные распределения",
+          "page": 97,
+          "source": {
+            "printedSection": 10
+          }
+        },
+        {
+          "id": "10-11pr-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "Математическое ожидание и дисперсия суммы случайных величин",
+          "page": 102,
+          "source": {
+            "printedSection": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "Независимые случайные величины",
+      "page": 111,
+      "lessons": [
+        {
+          "id": "10-11pr-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "Независимость случайных величин",
+          "page": 111,
+          "source": {
+            "printedSection": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c7",
+      "kind": "chapter",
+      "number": 7,
+      "title": "Геометрическое распределение",
+      "page": 119,
+      "lessons": [
+        {
+          "id": "10-11pr-c7-s1",
+          "kind": "section",
+          "number": "7.1",
+          "title": "Число испытаний до первого успеха",
+          "page": 119,
+          "source": {
+            "printedSection": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c8",
+      "kind": "chapter",
+      "number": 8,
+      "title": "Комбинаторика",
+      "page": 124,
+      "lessons": [
+        {
+          "id": "10-11pr-c8-s1",
+          "kind": "section",
+          "number": "8.1",
+          "title": "Основные сведения",
+          "page": 124,
+          "source": {
+            "printedSection": 14
+          }
+        },
+        {
+          "id": "10-11pr-c8-s2",
+          "kind": "section",
+          "number": "8.2",
+          "title": "Число перестановок. Факториал",
+          "page": 131,
+          "source": {
+            "printedSection": 15
+          }
+        },
+        {
+          "id": "10-11pr-c8-s3",
+          "kind": "section",
+          "number": "8.3",
+          "title": "Число сочетаний Cᵏₙ",
+          "page": 133,
+          "source": {
+            "printedSection": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c9",
+      "kind": "chapter",
+      "number": 9,
+      "title": "Испытания Бернулли и биномиальное распределение",
+      "page": 141,
+      "lessons": [
+        {
+          "id": "10-11pr-c9-s1",
+          "kind": "section",
+          "number": "9.1",
+          "title": "Испытания Бернулли",
+          "page": 141,
+          "source": {
+            "printedSection": 17
+          }
+        },
+        {
+          "id": "10-11pr-c9-s2",
+          "kind": "section",
+          "number": "9.2",
+          "title": "Случайная величина «число успехов»",
+          "page": 143,
+          "source": {
+            "printedSection": 18
+          }
+        },
+        {
+          "id": "10-11pr-c9-s3",
+          "kind": "section",
+          "number": "9.3",
+          "title": "Математическое ожидание и дисперсия числа успехов",
+          "page": 148,
+          "source": {
+            "printedSection": 19
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c10",
+      "kind": "chapter",
+      "number": 10,
+      "title": "Закон больших чисел",
+      "page": 152,
+      "lessons": [
+        {
+          "id": "10-11pr-c10-s1",
+          "kind": "section",
+          "number": "10.1",
+          "title": "Неравенство Чебышёва",
+          "page": 152,
+          "source": {
+            "printedSection": 20
+          }
+        },
+        {
+          "id": "10-11pr-c10-s2",
+          "kind": "section",
+          "number": "10.2",
+          "title": "Теорема Чебышёва",
+          "page": 154,
+          "source": {
+            "printedSection": 21
+          }
+        },
+        {
+          "id": "10-11pr-c10-s3",
+          "kind": "section",
+          "number": "10.3",
+          "title": "Теорема Бернулли",
+          "page": 156,
+          "source": {
+            "printedSection": 22
+          }
+        },
+        {
+          "id": "10-11pr-c10-s4",
+          "kind": "section",
+          "number": "10.4",
+          "title": "Выборочный метод",
+          "page": 157,
+          "source": {
+            "printedSection": 23
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c11",
+      "kind": "chapter",
+      "number": 11,
+      "title": "Непрерывные случайные величины",
+      "page": 160,
+      "lessons": [
+        {
+          "id": "10-11pr-c11-s1",
+          "kind": "section",
+          "number": "11.1",
+          "title": "Понятие непрерывной случайной величины",
+          "page": 160,
+          "source": {
+            "printedSection": 24
+          }
+        },
+        {
+          "id": "10-11pr-c11-s2",
+          "kind": "section",
+          "number": "11.2",
+          "title": "Равномерное распределение",
+          "page": 163,
+          "source": {
+            "printedSection": 25
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c12",
+      "kind": "chapter",
+      "number": 12,
+      "title": "Нормальное распределение",
+      "page": 166,
+      "lessons": [
+        {
+          "id": "10-11pr-c12-s1",
+          "kind": "section",
+          "number": "12.1",
+          "title": "Понятие о нормальном распределении",
+          "page": 166,
+          "source": {
+            "printedSection": 26
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c13",
+      "kind": "chapter",
+      "number": 13,
+      "title": "Показательное распределение",
+      "page": 183,
+      "lessons": [
+        {
+          "id": "10-11pr-c13-s1",
+          "kind": "section",
+          "number": "13.1",
+          "title": "Время ожидания",
+          "page": 183,
+          "source": {
+            "printedSection": 27
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c14",
+      "kind": "chapter",
+      "number": 14,
+      "title": "Линейная регрессия и выборочный коэффициент корреляции",
+      "page": 192,
+      "lessons": [
+        {
+          "id": "10-11pr-c14-s1",
+          "kind": "section",
+          "number": "14.1",
+          "title": "Совместные наблюдения двух величин и линейная регрессия",
+          "page": 192,
+          "source": {
+            "printedSection": 28
+          }
+        },
+        {
+          "id": "10-11pr-c14-s2",
+          "kind": "section",
+          "number": "14.2",
+          "title": "Выборочный коэффициент корреляции",
+          "page": 197,
+          "source": {
+            "printedSection": 29
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-normal-table",
+      "kind": "section",
+      "number": null,
+      "title": "Таблица значений функции y = Ф(x) стандартного нормального распределения с точностью до 0,0001",
+      "page": 200,
+      "source": {
+        "printedName": "Таблица значений функции y = Ф(x) стандартного нормального распределения с точностью до 0,0001"
+      }
+    },
+    {
+      "id": "10-11pr-glossary",
+      "kind": "section",
+      "number": null,
+      "title": "Словарь терминов",
+      "page": 202,
+      "source": {
+        "printedName": "Словарь терминов"
+      }
+    },
+    {
+      "id": "10-11pr-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "Задачи для повторения, для проверочных и самостоятельных работ",
+      "page": 213,
+      "source": {
+        "printedName": "Задачи для повторения, для проверочных и самостоятельных работ"
+      }
+    }
+  ]
+}

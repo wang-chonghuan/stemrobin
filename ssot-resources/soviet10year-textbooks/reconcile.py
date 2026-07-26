@@ -16,16 +16,23 @@ import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent
-SRC = ROOT.parent.parent / "resources/soviet10years/toc/苏联十年制学校教材-书名作者目录.md"
-EXCLUDE = re.compile(r"答案")
+REPO = ROOT.parent.parent
+# One file per printed series. A shelf holds more than one series — the Soviet
+# ten-year set, and the Russian probability pair that fills its one real gap — and
+# each carries its own printed contents to be reconciled against.
+SRCS = [
+    REPO / "resources/soviet10years/toc/苏联十年制学校教材-书名作者目录.md",
+    REPO / "resources/tyurin-probability/toc/图林-概率论与统计-书名作者目录.md",
+]
+EXCLUDE = re.compile(r"答案|Ответы")
 
 # The printed heading carries an ordinal that the JSON keeps in `number` /
 # `source` / `printedNumber` rather than in the title, so strip it before
-# comparing text to text. An item number may carry ▼ or * (the series marks
+# comparing text to text. An item number may carry ▼ or * (both series mark
 # optional material that way) or a letter suffix where a later edition inserted
 # an item without renumbering the rest (9p prints 127a between 127 and 128).
 ORDINAL = re.compile(
-    r"^(第[一二三四五六七八九十]+章|§\s*\d+[a-z]?[*▼]*\.?|\d+[a-z]?[*▼]*\.)\s*"
+    r"^(第[一二三四五六七八九十]+章|Глава\s+[IVXLC]+\.|§\s*\d+[a-z]?[*▼]*\.?|\d+[a-z]?[*▼]*\.)\s*"
 )
 
 
@@ -44,30 +51,39 @@ def source_slices() -> dict[str, list[str]]:
     its own sub-headings, and none of those belong in the outline either.
     """
     out: dict[str, list[str]] = {}
-    book, listing, cut_at = None, False, None
-    for ln in SRC.read_text(encoding="utf-8").split("\n"):
-        if m := re.match(r"^# ([\w\-]+) — ", ln):
-            book, listing, cut_at = m.group(1), False, None
-            out[book] = []
-            continue
-        if book is None:
-            continue
-        if ln.startswith("## 目录"):
-            listing = True
-            continue
-        if not listing or not (m := re.match(r"^(\s*)- (.*)$", ln)):
-            continue
-        depth, text = len(m.group(1)) // 2, m.group(2)
-        if cut_at is not None and depth > cut_at:
-            continue  # inside an excluded subtree
-        cut_at = depth if EXCLUDE.search(text) else None
-        if cut_at is None:
-            out[book].append(text)
+    for src in SRCS:
+        book, listing, cut_at = None, False, None
+        for ln in src.read_text(encoding="utf-8").split("\n"):
+            if m := re.match(r"^# ([\w\-]+) — ", ln):
+                book, listing, cut_at = m.group(1), False, None
+                out[book] = []
+                continue
+            if book is None:
+                continue
+            if ln.startswith("## 目录"):
+                listing = True
+                continue
+            if not listing or not (m := re.match(r"^(\s*)- (.*)$", ln)):
+                continue
+            depth, text = len(m.group(1)) // 2, m.group(2)
+            if cut_at is not None and depth > cut_at:
+                continue  # inside an excluded subtree
+            cut_at = depth if EXCLUDE.search(text) else None
+            if cut_at is None:
+                out[book].append(text)
     return out
 
 
+def authority(d: pathlib.Path) -> dict:
+    """The volume's extracted file — the one whose titles are what the book
+    prints. Chinese for the Soviet series, Russian for a book with no
+    translated edition."""
+    loc = json.loads((d / "zh.json").read_text(encoding="utf-8")).get("extractedLocale", "zh")
+    return json.loads((d / f"{loc}.json").read_text(encoding="utf-8"))
+
+
 def json_titles(d: pathlib.Path) -> list[str]:
-    doc = json.loads((d / "zh.json").read_text(encoding="utf-8"))
+    doc = authority(d)
     out = []
     for c in doc["contents"]:
         out.append(c["title"])
@@ -86,7 +102,7 @@ def main() -> int:
     for d in sorted((ROOT / "toc").iterdir()):
         if not d.is_dir():
             continue
-        bid = json.loads((d / "zh.json").read_text(encoding="utf-8"))["source"].get("bookId", d.name)
+        bid = authority(d)["source"].get("bookId", d.name)
         by_book.setdefault(bid, []).append(d)
 
     holes = 0

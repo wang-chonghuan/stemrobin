@@ -1,0 +1,479 @@
+{
+  "book": "10-11pr",
+  "locale": "en",
+  "authority": "translated",
+  "extractedLocale": "ru",
+  "subject": "probability",
+  "grade": 10,
+  "title": "Probability Theory and Statistics, Grades 10–11",
+  "source": {
+    "series": "Ю. Н. Тюрин и др. — Теория вероятностей и статистика (МЦНМО)",
+    "bookId": "10-11pr",
+    "printedTitle": "Теория вероятностей и статистика. Экспериментальное учебное пособие для 10 и 11 классов общеобразовательных учреждений",
+    "authors": "Ю. Н. Тюрин, А. А. Макаров, И. Р. Высоцкий, И. В. Ященко <!-- 待核：用户仅确认第一作者 Ю. Н. Тюрин -->",
+    "publisher": "МЦНМО <!-- 待核：版次、年份未确认 -->",
+    "edition": "Экспериментальное учебное пособие（实验教学用书，非正式教材 учебник）",
+    "toc": "用户提供的印刷目录转写；见 resources/tyurin-probability/toc/10-11pr.md",
+    "scan": "10-11pr — 印刷本未存入仓库"
+  },
+  "note": "A translation of ru.json, which is the authority (the printed Russian contents, transcribed). Structure, ids, numbers and `source` refs must match it field for field; only titles are translated.",
+  "numbering": "`number` (e.g. 3.5) is the displayed hierarchical number, fixed by the position encoded in the id. `source` points back to whatever uniquely identifies the entry in the printed contents: its printed number (printedSection, continuous across the volume) where it has one, otherwise its printed heading (printedName, kept in Russian in every locale — it is a pointer into the printed book). The appendix and «Самостоятельные и контрольные работы» carry no chapter number in the book, so their `number` and their sections’ `number` are null. In the 7–9 volume a star on items 15 and 16 marks optional material; the title is transcribed as printed.",
+  "contents": [
+    {
+      "id": "10-11pr-authors",
+      "kind": "section",
+      "number": null,
+      "title": "From the authors",
+      "page": 3,
+      "source": {
+        "printedName": "От авторов"
+      }
+    },
+    {
+      "id": "10-11pr-c1",
+      "kind": "chapter",
+      "number": 1,
+      "title": "Random events and probability (review of the basic notions)",
+      "page": 6,
+      "lessons": [
+        {
+          "id": "10-11pr-c1-s1",
+          "kind": "section",
+          "number": "1.1",
+          "title": "Random experiments and random events",
+          "page": 6,
+          "source": {
+            "printedSection": 1
+          }
+        },
+        {
+          "id": "10-11pr-c1-s2",
+          "kind": "section",
+          "number": "1.2",
+          "title": "Probabilities of events",
+          "page": 14,
+          "source": {
+            "printedSection": 2
+          }
+        },
+        {
+          "id": "10-11pr-c1-s3",
+          "kind": "section",
+          "number": "1.3",
+          "title": "The closeness of frequency and probability",
+          "page": 24,
+          "source": {
+            "printedSection": 3
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c2",
+      "kind": "chapter",
+      "number": 2,
+      "title": "Mathematical description of events",
+      "page": 28,
+      "lessons": [
+        {
+          "id": "10-11pr-c2-s1",
+          "kind": "section",
+          "number": "2.1",
+          "title": "Operations on events",
+          "page": 28,
+          "source": {
+            "printedSection": 4
+          }
+        },
+        {
+          "id": "10-11pr-c2-s2",
+          "kind": "section",
+          "number": "2.2",
+          "title": "The addition formula for probabilities",
+          "page": 37,
+          "source": {
+            "printedSection": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c3",
+      "kind": "chapter",
+      "number": 3,
+      "title": "Conditional probability",
+      "page": 50,
+      "lessons": [
+        {
+          "id": "10-11pr-c3-s1",
+          "kind": "section",
+          "number": "3.1",
+          "title": "Conditional probability",
+          "page": 50,
+          "source": {
+            "printedSection": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c4",
+      "kind": "chapter",
+      "number": 4,
+      "title": "Random variables and distributions",
+      "page": 71,
+      "lessons": [
+        {
+          "id": "10-11pr-c4-s1",
+          "kind": "section",
+          "number": "4.1",
+          "title": "Random variables",
+          "page": 71,
+          "source": {
+            "printedSection": 7
+          }
+        },
+        {
+          "id": "10-11pr-c4-s2",
+          "kind": "section",
+          "number": "4.2",
+          "title": "Probability distributions",
+          "page": 77,
+          "source": {
+            "printedSection": 8
+          }
+        },
+        {
+          "id": "10-11pr-c4-s3",
+          "kind": "section",
+          "number": "4.3",
+          "title": "Characteristics of random variables",
+          "page": 84,
+          "source": {
+            "printedSection": 9
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c5",
+      "kind": "chapter",
+      "number": 5,
+      "title": "Several random variables",
+      "page": 97,
+      "lessons": [
+        {
+          "id": "10-11pr-c5-s1",
+          "kind": "section",
+          "number": "5.1",
+          "title": "Joint distributions",
+          "page": 97,
+          "source": {
+            "printedSection": 10
+          }
+        },
+        {
+          "id": "10-11pr-c5-s2",
+          "kind": "section",
+          "number": "5.2",
+          "title": "Expectation and variance of a sum of random variables",
+          "page": 102,
+          "source": {
+            "printedSection": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c6",
+      "kind": "chapter",
+      "number": 6,
+      "title": "Independent random variables",
+      "page": 111,
+      "lessons": [
+        {
+          "id": "10-11pr-c6-s1",
+          "kind": "section",
+          "number": "6.1",
+          "title": "Independence of random variables",
+          "page": 111,
+          "source": {
+            "printedSection": 12
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c7",
+      "kind": "chapter",
+      "number": 7,
+      "title": "The geometric distribution",
+      "page": 119,
+      "lessons": [
+        {
+          "id": "10-11pr-c7-s1",
+          "kind": "section",
+          "number": "7.1",
+          "title": "The number of trials up to the first success",
+          "page": 119,
+          "source": {
+            "printedSection": 13
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c8",
+      "kind": "chapter",
+      "number": 8,
+      "title": "Combinatorics",
+      "page": 124,
+      "lessons": [
+        {
+          "id": "10-11pr-c8-s1",
+          "kind": "section",
+          "number": "8.1",
+          "title": "Basic facts",
+          "page": 124,
+          "source": {
+            "printedSection": 14
+          }
+        },
+        {
+          "id": "10-11pr-c8-s2",
+          "kind": "section",
+          "number": "8.2",
+          "title": "The number of permutations. The factorial",
+          "page": 131,
+          "source": {
+            "printedSection": 15
+          }
+        },
+        {
+          "id": "10-11pr-c8-s3",
+          "kind": "section",
+          "number": "8.3",
+          "title": "The number of combinations Cᵏₙ",
+          "page": 133,
+          "source": {
+            "printedSection": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c9",
+      "kind": "chapter",
+      "number": 9,
+      "title": "Bernoulli trials and the binomial distribution",
+      "page": 141,
+      "lessons": [
+        {
+          "id": "10-11pr-c9-s1",
+          "kind": "section",
+          "number": "9.1",
+          "title": "Bernoulli trials",
+          "page": 141,
+          "source": {
+            "printedSection": 17
+          }
+        },
+        {
+          "id": "10-11pr-c9-s2",
+          "kind": "section",
+          "number": "9.2",
+          "title": "The random variable \"number of successes\"",
+          "page": 143,
+          "source": {
+            "printedSection": 18
+          }
+        },
+        {
+          "id": "10-11pr-c9-s3",
+          "kind": "section",
+          "number": "9.3",
+          "title": "Expectation and variance of the number of successes",
+          "page": 148,
+          "source": {
+            "printedSection": 19
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c10",
+      "kind": "chapter",
+      "number": 10,
+      "title": "The law of large numbers",
+      "page": 152,
+      "lessons": [
+        {
+          "id": "10-11pr-c10-s1",
+          "kind": "section",
+          "number": "10.1",
+          "title": "Chebyshev's inequality",
+          "page": 152,
+          "source": {
+            "printedSection": 20
+          }
+        },
+        {
+          "id": "10-11pr-c10-s2",
+          "kind": "section",
+          "number": "10.2",
+          "title": "Chebyshev's theorem",
+          "page": 154,
+          "source": {
+            "printedSection": 21
+          }
+        },
+        {
+          "id": "10-11pr-c10-s3",
+          "kind": "section",
+          "number": "10.3",
+          "title": "Bernoulli's theorem",
+          "page": 156,
+          "source": {
+            "printedSection": 22
+          }
+        },
+        {
+          "id": "10-11pr-c10-s4",
+          "kind": "section",
+          "number": "10.4",
+          "title": "The sampling method",
+          "page": 157,
+          "source": {
+            "printedSection": 23
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c11",
+      "kind": "chapter",
+      "number": 11,
+      "title": "Continuous random variables",
+      "page": 160,
+      "lessons": [
+        {
+          "id": "10-11pr-c11-s1",
+          "kind": "section",
+          "number": "11.1",
+          "title": "The notion of a continuous random variable",
+          "page": 160,
+          "source": {
+            "printedSection": 24
+          }
+        },
+        {
+          "id": "10-11pr-c11-s2",
+          "kind": "section",
+          "number": "11.2",
+          "title": "The uniform distribution",
+          "page": 163,
+          "source": {
+            "printedSection": 25
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c12",
+      "kind": "chapter",
+      "number": 12,
+      "title": "The normal distribution",
+      "page": 166,
+      "lessons": [
+        {
+          "id": "10-11pr-c12-s1",
+          "kind": "section",
+          "number": "12.1",
+          "title": "The notion of the normal distribution",
+          "page": 166,
+          "source": {
+            "printedSection": 26
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c13",
+      "kind": "chapter",
+      "number": 13,
+      "title": "The exponential distribution",
+      "page": 183,
+      "lessons": [
+        {
+          "id": "10-11pr-c13-s1",
+          "kind": "section",
+          "number": "13.1",
+          "title": "Waiting time",
+          "page": 183,
+          "source": {
+            "printedSection": 27
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-c14",
+      "kind": "chapter",
+      "number": 14,
+      "title": "Linear regression and the sample correlation coefficient",
+      "page": 192,
+      "lessons": [
+        {
+          "id": "10-11pr-c14-s1",
+          "kind": "section",
+          "number": "14.1",
+          "title": "Joint observations of two variables and linear regression",
+          "page": 192,
+          "source": {
+            "printedSection": 28
+          }
+        },
+        {
+          "id": "10-11pr-c14-s2",
+          "kind": "section",
+          "number": "14.2",
+          "title": "The sample correlation coefficient",
+          "page": 197,
+          "source": {
+            "printedSection": 29
+          }
+        }
+      ]
+    },
+    {
+      "id": "10-11pr-normal-table",
+      "kind": "section",
+      "number": null,
+      "title": "Table of values of the standard normal distribution function y = Ф(x), accurate to 0.0001",
+      "page": 200,
+      "source": {
+        "printedName": "Таблица значений функции y = Ф(x) стандартного нормального распределения с точностью до 0,0001"
+      }
+    },
+    {
+      "id": "10-11pr-glossary",
+      "kind": "section",
+      "number": null,
+      "title": "Glossary of terms",
+      "page": 202,
+      "source": {
+        "printedName": "Словарь терминов"
+      }
+    },
+    {
+      "id": "10-11pr-review",
+      "kind": "exercises",
+      "number": null,
+      "title": "Problems for revision, for tests and for independent work",
+      "page": 213,
+      "source": {
+        "printedName": "Задачи для повторения, для проверочных и самостоятельных работ"
+      }
+    }
+  ]
+}
