@@ -222,7 +222,9 @@ const starLabelEls = Array.from({ length: STAR_LABELS }, () => {
   labelLayer.appendChild(el)
   return el
 })
-const isExercise = s => /^练习|^复习题|^习题|^Exercise|^Review/i.test(s.title) || /^Exercise/i.test(s.titleEn ?? '')
+const isExercise = s =>
+  /练习|复习题|习题|问题解答|小结|提要|引言/.test(s.title) ||
+  /exercise|review|problems|summary|introduction/i.test(s.titleEn ?? '')
 
 // ---------- interaction ----------
 const tooltip = document.getElementById('tooltip')

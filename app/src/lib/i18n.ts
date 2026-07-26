@@ -245,7 +245,7 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'ov.stat.practiced': 'Practice done',
     'ov.hero.title.subject': 'Secondary math & physics',
     'ov.hero.title.mid': ', inspired by ',
-    'ov.hero.title.quality': 'the elite STEM curriculum',
+    'ov.hero.title.quality': 'the elite STEM syllabus',
     'ov.hero.title.tail': ' led by math legend Andrey Kolmogorov.',
     'ov.hero.line.a': 'From arithmetic to calculus, from levers to atomic nucleus.',
     'ov.hero.line.b':
