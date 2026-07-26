@@ -102,7 +102,13 @@ function Overview() {
               <li>{t(locale, 'ov.hero.line.a')}</li>
               <li>{t(locale, 'ov.hero.line.b')}</li>
             </ul>
-            <p className="sr-hero-free">{t(locale, 'ov.hero.free')}</p>
+            <p className="sr-hero-free">
+              {t(locale, 'ov.hero.free.a')}
+              <Link to="/login" className="sr-textbtn">
+                {t(locale, 'ov.hero.free.cta')}
+              </Link>
+              {t(locale, 'ov.hero.free.b')}
+            </p>
           </div>
           {/* Brand illustration: a tree of knowledge whose branches end in lit
               nodes, wrapped in atom orbits. Intrinsic size is stated so the

@@ -1585,7 +1585,27 @@ a.sr-out-lesson.active {
 }
 .sr-usermenu-langbtn:hover { background: var(--sr-panel); }
 
-.sr-hero-free { margin-top: 10px; font-size: 13.5px; font-weight: 600; color: var(--sr-green-deep); }
+/* The line is ordinary copy; only the sign-in is a control, so the green that
+   used to colour the whole sentence is gone and the emphasis sits on the one
+   word that does something. */
+.sr-hero-free {
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--sr-ink-soft);
+}
+/* A control that reads as text: same size as its sentence, carrying only the
+   colour and underline that say it can be clicked. */
+.sr-textbtn {
+  color: var(--sr-blue-deep);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+.sr-textbtn:hover {
+  color: var(--sr-blue);
+}
 .sr-login-free {
   align-self: center; margin: -2px 0 6px; padding: 3px 10px; border-radius: 999px;
   background: var(--sr-green-tint); color: var(--sr-green-deep);

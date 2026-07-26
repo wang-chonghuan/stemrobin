@@ -193,7 +193,10 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'practice.gate.cancel': '先看看',
     'ov.progress.guest': '登录后免费保存学习进度',
     'ov.progress.guest.cta': '登录',
-    'ov.hero.free': '免费学习，登录可以保存你的学习进度。',
+    // Split so the sign-in is its own control rather than a word in a sentence.
+    'ov.hero.free.a': '免费学习，',
+    'ov.hero.free.cta': '登录',
+    'ov.hero.free.b': '可以保存你的学习进度。',
   },
   en: {
     'switch.aria': 'Learning language',
@@ -359,7 +362,9 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'practice.gate.cancel': 'Not now',
     'ov.progress.guest': 'Sign in to save your progress — free',
     'ov.progress.guest.cta': 'Sign in',
-    'ov.hero.free': 'Free to learn — sign in to save your progress.',
+    'ov.hero.free.a': 'Free to learn — ',
+    'ov.hero.free.cta': 'sign in',
+    'ov.hero.free.b': ' to save your progress.',
   },
 }
 
