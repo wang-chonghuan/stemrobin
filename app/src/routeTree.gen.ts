@@ -9,30 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StarmapPreviewRouteImport } from './routes/starmap-preview'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as LandingLightRouteImport } from './routes/landing-light'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EnglishAudioIdRouteImport } from './routes/english-audio.$id'
+import { Route as AppLearnRouteImport } from './routes/_app/learn'
 import { Route as AppLessonIdRouteImport } from './routes/_app/lesson.$id'
 import { Route as AppEnglishIdRouteImport } from './routes/_app/english.$id'
 import { Route as AppCardIdRouteImport } from './routes/_app/card.$id'
 import { Route as AppEnglishIdReciteRouteImport } from './routes/_app/english.$id_.recite'
 
-const StarmapPreviewRoute = StarmapPreviewRouteImport.update({
-  id: '/starmap-preview',
-  path: '/starmap-preview',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LandingLightRoute = LandingLightRouteImport.update({
-  id: '/landing-light',
-  path: '/landing-light',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRoute = AppRouteImport.update({
@@ -48,6 +37,11 @@ const EnglishAudioIdRoute = EnglishAudioIdRouteImport.update({
   id: '/english-audio/$id',
   path: '/english-audio/$id',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppLearnRoute = AppLearnRouteImport.update({
+  id: '/learn',
+  path: '/learn',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppLessonIdRoute = AppLessonIdRouteImport.update({
   id: '/lesson/$id',
@@ -72,9 +66,8 @@ const AppEnglishIdReciteRoute = AppEnglishIdReciteRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/landing-light': typeof LandingLightRoute
   '/login': typeof LoginRoute
-  '/starmap-preview': typeof StarmapPreviewRoute
+  '/learn': typeof AppLearnRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
   '/card/$id': typeof AppCardIdRoute
   '/english/$id': typeof AppEnglishIdRoute
@@ -83,9 +76,8 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/landing-light': typeof LandingLightRoute
   '/login': typeof LoginRoute
-  '/starmap-preview': typeof StarmapPreviewRoute
+  '/learn': typeof AppLearnRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
   '/card/$id': typeof AppCardIdRoute
   '/english/$id': typeof AppEnglishIdRoute
@@ -96,9 +88,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
-  '/landing-light': typeof LandingLightRoute
   '/login': typeof LoginRoute
-  '/starmap-preview': typeof StarmapPreviewRoute
+  '/_app/learn': typeof AppLearnRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
   '/_app/card/$id': typeof AppCardIdRoute
   '/_app/english/$id': typeof AppEnglishIdRoute
@@ -109,9 +100,8 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/landing-light'
     | '/login'
-    | '/starmap-preview'
+    | '/learn'
     | '/english-audio/$id'
     | '/card/$id'
     | '/english/$id'
@@ -120,9 +110,8 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/landing-light'
     | '/login'
-    | '/starmap-preview'
+    | '/learn'
     | '/english-audio/$id'
     | '/card/$id'
     | '/english/$id'
@@ -132,9 +121,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_app'
-    | '/landing-light'
     | '/login'
-    | '/starmap-preview'
+    | '/_app/learn'
     | '/english-audio/$id'
     | '/_app/card/$id'
     | '/_app/english/$id'
@@ -145,33 +133,17 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
-  LandingLightRoute: typeof LandingLightRoute
   LoginRoute: typeof LoginRoute
-  StarmapPreviewRoute: typeof StarmapPreviewRoute
   EnglishAudioIdRoute: typeof EnglishAudioIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/starmap-preview': {
-      id: '/starmap-preview'
-      path: '/starmap-preview'
-      fullPath: '/starmap-preview'
-      preLoaderRoute: typeof StarmapPreviewRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/landing-light': {
-      id: '/landing-light'
-      path: '/landing-light'
-      fullPath: '/landing-light'
-      preLoaderRoute: typeof LandingLightRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app': {
@@ -194,6 +166,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/english-audio/$id'
       preLoaderRoute: typeof EnglishAudioIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_app/learn': {
+      id: '/_app/learn'
+      path: '/learn'
+      fullPath: '/learn'
+      preLoaderRoute: typeof AppLearnRouteImport
+      parentRoute: typeof AppRoute
     }
     '/_app/lesson/$id': {
       id: '/_app/lesson/$id'
@@ -227,6 +206,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppLearnRoute: typeof AppLearnRoute
   AppCardIdRoute: typeof AppCardIdRoute
   AppEnglishIdRoute: typeof AppEnglishIdRoute
   AppLessonIdRoute: typeof AppLessonIdRoute
@@ -234,6 +214,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppLearnRoute: AppLearnRoute,
   AppCardIdRoute: AppCardIdRoute,
   AppEnglishIdRoute: AppEnglishIdRoute,
   AppLessonIdRoute: AppLessonIdRoute,
@@ -245,9 +226,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
-  LandingLightRoute: LandingLightRoute,
   LoginRoute: LoginRoute,
-  StarmapPreviewRoute: StarmapPreviewRoute,
   EnglishAudioIdRoute: EnglishAudioIdRoute,
 }
 export const routeTree = rootRouteImport

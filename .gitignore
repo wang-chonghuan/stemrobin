@@ -165,3 +165,7 @@ resources/soviet10years/
 
 # macOS
 .DS_Store
+
+# playwright html report (test output)
+app/playwright-report/
+app/test-results/
