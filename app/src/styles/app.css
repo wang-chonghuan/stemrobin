@@ -2056,6 +2056,9 @@ a.sr-out-lesson.active {
    reads as the product and everything around it reads as the argument.
    Self-contained and last in the file, so nothing above can override it. */
 .lw-page {
+  /* same type system as the learn page: body face everywhere, display face on
+     headings below */
+  font-family: var(--sr-body);
   height: 100vh;
   overflow-y: auto; /* html/body are overflow:hidden (app shell) */
   overflow-x: hidden;
@@ -2130,6 +2133,10 @@ a.sr-out-lesson.active {
 }
 
 /* ---- buttons ---- */
+.lw-page button,
+.lw-page input {
+  font-family: inherit;
+}
 .lw-btn {
   display: inline-flex;
   align-items: center;
@@ -2295,6 +2302,7 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
 .lw-hero-copy { align-items: flex-start; }
 .lw-hero-copy > * { max-width: 100%; }
 .lw-hero h1 {
+  font-family: var(--sr-display);
   margin: 0 0 18px;
   font-size: clamp(28px, 3.6vw, 44px);
   line-height: 1.18;
@@ -2469,7 +2477,6 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
 .lw-quote p {
   margin: 0 0 10px;
   font-size: clamp(16px, 1.8vw, 20px);
-  font-style: italic;
   line-height: 1.65;
   color: #2f5fd9;
 }
@@ -2479,6 +2486,7 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
 /* ---- the four points ---- */
 .lw-points { padding: 44px 0 8px; }
 .lw-points h2 {
+  font-family: var(--sr-display);
   margin: 0 0 26px;
   font-size: clamp(20px, 2.2vw, 27px);
   letter-spacing: -0.01em;
@@ -2519,6 +2527,7 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
   box-shadow: 0 18px 50px rgba(74, 125, 247, 0.32);
 }
 .lw-cta h2 {
+  font-family: var(--sr-display);
   margin: 0 0 22px;
   font-size: clamp(21px, 2.5vw, 30px);
   letter-spacing: -0.01em;
