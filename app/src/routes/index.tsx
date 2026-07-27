@@ -1,33 +1,35 @@
-// The landing page, glass edition: the galaxy photograph runs full-bleed
-// behind everything, and the UI floats over it as frosted white cards. Hero
-// copy sits on the card's white side while the right half stays transparent to
-// let the spiral galaxy shine through. The draggable knowledge galaxy keeps its
-// DARK skin inside a light card; its search box, discipline filter chips and
-// zoom buttons are page chrome here (external GalaxyApi), not component chrome.
+// The landing page, glass edition. Positioning (2026-07 rewrite): a complete,
+// human-ordered curriculum in the classic Soviet tradition, with AI confined to
+// teaching — explanation, diagnosis, practice, review. The page answers, in
+// order: what this is → how far it reaches → why it is not AI slop → how you
+// learn → where the tradition comes from → what it covers → try it now → what
+// is free → FAQ → final call.
 //
-// Live controls: Curriculum mega-dropdown (Explore curriculum opens the same),
-// Sign in, galaxy search/filter/zoom, language toggle. The rest is display.
+// Live controls: the Curriculum map mega-dropdown (Explore/See the map open the
+// same panel), Sign in, "open a random unit", the galaxy's search / discipline
+// filter / zoom, the language toggle, and the tablet drawer. The rest is copy.
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
 import {
-  Atom,
   BarChart3,
+  BookOpen,
   Brain,
+  CheckCircle2,
   ChevronDown,
-  FileText,
-  Menu,
-  X,
-  Infinity as InfinityIcon,
+  ClipboardCheck,
+  GitBranch,
   Layers,
   Lightbulb,
   Maximize2,
+  Menu,
   Minus,
   Network,
   Plus,
+  RefreshCw,
   Search,
-  ShieldCheck,
   Sparkles,
+  X,
 } from 'lucide-react'
 
 import {
@@ -38,7 +40,7 @@ import {
 import { bookLessons, getTextbookOutline } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { getLocale, setLocale } from '~/lib/locale'
-import type { Locale } from '~/lib/i18n'
+import { LANDING_COPY } from '~/lib/landing-copy'
 
 export const Route = createFileRoute('/')({
   component: Landing,
@@ -48,120 +50,32 @@ export const Route = createFileRoute('/')({
   }),
 })
 
-const S = {
-  en: {
-    tagline: 'The lemma to science',
-    navCurriculum: 'Curriculum',
-    navHow: 'How it works',
-    navAbout: 'About',
-    navPricing: 'Pricing',
-    signIn: 'Sign in',
-    startFree: 'Start free',
-    badge: 'Built for curious minds',
-    h1pre: 'Secondary math & physics, inspired by ',
-    h1accent: 'the elite STEM syllabus',
-    h1post: ' led by math legend Andrey Kolmogorov.',
-    bullets: [
-      'From arithmetic to calculus, from levers to atomic nucleus.',
-      'Formatted into structured, high-repetition learning decks—guided by AI for true mastery.',
-    ],
-    exploreCurriculum: 'Explore curriculum',
-    checks: [
-      'Free to learn',
-      '1,500+ concepts',
-      '16,000+ original problems',
-      'Unlimited explanations',
-      'Endless similar practice',
-    ],
-    features: [
-      { title: 'Structured decks', body: 'High-repetition decks built for durable understanding.' },
-      { title: 'True concept dependency', body: 'Every idea is placed in a web of real mathematical logic.' },
-      { title: 'Mastery tracking', body: 'Track progress, accuracy, and mastery across the universe.' },
-      { title: 'AI-guided review', body: 'Smart scheduling surfaces what you need, exactly when you need it.' },
-    ],
-    universeTitle: 'Explore the concept universe',
-    universeSub: 'Zoom, pan, and discover how everything connects.',
-    searchPlaceholder: 'Search concepts…',
-    chips: { all: 'All', math: 'Mathematics', physics: 'Physics', cross: 'Cross-links' },
-    rigorTitle: 'Rigor. Clarity. Results.',
-    rigorSub: 'Trusted by learners and parents who value depth, structure, and measurable progress.',
-    quote:
-      '“School mathematics, and even the beginnings of calculus, can be mastered by ordinary ability — given good guidance or good books.”',
-    quoteBy: '— Andrey Kolmogorov',
-    ready: (n: number) => `${n} lessons ready`,
-    comingSoon: 'Coming soon',
-    langButton: '中文',
-    openMenu: 'Open menu',
-    closeMenu: 'Close menu',
-    zoomIn: 'Zoom in',
-    zoomOut: 'Zoom out',
-    reset: 'Reset view',
-  },
-  zh: {
-    tagline: '通往科学的引理',
-    navCurriculum: '课程体系',
-    navHow: '学习方法',
-    navAbout: '关于',
-    navPricing: '定价',
-    signIn: '登录',
-    startFree: '免费开始',
-    badge: '为好奇心而生',
-    h1pre: '中学数学与物理，源自数学家柯尔莫戈洛夫制定的',
-    h1accent: '精英理科大纲',
-    h1post: '。',
-    bullets: [
-      '从算术到微积分，从杠杆到原子核。',
-      '编成结构化、高频复现的学习卡组——由 AI 带你真正掌握。',
-    ],
-    exploreCurriculum: '浏览课程',
-    checks: [
-      '免费学习',
-      '1,500+ 知识点',
-      '16,000+ 原创习题',
-      '无限讲解',
-      '无限同类题',
-    ],
-    features: [
-      { title: '结构化卡组', body: '为持久理解而设计的高重复学习卡组。' },
-      { title: '真实的概念依赖', body: '每个概念都置于真实数学逻辑的网络之中。' },
-      { title: '掌握度追踪', body: '在整个宇宙中追踪进度、正确率与掌握度。' },
-      { title: 'AI 引导复习', body: '智能调度让你在恰当的时刻复习恰当的内容。' },
-    ],
-    universeTitle: '探索概念宇宙',
-    universeSub: '缩放、平移，发现万物如何相连。',
-    searchPlaceholder: '搜索概念…',
-    chips: { all: '全部', math: '数学', physics: '物理', cross: '跨学科连接' },
-    rigorTitle: '严谨。清晰。成效。',
-    rigorSub: '深受重视深度、结构与可见进步的学习者与家长信赖。',
-    quote: '“中学数学，乃至微积分的基础，在良好的指导或优秀书籍的帮助下，普通的能力就足以掌握。”',
-    quoteBy: '—— 安德烈·柯尔莫戈洛夫',
-    ready: (n: number) => `${n} 节课已上线`,
-    comingSoon: '即将上线',
-    langButton: 'EN',
-    openMenu: '打开菜单',
-    closeMenu: '关闭菜单',
-    zoomIn: '放大',
-    zoomOut: '缩小',
-    reset: '复位视角',
-  },
-} as const
 
-const FEATURE_ICONS = [Layers, Network, BarChart3, Brain]
-const CHECK_ICONS = [ShieldCheck, Atom, FileText, Lightbulb, InfinityIcon]
+const FEATURE_ICONS = [Layers, Network, ClipboardCheck, Brain]
+const PATH_ICONS = [GitBranch, BookOpen, BarChart3]
+const STEP_ICONS = [BookOpen, ClipboardCheck, Lightbulb, RefreshCw]
 const FILTERS: GalaxyFilter[] = ['all', 'math', 'physics', 'cross']
 
 function Landing() {
   const { locale, lessonIds } = Route.useLoaderData()
   const router = useRouter()
-  const t = S[locale]
+  const t = LANDING_COPY[locale]
   const [menuOpen, setMenuOpen] = useState(false)
   const [navOpen, setNavOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [filter, setFilter] = useState<GalaxyFilter>('all')
+  const [openFaq, setOpenFaq] = useState<number | null>(0)
   const navRef = useRef<HTMLElement>(null)
   const galaxyRef = useRef<GalaxyApi | null>(null)
 
   const outline = getTextbookOutline(lessonIds, locale)
+  const readyIds = useMemo(
+    () =>
+      outline.flatMap((d) =>
+        d.books.flatMap((b) => bookLessons(b).filter((l) => l.ready).map((l) => l.id)),
+      ),
+    [outline],
+  )
 
   useEffect(() => {
     if (!menuOpen) return
@@ -194,6 +108,14 @@ function Landing() {
     galaxyRef.current?.setFilter(f)
   }
 
+  // Random pick happens on click, never during render — SSR and hydration must
+  // agree on the markup.
+  function openRandomUnit() {
+    if (!readyIds.length) return
+    const id = readyIds[Math.floor(Math.random() * readyIds.length)]
+    router.navigate({ to: '/lesson/$id', params: { id } })
+  }
+
   const q = query.trim().toLowerCase()
   const matches =
     q && galaxyRef.current
@@ -206,6 +128,36 @@ function Landing() {
           )
           .slice(0, 8)
       : []
+
+  const curriculumColumns = outline.map((d) => (
+    <div key={d.discipline} className="lp-mega-col">
+      <div className={'lp-mega-head ' + d.discipline}>{d.label}</div>
+      {d.books.map((b) => {
+        const ready = bookLessons(b).filter((l) => l.ready)
+        const first = ready[0]
+        return first ? (
+          <Link
+            key={b.book}
+            to="/lesson/$id"
+            params={{ id: first.id }}
+            className="lp-mega-item"
+            onClick={() => {
+              setMenuOpen(false)
+              setNavOpen(false)
+            }}
+          >
+            <span>{b.title}</span>
+            <small>{t.ready(ready.length)}</small>
+          </Link>
+        ) : (
+          <div key={b.book} className="lp-mega-item off">
+            <span>{b.title}</span>
+            <small>{t.comingSoon}</small>
+          </div>
+        )
+      })}
+    </div>
+  ))
 
   return (
     <div className="lp-page">
@@ -221,39 +173,12 @@ function Landing() {
       />
       <aside className={'lp-drawer' + (navOpen ? ' open' : '')} aria-hidden={!navOpen}>
         <nav className="lp-drawer-links">
-          <button type="button">{t.navCurriculum}</button>
+          <button type="button">{t.navMap}</button>
           <button type="button">{t.navHow}</button>
-          <button type="button">{t.navAbout}</button>
+          <button type="button">{t.navTradition}</button>
           <button type="button">{t.navPricing}</button>
         </nav>
-        <div className="lp-drawer-books">
-          {outline.map((d) => (
-            <div key={d.discipline}>
-              <div className={'lp-mega-head ' + d.discipline}>{d.label}</div>
-              {d.books.map((b) => {
-                const ready = bookLessons(b).filter((l) => l.ready)
-                const first = ready[0]
-                return first ? (
-                  <Link
-                    key={b.book}
-                    to="/lesson/$id"
-                    params={{ id: first.id }}
-                    className="lp-mega-item"
-                    onClick={() => setNavOpen(false)}
-                  >
-                    <span>{b.title}</span>
-                    <small>{t.ready(ready.length)}</small>
-                  </Link>
-                ) : (
-                  <div key={b.book} className="lp-mega-item off">
-                    <span>{b.title}</span>
-                    <small>{t.comingSoon}</small>
-                  </div>
-                )
-              })}
-            </div>
-          ))}
-        </div>
+        <div className="lp-drawer-books">{curriculumColumns}</div>
         <div className="lp-drawer-ctas">
           <button type="button" className="lp-btn ghost" onClick={switchLocale}>
             {t.langButton}
@@ -261,10 +186,10 @@ function Landing() {
           <Link to="/login" className="lp-btn ghost" onClick={() => setNavOpen(false)}>
             {t.signIn}
           </Link>
-          <button type="button" className="lp-btn solid">
+          <Link to="/login" className="lp-btn solid" onClick={() => setNavOpen(false)}>
             {t.startFree}
             <Sparkles size={14} aria-hidden />
-          </button>
+          </Link>
         </div>
       </aside>
 
@@ -277,17 +202,6 @@ function Landing() {
               <small>{t.tagline}</small>
             </span>
           </Link>
-          {/* Below the desktop breakpoint everything else folds into a drawer;
-              the burger sits next to the mark, as the only bar control. */}
-          <button
-            type="button"
-            className="lp-burger"
-            aria-label={navOpen ? t.closeMenu : t.openMenu}
-            aria-expanded={navOpen}
-            onClick={() => setNavOpen((v) => !v)}
-          >
-            {navOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
           <nav className="lp-nav-links">
             <button
               type="button"
@@ -296,14 +210,14 @@ function Landing() {
               aria-haspopup="menu"
               onClick={() => setMenuOpen((v) => !v)}
             >
-              {t.navCurriculum}
+              {t.navMap}
               <ChevronDown size={14} aria-hidden />
             </button>
             <button type="button" className="lp-nav-link">
               {t.navHow}
             </button>
             <button type="button" className="lp-nav-link">
-              {t.navAbout}
+              {t.navTradition}
             </button>
             <button type="button" className="lp-nav-link">
               {t.navPricing}
@@ -316,45 +230,30 @@ function Landing() {
             <Link to="/login" className="lp-btn ghost">
               {t.signIn}
             </Link>
-            <button type="button" className="lp-btn solid">
+            <Link to="/login" className="lp-btn solid">
               {t.startFree}
               <Sparkles size={14} aria-hidden />
-            </button>
+            </Link>
           </div>
+          {/* Below the desktop breakpoint everything folds into the drawer. */}
+          <button
+            type="button"
+            className="lp-burger"
+            aria-label={navOpen ? t.closeMenu : t.openMenu}
+            aria-expanded={navOpen}
+            onClick={() => setNavOpen((v) => !v)}
+          >
+            {navOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
 
           {menuOpen && (
             <div className="lp-mega" role="menu">
-              {outline.map((d) => (
-                <div key={d.discipline} className="lp-mega-col">
-                  <div className={'lp-mega-head ' + d.discipline}>{d.label}</div>
-                  {d.books.map((b) => {
-                    const lessons = bookLessons(b)
-                    const ready = lessons.filter((l) => l.ready)
-                    const first = ready[0]
-                    return first ? (
-                      <Link
-                        key={b.book}
-                        to="/lesson/$id"
-                        params={{ id: first.id }}
-                        className="lp-mega-item"
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        <span>{b.title}</span>
-                        <small>{t.ready(ready.length)}</small>
-                      </Link>
-                    ) : (
-                      <div key={b.book} className="lp-mega-item off">
-                        <span>{b.title}</span>
-                        <small>{t.comingSoon}</small>
-                      </div>
-                    )
-                  })}
-                </div>
-              ))}
+              {curriculumColumns}
             </div>
           )}
         </header>
 
+        {/* ---------- hero ---------- */}
         <section className="lp-hero">
           <div className="lp-hero-copy">
             <span className="lp-badge">
@@ -366,34 +265,23 @@ function Landing() {
               <em>{t.h1accent}</em>
               {t.h1post}
             </h1>
-            <ul className="lp-hero-points">
-              {t.bullets.map((b) => (
-                <li key={b}>{b}</li>
-              ))}
-            </ul>
+            <p className="lp-hero-body">{t.heroBody}</p>
+            <p className="lp-hero-body">{t.heroTrust}</p>
             <div className="lp-ctas">
-              <button type="button" className="lp-btn solid lg">
+              <Link to="/login" className="lp-btn solid lg">
                 {t.startFree}
                 <Sparkles size={15} aria-hidden />
-              </button>
+              </Link>
               <button type="button" className="lp-btn ghost lg" onClick={() => setMenuOpen(true)}>
                 {t.exploreCurriculum} →
               </button>
             </div>
-            <ul className="lp-checks">
-              {t.checks.map((c, i) => {
-                const Icon = CHECK_ICONS[i]
-                return (
-                  <li key={c}>
-                    <Icon size={14} aria-hidden />
-                    {c}
-                  </li>
-                )
-              })}
-            </ul>
+            <p className="lp-hero-micro">{t.heroMicro}</p>
           </div>
+
         </section>
 
+        {/* ---------- the map + "curriculum first" ---------- */}
         <section className="lp-bottom">
           <div className="lp-universe-card">
             <div className="lp-universe-head">
@@ -465,7 +353,6 @@ function Landing() {
             </div>
           </div>
 
-          {/* One card, plain rows inside — no cards nested in cards. */}
           <aside className="lp-rigor">
             <h2>{t.rigorTitle}</h2>
             <p className="lp-rigor-sub">{t.rigorSub}</p>
@@ -490,6 +377,225 @@ function Landing() {
               <cite>{t.quoteBy}</cite>
             </blockquote>
           </aside>
+        </section>
+
+        {/* ---------- screen 1: the path ---------- */}
+        <section className="lp-section">
+          <div className="lp-section-head">
+            <h2>{t.pathTitle}</h2>
+            <p>{t.pathBody}</p>
+          </div>
+          <div className="lp-trio">
+            {t.pathItems.map((it, i) => {
+              const Icon = PATH_ICONS[i]
+              return (
+                <div key={it.title} className="lp-trio-item">
+                  <span className="lp-why-ico">
+                    <Icon size={18} aria-hidden />
+                  </span>
+                  <h3>{it.title}</h3>
+                  <p>{it.body}</p>
+                </div>
+              )
+            })}
+          </div>
+        </section>
+
+        {/* ---------- screen 2: how you learn ---------- */}
+        <section className="lp-section">
+          <div className="lp-section-head">
+            <h2>{t.howTitle}</h2>
+          </div>
+          <ol className="lp-steps">
+            {t.howSteps.map((s, i) => {
+              const Icon = STEP_ICONS[i]
+              return (
+                <li key={s.title}>
+                  <span className="lp-step-n">{i + 1}</span>
+                  <span className="lp-why-ico">
+                    <Icon size={18} aria-hidden />
+                  </span>
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                </li>
+              )
+            })}
+          </ol>
+          <p className="lp-section-close">{t.howClosing}</p>
+        </section>
+
+        {/* ---------- screen 3: the tradition ---------- */}
+        <section className="lp-section">
+          <div className="lp-section-head">
+            <h2>{t.tradTitle}</h2>
+            <p>{t.tradBody}</p>
+          </div>
+          <div className="lp-split">
+            <div className="lp-split-col lp-stable">
+              <h3>{t.tradFixedTitle}</h3>
+              <ul>
+                {t.tradFixed.map((x) => (
+                  <li key={x}>
+                    <CheckCircle2 size={14} aria-hidden />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lp-split-col lp-varies">
+              <h3>{t.tradVariesTitle}</h3>
+              <ul>
+                {t.tradVaries.map((x) => (
+                  <li key={x}>
+                    <Sparkles size={14} aria-hidden />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="lp-section-close strong">{t.tradClosing}</p>
+        </section>
+
+        {/* ---------- screen 4: scope ---------- */}
+        <section className="lp-section">
+          <div className="lp-section-head">
+            <h2>{t.scopeTitle}</h2>
+            <p>{t.scopeBody}</p>
+          </div>
+          <div className="lp-chains">
+            <div className="lp-chain math">
+              <h3>{t.scopeMath}</h3>
+              <ol>
+                {t.scopeMathChain.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ol>
+            </div>
+            <div className="lp-chain physics">
+              <h3>{t.scopePhysics}</h3>
+              <ol>
+                {t.scopePhysicsChain.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+          <div className="lp-section-cta">
+            <button type="button" className="lp-btn solid" onClick={() => setMenuOpen(true)}>
+              {t.scopeCta} →
+            </button>
+          </div>
+        </section>
+
+        {/* ---------- screen 5: try it ---------- */}
+        <section className="lp-section try">
+          <div className="lp-section-head">
+            <h2>{t.tryTitle}</h2>
+            <p>{t.tryBody}</p>
+          </div>
+          <div className="lp-section-cta">
+            <button
+              type="button"
+              className="lp-btn solid lg"
+              onClick={openRandomUnit}
+              disabled={!readyIds.length}
+            >
+              {t.tryPrimary}
+              <Sparkles size={15} aria-hidden />
+            </button>
+            <button type="button" className="lp-btn ghost lg" onClick={() => setMenuOpen(true)}>
+              {t.trySecondary} →
+            </button>
+          </div>
+          <p className="lp-section-micro">{t.tryMicro}</p>
+        </section>
+
+        {/* ---------- screen 6: what is free ---------- */}
+        <section className="lp-section">
+          <div className="lp-section-head">
+            <h2>{t.planTitle}</h2>
+          </div>
+          <div className="lp-plans">
+            <div className="lp-plan">
+              <h3>{t.planFreeTitle}</h3>
+              <ul>
+                {t.planFree.map((x) => (
+                  <li key={x}>
+                    <CheckCircle2 size={14} aria-hidden />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lp-plan">
+              <h3>{t.planAccountTitle}</h3>
+              <ul>
+                {t.planAccount.map((x) => (
+                  <li key={x}>
+                    <CheckCircle2 size={14} aria-hidden />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lp-plan lp-accent">
+              <h3>{t.planAiTitle}</h3>
+              <ul>
+                {t.planAi.map((x) => (
+                  <li key={x}>
+                    <Sparkles size={14} aria-hidden />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div className="lp-section-cta">
+            <Link to="/login" className="lp-btn solid">
+              {t.startFree}
+              <Sparkles size={14} aria-hidden />
+            </Link>
+          </div>
+          <p className="lp-section-micro">{t.planNote}</p>
+        </section>
+
+        {/* ---------- FAQ ---------- */}
+        <section className="lp-section">
+          <div className="lp-section-head">
+            <h2>{t.faqTitle}</h2>
+          </div>
+          <div className="lp-faq">
+            {t.faq.map((f, i) => (
+              <div key={f.q} className={'lp-faq-item' + (openFaq === i ? ' open' : '')}>
+                <button
+                  type="button"
+                  aria-expanded={openFaq === i}
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                >
+                  <span>{f.q}</span>
+                  <ChevronDown size={16} aria-hidden />
+                </button>
+                {openFaq === i && <p>{f.a}</p>}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ---------- final call ---------- */}
+        <section className="lp-final">
+          <h2>{t.finalTitle}</h2>
+          <p>{t.finalBody}</p>
+          <div className="lp-section-cta">
+            <Link to="/login" className="lp-btn onband lg">
+              {t.startFree}
+              <Sparkles size={15} aria-hidden />
+            </Link>
+            <button type="button" className="lp-btn ghost lg" onClick={() => setMenuOpen(true)}>
+              {t.finalSecondary} →
+            </button>
+          </div>
+          <p className="lp-final-micro">{t.heroMicro}</p>
         </section>
       </div>
     </div>

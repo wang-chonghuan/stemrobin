@@ -111,6 +111,8 @@ export function KnowledgeGalaxy({
   theme = 'dark',
   bare,
   apiRef: externalApiRef,
+  onReady,
+  edgeBoost = 1,
 }: {
   locale: Locale
   controls?: boolean
@@ -119,12 +121,18 @@ export function KnowledgeGalaxy({
   bare?: boolean
   /** hand the GalaxyApi to the parent (for external search/zoom/filter UI) */
   apiRef?: { current: GalaxyApi | null }
+  /** fires once the scene has drawn, so a parent can drop its placeholder */
+  onReady?: () => void
+  /** multiplier on the hub-link opacities; 1 keeps the theme's own values */
+  edgeBoost?: number
 }) {
   const COLORS = PALETTES[theme]
   const hostRef = useRef<HTMLDivElement>(null)
   const localeRef = useRef(locale)
   const relabelRef = useRef<() => void>(() => {})
   const internalApiRef = useRef<GalaxyApi | null>(null)
+  const onReadyRef = useRef(onReady)
+  onReadyRef.current = onReady
   const apiRef = externalApiRef ?? internalApiRef
   const [query, setQuery] = useState('')
 
@@ -146,7 +154,9 @@ export function KnowledgeGalaxy({
         fetch('/galaxy.json').then((r) => r.json() as Promise<Galaxy>),
       ])
       if (disposed) return
-      cleanup = build(host, THREE, OrbitControls, galaxy, localeRef, relabelRef, apiRef, theme)
+      cleanup = build(host, THREE, OrbitControls, galaxy, localeRef, relabelRef, apiRef, theme, edgeBoost)
+      // one frame later the canvas has actually painted
+      requestAnimationFrame(() => requestAnimationFrame(() => !disposed && onReadyRef.current?.()))
     })
     io.observe(host)
 
@@ -258,9 +268,18 @@ function build(
   relabelRef: { current: () => void },
   apiRef: { current: GalaxyApi | null },
   theme: GalaxyTheme,
+  edgeBoost: number,
 ) {
   const PALETTE = PALETTES[theme]
   const SC = SCENES[theme]
+  // Hub links are faint by default so the stars carry the eye. A page that
+  // wants the structure itself to read can turn them up without changing the
+  // theme for everyone else.
+  const EDGE = {
+    base: Math.min(1, SC.edgeBase * edgeBoost),
+    dim: Math.min(1, SC.edgeDim * edgeBoost),
+    hot: Math.min(1, SC.edgeHot * edgeBoost),
+  }
   const blending = theme === 'dark' ? THREE.AdditiveBlending : THREE.NormalBlending
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'low-power' })
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2))
@@ -435,7 +454,7 @@ function build(
       new THREE.LineBasicMaterial({
         vertexColors: true,
         transparent: true,
-        opacity: SC.edgeBase,
+        opacity: EDGE.base,
         blending,
         depthWrite: false,
       }),
@@ -446,7 +465,7 @@ function build(
       a: e.a,
       b: e.b,
       cross: hubs[e.a].discipline !== hubs[e.b].discipline,
-      base: SC.edgeBase,
+      base: EDGE.base,
     })
   }
 
@@ -571,9 +590,9 @@ function build(
     for (const e of edgeMeta) {
       const on = h >= 0 && (e.a === h || e.b === h)
       ;(e.line.material as InstanceType<typeof THREE.LineBasicMaterial>).opacity = on
-        ? SC.edgeHot
+        ? EDGE.hot
         : h >= 0
-          ? Math.min(SC.edgeDim, e.base)
+          ? Math.min(EDGE.dim, e.base)
           : e.base
     }
     host.style.cursor = h >= 0 ? 'pointer' : ''
@@ -756,14 +775,14 @@ function build(
     for (const e of edgeMeta) {
       e.base =
         f === 'all'
-          ? SC.edgeBase
+          ? EDGE.base
           : f === 'cross'
             ? e.cross
-              ? SC.edgeHot * 0.7
-              : SC.edgeDim
+              ? EDGE.hot * 0.7
+              : EDGE.dim
             : hubs[e.a].discipline === f && hubs[e.b].discipline === f
-              ? SC.edgeBase
-              : SC.edgeDim
+              ? EDGE.base
+              : EDGE.dim
       ;(e.line.material as InstanceType<typeof THREE.LineBasicMaterial>).opacity = e.base
     }
   }

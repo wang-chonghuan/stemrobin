@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StarmapPreviewRouteImport } from './routes/starmap-preview'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LandingLightRouteImport } from './routes/landing-light'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EnglishAudioIdRouteImport } from './routes/english-audio.$id'
@@ -27,6 +28,11 @@ const StarmapPreviewRoute = StarmapPreviewRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingLightRoute = LandingLightRouteImport.update({
+  id: '/landing-light',
+  path: '/landing-light',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRoute = AppRouteImport.update({
@@ -66,6 +72,7 @@ const AppEnglishIdReciteRoute = AppEnglishIdReciteRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/landing-light': typeof LandingLightRoute
   '/login': typeof LoginRoute
   '/starmap-preview': typeof StarmapPreviewRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
@@ -76,6 +83,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/landing-light': typeof LandingLightRoute
   '/login': typeof LoginRoute
   '/starmap-preview': typeof StarmapPreviewRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
@@ -88,6 +96,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteWithChildren
+  '/landing-light': typeof LandingLightRoute
   '/login': typeof LoginRoute
   '/starmap-preview': typeof StarmapPreviewRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
@@ -100,6 +109,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/landing-light'
     | '/login'
     | '/starmap-preview'
     | '/english-audio/$id'
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/landing-light'
     | '/login'
     | '/starmap-preview'
     | '/english-audio/$id'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/_app'
+    | '/landing-light'
     | '/login'
     | '/starmap-preview'
     | '/english-audio/$id'
@@ -133,6 +145,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppRoute: typeof AppRouteWithChildren
+  LandingLightRoute: typeof LandingLightRoute
   LoginRoute: typeof LoginRoute
   StarmapPreviewRoute: typeof StarmapPreviewRoute
   EnglishAudioIdRoute: typeof EnglishAudioIdRoute
@@ -152,6 +165,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing-light': {
+      id: '/landing-light'
+      path: '/landing-light'
+      fullPath: '/landing-light'
+      preLoaderRoute: typeof LandingLightRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app': {
@@ -225,6 +245,7 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppRoute: AppRouteWithChildren,
+  LandingLightRoute: LandingLightRoute,
   LoginRoute: LoginRoute,
   StarmapPreviewRoute: StarmapPreviewRoute,
   EnglishAudioIdRoute: EnglishAudioIdRoute,
