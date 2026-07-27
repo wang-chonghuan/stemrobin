@@ -45,10 +45,10 @@ const COPY = {
     reset: 'Reset view',
 
     h1: 'A complete secondary-school course in mathematics and physics.',
-    lead: 'Built on the ten-year science curriculum led by Andrey Kolmogorov, and rooted in the rigour of twentieth-century education.',
-    body: 'More than 1,500 teaching units and 16,000 exercises form an interconnected universe of knowledge, presented adaptively according to your progress.',
+    lead: 'Built on the ten-year science curriculum led by Andrey Kolmogorov and the rigour of twentieth-century education.',
+    body: 'More than 1,500 teaching units and 16,000 exercises form an interconnected body of knowledge, adapted to your progress.',
     outcome:
-      'Complete the course and you will be well prepared for university entrance examinations, with a strong foundation for further study in mathematics, science and engineering.',
+      'Complete the course to prepare for university entrance examinations and further study in mathematics, science and engineering.',
 
     quote:
       '“School mathematics, and even the beginnings of calculus, can be mastered by ordinary ability — given good guidance or good books.”',
@@ -83,10 +83,10 @@ const COPY = {
     reset: '复位视角',
 
     h1: '一套完整的中学数学与物理课程。',
-    lead: '源自数学大师柯尔莫戈洛夫主导制定的十年制理科大纲，继承 20 世纪严谨而扎实的教育理念。',
-    body: '1,500+ 个教学单元和 16,000+ 道习题，构成一个环环相扣的知识宇宙，并根据你的学习进度自适应呈现。',
+    lead: '基于柯尔莫戈洛夫主导制定的十年制理科大纲，植根于 20 世纪严谨的教育传统。',
+    body: '1,500 多个教学单元和 16,000 多道习题，构成一个环环相扣的知识宇宙，并根据你的学习进度自适应呈现。',
     outcome:
-      '完成这套课程，你将能够从容应对各类大学入学考试，并为进一步学习数学、科学与工程，打下坚实的知识与思维基础。',
+      '完成这套课程，你将能够从容应对大学入学考试，并为继续学习数学、科学与工程打下坚实的基础。',
 
     quote: '“中学数学，乃至微积分的基础，在良好的指导或优秀书籍的帮助下，普通的能力就足以掌握。”',
     quoteBy: '——安德烈·柯尔莫戈洛夫',

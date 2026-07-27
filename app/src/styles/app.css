@@ -2477,6 +2477,7 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
 .lw-quote p {
   margin: 0 0 10px;
   font-size: clamp(16px, 1.8vw, 20px);
+  font-style: italic;
   line-height: 1.65;
   color: #2f5fd9;
 }
