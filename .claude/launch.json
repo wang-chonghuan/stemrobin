@@ -16,6 +16,13 @@
       "autoPort": false
     },
     {
+      "name": "stemrobin-dev-3220",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "app", "run", "dev", "--", "--port", "3220"],
+      "port": 3220,
+      "autoPort": false
+    },
+    {
       "name": "galaxy-prototype",
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8765", "-d", "prototypes/knowledge-galaxy/web"],

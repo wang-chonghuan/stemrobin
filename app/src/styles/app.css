@@ -2090,7 +2090,7 @@ a.sr-out-lesson.active {
 .lw-brand-name { font-size: 20px; font-weight: 800; color: #22315b; line-height: 1.05; }
 .lw-brand-name em { font-style: normal; color: #4a7df7; }
 .lw-brand-name small { display: block; font-size: 11px; font-weight: 400; color: #8b96b8; }
-.lw-nav-links { display: flex; align-items: center; margin: 0 auto; }
+.lw-nav-links { display: flex; align-items: center; margin-right: auto; }
 .lw-nav-link {
   display: inline-flex;
   align-items: center;
@@ -2307,7 +2307,8 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
   margin: 0 0 14px;
   font-size: 16px;
   line-height: 1.7;
-  color: #33436e;
+  /* the accent blue, deepened enough to pass contrast at body size */
+  color: #3b64d8;
 }
 .lw-body {
   margin: 0 0 14px;
@@ -2325,16 +2326,22 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
 }
 .lw-hero-copy .lw-ctas { margin-top: auto; }
 
-.lw-hero-galaxy-head { display: flex; justify-content: flex-end; margin-bottom: 10px; }
-.lw-hero-galaxy-head .lw-search { flex: 0 1 auto; background: #fff; }
-.lw-hero-galaxy-head .lw-search input { width: clamp(120px, 16vw, 190px); }
+/* One row under the map: the how-to on the left, the search on the right,
+   the pair pushed to the map's right edge. */
+.lw-hero-galaxy-foot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 12px;
+}
 .lw-hero-galaxy-hint {
-  margin: auto 0 0;
-  padding-top: 14px;
-  text-align: right;
+  margin: 0;
   font-size: 12px;
   color: #7a86a8;
 }
+.lw-hero-galaxy-foot .lw-search { flex: 0 1 auto; background: #fff; }
+.lw-hero-galaxy-foot .lw-search input { width: clamp(120px, 16vw, 190px); }
 .lw-search {
   position: relative;
   display: flex;
@@ -2399,8 +2406,7 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
 .lw-galaxy-zoom {
   position: absolute;
   right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: 12px;
   z-index: 4;
   display: flex;
   flex-direction: column;
@@ -2468,6 +2474,7 @@ a.lw-map-sec:hover b { color: #6f8ee0; }
   color: #2f5fd9;
 }
 .lw-quote cite { font-style: normal; font-size: 13px; color: #7a86a8; }
+.lw-quote-title { display: block; margin-top: 2px; font-size: 12px; color: #99a3bf; }
 
 /* ---- the four points ---- */
 .lw-points { padding: 44px 0 8px; }

@@ -7,7 +7,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
-import { ChevronDown, Maximize2, Menu, Minus, Plus, Search, Sparkles, X } from 'lucide-react'
+import { Menu, Minus, Plus, Search, X } from 'lucide-react'
 
 import { KnowledgeGalaxy, type GalaxyApi } from '~/components/knowledge-galaxy'
 import {
@@ -53,6 +53,7 @@ const COPY = {
     quote:
       '“School mathematics, and even the beginnings of calculus, can be mastered by ordinary ability — given good guidance or good books.”',
     quoteBy: '— Andrey Kolmogorov',
+    quoteByTitle: 'One of the Greatest Mathematicians of the 20th Century',
 
     pointsTitle: 'What sets it apart',
     points: [
@@ -89,6 +90,7 @@ const COPY = {
 
     quote: '“中学数学，乃至微积分的基础，在良好的指导或优秀书籍的帮助下，普通的能力就足以掌握。”',
     quoteBy: '——安德烈·柯尔莫戈洛夫',
+    quoteByTitle: '20 世纪最伟大的数学家之一',
 
     pointsTitle: '特点',
     points: [
@@ -245,7 +247,6 @@ function LandingLight() {
           </Link>
           <Link to="/learn" className="lw-btn solid" onClick={() => setNavOpen(false)}>
             {t.startFree}
-            <Sparkles size={14} aria-hidden />
           </Link>
         </div>
       </aside>
@@ -268,7 +269,6 @@ function LandingLight() {
               onClick={() => setMenuOpen((v) => !v)}
             >
               {t.navMap}
-              <ChevronDown size={14} aria-hidden />
             </button>
           </nav>
           <div className="lw-nav-actions">
@@ -277,10 +277,6 @@ function LandingLight() {
             </button>
             <Link to="/login" className="lw-btn ghost">
               {t.signIn}
-            </Link>
-            <Link to="/learn" className="lw-btn solid">
-              {t.startFree}
-              <Sparkles size={14} aria-hidden />
             </Link>
           </div>
           <button
@@ -312,13 +308,36 @@ function LandingLight() {
             <div className="lw-ctas">
               <Link to="/learn" className="lw-btn solid lg">
                 {t.startFree}
-                <Sparkles size={15} aria-hidden />
               </Link>
             </div>
           </div>
 
           <div className="lw-hero-galaxy">
-            <div className="lw-hero-galaxy-head">
+            <div className="lw-galaxy-frame">
+              <KnowledgeGalaxy
+                locale={locale}
+                theme="dark"
+                bare
+                edgeBoost={3.2}
+                apiRef={galaxyRef}
+                onReady={() => setMapReady(true)}
+              />
+              {!mapReady && (
+                <div className="lw-galaxy-skeleton" aria-hidden>
+                  <span />
+                </div>
+              )}
+              <div className={'lw-galaxy-zoom' + (mapReady ? '' : ' hidden')}>
+                <button type="button" aria-label={t.zoomIn} onClick={() => galaxyRef.current?.zoomBy(0.78)}>
+                  <Plus size={15} />
+                </button>
+                <button type="button" aria-label={t.zoomOut} onClick={() => galaxyRef.current?.zoomBy(1.28)}>
+                  <Minus size={15} />
+                </button>
+              </div>
+            </div>
+            <div className="lw-hero-galaxy-foot">
+              <p className="lw-hero-galaxy-hint">{t.mapHint}</p>
               <div className="lw-search">
                 <Search size={14} aria-hidden />
                 <input
@@ -349,39 +368,15 @@ function LandingLight() {
                 )}
               </div>
             </div>
-            <div className="lw-galaxy-frame">
-              <KnowledgeGalaxy
-                locale={locale}
-                theme="dark"
-                bare
-                edgeBoost={3.2}
-                apiRef={galaxyRef}
-                onReady={() => setMapReady(true)}
-              />
-              {!mapReady && (
-                <div className="lw-galaxy-skeleton" aria-hidden>
-                  <span />
-                </div>
-              )}
-              <div className={'lw-galaxy-zoom' + (mapReady ? '' : ' hidden')}>
-                <button type="button" aria-label={t.zoomIn} onClick={() => galaxyRef.current?.zoomBy(0.78)}>
-                  <Plus size={15} />
-                </button>
-                <button type="button" aria-label={t.zoomOut} onClick={() => galaxyRef.current?.zoomBy(1.28)}>
-                  <Minus size={15} />
-                </button>
-                <button type="button" aria-label={t.reset} onClick={() => galaxyRef.current?.resetView()}>
-                  <Maximize2 size={14} />
-                </button>
-              </div>
-            </div>
-            <p className="lw-hero-galaxy-hint">{t.mapHint}</p>
           </div>
         </section>
 
         <blockquote className="lw-quote">
           <p>{t.quote}</p>
-          <cite>{t.quoteBy}</cite>
+          <cite>
+            {t.quoteBy}
+            <span className="lw-quote-title">{t.quoteByTitle}</span>
+          </cite>
         </blockquote>
 
         <section className="lw-points">
@@ -401,10 +396,9 @@ function LandingLight() {
           <div className="lw-ctas">
             <Link to="/learn" className="lw-btn solid lg">
               {t.startFree}
-              <Sparkles size={15} aria-hidden />
             </Link>
             <button type="button" className="lw-btn ghost lg" onClick={() => setMenuOpen(true)}>
-              {t.ctaSecondary} →
+              {t.ctaSecondary}
             </button>
           </div>
         </section>

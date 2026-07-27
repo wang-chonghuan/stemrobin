@@ -13,7 +13,7 @@ import { t } from '~/lib/i18n'
 export const Route = createFileRoute('/login')({
   beforeLoad: async () => {
     const user = await getCurrentUser()
-    if (user) throw redirect({ to: '/' })
+    if (user) throw redirect({ to: '/learn' })
   },
   component: LoginView,
   loader: async () => ({ locale: await getLocale() }),
@@ -36,7 +36,7 @@ function LoginView() {
       if ('error' in r) {
         setError(r.error)
       } else {
-        router.navigate({ to: '/' })
+        router.navigate({ to: '/learn' })
       }
     } finally {
       setBusy(false)

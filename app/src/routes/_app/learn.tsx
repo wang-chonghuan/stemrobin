@@ -2,17 +2,25 @@
 // the landing lands. It carries no pitch — the landing at `/` already made the
 // argument — only the deck's own numbers and the lessons that have content.
 
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link, redirect } from '@tanstack/react-router'
 import { BookOpen, FileText, Menu } from 'lucide-react'
 
 import { getAvailableTextbookLessons } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { deckPercentages, getDeckStats } from '~/lib/deck-stats'
 import { getLocale } from '~/lib/locale'
+import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
 
 export const Route = createFileRoute('/_app/learn')({
+  // The one gated surface: progress, accuracy and mastery are per-learner, so
+  // there is nothing to show a visitor who has not signed in. Lessons and the
+  // curriculum stay open — the wall is here, not on the content.
+  beforeLoad: async () => {
+    const user = await getCurrentUser()
+    if (!user) throw redirect({ to: '/login' })
+  },
   component: Learn,
   loader: async () => ({
     lessonIds: await listAvailableLessonIds(),
