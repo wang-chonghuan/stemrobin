@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ld-mathpdf/page@1",
+  "title": "cap1 单页自足事实",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "book_id", "page", "source", "render", "profile", "blocks", "flags", "provenance"],
+  "properties": {
+    "schema": { "const": "ld-mathpdf/page@1" },
+    "book_id": { "type": "string", "minLength": 1 },
+    "page": { "type": "integer", "minimum": 1 },
+    "printed_page": { "type": ["integer", "string", "null"] },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pdf_sha256", "pdf_page"],
+      "properties": {
+        "pdf_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "pdf_page": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "render": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dpi", "w", "h", "sha256"],
+      "properties": {
+        "dpi": { "type": "integer", "minimum": 72 },
+        "w": { "type": "integer", "minimum": 1 },
+        "h": { "type": "integer", "minimum": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256"],
+      "properties": {
+        "id": { "type": "string" },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/block" }
+    },
+    "problems": { "type": "array", "items": { "type": "integer" } },
+    "figures_cited": { "type": "array", "items": { "type": "string" } },
+    "flags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["starts_mid_sentence", "ends_mid_sentence"],
+      "properties": {
+        "starts_mid_sentence": { "type": "boolean" },
+        "ends_mid_sentence": { "type": "boolean" },
+        "illegible": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["block_id", "note"],
+            "properties": {
+              "block_id": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "source_errors": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["block_id", "kind", "printed", "note"],
+            "properties": {
+              "block_id": { "type": "string" },
+              "kind": { "type": "string" },
+              "printed": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        },
+        "unknown_chars": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["char", "codepoint", "block_id"],
+            "properties": {
+              "char": { "type": "string" },
+              "codepoint": { "type": "string" },
+              "block_id": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cap", "normalized"],
+      "properties": {
+        "cap": { "const": "1" },
+        "normalized": { "type": "boolean" },
+        "agent": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "bbox": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "type": "integer", "minimum": 0 }
+    },
+    "page_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page", "block_id"],
+      "properties": {
+        "page": { "type": "integer", "minimum": 1 },
+        "block_id": { "type": "string" },
+        "label": { "type": "string" }
+      }
+    },
+    "block": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "type", "bbox"],
+      "properties": {
+        "continues_into": { "$ref": "#/$defs/page_ref" },
+        "continues_from": { "$ref": "#/$defs/page_ref" },
+        "figure_refs": { "type": "array", "items": { "$ref": "#/$defs/page_ref" } },
+        "id": { "type": "string", "pattern": "^b[0-9]{2,3}$" },
+        "type": {
+          "enum": [
+            "heading", "paragraph", "formula_block", "figure",
+            "problem", "answer", "toc_entry",
+            "page_header", "page_footer", "note"
+          ]
+        },
+        "bbox": { "$ref": "#/$defs/bbox" },
+        "in_reading_flow": { "type": "boolean" },
+        "cont_from_prev_page": { "type": "boolean" },
+        "cont_to_next_page": { "type": "boolean" },
+        "text": { "type": "string" },
+        "level": { "type": "integer", "minimum": 1, "maximum": 6 },
+        "number": { "type": ["integer", "string"] },
+        "stem": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["key", "text"],
+            "properties": {
+              "key": { "type": "string" },
+              "text": { "type": "string" }
+            }
+          }
+        },
+        "label": { "type": "string" },
+        "file": { "type": "string" },
+        "figure_kind": { "enum": ["diagram", "table", "photo", "formula_image"] },
+        "caption": { "type": "string" },
+        "caption_bbox": { "$ref": "#/$defs/bbox" },
+        "page_ref": { "type": ["integer", "string"] },
+        "title": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "figure" } }, "required": ["type"] },
+          "then": { "required": ["label", "file", "figure_kind"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "problem" } }, "required": ["type"] },
+          "then": { "required": ["number", "stem"] }
+        },
+        {
+          "if": { "properties": { "type": { "const": "toc_entry" } }, "required": ["type"] },
+          "then": { "required": ["level", "title"] }
+        },
+        {
+          "if": {
+            "properties": {
+              "type": { "enum": ["heading", "paragraph", "formula_block", "answer", "page_header", "page_footer", "note"] }
+            },
+            "required": ["type"]
+          },
+          "then": { "required": ["text"] }
+        }
+      ]
+    }
+  }
+}

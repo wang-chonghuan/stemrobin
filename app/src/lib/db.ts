@@ -1,17 +1,22 @@
 import postgres from 'postgres'
 
-// Server-only Postgres client for the Azure easy-app shared database. The
-// connection string (EASYAPP_DATABASE_URL) is a server secret and must never
-// reach the browser bundle — this module is imported only from server functions.
-// All tables live in the per-project schema `stemrobin-schema`.
+// Server-only Postgres client. The connection string is a server secret and must
+// never reach the browser bundle — this module is imported only from server
+// functions. All tables live in the per-project schema `lemmadeck-schema`.
+//
+// The content DB moved off the Azure easy-app instance (it was intermittently
+// refusing connections) onto the shared Supabase project, schema
+// `lemmadeck-schema`. LEMMADECK_DATABASE_URL wins when set; the older vars stay
+// as a fallback so an unmigrated deploy keeps working.
 let _sql: ReturnType<typeof postgres> | null = null
 
 export function sql(): ReturnType<typeof postgres> {
   if (_sql) return _sql
-  // Local authoring/dev uses EASYAPP_DATABASE_URL (.env); the deployed Container App
-  // injects DATABASE_URL (n-easyapp). Accept either.
-  const url = process.env.EASYAPP_DATABASE_URL || process.env.DATABASE_URL
-  if (!url) throw new Error('Missing EASYAPP_DATABASE_URL / DATABASE_URL')
+  const url =
+    process.env.LEMMADECK_DATABASE_URL ||
+    process.env.EASYAPP_DATABASE_URL ||
+    process.env.DATABASE_URL
+  if (!url) throw new Error('Missing LEMMADECK_DATABASE_URL / EASYAPP_DATABASE_URL / DATABASE_URL')
   _sql = postgres(url, {
     ssl: 'require',
     max: 5,
@@ -22,7 +27,7 @@ export function sql(): ReturnType<typeof postgres> {
     max_lifetime: 60 * 30,
     connect_timeout: 15,
     // Quoted because the schema name contains a hyphen.
-    connection: { search_path: '"stemrobin-schema"' },
+    connection: { search_path: '"lemmadeck-schema"' },
   })
   return _sql
 }

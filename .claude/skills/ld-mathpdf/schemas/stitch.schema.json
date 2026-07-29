@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ld-mathpdf/stitch@1",
+  "title": "cap2 缝合改动记录（自证）",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "book_id", "page", "based_on", "window", "changes", "unchanged_blocks", "provenance"],
+  "properties": {
+    "schema": { "const": "ld-mathpdf/stitch@1" },
+    "book_id": { "type": "string" },
+    "page": { "type": "integer", "minimum": 1 },
+    "based_on": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["page_json_sha256"],
+      "properties": {
+        "page_json_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "window": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": { "type": "integer", "minimum": 1 }
+    },
+    "changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["block_id", "op", "reason"],
+        "properties": {
+          "block_id": { "type": "string" },
+          "op": {
+            "enum": ["merge_across_page", "reclassify", "attach_figure_ref", "mark_continuation"]
+          },
+          "reason": { "type": "string", "minLength": 1 },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "merged_with": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["page", "block_id"],
+              "properties": {
+                "page": { "type": "integer" },
+                "block_id": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "suggestions": {
+      "type": "array",
+      "description": "cap2 只能建议改字，不能执行。进人工复核队列。",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["block_id", "from", "to", "reason"],
+        "properties": {
+          "block_id": { "type": "string" },
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "unchanged_blocks": { "type": "integer", "minimum": 0 },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cap"],
+      "properties": {
+        "cap": { "const": "2" },
+        "agent": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

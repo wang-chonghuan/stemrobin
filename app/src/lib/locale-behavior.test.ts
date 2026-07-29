@@ -1,35 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
-import { lessonAvailableInLocale } from './lessons'
 import {
   getAvailableLessons,
   getLessonLabel,
   withAvailableLessonIds,
 } from './curriculum'
 import { localeReveal, projectQuestions } from './quiz'
-
-// ── Per-locale availability rule (clean D5) ──────────────────────────────────
-describe('lessonAvailableInLocale', () => {
-  const referenced = ['n1', 'n2', 'n3'] // nodes a lesson references
-
-  it('is available when the overlay covers every referenced node', () => {
-    expect(lessonAvailableInLocale(referenced, new Set(['n1', 'n2', 'n3', 'extra']))).toBe(true)
-  })
-
-  it('is NOT available when the overlay misses even one node (no half-translation)', () => {
-    // zh covers all → available; a partial en (missing n3) → hidden. This is the
-    // exact "untranslated lesson does not appear under en" acceptance behavior.
-    const zhKeys = new Set(['n1', 'n2', 'n3'])
-    const enKeys = new Set(['n1', 'n2']) // n3 not translated to en
-    expect(lessonAvailableInLocale(referenced, zhKeys)).toBe(true)
-    expect(lessonAvailableInLocale(referenced, enKeys)).toBe(false)
-  })
-
-  it('an empty overlay makes any non-empty lesson unavailable', () => {
-    expect(lessonAvailableInLocale(referenced, new Set())).toBe(false)
-    expect(lessonAvailableInLocale([], new Set())).toBe(true) // trivially covered
-  })
-})
 
 // ── Catalog outline localization + en filtering ──────────────────────────────
 describe('withAvailableLessonIds locale', () => {

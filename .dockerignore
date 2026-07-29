@@ -11,3 +11,9 @@ app/.tanstack
 **/.env
 **/.env.*
 npm-debug.log
+
+# 构建上下文瘦身：az acr build 以仓库根为上下文，下面这些会把上传拖到数百 MB
+# 工作区临时产物（PDF、页面渲染、数据库 dump），数百 MB，永远不该进构建上下文
+.tmp
+# 本地扫描件原件，不参与构建
+resources
