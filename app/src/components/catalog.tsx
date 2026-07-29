@@ -285,10 +285,18 @@ function EnglishOutline({
 const REFERENCE_LESSON = 'math-s10-02'
 
 // One outline row. The rail follows a single rule: a row with children folds,
-// a row without children is a card. So a section with numbered items is a
-// collapsible group and never a destination, while an entry the book left
-// unnumbered — a chapter's exercise set, the volume's closing set — is itself
-// the card. The dot marks a card whose content exists.
+// The destination is always the lesson — one section, one 課文 document.
+//
+// This used to route into /card/$id, where a numbered section was a collapsible
+// group that was "never a destination" and only its individual 小节 were
+// reachable. That followed the old card tree; content is now one document per
+// section, so the section itself is what you open, and its 小节 are places
+// inside that document rather than separate destinations. The 小节 still list
+// under the section for orientation, and each opens the same 課文.
+//
+// Rows stay expandable-but-inert until the section has content: an unread row
+// that navigates to an empty page is worse than one that plainly cannot be
+// clicked. The dot marks a section whose 課文 exists.
 function LessonRow({
   lesson,
   title,
@@ -297,21 +305,28 @@ function LessonRow({
 }: {
   lesson: OutlineLesson
   title: string
-  /** The card being read, so its section is unfolded on arrival. */
+  /** The lesson being read, so its section is unfolded on arrival. */
   openCard: string | undefined
   onNavigate: () => void
 }) {
   if (lesson.topics.length === 0) {
+    if (!lesson.ready) {
+      return (
+        <li>
+          <span className="sr-out-lesson">{title}</span>
+        </li>
+      )
+    }
     return (
       <li>
         <Link
-          to="/card/$id"
-          params={{ id: lesson.cardId }}
-          className={'sr-out-lesson' + (lesson.ready ? ' ready' : '')}
-          activeProps={{ className: 'active' }}
+          to="/lesson/$id"
+          params={{ id: lesson.id }}
+          className="sr-out-lesson ready"
+          activeProps={{ className: 'sr-out-lesson ready active' }}
           onClick={onNavigate}
         >
-          {lesson.ready && <span className="sr-out-dot" aria-hidden />}
+          <span className="sr-out-dot" aria-hidden />
           {title}
         </Link>
       </li>
@@ -319,27 +334,48 @@ function LessonRow({
   }
   return (
     <li>
-      <details
-        className="sr-out-section"
-        open={lesson.topics.some((tp) => tp.id === openCard)}
-      >
+      <details className="sr-out-section" open={lesson.id === openCard}>
         <summary>
           <span className="sr-out-caret" aria-hidden />
-          <span className="sr-out-lesson">{title}</span>
+          {lesson.ready ? (
+            // Inside <summary>, so stop the click from toggling the disclosure —
+            // the caret is the toggle, the title is the destination.
+            <Link
+              to="/lesson/$id"
+              params={{ id: lesson.id }}
+              className="sr-out-lesson ready"
+              activeProps={{ className: 'sr-out-lesson ready active' }}
+              onClick={(e) => {
+                e.stopPropagation()
+                onNavigate()
+              }}
+            >
+              <span className="sr-out-dot" aria-hidden />
+              {title}
+            </Link>
+          ) : (
+            <span className="sr-out-lesson">{title}</span>
+          )}
         </summary>
         <ol className="sr-out-topics">
           {lesson.topics.map((tp) => (
             <li key={tp.id}>
-              <Link
-                to="/card/$id"
-                params={{ id: tp.id }}
-                className="sr-out-topic"
-                activeProps={{ className: 'active' }}
-                onClick={onNavigate}
-              >
-                <span className="sr-out-topic-n">{tp.number}</span>
-                {tp.title}
-              </Link>
+              {lesson.ready ? (
+                <Link
+                  to="/lesson/$id"
+                  params={{ id: lesson.id }}
+                  className="sr-out-topic"
+                  onClick={onNavigate}
+                >
+                  <span className="sr-out-topic-n">{tp.number}</span>
+                  {tp.title}
+                </Link>
+              ) : (
+                <span className="sr-out-topic">
+                  <span className="sr-out-topic-n">{tp.number}</span>
+                  {tp.title}
+                </span>
+              )}
             </li>
           ))}
         </ol>
