@@ -37,7 +37,6 @@ export const CURRICULUM: OutlineSubject[] = [
         ),
       },
       {
-        // Stage 2 mirrors resources/content/math-ledger/stage-2.json (the sr-math-lesson ledger):
         // anatomy 概念课 (项/因数, 系数/次数) placed BEFORE the 方法课 that consume them.
         title: '字母和代数式',
         lessons: [
@@ -52,7 +51,6 @@ export const CURRICULUM: OutlineSubject[] = [
         ],
       },
       {
-        // Stage 3 mirrors resources/content/math-ledger/stage-3.json (the sr-math-lesson ledger):
         // equation anatomy concepts placed BEFORE the method lessons that consume them.
         title: '方程和不等式',
         lessons: [

@@ -3,7 +3,7 @@
 // The previous view was a card reader + quiz drawer + PDF download, all driven by
 // a card tree with per-node i18n overlays. Textbook content now arrives as a
 // single self-contained HTML document (KaTeX pre-rendered, figures inlined as
-// SVG) produced by the ld-mathpdf renderer, so this view's whole job is to hand
+// SVG), so this view's whole job is to hand
 // that document to an iframe and let the learner read it. Practice will return
 // as its own surface later; it is deliberately not modelled here.
 
