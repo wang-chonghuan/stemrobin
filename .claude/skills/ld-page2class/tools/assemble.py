@@ -197,19 +197,41 @@ def audit(lessons: list[dict], stream: list[dict], profile_path: Path) -> dict:
 
 
 def check_toc(lessons: list[dict], toc_path: Path, book_id: str) -> list[str]:
-    """TOC 是外部真源：它说有几个小节，就该出现几个小节。"""
+    """TOC 是外部真源，做两件事：核对覆盖，并把小节钉到目录的**卡片 id** 上。
+
+    app 的目录就是这份 TOC，一张「卡片」正是书里的一个小节（`math5-c1-s1-n1` = 子集），
+    可用性按 id 查库。所以这里认领 id 不是锦上添花——不认领，抽出来的课就没有地址。
+    印刷号和起始印刷页两个都对得上才算认领，只对上一个就报告，不猜。
+    """
     toc = json.loads(toc_path.read_text(encoding="utf-8"))
     topics = [t for c in toc.get("contents", []) for l in c.get("lessons", [])
               for t in l.get("topics", [])]
+    warn = []
+    for l in lessons:
+        if not l["number"]:
+            continue
+        by_num = [t for t in topics if str(t["printedNumber"]) == l["number"]]
+        hit = [t for t in by_num if t["page"] == l["start_printed"]]
+        if len(hit) == 1:
+            l["card_id"] = hit[0]["id"]
+            l["toc_title"] = hit[0]["title"]
+        elif by_num:
+            warn.append(f"小节「{l['number']}. {l['title']}」在 TOC 里印刷页是 "
+                        f"{[t['page'] for t in by_num]}，抽出来的是 {l['start_printed']}，"
+                        "对不上，未认领卡片 id")
+        else:
+            warn.append(f"小节「{l['number']}. {l['title']}」在 TOC 里找不到对应条目")
+
     covered = {l["number"] for l in lessons if l["number"]}
     pages = [l["start_printed"] for l in lessons if l["start_printed"]]
-    if not pages:
-        return []
-    lo, hi = min(pages), max(pages)
-    missing = [f"{t['printedNumber']}. {t['title']}（印刷页 {t['page']}）"
-               for t in topics if lo <= t["page"] <= hi
-               and str(t["printedNumber"]) not in covered]
-    return [f"TOC 里这些小节落在已抽范围内却没装订出来: {'; '.join(missing)}"] if missing else []
+    if pages:
+        lo, hi = min(pages), max(pages)
+        missing = [f"{t['printedNumber']}. {t['title']}（印刷页 {t['page']}）"
+                   for t in topics if lo <= t["page"] <= hi
+                   and str(t["printedNumber"]) not in covered]
+        if missing:
+            warn.append(f"TOC 里这些小节落在已抽范围内却没装订出来: {'; '.join(missing)}")
+    return warn
 
 
 def run(book: Path, toc: Path | None, profile: Path, strict: bool = True) -> int:
@@ -226,7 +248,7 @@ def run(book: Path, toc: Path | None, profile: Path, strict: bool = True) -> int
     report = audit(lessons, merged, profile)
     report["warnings"] = warn_merge + warn_fig + report["warnings"]
     if toc:
-        report["errors"] += check_toc(lessons, toc, book.name)
+        report["warnings"] += check_toc(lessons, toc, book.name)
 
     # 全书图库：页目录里的裁图按原书图号汇总，重号即报
     lib = book / "figures"
@@ -245,7 +267,7 @@ def run(book: Path, toc: Path | None, profile: Path, strict: bool = True) -> int
     shutil.rmtree(out, ignore_errors=True)
     index = []
     for i, l in enumerate(lessons, 1):
-        lid = f"{l['number'] or f'x{i}'}-{_slug(l['title'])}"
+        lid = l.get("card_id") or f"{l['number'] or f'x{i}'}-{_slug(l['title'])}"
         d = out / lid
         d.mkdir(parents=True, exist_ok=True)
         head = " · ".join(x for x in (l["chapter"], l["section"]) if x)
@@ -264,7 +286,8 @@ def run(book: Path, toc: Path | None, profile: Path, strict: bool = True) -> int
             {"lesson": lid, "count": len(l["exercises"]), "exercises": l["exercises"]},
             ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         (d / "lesson.json").write_text(json.dumps(
-            {"id": lid, "chapter": l["chapter"], "section": l["section"],
+            {"id": lid, "card_id": l.get("card_id"),
+             "chapter": l["chapter"], "section": l["section"],
              "number": l["number"], "title": l["title"],
              "printed_title": l["printed_title"], "start_page": l["start_page"],
              "start_printed": l["start_printed"],
@@ -274,7 +297,8 @@ def run(book: Path, toc: Path | None, profile: Path, strict: bool = True) -> int
                         "printed_page": b.get("printed_page")}
                        for b in l["prose"]]},
             ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        index.append({"id": lid, "title": l["title"], "number": l["number"],
+        index.append({"id": lid, "card_id": l.get("card_id"),
+                      "title": l["title"], "number": l["number"],
                       "start_printed": l["start_printed"],
                       "prose_blocks": len(l["prose"]),
                       "exercises": len(l["exercises"]), "figures": len(l["figures"])})

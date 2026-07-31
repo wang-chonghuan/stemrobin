@@ -1,62 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import {
-  getAvailableLessons,
-  getLessonLabel,
-  withAvailableLessonIds,
-} from './curriculum'
 import { localeReveal, projectQuestions } from './quiz'
 
-// ── Catalog outline localization + en filtering ──────────────────────────────
-describe('withAvailableLessonIds locale', () => {
-  it('zh keeps the FULL outline with placeholders (unchanged behavior)', () => {
-    const zh = withAvailableLessonIds(['math-s2-01'], 'zh')
-    // every subject + stage of the source outline is present
-    expect(zh.length).toBeGreaterThan(1)
-    const math = zh.find((s) => s.subject === 'math')!
-    expect(math.label).toBe('数学')
-    expect(math.stages.length).toBeGreaterThan(2)
-    // the available lesson carries an id, the rest are greyed placeholders
-    expect(math.stages[1].lessons[0]).toEqual({ id: 'math-s2-01', title: '用字母表示数' })
-    expect(math.stages[1].lessons[1]).toEqual({ title: '代数式与求值' })
-  })
-
-  it('en shows ONLY available lessons, localized, with empty stages/subjects dropped', () => {
-    const en = withAvailableLessonIds(['math-s2-01', 'math-s2-02'], 'en')
-    // physics (no available lessons) is dropped
-    expect(en.every((s) => s.subject === 'math')).toBe(true)
-    const math = en[0]
-    expect(math.label).toBe('Math')
-    // only the stage that holds available lessons remains
-    expect(math.stages).toHaveLength(1)
-    expect(math.stages[0].title).toBe('Letters and Algebraic Expressions')
-    expect(math.stages[0].lessons).toEqual([
-      { id: 'math-s2-01', title: 'Using Letters to Represent Numbers' },
-      { id: 'math-s2-02', title: 'Algebraic Expressions and Evaluation' },
-    ])
-  })
-})
-
-describe('getAvailableLessons + getLessonLabel locale', () => {
-  it('localizes title + subject under en', () => {
-    expect(getAvailableLessons(['math-s2-01'], 'en')).toEqual([
-      { id: 'math-s2-01', title: 'Using Letters to Represent Numbers', subject: 'Math' },
-    ])
-  })
-
-  it('keeps zh source strings under zh (regression)', () => {
-    expect(getAvailableLessons(['math-s2-01'], 'zh')).toEqual([
-      { id: 'math-s2-01', title: '用字母表示数', subject: '数学' },
-    ])
-  })
-
-  it('getLessonLabel keeps the neutral number prefix, localizes the title', () => {
-    expect(getLessonLabel('math-s2-01', 'en')).toBe('2.1 Using Letters to Represent Numbers')
-    expect(getLessonLabel('math-s2-01', 'zh')).toBe('2.1 用字母表示数')
-  })
-})
-
-// ── Practice-deck projection: KEY-free + locale text ─────────────────────────
 describe('projectQuestions', () => {
   const rows = [
     {

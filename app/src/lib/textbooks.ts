@@ -270,3 +270,25 @@ export function getAvailableTextbookLessons(
     ),
   )
 }
+
+/** How a lesson reads in a header or a prev/next chip: the book's own number and
+ *  title, or the bare id when the outline does not carry it. */
+export function getTextbookLessonLabel(id: string, locale: Locale): string {
+  for (const d of getTextbookOutline([], locale))
+    for (const b of d.books)
+      for (const l of bookLessons(b))
+        if (l.id === id) return l.number ? `${l.number} ${l.title}` : l.title
+  return id
+}
+
+/** Prev/next in reading order, among the lessons that actually have content —
+ *  skipping over what is still only an outline entry. */
+export function getTextbookLessonNav(
+  id: string,
+  lessonIds: readonly string[],
+  locale: Locale,
+): { prev?: { id: string; title: string }; next?: { id: string; title: string } } {
+  const all = getAvailableTextbookLessons(lessonIds, locale)
+  const i = all.findIndex((l) => l.id === id)
+  return i === -1 ? {} : { prev: all[i - 1], next: all[i + 1] }
+}

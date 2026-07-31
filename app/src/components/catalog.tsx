@@ -255,34 +255,10 @@ function EnglishOutline({
           ))}
         </ul>
       </details>
-      {/* One math lesson from the retired outline is parked here as a worked
-          sample of the card format (STEMROBIN-113). It is a reference, not part
-          of the English course. */}
-      <details className="sr-out-stage">
-        <summary>
-          <span className="sr-out-caret" aria-hidden />
-          <span className="sr-out-stage-name">{t(locale, 'cat.ref')}</span>
-        </summary>
-        <ul className="sr-out-lessons">
-          <li>
-            <Link
-              to="/lesson/$id"
-              params={{ id: REFERENCE_LESSON }}
-              className="sr-out-lesson ready"
-              activeProps={{ className: 'sr-out-lesson ready active' }}
-              onClick={onNavigate}
-            >
-              <span className="sr-out-dot" aria-hidden />
-              {t(locale, `cat.ref.${REFERENCE_LESSON}`)}
-            </Link>
-          </li>
-        </ul>
-      </details>
     </details>
   )
 }
 
-const REFERENCE_LESSON = 'math-s10-02'
 
 // One outline row. The rail follows a single rule: a row with children folds,
 // The destination is always the lesson — one section, one 課文 document.

@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, ChevronLeft, ChevronRight, Menu } from 'lucide-react'
 
-import { getLessonLabel, getLessonNavForIds } from '~/lib/curriculum'
+import { getTextbookLessonLabel, getTextbookLessonNav } from '~/lib/textbooks'
 import { getLessonHtml, listAvailableLessonIds } from '~/lib/lessons'
 import { getLocale } from '~/lib/locale'
 import { t, type Locale } from '~/lib/i18n'
@@ -31,7 +31,7 @@ function LessonView() {
   const { id, html, lessonIds, locale } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const frameRef = useRef<HTMLIFrameElement>(null)
-  const label = getLessonLabel(id, locale)
+  const label = getTextbookLessonLabel(id, locale)
 
   return (
     <main className="sr-detail">
@@ -78,13 +78,13 @@ function LessonNavFooter({
   lessonIds: string[]
   locale: Locale
 }) {
-  const { prev, next } = getLessonNavForIds(id, lessonIds, locale)
+  const { prev, next } = getTextbookLessonNav(id, lessonIds, locale)
   if (!prev && !next) return null
   return (
     <nav className="sr-lesson-nav" aria-label={t(locale, 'lesson.nav')}>
       {prev ? (
         <Link to="/lesson/$id" params={{ id: prev.id }} className="sr-btn ghost">
-          <ChevronLeft size={16} /> {t(locale, 'lesson.prev')} · {getLessonLabel(prev.id, locale)}
+          <ChevronLeft size={16} /> {t(locale, 'lesson.prev')} · {getTextbookLessonLabel(prev.id, locale)}
         </Link>
       ) : (
         <button type="button" className="sr-btn ghost" disabled>
@@ -93,7 +93,7 @@ function LessonNavFooter({
       )}
       {next ? (
         <Link to="/lesson/$id" params={{ id: next.id }} className="sr-btn ghost">
-          {t(locale, 'lesson.next')} · {getLessonLabel(next.id, locale)} <ChevronRight size={16} />
+          {t(locale, 'lesson.next')} · {getTextbookLessonLabel(next.id, locale)} <ChevronRight size={16} />
         </Link>
       ) : (
         <button type="button" className="sr-btn ghost" disabled>

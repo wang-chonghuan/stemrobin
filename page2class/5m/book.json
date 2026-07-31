@@ -3,7 +3,8 @@
   "pages": 11,
   "lessons": [
     {
-      "id": "1-子集",
+      "id": "math5-c1-s1-n1",
+      "card_id": "math5-c1-s1-n1",
       "title": "子集",
       "number": "1",
       "start_printed": 1,
@@ -12,7 +13,8 @@
       "figures": 4
     },
     {
-      "id": "2-交集",
+      "id": "math5-c1-s1-n2",
+      "card_id": "math5-c1-s1-n2",
       "title": "交集",
       "number": "2",
       "start_printed": 4,
@@ -21,7 +23,8 @@
       "figures": 5
     },
     {
-      "id": "3-并集",
+      "id": "math5-c1-s1-n3",
+      "card_id": "math5-c1-s1-n3",
       "title": "并集",
       "number": "3",
       "start_printed": 8,
@@ -30,7 +33,8 @@
       "figures": 3
     },
     {
-      "id": "4-作平行线",
+      "id": "math5-c1-s1-n4",
+      "card_id": "math5-c1-s1-n4",
       "title": "作平行线",
       "number": "4",
       "start_printed": 10,

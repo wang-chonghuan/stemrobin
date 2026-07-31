@@ -34,8 +34,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'cat.disc.math': '数学',
     'cat.disc.physics': '物理',
     'cat.chapter': '第 {n} 章 · {title}',
-    'cat.ref': '参考',
-    'cat.ref.math-s10-02': '弧、弦、圆心角',
     'deck.fav': '收藏',
     'deck.askai': '问 AI',
     'deck.prev': '上一张',
@@ -196,8 +194,6 @@ const STRINGS: Record<Locale, Record<string, string>> = {
     'cat.disc.math': 'Mathematics',
     'cat.disc.physics': 'Physics',
     'cat.chapter': 'Chapter {n} · {title}',
-    'cat.ref': 'Reference',
-    'cat.ref.math-s10-02': 'Arcs, Chords and Central Angles',
     'deck.fav': 'Save',
     'deck.askai': 'Ask AI',
     'deck.prev': 'Previous',
@@ -349,38 +345,12 @@ export function t(
   return s.replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? `{${k}}`))
 }
 
-// ── Curriculum-outline labels (the app's own hardcoded titles in curriculum.ts) ──
-// Only en is stored; zh always uses the source title from curriculum.ts. Missing
-// en → the zh source title is used as the fallback (never blank).
+// ── Subject labels ──
+// Only en is stored; zh always uses the source label. Missing en → the zh source
+// is used as the fallback (never blank).
 export const SUBJECT_LABELS_EN: Record<string, string> = {
   数学: 'Math',
   物理: 'Physics',
-}
-
-export const STAGE_LABELS_EN: Record<string, string> = {
-  字母和代数式: 'Letters and Algebraic Expressions',
-  方程和不等式: 'Equations and Inequalities',
-}
-
-// English titles for the lessons that have a page + full en overlay (the 16
-// migrated + translated math lessons). Keyed by lesson id.
-export const LESSON_TITLES_EN: Record<string, string> = {
-  'math-s2-01': 'Using Letters to Represent Numbers',
-  'math-s2-02': 'Algebraic Expressions and Evaluation',
-  'math-s2-03': 'Two Layers of an Expression: Terms and Factors',
-  'math-s2-04': "A Term's ID Card: Coefficient and Degree",
-  'math-s2-05': 'Like Terms and Combining Them',
-  'math-s2-06': 'Removing Parentheses',
-  'math-s2-07': 'Adding and Subtracting Polynomials',
-  'math-s2-08': 'Simplification Practice Arena',
-  'math-s3-01': 'What Is an Unknown',
-  'math-s3-02': 'Adding or Subtracting the Same on Both Sides',
-  'math-s3-03': 'Multiplying or Dividing Both Sides by the Same',
-  'math-s3-04': 'The Shape of a Linear Equation in One Variable',
-  'math-s3-05': 'Solving a Linear Equation in One Variable',
-  'math-s3-06': 'Solving Equations by Removing Parentheses',
-  'math-s3-07': 'Solving Equations by Clearing Denominators',
-  'math-s3-08': 'Word Problems: Just the Quantity Relationships',
 }
 
 // Practice-question type badges (sr_questions.type) — a small fixed vocabulary.
@@ -395,12 +365,6 @@ const QUESTION_TYPE_EN: Record<string, string> = {
 
 export function localizeSubject(label: string, locale: Locale): string {
   return locale === 'en' ? (SUBJECT_LABELS_EN[label] ?? label) : label
-}
-export function localizeStage(title: string, locale: Locale): string {
-  return locale === 'en' ? (STAGE_LABELS_EN[title] ?? title) : title
-}
-export function localizeLessonTitle(id: string, zhTitle: string, locale: Locale): string {
-  return locale === 'en' ? (LESSON_TITLES_EN[id] ?? zhTitle) : zhTitle
 }
 export function localizeQuestionType(type: string, locale: Locale): string {
   return locale === 'en' ? (QUESTION_TYPE_EN[type] ?? type) : type

@@ -1,11 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import {
-  LESSON_TITLES_EN,
-  STAGE_LABELS_EN,
-  localizeLessonTitle,
   localizeQuestionType,
-  localizeStage,
   localizeSubject,
   t,
 } from './i18n'
@@ -42,37 +38,13 @@ describe('t (UI string dictionary)', () => {
   })
 })
 
-describe('curriculum-label localization', () => {
-  it('has an English title for every available lesson', () => {
-    for (const id of AVAILABLE_IDS) {
-      expect(LESSON_TITLES_EN[id]).toBeTruthy()
-    }
-  })
-
-  it('has an English label for the two stages that contain available lessons', () => {
-    expect(STAGE_LABELS_EN['字母和代数式']).toBeTruthy()
-    expect(STAGE_LABELS_EN['方程和不等式']).toBeTruthy()
-  })
-
+describe('label localization', () => {
   it('localizeSubject maps zh → en and passes through unknowns', () => {
     expect(localizeSubject('数学', 'en')).toBe('Math')
     expect(localizeSubject('数学', 'zh')).toBe('数学')
     expect(localizeSubject('未知', 'en')).toBe('未知')
   })
 
-  it('localizeStage maps and passes through', () => {
-    expect(localizeStage('方程和不等式', 'en')).toBe('Equations and Inequalities')
-    expect(localizeStage('方程和不等式', 'zh')).toBe('方程和不等式')
-  })
-
-  it('localizeLessonTitle returns en title, else the zh source (never blank)', () => {
-    expect(localizeLessonTitle('math-s2-01', '用字母表示数', 'en')).toBe(
-      'Using Letters to Represent Numbers',
-    )
-    expect(localizeLessonTitle('math-s2-01', '用字母表示数', 'zh')).toBe('用字母表示数')
-    // An id with no en title falls back to the zh source, not blank.
-    expect(localizeLessonTitle('math-s9-99', '某课', 'en')).toBe('某课')
-  })
 
   it('localizeQuestionType maps the fixed vocabulary in en, passes through in zh', () => {
     expect(localizeQuestionType('辨认', 'en')).toBe('Identify')
