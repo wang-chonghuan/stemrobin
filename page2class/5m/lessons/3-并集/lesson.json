@@ -1,0 +1,86 @@
+{
+  "id": "3-并集",
+  "chapter": "第一章　正数和负数",
+  "section": "§1. 集合的运算",
+  "number": "3",
+  "title": "并集",
+  "printed_title": "3. 并集",
+  "start_page": 17,
+  "start_printed": 8,
+  "figures": [
+    {
+      "id": "tbl-p0017-01",
+      "label": "课程表",
+      "page": 17
+    },
+    {
+      "id": "fig-09",
+      "label": "图 9",
+      "page": 17
+    },
+    {
+      "id": "fig-10",
+      "label": "图 10",
+      "page": 19
+    }
+  ],
+  "exercise_count": 10,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "右面列有星期一和星期二的课程表. 用 $A$ 表示星期一的课程的集合. 用 $B$ 表示星期二的课程的集合. 在这两天里学习的课程计有：{俄语、数学、历史、植物、劳动、地理、英语、体育}. 所得课程的集合叫做集合 $A$={俄语，数学，植物，历史，劳动}和 $B$={数学，俄语，地理，英语，体育}的**并集**. 集合 $A$ 和 $B$ 的并集写作 $A \\cup B$. 就是说，$A \\cup B$={俄语，数学，历史，植物，劳动，地理，英语，体育}.",
+      "id": null,
+      "label": null,
+      "printed_page": 8
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "tbl-p0017-01",
+      "label": "课程表",
+      "printed_page": 8
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-09",
+      "label": "图 9",
+      "printed_page": 8
+    },
+    {
+      "kind": "cap",
+      "text": "图 9",
+      "id": null,
+      "label": "图 9",
+      "printed_page": 8
+    },
+    {
+      "kind": "p",
+      "text": "**由至少属于两个集合之一的元素组成的集合叫做这两个****集合的并集.**",
+      "id": null,
+      "label": null,
+      "printed_page": 8
+    },
+    {
+      "kind": "p",
+      "text": "如果 $A$ 是正方形的点的集合(图 9)，$B$ 是圆的点的集合，则 $A \\cup B$ 是由正方形和半圆构成的图形的点的集合.",
+      "id": null,
+      "label": null,
+      "printed_page": 8
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-10",
+      "label": "图 10",
+      "printed_page": 10
+    },
+    {
+      "kind": "cap",
+      "text": "图 10",
+      "id": null,
+      "label": "图 10",
+      "printed_page": 10
+    }
+  ]
+}

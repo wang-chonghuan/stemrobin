@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "printed_page": 4,
+    "book": "5m",
+    "page": 13,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 13
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "ae4ce83e6655bb5e9aa936f136f57f7d80132401b7cbe11a0bb41bc79791a6e6"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "schema": "ld-page2class/page@3",
+    "notes": [],
+    "printed_lines": 23,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "13",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "商店. 送往商店的白菜比淹菜用的少几吨？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "14",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1）$43\\,268 - 3268 \\cdot (6075 + 9980 - 15\\,996) : 38$；",
+        "2）$20\\,045 - 10\\,045 : (50\\,005 - 49\\,868 + 68) \\cdot 109$；",
+        "3）$(424.2 - 98.4) : 3.6 \\cdot 0.9 + 9.1$；",
+        "4）$(96.6 + 98.6) : 6.4 \\cdot 1.2 - 0.2$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "15",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "从集合 $\\left\\{\\frac{1}{2}; \\frac{2}{3}; \\frac{4}{3}; \\frac{2}{5}; \\frac{5}{2}; \\frac{7}{7}\\right\\}$ 中选出：",
+        "1）真分数的子集；  2）假分数的子集."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "16",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在射线上标出 2, 6, 3, 8 的对应点 $A, B, C, D$. 线段 $CD$ 是",
+        "不是线段 $AB$ 的子集？线段 $BC$ 是不是线段 $AB$ 的子集？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "17",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在集体农庄的果园中，有 1720 棵果树. 其中樱桃树占",
+        "25%，苹果树占 15%. 这个果园中苹果树和樱桃树各有",
+        "多少棵？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "18",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "全校学生搜集了 12 吨废铁. 五年级的一个班搜集了",
+        "全部废铁的 12%，另一个班搜集了 13%. 五年级的这两",
+        "个班各搜集了几吨废铁？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "19",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求下列各式的值：",
+        "1）$7091 + 9663 - (243\\,916 + 75\\,446) : 527 : 3$；",
+        "2）$8607 + 7605 + (376\\,012 - 83\\,314) : 414 : 7$."
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "2. 交集"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "图 5 中集合 $X$ 由三角形组成，集合 $Y$ 由白色图形组成. 这"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 4 ·"
+      ]
+    }
+  ]
+}

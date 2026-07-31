@@ -1,0 +1,36 @@
+{
+  "id": "soviet-cn",
+  "description": "人民教育出版社/文化教育出版社 1978-1982 苏联十年制学校教材中译本扫描件",
+  "unicode_form": "NFC",
+  "digits": "halfwidth",
+  "latin": "halfwidth",
+  "math_minus": "ascii",
+  "script_style": "latex",
+  "fraction_macro": "\\frac",
+  "enum_marker_script": "cyrillic",
+  "enum_marker_sequence": ["а", "б", "в", "г", "д", "е", "ж", "з", "и", "к"],
+  "interval_notation": "preserve",
+  "toc_leader": "......",
+  "figure_label_pattern": "图 {n}",
+  "sentence_period": ".",
+  "cjk_punctuation": "fullwidth",
+  "allowed_scripts": ["Han", "Latin", "Cyrillic", "Greek", "Common"],
+  "extra_allowed_codepoints": [
+    "∞", "√", "≤", "≥", "≠", "≈", "∈", "∉", "⊂", "∪", "∩", "∅", "∠", "△", "⊥", "∥",
+    "±", "×", "÷", "·", "°", "′", "″", "→", "↔", "⩽", "⩾", "∑", "∫", "∞",
+    "§", "…", "—", "－", "、", "。", "，", "；", "：", "？", "！", "（", "）", "《", "》",
+    "“", "”", "‘", "’", "〔", "〕", "【", "】"
+  ],
+  "forbidden_codepoints": [
+    "−", "–",
+    "０", "１", "２", "３", "４", "５", "６", "７", "８", "９",
+    "²", "³", "¹", "⁰", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹", "ⁿ",
+    "₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"
+  ],
+  "notes": [
+    "区间记号用法式 ]a,b[ 表开区间，必须照抄，禁止改成 (a,b)",
+    "习题小问标号为西里尔字母 а) б) в) г) д) е)，与拉丁 a/b/e 字形相同，须特别校验",
+    "正文句末用半角句点 '.'，非全角句号 '。'",
+    "上下标一律 LaTeX 写法 x^2 / x_1，禁止 Unicode 上下标字符"
+  ]
+}

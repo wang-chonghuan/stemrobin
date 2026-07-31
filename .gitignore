@@ -169,3 +169,10 @@ resources/soviet10years/
 # playwright html report (test output)
 app/playwright-report/
 app/test-results/
+
+# python 字节码
+__pycache__/
+*.pyc
+
+# ld-page2class：读图用的坐标网格图是脚手架，prepare 随时可重生成
+page2class/*/pages/*/page.grid.png

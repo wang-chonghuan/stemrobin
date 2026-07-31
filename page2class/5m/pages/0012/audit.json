@@ -1,0 +1,28 @@
+{
+  "page": 12,
+  "lines_printed": 22,
+  "lines_md": 22,
+  "figures": [
+    {
+      "id": "fig-04",
+      "label": "图 4",
+      "box": [
+        238,
+        514,
+        1145,
+        221
+      ],
+      "components": 1475,
+      "from": [
+        238,
+        514,
+        1145,
+        221
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

@@ -1,0 +1,45 @@
+{
+  "page": 17,
+  "lines_printed": 25,
+  "lines_md": 25,
+  "figures": [
+    {
+      "id": "tbl-p0017-01",
+      "label": "课程表",
+      "box": [
+        780,
+        875,
+        484,
+        361
+      ],
+      "components": 62,
+      "from": [
+        780,
+        875,
+        484,
+        361
+      ]
+    },
+    {
+      "id": "fig-09",
+      "label": "图 9",
+      "box": [
+        851,
+        1330,
+        355,
+        251
+      ],
+      "components": 1082,
+      "from": [
+        851,
+        1330,
+        355,
+        251
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

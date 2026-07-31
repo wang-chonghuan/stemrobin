@@ -1,0 +1,62 @@
+{
+  "page": 14,
+  "lines_printed": 21,
+  "lines_md": 21,
+  "figures": [
+    {
+      "id": "fig-05",
+      "label": "图 5",
+      "box": [
+        802,
+        234,
+        580,
+        407
+      ],
+      "components": 40,
+      "from": [
+        802,
+        234,
+        580,
+        407
+      ]
+    },
+    {
+      "id": "fig-06-1",
+      "label": "图 6 之 1）",
+      "box": [
+        279,
+        1516,
+        428,
+        331
+      ],
+      "components": 202,
+      "from": [
+        279,
+        1516,
+        428,
+        331
+      ]
+    },
+    {
+      "id": "fig-06-2",
+      "label": "图 6 之 2）",
+      "box": [
+        814,
+        1540,
+        552,
+        284
+      ],
+      "components": 20,
+      "from": [
+        814,
+        1540,
+        552,
+        284
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

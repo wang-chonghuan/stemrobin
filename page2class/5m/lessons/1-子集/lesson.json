@@ -1,0 +1,105 @@
+{
+  "id": "1-子集",
+  "chapter": "第一章　正数和负数",
+  "section": "§1. 集合的运算",
+  "number": "1",
+  "title": "子集",
+  "printed_title": "1. 子集",
+  "start_page": 10,
+  "start_printed": 1,
+  "figures": [
+    {
+      "id": "fig-01",
+      "label": "图 1",
+      "page": 10
+    },
+    {
+      "id": "fig-02",
+      "label": "图 2",
+      "page": 10
+    },
+    {
+      "id": "fig-03",
+      "label": "图 3",
+      "page": 11
+    },
+    {
+      "id": "fig-04",
+      "label": "图 4",
+      "page": 12
+    }
+  ],
+  "exercise_count": 19,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "我们班上有 36 名学生. 昨天出席 34 人，两人因病缺席.出席的学生是全班学生的集合的一部分. 在数学中用**子集**来代替“集合的一部分”. 用 $X$ 表示全班学生的集合，用 $P$ 表示昨天出席的学生的集合，那么 $P$ 就是集合 $X$ 的子集. 写成$P \\subset X$. 符号 $\\subset$ 读作：“是子集”（$P$ 是集合 $X$ 的子集）. 在数学中，把集合的本身和空集都看作是集合的一部分（子集），例如，假如今天我们班的全体学生都出席了，那么出席的学生的子集和全体学生的集合相同，而生病的学生的子集则是空的.",
+      "id": null,
+      "label": null,
+      "printed_page": 1
+    },
+    {
+      "kind": "p",
+      "text": "任何几何图形都是点的集合. 所以图 1 中的六边形$ABCDEF$ 是圆的子集，而六边形的顶点的集合 $\\{A, B, C, D, E,F\\}$ 则是圆周的子集.",
+      "id": null,
+      "label": null,
+      "printed_page": 1
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-01",
+      "label": "图 1",
+      "printed_page": 1
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-02",
+      "label": "图 2",
+      "printed_page": 1
+    },
+    {
+      "kind": "cap",
+      "text": "图 1  图 2",
+      "id": null,
+      "label": "图 1",
+      "printed_page": 1
+    },
+    {
+      "kind": "p",
+      "text": "图 2 中的集合 $M$ 不是集合 $K$ 的子集，因为三角形和六边形是集合 $M$ 的元素，但不是集合 $K$ 的元素.",
+      "id": null,
+      "label": null,
+      "printed_page": 1
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-03",
+      "label": "图 3",
+      "printed_page": 2
+    },
+    {
+      "kind": "cap",
+      "text": "图 3",
+      "id": null,
+      "label": "图 3",
+      "printed_page": 2
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-04",
+      "label": "图 4",
+      "printed_page": 3
+    },
+    {
+      "kind": "cap",
+      "text": "图 4",
+      "id": null,
+      "label": "图 4",
+      "printed_page": 3
+    }
+  ]
+}

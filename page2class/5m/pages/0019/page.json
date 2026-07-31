@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "printed_page": 10,
+    "book": "5m",
+    "page": 19,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 19
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "d726c869ac737c03673b0cf1214878363f22d2844668bade52d01f29a2dbd52c"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "schema": "ld-page2class/page@3",
+    "notes": [],
+    "printed_lines": 18,
+    "figures": [
+      {
+        "id": "fig-10",
+        "label": "图 10",
+        "box": [
+          776,
+          676,
+          526,
+          372
+        ]
+      },
+      {
+        "id": "fig-11",
+        "label": "图 11",
+        "box": [
+          150,
+          1581,
+          607,
+          323
+        ]
+      },
+      {
+        "id": "fig-12",
+        "label": "图 12",
+        "box": [
+          777,
+          1385,
+          527,
+          527
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "46",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "$K$ 是 15 的约数的集合，$M$ 是 18 的约数的集合，$P$ 是 9 的",
+        "约数的集合. 在大括号内写出下列各集合：",
+        "1）$K \\cup M$；2）$K \\cap M$；3）$M \\cup P$；4）$M \\cap P$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "47",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "$A$={7, 8, 9, 10}，$C$={9, 10, 11, 12, 13}. 在大括号内写",
+        "出下列集合：",
+        "1）$A \\cap C$；  2）$A \\cup C$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "48",
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "按图 10 回答：",
+        "1）哪条直线平行于直线"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 10",
+      "box": [
+        776,
+        676,
+        526,
+        372
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-10"
+    },
+    {
+      "kind": "ex",
+      "label": "48",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "$m$？",
+        "2）哪条直线与直线 $m$ 相",
+        "交？"
+      ]
+    },
+    {
+      "kind": "cap",
+      "label": "图 10",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": true,
+      "lines": [
+        "图 10"
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "4. 作平行线"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "图 11 中的直线 $m$ 与 $n$ 垂直于直线 $l$. $m$ 和 $n$ 两条直线",
+        "不相交，而是互相平行. 为了作",
+        "平行于直线 $m$ 的直线，如图 12"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 11",
+      "box": [
+        150,
+        1581,
+        607,
+        323
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-11"
+    },
+    {
+      "kind": "fig",
+      "label": "图 12",
+      "box": [
+        777,
+        1385,
+        527,
+        527
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-12"
+    },
+    {
+      "kind": "cap",
+      "label": "图 11",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 11  图 12"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 10 ·"
+      ]
+    }
+  ]
+}
