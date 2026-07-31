@@ -11,7 +11,7 @@ import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 
 export const Route = createFileRoute('/_app')({
-  // Open access (STEMROBIN-68): the learner surfaces (/, /lesson/$id) are PUBLIC —
+  // Open access (STEMROBIN-68): the learner surfaces (/, /card/$id) are PUBLIC —
   // browsing lessons and answering card read-checks needs no login (read-checks are
   // judged server-side but only persisted for a logged-in user; see recordReadCheck).
   // The login wall lives at the practice deck (recordAnswer requires a user) and at

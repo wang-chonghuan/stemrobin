@@ -520,17 +520,14 @@ details[open] > summary > .sr-out-caret {
 }
 
 /* ---- one card ---- */
-/* Fills the detail pane: the body takes whatever height is left so the actions
-   sit at the bottom of the area rather than under a short block of text. */
+/* Stacks from the top and grows with its content. It used to fill the pane with
+   the body flexed to the leftover height — right while the body was a dashed
+   placeholder, wrong the moment real 課文 went in: the text overflowed its box
+   and painted over the action bar. */
 .sr-deck {
-  display: flex;
-  flex-direction: column;
-  min-height: 100%;
+  max-width: 44em;
   padding: 2px 2px 0;
 }
-/* One line, scrolled rather than wrapped or truncated — swipe/scroll to read the
-   front of it. It is scrolled to its end on mount (see the ref), because the
-   section is the part that says where you are. */
 .sr-deck-where {
   display: flex;
   gap: 8px;
@@ -571,9 +568,8 @@ details[open] > summary > .sr-out-caret {
   color: var(--sr-ink-dim);
   font-size: 11px;
 }
-.sr-deck-body {
-  flex: 1 1 auto;
-  min-height: 200px;
+.sr-deck-empty {
+  min-height: 180px;
   margin: 16px 0;
   padding: 22px;
   display: grid;
@@ -582,7 +578,128 @@ details[open] > summary > .sr-out-caret {
   border-radius: 14px;
   background: var(--sr-panel);
 }
+
+/* ---- 課文 / 習題 switch ---- */
+.sr-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 18px 0 4px;
+  border-bottom: 1px solid var(--sr-line);
+}
+.sr-tab {
+  appearance: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  color: var(--sr-ink-dim);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+.sr-tab:hover { color: var(--sr-ink); }
+.sr-tab.on {
+  color: var(--sr-ink);
+  border-bottom-color: var(--sr-blue);
+}
+.sr-tab-n {
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--sr-line-soft);
+  color: var(--sr-ink-dim);
+  font-size: 11.5px;
+}
+.sr-tab.on .sr-tab-n {
+  background: var(--sr-blue);
+  color: #fff;
+}
+
+/* ---- 課文 ---- */
+/* The measure, the leading and the 2-em first-line indent are the printed book's,
+   because this text was set for paper: long CJK lines with no paragraph spacing,
+   where the indent is what marks a new paragraph. */
+.sr-read {
+  margin: 22px 0 8px;
+  font-size: 16.5px;
+  line-height: 1.95;
+  color: var(--sr-ink);
+}
+.sr-read-p {
+  margin: 0 0 2px;
+  text-indent: 2em;
+  text-align: justify;
+}
+.sr-read-p strong { font-weight: 700; }
+.sr-read-cap {
+  margin: 2px 0 20px;
+  text-align: center;
+  color: var(--sr-ink-dim);
+  font-size: 13px;
+}
+.sr-read-fig {
+  margin: 20px auto 2px;
+  text-align: center;
+}
+.sr-read-fig svg,
+.sr-ex-fig svg {
+  display: block;
+  margin: 0 auto;
+  max-width: min(100%, 30em);
+  height: auto;
+  color: var(--sr-ink);
+}
+.sr-read-fig img,
+.sr-ex-fig img { max-width: min(100%, 30em); height: auto; }
+
+/* ---- 習題 ---- */
+.sr-ex-list { margin: 20px 0 8px; }
+.sr-ex-group {
+  margin: 26px 0 6px;
+  padding-left: 10px;
+  border-left: 3px solid var(--sr-blue);
+  font-family: var(--sr-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--sr-ink);
+}
+.sr-ex-wrap:first-child .sr-ex-group { margin-top: 4px; }
+.sr-ex {
+  display: grid;
+  grid-template-columns: 2.6em 1fr;
+  gap: 0 10px;
+  padding: 14px 0;
+  border-top: 1px solid var(--sr-line-soft);
+}
+.sr-ex-n {
+  color: var(--sr-blue);
+  font-weight: 700;
+  font-size: 14px;
+  padding-top: 3px;
+}
+.sr-ex-body {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--sr-ink);
+}
+.sr-ex-fig { margin: 10px 0 0; }
+.sr-ex-fig svg { margin: 0; max-width: min(100%, 22em); }
+
+/* Formula and the punctuation glued to it must break as one — otherwise the
+   semicolon after `$…$;` is thrown onto the next line by itself. */
+.sr-nb { white-space: nowrap; }
+.sr-tex-err {
+  color: #a3341f;
+  background: #fdeeea;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
 .sr-deck-actions {
+  margin-top: 26px;
   display: flex;
   align-items: center;
   gap: 8px;

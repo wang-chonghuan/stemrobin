@@ -8,41 +8,97 @@ import {
   Star,
 } from 'lucide-react'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-import { LessonFrame } from '~/components/lesson-frame'
-import { getLessonHtml } from '~/lib/lessons'
-import { t } from '~/lib/i18n'
+import { t, type Locale } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getLocale } from '~/lib/locale'
+import { getCardContent, type CardExercise, type ProseBlock } from '~/lib/lessons'
 import { findCard } from '~/lib/textbooks'
 
 // One card: a numbered teaching item from the printed book.
 //
-// The body is the 課文 transcribed from the scan — one self-contained document
-// (KaTeX pre-rendered, figures inlined as SVG) written by ld-page2class and
-// stored under the card's own id, which is why no new table was needed. A card
-// with nothing stored yet still has an address and a shape; it just says so.
+// The body is what the scan actually says — 課文 blocks and the book's own
+// numbered exercises, transcribed by ld-page2class. Both arrive as HTML fragments
+// with the formulas already rendered and the figures as inline SVG, so this page
+// lays them out with the app's own typography. It deliberately does NOT host a
+// self-contained document in an iframe: that made the text a second document
+// inside the product (its own fonts, its own measure) and left its height to be
+// guessed, which is what pushed the action bar into the middle of the page.
 export const Route = createFileRoute('/_app/card/$id')({
   component: CardPage,
   loader: async ({ params }) => {
-    const [locale, html] = await Promise.all([
+    const [locale, content] = await Promise.all([
       getLocale(),
-      getLessonHtml({ data: params.id }),
+      getCardContent({ data: params.id }),
     ])
-    return { locale, html, card: findCard(params.id, locale) }
+    return { locale, content, card: findCard(params.id, locale) }
   },
 })
 
+function Prose({ blocks }: { blocks: ProseBlock[] }) {
+  return (
+    <div className="sr-read">
+      {blocks.map((b, i) =>
+        b.kind === 'fig' ? (
+          // Traced from the scan: fill=currentColor, so a figure inks itself with
+          // the surrounding text rather than staying pure black.
+          <figure
+            key={i}
+            className="sr-read-fig"
+            aria-label={b.label ?? undefined}
+            dangerouslySetInnerHTML={{ __html: b.svg ?? '' }}
+          />
+        ) : b.kind === 'cap' ? (
+          <p key={i} className="sr-read-cap" dangerouslySetInnerHTML={{ __html: b.html }} />
+        ) : (
+          <p key={i} className="sr-read-p" dangerouslySetInnerHTML={{ __html: b.html }} />
+        ),
+      )}
+    </div>
+  )
+}
+
+// The book numbers its exercises continuously across a whole volume, so the
+// number is the exercise's name — it is shown as given, never re-counted here.
+function Exercises({ items, locale }: { items: CardExercise[]; locale: Locale }) {
+  let group: string | null | undefined
+  return (
+    <div className="sr-ex-list">
+      {items.map((e) => {
+        const head = e.group !== group ? ((group = e.group), e.group) : null
+        return (
+          <section key={e.number} className="sr-ex-wrap">
+            {head !== null && <h2 className="sr-ex-group">{head || t(locale, 'card.practice')}</h2>}
+            <article className="sr-ex" id={`ex-${e.number}`}>
+              <div className="sr-ex-n sr-num">{e.number}</div>
+              <div className="sr-ex-body">
+                <div dangerouslySetInnerHTML={{ __html: e.html }} />
+                {e.figures.map((f) => (
+                  <figure
+                    key={f.id}
+                    className="sr-ex-fig"
+                    aria-label={f.label ?? undefined}
+                    dangerouslySetInnerHTML={{ __html: f.svg ?? '' }}
+                  />
+                ))}
+              </div>
+            </article>
+          </section>
+        )
+      })}
+    </div>
+  )
+}
+
 function CardPage() {
-  const { locale, html, card } = Route.useLoaderData()
+  const { locale, content, card } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const where = useRef<HTMLElement>(null)
+  const [tab, setTab] = useState<'read' | 'ex'>('read')
 
   // Park the trail at its own end, so a trail too long for the pane shows the
-  // section rather than the volume. Re-run once the display font lands: with the
-  // fallback metrics the trail can still fit, and it is the webfont that makes it
-  // overflow.
+  // section rather than the volume. Re-run once the display font lands.
   const cardId = card?.id
   useEffect(() => {
     const el = where.current
@@ -54,8 +110,13 @@ function CardPage() {
     document.fonts?.ready.then(park).catch(() => {})
   }, [cardId])
 
-  // The drawer toggle lives in this bar, so it has to be here too — below the
-  // shared breakpoint it is the only way back to the catalog.
+  // A new card starts at its 課文, and at the top — otherwise a learner who was
+  // on the exercises tab lands part-way into the next card's problems.
+  useEffect(() => {
+    setTab('read')
+    document.querySelector('.sr-d-scroll')?.scrollTo({ top: 0 })
+  }, [cardId])
+
   const top = (title: string) => (
     <div className="sr-d-top">
       <button
@@ -82,14 +143,14 @@ function CardPage() {
     )
   }
 
+  const exercises = content?.exercises ?? []
+  const prose = content?.prose ?? []
+
   return (
     <main className="sr-detail">
       {top(card.trail[card.trail.length - 1])}
-      <div className="sr-d-scroll sr-d-scroll-fill">
+      <div className="sr-d-scroll">
         <article className="sr-deck">
-          {/* Where this card sits, in the book's own words. It scrolls rather
-              than wraps or truncates, and starts at its own end: the section is
-              what tells you where you are, the volume you already know. */}
           <nav
             className="sr-deck-where"
             aria-label={t(locale, 'cat.group.curriculum')}
@@ -104,20 +165,43 @@ function CardPage() {
           </nav>
 
           <h1 className="sr-deck-title">
-            {/* Only where the book numbers it — a chapter's exercise set and the
-                volume's closing set carry no number of their own. */}
             {card.number !== null && <span className="sr-deck-n sr-num">{card.number}</span>}
             {card.title}
           </h1>
-          <p className="sr-deck-id sr-num">{card.id}</p>
 
-          <div className="sr-deck-body">
-            {html ? (
-              <LessonFrame html={html} title={card.title} />
-            ) : (
+          {exercises.length > 0 && (
+            <div className="sr-tabs" role="tablist">
+              <button
+                type="button"
+                role="tab"
+                aria-selected={tab === 'read'}
+                className={`sr-tab${tab === 'read' ? ' on' : ''}`}
+                onClick={() => setTab('read')}
+              >
+                {t(locale, 'card.read')}
+              </button>
+              <button
+                type="button"
+                role="tab"
+                aria-selected={tab === 'ex'}
+                className={`sr-tab${tab === 'ex' ? ' on' : ''}`}
+                onClick={() => setTab('ex')}
+              >
+                {t(locale, 'card.exercises')}
+                <span className="sr-tab-n">{exercises.length}</span>
+              </button>
+            </div>
+          )}
+
+          {prose.length === 0 && exercises.length === 0 ? (
+            <div className="sr-deck-empty">
               <p className="sr-note">{t(locale, 'deck.empty')}</p>
-            )}
-          </div>
+            </div>
+          ) : tab === 'read' ? (
+            <Prose blocks={prose} />
+          ) : (
+            <Exercises items={exercises} locale={locale} />
+          )}
 
           <footer className="sr-deck-actions">
             <button type="button" className="sr-deck-act">
@@ -127,37 +211,35 @@ function CardPage() {
               <MessageCircleQuestion size={15} aria-hidden /> {t(locale, 'deck.askai')}
             </button>
             <span className="sr-deck-spacer" />
-            {/* Kept in one group so a narrow pane wraps them together rather
-                than stranding Next on its own line. */}
             <span className="sr-deck-turn">
-            {card.prev ? (
-              <Link
-                to="/card/$id"
-                params={{ id: card.prev.id }}
-                className="sr-deck-act"
-                title={card.prev.title}
-              >
-                <ChevronLeft size={15} aria-hidden /> {t(locale, 'deck.prev')}
-              </Link>
-            ) : (
-              <span className="sr-deck-act disabled">
-                <ChevronLeft size={15} aria-hidden /> {t(locale, 'deck.prev')}
-              </span>
-            )}
-            {card.next ? (
-              <Link
-                to="/card/$id"
-                params={{ id: card.next.id }}
-                className="sr-deck-act"
-                title={card.next.title}
-              >
-                {t(locale, 'deck.next')} <ChevronRight size={15} aria-hidden />
-              </Link>
-            ) : (
-              <span className="sr-deck-act disabled">
-                {t(locale, 'deck.next')} <ChevronRight size={15} aria-hidden />
-              </span>
-            )}
+              {card.prev ? (
+                <Link
+                  to="/card/$id"
+                  params={{ id: card.prev.id }}
+                  className="sr-deck-act"
+                  title={card.prev.title}
+                >
+                  <ChevronLeft size={15} aria-hidden /> {t(locale, 'deck.prev')}
+                </Link>
+              ) : (
+                <span className="sr-deck-act disabled">
+                  <ChevronLeft size={15} aria-hidden /> {t(locale, 'deck.prev')}
+                </span>
+              )}
+              {card.next ? (
+                <Link
+                  to="/card/$id"
+                  params={{ id: card.next.id }}
+                  className="sr-deck-act"
+                  title={card.next.title}
+                >
+                  {t(locale, 'deck.next')} <ChevronRight size={15} aria-hidden />
+                </Link>
+              ) : (
+                <span className="sr-deck-act disabled">
+                  {t(locale, 'deck.next')} <ChevronRight size={15} aria-hidden />
+                </span>
+              )}
             </span>
           </footer>
         </article>
