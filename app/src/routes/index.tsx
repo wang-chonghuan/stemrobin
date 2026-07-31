@@ -169,8 +169,8 @@ function LandingLight() {
     l.ready ? (
       <Link
         key={l.id}
-        to="/lesson/$id"
-        params={{ id: l.id }}
+        to="/card/$id"
+        params={{ id: l.cardId }}
         className="lw-map-sec"
         onClick={() => {
           setMenuOpen(false)

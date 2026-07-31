@@ -7,7 +7,7 @@
 // that document to an iframe and let the learner read it. Practice will return
 // as its own surface later; it is deliberately not modelled here.
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, ChevronLeft, ChevronRight, Menu } from 'lucide-react'
 
@@ -15,6 +15,7 @@ import { getTextbookLessonLabel, getTextbookLessonNav } from '~/lib/textbooks'
 import { getLessonHtml, listAvailableLessonIds } from '~/lib/lessons'
 import { getLocale } from '~/lib/locale'
 import { t, type Locale } from '~/lib/i18n'
+import { LessonFrame } from '~/components/lesson-frame'
 import { useLayoutStore } from '~/lib/layout-store'
 
 export const Route = createFileRoute('/_app/lesson/$id')({
@@ -101,63 +102,5 @@ function LessonNavFooter({
         </button>
       )}
     </nav>
-  )
-}
-
-// The document sizes itself: the iframe has no intrinsic height, so measure the
-// inner body and grow to it. Re-measured on load, on inner resize, and twice on a
-// timer — KaTeX fonts and inline SVG settle after first paint and change height.
-function LessonFrame({
-  frameRef,
-  html,
-  title,
-}: {
-  frameRef: React.RefObject<HTMLIFrameElement | null>
-  html: string
-  title: string
-}) {
-  const [height, setHeight] = useState(600)
-
-  useEffect(() => {
-    const iframe = frameRef.current
-    if (!iframe) return
-
-    let observer: ResizeObserver | null = null
-    const timers: ReturnType<typeof setTimeout>[] = []
-
-    const measure = () => {
-      const h = iframe.contentDocument?.body?.scrollHeight
-      if (h && h > 0) setHeight(h)
-    }
-
-    const setup = () => {
-      measure()
-      const body = iframe.contentDocument?.body
-      if (body && 'ResizeObserver' in window) {
-        observer?.disconnect()
-        observer = new ResizeObserver(measure)
-        observer.observe(body)
-      }
-      timers.push(setTimeout(measure, 300), setTimeout(measure, 1200))
-    }
-
-    iframe.addEventListener('load', setup)
-    if (iframe.contentDocument?.readyState === 'complete') setup()
-
-    return () => {
-      iframe.removeEventListener('load', setup)
-      observer?.disconnect()
-      timers.forEach(clearTimeout)
-    }
-  }, [frameRef, html])
-
-  return (
-    <iframe
-      ref={frameRef}
-      srcDoc={html}
-      title={title}
-      sandbox="allow-scripts allow-same-origin allow-modals"
-      style={{ width: '100%', height, border: 0, display: 'block' }}
-    />
   )
 }

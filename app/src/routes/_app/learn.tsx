@@ -120,7 +120,7 @@ function Learn() {
               {newLessons.map((l) => (
                 <Link
                   key={l.id}
-                  to="/lesson/$id"
+                  to="/card/$id"
                   params={{ id: l.id }}
                   className="sr-card sr-lesson-card"
                 >

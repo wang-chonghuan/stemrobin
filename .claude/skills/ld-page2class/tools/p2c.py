@@ -7,6 +7,7 @@
     p2c.py assemble  --book 5m                # 跨页装订 → 小节 + 独立编号的题
     p2c.py vectorize --book 5m                # 插图 PNG → SVG（描摹 + 保真自检）
     p2c.py render    --book 5m [--lesson id]  # 自包含 HTML（课文页 + 习题页）
+    p2c.py publish   --book 5m [--dry]        # 写进内容库，产品里就能点开了
 
 机器不猜哪里是图、哪一段是第几题——那是模型看图的活；
 模型也不量像素、不做跨页拼接、不做全书对账——那是机器的活。
@@ -283,6 +284,15 @@ def cmd_render(a) -> int:
     return subprocess.run(args).returncode
 
 
+# ---------------------------------------------------------------- cap5 入库
+def cmd_publish(a) -> int:
+    args = ["node", str(TOOLS / "publish.mjs"), str(_book_dir(a))]
+    if a.dry:
+        args.append("--dry")
+    args += ["--env", a.env]
+    return subprocess.run(args).returncode
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(prog="p2c.py", description="扫描教材 → 小节 + 题")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -316,6 +326,12 @@ def main() -> int:
     p = sub.add_parser("render", help="自包含 HTML：课文页 + 习题页")
     common(p, page=False); p.add_argument("--lesson", default=None)
     p.set_defaults(fn=cmd_render)
+
+    p = sub.add_parser("publish", help="写进内容库（一个小节 = 一行，id 用卡片 id）")
+    common(p, page=False)
+    p.add_argument("--dry", action="store_true", help="只打印要写什么，不连库")
+    p.add_argument("--env", default=".env", help="连接串所在的 .env")
+    p.set_defaults(fn=cmd_publish)
 
     a = ap.parse_args()
     return a.fn(a)

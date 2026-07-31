@@ -107,14 +107,14 @@ const SHELF: Partial<Record<Locale, RawBook>>[] = (() => {
  *  lesson with the printed numbering, which runs continuously across the whole
  *  volume (1–55 in Algebra 6), so a topic is addressed by its lesson's id plus
  *  that number. They are not pages of their own. */
-export type OutlineTopic = { id: string; number: number; title: string }
+export type OutlineTopic = { id: string; number: number; title: string; ready: boolean }
 export type OutlineLesson = {
   id: string
   number: string
   title: string
   ready: boolean
-  /** Where the row goes: its first card, or itself when the book gave it no
-   *  numbered items and it is therefore one card. */
+  /** Where the section title goes: its first card that has content, else its
+   *  first card, else itself when the book gave it no numbered items. */
   cardId: string
   topics: OutlineTopic[]
 }
@@ -143,18 +143,27 @@ export function getTextbookOutline(
   for (const localized of SHELF) {
     const book = localized[locale] ?? localized.zh ?? localized.en
     if (!book) continue
-    const lesson = (l: RawLesson): OutlineLesson => ({
-      id: l.id,
-      number: l.number ?? '',
-      title: l.title,
-      ready: available.has(l.id),
-      cardId: l.topics?.length ? l.topics[0].id : l.id,
-      topics: (l.topics ?? []).map((tp) => ({
+    // Content is stored per CARD, so readiness is decided per card: a numbered
+    // item is ready when its own id is in the DB, and a section is ready when any
+    // of its items is. Deciding it on the section id would leave every card
+    // unreachable — the section id is a container, nothing is ever stored under it.
+    const lesson = (l: RawLesson): OutlineLesson => {
+      const topics = (l.topics ?? []).map((tp) => ({
         id: tp.id,
         number: tp.printedNumber,
         title: tp.title,
-      })),
-    })
+        ready: available.has(tp.id),
+      }))
+      const firstReady = topics.find((tp) => tp.ready)
+      return {
+        id: l.id,
+        number: l.number ?? '',
+        title: l.title,
+        ready: topics.length ? Boolean(firstReady) : available.has(l.id),
+        cardId: firstReady?.id ?? topics[0]?.id ?? l.id,
+        topics,
+      }
+    }
     const contents: OutlineNode[] = book.contents.map((e) =>
       e.kind === 'chapter'
         ? {
@@ -253,20 +262,29 @@ export function bookLessons(book: OutlineBook): OutlineLesson[] {
   return book.contents.flatMap((n) => (n.kind === 'chapter' ? n.lessons : [n.lesson]))
 }
 
-/** Outline lessons that have content, in book order — the overview's lesson grid. */
+/** Cards that have content, in book order — the overview's grid and the
+ *  prev/next chain. Cards, not sections: a section is a container, and it is the
+ *  card that carries a page. */
 export function getAvailableTextbookLessons(
   lessonIds: readonly string[],
   locale: Locale,
 ): { id: string; title: string; subject: string }[] {
   return getTextbookOutline(lessonIds, locale).flatMap((d) =>
     d.books.flatMap((b) =>
-      bookLessons(b)
-        .filter((l) => l.ready)
-        .map((l) => ({
-          id: l.id,
-          title: l.number ? `${l.number} ${l.title}` : l.title,
-          subject: b.title,
-        })),
+      bookLessons(b).flatMap((l) =>
+        l.topics.length
+          ? l.topics
+              .filter((tp) => tp.ready)
+              .map((tp) => ({
+                id: tp.id,
+                title: `${tp.number}. ${tp.title}`,
+                subject: b.title,
+              }))
+          : l.ready
+            ? [{ id: l.id, title: l.number ? `${l.number} ${l.title}` : l.title,
+                 subject: b.title }]
+            : [],
+      ),
     ),
   )
 }
@@ -276,8 +294,11 @@ export function getAvailableTextbookLessons(
 export function getTextbookLessonLabel(id: string, locale: Locale): string {
   for (const d of getTextbookOutline([], locale))
     for (const b of d.books)
-      for (const l of bookLessons(b))
+      for (const l of bookLessons(b)) {
         if (l.id === id) return l.number ? `${l.number} ${l.title}` : l.title
+        const tp = l.topics.find((x) => x.id === id)
+        if (tp) return `${tp.number}. ${tp.title}`
+      }
   return id
 }
 

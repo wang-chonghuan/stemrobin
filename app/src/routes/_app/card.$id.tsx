@@ -10,24 +10,32 @@ import {
 
 import { useEffect, useRef } from 'react'
 
+import { LessonFrame } from '~/components/lesson-frame'
+import { getLessonHtml } from '~/lib/lessons'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getLocale } from '~/lib/locale'
 import { findCard } from '~/lib/textbooks'
 
-// One card: a numbered teaching item from the printed book. The outline is the
-// only thing that exists so far, so the body is empty — the page is here to give
-// every card an address and a shape to fill.
+// One card: a numbered teaching item from the printed book.
+//
+// The body is the 課文 transcribed from the scan — one self-contained document
+// (KaTeX pre-rendered, figures inlined as SVG) written by ld-page2class and
+// stored under the card's own id, which is why no new table was needed. A card
+// with nothing stored yet still has an address and a shape; it just says so.
 export const Route = createFileRoute('/_app/card/$id')({
   component: CardPage,
   loader: async ({ params }) => {
-    const locale = await getLocale()
-    return { locale, card: findCard(params.id, locale) }
+    const [locale, html] = await Promise.all([
+      getLocale(),
+      getLessonHtml({ data: params.id }),
+    ])
+    return { locale, html, card: findCard(params.id, locale) }
   },
 })
 
 function CardPage() {
-  const { locale, card } = Route.useLoaderData()
+  const { locale, html, card } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const where = useRef<HTMLElement>(null)
 
@@ -104,7 +112,11 @@ function CardPage() {
           <p className="sr-deck-id sr-num">{card.id}</p>
 
           <div className="sr-deck-body">
-            <p className="sr-note">{t(locale, 'deck.empty')}</p>
+            {html ? (
+              <LessonFrame html={html} title={card.title} />
+            ) : (
+              <p className="sr-note">{t(locale, 'deck.empty')}</p>
+            )}
           </div>
 
           <footer className="sr-deck-actions">

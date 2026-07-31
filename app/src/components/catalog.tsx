@@ -296,7 +296,7 @@ function LessonRow({
     return (
       <li>
         <Link
-          to="/lesson/$id"
+          to="/card/$id"
           params={{ id: lesson.id }}
           className="sr-out-lesson ready"
           activeProps={{ className: 'sr-out-lesson ready active' }}
@@ -310,15 +310,20 @@ function LessonRow({
   }
   return (
     <li>
-      <details className="sr-out-section" open={lesson.id === openCard}>
+      {/* Unfolded on arrival: the route param is a CARD id now, so a section is
+          "the one being read" when the card belongs to it. */}
+      <details
+        className="sr-out-section"
+        open={lesson.id === openCard || lesson.topics.some((tp) => tp.id === openCard)}
+      >
         <summary>
           <span className="sr-out-caret" aria-hidden />
           {lesson.ready ? (
             // Inside <summary>, so stop the click from toggling the disclosure —
             // the caret is the toggle, the title is the destination.
             <Link
-              to="/lesson/$id"
-              params={{ id: lesson.id }}
+              to="/card/$id"
+              params={{ id: lesson.cardId }}
               className="sr-out-lesson ready"
               activeProps={{ className: 'sr-out-lesson ready active' }}
               onClick={(e) => {
@@ -336,11 +341,12 @@ function LessonRow({
         <ol className="sr-out-topics">
           {lesson.topics.map((tp) => (
             <li key={tp.id}>
-              {lesson.ready ? (
+              {tp.ready ? (
                 <Link
-                  to="/lesson/$id"
-                  params={{ id: lesson.id }}
-                  className="sr-out-topic"
+                  to="/card/$id"
+                  params={{ id: tp.id }}
+                  className="sr-out-topic ready"
+                  activeProps={{ className: 'sr-out-topic ready active' }}
                   onClick={onNavigate}
                 >
                   <span className="sr-out-topic-n">{tp.number}</span>
@@ -380,14 +386,20 @@ function DisciplineOutline({
   openCard: string | undefined
   onNavigate: () => void
 }) {
+  // Counted in CARDS, not sections — a card is what carries a page, and the
+  // overview's stats use the same unit. Counting sections made "1/372" mean four
+  // readable cards, which reads as one.
   const lessons = discipline.books.flatMap(bookLessons)
-  const ready = lessons.filter((l) => l.ready).length
+  const cards: { ready: boolean }[] = lessons.flatMap((l) =>
+    l.topics.length ? l.topics : [{ ready: l.ready }],
+  )
+  const ready = cards.filter((c) => c.ready).length
   return (
     <details className="sr-out-subject" open={defaultOpen}>
       <summary>
         <span className="sr-out-caret" aria-hidden />
         <span className="sr-out-subject-name">{discipline.label}</span>
-        <span className="sr-count">{ready > 0 ? `${ready}/${lessons.length}` : lessons.length}</span>
+        <span className="sr-count">{ready > 0 ? `${ready}/${cards.length}` : cards.length}</span>
       </summary>
       {discipline.books.map((book) => (
         <details key={book.book} className="sr-out-book" open={discipline.books.length === 1}>
