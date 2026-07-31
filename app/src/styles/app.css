@@ -526,6 +526,7 @@ details[open] > summary > .sr-out-caret {
    and painted over the action bar. */
 .sr-deck {
   max-width: 44em;
+  margin: 0 auto;
   padding: 2px 2px 0;
 }
 .sr-deck-where {
