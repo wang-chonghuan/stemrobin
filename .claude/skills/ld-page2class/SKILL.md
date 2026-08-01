@@ -10,6 +10,28 @@ description: 把纯扫描的教材 PDF 抽成课程单元——每个小节一�
 适用判据：`pdffonts book.pdf` 无嵌入字体、`pdftotext` 提取 0 字符 → 该书没有文字层，
 所有"抽取文字层"的工具都会输出空白，必须走视觉转写。
 
+## 抽一批页的标准流程
+
+用户通常只会给一句话：**「抽 5m 第 21–31 页」**。默认按下面整套走到底，不要停在中间：
+
+```bash
+P=.claude/skills/ld-page2class/.venv/bin/python
+S=.claude/skills/ld-page2class/tools/p2c.py
+
+for n in $(seq 21 31); do $P $S prepare --book 5m --page $n; done   # ① 备料
+#   ② 逐页读 page.grid.png，把 page.template.md 填成 page.md
+for n in $(seq 21 31); do $P $S finalize --book 5m --page $n; done  # ③ 收口，必须全绿
+
+$P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
+$P $S vectorize --book 5m
+node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m    # ⑤ 入库，产品即可读
+```
+
+- `assemble` 的 `--toc` **不能省**：课的 id 是从教材目录认领的，没有它产品里就没有地址
+- ③ 和 `assemble` 的对账**不通过就是没做完**，回到 ② 修，不允许放行
+- `render` 是可选的：另出一份可双击打开的自包含 HTML，用于离线检查
+- 入库前想先看写什么，`publish.mjs … --dry`
+
 ## 交付的是对象，不是页
 
 页是扫描的产物，不是内容的单位。要交付的两个对象——**小节**和**题**——都不认页
@@ -196,6 +218,20 @@ CSS 与 20 个 woff2 字体内联成 data URI、插图 SVG 直接内联。
 > 现在内联数为 0 直接抛错，不允许静默降级。
 
 ---
+
+## cap5 — 入库
+
+```bash
+node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m [--dry]
+```
+
+一个小节 = `sr_lessons` 一行，**id 就是 cap2 从 TOC 认领的卡片 id**——这是 app 定的
+（见 `app/src/lib/deck-stats.ts`），所以不建新表。`content` 放课文块、`exercises` 放每道题，
+两者都是可直接嵌入的 HTML 片段（KaTeX 已渲染、插图内联 SVG），由产品自己排版；
+`html` 列不再写入。幂等 upsert，重复跑不会伤到别的课。
+
+连接串取仓库根 `.env` 的 `LEMMADECK_DATABASE_URL`（Supabase，schema `lemmadeck-schema`）。
+**不要用 psql**：这个串的密码含 `@`，psql 会当成主机名分隔符而解析失败。
 
 ## 实测（5m 印刷页 1–11，PDF 10–20）
 

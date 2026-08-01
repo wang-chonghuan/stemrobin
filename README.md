@@ -77,13 +77,9 @@ node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m   # 写进内�
 
 ### 指示一个新会话干这件事
 
-把下面这段贴给它就行：
+一句话就够，剩下的技能自己知道：
 
-> 用 `ld-page2class` 技能抽取 `5m` 这本书的 PDF 第 21–31 页（印刷页 12–22）。
-> 每页走 prepare → 我看图写 page.md → finalize；全部页跑完后按 §1 装订
-> （`assemble --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json`），
-> 再 vectorize、publish。转写规则以技能的 SKILL.md 为准，遇到对账失败要修到通过，
-> 不要放行。
+> 用 ld-page2class 抽 5m 第 21–31 页
 
 技能自己的文档在 `.claude/skills/ld-page2class/SKILL.md`，转写规则（西里尔小问标号、
 法式区间记号、跨行公式的 `↵` 等）都在那里，这里不重复。
