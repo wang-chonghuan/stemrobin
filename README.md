@@ -15,7 +15,7 @@
 | 目录 | 是什么 |
 |---|---|
 | `app/` | web 应用，**独立工程**（自己的 package.json / node_modules，仓库根没有） |
-| `page2class/` | 教材抽取产物：页级底稿、全书图库、按小节成课的成品 |
+| `page2class/` | 教材抽取产物：页级底稿、全书图库、按单元成课的成品 |
 | `ssot-resources/` | 教材目录（TOC）等真源；app 的课程目录就是读它 |
 | `ssot-schemas/` | 数据库 schema 真源 |
 | `.claude/skills/` | 本仓库自己的 agent 技能（`ld-page2class`） |
@@ -34,7 +34,7 @@
 **连接串不能喂给 psql。** Supabase 那个串的密码里含 `@`，psql 会当成主机名分隔符而解析
 失败。用 node + 仓库自带的 `postgres` 客户端连（`app/node_modules/postgres`）。
 
-**内容存在哪。** 一节课 = `sr_lessons` 一行，**id 就是教材目录里那张卡片的 id**
+**内容存在哪。** 一个单元 = `sr_lessons` 一行，**id 就是教材目录里那张卡片的 id**
 （`math5-c1-s1-n1`），不另建表。`content` 放课文块，`exercises` 放每道题，`html` 列已废弃
 不再写入。目录里某一项能不能点，取决于库里有没有它的行——`listAvailableLessonIds`。
 
@@ -53,7 +53,7 @@ cd app && npm run build   # 生产构建
 
 ---
 
-## 怎么从 PDF 生成一节课
+## 怎么从 PDF 生成一个单元
 
 技能是 `ld-page2class`（`.claude/skills/ld-page2class/`），五步。**第二步是模型看图转写，
 其余四步是确定性的。**
@@ -69,7 +69,9 @@ $P $S finalize --book 5m --page 15        # ③ 吸附裁图 + 规范化 + 页�
 
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
 $P $S vectorize --book 5m                 # 插图 PNG → SVG（描摹 + 保真自检）
-node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m   # 写进内容库
+$P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
+node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m \
+  --lesson math5-c1-s1-n5                 # 只写已完整的目标单元
 ```
 
 `assemble` 的 `--toc` **不能省**——课的 id 是从目录认领的，没有它产品里就没有地址。
@@ -77,9 +79,18 @@ node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m   # 写进内�
 
 ### 指示一个新会话干这件事
 
-一句话就够，剩下的技能自己知道：
+一句话就够，剩下的技能自己查 TOC、换算页码、入库并在产品验收。推荐按**单元**说：
 
-> 用 ld-page2class 抽 5m 第 21–31 页
+> 用 ld-page2class 抽 5m 第 8 单元
+>
+> 用 ld-page2class 抽 5m 第 5–7 单元
+>
+> 用 ld-page2class 抽 5m 第一章「正数和负数」§1「集合的运算」第 5 单元「分类」
+
+这里的**单元**专指原书目录中全书连续编号的最小内容项（TOC 的
+`topics[].printedNumber`）；章、节只是帮助定位。也仍可直接给 PDF 页码。技能会用
+`ssot-resources/soviet10year-textbooks/toc/<book>/zh.json` 找到起止印刷页，并为跨页对象
+自动多取必要的边界页，不需要人手算 PDF 页码。
 
 技能自己的文档在 `.claude/skills/ld-page2class/SKILL.md`，转写规则（西里尔小问标号、
 法式区间记号、跨行公式的 `↵` 等）都在那里，这里不重复。
@@ -87,7 +98,7 @@ node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m   # 写进内�
 ### 它能保证什么
 
 对账是**对象级**的，跑通即意味着：题号连续无缺号、图号连续、正文里提到的每张图都存在且
-每张图都被引用、TOC 说有几个小节就装订出几个小节、公式拼完整后 KaTeX 能解析、页内印刷
+每张图都被引用、TOC 说有几个单元就装订出几个单元、公式拼完整后 KaTeX 能解析、页内印刷
 行数与转写行数一致。任何一条不过就是失败。
 
 插图是 **potrace 描摹**不是模型重画，保真由 resvg 回栅格化逐像素验证（限 2%，实测
@@ -95,7 +106,7 @@ node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m   # 写进内�
 
 ### 现在到哪儿了
 
-5m 印刷页 1–11（PDF 10–20）已完成：4 个小节、55 道题（1–55 连续）、15 张 SVG，
+5m 印刷页 1–22（PDF 10–31）已完成：7 个单元、104 道题（1–104 连续）、32 张 SVG，
 已入库并在产品里可读。
 
 **它还不是全自动的**：每一页都要模型看图转写一遍，这是目前最花时间的一步。换一批书需要

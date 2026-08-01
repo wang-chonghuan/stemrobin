@@ -48,7 +48,7 @@ describe('projectQuestions', () => {
   it('never leaks a KEY (no correct_index / accept / answer in the projected item)', () => {
     const out = projectQuestions(rows, exercises, overlay, 'en')
     expect(Object.keys(out[0]).sort()).toEqual(
-      ['answerMode', 'id', 'options', 'ord', 'prompt', 'type'].sort(),
+      ['answerMode', 'figure', 'id', 'options', 'ord', 'prompt', 'type'].sort(),
     )
   })
 })

@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "schema": "ld-page2class/page@3",
+    "book": "5m",
+    "page": 25,
+    "printed_page": 16,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 25
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "cf74fc533a3f84c707c6fe0d53d1de5d5c954a7dcf26fa1f391f07d5aba63b7e"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 12,
+    "figures": [
+      {
+        "id": "tbl-p0025-01",
+        "label": "表格",
+        "box": [
+          228,
+          498,
+          1008,
+          255
+        ]
+      },
+      {
+        "id": "fig-18",
+        "label": "图 18",
+        "box": [
+          136,
+          1209,
+          1155,
+          504
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "71",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把每个加数化成小数并作加法：",
+        "1) $\\frac{1}{2}+\\frac{1}{4}$；　　2) $\\frac{1}{5}+\\frac{1}{10}$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "72",
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "下表列有苏联的发电量（单位为 10 亿千瓦时）."
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "表格",
+      "box": [
+        228,
+        498,
+        1008,
+        255
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "tbl-p0025-01"
+    },
+    {
+      "kind": "ex",
+      "label": "72",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求出这五年的年平均发电量. 发电量每年平均增长多少？"
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "73",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把集合 {а，б，в，г，д，е，ж，з，и，к} 分成母音字母和子音字",
+        "母两类."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "74",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把图 18 中的集合分成植物和动物两类. 画出条形图."
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 18",
+      "box": [
+        136,
+        1209,
+        1155,
+        504
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-18"
+    },
+    {
+      "kind": "cap",
+      "label": "图 18",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 18"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "75",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把被减数和减数化成小数，并作减法：",
+        "1) $\\frac{3}{4}-\\frac{1}{8}$；　　2) $\\frac{13}{25}-\\frac{2}{5}$."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 16 ·"
+      ]
+    }
+  ]
+}

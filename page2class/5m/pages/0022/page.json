@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "schema": "ld-page2class/page@3",
+    "book": "5m",
+    "page": 22,
+    "printed_page": 13,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 22
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "04a2ee656c7a22e242ab68964717ca13ccdd4d6934ead674346db97e2912dcfd"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 13,
+    "figures": [
+      {
+        "id": "fig-14",
+        "label": "图 14",
+        "box": [
+          226,
+          442,
+          1161,
+          391
+        ]
+      },
+      {
+        "id": "fig-15",
+        "label": "图 15",
+        "box": [
+          220,
+          1093,
+          1162,
+          391
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "62",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把图 14 画在练习本上. 过 $K$ 点引一直线平行于直线 $a$."
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 14",
+      "box": [
+        226,
+        442,
+        1161,
+        391
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-14"
+    },
+    {
+      "kind": "cap",
+      "label": "图 14",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 14"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "63",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把图 15 画在练习本上. 过 $M$ 和 $P$ 两点向直线 $l$ 作两条",
+        "垂线."
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 15",
+      "box": [
+        220,
+        1093,
+        1162,
+        391
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-15"
+    },
+    {
+      "kind": "cap",
+      "label": "图 15",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 15"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "64",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "有两个行人从两个村庄同时出发相向而行，于 4 小时后",
+        "相遇. 两村相距 36 公里. 一个行人的速度为 4 公里/小",
+        "时. 求另一个行人的速度."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "65",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在三个箱子中共装樱桃 76 公斤. 第二箱装的樱桃是第",
+        "一箱的 2 倍，第三箱比第一箱多 8 公斤. 每箱各装樱桃",
+        "多少公斤？"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 13 ·"
+      ]
+    }
+  ]
+}

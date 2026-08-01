@@ -1,0 +1,111 @@
+{
+  "id": "math5-c1-s1-n5",
+  "card_id": "math5-c1-s1-n5",
+  "chapter": "第一章　正数和负数",
+  "section": "§1. 集合的运算",
+  "number": "5",
+  "title": "分类",
+  "printed_title": "5. 分类",
+  "start_page": 23,
+  "start_printed": 14,
+  "figures": [
+    {
+      "id": "fig-16",
+      "label": "图 16",
+      "page": 23
+    },
+    {
+      "id": "fig-17",
+      "label": "图 17",
+      "page": 24
+    },
+    {
+      "id": "tbl-p0024-02",
+      "label": "表格",
+      "page": 24
+    },
+    {
+      "id": "tbl-p0025-01",
+      "label": "表格",
+      "page": 25
+    },
+    {
+      "id": "fig-18",
+      "label": "图 18",
+      "page": 25
+    }
+  ],
+  "exercise_count": 9,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "某村有 90 幢房屋. 其中 15 幢是铁皮屋顶，45 幢是瓦屋顶，30 幢为石板瓦屋顶. 全部房屋的集合 $X$ 由三个子集——铁皮屋顶房屋的集合 $A$、瓦屋顶房屋的集合 $B$ 和石板瓦屋顶房屋的集合 $C$ 组成. $X=A\\cup B\\cup C$. 在 $A$，$B$，$C$ 三个集合中，任何两个之间都没有公共元素：$A\\cap B=\\phi$，$A\\cap C=\\phi$ 和 $B\\cap C$$=\\phi$. 在这种情况下就说：房屋的集合 $X$ 分成三类（铁皮屋顶的、瓦屋顶的和石板瓦屋顶的）.",
+      "id": null,
+      "label": null,
+      "printed_page": 14
+    },
+    {
+      "kind": "p",
+      "text": "用圆形图（图 16.1）表示每类房屋的数量. 也可以用条形图（图 16.2）表示每类房屋的数量. 为此要画三个柱，每个柱高的毫米数分别等于三种房屋的数量. 第一个柱高 15 毫米，第二个 45 毫米，第三个 30 毫米.把集合划分成不同的类别叫做分类. 在分类时，不能把同一个元素分在不同的两类里，也不得漏掉一个元素. 应该把每个元素都分在它自己的一类里.",
+      "id": null,
+      "label": null,
+      "printed_page": 14
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-16",
+      "label": "图 16",
+      "printed_page": 14
+    },
+    {
+      "kind": "cap",
+      "text": "图 16",
+      "id": null,
+      "label": "图 16",
+      "printed_page": 14
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-17",
+      "label": "图 17",
+      "printed_page": 15
+    },
+    {
+      "kind": "cap",
+      "text": "图 17",
+      "id": null,
+      "label": "图 17",
+      "printed_page": 15
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "tbl-p0024-02",
+      "label": "表格",
+      "printed_page": 15
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "tbl-p0025-01",
+      "label": "表格",
+      "printed_page": 16
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-18",
+      "label": "图 18",
+      "printed_page": 16
+    },
+    {
+      "kind": "cap",
+      "text": "图 18",
+      "id": null,
+      "label": "图 18",
+      "printed_page": 16
+    }
+  ]
+}

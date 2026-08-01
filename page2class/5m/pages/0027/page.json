@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "schema": "ld-page2class/page@3",
+    "book": "5m",
+    "page": 27,
+    "printed_page": 18,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 27
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "2e2da5008167c068b244033b749223afc4227f209f86d23c03f381052cae64d0"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 15,
+    "figures": [
+      {
+        "id": "fig-23",
+        "label": "图 23",
+        "box": [
+          180,
+          220,
+          1186,
+          693
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "fig",
+      "label": "图 23",
+      "box": [
+        180,
+        220,
+        1186,
+        693
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-23"
+    },
+    {
+      "kind": "cap",
+      "label": "图 23",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 23"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "77",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作长方形 $ABCD$，它的长、宽分别为 5 厘米和 3 厘米. 引",
+        "线段 $AC$ 与 $BD$（长方形的对角线）. 这个长方形被分成",
+        "几个三角形？其中哪些是锐角三角形，哪些是钝角三角",
+        "形？再把所得的每个三角形分成二个直角三角形."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "78",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作正方形并把它分成两个直角三角形."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "79",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在圆心为 $O$ 的圆中，引半径 $OA$ 和 $OB$，使它们的夹角等",
+        "于 $140^\\circ$. 判定三角形 $AOB$ 的类型."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "80",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "以 $K$ 点为圆心，作半径长 3 厘米的圆. 在圆周上取点 $M$",
+        "和 $T$，使它们之间的距离为 3 厘米. 用线段联结点 $K$、$M$",
+        "和 $T$. 证明，三角形 $MKT$ 为等边三角形."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "复习题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "81",
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "把 13 和 23 之间的自然数的集合分为两个不相交的子",
+        "集，其中一个子集包括 7 的倍数，另一个子集包括 7 的倍"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 18 ·"
+      ]
+    }
+  ]
+}

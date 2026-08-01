@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "schema": "ld-page2class/page@3",
+    "book": "5m",
+    "page": 32,
+    "printed_page": 23,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 32
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "a785f25fd9efe697672bb541a1dea2b18ed7fbea18737a7a65866754c8e7109d"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 22,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "99",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "一年（按 365 天计算）把全部石油都已运出，每小时连",
+        "续发出了多少列火车？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "100",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1) $32.52-[(6+9.728:3.2)\\cdot2.5-1.6]\\cdot0.75$；",
+        "2) $60.32-[(20+9.744:2.4)\\cdot0.4-1.38]\\cdot1.5$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "101",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "$M$、$K$ 两点间距离为 4 厘米. 求作一点：",
+        "1) 和 $M$、$K$ 二点相距 2.5 厘米；",
+        "2) 和 $M$ 点相距 5 厘米，和 $K$ 点相距 1 厘米."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "102",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "按照下列条件，作 $\\triangle ABC$：",
+        "1) $|AB|=|CB|=4$ 厘米，$|AC|=6$ 厘米；",
+        "2) $|AB|=4$ 厘米，$|BC|=5$ 厘米，$|AC|=3$ 厘米；",
+        "3) $|AB|=|BC|=|AC|=3$ 厘米."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "103",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "全班学生的 $75\\%$ 考试成绩是 5 分和 4 分，其余 10 个学",
+        "生得 3 分. 全班共有多少学生？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "104",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：$80.08-[(13-11.7:1.8)\\cdot0.8+1.6]\\cdot0.3$."
+      ]
+    },
+    {
+      "kind": "h2",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "§ 2. 方向和数"
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "8. 向右或向左，向上或向下"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "105",
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "一只松鼠从树洞钻出，沿着树干跑上跑下（图 29）. 如",
+        "果松鼠离开树洞 3 米，松鼠在哪里？这个问题能有几个",
+        "答案？"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 23 ·"
+      ]
+    }
+  ]
+}

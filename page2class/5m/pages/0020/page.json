@@ -163,7 +163,7 @@
       "label": "55",
       "box": null,
       "cont": false,
-      "open": false,
+      "open": true,
       "samerow": false,
       "lines": [
         "$X$ 是不等式 $7 \\leqslant X \\leqslant 12$ 的自然数解的集合；$Y$ 是不等式",

@@ -1,0 +1,137 @@
+{
+  "meta": {
+    "schema": "ld-page2class/page@3",
+    "book": "5m",
+    "page": 21,
+    "printed_page": 12,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 21
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "f9d4be81f7f32335a23890ef6d0746b1f4399be5b2dab3f26686c7d5d9c20f57"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 25,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "55",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求：1) $X \\cap Y$；　　2) $X \\cup Y$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "56",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "写出 60 和 24 的约数的集合并求出这两个集合的交集.",
+        "求出 60 和 24 的最大公约数."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "57",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作两个三角形，使：1) 交集是一个线段，而并集为四边",
+        "形；2) 交集为一线段，而并集为三角形."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "58",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解应用题：",
+        "1) 相向而行的两列火车相距 900 公里，两车行速分别为",
+        "65 公里/小时和 85 公里/小时. 经过几小时后，这两",
+        "列火车相遇？",
+        "2) 相向航行的两艘轮船相距 236 公里. 两船的航速分别",
+        "为 32 公里/小时和 27 公里/小时. 几小时后两船相遇？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "59",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "列出方程解应用题：",
+        "1) 某市各工厂在三年内有 171 种产品获得国家质量奖.",
+        "第一年获质量奖的产品比第三年少一半，第二年比第",
+        "一年多 23 种产品. 第一年获质量奖的产品有多少种？",
+        "2) 某厂三个车间共有 91 名共产主义劳动突击手. 第一",
+        "车间的突击手人数是第二车间的 2 倍，第三车间比第",
+        "二车间多 7 人. 第一车间有多少名共产主义劳动突",
+        "击手？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "60",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把下列各数化成小数：",
+        "$\\frac{1}{2}$，$\\frac{1}{4}$，$\\frac{3}{4}$，$\\frac{1}{5}$，$\\frac{4}{5}$，$\\frac{1}{10}$，$\\frac{7}{10}$，$\\frac{3}{20}$，$2\\frac{1}{2}$，$3\\frac{3}{4}$，$5\\frac{7}{20}$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "61",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解方程：",
+        "1) $14n-8n-2n=511$；　　3) $4x+6x-x=21.6$；",
+        "2) $25a-7a-16a=33$；　　4) $5y-y+5y=61.2$."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 12 ·"
+      ]
+    }
+  ]
+}

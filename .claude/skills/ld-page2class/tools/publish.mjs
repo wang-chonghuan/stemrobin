@@ -15,7 +15,7 @@
  * Supabase，schema 是 lemmadeck-schema。**不要用 psql**：这个串的密码里带 `@`，
  * psql 会把它当主机名分隔符，解析失败；node 的 postgres 客户端能正确处理。
  *
- * 用法: publish.mjs <bookDir> [--dry] [--env <path>]
+ * 用法: publish.mjs <bookDir> [--lesson <cardId>]... [--dry] [--env <path>]
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -29,8 +29,12 @@ const args = process.argv.slice(2)
 const bookDir = args.find((a) => !a.startsWith('--'))
 const dry = args.includes('--dry')
 const envPath = args.includes('--env') ? args[args.indexOf('--env') + 1] : '.env'
+const requestedLessons = new Set()
+for (let i = 0; i < args.length; i += 1) {
+  if (args[i] === '--lesson' && args[i + 1]) requestedLessons.add(args[i + 1])
+}
 if (!bookDir) {
-  console.error('用法: publish.mjs <bookDir> [--dry] [--env <path>]')
+  console.error('用法: publish.mjs <bookDir> [--lesson <cardId>]... [--dry] [--env <path>]')
   process.exit(2)
 }
 
@@ -47,6 +51,7 @@ const book = path.resolve(bookDir)
 const lessonsDir = path.join(book, 'lessons')
 const rows = []
 for (const lid of fs.readdirSync(lessonsDir).sort()) {
+  if (requestedLessons.size && !requestedLessons.has(lid)) continue
   const dir = path.join(lessonsDir, lid)
   const L = JSON.parse(fs.readFileSync(path.join(dir, 'lesson.json'), 'utf8'))
   const X = JSON.parse(fs.readFileSync(path.join(dir, 'exercises.json'), 'utf8'))
@@ -78,6 +83,12 @@ for (const lid of fs.readdirSync(lessonsDir).sort()) {
     content: { ...L, prose },
     exercises: { count: exercises.length, exercises },
   })
+}
+
+if (requestedLessons.size) {
+  const found = new Set(rows.map((r) => r.id))
+  const missing = [...requestedLessons].filter((id) => !found.has(id))
+  if (missing.length) throw new Error(`指定的小节没有可发布产物: ${missing.join(', ')}`)
 }
 
 console.log(`[publish] ${book} → ${rows.length} 行`)

@@ -23,9 +23,19 @@
       "id": "fig-13",
       "label": "图 13",
       "page": 20
+    },
+    {
+      "id": "fig-14",
+      "label": "图 14",
+      "page": 22
+    },
+    {
+      "id": "fig-15",
+      "label": "图 15",
+      "page": 22
     }
   ],
-  "exercise_count": 7,
+  "exercise_count": 18,
   "prose": [
     {
       "kind": "p",
@@ -68,6 +78,34 @@
       "id": null,
       "label": "图 13",
       "printed_page": 11
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-14",
+      "label": "图 14",
+      "printed_page": 13
+    },
+    {
+      "kind": "cap",
+      "text": "图 14",
+      "id": null,
+      "label": "图 14",
+      "printed_page": 13
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-15",
+      "label": "图 15",
+      "printed_page": 13
+    },
+    {
+      "kind": "cap",
+      "text": "图 15",
+      "id": null,
+      "label": "图 15",
+      "printed_page": 13
     }
   ]
 }

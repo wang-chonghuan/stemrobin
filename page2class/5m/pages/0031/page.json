@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "schema": "ld-page2class/page@3",
+    "book": "5m",
+    "page": 31,
+    "printed_page": 22,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 31
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "305310ab34ca15c5a815d79f7ecdb310a65c446d906c7baa4d19b448dc08301b"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 25,
+    "figures": [
+      {
+        "id": "fig-28",
+        "label": "图 28",
+        "box": [
+          833,
+          218,
+          431,
+          185
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "度. 因而当围绕 $A$ 点和 $B$ 点转动两",
+        "根短木条时，两个端点 $C$、$D$ 任何时",
+        "候都不能重合，结果也就作不成三",
+        "角形. 总之，如果大边的长度小于",
+        "其它两边长度的和，就可以按给定的三边作出三角形."
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 28",
+      "box": [
+        833,
+        218,
+        431,
+        185
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-28"
+    },
+    {
+      "kind": "cap",
+      "label": "图 28",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": true,
+      "lines": [
+        "图 28"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "94",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "取点 $A$ 和 $B$，其距离为 5 厘米. 求 $C$ 点：1) 它距 $A$ 点 3",
+        "厘米，距 $B$ 点 4 厘米；2) 它距 $A$ 点 2 厘米，距 $B$ 点 3 厘",
+        "米."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "95",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "按照下列条件，作 $\\triangle ABC$：",
+        "1) $|AB|=4$ 厘米，$|BC|=3$ 厘米，$|AC|=2$ 厘米；",
+        "2) $|AB|=6$ 厘米，$|BC|=3$ 厘米，$|AC|=5$ 厘米."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "96",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作等腰三角形，使其腰长 4.9 厘米，底边长 3.2 厘米."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "复习题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "97",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "等边三角形的三个角都相等，求各角的大小."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "98",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "直角三角形的一个锐角的大小是另一个锐角的二倍. 求",
+        "这个直角三角形的每个锐角的大小."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "99",
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "解应用题：",
+        "1) 某集体农庄一年的收入分成 8 等分，其中 3 份支付集",
+        "体农庄庄员的劳动报酬，5 份用于发展公用事业. 如",
+        "果发展公用事业的费用比集体农庄庄员的劳动报酬",
+        "多 12 万卢布，那么集体农庄的收入共多少？",
+        "2) 1974 年，在西西伯利亚开采了 11600 万吨石油. 如",
+        "果一列火车由 100 辆油槽车组成，每节油槽车装油 65",
+        "吨，为了把全部石油运出，需要多少列火车？假如在"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 22 ·"
+      ]
+    }
+  ]
+}

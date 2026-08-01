@@ -1,0 +1,45 @@
+{
+  "page": 25,
+  "lines_printed": 12,
+  "lines_md": 12,
+  "figures": [
+    {
+      "id": "tbl-p0025-01",
+      "label": "表格",
+      "box": [
+        228,
+        498,
+        1008,
+        255
+      ],
+      "components": 49,
+      "from": [
+        225,
+        495,
+        1010,
+        260
+      ]
+    },
+    {
+      "id": "fig-18",
+      "label": "图 18",
+      "box": [
+        136,
+        1209,
+        1155,
+        504
+      ],
+      "components": 106,
+      "from": [
+        140,
+        1200,
+        1170,
+        510
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

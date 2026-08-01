@@ -247,13 +247,45 @@ body {
   padding: 6px 8px 12px;
 }
 
+.sr-cat-group-row {
+  min-height: 30px;
+  margin: 8px 4px 2px 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 .sr-cat-group {
-  margin: 12px 8px 4px;
+  flex: 1 1 auto;
+  min-width: 0;
   color: var(--sr-ink);
   font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.sr-cat-visibility {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  border-radius: 6px;
+  padding: 4px 6px;
+  background: transparent;
+  color: var(--sr-ink-dim);
+  font-size: 10.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sr-cat-visibility:hover {
+  background: var(--sr-card);
+  color: var(--sr-blue-deep);
+}
+.sr-cat-visibility:focus-visible {
+  outline: 2px solid var(--sr-blue);
+  outline-offset: 1px;
 }
 
 .sr-item {
@@ -767,8 +799,8 @@ details[open] > summary > .sr-out-caret {
   line-height: 1.35;
   text-decoration: none;
 }
-/* `ready` no longer decides whether a row is clickable — it says the content
-   behind it exists, and shows as the dot plus a little more weight. */
+/* `ready` says the content behind the link exists. Availability is otherwise
+   expressed by the catalog filter, so links need no separate status dot. */
 a.sr-out-lesson {
   cursor: pointer;
 }
@@ -791,14 +823,6 @@ a.sr-out-lesson.active {
   color: var(--sr-ink-dim);
   font-variant-numeric: tabular-nums;
 }
-.sr-out-dot {
-  flex: none;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--sr-green);
-}
-
 /* ---- detail pane ---- */
 .sr-detail {
   min-width: 0;
