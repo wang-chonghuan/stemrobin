@@ -12,6 +12,7 @@
       "pages": [
         "p0020#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -24,6 +25,7 @@
       "pages": [
         "p0020#3"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -37,6 +39,7 @@
       "pages": [
         "p0020#4"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -49,6 +52,7 @@
       "pages": [
         "p0020#5"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -60,6 +64,9 @@
       ],
       "pages": [
         "p0020#6"
+      ],
+      "figure_refs": [
+        "fig-13"
       ],
       "figures": [
         {
@@ -80,6 +87,7 @@
       "pages": [
         "p0020#10"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -95,6 +103,7 @@
         "p0020#11",
         "p0021#1"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -108,6 +117,7 @@
       "pages": [
         "p0021#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -121,6 +131,7 @@
       "pages": [
         "p0021#3"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -138,6 +149,7 @@
       "pages": [
         "p0021#4"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -157,6 +169,7 @@
       "pages": [
         "p0021#5"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -170,6 +183,7 @@
       "pages": [
         "p0021#6"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -184,6 +198,7 @@
       "pages": [
         "p0021#7"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -195,6 +210,9 @@
       ],
       "pages": [
         "p0022#2"
+      ],
+      "figure_refs": [
+        "fig-14"
       ],
       "figures": [
         {
@@ -213,6 +231,9 @@
       ],
       "pages": [
         "p0022#5"
+      ],
+      "figure_refs": [
+        "fig-15"
       ],
       "figures": [
         {
@@ -233,6 +254,7 @@
       "pages": [
         "p0022#8"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -247,6 +269,7 @@
       "pages": [
         "p0022#9"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -261,6 +284,7 @@
       "pages": [
         "p0023#1"
       ],
+      "figure_refs": [],
       "figures": []
     }
   ]

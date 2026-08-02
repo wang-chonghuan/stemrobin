@@ -1,6 +1,6 @@
 ---
 {
-  "schema": "ld-page2class/page@3",
+  "schema": "ld-s10y-lesson/page@3",
   "book": "5m",
   "page": 29,
   "printed_page": null,

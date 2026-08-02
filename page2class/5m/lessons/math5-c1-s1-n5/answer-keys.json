@@ -1,0 +1,120 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n5",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "67",
+      "displayAnswer": "第一类（3 的倍数）：{3,6,9,12,15,18}；第二类（除以 3 余 1）：{1,4,7,10,13,16,19}；第三类（除以 3 余 2）：{2,5,8,11,14,17,20}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "68",
+      "displayAnswer": "1）不可以；2）不可以；3）可以；4）可以。分类中的各类必须互不相交并覆盖全部图形。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "69",
+      "displayAnswer": "三角形 2 个，四边形 2 个，圆 2 个；条形图的三根柱都画到 2。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "70",
+      "displayAnswer": "作图：作 AB=5.6 厘米；在 A 点作 40° 角射线，在 B 点作 65° 角射线，两射线交于 C；再过 C 作 AB 的平行线。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "0.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "0.3"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "71",
+      "displayAnswer": "1）0.75；2）0.3。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "亿千瓦时",
+          "judge": "numeric",
+          "label": "年平均发电量",
+          "expected": [
+            "8756"
+          ]
+        },
+        {
+          "unit": "亿千瓦时",
+          "judge": "numeric",
+          "label": "年平均增长",
+          "expected": [
+            "585"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "8756 亿度，增加 585 亿度",
+      "grading": "auto",
+      "exercise": "72",
+      "displayAnswer": "五年年平均发电量为 8756 亿千瓦时；每年平均增长 585 亿千瓦时。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "73",
+      "displayAnswer": "元音字母：{а, е, и}；辅音字母：{б, в, г, д, ж, з, к}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "74",
+      "displayAnswer": "植物 3 个，动物 5 个；条形图中植物柱画到 3，动物柱画到 5。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "0.625"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "0.12"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "75",
+      "displayAnswer": "1）0.625；2）0.12。"
+    }
+  ],
+  "count": 9
+}

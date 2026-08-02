@@ -174,5 +174,5 @@ app/test-results/
 __pycache__/
 *.pyc
 
-# ld-page2class：读图用的坐标网格图是脚手架，prepare 随时可重生成
+# ld-s10y-lesson：读图用的坐标网格图是脚手架，prepare 随时可重生成
 page2class/*/pages/*/page.grid.png

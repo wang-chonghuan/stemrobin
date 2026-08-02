@@ -1,0 +1,173 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n7",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "94",
+      "displayAnswer": "1）以 A、B 为圆心，分别作半径 3 厘米和 4 厘米的圆；两圆有两个交点，所以有两个 C 点。2）分别作半径 2 厘米和 3 厘米的圆；两圆外切，切点在线段 AB 上，所以只有一个 C 点。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "95",
+      "displayAnswer": "分别以 A、B 为圆心、以给定的 AC、BC 为半径作圆，两圆交点取作 C，再连接 AC、BC。两小题都可在 AB 两侧各得到一个关于 AB 对称的三角形。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "96",
+      "displayAnswer": "作底边 AB=3.2 厘米；以 A、B 为圆心、4.9 厘米为半径作弧，交于 C；连接 AC、BC，即得所求等腰三角形。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "°",
+          "judge": "numeric",
+          "expected": [
+            "60"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "97",
+      "displayAnswer": "每个角都是 60°。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "°",
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "30"
+          ]
+        },
+        {
+          "unit": "°",
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "60"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "98",
+      "displayAnswer": "两个锐角分别为 30° 和 60°。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "卢布",
+          "judge": "numeric",
+          "label": "1) 总收入",
+          "expected": [
+            "480000"
+          ],
+          "tolerance": 0
+        },
+        {
+          "unit": "列",
+          "judge": "numeric",
+          "label": "2) 火车列数",
+          "expected": [
+            "18000"
+          ],
+          "tolerance": 500
+        },
+        {
+          "unit": "列/小时",
+          "judge": "numeric",
+          "label": "2) 每小时",
+          "expected": [
+            "2"
+          ],
+          "tolerance": 0.1
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 48 万卢布；2) ≈18 000 列火车；≈2 列火车",
+      "grading": "auto",
+      "exercise": "99",
+      "displayAnswer": "1）48 万卢布；2）约 18 000 列火车，平均每小时约 2 列。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "16.77"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "47.954"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 16.77；2) 47.954",
+      "grading": "auto",
+      "exercise": "100",
+      "displayAnswer": "1）16.77；2）47.954。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "101",
+      "displayAnswer": "1）以 M、K 为圆心、2.5 厘米为半径作圆，两圆有两个交点，所以有两个解。2）以 M 为圆心作半径 5 厘米的圆，以 K 为圆心作半径 1 厘米的圆；两圆内切，切点在射线 MK 上且越过 K，所以有一个解。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "102",
+      "displayAnswer": "每小题先作给定边 AB，再分别以 A、B 为圆心、以另外两边长为半径作圆，取交点 C 并连接。1）得到腰为 4、底为 6 的等腰三角形；2）得到 3-4-5 直角三角形；3）得到边长 3 的等边三角形。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "名",
+          "judge": "numeric",
+          "expected": [
+            "40"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "40 名学生",
+      "grading": "auto",
+      "exercise": "103",
+      "displayAnswer": "40 名学生。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "78.04"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "78.04",
+      "grading": "auto",
+      "exercise": "104",
+      "displayAnswer": "78.04。"
+    }
+  ],
+  "count": 11
+}

@@ -26,7 +26,8 @@ Read the routed file directly; don't duplicate its content here.
 | Ticket spec / test basis | the ticket in the backend (plane) + its `refs/` |
 | UI design tokens & rules | `resources/reference/DESIGN.md` (+ `resources/reference/DESIGN.guide.md`) |
 | Content-generation skills | `.agents/skills/` (`sr-story`, `sr-voa1500`, `ld-galaxy`) |
-| 教材扫描件 → 课程单元 | `.claude/skills/ld-page2class/`（产物在 `page2class/`） |
+| Soviet 10 Years 教材 → lesson / exercise | `.claude/skills/ld-s10y-lesson/`（产物在 `page2class/`） |
+| Soviet 10 Years 书后答案 → answer | `.claude/skills/ld-s10y-answer/` |
 
 ## Frozen directories
 

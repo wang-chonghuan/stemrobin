@@ -11,11 +11,17 @@ export type ProseBlock =
   | { kind: 'p' | 'cap'; html: string }
   | { kind: 'fig'; id: string; label: string | null; svg: string | null }
 export type CardFigure = { id: string; label: string | null; svg: string | null }
+export type ExerciseAnswerSpec = {
+  grading: 'auto' | 'ungraded'
+  parts: { label?: string; unit?: string }[]
+}
 export type CardExercise = {
   number: string
   group: string | null
   html: string
+  figureRefs: string[]
   figures: CardFigure[]
+  answerSpec?: ExerciseAnswerSpec
 }
 export type CardContent = { prose: ProseBlock[]; exercises: CardExercise[] }
 
@@ -25,8 +31,45 @@ export const getCardContent = createServerFn({ method: 'GET' })
     const rows = await sql()`select content, exercises from sr_lessons where id = ${id}`
     if (!rows.length || !rows[0].content) return null
     const prose = ((rows[0].content as { prose?: ProseBlock[] }).prose ?? []) as ProseBlock[]
-    const exercises = ((rows[0].exercises as { exercises?: CardExercise[] })?.exercises ??
-      []) as CardExercise[]
+    type StoredExercise = CardExercise & {
+      answerKey?: {
+        grading?: 'auto' | 'ungraded'
+        parts?: { label?: string; unit?: string }[]
+      }
+    }
+    const stored =
+      (rows[0].exercises as { exercises?: StoredExercise[] } | null)?.exercises ?? []
+    const exercises = stored.map((exercise): CardExercise => {
+      const answerKey = exercise.answerKey
+      const answerSpec =
+        answerKey?.grading === 'auto' || answerKey?.grading === 'ungraded'
+          ? {
+              grading: answerKey.grading,
+              parts: Array.isArray(answerKey.parts)
+                ? answerKey.parts.map((part) => ({
+                    ...(typeof part.label === 'string' ? { label: part.label } : {}),
+                    ...(typeof part.unit === 'string' ? { unit: part.unit } : {}),
+                  }))
+                : [],
+            }
+          : undefined
+      return {
+        number: String(exercise.number),
+        group: exercise.group ?? null,
+        html: exercise.html,
+        figureRefs: Array.isArray(exercise.figureRefs)
+          ? exercise.figureRefs.filter((id): id is string => typeof id === 'string')
+          : [],
+        figures: Array.isArray(exercise.figures)
+          ? exercise.figures.map((figure) => ({
+              id: figure.id,
+              label: figure.label ?? null,
+              svg: figure.svg ?? null,
+            }))
+          : [],
+        ...(answerSpec ? { answerSpec } : {}),
+      }
+    })
     return { prose, exercises }
   })
 
@@ -40,7 +83,9 @@ export const getLessonPdf = createServerFn({ method: 'GET' })
     return Buffer.from(rows[0].pdf).toString('base64')
   })
 
-// A card is readable when it has 課文 blocks. That is the whole rule.
+// A card is readable when it has 課文 blocks OR numbered exercises. Some printed
+// textbook cards (for example 5m lesson 8) start directly with exercises, so an
+// empty prose array is valid content rather than an unavailable card.
 //
 // This replaces the old card-tree model, where availability meant "every prose /
 // svg-caption / read-check / exercise node id has an i18n overlay row for this
@@ -53,7 +98,11 @@ export const listAvailableLessonIds = createServerFn({ method: 'GET' }).handler(
   async (): Promise<string[]> => {
     const rows = await sql()`
       select id from sr_lessons
-      where content is not null and jsonb_array_length(content->'prose') > 0
+      where content is not null
+        and (
+          jsonb_array_length(coalesce(content->'prose', '[]'::jsonb)) > 0
+          or coalesce((exercises->>'count')::int, 0) > 0
+        )
       order by id
     `
     return rows.map((r) => r.id)

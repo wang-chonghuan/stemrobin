@@ -9,6 +9,7 @@ import {
 import { getLocale } from '~/lib/locale'
 import type { Locale } from '~/lib/i18n'
 import 'katex/dist/katex.min.css'
+import 'mathlive/fonts.css'
 import '~/styles/app.css'
 
 export const Route = createRootRoute({

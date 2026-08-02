@@ -1,0 +1,167 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 41,
+    "printed_page": 32,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 41
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "6148bbaf5748b6963a4e2f636cf1d6539a05c65292d6e687b745014d58b8db09"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 25,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "140",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "么这两个收割机手各收割多少公顷？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "141",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解应用题：",
+        "1) 两个邻补角中，一角是另一角的三倍，两个角各多少",
+        "度？作出这两个邻补角.",
+        "2) 二邻补角中，一角是另一角的四倍，求出每个角的大",
+        "小. 作出这两个邻补角."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "142",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1) $0.5632:5.12+42.56:3.8-(11-3.9:1.5)$；",
+        "2) $(5.98+5.36):2.8:(5\\cdot0.003+15\\cdot0.029)$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "143",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在数轴上标出以下各点：$M(-3)$，$N(4)$，$P(-8.1)$，",
+        "$K(3.3)$，$T(-7)$，$C(7)$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "144",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "划出从 $-60^\\circ\\mathrm{C}$ 到 $60^\\circ\\mathrm{C}$ 的温度刻度，取每个刻度为 $5^\\circ\\mathrm{C}$，",
+        "在刻度上标出水银的冰点（$-39^\\circ\\mathrm{C}$），人体的正常温度",
+        "（$36.6^\\circ\\mathrm{C}$），汽油的冰点（$-60^\\circ\\mathrm{C}$）."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "145",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "互相竞赛的两个拖拉机手共翻耕了 12.32 公顷土地，其",
+        "中一个拖拉机手翻耕的土地是另一个翻耕的 1.2 倍. 每",
+        "个拖拉机手翻耕了多少公顷土地？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "146",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "某先进挤奶员一年从一头奶牛挤奶 6500 公斤. 如果牛",
+        "奶的含脂量为 $3.9\\%$，从这些牛奶中能制取多少奶油？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "147",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "当 $k=3.06,30.6$ 时，计算 $4.7k+3.6k-0.83$ 的值."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "148",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1) $907+613\\cdot(80\\cdot11-42\\,558:519)$；",
+        "2) $120\\,000-119\\,340:(684\\cdot245-675\\cdot246)$."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 32 ·"
+      ]
+    }
+  ]
+}

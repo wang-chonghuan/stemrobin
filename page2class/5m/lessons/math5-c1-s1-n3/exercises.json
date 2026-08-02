@@ -12,6 +12,9 @@
       "pages": [
         "p0018#2"
       ],
+      "figure_refs": [
+        "fig-05"
+      ],
       "figures": [
         {
           "id": "fig-05",
@@ -31,6 +34,7 @@
       "pages": [
         "p0018#3"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -45,6 +49,7 @@
       "pages": [
         "p0018#4"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -58,6 +63,7 @@
       "pages": [
         "p0018#5"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -72,6 +78,7 @@
       "pages": [
         "p0018#7"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -85,6 +92,7 @@
       "pages": [
         "p0018#8"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -103,6 +111,7 @@
       "pages": [
         "p0018#9"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -117,6 +126,7 @@
       "pages": [
         "p0019#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -131,6 +141,7 @@
       "pages": [
         "p0019#3"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -147,6 +158,9 @@
       "pages": [
         "p0019#4",
         "p0019#6"
+      ],
+      "figure_refs": [
+        "fig-10"
       ],
       "figures": [
         {

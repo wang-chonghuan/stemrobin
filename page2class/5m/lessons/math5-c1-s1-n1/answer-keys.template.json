@@ -1,0 +1,169 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n1",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "1",
+      "prompt": "从图 3 的各图形的集合中把下列各子集选出来：1）四边形；  4）带阴影的图形；2）三角形；  5）白色三角形；3）多边形；  6）圆.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "2",
+      "prompt": "从集合 {52 164，32 415，11 218} 中把下列各数的子集选出来：1）2 的倍数，2）3 的倍数，3）5 的倍数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "3",
+      "prompt": "从图 3 的各图形的集合中选出子集 $\\{A, K, P\\}$，要按照什么样的特征？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "4",
+      "prompt": "阿廖沙、别佳、谢尔盖都是瓦西亚的同学. 有时，瓦西亚在上学途中遇到这些同学中的一个或几个. 写出瓦西亚在上学途中可能遇到的同学的集合的全部子集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "5",
+      "prompt": "下面的集合 $A$ 是不是集合 $B$ 的子集？1）$A=\\{p, q, r\\}$，$B=\\{p, qr\\}$；2）$A$——学校中全体男生的集合，$B$——我们班全体学生的集合；3）$A$——各加盟共和国首都的集合，$B$——苏联各城市的集合；4）$A=\\{$莱蒙托夫、普希金$\\}$，$B$——俄罗斯诗人的集合.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "6",
+      "prompt": "图 4 中哪一对图形里的一个图形的点的集合是另一个图形的点的集合的子集？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "7",
+      "prompt": "作三角形和四边形，使：1）三角形是四边形的子集；2）四边形是三角形的子集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "8",
+      "prompt": "汽艇的速度为 12.8 公里/小时. 河水的流速是 1.7 公里/小时. 分别求出汽艇在顺流和逆流时的航行速度.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "9",
+      "prompt": "某顾客有 22.3 卢布. 他在百货商店用的钱是在餐厅用去的钱的 6 倍. 假如他还剩 1.3 卢布，那么他在百货商店用了多少钱？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "18 卢布"
+    },
+    {
+      "exercise": "10",
+      "prompt": "我想一个数. 假如把它扩大 11 倍，并从所得的积中减去 2.75，则得 85.25. 我想的数是几？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "8"
+    },
+    {
+      "exercise": "11",
+      "prompt": "我想一个数. 假如加上 9.2，再把所得的和扩大 11 倍，得 110. 我想的数是几？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "0.8"
+    },
+    {
+      "exercise": "12",
+      "prompt": "在仓库里包装了 9 吨马铃薯，其中 22% 发送到商店，12%送往货摊. 发送到商店的马铃薯比送往货摊的多几吨？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "0.9 吨"
+    },
+    {
+      "exercise": "13",
+      "prompt": "从仓库运出 8 吨白菜，其中的 43% 用作淹菜，33% 送到商店. 送往商店的白菜比淹菜用的少几吨？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "0.8 吨"
+    },
+    {
+      "exercise": "14",
+      "prompt": "计算：1）$43\\,268 - 3268 \\cdot (6075 + 9980 - 15\\,996) : 38$；2）$20\\,045 - 10\\,045 : (50\\,005 - 49\\,868 + 68) \\cdot 109$；3）$(424.2 - 98.4) : 3.6 \\cdot 0.9 + 9.1$；4）$(96.6 + 98.6) : 6.4 \\cdot 1.2 - 0.2$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 38 194；2) 14 704；3) 90.55；4) 36.4"
+    },
+    {
+      "exercise": "15",
+      "prompt": "从集合 $\\left\\{\\frac{1}{2}; \\frac{2}{3}; \\frac{4}{3}; \\frac{2}{5}; \\frac{5}{2}; \\frac{7}{7}\\right\\}$ 中选出：1）真分数的子集；  2）假分数的子集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "16",
+      "prompt": "在射线上标出 2, 6, 3, 8 的对应点 $A, B, C, D$. 线段 $CD$ 是不是线段 $AB$ 的子集？线段 $BC$ 是不是线段 $AB$ 的子集？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "17",
+      "prompt": "在集体农庄的果园中，有 1720 棵果树. 其中樱桃树占25%，苹果树占 15%. 这个果园中苹果树和樱桃树各有多少棵？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "688 棵树"
+    },
+    {
+      "exercise": "18",
+      "prompt": "全校学生搜集了 12 吨废铁. 五年级的一个班搜集了全部废铁的 12%，另一个班搜集了 13%. 五年级的这两个班各搜集了几吨废铁？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "3 吨"
+    },
+    {
+      "exercise": "19",
+      "prompt": "求下列各式的值：1）$7091 + 9663 - (243\\,916 + 75\\,446) : 527 : 3$；2）$8607 + 7605 + (376\\,012 - 83\\,314) : 414 : 7$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 16 552；2) 16 313"
+    }
+  ]
+}

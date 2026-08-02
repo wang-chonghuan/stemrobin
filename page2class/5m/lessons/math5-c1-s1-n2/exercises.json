@@ -12,6 +12,10 @@
       "pages": [
         "p0015#1"
       ],
+      "figure_refs": [
+        "fig-06-1",
+        "fig-06-2"
+      ],
       "figures": [
         {
           "id": "fig-06-1",
@@ -34,6 +38,7 @@
       "pages": [
         "p0015#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -48,6 +53,7 @@
       "pages": [
         "p0015#3"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -61,6 +67,7 @@
       "pages": [
         "p0015#4"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -74,6 +81,7 @@
       "pages": [
         "p0015#5"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -86,6 +94,7 @@
       "pages": [
         "p0015#6"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -100,6 +109,7 @@
       "pages": [
         "p0015#7"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -115,6 +125,7 @@
       "pages": [
         "p0015#9"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -128,6 +139,7 @@
       "pages": [
         "p0015#10"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -144,6 +156,9 @@
         "p0015#11",
         "p0015#13",
         "p0016#1"
+      ],
+      "figure_refs": [
+        "fig-07"
       ],
       "figures": [
         {
@@ -164,6 +179,7 @@
       "pages": [
         "p0016#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -177,6 +193,7 @@
       "pages": [
         "p0016#3"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -191,6 +208,7 @@
       "pages": [
         "p0016#4"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -205,6 +223,7 @@
       "pages": [
         "p0016#5"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -221,6 +240,7 @@
       "pages": [
         "p0016#7"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -234,6 +254,9 @@
       ],
       "pages": [
         "p0016#8"
+      ],
+      "figure_refs": [
+        "fig-08"
       ],
       "figures": [
         {
@@ -258,6 +281,7 @@
         "p0016#11",
         "p0017#1"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -271,6 +295,7 @@
       "pages": [
         "p0017#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -285,6 +310,7 @@
       "pages": [
         "p0017#3"
       ],
+      "figure_refs": [],
       "figures": []
     }
   ]

@@ -1,0 +1,240 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n10",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "149",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "从 A(2) 出发：向右 6 个单位到 8；向左 6 个单位到 -4；移动 7 个单位到 9；移动 -7 个单位到 -5。",
+      "parts": [
+        {
+          "label": "向右 6",
+          "judge": "numeric",
+          "expected": [
+            "8"
+          ]
+        },
+        {
+          "label": "向左 6",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        },
+        {
+          "label": "移动 7",
+          "judge": "numeric",
+          "expected": [
+            "9"
+          ]
+        },
+        {
+          "label": "移动 -7",
+          "judge": "numeric",
+          "expected": [
+            "-5"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "150",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "P(4) 到 K(-2) 的移动量为 -2-4=-6；到 T(6) 的移动量为 6-4=2。",
+      "parts": [
+        {
+          "label": "与 K 重合",
+          "judge": "numeric",
+          "expected": [
+            "-6"
+          ],
+          "unit": "单位"
+        },
+        {
+          "label": "与 T 重合",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ],
+          "unit": "单位"
+        }
+      ]
+    },
+    {
+      "exercise": "151",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "五支温度计从左到右原读数为 -3°C、-2.5°C、0°C、1.5°C、3°C。1）各升高 1°C 后为 -2°C、-1.5°C、1°C、2.5°C、4°C；2）各降低 1°C 后为 -4°C、-3.5°C、-1°C、0.5°C、2°C；3）各升高 2°C 后为 -1°C、-0.5°C、2°C、3.5°C、5°C；4）各降低 2°C 后为 -5°C、-4.5°C、-2°C、-0.5°C、1°C。",
+      "parts": []
+    },
+    {
+      "exercise": "152",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "现在是 5°C，气温在冰点以上，不宜去天然溜冰场。明天气温下降 11°C 后为 5-11=-6°C，低于冰点，可以考虑去溜冰，但仍应确认冰层是否达到安全厚度。",
+      "parts": []
+    },
+    {
+      "exercise": "153",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）-14、-2；2）-6、14；3）-14、6；4）-100、100。",
+      "parts": [
+        {
+          "label": "1) 较小数",
+          "judge": "numeric",
+          "expected": [
+            "-14"
+          ]
+        },
+        {
+          "label": "1) 较大数",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "2) 较小数",
+          "judge": "numeric",
+          "expected": [
+            "-6"
+          ]
+        },
+        {
+          "label": "2) 较大数",
+          "judge": "numeric",
+          "expected": [
+            "14"
+          ]
+        },
+        {
+          "label": "3) 较小数",
+          "judge": "numeric",
+          "expected": [
+            "-14"
+          ]
+        },
+        {
+          "label": "3) 较大数",
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "label": "4) 较小数",
+          "judge": "numeric",
+          "expected": [
+            "-100"
+          ]
+        },
+        {
+          "label": "4) 较大数",
+          "judge": "numeric",
+          "expected": [
+            "100"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "154",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "示例：-12 和 -10 与 -11 的距离都为 1。另三对可取（-13，-9）、（-14，-8）、（-15，-7）。一般地，任意一对 -11-d 和 -11+d 都符合条件。",
+      "parts": []
+    },
+    {
+      "exercise": "155",
+      "grading": "auto",
+      "source": "reviewed",
+      "bookRaw": "94.5 吨",
+      "notes": "按题面数据，总产量为 7565 吨，总面积为 80 公顷，正确商为 94.5625。书后答案 94.5 与题面数据不一致。",
+      "displayAnswer": "按全部土地加权平均：(4275+3290)÷(45+35)=7565÷80=94.5625 吨/公顷。书后列出的 94.5 吨与题面数据不符。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "94.5625"
+          ],
+          "unit": "吨/公顷"
+        }
+      ]
+    },
+    {
+      "exercise": "156",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "其他加盟共和国提供 840-530=310 万吨，占 310÷840×100%≈36.9%。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "36.9"
+          ],
+          "unit": "%",
+          "tolerance": 0.1
+        }
+      ]
+    },
+    {
+      "exercise": "157",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "A(-3) 向右移动 5 个单位后到 2；向左移动 2 个单位后到 -5。",
+      "parts": [
+        {
+          "label": "向右 5",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        },
+        {
+          "label": "向左 2",
+          "judge": "numeric",
+          "expected": [
+            "-5"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "158",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "从 M(-4) 到 C(3) 的移动量为 3-(-4)=7 个单位。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "7"
+          ],
+          "unit": "单位"
+        }
+      ]
+    },
+    {
+      "exercise": "159",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "330 人",
+      "displayAnswer": "设铣工为 x 人，则钳工为 2x 人、车工为 3x 人，6x=660，所以车工为 330 人。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "330"
+          ],
+          "unit": "人"
+        }
+      ]
+    }
+  ],
+  "count": 11
+}

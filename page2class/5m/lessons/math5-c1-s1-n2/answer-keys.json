@@ -1,0 +1,207 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n2",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "20",
+      "displayAnswer": "M={P, E, C, D}，N={C, D, K, X, S}，M∩N={C, D}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "21",
+      "displayAnswer": "12 的约数：{1, 2, 3, 4, 6, 12}；18 的约数：{1, 2, 3, 6, 9, 18}；交集：{1, 2, 3, 6}；最大公约数是 6。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "22",
+      "displayAnswer": "A={4, 8, 12, 16, 20, 24, 28, 32, 36, 40}；B={6, 12, 18, 24, 30, 36, 42, 48, 54, 60}；A∩B={12, 24, 36}；4 与 6 的最小公倍数是 12。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "23",
+      "displayAnswer": "交集是线段 [BC]。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "24",
+      "displayAnswer": "两个字母集合的交集是 {м, а, т, и, к}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "25",
+      "displayAnswer": "A∩B=∅。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "26",
+      "displayAnswer": "X∩Y={6}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "27",
+      "displayAnswer": "名词：{沼泽地, 蔓越桔, 果实, 土墩}；动词：{散落}；形容词：{长满青苔的, 鲜红的}；数词：∅。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "28",
+      "displayAnswer": "全部子集为：∅，{1}，{2}，{3}，{1,2}，{1,3}，{2,3}，{1,2,3}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "29",
+      "displayAnswer": "这两个平角是 ∠AOD 和 ∠BOC。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "卢布",
+          "judge": "numeric",
+          "expected": [
+            "163.8"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "163.8 卢布",
+      "grading": "auto",
+      "exercise": "30",
+      "displayAnswer": "163.8 卢布。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "千克",
+          "judge": "numeric",
+          "expected": [
+            "30"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "30 公斤",
+      "grading": "auto",
+      "exercise": "31",
+      "displayAnswer": "30 千克。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "10"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "11.7"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 10；2) 11.7",
+      "grading": "auto",
+      "exercise": "32",
+      "displayAnswer": "1）10；2）11.7。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "53"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "17.1"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "33",
+      "displayAnswer": "1）x=53；2）y=17.1。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "34",
+      "displayAnswer": "1）A∩B={15, 20, 25}；2）A∩B={а, в, г, е}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "35",
+      "displayAnswer": "两个平角的交集是 ∠AOC。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "36",
+      "displayAnswer": "1）20 的约数为 {1,2,4,5,10,20}，30 的约数为 {1,2,3,5,6,10,15,30}，交集为 {1,2,5,10}；2）36 的约数为 {1,2,3,4,6,9,12,18,36}，24 的约数为 {1,2,3,4,6,8,12,24}，交集为 {1,2,3,4,6,12}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "37",
+      "displayAnswer": "M∩K={15, 30}。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "26.468"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "34.735"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 26.468；2) 34.735",
+      "grading": "auto",
+      "exercise": "38",
+      "displayAnswer": "1）26.468；2）34.735。"
+    }
+  ],
+  "count": 19
+}

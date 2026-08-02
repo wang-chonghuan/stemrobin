@@ -1,0 +1,20 @@
+{
+  "schema": "ld-s10y-answer/audit@1",
+  "book": "5m",
+  "status": "pass",
+  "answerCount": 284,
+  "exerciseRange": [
+    9,
+    1200
+  ],
+  "answersByPdfPage": {
+    "305": 65,
+    "306": 59,
+    "307": 61,
+    "308": 61,
+    "309": 38
+  },
+  "needsReview": [
+    170
+  ]
+}

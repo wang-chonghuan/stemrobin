@@ -18,7 +18,7 @@
     "id": "soviet-cn",
     "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
   },
-  "schema": "ld-page2class/page@3",
+  "schema": "ld-s10y-lesson/page@3",
   "notes": [],
   "printed_lines": 25,
   "figures": [

@@ -1,0 +1,99 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n3",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "39",
+      "displayAnswer": "X∪Y={A, B, C, D, K, M, P}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "40",
+      "displayAnswer": "A∪B={б,в,г,д,е,и,л}；A∩B={б,г,е}；B∩A={б,г,е}；B∪A={б,в,г,д,е,и,л}；A∩C={в,д}；A∪C={б,в,г,д,е,ж}；B∩C=∅；B∪C={б,в,г,д,е,ж,и,л}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "41",
+      "displayAnswer": "1）[AB]∪[BC]=[AC]；2）[AC]∪[BC]=[AC]。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "42",
+      "displayAnswer": "A∪B 是全班所有学生的集合。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "43",
+      "displayAnswer": "A={90,45,25}，B={48,90,45}，A∩B={90,45}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "44",
+      "displayAnswer": "M∩N 表示既是本班少先队员、又参加革命圣地行军的同学的集合。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "%",
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "66.7"
+          ],
+          "tolerance": 0.1
+        },
+        {
+          "unit": "%",
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "33.3"
+          ],
+          "tolerance": 0.1
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) ≈66.7%；2) ≈33.3%",
+      "grading": "auto",
+      "exercise": "45",
+      "displayAnswer": "1）约 66.7%；2）约 33.3%。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "46",
+      "displayAnswer": "1）K∪M={1,2,3,5,6,9,15,18}；2）K∩M={1,3}；3）M∪P={1,2,3,6,9,18}；4）M∩P={1,3,9}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "47",
+      "displayAnswer": "1）A∩C={9,10}；2）A∪C={7,8,9,10,11,12,13}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "48",
+      "displayAnswer": "1）直线 a 平行于直线 m；2）直线 p、k 都与直线 m 相交。"
+    }
+  ],
+  "count": 10
+}

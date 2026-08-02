@@ -1,0 +1,81 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n5",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "67",
+      "prompt": "把 1，2，3，4，5，6，7，8，9，10，11，12，13，14，15，16，17，18，19，20 等数分成三类. 第一类包括 3 的倍数，第二类包括用 3 除余 1 的各数，第三类包括用 3 除余 2 的各数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "68",
+      "prompt": "图 17 中的图形的集合是不是可以分成：1) 两类——三角形和四边形；2) 三类——三角形、四边形和带阴影图形；3) 三类——三角形、四边形和圆；4) 两类——带阴影图形和白色图形？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "69",
+      "prompt": "按图 17 填写下表：作条形图，表示出三角形、四边形和圆的数量（图 17）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "70",
+      "prompt": "设 $|AB|=5.6$ 厘米，$\\widehat{A}=40^\\circ$，$\\widehat{B}=65^\\circ$，作三角形 $ABC$，再过顶点 $C$ 作 $AB$ 边的平行线.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "71",
+      "prompt": "把每个加数化成小数并作加法：1) $\\frac{1}{2}+\\frac{1}{4}$；　　2) $\\frac{1}{5}+\\frac{1}{10}$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "72",
+      "prompt": "下表列有苏联的发电量（单位为 10 亿千瓦时）.求出这五年的年平均发电量. 发电量每年平均增长多少？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "8756 亿度，增加 585 亿度"
+    },
+    {
+      "exercise": "73",
+      "prompt": "把集合 {а，б，в，г，д，е，ж，з，и，к} 分成母音字母和子音字母两类.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "74",
+      "prompt": "把图 18 中的集合分成植物和动物两类. 画出条形图.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "75",
+      "prompt": "把被减数和减数化成小数，并作减法：1) $\\frac{3}{4}-\\frac{1}{8}$；　　2) $\\frac{13}{25}-\\frac{2}{5}$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    }
+  ]
+}

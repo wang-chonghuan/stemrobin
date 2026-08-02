@@ -1,0 +1,224 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n6",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "76",
+      "displayAnswer": "图中锐角三角形 2 个，直角三角形 2 个，钝角三角形 4 个。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "77",
+      "displayAnswer": "两条对角线把长方形分成 4 个三角形：靠长边的上、下两个是钝角三角形，靠短边的左、右两个是锐角三角形。再从对角线交点分别向四条边作垂线，可把每个三角形分成两个直角三角形。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "78",
+      "displayAnswer": "作图：作正方形，连接任意一条对角线；对角线把正方形分成两个全等的等腰直角三角形。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "79",
+      "displayAnswer": "OA=OB，所以 △AOB 是等腰三角形；∠AOB=140°，所以它是钝角等腰三角形。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "80",
+      "displayAnswer": "KM、KT 都是半径，均为 3 厘米；题设 MT=3 厘米。因此 KM=KT=MT，△MKT 是等边三角形。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "81",
+      "displayAnswer": "7 的倍数子集：{14,21}；其余自然数子集：{15,16,17,18,19,20,22}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "82",
+      "displayAnswer": "1）不正确，还漏了平角等其他角；2）不正确，等边三角形也属于等腰三角形，两类相交；3）不正确，前腿/后腿与左腿/右腿互有重叠。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "83",
+      "displayAnswer": "M={124,125,126,127,128,129}；K={127,128,129,130,131,132,133}；K∩M={127,128,129}；K∪M={124,125,126,127,128,129,130,131,132,133}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "84",
+      "displayAnswer": "1）作 AB=3.5 厘米，在 A 点作 135° 角射线，在射线上截取 AC=5 厘米，连接 BC；2）作 AB=4 厘米，在 A、B 两点分别作 72° 角射线，交点为 C。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "85",
+      "displayAnswer": "1）作 AB=3 厘米，过 B 作 AB 的垂线并截取 BC=5 厘米，连接 AC；2）作 AB=4.5 厘米，过 B 作 AB 的垂线，在 A 点作与 AB 成 40° 的射线，两线交于 C。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "小时",
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "10"
+          ]
+        },
+        {
+          "unit": "小时",
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "8.1"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 10 小时；2) 8.1 小时",
+      "grading": "auto",
+      "exercise": "86",
+      "displayAnswer": "1）10 小时；2）8.1 小时。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "0.35"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "1.05"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "3)",
+          "expected": [
+            "0.375"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "4)",
+          "expected": [
+            "2.5"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "87",
+      "displayAnswer": "1）0.35；2）1.05；3）0.375；4）2.5。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "88",
+      "displayAnswer": "∠MHP=90°（直径所对的圆周角是直角）。另外两个锐角的具体度数随 H 的位置变化，但它们的和恒为 90°。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "89",
+      "displayAnswer": "两个锐角相等，各为 45°。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "90",
+      "displayAnswer": "△AOD 中 OA=OD，顶角为 50°，两个底角各 65°，所以是锐角等腰三角形；△BOD 中 OB=OD，顶角为 130°，两个底角各 25°，所以是钝角等腰三角形。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "千米",
+          "judge": "numeric",
+          "expected": [
+            "10"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "10 公里",
+      "grading": "auto",
+      "exercise": "91",
+      "displayAnswer": "10 千米。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "岁",
+          "judge": "numeric",
+          "label": "妹妹",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "unit": "岁",
+          "judge": "numeric",
+          "label": "哥哥",
+          "expected": [
+            "12"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "3 岁，12 岁",
+      "grading": "auto",
+      "exercise": "92",
+      "displayAnswer": "妹妹 3 岁，哥哥 12 岁。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "10.4"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "93",
+      "displayAnswer": "1）1；2）10.4。"
+    }
+  ],
+  "count": 18
+}

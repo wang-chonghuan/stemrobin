@@ -10,14 +10,6 @@
 
 *图 16*
 
-![图 17](../../figures/fig-17.svg)
-
-*图 17*
-
 ![表格](../../figures/tbl-p0024-02.svg)
 
 ![表格](../../figures/tbl-p0025-01.svg)
-
-![图 18](../../figures/fig-18.svg)
-
-*图 18*

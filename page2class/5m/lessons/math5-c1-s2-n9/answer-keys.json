@@ -1,0 +1,398 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n9",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "126",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "O(0)，A(-2)，B(3)，C(5)，D(6)，P(-6)，K(-7)，M(-9)，E(-12)。",
+      "parts": [
+        {
+          "label": "O",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "A",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "B",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "C",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ]
+        },
+        {
+          "label": "D",
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "label": "P",
+          "judge": "numeric",
+          "expected": [
+            "-6"
+          ]
+        },
+        {
+          "label": "K",
+          "judge": "numeric",
+          "expected": [
+            "-7"
+          ]
+        },
+        {
+          "label": "M",
+          "judge": "numeric",
+          "expected": [
+            "-9"
+          ]
+        },
+        {
+          "label": "E",
+          "judge": "numeric",
+          "expected": [
+            "-12"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "127",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在数轴上依次标出 A(1)、B(8.3)、C(-6)、D(6)、M(-2.4)、K(2.4)。从左到右的顺序为 C、M、A、K、D、B。",
+      "parts": []
+    },
+    {
+      "exercise": "128",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "三角形小旗所在点 B 的坐标为 -2，长方形小旗所在点的坐标为 2；由此确定原点和单位线段后，C(-4.5)，D(0.5)。",
+      "parts": []
+    },
+    {
+      "exercise": "129",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在数轴上分别标出坐标为 -7、3.3、-5.2、-1、2、-1.8、5/3、-7/2 的点。从左到右为 -7、-5.2、-7/2、-1.8、-1、5/3、2、3.3。",
+      "parts": []
+    },
+    {
+      "exercise": "130",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）从左到右为 -11、-8、-7、-6、-5、3、7、9、10；2）从左到右为 -5、-3、-1、5/6、7/8、2。按这些坐标在数轴上标点。",
+      "parts": []
+    },
+    {
+      "exercise": "131",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "按图 38 的千米刻度约读得：厄尔布鲁士山 6 000 米，卡兹别克峰 5 000 米，胜利峰 8 000 米，珠穆朗玛峰 9 000 米，埃特纳火山 4 000 米，维苏威火山 2 000 米；里海深 1 000 米，黑海深 2 000 米，地中海深 5 000 米，马里亚纳海沟深 11 000 米。",
+      "parts": []
+    },
+    {
+      "exercise": "132",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "A、B 两点间的距离为 |7-(-2)|=9 个单位。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "9"
+          ],
+          "unit": "单位"
+        }
+      ]
+    },
+    {
+      "exercise": "133",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "示例：1）12、13、14；2）-9、-10、-11；3）-821、-822、-823；4）-71、-70、-69。每小题还有许多其他正确答案。",
+      "parts": []
+    },
+    {
+      "exercise": "134",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "把温度计水银柱依次调到 -12°C、-11°C、-7°C、3°C、-8.5°C、7.3°C 的刻度位置。",
+      "parts": []
+    },
+    {
+      "exercise": "135",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "图 39 的指针指在正刻度 10 处，温度为 10°C。",
+      "parts": []
+    },
+    {
+      "exercise": "136",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）负数：{-1.2，-3，-3又7/8，-10}，其中 -12/4=-3；2）正数：{3/5，6，7.2，8}；3）自然数：{6，8}。0 既不是正数也不是负数。",
+      "parts": []
+    },
+    {
+      "exercise": "137",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "等边三角形都是等腰三角形，因此两集合的并集是等腰三角形集合。",
+      "parts": [
+        {
+          "judge": "exact",
+          "expected": [
+            "等腰三角形集合",
+            "等腰三角形的集合"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "138",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1 平方公里=10 000 000 000 平方厘米，所以每平方公里上空气柱的质量为 10 330 000 000 公斤；亚速海上空气柱的质量为 10 330 000 000×38 000=392 540 000 000 000 公斤。",
+      "parts": [
+        {
+          "label": "每平方公里",
+          "judge": "numeric",
+          "expected": [
+            "10330000000"
+          ],
+          "unit": "公斤"
+        },
+        {
+          "label": "亚速海上空",
+          "judge": "numeric",
+          "expected": [
+            "392540000000000"
+          ],
+          "unit": "公斤"
+        }
+      ]
+    },
+    {
+      "exercise": "139",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）要被 3 整除，* 可取 0、3、6、9；2）末位已经是 5，所以 * 可取 0 到 9 中的任意数字。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "0,3,6,9",
+            "0，3，6，9",
+            "\\{0,3,6,9\\}",
+            "{0,3,6,9}"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "0,1,2,3,4,5,6,7,8,9",
+            "0，1，2，3，4，5，6，7，8，9",
+            "\\{0,1,2,3,4,5,6,7,8,9\\}",
+            "{0,1,2,3,4,5,6,7,8,9}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "140",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 5.48 公担，4.72 公担；2) 30.7 公顷，33.5 公顷",
+      "displayAnswer": "1）第一队 5.48 公担，第二队 4.72 公担；2）较少者 30.7 公顷，较多者 33.5 公顷。",
+      "parts": [
+        {
+          "label": "1) 第一队",
+          "judge": "numeric",
+          "expected": [
+            "5.48"
+          ],
+          "unit": "公担"
+        },
+        {
+          "label": "1) 第二队",
+          "judge": "numeric",
+          "expected": [
+            "4.72"
+          ],
+          "unit": "公担"
+        },
+        {
+          "label": "2) 较少者",
+          "judge": "numeric",
+          "expected": [
+            "30.7"
+          ],
+          "unit": "公顷"
+        },
+        {
+          "label": "2) 较多者",
+          "judge": "numeric",
+          "expected": [
+            "33.5"
+          ],
+          "unit": "公顷"
+        }
+      ]
+    },
+    {
+      "exercise": "141",
+      "grading": "ungraded",
+      "source": "book",
+      "bookRaw": "1) 45°，135°；2) 36°，144°",
+      "displayAnswer": "1）两个邻补角为 45° 和 135°；2）两个邻补角为 36° 和 144°。作图时让两角共用一边，另两边组成一条直线。",
+      "parts": []
+    },
+    {
+      "exercise": "142",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 2.91；2) 9",
+      "displayAnswer": "1）2.91；2）9。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "2.91"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "9"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "143",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在数轴上标出 M(-3)、N(4)、P(-8.1)、K(3.3)、T(-7)、C(7)。从左到右为 P、T、M、K、N、C。",
+      "parts": []
+    },
+    {
+      "exercise": "144",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "画出 -60°C 到 60°C、每格 5°C 的刻度；汽油冰点标在 -60°C，水银冰点 -39°C 标在 -40°C 右侧 1°C 处，人体正常温度 36.6°C 标在 35°C 与 40°C 之间、靠近 35°C。",
+      "parts": []
+    },
+    {
+      "exercise": "145",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "5.6 公顷，6.72 公顷",
+      "displayAnswer": "两个拖拉机手分别翻耕 5.6 公顷和 6.72 公顷。",
+      "parts": [
+        {
+          "label": "较少者",
+          "judge": "numeric",
+          "expected": [
+            "5.6"
+          ],
+          "unit": "公顷"
+        },
+        {
+          "label": "较多者",
+          "judge": "numeric",
+          "expected": [
+            "6.72"
+          ],
+          "unit": "公顷"
+        }
+      ]
+    },
+    {
+      "exercise": "146",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "253.5 公斤",
+      "displayAnswer": "6500×3.9%=253.5 公斤。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "253.5"
+          ],
+          "unit": "公斤"
+        }
+      ]
+    },
+    {
+      "exercise": "147",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "24.568；253.15",
+      "displayAnswer": "k=3.06 时为 24.568；k=30.6 时为 253.15。",
+      "parts": [
+        {
+          "label": "k=3.06",
+          "judge": "numeric",
+          "expected": [
+            "24.568"
+          ]
+        },
+        {
+          "label": "k=30.6",
+          "judge": "numeric",
+          "expected": [
+            "253.15"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "148",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 490 081；2) 119 922",
+      "displayAnswer": "1）490 081；2）119 922。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "490081"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "119922"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 23
+}

@@ -1,6 +1,6 @@
 {
   "meta": {
-    "schema": "ld-page2class/page@3",
+    "schema": "ld-s10y-lesson/page@3",
     "book": "5m",
     "page": 32,
     "printed_page": 23,
@@ -141,7 +141,7 @@
       "label": "105",
       "box": null,
       "cont": false,
-      "open": true,
+      "open": false,
       "samerow": false,
       "lines": [
         "一只松鼠从树洞钻出，沿着树干跑上跑下（图 29）. 如",

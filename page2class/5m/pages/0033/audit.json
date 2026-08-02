@@ -1,0 +1,45 @@
+{
+  "page": 33,
+  "lines_printed": 23,
+  "lines_md": 23,
+  "figures": [
+    {
+      "id": "fig-29",
+      "label": "图 29",
+      "box": [
+        208,
+        318,
+        416,
+        842
+      ],
+      "components": 58,
+      "from": [
+        210,
+        310,
+        420,
+        850
+      ]
+    },
+    {
+      "id": "fig-30",
+      "label": "图 30",
+      "box": [
+        684,
+        894,
+        564,
+        263
+      ],
+      "components": 62,
+      "from": [
+        680,
+        880,
+        570,
+        270
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

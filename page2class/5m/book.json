@@ -1,6 +1,6 @@
 {
   "book": "5m",
-  "pages": 23,
+  "pages": 35,
   "lessons": [
     {
       "id": "math5-c1-s1-n1",
@@ -8,7 +8,7 @@
       "title": "子集",
       "number": "1",
       "start_printed": 1,
-      "prose_blocks": 10,
+      "prose_blocks": 6,
       "exercises": 19,
       "figures": 4
     },
@@ -18,7 +18,7 @@
       "title": "交集",
       "number": "2",
       "start_printed": 4,
-      "prose_blocks": 15,
+      "prose_blocks": 11,
       "exercises": 19,
       "figures": 5
     },
@@ -28,7 +28,7 @@
       "title": "并集",
       "number": "3",
       "start_printed": 8,
-      "prose_blocks": 8,
+      "prose_blocks": 6,
       "exercises": 10,
       "figures": 3
     },
@@ -38,7 +38,7 @@
       "title": "作平行线",
       "number": "4",
       "start_printed": 10,
-      "prose_blocks": 10,
+      "prose_blocks": 4,
       "exercises": 18,
       "figures": 5
     },
@@ -48,7 +48,7 @@
       "title": "分类",
       "number": "5",
       "start_printed": 14,
-      "prose_blocks": 10,
+      "prose_blocks": 6,
       "exercises": 9,
       "figures": 5
     },
@@ -58,7 +58,7 @@
       "title": "三角形的分类",
       "number": "6",
       "start_printed": 17,
-      "prose_blocks": 12,
+      "prose_blocks": 10,
       "exercises": 18,
       "figures": 5
     },
@@ -79,21 +79,48 @@
       "number": "8",
       "start_printed": 23,
       "prose_blocks": 0,
-      "exercises": 1,
-      "figures": 0
+      "exercises": 21,
+      "figures": 5
+    },
+    {
+      "id": "math5-c1-s2-n9",
+      "card_id": "math5-c1-s2-n9",
+      "title": "数轴",
+      "number": "9",
+      "start_printed": 28,
+      "prose_blocks": 8,
+      "exercises": 23,
+      "figures": 6
+    },
+    {
+      "id": "math5-c1-s2-n10",
+      "card_id": "math5-c1-s2-n10",
+      "title": "点在数轴上的移动",
+      "number": "10",
+      "start_printed": 33,
+      "prose_blocks": 3,
+      "exercises": 11,
+      "figures": 2
+    },
+    {
+      "id": "math5-c1-s2-n11",
+      "card_id": "math5-c1-s2-n11",
+      "title": "中心对称",
+      "number": "11",
+      "start_printed": 35,
+      "prose_blocks": 8,
+      "exercises": 0,
+      "figures": 3
     }
   ],
   "audit": {
     "errors": [],
-    "warnings": [
-      "第 105 题引用「图 29」，全书没有这张图",
-      "仍有 1 个块标着 open 没接上（书还没抽完是正常的）: p0032#10"
-    ],
+    "warnings": [],
     "exercise_range": [
       1,
-      105
+      159
     ],
-    "exercise_count": 105,
+    "exercise_count": 159,
     "figure_numbers": [
       1,
       2,
@@ -122,7 +149,23 @@
       25,
       26,
       27,
-      28
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
     ],
     "katex_warnings": []
   }

@@ -1,0 +1,164 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n2",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "20",
+      "prompt": "照图 6.2 写出集合 $M$ 和集合 $N$ 以及它们的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "21",
+      "prompt": "写出 12 的约数的集合和 18 的约数的集合. 找出这两个集合的交集. 12 和 18 的最大公约数是几？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "22",
+      "prompt": "集合 $A$ 由前 10 个 4 的倍数的自然数组成，而集合 $B$ 则由前 10 个 6 的倍数的自然数组成. 找出 $A$ 和 $B$ 的交集. 4与 6 的最小公倍数是几？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "23",
+      "prompt": "在射线上标出 3, 8, 5, 10 的对应点 $A, B, C, D$. 哪个线段是 $AB$ 和 $CD$ 二线段的交集？ 写出答案.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "24",
+      "prompt": "找出组成 “математика” 一词的不同字母的集合和组成“грамматика”一词的不同字母的集合的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "25",
+      "prompt": "找出偶数集合 $A$ 和奇数集合 $B$ 的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "26",
+      "prompt": "用 $X$ 表示不等式 $5<x<9$ 的自然数解的集合，用 $Y$ 表示不等式 $2<y<7$ 的自然数解的集合. 在大括号内写出 $X$和 $Y$ 的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "27",
+      "prompt": "“在长满青苔的沼泽地里，鲜红的蔓越桔的果实成串地散落在土墩上”，从这个句子的单词的集合中选出子集：1）名词；  3）形容词；2）动词；  4）数词.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "28",
+      "prompt": "写出集合 $\\{1, 2, 3\\}$ 的全部子集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "29",
+      "prompt": "图 7 中 $AOB$ 角的点的集合涂有阴影. 这个点的集合是两个平角的点的集合的子集. 指出这两个平角并说出名称.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "30",
+      "prompt": "某工人七月份收入 140 卢布. 八月份他掌握了先进的劳动方法，提高了生产效率，收入增加了 17%. 这个工人在八月份收入多少卢布？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "163.8 卢布"
+    },
+    {
+      "exercise": "31",
+      "prompt": "决定烘干 150 公斤樱桃. 烘干时，樱桃的重量减轻 80%.烘干后得樱桃多少公斤？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "30 公斤"
+    },
+    {
+      "exercise": "32",
+      "prompt": "计算：1）$4.76 + 3.24 : 0.8 + (0.623 + 1.12 \\cdot 3.8) : 4.1$；2）$3.92 + 4.41 : 0.7 + (1.59 + 1.21 \\cdot 2.6) : 3.2$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 10；2) 11.7"
+    },
+    {
+      "exercise": "33",
+      "prompt": "解方程：1）$3.7 \\cdot (x - 2.5) = 186.85$；2）$(y + 3.8) \\cdot 2.9 = 60.61$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "34",
+      "prompt": "假设：1）$A$={5, 10, 15, 20, 25}，  $B$={15, 20, 25, 30, 35}；2）$A$={а, б, в, г, д, е}，  $B$={а, в, г, е}，在大括号内写出 $A$ 和 $B$ 的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "35",
+      "prompt": "图 8 中用圆弧标出平角 $AOB$和 $COD$. 写出这两个角的交集是哪个角.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "36",
+      "prompt": "设：1）$X=20$，$Y=30$；2）$X=36$，$Y=24$，写出数 $X$ 的约数的集合和数 $Y$ 的约数的集合. 找出这两个集合的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "37",
+      "prompt": "集合 $M$ 由前 10 个 3 的倍数的自然数组成，集合 $K$ 由前 10个 5 的倍数的自然数组成. 找出 $M$ 和 $K$ 的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "38",
+      "prompt": "求下列各式的值：1）$18.305 : 0.7 - 0.0368 : 0.4 + 0.492 : 1.2$；2）$(21.62 \\cdot 3.5 - 52.08 : 8.4) \\cdot 0.5$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 26.468；2) 34.735"
+    }
+  ]
+}

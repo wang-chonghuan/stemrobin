@@ -1,0 +1,87 @@
+{
+  "id": "math5-c1-s2-n11",
+  "card_id": "math5-c1-s2-n11",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "11",
+  "title": "中心对称",
+  "printed_title": "11. 中心对称",
+  "start_page": 44,
+  "start_printed": 35,
+  "figures": [
+    {
+      "id": "fig-42",
+      "label": "图 42",
+      "page": 44
+    },
+    {
+      "id": "fig-43",
+      "label": "图 43",
+      "page": 44
+    },
+    {
+      "id": "fig-44",
+      "label": "图 44",
+      "page": 44
+    }
+  ],
+  "exercise_count": 0,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "假如点 $O$ 是线段 $AB$ 的中点，那么 $A$、$B$ 两点叫做关于点$O$ 的对称点（图 42）. 为了作点 $A$ 关于点 $O$ 的对称点 $B$，必须引直线 $AO$，并在直线 $AO$ 上，在点 $O$ 的另一侧作长度和 $AO$ 相等的线段 $OB$（图 43）.",
+      "id": null,
+      "label": null,
+      "printed_page": 35
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-42",
+      "label": "图 42",
+      "printed_page": 35
+    },
+    {
+      "kind": "cap",
+      "text": "图 42",
+      "id": null,
+      "label": "图 42",
+      "printed_page": 35
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-43",
+      "label": "图 43",
+      "printed_page": 35
+    },
+    {
+      "kind": "cap",
+      "text": "图 43",
+      "id": null,
+      "label": "图 43",
+      "printed_page": 35
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-44",
+      "label": "图 44",
+      "printed_page": 35
+    },
+    {
+      "kind": "cap",
+      "text": "图 44",
+      "id": null,
+      "label": "图 44",
+      "printed_page": 35
+    },
+    {
+      "kind": "p",
+      "text": "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都是合同的.",
+      "id": null,
+      "label": null,
+      "printed_page": 35
+    }
+  ]
+}

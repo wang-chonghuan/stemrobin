@@ -18,7 +18,7 @@
 | `page2class/` | 教材抽取产物：页级底稿、全书图库、按单元成课的成品 |
 | `ssot-resources/` | 教材目录（TOC）等真源；app 的课程目录就是读它 |
 | `ssot-schemas/` | 数据库 schema 真源 |
-| `.claude/skills/` | 本仓库自己的 agent 技能（`ld-page2class`） |
+| `.claude/skills/` | 本仓库自己的教材技能（`ld-s10y-lesson`、`ld-s10y-answer`） |
 | `.agents/skills/` | 内容生成技能（`sr-story` 传记、`sr-voa1500` 英语、`ld-galaxy` 首页星图） |
 | `.prodfarm/charter/` | 产品目标、红线、工程规约、架构、运维手册（人拥有） |
 | `.tmp/` | 已 gitignore 的暂存区：原书 PDF、数据库备份 |
@@ -55,12 +55,12 @@ cd app && npm run build   # 生产构建
 
 ## 怎么从 PDF 生成一个单元
 
-技能是 `ld-page2class`（`.claude/skills/ld-page2class/`），五步。**第二步是模型看图转写，
+技能是 `ld-s10y-lesson`（`.claude/skills/ld-s10y-lesson/`），五步。**第二步是模型看图转写，
 其余四步是确定性的。**
 
 ```bash
-P=.claude/skills/ld-page2class/.venv/bin/python
-S=.claude/skills/ld-page2class/tools/p2c.py
+P=.claude/skills/ld-s10y-lesson/.venv/bin/python
+S=.claude/skills/ld-s10y-lesson/tools/p2c.py
 
 $P $S prepare  --book 5m --page 15        # ① 渲染整页 + 坐标网格图
 #                                           ② 读 page.grid.png，把 page.template.md 填成 page.md
@@ -70,7 +70,7 @@ $P $S finalize --book 5m --page 15        # ③ 吸附裁图 + 规范化 + 页�
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
 $P $S vectorize --book 5m                 # 插图 PNG → SVG（描摹 + 保真自检）
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
-node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m \
+node .claude/skills/ld-s10y-lesson/tools/publish.mjs page2class/5m \
   --lesson math5-c1-s1-n5                 # 只写已完整的目标单元
 ```
 
@@ -81,19 +81,29 @@ node .claude/skills/ld-page2class/tools/publish.mjs page2class/5m \
 
 一句话就够，剩下的技能自己查 TOC、换算页码、入库并在产品验收。推荐按**单元**说：
 
-> 用 ld-page2class 抽 5m 第 8 单元
+> 用 ld-s10y-lesson 抽 5m 第 8 单元
 >
-> 用 ld-page2class 抽 5m 第 5–7 单元
+> 用 ld-s10y-lesson 抽 5m 第 5–7 单元
 >
-> 用 ld-page2class 抽 5m 第一章「正数和负数」§1「集合的运算」第 5 单元「分类」
+> 用 ld-s10y-lesson 抽 5m 第一章「正数和负数」§1「集合的运算」第 5 单元「分类」
 
 这里的**单元**专指原书目录中全书连续编号的最小内容项（TOC 的
 `topics[].printedNumber`）；章、节只是帮助定位。也仍可直接给 PDF 页码。技能会用
 `ssot-resources/soviet10year-textbooks/toc/<book>/zh.json` 找到起止印刷页，并为跨页对象
 自动多取必要的边界页，不需要人手算 PDF 页码。
 
-技能自己的文档在 `.claude/skills/ld-page2class/SKILL.md`，转写规则（西里尔小问标号、
+技能自己的文档在 `.claude/skills/ld-s10y-lesson/SKILL.md`，转写规则（西里尔小问标号、
 法式区间记号、跨行公式的 `↵` 等）都在那里，这里不重复。
+
+### Soviet 10 Years 术语
+
+- `lesson`：一本书中全局连续编号的课程单元。
+- `exercise`：一本书中全局连续编号的练习。
+- `answer`：一个 exercise 对应的答案。
+
+书后答案由独立技能 `ld-s10y-answer` 抄录，稳定产物是
+`page2class/<book>/answers.json`。该技能目前只忠实抄录原书明确印出的 answer，不做
+exercise 对齐、数学验算、略答补充或判题规则生成。
 
 ### 它能保证什么
 

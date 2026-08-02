@@ -1,0 +1,330 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n4",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "49",
+      "displayAnswer": "证明：长方形的四个角都是直角。两条对边分别垂直于同一条邻边；同一平面内，垂直于同一直线的两条直线互相平行，所以长方形的两组对边分别平行。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "50",
+      "displayAnswer": "作图：先作一条直线，再用直尺和三角板依次作 4 条与它平行的直线，共得到 5 条互相平行的直线。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "51",
+      "displayAnswer": "作图：过 M、K 分别作直线 m、k，使 m∥l、k∥l；因此 m∥k。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "52",
+      "displayAnswer": "作图：作 △ABC；过 A 作 BC 的平行线，过 B 作 AC 的平行线，过 C 作 AB 的平行线。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "53",
+      "displayAnswer": "平行线组为：NP∥OL∥XY∥ZT；AB∥CD∥EF∥KM。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "54",
+      "displayAnswer": "A={3,6,9,12}，B={6,12,18}；A∩B={6,12}；A∪B={3,6,9,12,18}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "55",
+      "displayAnswer": "1）X∩Y={7,8}；2）X∪Y={5,6,7,8,9,10,11,12}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "56",
+      "displayAnswer": "60 的约数：{1,2,3,4,5,6,10,12,15,20,30,60}；24 的约数：{1,2,3,4,6,8,12,24}；交集：{1,2,3,4,6,12}；最大公约数是 12。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "57",
+      "displayAnswer": "作图示例：1）让两个三角形共用一条对角线，并分别位于其两侧，外边界组成四边形；2）在一个三角形内部从顶点向对边作一条线段，所得两个小三角形的交集是该线段，并集是原三角形。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "小时",
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "unit": "小时",
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "4"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 经过 6 小时；2) 经过 4 小时",
+      "grading": "auto",
+      "exercise": "58",
+      "displayAnswer": "1）6 小时；2）4 小时。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "种",
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "37"
+          ]
+        },
+        {
+          "unit": "人",
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "42"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 37 件；2) 42 人",
+      "grading": "auto",
+      "exercise": "59",
+      "displayAnswer": "1）37 种；2）42 人。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "0.5"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "0.25"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "3)",
+          "expected": [
+            "0.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "4)",
+          "expected": [
+            "0.2"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "5)",
+          "expected": [
+            "0.8"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "6)",
+          "expected": [
+            "0.1"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "7)",
+          "expected": [
+            "0.7"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "8)",
+          "expected": [
+            "0.15"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "9)",
+          "expected": [
+            "2.5"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "10)",
+          "expected": [
+            "3.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "11)",
+          "expected": [
+            "5.35"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "60",
+      "displayAnswer": "0.5，0.25，0.75，0.2，0.8，0.1，0.7，0.15，2.5，3.75，5.35。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "127.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "16.5"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "3)",
+          "expected": [
+            "2.4"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "4)",
+          "expected": [
+            "6.8"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 127.75；2) 16.5；3) 2.4；4) 6.8",
+      "grading": "auto",
+      "exercise": "61",
+      "displayAnswer": "1）127.75；2）16.5；3）2.4；4）6.8。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "62",
+      "displayAnswer": "作图：复制图 14，过 K 点作一条与直线 a 平行的直线。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "63",
+      "displayAnswer": "作图：复制图 15，过 M、P 两点分别作直线 l 的垂线；两条所作直线互相平行。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "千米/小时",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "5 公里/小时",
+      "grading": "auto",
+      "exercise": "64",
+      "displayAnswer": "5 千米/小时。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "千克",
+          "judge": "numeric",
+          "label": "第一箱",
+          "expected": [
+            "17"
+          ]
+        },
+        {
+          "unit": "千克",
+          "judge": "numeric",
+          "label": "第二箱",
+          "expected": [
+            "34"
+          ]
+        },
+        {
+          "unit": "千克",
+          "judge": "numeric",
+          "label": "第三箱",
+          "expected": [
+            "25"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "17 公斤，34 公斤，25 公斤",
+      "grading": "auto",
+      "exercise": "65",
+      "displayAnswer": "第一箱 17 千克，第二箱 34 千克，第三箱 25 千克。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "35200"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 6；2) 35 200",
+      "grading": "auto",
+      "exercise": "66",
+      "displayAnswer": "1）x=6；2）y=35 200。"
+    }
+  ],
+  "count": 18
+}

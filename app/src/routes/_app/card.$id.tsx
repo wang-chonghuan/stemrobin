@@ -10,6 +10,7 @@ import {
 
 import { useEffect, useRef, useState } from 'react'
 
+import { MathAnswerField } from '~/components/math-answer-field'
 import { t, type Locale } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getLocale } from '~/lib/locale'
@@ -19,7 +20,7 @@ import { findCard } from '~/lib/textbooks'
 // One card: a numbered teaching item from the printed book.
 //
 // The body is what the scan actually says — 課文 blocks and the book's own
-// numbered exercises, transcribed by ld-page2class. Both arrive as HTML fragments
+// numbered exercises, transcribed by ld-s10y-lesson. Both arrive as HTML fragments
 // with the formulas already rendered and the figures as inline SVG, so this page
 // lays them out with the app's own typography. It deliberately does NOT host a
 // self-contained document in an iframe: that made the text a second document
@@ -61,7 +62,15 @@ function Prose({ blocks }: { blocks: ProseBlock[] }) {
 
 // The book numbers its exercises continuously across a whole volume, so the
 // number is the exercise's name — it is shown as given, never re-counted here.
-function Exercises({ items, locale }: { items: CardExercise[]; locale: Locale }) {
+function Exercises({
+  items,
+  locale,
+  cardId,
+}: {
+  items: CardExercise[]
+  locale: Locale
+  cardId: string
+}) {
   let group: string | null | undefined
   return (
     <div className="sr-ex-list">
@@ -82,6 +91,13 @@ function Exercises({ items, locale }: { items: CardExercise[]; locale: Locale })
                     dangerouslySetInnerHTML={{ __html: f.svg ?? '' }}
                   />
                 ))}
+                <MathAnswerField
+                  lessonId={cardId}
+                  exercise={e.number}
+                  storageKey={`sr_math_answer:${cardId}:${e.number}`}
+                  locale={locale}
+                  answerSpec={e.answerSpec}
+                />
               </div>
             </article>
           </section>
@@ -200,7 +216,7 @@ function CardPage() {
           ) : tab === 'read' ? (
             <Prose blocks={prose} />
           ) : (
-            <Exercises items={exercises} locale={locale} />
+            <Exercises items={exercises} locale={locale} cardId={card.id} />
           )}
 
           <footer className="sr-deck-actions">

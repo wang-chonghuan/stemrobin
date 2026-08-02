@@ -18,7 +18,7 @@
     "id": "soviet-cn",
     "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
   },
-  "schema": "ld-page2class/page@3",
+  "schema": "ld-s10y-lesson/page@3",
   "notes": [
     "课程表右下角被撕纸状缺口截断，第三列「星期三」只余「俄语／数／历」残字，照原样裁图，不补全"
   ],

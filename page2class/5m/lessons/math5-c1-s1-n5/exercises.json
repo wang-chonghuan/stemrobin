@@ -14,6 +14,7 @@
       "pages": [
         "p0024#2"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -31,6 +32,9 @@
       ],
       "pages": [
         "p0024#3"
+      ],
+      "figure_refs": [
+        "fig-17"
       ],
       "figures": [
         {
@@ -51,12 +55,10 @@
         "p0024#6",
         "p0024#8"
       ],
-      "figures": [
-        {
-          "id": "fig-17",
-          "label": "图 17"
-        }
-      ]
+      "figure_refs": [
+        "fig-17"
+      ],
+      "figures": []
     },
     {
       "number": "70",
@@ -69,6 +71,7 @@
       "pages": [
         "p0024#10"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -82,6 +85,7 @@
       "pages": [
         "p0025#1"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -96,6 +100,7 @@
         "p0025#2",
         "p0025#4"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -109,6 +114,7 @@
       "pages": [
         "p0025#6"
       ],
+      "figure_refs": [],
       "figures": []
     },
     {
@@ -120,6 +126,9 @@
       ],
       "pages": [
         "p0025#7"
+      ],
+      "figure_refs": [
+        "fig-18"
       ],
       "figures": [
         {
@@ -139,6 +148,7 @@
       "pages": [
         "p0025#10"
       ],
+      "figure_refs": [],
       "figures": []
     }
   ]

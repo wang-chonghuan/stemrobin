@@ -68,20 +68,6 @@
     {
       "kind": "fig",
       "text": "",
-      "id": "fig-17",
-      "label": "图 17",
-      "printed_page": 15
-    },
-    {
-      "kind": "cap",
-      "text": "图 17",
-      "id": null,
-      "label": "图 17",
-      "printed_page": 15
-    },
-    {
-      "kind": "fig",
-      "text": "",
       "id": "tbl-p0024-02",
       "label": "表格",
       "printed_page": 15
@@ -91,20 +77,6 @@
       "text": "",
       "id": "tbl-p0025-01",
       "label": "表格",
-      "printed_page": 16
-    },
-    {
-      "kind": "fig",
-      "text": "",
-      "id": "fig-18",
-      "label": "图 18",
-      "printed_page": 16
-    },
-    {
-      "kind": "cap",
-      "text": "图 18",
-      "id": null,
-      "label": "图 18",
       "printed_page": 16
     }
   ]

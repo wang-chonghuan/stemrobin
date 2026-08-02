@@ -1,0 +1,45 @@
+{
+  "page": 34,
+  "lines_printed": 24,
+  "lines_md": 24,
+  "figures": [
+    {
+      "id": "fig-31",
+      "label": "图 31",
+      "box": [
+        813,
+        262,
+        562,
+        320
+      ],
+      "components": 25,
+      "from": [
+        813,
+        262,
+        562,
+        320
+      ]
+    },
+    {
+      "id": "fig-32",
+      "label": "图 32",
+      "box": [
+        301,
+        1618,
+        1000,
+        51
+      ],
+      "components": 7,
+      "from": [
+        301,
+        1618,
+        1000,
+        51
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

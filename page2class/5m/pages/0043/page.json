@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 43,
+    "printed_page": 34,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 43
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "a9aff26f2020f7a8d539091f5b467bece6b7bd006abbc6e689cdd0666c6e5ba0"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 24,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "151",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "1) 升高 $1^\\circ\\mathrm{C}$；　　　　3) 升高 $2^\\circ\\mathrm{C}$；",
+        "2) 降低 $1^\\circ\\mathrm{C}$；　　　　4) 降低 $2^\\circ\\mathrm{C}$，",
+        "每个温度计表示的温度为几度？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "152",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "我看到室外温度计的读数是 $5^\\circ\\mathrm{C}$，我要不要找同学去溜",
+        "冰场呢？如果明天气温下降 $11^\\circ\\mathrm{C}$ 时，我们能不能溜",
+        "冰呢？"
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "复习题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "153",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求在数轴上的以下各数：",
+        "1) 和 $-8$ 相距 6 个单位；",
+        "2) 和 4 相距 10 个单位；",
+        "3) 和 $-4$ 相距 10 个单位；",
+        "4) 和 0 相距 100 个单位."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "154",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "写出和 $-11$ 等距离的两个数. 再写三对这样的数."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "155",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "一个采用了先进农业技术的生产队在面积为 45 公顷的",
+        "土地上收获了 4275 吨马铃薯，在 35 公顷的一块土地上",
+        "收获了 3290 吨. 这个生产队平均从每公顷土地收获多",
+        "少马铃薯？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "156",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "1974 年全国收得籽棉 840 万吨. 其中 530 万吨是在乌",
+        "兹别克加盟共和国收的. 其它产棉的加盟共和国提供",
+        "的籽棉占百分之几？"
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "157",
+      "box": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "在数轴上标出点 $A(-3)$. 当它向右移动 5 个单位时，",
+        "将变成哪个点？当它向左移动 2 个单位时，又将变为哪"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 34 ·"
+      ]
+    }
+  ]
+}

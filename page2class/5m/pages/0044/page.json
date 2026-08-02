@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 44,
+    "printed_page": 35,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 44
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "0acf1912d8fae80ff603d3471207bb0c5c8f5e0e7b0bab1c4526e00eec237a84"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 19,
+    "figures": [
+      {
+        "id": "fig-42",
+        "label": "图 42",
+        "box": [
+          303,
+          1148,
+          361,
+          200
+        ]
+      },
+      {
+        "id": "fig-43",
+        "label": "图 43",
+        "box": [
+          349,
+          1438,
+          360,
+          189
+        ]
+      },
+      {
+        "id": "fig-44",
+        "label": "图 44",
+        "box": [
+          800,
+          1199,
+          507,
+          402
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "157",
+      "box": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "点呢？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "158",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在数轴上标出点 $M(-4)$. 在移动以后，这个点和点",
+        "$C(3)$ 重合. 点 $M$ 移动了几个单位？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "159",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "根据第九个五年计划的规定，在某市要建设一座新工",
+        "厂. 该厂需要 660 名工人—车工、钳工和铣工. 所需要",
+        "的车工是铣工的 3 倍，而钳工是铣工的 2 倍. 该厂需要",
+        "多少名车工？"
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "11. 中心对称"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "假如点 $O$ 是线段 $AB$ 的中点，那么 $A$、$B$ 两点叫做关于点",
+        "$O$ 的对称点（图 42）. 为了作点 $A$ 关于点 $O$ 的对称点 $B$，必须",
+        "引直线 $AO$，并在直线 $AO$ 上，在点 $O$ 的另一侧作长度和 $AO$ 相",
+        "等的线段 $OB$（图 43）."
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 42",
+      "box": [
+        303,
+        1148,
+        361,
+        200
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-42"
+    },
+    {
+      "kind": "cap",
+      "label": "图 42",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 42"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 43",
+      "box": [
+        349,
+        1438,
+        360,
+        189
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-43"
+    },
+    {
+      "kind": "cap",
+      "label": "图 43",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 43"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 44",
+      "box": [
+        800,
+        1199,
+        507,
+        402
+      ],
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-44"
+    },
+    {
+      "kind": "cap",
+      "label": "图 44",
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": true,
+      "lines": [
+        "图 44"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对",
+        "称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称",
+        "（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都",
+        "是合同的."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 35 ·"
+      ]
+    }
+  ]
+}

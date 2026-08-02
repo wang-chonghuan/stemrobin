@@ -1,0 +1,28 @@
+{
+  "page": 39,
+  "lines_printed": 15,
+  "lines_md": 15,
+  "figures": [
+    {
+      "id": "fig-38",
+      "label": "图 38",
+      "box": [
+        233,
+        697,
+        1032,
+        803
+      ],
+      "components": 272,
+      "from": [
+        233,
+        697,
+        1032,
+        803
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

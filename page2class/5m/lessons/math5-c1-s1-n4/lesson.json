@@ -64,48 +64,6 @@
       "id": null,
       "label": "图 11",
       "printed_page": 10
-    },
-    {
-      "kind": "fig",
-      "text": "",
-      "id": "fig-13",
-      "label": "图 13",
-      "printed_page": 11
-    },
-    {
-      "kind": "cap",
-      "text": "图 13",
-      "id": null,
-      "label": "图 13",
-      "printed_page": 11
-    },
-    {
-      "kind": "fig",
-      "text": "",
-      "id": "fig-14",
-      "label": "图 14",
-      "printed_page": 13
-    },
-    {
-      "kind": "cap",
-      "text": "图 14",
-      "id": null,
-      "label": "图 14",
-      "printed_page": 13
-    },
-    {
-      "kind": "fig",
-      "text": "",
-      "id": "fig-15",
-      "label": "图 15",
-      "printed_page": 13
-    },
-    {
-      "kind": "cap",
-      "text": "图 15",
-      "id": null,
-      "label": "图 15",
-      "printed_page": 13
     }
   ]
 }

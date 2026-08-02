@@ -1,0 +1,286 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n1",
+  "status": "ready",
+  "answers": [
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "1",
+      "displayAnswer": "1）四边形：{K, C}；2）三角形：{A, Д, M, P}；3）多边形：{A, Д, K, M, P, C}；4）带阴影的图形：{Д, M, C}；5）白色三角形：{A, P}；6）圆：∅。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "2",
+      "displayAnswer": "1）2 的倍数：{52 164, 11 218}；2）3 的倍数：{52 164, 32 415}；3）5 的倍数：{32 415}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "3",
+      "displayAnswer": "{A, K, P} 是白色（未涂阴影）图形的子集。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "4",
+      "displayAnswer": "全部子集为：∅，{阿廖沙}，{别佳}，{谢尔盖}，{阿廖沙, 别佳}，{阿廖沙, 谢尔盖}，{别佳, 谢尔盖}，{阿廖沙, 别佳, 谢尔盖}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "5",
+      "displayAnswer": "1）不是；2）不是；3）是；4）是。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "6",
+      "displayAnswer": "第二对图形中，圆的点集是正方形点集的子集。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "7",
+      "displayAnswer": "作图示例：1）把三角形完全画在四边形内部；2）把四边形完全画在三角形内部。边界是否相接均可，只要前者的全部点属于后者。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "千米/小时",
+          "judge": "numeric",
+          "label": "顺流",
+          "expected": [
+            "14.5"
+          ]
+        },
+        {
+          "unit": "千米/小时",
+          "judge": "numeric",
+          "label": "逆流",
+          "expected": [
+            "11.1"
+          ]
+        }
+      ],
+      "source": "derived",
+      "grading": "auto",
+      "exercise": "8",
+      "displayAnswer": "顺流 14.5 千米/小时；逆流 11.1 千米/小时。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "卢布",
+          "judge": "numeric",
+          "expected": [
+            "18"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "18 卢布",
+      "grading": "auto",
+      "exercise": "9",
+      "displayAnswer": "18 卢布。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "8"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "8",
+      "grading": "auto",
+      "exercise": "10",
+      "displayAnswer": "8。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.8"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "0.8",
+      "grading": "auto",
+      "exercise": "11",
+      "displayAnswer": "0.8。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "吨",
+          "judge": "numeric",
+          "expected": [
+            "0.9"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "0.9 吨",
+      "grading": "auto",
+      "exercise": "12",
+      "displayAnswer": "0.9 吨。"
+    },
+    {
+      "parts": [
+        {
+          "unit": "吨",
+          "judge": "numeric",
+          "expected": [
+            "0.8"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "0.8 吨",
+      "grading": "auto",
+      "exercise": "13",
+      "displayAnswer": "0.8 吨。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "38194"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "14704"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "3)",
+          "expected": [
+            "90.55"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "4)",
+          "expected": [
+            "36.4"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 38 194；2) 14 704；3) 90.55；4) 36.4",
+      "grading": "auto",
+      "exercise": "14",
+      "displayAnswer": "1）38 194；2）14 704；3）90.55；4）36.4。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "15",
+      "displayAnswer": "1）真分数：{1/2, 2/3, 2/5}；2）假分数：{4/3, 5/2, 7/7}。"
+    },
+    {
+      "parts": [],
+      "source": "derived",
+      "grading": "ungraded",
+      "exercise": "16",
+      "displayAnswer": "线段 CD 不是线段 AB 的子集；线段 BC 是线段 AB 的子集。"
+    },
+    {
+      "notes": "原书只印“688 棵树”，是两类果树合计，未直接回答两个待求量。",
+      "parts": [
+        {
+          "unit": "棵",
+          "judge": "numeric",
+          "label": "苹果树",
+          "expected": [
+            "258"
+          ]
+        },
+        {
+          "unit": "棵",
+          "judge": "numeric",
+          "label": "樱桃树",
+          "expected": [
+            "430"
+          ]
+        }
+      ],
+      "source": "reviewed",
+      "bookRaw": "688 棵树",
+      "grading": "auto",
+      "exercise": "17",
+      "displayAnswer": "苹果树 258 棵，樱桃树 430 棵。"
+    },
+    {
+      "notes": "原书只印“3 吨”，是两个班合计，未直接回答两个待求量。",
+      "parts": [
+        {
+          "unit": "吨",
+          "judge": "numeric",
+          "label": "第一个班",
+          "expected": [
+            "1.44"
+          ]
+        },
+        {
+          "unit": "吨",
+          "judge": "numeric",
+          "label": "第二个班",
+          "expected": [
+            "1.56"
+          ]
+        }
+      ],
+      "source": "reviewed",
+      "bookRaw": "3 吨",
+      "grading": "auto",
+      "exercise": "18",
+      "displayAnswer": "第一个班 1.44 吨，第二个班 1.56 吨。"
+    },
+    {
+      "parts": [
+        {
+          "judge": "numeric",
+          "label": "1)",
+          "expected": [
+            "16552"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "label": "2)",
+          "expected": [
+            "16313"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 16 552；2) 16 313",
+      "grading": "auto",
+      "exercise": "19",
+      "displayAnswer": "1）16 552；2）16 313。"
+    }
+  ],
+  "count": 19
+}

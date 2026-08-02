@@ -8,7 +8,33 @@
   "printed_title": "8. 向右或向左，向上或向下",
   "start_page": 32,
   "start_printed": 23,
-  "figures": [],
-  "exercise_count": 1,
+  "figures": [
+    {
+      "id": "fig-29",
+      "label": "图 29",
+      "page": 33
+    },
+    {
+      "id": "fig-30",
+      "label": "图 30",
+      "page": 33
+    },
+    {
+      "id": "fig-31",
+      "label": "图 31",
+      "page": 34
+    },
+    {
+      "id": "fig-32",
+      "label": "图 32",
+      "page": 34
+    },
+    {
+      "id": "fig-33",
+      "label": "图 33",
+      "page": 36
+    }
+  ],
+  "exercise_count": 21,
   "prose": []
 }
