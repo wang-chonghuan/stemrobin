@@ -77,10 +77,13 @@ const BRANCH: Record<string, { discipline: Discipline; rank: number }> = {
   physics: { discipline: 'physics', rank: 0 },
 }
 
-const FILES = import.meta.glob<RawBook>('@ssot/soviet10year-textbooks/toc/*/*.json', {
-  eager: true,
-  import: 'default',
-})
+const FILES = import.meta.glob<RawBook>(
+  '../../../ssot-resources/soviet10year-textbooks/toc/*/*.json',
+  {
+    eager: true,
+    import: 'default',
+  },
+)
 
 const SHELF: Partial<Record<Locale, RawBook>>[] = (() => {
   const byBook = new Map<string, Partial<Record<Locale, RawBook>>>()
@@ -240,6 +243,19 @@ export function findCard(cardId: string, locale: Locale): Card | null {
     if (i < 0) continue
     const ref = (n: number) => (flat[n] ? { id: flat[n].id, title: flat[n].title } : null)
     return { ...flat[i], prev: ref(i - 1), next: ref(i + 1) }
+  }
+  return null
+}
+
+/** The printed volume id for one card. Runtime records store the card id, while
+ *  learner-facing history names the source book (for example `5m`). Resolve it
+ *  from the same shelf authority as navigation instead of parsing the card id. */
+export function findTextbookBook(cardId: string): string | null {
+  for (const localized of SHELF) {
+    const book = localized.zh ?? localized.en
+    if (book && cardsOf(book, book.locale).some((card) => card.id === cardId)) {
+      return book.book
+    }
   }
   return null
 }
