@@ -15,8 +15,8 @@
 """
 from __future__ import annotations
 
+import argparse
 import json
-import os
 import subprocess
 import tempfile
 from pathlib import Path
@@ -158,3 +158,25 @@ def vectorize_page(page_dir: Path, turdsize: int = DEFAULT_TURDSIZE,
     (page_dir / "vectorize.report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     return report
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(
+        description="Deterministically trace a high-contrast PNG into a pure SVG path."
+    )
+    parser.add_argument("--input", required=True, type=Path)
+    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--turdsize", type=int, default=DEFAULT_TURDSIZE)
+    parser.add_argument("--alphamax", type=float, default=DEFAULT_ALPHAMAX)
+    args = parser.parse_args()
+    if not args.input.is_file():
+        parser.error(f"input does not exist: {args.input}")
+    if args.output.suffix.lower() != ".svg":
+        parser.error("--output must end in .svg")
+    result = vectorize(args.input, args.output, args.turdsize, args.alphamax)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+    return 0 if result.get("ok") else 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

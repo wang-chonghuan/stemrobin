@@ -3,8 +3,9 @@
 // argument — only the deck's own numbers and the lessons that have content.
 
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
-import { BookOpen, FileText, Menu } from 'lucide-react'
+import { FileText, Menu } from 'lucide-react'
 
+import { BrandMark } from '~/components/brand-mark'
 import { getAvailableTextbookLessons } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { deckPercentages, getDeckStats } from '~/lib/deck-stats'
@@ -75,7 +76,7 @@ function Learn() {
         >
           <Menu size={18} />
         </button>
-        <BookOpen size={18} color="var(--sr-blue)" />
+        <BrandMark className="sr-title-logo" size={22} decorative />
         <span className="sr-d-title">{t(locale, 'ov.title')}</span>
       </div>
 

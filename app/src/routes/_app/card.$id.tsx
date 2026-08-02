@@ -2,7 +2,6 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import {
   ChevronLeft,
   ChevronRight,
-  Layers,
   Menu,
   MessageCircleQuestion,
   Star,
@@ -10,6 +9,7 @@ import {
 
 import { useEffect, useRef, useState } from 'react'
 
+import { BrandMark } from '~/components/brand-mark'
 import { MathAnswerField } from '~/components/math-answer-field'
 import { t, type Locale } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
@@ -141,7 +141,7 @@ function CardPage() {
       >
         <Menu size={18} />
       </button>
-      <Layers size={18} color="var(--sr-blue)" />
+      <BrandMark className="sr-title-logo" size={22} decorative />
       <span className="sr-d-title">{title}</span>
     </div>
   )

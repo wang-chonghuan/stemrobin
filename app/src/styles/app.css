@@ -197,17 +197,6 @@ body {
 }
 .sr-brand-link:hover { background: var(--sr-panel); }
 
-.sr-brand-mark {
-  width: 28px;
-  height: 28px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--sr-blue), var(--sr-green));
-  color: #fff;
-}
-
 .sr-brand-name {
   display: block;
   font-family: var(--sr-display);
@@ -218,7 +207,7 @@ body {
 }
 
 .sr-brand-name b {
-  color: var(--sr-green-deep);
+  color: var(--sr-blue);
 }
 /* Chinese wordmark (引理阶梯): the display font is Latin-only, so CJK falls back
    to the system font — sparse glyphs read thin and run big. Heavier + a touch
@@ -1017,6 +1006,16 @@ a.sr-out-lesson.active {
   border-bottom: 1px solid var(--sr-line-soft);
   background: var(--sr-panel);
 }
+.sr-logo-mark {
+  display: block;
+  flex: none;
+  object-fit: contain;
+  user-select: none;
+}
+.sr-title-logo {
+  width: 22px;
+  height: 22px;
+}
 
 /* nav toggle (hamburger) — mobile only; opens the catalog drawer */
 .sr-navtoggle {
@@ -1695,9 +1694,8 @@ a.sr-out-lesson.active {
 .sr-lesson-card-body { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .sr-lesson-card-body .sr-card-title { margin: 0; }
 
-/* Brand logo image (raster) — corners rounded here in-app; the master PNG is a
-   full-bleed gradient square with no baked-in rounding. */
-.sr-brand-img { width: 44px; height: 44px; flex: none; border-radius: 10px; display: block; }
+/* Brand areas share the same transparent geometric mark at a stable optical size. */
+.sr-brand-img { width: 44px; height: 44px; }
 
 /* Homepage progress card (mockup) */
 .sr-progress { background: var(--sr-card); border: 1px solid var(--sr-line); border-radius: var(--sr-radius); padding: 16px; }
@@ -2406,8 +2404,9 @@ a.sr-out-lesson.active {
   padding: 12px clamp(16px, 4vw, 40px);
 }
 .lw-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.lw-brand-mark { width: 34px; height: 34px; }
 .lw-brand-name { font-size: 20px; font-weight: 800; color: var(--sr-ink); line-height: 1.05; }
-.lw-brand-name em { font-style: normal; color: var(--sr-green-deep); }
+.lw-brand-name em { font-style: normal; color: var(--sr-blue); }
 .lw-brand-name small { display: block; font-size: 11px; font-weight: 400; color: var(--sr-ink-dim); }
 .lw-nav-links { display: flex; align-items: center; margin-right: auto; }
 .lw-nav-link {

@@ -25,7 +25,9 @@
     "Sort complete numbered subparts such as 1), 2), 3) into ascending order and place every subpart on its own line; remove print-column alignment spaces.",
     "Leave culture-neutral mathematical text unchanged.",
     "Draw simple diagrams, charts, tables, and simple objects directly as newly authored SVG.",
-    "Create complex objects such as animals, people, and trees as original semantic SVG illustrations.",
+    "For complex objects such as animals, people, and trees, call n-azure capability-4-image-generation to create one isolated text-free concept asset, then deterministically vectorize its silhouette and compose the final SVG.",
+    "Use image generation only for semantic appearance; create counts, coordinates, measurements, axes, labels, and object placement deterministically in SVG.",
+    "Keep generated PNG concept assets and metadata under .tmp; never publish or commit them.",
     "Do not trace source screenshots or assemble figures from external vector-asset websites.",
     "Every published figure must be a newly authored SVG and must not embed raster images.",
     "All visible figure labels, titles, and descriptions must be in English; numbers and mathematical symbols are allowed."

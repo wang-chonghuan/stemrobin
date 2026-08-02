@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, Check, CornerDownLeft, Languages, Menu } from 'lucide-react'
 
+import { BrandMark } from '~/components/brand-mark'
 import { getRecitation, recordRecite, getSentenceHint, getEnglishReading, type Level } from '~/lib/english'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
@@ -110,6 +111,7 @@ function ReciteView() {
         <button className="sr-navtoggle" aria-label={t(locale, 'cat.open')} type="button" onClick={() => setDrawer(true)}>
           <Menu size={18} />
         </button>
+        <BrandMark className="sr-title-logo" size={22} decorative />
         <Link
           to="/english/$id"
           params={{ id }}

@@ -54,7 +54,7 @@ Tokens are implemented as `--sr-*` CSS variables in `app/src/styles/app.css` —
 ## Components
 
 - **Catalog item**: a flat compact button row — 17px lucide stroke icon, 8px radius, `ink_soft` text. Hover fills `card`; selected uses `blue_tint` background with `blue_deep` text. A trailing pill `--sr-count` shows lesson counts in `line_soft`/`ink_dim`.
-- **Brand mark**: a single rounded square with a teal-blue→green gradient and a lucide glyph (graduation cap). This is the only gradient in the system.
+- **Brand mark**: use the geometric teal LemmaDeck mark derived from `resources/lemmadeck-logo.png`. Its transparent app asset is `app/public/logo-mark.png`; never recreate it with a Lucide glyph or CSS shape. Keep the established square crop (about 92% content height and 66% content width) instead of stretching or independently recropping it. In the wordmark, `Deck` / `阶梯` uses the primary teal token `--sr-blue`, not green.
 - **Card**: `card` background, `line` border, 10px radius, 15px padding. Title in display type; body in `ink_soft`.
 - **Chips**: info/blue chips use `blue_tint`/`blue_deep`; mastery/green chips use `green_tint`/`green_deep`. Small outline `--sr-tag` for status labels like 草稿.
 - **Buttons**: primary is solid `blue`, hover `blue_deep`; ghost is transparent with a `line` border and `panel` hover. Compact height (~9px vertical padding).
@@ -72,8 +72,8 @@ Exercise types map to quiet category tags, not colorful badges: 辨认 / 表示 
 
 ## Icons
 
-- Use `lucide-react` stroke icons for all navigation and functional glyphs, matching the app's thin-stroke style (subject icons, view title, empty state).
-- There is no separate brand-artwork asset set; the gradient brand mark + a lucide glyph is the whole brand expression.
+- Use the LemmaDeck mark in every brand surface: browser/app icon, landing and login brand areas, catalog header, and app title bars.
+- Use `lucide-react` stroke icons only for navigation and functional actions, matching the app's thin-stroke style.
 
 ## Interaction States
 

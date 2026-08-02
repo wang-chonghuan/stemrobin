@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, createFileRoute, useRouter } from '@tanstack/react-router'
 import { Menu, Minus, Plus, Search, X } from 'lucide-react'
 
+import { BrandMark } from '~/components/brand-mark'
 import { KnowledgeGalaxy, type GalaxyApi } from '~/components/knowledge-galaxy'
 import {
   bookLessons,
@@ -254,7 +255,7 @@ function LandingLight() {
       <header className="lw-nav" ref={navRef}>
         <div className="lw-nav-inner">
           <Link to="/" className="lw-brand">
-            <img src="/logo-mark.png" alt="" width={34} height={34} />
+            <BrandMark className="lw-brand-mark" size={34} decorative />
             <span className="lw-brand-name">
               Lemma<em>Deck</em>
               <small>{t.brandSub}</small>

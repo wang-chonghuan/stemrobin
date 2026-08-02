@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { createFileRoute, redirect, useRouter } from '@tanstack/react-router'
 
+import { BrandMark } from '~/components/brand-mark'
 import { getCurrentUser, login } from '~/lib/session'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
@@ -47,13 +48,7 @@ function LoginView() {
     <main className="sr-auth">
       <div className="sr-auth-card">
         <div className="sr-auth-brand">
-          <img
-            className="sr-brand-img"
-            src="/logo-mark.png"
-            alt="LemmaDeck"
-            width={44}
-            height={44}
-          />
+          <BrandMark className="sr-brand-img" />
           <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
             {locale === 'en' ? (
               <>

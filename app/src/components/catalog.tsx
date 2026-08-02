@@ -2,6 +2,7 @@ import { Link, useParams, useRouter } from '@tanstack/react-router'
 import { ChevronUp, Eye, EyeOff, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
+import { BrandMark } from '~/components/brand-mark'
 import type { EnglishLessonRef } from '~/lib/english'
 import {
   bookLessons,
@@ -41,13 +42,7 @@ export function CatalogSidebar({
       <div {...gripProps} />
       <div className="sr-cat-head">
         <Link className="sr-brand-link" to="/" onClick={onNavigate} aria-label={t(locale, 'ov.title')}>
-          <img
-            className="sr-brand-img"
-            src="/logo-mark.png"
-            alt="LemmaDeck"
-            width={44}
-            height={44}
-          />
+          <BrandMark className="sr-brand-img" />
           <div>
             <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
               {locale === 'en' ? (

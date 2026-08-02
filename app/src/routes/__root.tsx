@@ -21,6 +21,7 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
+      { name: 'theme-color', content: '#FFFFFF' },
       // Static head (locale-unaware); the site now opens in English (STEMROBIN-111).
       { title: 'LemmaDeck · Secondary math & physics' },
       { name: 'description', content: 'LemmaDeck — from arithmetic to calculus, from the lever to the nucleus: one secondary course in mathematics and physics, heir to the ten-year system edited by Andrey Kolmogorov, arranged into a deck for understanding and practice, with an AI to guide you through to real mastery.' },
@@ -30,7 +31,8 @@ export const Route = createRootRoute({
       { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' },
       { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' },
-      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
+      { rel: 'manifest', href: '/site.webmanifest' },
       {
         rel: 'stylesheet',
         href: 'https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css',

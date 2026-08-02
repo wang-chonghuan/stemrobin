@@ -41,7 +41,8 @@ $P $S vectorize --book 5m
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
 $P $S adapt-prepare --book 5m --edition modern-us-neutral \
   --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
-# ④ 只编辑 editions/modern-us-neutral 下的模板，改写主题并重画 SVG
+# ④ 只编辑 editions/modern-us-neutral 下的模板，改写主题并重画 SVG；
+#    复杂对象先调用 n-azure cap4 生成轮廓底稿，再确定性矢量化
 $P $S adapt-finalize --book 5m --edition modern-us-neutral \
   --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
 $P $S render --book 5m --edition modern-us-neutral \
@@ -267,7 +268,12 @@ p2c.py adapt-finalize --book 5m --edition modern-us-neutral \
    `adapt-finalize` 会确定性执行该排版规范，禁止手改原始 `pages/` 或原始 lesson JSON。
 5. 每张产品图都要从语义约束重新创作 SVG，并配 `*.spec.json`：
    - 数轴、几何图、图表、表格和简单物体直接手写 SVG
-   - 大象、长颈鹿、人物、树木等复杂对象制作成原创的语义 SVG 插画
+   - 大象、长颈鹿、人物、树木等复杂对象，先加载 `n-azure` 并调用
+     `capability-4-image-generation`，生成**单个、无文字、白底或透明底、适合描摹的平面
+     轮廓底稿**；底稿放 `.tmp/s10y-image-assets/<lesson-id>/`，不得提交或发布
+   - 用本技能 `tools/vectorize.py` 的确定性 potrace 流程把合格底稿转成路径；再由 SVG
+     精确设置对象数量、复用次数、位置、尺寸、刻度、箭头和标签。不要让图片模型生成
+     完整数学图
    - 禁止 `<image>`、截图、原图描摹、外部向量素材拼贴、data URI、外链和脚本
 6. **图内语言固定为英文**：所有可见标签以及 `<title>`、`<desc>` 使用英文；数字、
    拉丁字母和数学符号可直接使用，禁止中文、日文和西里尔文字。课程正文仍为中文。
@@ -275,6 +281,36 @@ p2c.py adapt-finalize --book 5m --edition modern-us-neutral \
    语言合规；失败不能发布。
 
 原始层 cap3 的 potrace 只用于保存教材抽取事实；现代 edition 的图必须重新创作，两者用途不同。
+
+### 复杂插图的混合流程
+
+图片模型只负责“对象长什么样”，机器负责“对象在哪里、出现几次、与数学结构如何对应”：
+
+1. 从 `*.spec.json` 提炼一个独立对象提示词，不包含题目答案、坐标、刻度或中文文字。
+2. 调用 `n-azure` cap4 直连 `gpt-image-2`，输出到
+   `.tmp/s10y-image-assets/<lesson-id>/<figure-id>-<object>.png`。
+3. 目视拒绝错误对象、裁切、文字、水印、复杂背景；最多针对真实缺陷重试一次。
+4. 将合格底稿阈值化并用 `tools/vectorize.py` 矢量化，抽取可复用的 `<path>`。
+5. 在最终 SVG 中用 `<defs>`/`<use>` 和显式坐标完成排版；数轴、刻度、数字、英文标签、
+   连线及几何关系全部手写并复核。
+6. 最终 edition 仍只保存纯 SVG 和 `*.spec.json`；Azure PNG 及其元数据只留在 `.tmp/`。
+
+命令形状如下；`<n-azure-skill>` 是宿主加载 `n-azure` 后解析出的技能目录，不得在技能
+或仓库里写死某个用户的绝对路径：
+
+```bash
+python <n-azure-skill>/scripts/generate_image.py \
+  --prompt-file .tmp/s10y-image-assets/<lesson-id>/<figure-id>.prompt.txt \
+  --output .tmp/s10y-image-assets/<lesson-id>/<figure-id>-object.png \
+  --quality medium
+
+$P .claude/skills/ld-s10y-lesson/tools/vectorize.py \
+  --input .tmp/s10y-image-assets/<lesson-id>/<figure-id>-object.png \
+  --output .tmp/s10y-image-assets/<lesson-id>/<figure-id>-object.svg
+```
+
+例如三只鸟位于数轴 `-3, 2, 5`：Azure 只生成一只侧视鸟的干净轮廓；最终 SVG 复用该
+轮廓三次，并由代码把锚点严格放在 `-3, 2, 5`，禁止让图片模型直接画整条数轴。
 
 ---
 

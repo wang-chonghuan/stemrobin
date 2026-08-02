@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { ArrowLeft, Download, FileAudio, Languages, Loader2, Menu, Volume2 } from 'lucide-react'
 
+import { BrandMark } from '~/components/brand-mark'
 import {
   getEnglishReading,
   getSentenceAudio,
@@ -121,6 +122,7 @@ function EnglishReadView() {
         >
           <Menu size={18} />
         </button>
+        <BrandMark className="sr-title-logo" size={22} decorative />
         <Link
           to="/"
           className="sr-btn ghost"
