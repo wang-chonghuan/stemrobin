@@ -222,6 +222,15 @@ export function MathAnswerField({
 
   const completed = result != null && !('error' in result)
 
+  if (!answerSpec) {
+    return (
+      <div className="sr-math-answer sr-math-unavailable">
+        <Info size={16} aria-hidden />
+        <span>{t(locale, 'exercise.unavailable')}</span>
+      </div>
+    )
+  }
+
   return (
     <div className="sr-math-answer">
       {Array.from({ length: fieldCount }, (_, index) => {

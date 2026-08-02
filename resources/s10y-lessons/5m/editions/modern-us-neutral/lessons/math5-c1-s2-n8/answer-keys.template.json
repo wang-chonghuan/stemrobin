@@ -1,0 +1,182 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n8",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "105",
+      "prompt": "一只松鼠从树洞钻出，沿着树干跑上跑下（图 29）. 如果松鼠离开树洞 3 米，松鼠在哪里？这个问题能有几个答案？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "106",
+      "prompt": "为了确定松鼠在树上的位置，只知道它和树洞的距离是不够的，还必须了解它在树洞的上边还是下边.如果松鼠在：\n1) 树洞上方 2 米；\n2) 树洞下方 3 米；\n3) 树洞下方 1.5 米；\n4) 树洞上方 2.5 米，在图 29 上指出松鼠的位置.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "107",
+      "prompt": "一列火车从彼得罗巴甫洛夫斯克车站驶出（图 30），行速 90 公里/小时. 三小时后，火车将到达那个城市？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "108",
+      "prompt": "为了确定火车在铁路上的位置，只知道它和彼得罗巴甫洛夫斯克车站之间的距离是不够的，还必须了解火车开往哪里，是开往新西伯利亚，还是开向车里雅宾斯克？如果它是开往新西伯利亚城，那么三小时以后它将抵达鄂木斯克车站. 如果是开往车里雅宾斯克，就将到达库尔干. 按图 30 说明：\n1) 如果火车开往新西伯利亚，10 小时后，火车将在哪里；\n2) 如果火车开往车里雅宾斯克，5 小时后，火车将在哪里？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "109",
+      "prompt": "一个夏令营徒步小组从营地出发沿公路前进（图 31）. 指出：\n1) 如果行速是 3 公里/小时，3 小时后这个小组将在哪里？\n2) 如果行速是 4 公里/小时，2 小时后这个小组将在哪里？为使以上每个问题只有一个答案，还必须知道什么条件？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "110",
+      "prompt": "营员在徒步途中，在 $K$、$M$、$P$ 三个地方留下了感谢信（图 31）. 留信的地点在营地的什么位置上？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "111",
+      "prompt": "从左向右作一条直线，在直线上取点 $O$. 如果知道：\n1) $A$ 在 $O$ 右边第 6 个格上；\n2) $B$ 在 $O$ 左边第 5.5 个格上；\n3) $C$ 在 $O$ 右边第 7.5 个格上；\n4) $K$ 在 $O$ 左边第 2个格上，在这条直线上标出点 $A$、$B$、$C$、$K$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "112",
+      "prompt": "以厘米度量从点 $O$（图 32）到点 $C$ 和点 $P$ 的距离. 在这条直线上，这两个点各在关于 $O$ 点的什么位置上？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "113",
+      "prompt": "两个灯塔间的距离为 5 公里. 巡洋舰距离一个灯塔 6公里，距离另一个灯塔 7 公里. 在练习本上按 $1:100\\,000$的比例尺画出这两个灯塔和巡洋舰的位置. 用半圆仪量出从巡洋舰上看到两个灯塔的连线的角度.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "114",
+      "prompt": "按下列条件能不能作成三角形？\n1) $|AB|=5$ 厘米，$|AC|=7$ 厘米，$|BC|=11$ 厘米；\n2) $|BA|=5$ 厘米，$|AC|=3$ 厘米，$|BC|=2$ 厘米.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "115",
+      "prompt": "解应用题：\n1) 在约翰逊家里，爸爸的工资占全家收入的 $45\\%$，妈妈的工资占 $30\\%$，奶奶的退休金占 $15\\%$，其余 40个美元是儿子的助学金. 约翰逊全家一个月收入多少美元？\n2) 在一年里泰勒一家得到了多次补助金，其中$30\\%$ 是因父亲生病得到的补助金，$40\\%$ 是疗养费补助，$10\\%$ 是女儿去夏令营的旅费补助，其余60 美元是妻子的休养旅费补助. 求出泰勒一家在这一年中所得补助金的总数（以美元计）.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 400 卢布；2) 300 卢布"
+    },
+    {
+      "exercise": "116",
+      "prompt": "某农业区由于水浇地的增加和土壤改良，稻谷的产量从 1964年的 471 000 吨增加到 1974 年的 190 万吨. 这期间稻谷的产量增加了百分之几？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "117",
+      "prompt": "某家庭农场种植和收割每公顷小麦需用 53 个美元 70 美分. 如果这个农场每公顷小麦的平均产量是 14 公担，求出每公担小麦的成本. 假如每公顷收入总额是116 美元 30 美分，求种小麦能为农场提供百分之几的利润.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "118",
+      "prompt": "化简下式：\n1) $3.7x-(2.8x-1.9x)+15.4$；\n2) $8.6y-(3.4y+1.8y)-2.7$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "119",
+      "prompt": "在下面哪一对集合中，$X$ 是 $Y$ 的子集？\n1) $X$ —正方形的集合，$Y$ —长方形的集合；\n2) $X$ —等边三角形的集合，$Y$ —等腰三角形的集合；\n3) $X$ —圆周的集合；$Y$ —圆的集合；\n4) $X$ —偶数的集合；$Y$ —奇数的集合.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "120",
+      "prompt": "一个直角三角形的二直角边长的和等于 8.9 厘米，其中的一边比另一边长 0.9 厘米. 求这个三角形的二直角边长和面积.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "4 厘米，4.9 厘米，9.8 平方厘米"
+    },
+    {
+      "exercise": "121",
+      "prompt": "每只鸟都在绳结的什么位置上（图 33）？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "122",
+      "prompt": "在练习本上从左向右划一直线，在直线上取点 $O$. 如果已知：\n1) $M$ 在 $O$ 右边第 12 个格；\n2) $N$ 在 $O$ 左边第 6 个格；\n3) $P$ 在 $O$ 左边第 8 个格；\n4) $K$ 在 $O$ 右边第 3 个格，在这条直线上作出点 $M$、$N$、$P$ 和 $K$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "123",
+      "prompt": "重 16 公斤的锡铜合金含有 $55\\%$ 的锡. 这种合金中含有几公斤铜？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "7.2 公斤"
+    },
+    {
+      "exercise": "124",
+      "prompt": "当 $x=0.3$，$y=0.01$ 时，求 $3.27x+1.2y+4.23x+0.8y$ 的值.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "2.27"
+    },
+    {
+      "exercise": "125",
+      "prompt": "计算：$[(4:0.128+14\\,628.25):1.011\\cdot0.00008+6.84]:12.5$",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "0.64"
+    }
+  ]
+}

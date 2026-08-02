@@ -1,0 +1,341 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n8",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "105",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "松鼠可能在树洞上方 3 米处，也可能在树洞下方 3 米处，共有两个答案。",
+      "parts": []
+    },
+    {
+      "exercise": "106",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "以树洞为基准，依次标在上方 2 米、下方 3 米、下方 1.5 米、上方 2.5 米处。",
+      "parts": []
+    },
+    {
+      "exercise": "107",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "3 小时行驶 270 公里。仅知道离出发站 270 公里还不能唯一确定到达哪座城市，还必须知道火车行驶的方向。",
+      "parts": []
+    },
+    {
+      "exercise": "108",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1) 向新西伯利亚方向行驶 10 小时，共行驶 900 公里；2) 向车里雅宾斯克方向行驶 5 小时，共行驶 450 公里。按图在对应方向上确定位置。",
+      "parts": []
+    },
+    {
+      "exercise": "109",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1) 3 小时行驶 9 公里，可能在营地左侧或右侧 9 公里处；2) 2 小时行驶 8 公里，可能在营地左侧或右侧 8 公里处。要使答案唯一，还必须知道行进方向。",
+      "parts": []
+    },
+    {
+      "exercise": "110",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "按图 31，以营地箭头所指位置为基准：P、K 在营地左侧，M 在营地右侧。",
+      "parts": []
+    },
+    {
+      "exercise": "111",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "以 O 为基准，从左到右的相对位置为：B 在 -5.5 格处，K 在 -2 格处，A 在 6 格处，C 在 7.5 格处。",
+      "parts": []
+    },
+    {
+      "exercise": "112",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "C 在 O 左侧 3 厘米处，P 在 O 右侧 1.5 厘米处。",
+      "parts": [
+        {
+          "label": "OC",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ],
+          "unit": "厘米"
+        },
+        {
+          "label": "OP",
+          "judge": "numeric",
+          "expected": [
+            "1.5"
+          ],
+          "unit": "厘米"
+        }
+      ]
+    },
+    {
+      "exercise": "113",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "按比例尺作边长为 5 厘米、6 厘米、7 厘米的三角形。巡洋舰处所见两灯塔连线的夹角约为 44.4°。",
+      "parts": []
+    },
+    {
+      "exercise": "114",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) 能作成三角形；2) 不能作成三角形，因为 3+2=5，不能形成非退化三角形。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "能",
+            "可以",
+            "能作成",
+            "yes"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "不能",
+            "不可以",
+            "不能作成",
+            "no"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "115",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 400 卢布；2) 300 卢布",
+      "displayAnswer": "1) 400 美元；2) 300 美元。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "400"
+          ],
+          "unit": "美元"
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "300"
+          ],
+          "unit": "美元"
+        }
+      ]
+    },
+    {
+      "exercise": "116",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "产量约增加了 303.4%。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "303.4"
+          ],
+          "unit": "%",
+          "tolerance": 0.1
+        }
+      ]
+    },
+    {
+      "exercise": "117",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "每公担小麦的成本约为 3.84 美元；利润率约为 116.6%。",
+      "parts": [
+        {
+          "label": "每公担成本",
+          "judge": "numeric",
+          "expected": [
+            "3.84"
+          ],
+          "unit": "美元",
+          "tolerance": 0.01
+        },
+        {
+          "label": "利润率",
+          "judge": "numeric",
+          "expected": [
+            "116.6"
+          ],
+          "unit": "%",
+          "tolerance": 0.1
+        }
+      ]
+    },
+    {
+      "exercise": "118",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) 2.8x+15.4；2) 3.4y-2.7。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "expression",
+          "expected": [
+            "2.8x+15.4"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "expression",
+          "expected": [
+            "3.4y-2.7"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "119",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "第 1、2、3 对中，X 是 Y 的子集；第 4 对不是。",
+      "parts": [
+        {
+          "judge": "exact",
+          "expected": [
+            "1,2,3",
+            "1、2、3",
+            "123"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "120",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "4 厘米，4.9 厘米，9.8 平方厘米",
+      "displayAnswer": "两条直角边分别为 4 厘米和 4.9 厘米，面积为 9.8 平方厘米。",
+      "parts": [
+        {
+          "label": "较短直角边",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ],
+          "unit": "厘米"
+        },
+        {
+          "label": "较长直角边",
+          "judge": "numeric",
+          "expected": [
+            "4.9"
+          ],
+          "unit": "厘米"
+        },
+        {
+          "label": "面积",
+          "judge": "numeric",
+          "expected": [
+            "9.8"
+          ],
+          "unit": "平方厘米"
+        }
+      ]
+    },
+    {
+      "exercise": "121",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "以绳结为 0：左边的鸟在 -3 分米处，中间的鸟在 2 分米处，右边的鸟在 5 分米处。",
+      "parts": [
+        {
+          "label": "左边的鸟",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ],
+          "unit": "分米"
+        },
+        {
+          "label": "中间的鸟",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ],
+          "unit": "分米"
+        },
+        {
+          "label": "右边的鸟",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ],
+          "unit": "分米"
+        }
+      ]
+    },
+    {
+      "exercise": "122",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "以 O 为 0，从左到右依次为：P 在 -8 格处，N 在 -6 格处，K 在 3 格处，M 在 12 格处。",
+      "parts": []
+    },
+    {
+      "exercise": "123",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "7.2 公斤",
+      "displayAnswer": "合金中含铜 7.2 公斤。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "7.2"
+          ],
+          "unit": "公斤"
+        }
+      ]
+    },
+    {
+      "exercise": "124",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "2.27",
+      "displayAnswer": "2.27。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "2.27"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "125",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "0.64",
+      "displayAnswer": "0.64。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.64"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 21
+}

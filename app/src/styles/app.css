@@ -732,6 +732,14 @@ details[open] > summary > .sr-out-caret {
   padding-top: 12px;
   border-top: 1px dashed var(--sr-line);
 }
+.sr-math-unavailable {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--sr-ink-dim);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
 .sr-math-part + .sr-math-part { margin-top: 10px; }
 .sr-math-answer-head {
   display: flex;
