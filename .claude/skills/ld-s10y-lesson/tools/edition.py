@@ -332,7 +332,7 @@ def validate_text(
         errors.append(f"{label} 仍含西里尔字母")
     hits = [term for term in forbidden_terms if term in modern]
     if hits:
-        errors.append(f"{label} 仍含旧文化词: {', '.join(hits)}")
+        errors.append(f"{label} 仍含旧文化词或俄文人名: {', '.join(hits)}")
     return errors
 
 
@@ -643,7 +643,10 @@ def validate_lesson(
     raw_exercises_path = book / "lessons" / lesson_id / "exercises.json"
     raw_lesson = load(raw_lesson_path)
     raw_exercises = load(raw_exercises_path)
-    forbidden = profile.get("forbidden_terms", [])
+    forbidden = [
+        *profile.get("forbidden_terms", []),
+        *profile.get("forbidden_person_names", []),
+    ]
     errors = []
 
     if lesson.get("schema") != LESSON_SCHEMA:
@@ -765,6 +768,11 @@ def update_book_index(edition: Path, profile_path: Path, lesson_rows: list[dict]
             "sha256": sha256(profile_path),
         },
         "lessons": [],
+    }
+    existing["profile"] = {
+        "id": load(profile_path)["id"],
+        "path": profile_path.as_posix(),
+        "sha256": sha256(profile_path),
     }
     by_id = {item["id"]: item for item in existing.get("lessons", [])}
     for row in lesson_rows:

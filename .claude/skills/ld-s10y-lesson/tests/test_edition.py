@@ -191,6 +191,16 @@ class EditionTest(unittest.TestCase):
         )
         self.assertTrue(any("旧文化词" in error for error in errors))
 
+        errors = edition.validate_text(
+            "阿廖沙和别佳是同学.",
+            "阿廖沙和别佳是同学.",
+            [],
+            [],
+            "exercise",
+            ["阿廖沙", "别佳"],
+        )
+        self.assertTrue(any("俄文人名" in error for error in errors))
+
     def test_context_numbers_must_be_declared_exactly(self) -> None:
         errors = edition.validate_text(
             "数据来自 1970—1974 年.",

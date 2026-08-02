@@ -9,6 +9,12 @@ from pathlib import Path
 
 SCHEMA = "ld-s10y-answer/lesson-answers@1"
 JUDGES = {"exact", "numeric", "expression"}
+MODERN_US_PROFILE = (
+    Path(__file__).resolve().parents[2]
+    / "ld-s10y-lesson"
+    / "profiles"
+    / "modern-us-neutral.json"
+)
 GRADING = {"auto", "ungraded"}
 SOURCES = {"book", "derived", "reviewed"}
 
@@ -118,10 +124,12 @@ def validate_lesson(
     book: str,
     lesson: str,
     edition: str | None,
+    forbidden_terms: list[str] | None = None,
 ) -> tuple[dict, list[str]]:
     document = load(path)
     exercise_doc = load(exercise_path)
     errors: list[str] = []
+    forbidden_terms = forbidden_terms or []
     expected_numbers = [str(item["number"]) for item in exercise_doc.get("exercises", [])]
 
     if document.get("schema") != SCHEMA:
@@ -163,6 +171,10 @@ def validate_lesson(
             for phrase in ("题面未附图", "题面未提供图", "无法可靠确定")
         ):
             errors.append(f"{label}.displayAnswer 不得声称题图缺失")
+        elif hits := [term for term in forbidden_terms if term in display]:
+            errors.append(
+                f"{label}.displayAnswer 仍含旧文化词或俄文人名: {', '.join(hits)}"
+            )
         if not isinstance(parts, list):
             errors.append(f"{label}.parts 必须是数组")
             parts = []
@@ -198,6 +210,13 @@ def validate_lesson(
 def cmd_finalize(args: argparse.Namespace) -> int:
     root = book_dir(args)
     failed = False
+    forbidden_terms: list[str] = []
+    if args.edition == "modern-us-neutral":
+        profile = load(MODERN_US_PROFILE)
+        forbidden_terms = [
+            *profile.get("forbidden_terms", []),
+            *profile.get("forbidden_person_names", []),
+        ]
     for lesson in selected_lessons(args):
         lesson_dir = lessons_dir(args) / lesson
         path = lesson_dir / "answer-keys.json"
@@ -207,6 +226,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
             args.book,
             lesson,
             args.edition,
+            forbidden_terms,
         )
         if errors:
             failed = True

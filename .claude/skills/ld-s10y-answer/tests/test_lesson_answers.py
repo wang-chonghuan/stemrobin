@@ -19,6 +19,40 @@ def dump(path: Path, value: object) -> None:
 
 
 class LessonAnswersTest(unittest.TestCase):
+    def test_finalize_rejects_russian_names_in_modern_answer(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            lesson_id = "math5-c1-s1-n1"
+            lesson_dir = (
+                root / "5m" / "editions" / "modern-us-neutral"
+                / "lessons" / lesson_id
+            )
+            dump(lesson_dir / "exercises.json", {
+                "exercises": [{"number": "4", "text": "Alex meets Ben."}],
+            })
+            dump(lesson_dir / "answer-keys.json", {
+                "schema": lesson_answers.SCHEMA,
+                "book": "5m",
+                "lesson": lesson_id,
+                "edition": "modern-us-neutral",
+                "answers": [{
+                    "exercise": "4",
+                    "grading": "ungraded",
+                    "source": "derived",
+                    "displayAnswer": "阿廖沙会遇到别佳。",
+                    "parts": [],
+                }],
+            })
+            _, errors = lesson_answers.validate_lesson(
+                lesson_dir / "answer-keys.json",
+                lesson_dir / "exercises.json",
+                "5m",
+                lesson_id,
+                "modern-us-neutral",
+                ["阿廖沙", "别佳"],
+            )
+            self.assertTrue(any("俄文人名" in error for error in errors))
+
     def test_prepare_writes_only_to_selected_edition(self) -> None:
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

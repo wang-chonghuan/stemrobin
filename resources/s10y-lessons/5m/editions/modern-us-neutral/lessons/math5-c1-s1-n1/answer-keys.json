@@ -58,7 +58,7 @@
       "exercise": "4",
       "grading": "ungraded",
       "source": "derived",
-      "displayAnswer": "全部8个子集是：∅，{阿廖沙}，{别佳}，{谢尔盖}，{阿廖沙，别佳}，{阿廖沙，谢尔盖}，{别佳，谢尔盖}，{阿廖沙，别佳，谢尔盖}。其中空集表示一个同学也没有遇到。",
+      "displayAnswer": "全部8个子集是：∅，{Alex}，{Ben}，{Chris}，{Alex，Ben}，{Alex，Chris}，{Ben，Chris}，{Alex，Ben，Chris}。其中空集表示一个同学也没有遇到。",
       "parts": []
     },
     {

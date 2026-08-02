@@ -121,6 +121,8 @@ node .claude/skills/ld-s10y-answer/tools/publish.mjs resources/s10y-lessons/5m \
 9. 当前运行时不调用 LLM 判题；LLM 只在 cap2 的离线生产阶段生成缺失标准答案。
 10. 现代版改了人物、地点、单位或年份时，`displayAnswer` 和单位必须跟随现代题面；
    `bookRaw` 仍原样保留，不能反向污染原始答案。
+11. `modern-us-neutral` 不得在 `displayAnswer` 中重新引入俄文或苏联人物姓名；必须使用
+    edition 题面中的英文姓名，并与题面保持逐人一致。
 
 稳定产物为每个 lesson 一份：
 

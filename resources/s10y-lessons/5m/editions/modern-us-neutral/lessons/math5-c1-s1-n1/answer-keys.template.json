@@ -31,7 +31,7 @@
     },
     {
       "exercise": "4",
-      "prompt": "阿廖沙、别佳、谢尔盖都是瓦西亚的同学. 有时，瓦西亚在上学途中遇到这些同学中的一个或几个. 写出瓦西亚在上学途中可能遇到的同学的集合的全部子集.",
+      "prompt": "Alex、Ben、Chris 都是 Sam 的同学. 有时，Sam 在上学途中遇到这些同学中的一个或几个. 写出 Sam 在上学途中可能遇到的同学的集合的全部子集.",
       "grading": null,
       "source": "derived",
       "displayAnswer": "",
