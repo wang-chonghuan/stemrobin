@@ -3,13 +3,14 @@
 // argument — only the deck's own numbers and the lessons that have content.
 
 import { createFileRoute, Link, redirect } from '@tanstack/react-router'
-import { FileText, Menu } from 'lucide-react'
+import { BookOpenCheck, FileText, Menu } from 'lucide-react'
 
 import { BrandMark } from '~/components/brand-mark'
 import { getAvailableTextbookLessons } from '~/lib/textbooks'
 import { listAvailableLessonIds } from '~/lib/lessons'
 import { deckPercentages, getDeckStats } from '~/lib/deck-stats'
 import { getLocale } from '~/lib/locale'
+import { getTextbookMistakeSummary } from '~/lib/mistakes'
 import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
 import { useLayoutStore } from '~/lib/layout-store'
@@ -27,6 +28,7 @@ export const Route = createFileRoute('/_app/learn')({
     lessonIds: await listAvailableLessonIds(),
     locale: await getLocale(),
     stats: await getDeckStats(),
+    mistakeSummary: await getTextbookMistakeSummary(),
   }),
 })
 
@@ -58,7 +60,7 @@ function Stat({
 }
 
 function Learn() {
-  const { lessonIds, locale, stats } = Route.useLoaderData()
+  const { lessonIds, locale, stats, mistakeSummary } = Route.useLoaderData()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const availableLessons = getAvailableTextbookLessons(lessonIds, locale)
   // Curriculum order is ascending, so the newest live content is at the tail.
@@ -83,33 +85,48 @@ function Learn() {
       <div className="sr-d-scroll" data-scroll-restoration-id="app-detail">
         {/* Coverage, a rate, and a state — different kinds of number, which is
             why each carries its own denominator rather than a bare percentage. */}
-        <section className="sr-stats">
-          <div className="sr-stats-top">
-            <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
+        <section className="sr-overview-cards">
+          <div className="sr-stats">
+            <div className="sr-stats-top">
+              <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
+            </div>
+            <div className="sr-stats-row">
+              <Stat
+                label={t(locale, 'deck.stats.progress')}
+                pct={pct.progress}
+                tone="progress"
+                sub={t(locale, 'deck.stats.progress.sub', {
+                  n: stats.seenCards,
+                  total: stats.totalCards,
+                })}
+              />
+              <Stat
+                label={t(locale, 'deck.stats.accuracy')}
+                pct={pct.accuracy}
+                tone="accuracy"
+                sub={t(locale, 'deck.stats.accuracy.sub', { n: stats.answered })}
+              />
+              <Stat
+                label={t(locale, 'deck.stats.mastery')}
+                pct={pct.mastery}
+                tone="mastery"
+                sub={t(locale, 'deck.stats.mastery.sub', { n: stats.passedCards })}
+              />
+            </div>
           </div>
-          <div className="sr-stats-row">
-            <Stat
-              label={t(locale, 'deck.stats.progress')}
-              pct={pct.progress}
-              tone="progress"
-              sub={t(locale, 'deck.stats.progress.sub', {
-                n: stats.seenCards,
-                total: stats.totalCards,
-              })}
-            />
-            <Stat
-              label={t(locale, 'deck.stats.accuracy')}
-              pct={pct.accuracy}
-              tone="accuracy"
-              sub={t(locale, 'deck.stats.accuracy.sub', { n: stats.answered })}
-            />
-            <Stat
-              label={t(locale, 'deck.stats.mastery')}
-              pct={pct.mastery}
-              tone="mastery"
-              sub={t(locale, 'deck.stats.mastery.sub', { n: stats.passedCards })}
-            />
-          </div>
+
+          <Link to="/mistakes" className="sr-mistake-summary-card">
+            <span className="sr-mistake-summary-icon">
+              <BookOpenCheck size={19} aria-hidden />
+            </span>
+            <span className="sr-mistake-summary-copy">
+              <span className="sr-stats-title">{t(locale, 'mistakes.summary')}</span>
+              <strong className="sr-num" data-mistake-summary>
+                {t(locale, 'mistakes.summary.ratio', mistakeSummary)}
+              </strong>
+              <span>{t(locale, 'mistakes.summary.sub')}</span>
+            </span>
+          </Link>
         </section>
 
         {/* Lessons that have content, newest last. Nothing renders while the

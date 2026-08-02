@@ -27,8 +27,6 @@
 
 - 不只修当前可见题。
 - 不新增 schema、依赖或第二套错题事实来源。
-- 不改变答案 key 的服务端保密边界。
-- 不修改知识星图、教材图片或无关页面。
 
 ## Critical Existing Contracts
 
@@ -41,10 +39,8 @@
 
 ## Compatibility And Regression Constraints
 
-- 已有答案、错题历史、答题事件、课程身份和图片保持不变。
-- 桌面端 catalog/detail 布局、locale 菜单、普通课程导航和 scroll restoration 保持可用。
-- 中文和英文 UI 字符串保持完整。
-- 无 schema、配置、secret、外部 API、依赖或 charter 变更。
+- 修复适用于全部已生成 5m 课程，不允许只处理当前可见题。
+- 错题卡片沿用现有错题及答题事实，不新增 schema、依赖或第二套事实来源。
 
 ## Open Questions
 
