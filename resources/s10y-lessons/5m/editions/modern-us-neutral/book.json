@@ -5,9 +5,119 @@
   "profile": {
     "id": "modern-us-neutral",
     "path": "/Users/yong/work/stemrobin-ws/stemrobin/.claude/skills/ld-s10y-lesson/profiles/modern-us-neutral.json",
-    "sha256": "92add206ed79cd33c8edea9fd9af3341b10ea3261716593bb5f612fe43e50a98"
+    "sha256": "7c0c55b90d2a497a6e2cd5c805d9ca708e27d202325961729599ae5ccdb5dda8"
   },
   "lessons": [
+    {
+      "id": "math5-c1-s1-n1",
+      "number": "1",
+      "title": "子集",
+      "prose_blocks": 6,
+      "exercises": 19,
+      "figures": 4,
+      "source_lesson_sha256": "5e5a86faae1237c9f12b664e97563a99ef7561d5c13a29a8a4be3270d87700bd",
+      "source_exercises_sha256": "6c1eb2fa2a5b68b1ec66a571bc2d0fdbb3f6e273713da9dda87541c128ed4133"
+    },
+    {
+      "id": "math5-c1-s1-n2",
+      "number": "2",
+      "title": "交集",
+      "prose_blocks": 11,
+      "exercises": 19,
+      "figures": 5,
+      "source_lesson_sha256": "ce97310f2f4e19ff632728d704276eb9acd485f812175e1047129aac76508c76",
+      "source_exercises_sha256": "0c93eb0e2780273a5550ec9360203008cfa74a8cee4ca057f0fa280a2178c555"
+    },
+    {
+      "id": "math5-c1-s1-n3",
+      "number": "3",
+      "title": "并集",
+      "prose_blocks": 6,
+      "exercises": 10,
+      "figures": 3,
+      "source_lesson_sha256": "058a6d1e9443c881a0058451e77903c036003f1f2639b7ed905811f350913981",
+      "source_exercises_sha256": "1fb84441c14d9b5e274f25dce6c5a56c3437be4b9ee6c68fee6a637e3580d0f6"
+    },
+    {
+      "id": "math5-c1-s1-n4",
+      "number": "4",
+      "title": "作平行线",
+      "prose_blocks": 4,
+      "exercises": 18,
+      "figures": 5,
+      "source_lesson_sha256": "e0a76fa3c714c7ea8ba37908c28b510bceb20fb62fc2e84d903689f838453f08",
+      "source_exercises_sha256": "3c25f9f83a3b3231013f96cf05b2c23060a6d5188350d636005cc06199418b58"
+    },
+    {
+      "id": "math5-c1-s1-n5",
+      "number": "5",
+      "title": "分类",
+      "prose_blocks": 6,
+      "exercises": 9,
+      "figures": 5,
+      "source_lesson_sha256": "032974d5fbe635c88d42eabfe28b9586420ff21c50b220f4f3878aaa258c7c41",
+      "source_exercises_sha256": "55bbbfca8fd3044fe059630fa72c6b1b269df5e9b1ce97b462d13f0162e3f774"
+    },
+    {
+      "id": "math5-c1-s1-n6",
+      "number": "6",
+      "title": "三角形的分类",
+      "prose_blocks": 10,
+      "exercises": 18,
+      "figures": 5,
+      "source_lesson_sha256": "ee1c93202c14fc92062647cfe548aa3771af41a427d23e5fe3923b68141f1f53",
+      "source_exercises_sha256": "2468a14088190d887012c0a10a9c478547c69ec277c498be19caabbb56d341e5"
+    },
+    {
+      "id": "math5-c1-s1-n7",
+      "number": "7",
+      "title": "已知三边作三角形",
+      "prose_blocks": 15,
+      "exercises": 11,
+      "figures": 5,
+      "source_lesson_sha256": "6726734a99f762ffbba3d515e228208ac184afdef1baec179e1f2f65d2ad550e",
+      "source_exercises_sha256": "0425f857773334c3343b286e87ef7e29ad94d71bfd728463bf76ffc1c9a9fd16"
+    },
+    {
+      "id": "math5-c1-s2-n8",
+      "number": "8",
+      "title": "向右或向左，向上或向下",
+      "prose_blocks": 0,
+      "exercises": 21,
+      "figures": 5,
+      "source_lesson_sha256": "36fe45691232bd7b8c2ef5daa109d1c1cb9375bfde39b0ae3cb982b8c4bbe826",
+      "source_exercises_sha256": "97036ab2b579597551e349545c2505d6a6900bf2fb833bdafd55fdadf998403d"
+    },
+    {
+      "id": "math5-c1-s2-n9",
+      "number": "9",
+      "title": "数轴",
+      "prose_blocks": 8,
+      "exercises": 23,
+      "figures": 6,
+      "source_lesson_sha256": "fe416752d4e72d0d25283bba75c6ea2af794c3d45b98ab696c3468a6a256d81b",
+      "source_exercises_sha256": "c729c0df35b29687fba7d56ca1ad7822266b64968ba65c164c8a5faae2db99ff"
+    },
+    {
+      "id": "math5-c1-s2-n10",
+      "number": "10",
+      "title": "点在数轴上的移动",
+      "prose_blocks": 3,
+      "exercises": 11,
+      "figures": 2,
+      "source_lesson_sha256": "7350b5e92b73228ec8e382b2f1a01f524f68240ccbc8984b2245361cfc8c9d50",
+      "source_exercises_sha256": "1bbf39fc47d012fe4500ac683af9cc52ba79512635ad495fefaa48c75412ce0c"
+    },
+    {
+      "id": "math5-c1-s2-n11",
+      "number": "11",
+      "title": "中心对称",
+      "prose_blocks": 18,
+      "exercises": 19,
+      "figures": 9,
+      "source_lesson_sha256": "b0fea7e55c2c0dbe6ed57854d8d88bb962cc5dd1f3a1a0697e582d5afa3c79e2",
+      "source_exercises_sha256": "eff4e12b91c61f53934fabad1610160b00233f925930845aca191413dbf3dd5e"
+    },
     {
       "id": "math5-c1-s2-n12",
       "number": "12",
@@ -23,10 +133,10 @@
       "number": "13",
       "title": "绝对值",
       "prose_blocks": 8,
-      "exercises": 19,
+      "exercises": 22,
       "figures": 3,
-      "source_lesson_sha256": "6de83630b30d5b5db91746fddc17b0fa78ea0efa56c5c83fd221ce5eaca4483c",
-      "source_exercises_sha256": "01cbebc996df7874c984c4c130bc90018bc509fb48c654f85aad130c5cf2f3c8"
+      "source_lesson_sha256": "86d9c9b389ceca17049a08cc9a206a2aef929fe5aee9f082e24e439fe1c84db5",
+      "source_exercises_sha256": "efbfdc07d6c81a3cd5bc7e4651d4b046fb42d9c68f5e6bb56d419e6a38eea199"
     },
     {
       "id": "math5-c1-s2-n14",

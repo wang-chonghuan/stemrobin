@@ -1,0 +1,87 @@
+{
+  "id": "math5-c1-s2-n8",
+  "card_id": "math5-c1-s2-n8",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "8",
+  "title": "向右或向左，向上或向下",
+  "printed_title": "8. 向右或向左，向上或向下",
+  "start_page": 32,
+  "start_printed": 23,
+  "figures": [
+    {
+      "id": "fig-29",
+      "label": "图 29",
+      "page": 33
+    },
+    {
+      "id": "fig-30",
+      "label": "图 30",
+      "page": 33
+    },
+    {
+      "id": "fig-31",
+      "label": "图 31",
+      "page": 34
+    },
+    {
+      "id": "fig-32",
+      "label": "图 32",
+      "page": 34
+    },
+    {
+      "id": "fig-33",
+      "label": "图 33",
+      "page": 36
+    }
+  ],
+  "exercise_count": 21,
+  "prose": [],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "source": {
+    "path": "lessons/math5-c1-s2-n8/lesson.json",
+    "sha256": "36fe45691232bd7b8c2ef5daa109d1c1cb9375bfde39b0ae3cb982b8c4bbe826",
+    "data": {
+      "id": "math5-c1-s2-n8",
+      "card_id": "math5-c1-s2-n8",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "8",
+      "title": "向右或向左，向上或向下",
+      "printed_title": "8. 向右或向左，向上或向下",
+      "start_page": 32,
+      "start_printed": 23,
+      "figures": [
+        {
+          "id": "fig-29",
+          "label": "图 29",
+          "page": 33
+        },
+        {
+          "id": "fig-30",
+          "label": "图 30",
+          "page": 33
+        },
+        {
+          "id": "fig-31",
+          "label": "图 31",
+          "page": 34
+        },
+        {
+          "id": "fig-32",
+          "label": "图 32",
+          "page": 34
+        },
+        {
+          "id": "fig-33",
+          "label": "图 33",
+          "page": 36
+        }
+      ],
+      "exercise_count": 21,
+      "prose": []
+    }
+  }
+}

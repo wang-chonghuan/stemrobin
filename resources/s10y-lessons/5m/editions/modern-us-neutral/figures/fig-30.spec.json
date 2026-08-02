@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-30",
+  "description": "A simple route between four towns with distances in kilometers.",
+  "constraints": [
+    "Preserve the mathematical relationships shown by the source figure.",
+    "Use English for every visible label.",
+    "Use only newly authored SVG vector primitives."
+  ]
+}

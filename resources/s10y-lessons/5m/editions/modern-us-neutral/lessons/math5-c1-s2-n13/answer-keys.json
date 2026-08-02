@@ -683,7 +683,64 @@
           ]
         }
       ]
+    },
+    {
+      "exercise": "217",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "6 公斤和 9 公斤",
+      "displayAnswer": "需要 6 公斤糖和 9 公斤浆果。",
+      "parts": [
+        {
+          "label": "糖",
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ],
+          "unit": "公斤"
+        },
+        {
+          "label": "浆果",
+          "judge": "numeric",
+          "expected": [
+            "9"
+          ],
+          "unit": "公斤"
+        }
+      ]
+    },
+    {
+      "exercise": "218",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "20%",
+      "displayAnswer": "20%。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "20",
+            "0.2"
+          ],
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "exercise": "219",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "78.57",
+      "displayAnswer": "78.57。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "78.57"
+          ]
+        }
+      ]
     }
   ],
-  "count": 19
+  "count": 22
 }

@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-09",
+  "description": "A circle overlaps a square to form a combined region.",
+  "constraints": [
+    "Preserve the mathematical relationships shown by the source figure.",
+    "Use English for every visible label.",
+    "Use only newly authored SVG vector primitives."
+  ]
+}

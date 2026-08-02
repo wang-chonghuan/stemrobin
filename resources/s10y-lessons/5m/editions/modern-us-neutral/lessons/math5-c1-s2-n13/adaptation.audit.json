@@ -3,12 +3,12 @@
   "edition": "modern-us-neutral",
   "lesson": "math5-c1-s2-n13",
   "status": "pass",
-  "sourceLessonSha256": "6de83630b30d5b5db91746fddc17b0fa78ea0efa56c5c83fd221ce5eaca4483c",
-  "sourceExercisesSha256": "01cbebc996df7874c984c4c130bc90018bc509fb48c654f85aad130c5cf2f3c8",
+  "sourceLessonSha256": "86d9c9b389ceca17049a08cc9a206a2aef929fe5aee9f082e24e439fe1c84db5",
+  "sourceExercisesSha256": "efbfdc07d6c81a3cd5bc7e4651d4b046fb42d9c68f5e6bb56d419e6a38eea199",
   "proseBlocks": 8,
   "changedProseBlocks": 0,
-  "exercises": 19,
-  "changedExercises": 1,
+  "exercises": 22,
+  "changedExercises": 9,
   "figures": 3,
   "errors": []
 }

@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-26",
+  "description": "A triangular frame made from three connected bars.",
+  "constraints": [
+    "Preserve the mathematical relationships shown by the source figure.",
+    "Use English for every visible label.",
+    "Use only newly authored SVG vector primitives."
+  ]
+}

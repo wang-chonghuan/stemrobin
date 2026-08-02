@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-06-2",
+  "description": "Two overlapping ovals containing labeled points.",
+  "constraints": [
+    "Preserve the mathematical relationships shown by the source figure.",
+    "Use English for every visible label.",
+    "Use only newly authored SVG vector primitives."
+  ]
+}

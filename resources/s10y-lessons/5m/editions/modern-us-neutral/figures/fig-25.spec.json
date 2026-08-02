@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-25",
+  "description": "A base OY and two compass arcs intersecting at X.",
+  "constraints": [
+    "Preserve the mathematical relationships shown by the source figure.",
+    "Use English for every visible label.",
+    "Use only newly authored SVG vector primitives."
+  ]
+}

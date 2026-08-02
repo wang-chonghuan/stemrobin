@@ -97,7 +97,7 @@ p.para{margin:0 0 .2em;text-indent:2em;line-height:1.95;font-size:1.06em;text-al
 .fig{margin:1.3em 0 .2em;text-align:center}
 .fig svg{max-width:min(100%,26em);height:auto;color:var(--ink)}
 .fig img{max-width:min(100%,26em);height:auto}
-.nb{white-space:nowrap}
+.nb{display:inline-block;max-width:100%;overflow-x:auto;vertical-align:middle;white-space:nowrap}
 .err{color:#a3341f;background:#fdeeea;padding:1px 5px;border-radius:3px}
 .exgroup{margin:2.2em 0 .8em;font-weight:700;font-size:1.05em;
   border-left:3px solid var(--accent);padding-left:.6em}

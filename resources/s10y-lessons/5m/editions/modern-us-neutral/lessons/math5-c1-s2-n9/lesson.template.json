@@ -1,0 +1,235 @@
+{
+  "id": "math5-c1-s2-n9",
+  "card_id": "math5-c1-s2-n9",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "9",
+  "title": "数轴",
+  "printed_title": "9. 数轴",
+  "start_page": 37,
+  "start_printed": 28,
+  "figures": [
+    {
+      "id": "fig-34",
+      "label": "图 34",
+      "page": 37
+    },
+    {
+      "id": "fig-35",
+      "label": "图 35",
+      "page": 38
+    },
+    {
+      "id": "fig-36",
+      "label": "图 36",
+      "page": 38
+    },
+    {
+      "id": "fig-37",
+      "label": "图 37",
+      "page": 38
+    },
+    {
+      "id": "fig-38",
+      "label": "图 38",
+      "page": 39
+    },
+    {
+      "id": "fig-39",
+      "label": "图 39",
+      "page": 40
+    }
+  ],
+  "exercise_count": 23,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "要确定一点在直线上关于 $O$ 点的位置，单是指出它与 $O$点的距离是不够的，还必须说明它在 $O$ 点的哪一边. 通常把这条直线画成水平线. 如图 34.1 标有刻度. 一般不用“左”、“右”，而是在点 $O$ 的一边写 $1,2,3\\cdots\\cdots$，而在另一边写带负号的数：$-1,-2,-3\\cdots\\cdots$（图 34.2），读作“负 1”、“负 2”、“负 3”等等. 由点 $O$ 向右的方向为正，而向左则为负. 用箭头指出直线上的正方向. $1$、$\\frac{2}{3}$、$2.6$ 一类的数叫做正数，而 $-1$、$-\\frac{2}{3}$、$-2.6$ 则叫做负数. 在直线上，$O$ 把正数和负数分开. $O$ 本身既不是正数，也不是负数.",
+      "id": null,
+      "label": null,
+      "printed_page": 28,
+      "source_text": "要确定一点在直线上关于 $O$ 点的位置，单是指出它与 $O$点的距离是不够的，还必须说明它在 $O$ 点的哪一边. 通常把这条直线画成水平线. 如图 34.1 标有刻度. 一般不用“左”、“右”，而是在点 $O$ 的一边写 $1,2,3\\cdots\\cdots$，而在另一边写带负号的数：$-1,-2,-3\\cdots\\cdots$（图 34.2），读作“负 1”、“负 2”、“负 3”等等. 由点 $O$ 向右的方向为正，而向左则为负. 用箭头指出直线上的正方向. $1$、$\\frac{2}{3}$、$2.6$ 一类的数叫做正数，而 $-1$、$-\\frac{2}{3}$、$-2.6$ 则叫做负数. 在直线上，$O$ 把正数和负数分开. $O$ 本身既不是正数，也不是负数.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-34",
+      "label": "图 34",
+      "printed_page": 28,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 34",
+      "id": null,
+      "label": "图 34",
+      "printed_page": 28,
+      "source_text": "图 34",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "在直线上，表示点的位置的数叫做这个点的坐标. 在图35 中，点 $A$ 的坐标为 $-1\\frac{2}{3}$，点 $B$ 的坐标是 $-2.8$，点 $C$ 的坐标为 $1.5$. 写作：$A(-1\\frac{2}{3})$，$B(-2.8)$，$C(1.5)$.",
+      "id": null,
+      "label": null,
+      "printed_page": 28,
+      "source_text": "在直线上，表示点的位置的数叫做这个点的坐标. 在图35 中，点 $A$ 的坐标为 $-1\\frac{2}{3}$，点 $B$ 的坐标是 $-2.8$，点 $C$ 的坐标为 $1.5$. 写作：$A(-1\\frac{2}{3})$，$B(-2.8)$，$C(1.5)$.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-35",
+      "label": "图 35",
+      "printed_page": 29,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 35",
+      "id": null,
+      "label": "图 35",
+      "printed_page": 29,
+      "source_text": "图 35",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "规定有原点、单位线段和方向的直线叫做数轴. 在历史课中我们遇到过数轴. 不过在那里叫做“年代表”.",
+      "id": null,
+      "label": null,
+      "printed_page": 29,
+      "source_text": "规定有原点、单位线段和方向的直线叫做数轴. 在历史课中我们遇到过数轴. 不过在那里叫做“年代表”.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "温度计上的刻度表示不同的数—正数、负数和零. 原点相当于冰的融点. 在 $100^\\circ\\mathrm{C}$ 时，水沸腾，在 $-39^\\circ\\mathrm{C}$ 时，水银冻结.",
+      "id": null,
+      "label": null,
+      "printed_page": 29,
+      "source_text": "温度计上的刻度表示不同的数—正数、负数和零. 原点相当于冰的融点. 在 $100^\\circ\\mathrm{C}$ 时，水沸腾，在 $-39^\\circ\\mathrm{C}$ 时，水银冻结.",
+      "changes": [],
+      "numeric_changes": []
+    }
+  ],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "source": {
+    "path": "lessons/math5-c1-s2-n9/lesson.json",
+    "sha256": "fe416752d4e72d0d25283bba75c6ea2af794c3d45b98ab696c3468a6a256d81b",
+    "data": {
+      "id": "math5-c1-s2-n9",
+      "card_id": "math5-c1-s2-n9",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "9",
+      "title": "数轴",
+      "printed_title": "9. 数轴",
+      "start_page": 37,
+      "start_printed": 28,
+      "figures": [
+        {
+          "id": "fig-34",
+          "label": "图 34",
+          "page": 37
+        },
+        {
+          "id": "fig-35",
+          "label": "图 35",
+          "page": 38
+        },
+        {
+          "id": "fig-36",
+          "label": "图 36",
+          "page": 38
+        },
+        {
+          "id": "fig-37",
+          "label": "图 37",
+          "page": 38
+        },
+        {
+          "id": "fig-38",
+          "label": "图 38",
+          "page": 39
+        },
+        {
+          "id": "fig-39",
+          "label": "图 39",
+          "page": 40
+        }
+      ],
+      "exercise_count": 23,
+      "prose": [
+        {
+          "kind": "p",
+          "text": "要确定一点在直线上关于 $O$ 点的位置，单是指出它与 $O$点的距离是不够的，还必须说明它在 $O$ 点的哪一边. 通常把这条直线画成水平线. 如图 34.1 标有刻度. 一般不用“左”、“右”，而是在点 $O$ 的一边写 $1,2,3\\cdots\\cdots$，而在另一边写带负号的数：$-1,-2,-3\\cdots\\cdots$（图 34.2），读作“负 1”、“负 2”、“负 3”等等. 由点 $O$ 向右的方向为正，而向左则为负. 用箭头指出直线上的正方向. $1$、$\\frac{2}{3}$、$2.6$ 一类的数叫做正数，而 $-1$、$-\\frac{2}{3}$、$-2.6$ 则叫做负数. 在直线上，$O$ 把正数和负数分开. $O$ 本身既不是正数，也不是负数.",
+          "id": null,
+          "label": null,
+          "printed_page": 28
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-34",
+          "label": "图 34",
+          "printed_page": 28
+        },
+        {
+          "kind": "cap",
+          "text": "图 34",
+          "id": null,
+          "label": "图 34",
+          "printed_page": 28
+        },
+        {
+          "kind": "p",
+          "text": "在直线上，表示点的位置的数叫做这个点的坐标. 在图35 中，点 $A$ 的坐标为 $-1\\frac{2}{3}$，点 $B$ 的坐标是 $-2.8$，点 $C$ 的坐标为 $1.5$. 写作：$A(-1\\frac{2}{3})$，$B(-2.8)$，$C(1.5)$.",
+          "id": null,
+          "label": null,
+          "printed_page": 28
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-35",
+          "label": "图 35",
+          "printed_page": 29
+        },
+        {
+          "kind": "cap",
+          "text": "图 35",
+          "id": null,
+          "label": "图 35",
+          "printed_page": 29
+        },
+        {
+          "kind": "p",
+          "text": "规定有原点、单位线段和方向的直线叫做数轴. 在历史课中我们遇到过数轴. 不过在那里叫做“年代表”.",
+          "id": null,
+          "label": null,
+          "printed_page": 29
+        },
+        {
+          "kind": "p",
+          "text": "温度计上的刻度表示不同的数—正数、负数和零. 原点相当于冰的融点. 在 $100^\\circ\\mathrm{C}$ 时，水沸腾，在 $-39^\\circ\\mathrm{C}$ 时，水银冻结.",
+          "id": null,
+          "label": null,
+          "printed_page": 29
+        }
+      ]
+    }
+  }
+}

@@ -38,9 +38,8 @@ Tokens are implemented as `--sr-*` CSS variables in `app/src/styles/app.css` —
 
 ## Typography
 
-- Display: `Bricolage Grotesque`, fallback `Geist Variable`, system sans. Used for brand, titles, card titles.
-- Body: `Hanken Grotesk`, fallback `Geist Variable`, system sans.
-- Numeric/mono: `JetBrains Mono`, for any quantity, answer key, or coordinate.
+- All UI typography uses `Inter`, with system sans as the fallback.
+- `--sr-font` is the single global font token. Display, body, and numeric semantic tokens must reference it rather than define separate font families.
 - Operational labels (eyebrows, group headings, counts) stay small and dense. Do not scale type with viewport width.
 
 ## Layout

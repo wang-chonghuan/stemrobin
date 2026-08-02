@@ -1,14 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
     --font-heading: var(--font-sans);
-    --font-sans: 'Geist Variable', sans-serif;
+    --font-sans: var(--sr-font);
     --color-ring: var(--ring);
     --color-input: var(--input);
     --color-border: var(--border);
@@ -93,9 +92,10 @@
 
   --sr-radius: 10px;
   --sr-radius-sm: 8px;
-  --sr-display: "Bricolage Grotesque", "Geist Variable", system-ui, sans-serif;
-  --sr-body: "Hanken Grotesk", "Geist Variable", system-ui, sans-serif;
-  --sr-mono: "JetBrains Mono", ui-monospace, monospace;
+  --sr-font: "Inter", system-ui, sans-serif;
+  --sr-display: var(--sr-font);
+  --sr-body: var(--sr-font);
+  --sr-mono: var(--sr-font);
 }
 
 html,

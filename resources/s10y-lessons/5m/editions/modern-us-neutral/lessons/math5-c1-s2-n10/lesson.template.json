@@ -1,0 +1,110 @@
+{
+  "id": "math5-c1-s2-n10",
+  "card_id": "math5-c1-s2-n10",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "10",
+  "title": "点在数轴上的移动",
+  "printed_title": "10. 点在数轴上的移动",
+  "start_page": 42,
+  "start_printed": 33,
+  "figures": [
+    {
+      "id": "fig-40",
+      "label": "图 40",
+      "page": 42
+    },
+    {
+      "id": "fig-41",
+      "label": "图 41",
+      "page": 42
+    }
+  ],
+  "exercise_count": 11,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "利用正数和负数不仅可以表示点在数轴上的位置，同时还能表示点在数轴上的移动. 例如把点向右移动 3 个单位，就说是移动 3 个单位，向左移动 3 个单位就说是移动 $-3$ 个单位. 点 $A(1)$ 移动 3 个单位，就变成点 $B(4)$，而点 $A$ 移 $-3$个单位，就变成点 $C(-2)$（图 40）.",
+      "id": null,
+      "label": null,
+      "printed_page": 33,
+      "source_text": "利用正数和负数不仅可以表示点在数轴上的位置，同时还能表示点在数轴上的移动. 例如把点向右移动 3 个单位，就说是移动 3 个单位，向左移动 3 个单位就说是移动 $-3$ 个单位. 点 $A(1)$ 移动 3 个单位，就变成点 $B(4)$，而点 $A$ 移 $-3$个单位，就变成点 $C(-2)$（图 40）.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-40",
+      "label": "图 40",
+      "printed_page": 33,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 40",
+      "id": null,
+      "label": "图 40",
+      "printed_page": 33,
+      "source_text": "图 40",
+      "changes": [],
+      "numeric_changes": []
+    }
+  ],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "source": {
+    "path": "lessons/math5-c1-s2-n10/lesson.json",
+    "sha256": "7350b5e92b73228ec8e382b2f1a01f524f68240ccbc8984b2245361cfc8c9d50",
+    "data": {
+      "id": "math5-c1-s2-n10",
+      "card_id": "math5-c1-s2-n10",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "10",
+      "title": "点在数轴上的移动",
+      "printed_title": "10. 点在数轴上的移动",
+      "start_page": 42,
+      "start_printed": 33,
+      "figures": [
+        {
+          "id": "fig-40",
+          "label": "图 40",
+          "page": 42
+        },
+        {
+          "id": "fig-41",
+          "label": "图 41",
+          "page": 42
+        }
+      ],
+      "exercise_count": 11,
+      "prose": [
+        {
+          "kind": "p",
+          "text": "利用正数和负数不仅可以表示点在数轴上的位置，同时还能表示点在数轴上的移动. 例如把点向右移动 3 个单位，就说是移动 3 个单位，向左移动 3 个单位就说是移动 $-3$ 个单位. 点 $A(1)$ 移动 3 个单位，就变成点 $B(4)$，而点 $A$ 移 $-3$个单位，就变成点 $C(-2)$（图 40）.",
+          "id": null,
+          "label": null,
+          "printed_page": 33
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-40",
+          "label": "图 40",
+          "printed_page": 33
+        },
+        {
+          "kind": "cap",
+          "text": "图 40",
+          "id": null,
+          "label": "图 40",
+          "printed_page": 33
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,435 @@
+{
+  "id": "math5-c1-s2-n11",
+  "card_id": "math5-c1-s2-n11",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "11",
+  "title": "中心对称",
+  "printed_title": "11. 中心对称",
+  "start_page": 44,
+  "start_printed": 35,
+  "figures": [
+    {
+      "id": "fig-42",
+      "label": "图 42",
+      "page": 44
+    },
+    {
+      "id": "fig-43",
+      "label": "图 43",
+      "page": 44
+    },
+    {
+      "id": "fig-44",
+      "label": "图 44",
+      "page": 44
+    },
+    {
+      "id": "fig-45",
+      "label": "图 45",
+      "page": 45
+    },
+    {
+      "id": "fig-46",
+      "label": "图 46",
+      "page": 45
+    },
+    {
+      "id": "fig-47",
+      "label": "图 47",
+      "page": 45
+    },
+    {
+      "id": "fig-48",
+      "label": "图 48",
+      "page": 45
+    },
+    {
+      "id": "fig-49",
+      "label": "图 49",
+      "page": 46
+    },
+    {
+      "id": "fig-50",
+      "label": "图 50",
+      "page": 46
+    }
+  ],
+  "exercise_count": 19,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "假如点 $O$ 是线段 $AB$ 的中点，那么 $A$、$B$ 两点叫做关于点$O$ 的对称点（图 42）. 为了作点 $A$ 关于点 $O$ 的对称点 $B$，必须引直线 $AO$，并在直线 $AO$ 上，在点 $O$ 的另一侧作长度和 $AO$ 相等的线段 $OB$（图 43）.",
+      "id": null,
+      "label": null,
+      "printed_page": 35,
+      "source_text": "假如点 $O$ 是线段 $AB$ 的中点，那么 $A$、$B$ 两点叫做关于点$O$ 的对称点（图 42）. 为了作点 $A$ 关于点 $O$ 的对称点 $B$，必须引直线 $AO$，并在直线 $AO$ 上，在点 $O$ 的另一侧作长度和 $AO$ 相等的线段 $OB$（图 43）.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-42",
+      "label": "图 42",
+      "printed_page": 35,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 42",
+      "id": null,
+      "label": "图 42",
+      "printed_page": 35,
+      "source_text": "图 42",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-43",
+      "label": "图 43",
+      "printed_page": 35,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 43",
+      "id": null,
+      "label": "图 43",
+      "printed_page": 35,
+      "source_text": "图 43",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-44",
+      "label": "图 44",
+      "printed_page": 35,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 44",
+      "id": null,
+      "label": "图 44",
+      "printed_page": 35,
+      "source_text": "图 44",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都是合同的.",
+      "id": null,
+      "label": null,
+      "printed_page": 35,
+      "source_text": "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都是合同的.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "正方形 $ABCD$（图 45）关于 $AC$、$BD$ 二线段（正方形的对角线）的交点 $O$ 对称. 点 $O$ 叫做正方形的对称中心.圆心（图 46）是圆的对称中心.机器的旋转部分（齿轮、螺旋桨、车轮、滑轮机等）一般都做成中心对称的（图 47）. 它围绕着通过对称中心的轴旋转.",
+      "id": null,
+      "label": null,
+      "printed_page": 36,
+      "source_text": "正方形 $ABCD$（图 45）关于 $AC$、$BD$ 二线段（正方形的对角线）的交点 $O$ 对称. 点 $O$ 叫做正方形的对称中心.圆心（图 46）是圆的对称中心.机器的旋转部分（齿轮、螺旋桨、车轮、滑轮机等）一般都做成中心对称的（图 47）. 它围绕着通过对称中心的轴旋转.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-45",
+      "label": "图 45",
+      "printed_page": 36,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 45",
+      "id": null,
+      "label": "图 45",
+      "printed_page": 36,
+      "source_text": "图 45",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-46",
+      "label": "图 46",
+      "printed_page": 36,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 46",
+      "id": null,
+      "label": "图 46",
+      "printed_page": 36,
+      "source_text": "图 46",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-47",
+      "label": "图 47",
+      "printed_page": 36,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 47",
+      "id": null,
+      "label": "图 47",
+      "printed_page": 36,
+      "source_text": "图 47",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "图 48 中，角 $AOB$ 和角 $COD$ 关于公共顶点 $O$ 对称. 这样的角叫做对顶角. 同任何关于某点对称的两个图形一样，对顶角也合同. 所以这两个角相等，也就是 $\\angle AOB=\\angle COD$. 对顶角中的一个角的两个边是另一个角的两个边的反向射线. 图 48中，射线 $OC$ 和射线 $OB$ 反向，而射线 $OD$ 和射线 $OA$ 反向.",
+      "id": null,
+      "label": null,
+      "printed_page": 36,
+      "source_text": "图 48 中，角 $AOB$ 和角 $COD$ 关于公共顶点 $O$ 对称. 这样的角叫做对顶角. 同任何关于某点对称的两个图形一样，对顶角也合同. 所以这两个角相等，也就是 $\\angle AOB=\\angle COD$. 对顶角中的一个角的两个边是另一个角的两个边的反向射线. 图 48中，射线 $OC$ 和射线 $OB$ 反向，而射线 $OD$ 和射线 $OA$ 反向.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-48",
+      "label": "图 48",
+      "printed_page": 36,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 48",
+      "id": null,
+      "label": "图 48",
+      "printed_page": 36,
+      "source_text": "图 48",
+      "changes": [],
+      "numeric_changes": []
+    }
+  ],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "source": {
+    "path": "lessons/math5-c1-s2-n11/lesson.json",
+    "sha256": "b0fea7e55c2c0dbe6ed57854d8d88bb962cc5dd1f3a1a0697e582d5afa3c79e2",
+    "data": {
+      "id": "math5-c1-s2-n11",
+      "card_id": "math5-c1-s2-n11",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "11",
+      "title": "中心对称",
+      "printed_title": "11. 中心对称",
+      "start_page": 44,
+      "start_printed": 35,
+      "figures": [
+        {
+          "id": "fig-42",
+          "label": "图 42",
+          "page": 44
+        },
+        {
+          "id": "fig-43",
+          "label": "图 43",
+          "page": 44
+        },
+        {
+          "id": "fig-44",
+          "label": "图 44",
+          "page": 44
+        },
+        {
+          "id": "fig-45",
+          "label": "图 45",
+          "page": 45
+        },
+        {
+          "id": "fig-46",
+          "label": "图 46",
+          "page": 45
+        },
+        {
+          "id": "fig-47",
+          "label": "图 47",
+          "page": 45
+        },
+        {
+          "id": "fig-48",
+          "label": "图 48",
+          "page": 45
+        },
+        {
+          "id": "fig-49",
+          "label": "图 49",
+          "page": 46
+        },
+        {
+          "id": "fig-50",
+          "label": "图 50",
+          "page": 46
+        }
+      ],
+      "exercise_count": 19,
+      "prose": [
+        {
+          "kind": "p",
+          "text": "假如点 $O$ 是线段 $AB$ 的中点，那么 $A$、$B$ 两点叫做关于点$O$ 的对称点（图 42）. 为了作点 $A$ 关于点 $O$ 的对称点 $B$，必须引直线 $AO$，并在直线 $AO$ 上，在点 $O$ 的另一侧作长度和 $AO$ 相等的线段 $OB$（图 43）.",
+          "id": null,
+          "label": null,
+          "printed_page": 35
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-42",
+          "label": "图 42",
+          "printed_page": 35
+        },
+        {
+          "kind": "cap",
+          "text": "图 42",
+          "id": null,
+          "label": "图 42",
+          "printed_page": 35
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-43",
+          "label": "图 43",
+          "printed_page": 35
+        },
+        {
+          "kind": "cap",
+          "text": "图 43",
+          "id": null,
+          "label": "图 43",
+          "printed_page": 35
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-44",
+          "label": "图 44",
+          "printed_page": 35
+        },
+        {
+          "kind": "cap",
+          "text": "图 44",
+          "id": null,
+          "label": "图 44",
+          "printed_page": 35
+        },
+        {
+          "kind": "p",
+          "text": "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都是合同的.",
+          "id": null,
+          "label": null,
+          "printed_page": 35
+        },
+        {
+          "kind": "p",
+          "text": "正方形 $ABCD$（图 45）关于 $AC$、$BD$ 二线段（正方形的对角线）的交点 $O$ 对称. 点 $O$ 叫做正方形的对称中心.圆心（图 46）是圆的对称中心.机器的旋转部分（齿轮、螺旋桨、车轮、滑轮机等）一般都做成中心对称的（图 47）. 它围绕着通过对称中心的轴旋转.",
+          "id": null,
+          "label": null,
+          "printed_page": 36
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-45",
+          "label": "图 45",
+          "printed_page": 36
+        },
+        {
+          "kind": "cap",
+          "text": "图 45",
+          "id": null,
+          "label": "图 45",
+          "printed_page": 36
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-46",
+          "label": "图 46",
+          "printed_page": 36
+        },
+        {
+          "kind": "cap",
+          "text": "图 46",
+          "id": null,
+          "label": "图 46",
+          "printed_page": 36
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-47",
+          "label": "图 47",
+          "printed_page": 36
+        },
+        {
+          "kind": "cap",
+          "text": "图 47",
+          "id": null,
+          "label": "图 47",
+          "printed_page": 36
+        },
+        {
+          "kind": "p",
+          "text": "图 48 中，角 $AOB$ 和角 $COD$ 关于公共顶点 $O$ 对称. 这样的角叫做对顶角. 同任何关于某点对称的两个图形一样，对顶角也合同. 所以这两个角相等，也就是 $\\angle AOB=\\angle COD$. 对顶角中的一个角的两个边是另一个角的两个边的反向射线. 图 48中，射线 $OC$ 和射线 $OB$ 反向，而射线 $OD$ 和射线 $OA$ 反向.",
+          "id": null,
+          "label": null,
+          "printed_page": 36
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-48",
+          "label": "图 48",
+          "printed_page": 36
+        },
+        {
+          "kind": "cap",
+          "text": "图 48",
+          "id": null,
+          "label": "图 48",
+          "printed_page": 36
+        }
+      ]
+    }
+  }
+}

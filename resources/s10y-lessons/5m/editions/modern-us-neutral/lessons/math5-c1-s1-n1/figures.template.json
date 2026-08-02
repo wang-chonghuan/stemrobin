@@ -1,0 +1,84 @@
+{
+  "schema": "ld-s10y-lesson/edition-figures@1",
+  "edition": "modern-us-neutral",
+  "lesson": "math5-c1-s1-n1",
+  "status": "draft",
+  "figures": [
+    {
+      "id": "fig-01",
+      "label": "图 1",
+      "svg": "figures/fig-01.svg",
+      "spec": "figures/fig-01.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-01.png",
+          "sha256": "9685ac679cfe0a64e09a06ecde1a2974563cd7d5f74e4bdaa6e0ddae4337caad"
+        },
+        "svg": {
+          "path": "figures/fig-01.svg",
+          "sha256": "886ee33f515bf889e0d00f5d80ed5cf3f3b33c44ee206debed70ff4eb76e513e"
+        }
+      }
+    },
+    {
+      "id": "fig-02",
+      "label": "图 2",
+      "svg": "figures/fig-02.svg",
+      "spec": "figures/fig-02.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-02.png",
+          "sha256": "8b2235a82913aa6b6e4181c5cafb5774cfdb50565d6d1ec1184920425d802082"
+        },
+        "svg": {
+          "path": "figures/fig-02.svg",
+          "sha256": "6b257089923fcbc6c670c10c16d057ca6a7762b4f2ecedac207211b2a7d53f41"
+        }
+      }
+    },
+    {
+      "id": "fig-03",
+      "label": "图 3",
+      "svg": "figures/fig-03.svg",
+      "spec": "figures/fig-03.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-03.png",
+          "sha256": "9cd8cdd5b43d6b0097bc285d246c65b077f98980f94d0d29dd410bae893af814"
+        },
+        "svg": {
+          "path": "figures/fig-03.svg",
+          "sha256": "9f4a31e5eadea8ac917dd4cf93f7342dceca54724742f29112b63ed935d99aee"
+        }
+      }
+    },
+    {
+      "id": "fig-04",
+      "label": "图 4",
+      "svg": "figures/fig-04.svg",
+      "spec": "figures/fig-04.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-04.png",
+          "sha256": "75cf57a157606c7d2610900bfc3ba890e7192a6e78925b39cf7bb9fb38eda4bb"
+        },
+        "svg": {
+          "path": "figures/fig-04.svg",
+          "sha256": "308ececd0de4f8036626751fd75781c99e41dbbbaecb1dd02199ef681e2a2e39"
+        }
+      }
+    }
+  ]
+}

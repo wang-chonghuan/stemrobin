@@ -1,0 +1,103 @@
+{
+  "schema": "ld-s10y-lesson/edition-figures@1",
+  "edition": "modern-us-neutral",
+  "lesson": "math5-c1-s1-n7",
+  "status": "ready",
+  "figures": [
+    {
+      "id": "fig-24",
+      "label": "图 24",
+      "svg": "figures/fig-24.svg",
+      "spec": "figures/fig-24.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-24.png",
+          "sha256": "2a5fd2e5c0eaf1f13a0366cf1102b45b1b6bda6b79f521742b2b7c80ac5e1f79"
+        },
+        "svg": {
+          "path": "figures/fig-24.svg",
+          "sha256": "606dcdc8c82f2bf794b934512234817720d57001d765d99281b881830078572d"
+        }
+      }
+    },
+    {
+      "id": "fig-25",
+      "label": "图 25",
+      "svg": "figures/fig-25.svg",
+      "spec": "figures/fig-25.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-25.png",
+          "sha256": "d9646541b5977d70967852af1b9b1e37d75cf82c76423a2d5a59e56ebb9cd898"
+        },
+        "svg": {
+          "path": "figures/fig-25.svg",
+          "sha256": "7afc0efafaaa995d1234fc0ee2c41951f099f774d61e7b3356dd6acf09c5c521"
+        }
+      }
+    },
+    {
+      "id": "fig-26",
+      "label": "图 26",
+      "svg": "figures/fig-26.svg",
+      "spec": "figures/fig-26.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-26.png",
+          "sha256": "10f6ada2c00b84078cdb6c9af388913c137e699bd3c24e02abbabe2734424835"
+        },
+        "svg": {
+          "path": "figures/fig-26.svg",
+          "sha256": "8b4944a1b3ac90054abb2c8677c0ff24e9395a5d96cbbec4782a5879b6f6901b"
+        }
+      }
+    },
+    {
+      "id": "fig-27",
+      "label": "图 27",
+      "svg": "figures/fig-27.svg",
+      "spec": "figures/fig-27.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-27.png",
+          "sha256": "47fe44644ad0bc22a2c65cea101288f60ad59d2139e2812885e4545526358f3b"
+        },
+        "svg": {
+          "path": "figures/fig-27.svg",
+          "sha256": "1f18543e03dcc40cb2daca66787d0454d347ce96c8b7a0e810f7310b897f78c2"
+        }
+      }
+    },
+    {
+      "id": "fig-28",
+      "label": "图 28",
+      "svg": "figures/fig-28.svg",
+      "spec": "figures/fig-28.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-28.png",
+          "sha256": "4213fef6259eb23ccfebc63a49d87ccb87602be65f187828be5278183081a564"
+        },
+        "svg": {
+          "path": "figures/fig-28.svg",
+          "sha256": "db5126b2c5a924f0189ccb4cf9f0b82a8cc15b383c43f1373b756a1d58911f97"
+        }
+      }
+    }
+  ]
+}

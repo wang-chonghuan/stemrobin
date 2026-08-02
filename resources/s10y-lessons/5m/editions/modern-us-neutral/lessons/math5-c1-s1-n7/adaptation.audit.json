@@ -1,0 +1,14 @@
+{
+  "schema": "ld-s10y-lesson/edition-audit@1",
+  "edition": "modern-us-neutral",
+  "lesson": "math5-c1-s1-n7",
+  "status": "pass",
+  "sourceLessonSha256": "6726734a99f762ffbba3d515e228208ac184afdef1baec179e1f2f65d2ad550e",
+  "sourceExercisesSha256": "0425f857773334c3343b286e87ef7e29ad94d71bfd728463bf76ffc1c9a9fd16",
+  "proseBlocks": 15,
+  "changedProseBlocks": 0,
+  "exercises": 11,
+  "changedExercises": 6,
+  "figures": 5,
+  "errors": []
+}

@@ -25,7 +25,7 @@
       "page": 54
     }
   ],
-  "exercise_count": 19,
+  "exercise_count": 22,
   "prose": [
     {
       "kind": "p",
@@ -113,7 +113,7 @@
   "status": "ready",
   "source": {
     "path": "lessons/math5-c1-s2-n13/lesson.json",
-    "sha256": "6de83630b30d5b5db91746fddc17b0fa78ea0efa56c5c83fd221ce5eaca4483c",
+    "sha256": "86d9c9b389ceca17049a08cc9a206a2aef929fe5aee9f082e24e439fe1c84db5",
     "data": {
       "id": "math5-c1-s2-n13",
       "card_id": "math5-c1-s2-n13",
@@ -141,7 +141,7 @@
           "page": 54
         }
       ],
-      "exercise_count": 19,
+      "exercise_count": 22,
       "prose": [
         {
           "kind": "p",
