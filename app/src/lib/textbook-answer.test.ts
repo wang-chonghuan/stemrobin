@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { judgeTextbookPart } from './textbook-answer'
+import { judgeTextbookPart, recordTextbookSubmission } from './textbook-answer'
 
 describe('judgeTextbookPart', () => {
   it('accepts equivalent numeric forms', async () => {
@@ -58,5 +58,69 @@ describe('judgeTextbookPart', () => {
     await expect(
       judgeTextbookPart({ judge: 'numeric', expected: ['18'] }, '17'),
     ).resolves.toBe(false)
+  })
+})
+
+describe('recordTextbookSubmission', () => {
+  it('keeps both wrong-answer writes inside one transaction', async () => {
+    const statements: string[] = []
+    let beginCalls = 0
+    const database = {
+      begin: async (callback: (tx: unknown) => Promise<void>) => {
+        beginCalls += 1
+        const tx = (strings: TemplateStringsArray) => {
+          const statement = strings.join('?')
+          statements.push(statement)
+          if (statement.includes('sr_textbook_mistakes')) {
+            throw new Error('forced mistake write failure')
+          }
+          return Promise.resolve([])
+        }
+        await callback(tx)
+      },
+    } as unknown as Parameters<typeof recordTextbookSubmission>[0]
+
+    await expect(
+      recordTextbookSubmission(database, {
+        userId: 2,
+        bookId: '5m',
+        lessonId: 'math5-c1-s1-n1',
+        exercise: '9',
+        isCorrect: false,
+        answerText: 'wrong',
+        locale: 'en',
+      }),
+    ).rejects.toThrow('forced mistake write failure')
+
+    expect(beginCalls).toBe(1)
+    expect(statements).toHaveLength(2)
+    expect(statements[0]).toContain('sr_content_answer_events')
+    expect(statements[1]).toContain('sr_textbook_mistakes')
+  })
+
+  it('does not write a mistake for a correct submission', async () => {
+    const statements: string[] = []
+    const database = {
+      begin: async (callback: (tx: unknown) => Promise<void>) => {
+        const tx = (strings: TemplateStringsArray) => {
+          statements.push(strings.join('?'))
+          return Promise.resolve([])
+        }
+        await callback(tx)
+      },
+    } as unknown as Parameters<typeof recordTextbookSubmission>[0]
+
+    await recordTextbookSubmission(database, {
+      userId: 2,
+      bookId: '5m',
+      lessonId: 'math5-c1-s1-n1',
+      exercise: '9',
+      isCorrect: true,
+      answerText: '18',
+      locale: 'en',
+    })
+
+    expect(statements).toHaveLength(1)
+    expect(statements[0]).toContain('sr_content_answer_events')
   })
 })

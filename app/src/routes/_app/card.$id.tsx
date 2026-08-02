@@ -27,6 +27,16 @@ import { findCard } from '~/lib/textbooks'
 // inside the product (its own fonts, its own measure) and left its height to be
 // guessed, which is what pushed the action bar into the middle of the page.
 export const Route = createFileRoute('/_app/card/$id')({
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { tab?: 'ex'; exercise?: number } => {
+    const exercise = Number(search.exercise)
+    return {
+      tab: search.tab === 'ex' ? 'ex' : undefined,
+      exercise:
+        Number.isSafeInteger(exercise) && exercise > 0 ? exercise : undefined,
+    }
+  },
   component: CardPage,
   loader: async ({ params }) => {
     const [locale, content] = await Promise.all([
@@ -68,10 +78,12 @@ function Exercises({
   items,
   locale,
   cardId,
+  targetExercise,
 }: {
   items: CardExercise[]
   locale: Locale
   cardId: string
+  targetExercise?: number
 }) {
   let group: string | null | undefined
   return (
@@ -81,7 +93,10 @@ function Exercises({
         return (
           <section key={e.number} className="sr-ex-wrap">
             {head !== null && <h2 className="sr-ex-group">{head || t(locale, 'card.practice')}</h2>}
-            <article className="sr-ex" id={`ex-${e.number}`}>
+            <article
+              className={`sr-ex${Number(e.number) === targetExercise ? ' sr-ex-target' : ''}`}
+              id={`ex-${e.number}`}
+            >
               <div className="sr-ex-n sr-num">{e.number}</div>
               <div className="sr-ex-body">
                 <div dangerouslySetInnerHTML={{ __html: e.html }} />
@@ -115,6 +130,7 @@ function Exercises({
 
 function CardPage() {
   const { locale, content, card } = Route.useLoaderData()
+  const search = Route.useSearch()
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const where = useRef<HTMLElement>(null)
   const [tab, setTab] = useState<'read' | 'ex'>('read')
@@ -132,10 +148,28 @@ function CardPage() {
     document.fonts?.ready.then(park).catch(() => {})
   }, [cardId])
 
-  // A new card starts at its 課文 rather than inheriting the previous card's tab.
+  // Ordinary navigation starts at the text. A mistake-book redo explicitly opens
+  // the exercise tab and identifies the book-numbered exercise to locate.
   useEffect(() => {
-    setTab('read')
-  }, [cardId])
+    setTab(search.tab === 'ex' ? 'ex' : 'read')
+  }, [cardId, search.tab])
+
+  useEffect(() => {
+    if (tab !== 'ex' || !search.exercise) return
+    const scrollToExercise = () => {
+      document.getElementById(`ex-${search.exercise}`)?.scrollIntoView({
+        block: 'center',
+      })
+    }
+    // TanStack's page-navigation restoration resets the detail pane after the
+    // first paint. MathLive then replaces its input hosts asynchronously. Scroll
+    // after both phases so a redo remains parked on the requested exercise.
+    const timers = [
+      window.setTimeout(scrollToExercise, 80),
+      window.setTimeout(scrollToExercise, 500),
+    ]
+    return () => timers.forEach((timer) => window.clearTimeout(timer))
+  }, [cardId, search.exercise, tab])
 
   const top = (title: string) => (
     <div className="sr-d-top">
@@ -220,7 +254,12 @@ function CardPage() {
           ) : tab === 'read' ? (
             <Prose blocks={prose} />
           ) : (
-            <Exercises items={exercises} locale={locale} cardId={card.id} />
+            <Exercises
+              items={exercises}
+              locale={locale}
+              cardId={card.id}
+              targetExercise={search.exercise}
+            />
           )}
 
           <footer className="sr-deck-actions">

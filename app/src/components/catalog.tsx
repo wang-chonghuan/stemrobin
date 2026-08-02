@@ -1,5 +1,5 @@
 import { Link, useParams, useRouter } from '@tanstack/react-router'
-import { ChevronUp, Eye, EyeOff, LogIn, LogOut } from 'lucide-react'
+import { BookOpenCheck, ChevronUp, Eye, EyeOff, LogIn, LogOut } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 
 import { BrandMark } from '~/components/brand-mark'
@@ -199,6 +199,16 @@ function UserMenu({ user, locale }: { user: CurrentUser | null; locale: Locale }
     <div className="sr-usermenu" ref={rootRef}>
       {open && (
         <div className="sr-usermenu-pop" role="menu" aria-label={t(locale, 'account.menu')}>
+          <Link
+            to="/mistakes"
+            role="menuitem"
+            className="sr-usermenu-item"
+            activeProps={{ className: 'sr-usermenu-item active' }}
+            onClick={() => setOpen(false)}
+          >
+            <BookOpenCheck size={15} aria-hidden /> {t(locale, 'mistakes.title')}
+          </Link>
+          <div className="sr-usermenu-sep" />
           <button type="button" role="menuitem" className="sr-usermenu-item danger" onClick={signOut}>
             <LogOut size={15} aria-hidden /> {t(locale, 'login.logout')}
           </button>

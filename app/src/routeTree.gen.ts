@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as EnglishAudioIdRouteImport } from './routes/english-audio.$id'
+import { Route as AppMistakesRouteImport } from './routes/_app/mistakes'
 import { Route as AppLearnRouteImport } from './routes/_app/learn'
 import { Route as AppEnglishIdRouteImport } from './routes/_app/english.$id'
 import { Route as AppCardIdRouteImport } from './routes/_app/card.$id'
@@ -36,6 +37,11 @@ const EnglishAudioIdRoute = EnglishAudioIdRouteImport.update({
   id: '/english-audio/$id',
   path: '/english-audio/$id',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AppMistakesRoute = AppMistakesRouteImport.update({
+  id: '/mistakes',
+  path: '/mistakes',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppLearnRoute = AppLearnRouteImport.update({
   id: '/learn',
@@ -62,6 +68,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/learn': typeof AppLearnRoute
+  '/mistakes': typeof AppMistakesRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
   '/card/$id': typeof AppCardIdRoute
   '/english/$id': typeof AppEnglishIdRoute
@@ -71,6 +78,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/learn': typeof AppLearnRoute
+  '/mistakes': typeof AppMistakesRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
   '/card/$id': typeof AppCardIdRoute
   '/english/$id': typeof AppEnglishIdRoute
@@ -82,6 +90,7 @@ export interface FileRoutesById {
   '/_app': typeof AppRouteWithChildren
   '/login': typeof LoginRoute
   '/_app/learn': typeof AppLearnRoute
+  '/_app/mistakes': typeof AppMistakesRoute
   '/english-audio/$id': typeof EnglishAudioIdRoute
   '/_app/card/$id': typeof AppCardIdRoute
   '/_app/english/$id': typeof AppEnglishIdRoute
@@ -93,6 +102,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/learn'
+    | '/mistakes'
     | '/english-audio/$id'
     | '/card/$id'
     | '/english/$id'
@@ -102,6 +112,7 @@ export interface FileRouteTypes {
     | '/'
     | '/login'
     | '/learn'
+    | '/mistakes'
     | '/english-audio/$id'
     | '/card/$id'
     | '/english/$id'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/_app'
     | '/login'
     | '/_app/learn'
+    | '/_app/mistakes'
     | '/english-audio/$id'
     | '/_app/card/$id'
     | '/_app/english/$id'
@@ -155,6 +167,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EnglishAudioIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/mistakes': {
+      id: '/_app/mistakes'
+      path: '/mistakes'
+      fullPath: '/mistakes'
+      preLoaderRoute: typeof AppMistakesRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/_app/learn': {
       id: '/_app/learn'
       path: '/learn'
@@ -188,6 +207,7 @@ declare module '@tanstack/react-router' {
 
 interface AppRouteChildren {
   AppLearnRoute: typeof AppLearnRoute
+  AppMistakesRoute: typeof AppMistakesRoute
   AppCardIdRoute: typeof AppCardIdRoute
   AppEnglishIdRoute: typeof AppEnglishIdRoute
   AppEnglishIdReciteRoute: typeof AppEnglishIdReciteRoute
@@ -195,6 +215,7 @@ interface AppRouteChildren {
 
 const AppRouteChildren: AppRouteChildren = {
   AppLearnRoute: AppLearnRoute,
+  AppMistakesRoute: AppMistakesRoute,
   AppCardIdRoute: AppCardIdRoute,
   AppEnglishIdRoute: AppEnglishIdRoute,
   AppEnglishIdReciteRoute: AppEnglishIdReciteRoute,

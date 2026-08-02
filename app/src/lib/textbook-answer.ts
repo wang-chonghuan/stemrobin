@@ -5,6 +5,7 @@ import { normalizeMathAnswer } from '~/lib/answer-normalize'
 import { sql } from '~/lib/db'
 import { currentLocale } from '~/lib/locale.server'
 import { currentUserId } from '~/lib/session.server'
+import { findTextbookBook } from '~/lib/textbooks'
 
 type AnswerPart = {
   label?: string
@@ -18,6 +19,16 @@ type AnswerKey = {
   grading: 'auto' | 'ungraded'
   displayAnswer: string
   parts: AnswerPart[]
+}
+
+type RecordedTextbookSubmission = {
+  userId: number
+  bookId: string
+  lessonId: string
+  exercise: string
+  isCorrect: boolean
+  answerText: string
+  locale: string
 }
 
 let enginePromise: Promise<ComputeEngine> | null = null
@@ -90,6 +101,33 @@ export async function judgeTextbookPart(part: AnswerPart, submitted: string): Pr
   })
 }
 
+export async function recordTextbookSubmission(
+  database: ReturnType<typeof sql>,
+  submission: RecordedTextbookSubmission,
+): Promise<void> {
+  await database.begin(async (tx) => {
+    await tx`
+      insert into sr_content_answer_events
+        (user_id, lesson_id, kind, node_id, is_correct, answer_text, locale)
+      values (
+        ${submission.userId}, ${submission.lessonId}, 'exercise',
+        ${submission.exercise}, ${submission.isCorrect},
+        ${submission.answerText}, ${submission.locale}
+      )
+    `
+    if (!submission.isCorrect) {
+      await tx`
+        insert into sr_textbook_mistakes
+          (user_id, book_id, lesson_id, exercise_number)
+        values (
+          ${submission.userId}, ${submission.bookId}, ${submission.lessonId},
+          ${submission.exercise}
+        )
+      `
+    }
+  })
+}
+
 export const checkTextbookAnswer = createServerFn({ method: 'POST' })
   .validator((data: { lessonId: string; exercise: string; answers: string[] }) => data)
   .handler(async ({ data }): Promise<TextbookAnswerResult> => {
@@ -129,14 +167,19 @@ export const checkTextbookAnswer = createServerFn({ method: 'POST' })
       const isCorrect = judged.every(Boolean)
       const uid = currentUserId()
       if (uid != null) {
-        await sql()`
-          insert into sr_content_answer_events
-            (user_id, lesson_id, kind, node_id, is_correct, answer_text, locale)
-          values (
-            ${uid}, ${data.lessonId}, 'exercise', ${String(data.exercise)}, ${isCorrect},
-            ${data.answers.map((answer) => answer.trim()).join('\n')}, ${currentLocale()}
-          )
-        `
+        const bookId = findTextbookBook(data.lessonId)
+        if (!bookId) return { error: '教材不存在' }
+        const answerText = data.answers.map((answer) => answer.trim()).join('\n')
+        const locale = currentLocale()
+        await recordTextbookSubmission(sql(), {
+          userId: uid,
+          bookId,
+          lessonId: data.lessonId,
+          exercise: String(data.exercise),
+          isCorrect,
+          answerText,
+          locale,
+        })
       }
       return {
         verdict: isCorrect ? 'correct' : 'incorrect',
