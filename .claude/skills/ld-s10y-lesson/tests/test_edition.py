@@ -119,6 +119,35 @@ class EditionTest(unittest.TestCase):
             "4) $-3.22$ 和 $3.22$.",
         )
 
+    def test_fullwidth_numbered_subparts_are_sorted_and_line_broken(self) -> None:
+        source = "选择：1）甲； 4）丁；2）乙； 3）丙."
+        self.assertEqual(
+            edition.normalize_numbered_subparts(source),
+            "选择：\n1）甲；\n2）乙；\n3）丙.\n4）丁；",
+        )
+
+    def test_numbered_subparts_touching_chinese_text_are_line_broken(self) -> None:
+        source = "用什么数字代替星号才能使所得的数1) 被 3 整除？和 2) 被 5 整除？"
+        self.assertEqual(
+            edition.normalize_numbered_subparts(source),
+            "用什么数字代替星号才能使所得的数\n"
+            "1) 被 3 整除？和\n"
+            "2) 被 5 整除？",
+        )
+
+    def test_figure_number_is_not_treated_as_a_subpart(self) -> None:
+        source = "观察图 72），回答：\n1) 第一问；\n2) 第二问."
+        self.assertEqual(edition.normalize_numbered_subparts(source), source)
+
+    def test_numbered_subpart_layout_validator_rejects_unnormalized_text(self) -> None:
+        self.assertTrue(
+            edition.validate_numbered_subpart_layout("计算：1）甲；2）乙.")
+        )
+        self.assertEqual(
+            edition.validate_numbered_subpart_layout("计算：\n1）甲；\n2）乙."),
+            [],
+        )
+
     def test_layout_reordering_preserves_math_and_numbers(self) -> None:
         source = "计算：1) $a+1$；3) $c+3$；2) $b+2$；4) $d+4$."
         modern = edition.normalize_numbered_subparts(source)

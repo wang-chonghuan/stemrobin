@@ -25,7 +25,7 @@ AUDIT_SCHEMA = "ld-s10y-lesson/edition-audit@1"
 BOOK_SCHEMA = "ld-s10y-lesson/edition-book@1"
 MATH = re.compile(r"\$\$(.+?)\$\$|\$([^$]+?)\$", re.S)
 NUMBER = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?![\w.])")
-NUMBERED_PART = re.compile(r"(?<![\w.])(\d{1,2})\)")
+NUMBERED_PART = re.compile(r"(?<![A-Za-z0-9_.])(\d{1,2})[)）]")
 CYRILLIC = re.compile(r"[\u0400-\u04ff]")
 NON_ENGLISH_FIGURE_SCRIPT = re.compile(
     r"[\u0400-\u04ff\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]"
@@ -236,6 +236,7 @@ def normalize_numbered_subparts(text: str) -> str:
         marker
         for marker in NUMBERED_PART.finditer(masked_text)
         if depths[marker.start()] == 0
+        and not re.search(r"图\s*$", masked_text[max(0, marker.start() - 3):marker.start()])
     ]
     if len(markers) < 2:
         return text
@@ -252,6 +253,14 @@ def normalize_numbered_subparts(text: str) -> str:
         parts.append((int(marker.group(1)), part))
     ordered = [part for _, part in sorted(parts)]
     return "\n".join(([prefix] if prefix else []) + ordered)
+
+
+def validate_numbered_subpart_layout(text: object) -> list[str]:
+    if not isinstance(text, str):
+        return []
+    if normalize_numbered_subparts(text) != text:
+        return ["完整数字分题必须按 1 到 N 排序，并且每个分题独占一行"]
+    return []
 
 
 def normalize_exercise_layout(exercises: dict) -> None:
@@ -693,6 +702,10 @@ def validate_lesson(
             label,
             forbidden,
         )
+        errors += [
+            f"{label}: {error}"
+            for error in validate_numbered_subpart_layout(modern_item.get("text"))
+        ]
 
     raw_figure_ids = [item["id"] for item in raw_lesson.get("figures", [])]
     figure_items = figures.get("figures")

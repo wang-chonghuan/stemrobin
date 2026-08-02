@@ -59,6 +59,8 @@ cd app && npm run dev
 - 原始 `pages/`、`figures/`、`lessons/` 和 `book.json` 是忠实抽取层，生成现代版时不得修改
 - `adapt-prepare` 后只编辑 `editions/<edition>/`；改写后的 JSON 和新图必须通过
   `adapt-finalize`，生产发布器不接受原始抽取层
+- 现代 edition 中完整的数字分题序列（半角 `1)` 或全角 `1）`）必须由工具统一成
+  `1..N` 自然顺序，且每个分题独占一行；`adapt-finalize` 不允许错序或横向排版通过
 - `render` 不是发布门禁，但必须用于离线视觉检查；它读取指定 edition，不得回退原书
 - 边界页常会带出下一节开头；它必须完整转写以通过页级对账，但**不得发布未完成的下一节**。
   用可重复的 `--lesson <cardId>` 只发布本次已完成的单元

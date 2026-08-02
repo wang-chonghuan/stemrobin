@@ -475,6 +475,53 @@ details[open] > summary > .sr-out-caret {
   border: 1px solid var(--sr-line);
   border-radius: 14px;
 }
+.sr-overview-cards {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.sr-mistake-summary-card {
+  width: min(280px, 100%);
+  min-height: 132px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius);
+  background: var(--sr-card);
+  color: inherit;
+  text-decoration: none;
+}
+.sr-mistake-summary-card:hover {
+  border-color: var(--sr-blue);
+}
+.sr-mistake-summary-icon {
+  width: 38px;
+  height: 38px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: var(--sr-radius-sm);
+  background: var(--sr-green-tint);
+  color: var(--sr-green-deep);
+}
+.sr-mistake-summary-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.sr-mistake-summary-copy strong {
+  color: var(--sr-green-deep);
+  font-size: 24px;
+  line-height: 1.2;
+}
+.sr-mistake-summary-copy > span:last-child {
+  color: var(--sr-ink-dim);
+  font-size: 11.5px;
+}
 .sr-stats-top {
   display: flex;
   align-items: baseline;
@@ -1010,6 +1057,10 @@ a.sr-out-lesson.active {
 }
 
 .sr-d-top {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  flex: none;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1104,7 +1155,9 @@ a.sr-out-lesson.active {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 20px;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+  scroll-padding-top: calc(12px + env(safe-area-inset-top));
+  scroll-padding-bottom: calc(20px + env(safe-area-inset-bottom));
 }
 /* For a page whose content should occupy the pane rather than stack from the
    top — the child is free to be 100% tall. */
@@ -1339,6 +1392,23 @@ a.sr-out-lesson.active {
   }
   .sr-navtoggle {
     display: grid;
+  }
+  .sr-d-top {
+    padding-top: calc(10px + env(safe-area-inset-top));
+  }
+  .sr-langmenu {
+    top: env(safe-area-inset-top);
+  }
+  .sr-d-scroll {
+    overscroll-behavior-y: contain;
+  }
+}
+
+@media (max-width: 520px) {
+  .sr-overview-cards,
+  .sr-stats,
+  .sr-mistake-summary-card {
+    width: 100%;
   }
 }
 

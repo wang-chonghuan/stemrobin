@@ -58,8 +58,8 @@ function MathInput({
 }) {
   const hostRef = useRef<HTMLDivElement>(null)
   const fieldRef = useRef<MathField | null>(null)
-  const modeRef = useRef<KeyboardMode>('basic')
-  const [mode, setMode] = useState<KeyboardMode>('basic')
+  const modeRef = useRef<KeyboardMode>('more')
+  const [mode, setMode] = useState<KeyboardMode>('more')
 
   useEffect(() => {
     const host = hostRef.current
