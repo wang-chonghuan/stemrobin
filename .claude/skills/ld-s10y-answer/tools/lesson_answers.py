@@ -42,6 +42,11 @@ def book_dir(args: argparse.Namespace) -> Path:
     return Path(args.root) / args.book
 
 
+def lessons_dir(args: argparse.Namespace) -> Path:
+    root = book_dir(args)
+    return root / "editions" / args.edition / "lessons"
+
+
 def captured_answers(root: Path) -> dict[int, dict]:
     path = root / "answers.json"
     if not path.exists():
@@ -54,7 +59,7 @@ def cmd_prepare(args: argparse.Namespace) -> int:
     root = book_dir(args)
     captured = captured_answers(root)
     for lesson in selected_lessons(args):
-        lesson_dir = root / "lessons" / lesson
+        lesson_dir = lessons_dir(args) / lesson
         exercise_doc = load(lesson_dir / "exercises.json")
         answers = []
         for exercise in exercise_doc.get("exercises", []):
@@ -75,6 +80,7 @@ def cmd_prepare(args: argparse.Namespace) -> int:
             "schema": SCHEMA,
             "book": args.book,
             "lesson": lesson,
+            "edition": args.edition,
             "status": "draft",
             "answers": answers,
         }
@@ -84,7 +90,13 @@ def cmd_prepare(args: argparse.Namespace) -> int:
     return 0
 
 
-def validate_lesson(path: Path, exercise_path: Path, book: str, lesson: str) -> tuple[dict, list[str]]:
+def validate_lesson(
+    path: Path,
+    exercise_path: Path,
+    book: str,
+    lesson: str,
+    edition: str | None,
+) -> tuple[dict, list[str]]:
     document = load(path)
     exercise_doc = load(exercise_path)
     errors: list[str] = []
@@ -96,6 +108,8 @@ def validate_lesson(path: Path, exercise_path: Path, book: str, lesson: str) -> 
         errors.append(f"book 必须是 {book!r}")
     if document.get("lesson") != lesson:
         errors.append(f"lesson 必须是 {lesson!r}")
+    if document.get("edition") != edition:
+        errors.append(f"edition 必须是 {edition!r}")
     answers = document.get("answers")
     if not isinstance(answers, list):
         errors.append("answers 必须是数组")
@@ -158,13 +172,14 @@ def cmd_finalize(args: argparse.Namespace) -> int:
     root = book_dir(args)
     failed = False
     for lesson in selected_lessons(args):
-        lesson_dir = root / "lessons" / lesson
+        lesson_dir = lessons_dir(args) / lesson
         path = lesson_dir / "answer-keys.json"
         document, errors = validate_lesson(
             path,
             lesson_dir / "exercises.json",
             args.book,
             lesson,
+            args.edition,
         )
         if errors:
             failed = True
@@ -180,6 +195,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
             "schema": "ld-s10y-answer/lesson-audit@1",
             "book": args.book,
             "lesson": lesson,
+            "edition": args.edition,
             "status": "pass",
             "answerCount": len(document["answers"]),
             "auto": auto,
@@ -193,7 +209,8 @@ def cmd_finalize(args: argparse.Namespace) -> int:
 def add_common(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--book", required=True)
     parser.add_argument("--lesson", action="append")
-    parser.add_argument("--root", default="page2class")
+    parser.add_argument("--edition", required=True)
+    parser.add_argument("--root", default="resources/s10y-lessons")
 
 
 def build_parser() -> argparse.ArgumentParser:

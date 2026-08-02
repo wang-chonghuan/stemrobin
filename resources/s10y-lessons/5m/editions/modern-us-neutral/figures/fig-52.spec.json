@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-52",
+  "description": "A newly authored half-unit number line used to read the coordinates of A, B, and C.",
+  "constraints": [
+    "Adjacent ticks differ by 0.5.",
+    "The labeled reference ticks are -3 and 3.",
+    "B is at -5, C is at -1.5, and A is at 1."
+  ]
+}

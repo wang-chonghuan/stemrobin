@@ -6,8 +6,10 @@
     p2c.py finalize  --book 5m --page 15      # 吸附裁图 + 规范化 + 页级体检
     p2c.py assemble  --book 5m                # 跨页装订 → 小节 + 独立编号的题
     p2c.py vectorize --book 5m                # 插图 PNG → SVG（描摹 + 保真自检）
-    p2c.py render    --book 5m [--lesson id]  # 自包含 HTML（课文页 + 习题页）
-    p2c.py publish   --book 5m [--dry]        # 写进内容库，产品里就能点开了
+    p2c.py adapt-prepare  --book 5m --edition modern-us-neutral --lesson id
+    p2c.py adapt-finalize --book 5m --edition modern-us-neutral --lesson id
+    p2c.py render    --book 5m --edition modern-us-neutral [--lesson id]
+    p2c.py publish   --book 5m --edition modern-us-neutral --lesson id
 
 机器不猜哪里是图、哪一段是第几题——那是模型看图的活；
 模型也不量像素、不做跨页拼接、不做全书对账——那是机器的活。
@@ -31,11 +33,11 @@ from PIL import Image
 
 SKILL = Path(__file__).resolve().parent.parent
 TOOLS = SKILL / "tools"
-DEFAULT_ROOT = Path("page2class")
+DEFAULT_ROOT = Path("resources/s10y-lessons")
 DEFAULT_BOOKS = Path(".tmp/ori-books")
 DEFAULT_PROFILE = SKILL / "profiles" / "soviet-cn.json"
 
-ENUM_LINE = re.compile(r"^\s*(?:\d+\.\s*)?([^\W\d_])\s*[)）]", re.M)
+ENUM_LINE = re.compile(r"^\s*(?:\d+\.\s*)?([A-Za-z\u0400-\u04ff])\s*[)）]", re.M)
 
 
 def _dump(p: Path, o) -> None:
@@ -275,18 +277,48 @@ def cmd_vectorize(a) -> int:
     return 1 if fail else 0
 
 
-# ---------------------------------------------------------------- cap4 成品
-def cmd_render(a) -> int:
-    book = _book_dir(a)
-    args = ["node", str(TOOLS / "render_lesson.js"), str(book)]
-    if a.lesson:
-        args.append(a.lesson)
+# ---------------------------------------------------------------- cap4 现代 edition
+def cmd_adapt(a, command: str) -> int:
+    args = [
+        sys.executable, str(TOOLS / "edition.py"), command,
+        "--book", a.book,
+        "--edition", a.edition,
+        "--root", a.root,
+    ]
+    for lesson in a.lesson or []:
+        args += ["--lesson", lesson]
+    if command == "prepare" and a.force:
+        args.append("--force")
     return subprocess.run(args).returncode
 
 
-# ---------------------------------------------------------------- cap5 入库
+def cmd_adapt_prepare(a) -> int:
+    return cmd_adapt(a, "prepare")
+
+
+def cmd_adapt_finalize(a) -> int:
+    return cmd_adapt(a, "finalize")
+
+
+# ---------------------------------------------------------------- cap5 成品
+def cmd_render(a) -> int:
+    book = _book_dir(a)
+    args = ["node", str(TOOLS / "render_lesson.js"), str(book)]
+    if a.edition:
+        args += ["--edition", a.edition]
+    if a.lesson:
+        args += ["--lesson", a.lesson]
+    return subprocess.run(args).returncode
+
+
+# ---------------------------------------------------------------- cap6 入库
 def cmd_publish(a) -> int:
-    args = ["node", str(TOOLS / "publish.mjs"), str(_book_dir(a))]
+    args = [
+        "node", str(TOOLS / "publish.mjs"), str(_book_dir(a)),
+        "--edition", a.edition,
+    ]
+    for lesson in a.lesson or []:
+        args += ["--lesson", lesson]
     if a.dry:
         args.append("--dry")
     args += ["--env", a.env]
@@ -323,12 +355,28 @@ def main() -> int:
     common(p, page=False); p.add_argument("--page", type=int, default=None)
     p.add_argument("--turdsize", type=int, default=2); p.set_defaults(fn=cmd_vectorize)
 
+    for command, handler in (
+        ("adapt-prepare", cmd_adapt_prepare),
+        ("adapt-finalize", cmd_adapt_finalize),
+    ):
+        p = sub.add_parser(command, help="生成或验证现代主题 edition")
+        common(p, page=False)
+        p.add_argument("--edition", required=True)
+        p.add_argument("--lesson", action="append", required=True)
+        if command == "adapt-prepare":
+            p.add_argument("--force", action="store_true")
+        p.set_defaults(fn=handler)
+
     p = sub.add_parser("render", help="自包含 HTML：课文页 + 习题页")
-    common(p, page=False); p.add_argument("--lesson", default=None)
+    common(p, page=False)
+    p.add_argument("--edition", default=None)
+    p.add_argument("--lesson", default=None)
     p.set_defaults(fn=cmd_render)
 
-    p = sub.add_parser("publish", help="写进内容库（一个小节 = 一行，id 用卡片 id）")
+    p = sub.add_parser("publish", help="把已通过审计的 edition 写进内容库")
     common(p, page=False)
+    p.add_argument("--edition", required=True)
+    p.add_argument("--lesson", action="append", required=True)
     p.add_argument("--dry", action="store_true", help="只打印要写什么，不连库")
     p.add_argument("--env", default=".env", help="连接串所在的 .env")
     p.set_defaults(fn=cmd_publish)

@@ -1,0 +1,205 @@
+{
+  "id": "math5-c1-s2-n13",
+  "card_id": "math5-c1-s2-n13",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "13",
+  "title": "绝对值",
+  "printed_title": "13. 绝对值",
+  "start_page": 51,
+  "start_printed": 42,
+  "figures": [
+    {
+      "id": "fig-53",
+      "label": "图 53",
+      "page": 51
+    },
+    {
+      "id": "fig-54",
+      "label": "图 54",
+      "page": 54
+    },
+    {
+      "id": "tbl-p0054-02",
+      "label": "表",
+      "page": 54
+    }
+  ],
+  "exercise_count": 19,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "在数轴上，$-6$ 的对应点是 $M(-6)$（图 53）. 从这个点到原点的距离等于 6 个单位线段. 6 叫做 $-6$ 的**绝对值**. 也就是说，$-6$ 的绝对值等于 6. 写作 $|-6|=6$. 因为点 $B(5)$ 距原点 5 个单位线段，所以 5 的绝对值等于 5. 0 的绝对值等于 0，因为 0 的对应点和原点重合，就是说 0 点和原点的距离为 0个单位线段（图 53），$|0|=0$.",
+      "id": null,
+      "label": null,
+      "printed_page": 42,
+      "source_text": "在数轴上，$-6$ 的对应点是 $M(-6)$（图 53）. 从这个点到原点的距离等于 6 个单位线段. 6 叫做 $-6$ 的**绝对值**. 也就是说，$-6$ 的绝对值等于 6. 写作 $|-6|=6$. 因为点 $B(5)$ 距原点 5 个单位线段，所以 5 的绝对值等于 5. 0 的绝对值等于 0，因为 0 的对应点和原点重合，就是说 0 点和原点的距离为 0个单位线段（图 53），$|0|=0$.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-53",
+      "label": "图 53",
+      "printed_page": 42,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 53",
+      "id": null,
+      "label": "图 53",
+      "printed_page": 42,
+      "source_text": "图 53",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "**求数的绝对值，必须以单位线段度量从原点到这个数的对应点的距离.**",
+      "id": null,
+      "label": null,
+      "printed_page": 42,
+      "source_text": "**求数的绝对值，必须以单位线段度量从原点到这个数的对应点的距离.**",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "一个数的绝对值不能是负数. 正数和零的绝对值都是它本身，而负数的绝对值是它的相反数.",
+      "id": null,
+      "label": null,
+      "printed_page": 43,
+      "source_text": "一个数的绝对值不能是负数. 正数和零的绝对值都是它本身，而负数的绝对值是它的相反数.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "例如，$|7|=7$；$\\left|\\frac{3}{4}\\right|=\\frac{3}{4}$；$|1.5|=1.5$；$|0|=0$；$|-7|=7$；$\\left|-\\frac{3}{4}\\right|=\\frac{3}{4}$；$|-1.5|=1.5$.",
+      "id": null,
+      "label": null,
+      "printed_page": 43,
+      "source_text": "例如，$|7|=7$；$\\left|\\frac{3}{4}\\right|=\\frac{3}{4}$；$|1.5|=1.5$；$|0|=0$；$|-7|=7$；$\\left|-\\frac{3}{4}\\right|=\\frac{3}{4}$；$|-1.5|=1.5$.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "用变量可以把数的绝对值的定义写作：$|a|=\\begin{cases}a,&\\text{当 }a\\text{ 为正数或等于 }0\\text{ 时；}\\\\-a,&\\text{当 }a\\text{ 为负数时.}\\end{cases}$",
+      "id": null,
+      "label": null,
+      "printed_page": 43,
+      "source_text": "用变量可以把数的绝对值的定义写作：$|a|=\\begin{cases}a,&\\text{当 }a\\text{ 为正数或等于 }0\\text{ 时；}\\\\-a,&\\text{当 }a\\text{ 为负数时.}\\end{cases}$",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "数的绝对值的符号和线段长度的符号相同，这是因为数的绝对值就是对应线段的长度.",
+      "id": null,
+      "label": null,
+      "printed_page": 43,
+      "source_text": "数的绝对值的符号和线段长度的符号相同，这是因为数的绝对值就是对应线段的长度.",
+      "changes": [],
+      "numeric_changes": []
+    }
+  ],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "source": {
+    "path": "lessons/math5-c1-s2-n13/lesson.json",
+    "sha256": "6de83630b30d5b5db91746fddc17b0fa78ea0efa56c5c83fd221ce5eaca4483c",
+    "data": {
+      "id": "math5-c1-s2-n13",
+      "card_id": "math5-c1-s2-n13",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "13",
+      "title": "绝对值",
+      "printed_title": "13. 绝对值",
+      "start_page": 51,
+      "start_printed": 42,
+      "figures": [
+        {
+          "id": "fig-53",
+          "label": "图 53",
+          "page": 51
+        },
+        {
+          "id": "fig-54",
+          "label": "图 54",
+          "page": 54
+        },
+        {
+          "id": "tbl-p0054-02",
+          "label": "表",
+          "page": 54
+        }
+      ],
+      "exercise_count": 19,
+      "prose": [
+        {
+          "kind": "p",
+          "text": "在数轴上，$-6$ 的对应点是 $M(-6)$（图 53）. 从这个点到原点的距离等于 6 个单位线段. 6 叫做 $-6$ 的**绝对值**. 也就是说，$-6$ 的绝对值等于 6. 写作 $|-6|=6$. 因为点 $B(5)$ 距原点 5 个单位线段，所以 5 的绝对值等于 5. 0 的绝对值等于 0，因为 0 的对应点和原点重合，就是说 0 点和原点的距离为 0个单位线段（图 53），$|0|=0$.",
+          "id": null,
+          "label": null,
+          "printed_page": 42
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-53",
+          "label": "图 53",
+          "printed_page": 42
+        },
+        {
+          "kind": "cap",
+          "text": "图 53",
+          "id": null,
+          "label": "图 53",
+          "printed_page": 42
+        },
+        {
+          "kind": "p",
+          "text": "**求数的绝对值，必须以单位线段度量从原点到这个数的对应点的距离.**",
+          "id": null,
+          "label": null,
+          "printed_page": 42
+        },
+        {
+          "kind": "p",
+          "text": "一个数的绝对值不能是负数. 正数和零的绝对值都是它本身，而负数的绝对值是它的相反数.",
+          "id": null,
+          "label": null,
+          "printed_page": 43
+        },
+        {
+          "kind": "p",
+          "text": "例如，$|7|=7$；$\\left|\\frac{3}{4}\\right|=\\frac{3}{4}$；$|1.5|=1.5$；$|0|=0$；$|-7|=7$；$\\left|-\\frac{3}{4}\\right|=\\frac{3}{4}$；$|-1.5|=1.5$.",
+          "id": null,
+          "label": null,
+          "printed_page": 43
+        },
+        {
+          "kind": "p",
+          "text": "用变量可以把数的绝对值的定义写作：$|a|=\\begin{cases}a,&\\text{当 }a\\text{ 为正数或等于 }0\\text{ 时；}\\\\-a,&\\text{当 }a\\text{ 为负数时.}\\end{cases}$",
+          "id": null,
+          "label": null,
+          "printed_page": 43
+        },
+        {
+          "kind": "p",
+          "text": "数的绝对值的符号和线段长度的符号相同，这是因为数的绝对值就是对应线段的长度.",
+          "id": null,
+          "label": null,
+          "printed_page": 43
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "id": "modern-us-neutral",
+  "description": "Contemporary, culturally light US-facing edition for Chinese-language lessons",
+  "forbidden_terms": [
+    "苏联",
+    "俄罗斯",
+    "加盟共和国",
+    "少先队",
+    "革命圣地",
+    "游击队",
+    "集体农庄",
+    "国营农场",
+    "卢布",
+    "戈比",
+    "莫斯科",
+    "西西伯利亚"
+  ],
+  "rules": [
+    "Preserve the mathematical objective, quantities, formulas, exercise numbers, groups, and figure references.",
+    "Prefer ordinary school, family, farm, camp, community, travel, and workplace settings.",
+    "Use fictional or generic institutions and datasets instead of unsourced modern real-world claims.",
+    "Replace rubles and kopecks with dollars and cents without changing the underlying values.",
+    "Replace Cyrillic enumeration markers with Latin a), b), c), and so on.",
+    "Leave culture-neutral mathematical text unchanged.",
+    "Every published figure must be a newly authored SVG and must not embed raster images."
+  ]
+}

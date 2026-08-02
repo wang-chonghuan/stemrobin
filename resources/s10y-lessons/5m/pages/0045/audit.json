@@ -1,0 +1,79 @@
+{
+  "page": 45,
+  "lines_printed": 19,
+  "lines_md": 19,
+  "figures": [
+    {
+      "id": "fig-45",
+      "label": "图 45",
+      "box": [
+        143,
+        603,
+        377,
+        345
+      ],
+      "components": 6,
+      "from": [
+        150,
+        575,
+        370,
+        390
+      ]
+    },
+    {
+      "id": "fig-46",
+      "label": "图 46",
+      "box": [
+        545,
+        586,
+        355,
+        366
+      ],
+      "components": 4,
+      "from": [
+        525,
+        575,
+        390,
+        400
+      ]
+    },
+    {
+      "id": "fig-47",
+      "label": "图 47",
+      "box": [
+        938,
+        579,
+        402,
+        379
+      ],
+      "components": 19,
+      "from": [
+        930,
+        575,
+        430,
+        400
+      ]
+    },
+    {
+      "id": "fig-48",
+      "label": "图 48",
+      "box": [
+        888,
+        1095,
+        409,
+        246
+      ],
+      "components": 8,
+      "from": [
+        875,
+        1080,
+        440,
+        275
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

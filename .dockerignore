@@ -17,14 +17,12 @@ npm-debug.log
 .tmp
 tmp
 .playwright-cli
-# 本地扫描件原件，不参与构建
+# 教材资源、抽取产物和本地扫描件都不参与应用镜像构建
 resources
 # agent 技能自带 python venv 与 node_modules（约 120MB），镜像里用不到
 .claude
 .agents
 .codex
 .opencode
-# 教材抽取产物：内容走数据库，构建不读它
-page2class
 prototypes
 test-results

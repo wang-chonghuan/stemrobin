@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" role="img" aria-labelledby="title desc">
+  <title id="title">Opposite numbers on a number line</title>
+  <desc id="desc">Two students stand at negative five and positive five, equally far from zero.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="55" y1="198" x2="665" y2="198"/>
+    <path d="M665 198l-18-10v20z" fill="currentColor" stroke="none"/>
+    <line x1="155" y1="184" x2="155" y2="212"/>
+    <line x1="360" y1="180" x2="360" y2="216"/>
+    <line x1="565" y1="184" x2="565" y2="212"/>
+    <circle cx="155" cy="62" r="22"/>
+    <path d="M155 84v58m0-38l-34 30m34-30l34 30m-34 8l-28 38m28-38l28 38"/>
+    <circle cx="565" cy="62" r="22"/>
+    <path d="M565 84v58m0-38l-34 30m34-30l34 30m-34 8l-28 38m28-38l28 38"/>
+  </g>
+  <g fill="currentColor" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">
+    <text x="155" y="244">-5</text>
+    <text x="360" y="244">0</text>
+    <text x="565" y="244">5</text>
+  </g>
+</svg>

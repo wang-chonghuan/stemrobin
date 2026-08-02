@@ -15,7 +15,9 @@
  * Supabase，schema 是 lemmadeck-schema。**不要用 psql**：这个串的密码里带 `@`，
  * psql 会把它当主机名分隔符，解析失败；node 的 postgres 客户端能正确处理。
  *
- * 用法: publish.mjs <bookDir> [--lesson <cardId>]... [--dry] [--env <path>]
+ * 生产只接受通过 cap4 审计的 edition，不允许回退到原书 JSON。
+ *
+ * 用法: publish.mjs <bookDir> --edition <name> --lesson <cardId>... [--dry] [--env <path>]
  */
 import fs from 'node:fs'
 import path from 'node:path'
@@ -23,18 +25,19 @@ import { createRequire } from 'node:module'
 
 const require = createRequire(import.meta.url)
 const postgres = require('postgres')
-const { inline, figureSvg } = require('./htmlfrag.js')
+const { inline } = require('./htmlfrag.js')
 
 const args = process.argv.slice(2)
 const bookDir = args.find((a) => !a.startsWith('--'))
+const editionName = args.includes('--edition') ? args[args.indexOf('--edition') + 1] : null
 const dry = args.includes('--dry')
 const envPath = args.includes('--env') ? args[args.indexOf('--env') + 1] : '.env'
 const requestedLessons = new Set()
 for (let i = 0; i < args.length; i += 1) {
   if (args[i] === '--lesson' && args[i + 1]) requestedLessons.add(args[i + 1])
 }
-if (!bookDir) {
-  console.error('用法: publish.mjs <bookDir> [--lesson <cardId>]... [--dry] [--env <path>]')
+if (!bookDir || !editionName || !requestedLessons.size) {
+  console.error('用法: publish.mjs <bookDir> --edition <name> --lesson <cardId>... [--dry] [--env <path>]')
   process.exit(2)
 }
 
@@ -48,27 +51,55 @@ function dbUrl() {
 }
 
 const book = path.resolve(bookDir)
-const lessonsDir = path.join(book, 'lessons')
+const edition = path.join(book, 'editions', editionName)
+const lessonsDir = path.join(edition, 'lessons')
+if (!fs.existsSync(lessonsDir)) {
+  throw new Error(`edition 不存在或没有 lessons: ${lessonsDir}`)
+}
+
+function figureSvgStrict(id) {
+  const svgPath = path.join(edition, 'figures', `${id}.svg`)
+  if (!fs.existsSync(svgPath)) throw new Error(`现代版缺少 SVG: ${svgPath}`)
+  const svg = fs.readFileSync(svgPath, 'utf8').replace(/<\?xml[^>]*\?>/, '').trim()
+  const linkScan = svg.replace(/\sxmlns(?::\w+)?="[^"]+"/g, '')
+  if (/<(?:image|foreignObject|script)\b/i.test(svg) || /(?:data:|https?:\/\/)/i.test(linkScan)) {
+    throw new Error(`${svgPath} 含位图、脚本、data URI 或外链`)
+  }
+  return svg
+}
+
 const rows = []
 for (const lid of fs.readdirSync(lessonsDir).sort()) {
   if (requestedLessons.size && !requestedLessons.has(lid)) continue
   const dir = path.join(lessonsDir, lid)
   const L = JSON.parse(fs.readFileSync(path.join(dir, 'lesson.json'), 'utf8'))
   const X = JSON.parse(fs.readFileSync(path.join(dir, 'exercises.json'), 'utf8'))
+  const auditPath = path.join(dir, 'adaptation.audit.json')
+  const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'))
+  if (L.status !== 'ready' || X.status !== 'ready' || audit.status !== 'pass') {
+    throw new Error(`${lid}: edition 尚未通过 adapt-finalize`)
+  }
+  if (L.edition !== editionName || X.edition !== editionName) {
+    throw new Error(`${lid}: edition 字段与 --edition 不一致`)
+  }
   if (!L.card_id) {
     console.error(`  ✗ ${lid}: 没有卡片 id（assemble 时没给 --toc，或 TOC 里对不上），跳过`)
     continue
   }
   const prose = L.prose.map((b) =>
     b.kind === 'fig'
-      ? { kind: 'fig', id: b.id, label: b.label, svg: figureSvg(book, b.id) }
+      ? { kind: 'fig', id: b.id, label: b.label, svg: figureSvgStrict(b.id) }
       : { kind: b.kind, html: inline(b.text) })
   const exercises = X.exercises.map((e) => ({
     number: e.number,
     group: e.group,
     html: inline(e.text),
     figureRefs: e.figure_refs ?? [],
-    figures: (e.figures ?? []).map((f) => ({ id: f.id, label: f.label, svg: figureSvg(book, f.id) })),
+    figures: (e.figures ?? []).map((f) => ({
+      id: f.id,
+      label: f.label,
+      svg: figureSvgStrict(f.id),
+    })),
   }))
   // stage/lesson_order 是 (subject, stage, lesson_order) 唯一约束的一半：年级 +
   // 本册内连续的印刷小节号。同年级同学科的两册（代数六年级 / 几何六-八年级）会撞，
@@ -81,8 +112,22 @@ for (const lid of fs.readdirSync(lessonsDir).sort()) {
     lesson_order: Number(L.number),
     title: L.printed_title || L.title,
     concept: [L.chapter, L.section].filter(Boolean).join(' · '),
-    content: { ...L, prose },
-    exercises: { count: exercises.length, exercises },
+    content: {
+      id: L.id,
+      card_id: L.card_id,
+      chapter: L.chapter,
+      section: L.section,
+      number: L.number,
+      title: L.title,
+      printed_title: L.printed_title,
+      edition: editionName,
+      source: {
+        lessonSha256: L.source.sha256,
+        exercisesSha256: X.source.sha256,
+      },
+      prose,
+    },
+    exercises: { count: exercises.length, edition: editionName, exercises },
   })
 }
 
@@ -92,7 +137,7 @@ if (requestedLessons.size) {
   if (missing.length) throw new Error(`指定的小节没有可发布产物: ${missing.join(', ')}`)
 }
 
-console.log(`[publish] ${book} → ${rows.length} 行`)
+console.log(`[publish] ${book} edition=${editionName} → ${rows.length} 行`)
 for (const r of rows) {
   const kb = (JSON.stringify(r.content).length + JSON.stringify(r.exercises).length) / 1024
   console.log(`    ${r.id}  ${r.title}  正文 ${r.content.prose.length} 块  `

@@ -1,0 +1,165 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n12",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "179",
+      "prompt": "求 $-276$，124，$-321$，62，9，$-1$，1，$-7.8$，$-9$，0.5，$-\\frac{2}{3}$，$4\\frac{1}{5}$ 等数的相反数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "180",
+      "prompt": "用适当的数代替 * 号，使下列等式成立：1) $-(-80)=*$；　　　　　2) $3.5=-*$；3) $-(-247)=*$；　　　　4) $8.2=-*$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "181",
+      "prompt": "求值：1) 当 $m=-8.25,-1.6,-13$ 时，求 $-m$；2) 当 $-k=27,-35,7.1,-6.9,80,-90$ 时，求 $k$；3) 当 $t=41,-3.6,0$ 时，求 $-(-t)$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "182",
+      "prompt": "假设数 $x$ 为：1) 负数；2) 零；3) 正数时，$-x$ 是什么数？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "183",
+      "prompt": "填写下表中的空格，并在数轴上标出表中的各数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "184",
+      "prompt": "求出 $A,B,C$ 三点的坐标（图 52）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "185",
+      "prompt": "解方程：1) $-x=607$；　　　2) $-a=-30.04$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "186",
+      "prompt": "指出下面命题的真假：1) $4\\in N$；3) $0\\in N$；5) $-5\\in Z$；7) $1.2\\in N$；2) $4\\in Z$；4) $0\\in Z$；6) $-5\\in N$；8) $1.2\\in Z$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "187",
+      "prompt": "在数轴上哪些整数位于下列每对数之间？1) $-8$ 和 $-5$；2) $-3$ 和 0；3) $-2$ 和 2；4) $-3.6$ 和$4.2$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "188",
+      "prompt": "以 2 厘米为半径作圆周. 在距圆心 4 厘米处取点 $O$，并作这个圆周的关于点 $O$ 的对称图形.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "189",
+      "prompt": "二直线相交时，一个角比它的邻角小 $60^\\circ$. 所形成的四个角各是多少度？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "190",
+      "prompt": "解应用题：1) 当一名徒步者已经离开自己的狗 3.1 公里时，狗才跑去追赶，并在 5 分钟以后追上. 如果狗跑的速度为0.75 公里/分，那么徒步者步行的速度是多少？2) 当一名跑步者和训练犬相距 2.4 公里时，训练犬开始追赶. 如果训练犬跑的速度为 20 公里/小时，在 15 分钟后追上了跑步者，跑步者的速度是多少？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 0.13 公里/分；2) 10.4 公里/小时"
+    },
+    {
+      "exercise": "191",
+      "prompt": "某州在第一个五年发展周期内，年度经济总量增长了 800 亿美元. 第二个五年发展周期将比第一个周期多增长 140 亿美元. 如果 2030 年该州的年度经济总量计划为4540 亿美元，那么 2025 年和 2020 年的年度经济总量各是多少？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "192",
+      "prompt": "求下列各式的值：$1\\frac{1}{3}+2\\frac{1}{3}$；$7\\frac{5}{6}-5\\frac{1}{6}$；$4\\frac{3}{8}-\\frac{3}{8}$ 和 $\\frac{1}{7}+\\frac{4}{7}$. 把所得的值按递增顺序排列.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "193",
+      "prompt": "计算：1) $[203-20.809-(150-83.079)]:(1.3472+1.1528)$；2) $11.509:8.5-(0.3744:12.48+0.229:11.45)$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 46.108；2) 1.304"
+    },
+    {
+      "exercise": "194",
+      "prompt": "哪些数是 124，$-124$，37，$-38$，3，$-4$，0 等数的相反数？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "195",
+      "prompt": "二直线相交，有一个角比它的邻角大 $50^\\circ$. 形成的四个角各是多少度？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "196",
+      "prompt": "两列火车同速行驶. 一列已经行驶了 9 小时，另一列 5小时. 假如第二列火车比第一列少走了 290 公里，那么火车的行驶速度是多少？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "72.5 公里/小时"
+    },
+    {
+      "exercise": "197",
+      "prompt": "计算：$8.12\\cdot0.25+3.24\\cdot0.25$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "2.84"
+    }
+  ]
+}

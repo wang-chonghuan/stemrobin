@@ -39,7 +39,15 @@ for n in $(seq 21 31); do $P $S finalize --book 5m --page $n; done  # ③ 收口
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
 $P $S vectorize --book 5m
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
-node .claude/skills/ld-s10y-lesson/tools/publish.mjs page2class/5m \
+$P $S adapt-prepare --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
+# ④ 只编辑 editions/modern-us-neutral 下的模板，改写主题并重画 SVG
+$P $S adapt-finalize --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
+$P $S render --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
+node .claude/skills/ld-s10y-lesson/tools/publish.mjs resources/s10y-lessons/5m \
+  --edition modern-us-neutral \
   --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
 cd app && npm run dev
 ```
@@ -47,7 +55,10 @@ cd app && npm run dev
 - `assemble` 的 `--toc` **不能省**：课的 id 是从教材目录认领的，没有它产品里就没有地址
 - ③ 和 `assemble` 的对账**不通过就是没做完**，回到 ② 修，不允许放行
 - `vectorize` 后必须再跑一次 `assemble`，把页目录中新生成的 SVG 同步到全书图库
-- `render` 是可选的：另出一份可双击打开的自包含 HTML，用于离线检查
+- 原始 `pages/`、`figures/`、`lessons/` 和 `book.json` 是忠实抽取层，生成现代版时不得修改
+- `adapt-prepare` 后只编辑 `editions/<edition>/`；改写后的 JSON 和新画 SVG 必须通过
+  `adapt-finalize`，生产发布器不接受原始抽取层
+- `render` 不是发布门禁，但必须用于离线视觉检查；它读取指定 edition，不得回退原书
 - 边界页常会带出下一节开头；它必须完整转写以通过页级对账，但**不得发布未完成的下一节**。
   用可重复的 `--lesson <cardId>` 只发布本次已完成的单元
 - **不允许以 `--dry` 作为交付终点**。dry-run 只能用于发布前检查，之后必须真实写库
@@ -97,7 +108,7 @@ cd app && npm run dev
 
 ```
 .tmp/ori-books/soviet10years/5m ….pdf   ← 原书：{书系列名}/{书名}.pdf
-page2class/5m/
+resources/s10y-lessons/5m/
 ├── pages/0015/              ← cap1 页级产物
 │   ├── page.md              ★ 带类型的块
 │   ├── page.json            结构化视图（cap2 的输入）
@@ -110,6 +121,10 @@ page2class/5m/
 │   ├── exercises.json       ★ 每题独立：题号、栏目、题干、图号引用；共享图只挂到一题展示
 │   ├── text.html            自包含课文页（白底）
 │   └── exercises.html       自包含习题页
+├── editions/modern-us-neutral/
+│   ├── figures/             ★ 新创作 SVG + 每图一份 *.spec.json；禁止截图、描摹和位图
+│   ├── lessons/<card-id>/   ★ 可发布的现代 lesson/exercises/figures JSON + 审计
+│   └── book.json            edition 索引
 └── book.json                全书索引 + 审计报告
 ```
 
@@ -152,6 +167,7 @@ md 里每块前面一行块头声明它是什么；块体里**一行 = 印刷一
 <!-- exhead -->   习题栏标题（复习题 / 家庭作业题）
 <!-- ex 20 -->    第 20 题，20 是原书题号
 <!-- fig 图 7 box 790,1640,490,250 -->   插图/表格，框照网格估
+<!-- fig 表 box 790,1640,490,250 owner-ex 20 --> 无编号练习图，明确归第 20 题
 <!-- cap 图 7 --> 印刷出来的图题行       <!-- foot --> 页码
 ```
 
@@ -168,6 +184,8 @@ md 里每块前面一行块头声明它是什么；块体里**一行 = 印刷一
 
 - **图题是文字**，单独成 `cap` 块；装订时跟随对应图的语义归属，不能一律塞进正文
 - 一个「图 N」由几幅小图组成时整体一个框（语义上就是一张图）；框之间不许重叠
+- 不带图号、题面也无法引用的练习表格或图，必须在 `fig` 块头写 `owner-ex <题号>`；
+  这是归属的唯一事实来源，禁止靠页内最近距离猜测
 - 半张表、撕掉一角的表：**按印出来的样子截**，缺口照留，写进 `notes`
 - 一条公式被印刷从中间切开：公式写完整，断点处写 `↵`（行数照样对得上，公式也配得平）
 - frontmatter 只填 `printed_page` 和 `notes`，哈希一类字段收口时用事实覆盖，不要手抄
@@ -227,10 +245,35 @@ SVG 用 `fill="currentColor"`，HTML 里可直接用 CSS 换色。
 
 ---
 
-## cap4 — 自包含 HTML
+## cap4 — 现代主题 edition
 
 ```bash
-p2c.py render --book 5m [--lesson 2-交集]
+p2c.py adapt-prepare --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s2-n12 --lesson math5-c1-s2-n13
+# 编辑 editions/modern-us-neutral/lessons/<id>/*.json，
+# 并在 editions/modern-us-neutral/figures/ 新画 SVG 和 *.spec.json
+p2c.py adapt-finalize --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s2-n12 --lesson math5-c1-s2-n13
+```
+
+这一层是忠实抽取与产品内容之间的唯一转换层：
+
+1. `adapt-prepare` 把原始 lesson/exercises 完整快照和 SHA 写入新 JSON，原始文件不动。
+2. 只改文化语境，不改知识点、题号、分组、公式、图引用和题量；非公式数字确需更新时，
+   必须逐项写入 `numeric_changes`，并在 `changes` 中包含 `context-number`。
+3. 发布文本不得含 profile 禁词或西里尔字母；小问标号改用拉丁字母。
+4. 每张产品图都要从语义约束重新创作 SVG，并配 `*.spec.json`。禁止 `<image>`、截图、
+   data URI、外链、脚本，也禁止把原图自动描摹结果复制到 edition。
+5. `adapt-finalize` 校验原始快照未变、数学未变、数字变化已声明、SVG 为纯矢量；失败不能发布。
+
+原始层 cap3 的 potrace 只用于保存教材抽取事实；现代 edition 的图必须重新创作，两者用途不同。
+
+---
+
+## cap5 — 自包含 HTML
+
+```bash
+p2c.py render --book 5m --edition modern-us-neutral [--lesson <cardId>]...
 ```
 
 每个单元两张白底页：`text.html`（课文，原书无正文时为空）+ `exercises.html`
@@ -244,11 +287,11 @@ CSS 与 20 个 woff2 字体内联成 data URI、插图 SVG 直接内联。
 
 ---
 
-## cap5 — 生产入库
+## cap6 — 生产入库
 
 ```bash
-node .claude/skills/ld-s10y-lesson/tools/publish.mjs page2class/5m \
-  [--lesson <cardId>]... [--dry]
+node .claude/skills/ld-s10y-lesson/tools/publish.mjs resources/s10y-lessons/5m \
+  --edition modern-us-neutral [--lesson <cardId>]... [--dry]
 ```
 
 一个单元 = `sr_lessons` 一行，**id 就是 cap2 从 TOC 认领的卡片 id**——这是 app 定的
@@ -259,15 +302,20 @@ node .claude/skills/ld-s10y-lesson/tools/publish.mjs page2class/5m \
 `--lesson` 可重复，用于只写本次已经完整闭合的单元。跨页抽取为了完成上一单元而读到了
 下一单元开头时，必须指定它，禁止把只有标题或一道题的半个单元写进生产。
 
+发布器只读取 `editions/<edition>/lessons/`，要求 adaptation audit 为 `pass`，并再次拒绝
+含位图、脚本、data URI 或外链的 SVG。写入 DB 时只保留现代正文、现代题目、现代 SVG、
+edition 名和原始 SHA；完整原始快照不入库。
+
 连接串取仓库根 `.env` 的 `LEMMADECK_DATABASE_URL`（Supabase，schema `lemmadeck-schema`）。
 **不要用 psql**：这个串的密码含 `@`，psql 会当成主机名分隔符而解析失败。
 
-## cap6 — 产品验收
+## cap7 — 产品验收
 
 生产写入不是完成；孩子在产品里能读到才是完成。
 
-1. 用 node + `app/node_modules/postgres` 查询目标 `sr_lessons` 行，核对 `content.prose`
-   和 `exercises.count`；只有练习的单元允许 `content.prose=[]`
+1. 用 node + `app/node_modules/postgres` 查询目标 `sr_lessons` 行，核对
+   `content.edition`、`exercises.edition`、`content.prose` 和 `exercises.count`；
+   edition 必须等于本次发布值，只有练习的单元允许 `content.prose=[]`
 2. `cd app && npm run dev`，固定端口 3200
 3. 浏览器打开每个目标 `/card/<cardId>`，确认正文没有混入练习专用图、SVG 插图、
    习题入口与题数

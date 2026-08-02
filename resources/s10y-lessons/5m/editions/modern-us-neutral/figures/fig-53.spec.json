@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-53",
+  "description": "A newly authored number line illustrating absolute value as distance from zero.",
+  "constraints": [
+    "M(-6) is six equal unit intervals left of 0.",
+    "B(5) is five equal unit intervals right of 0.",
+    "Distance arrows are labeled 6 units and 5 units."
+  ]
+}

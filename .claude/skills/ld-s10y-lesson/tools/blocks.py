@@ -28,6 +28,7 @@ HEAD = re.compile(r"^<!--\s+(?P<kind>h1|h2|h3|p|exhead|ex|fig|cap|foot)\b"
                   r"(?P<rest>.*?)\s*-->$")
 BOX = re.compile(r"\bbox\s+(\d+,\d+,\d+,\d+)")
 FLAG = re.compile(r"\b(cont|open|samerow)\b")
+OWNER = re.compile(r"\bowner-ex\s+(\d+)\b")
 WRAP = "↵"
 KINDS_TEXT = ("h1", "h2", "h3", "p", "exhead", "ex", "cap", "foot")
 
@@ -59,9 +60,13 @@ def parse(md: str) -> tuple[dict, list[dict]]:
             mb = BOX.search(rest)
             box = [int(v) for v in mb.group(1).split(",")] if mb else None
             rest = BOX.sub("", rest)
+            mo = OWNER.search(rest)
+            owner_exercise = mo.group(1) if mo else None
+            rest = OWNER.sub("", rest)
             flags = set(FLAG.findall(rest))
             label = FLAG.sub("", rest).strip() or None
             cur = {"kind": m.group("kind"), "label": label, "box": box,
+                   "owner_exercise": owner_exercise,
                    "cont": "cont" in flags, "open": "open" in flags,
                    "samerow": "samerow" in flags, "lines": []}
             blocks.append(cur)
@@ -81,6 +86,8 @@ def dump(meta: dict, blocks: list[dict], page: int) -> str:
             head.append(b["label"])
         if b.get("box"):
             head.append("box " + ",".join(map(str, b["box"])))
+        if b.get("owner_exercise"):
+            head.append("owner-ex " + str(b["owner_exercise"]))
         if b.get("cont"):
             head.append("cont")
         if b.get("open"):

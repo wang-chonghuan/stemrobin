@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 260" role="img" aria-labelledby="title desc">
+  <title id="title">Modern regional solar-energy table</title>
+  <desc id="desc">Statewide and northern-region solar-energy values from 2020 through 2024.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3">
+    <rect x="2" y="2" width="896" height="256"/>
+    <path d="M210 2v256M348 2v256M486 2v256M624 2v256M762 2v256"/>
+    <path d="M2 86h896M2 172h896"/>
+  </g>
+  <g fill="currentColor" font-family="Arial, sans-serif" font-size="25" text-anchor="middle" dominant-baseline="middle">
+    <text x="279" y="44">2020</text>
+    <text x="417" y="44">2021</text>
+    <text x="555" y="44">2022</text>
+    <text x="693" y="44">2023</text>
+    <text x="831" y="44">2024</text>
+    <text x="106" y="130">Statewide</text>
+    <text x="279" y="130">353</text>
+    <text x="417" y="130">377</text>
+    <text x="555" y="130">400</text>
+    <text x="693" y="130">429</text>
+    <text x="831" y="130">459</text>
+    <text x="106" y="216">Northern region</text>
+    <text x="279" y="216">31</text>
+    <text x="417" y="216">45</text>
+    <text x="555" y="216">63</text>
+    <text x="693" y="216">88</text>
+    <text x="831" y="216">116</text>
+  </g>
+</svg>

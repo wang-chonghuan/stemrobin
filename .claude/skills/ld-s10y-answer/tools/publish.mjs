@@ -13,14 +13,15 @@ const postgres = require('postgres')
 
 const args = process.argv.slice(2)
 const bookDirArg = args.find((arg) => !arg.startsWith('--'))
+const editionName = args.includes('--edition') ? args[args.indexOf('--edition') + 1] : null
 const dry = args.includes('--dry')
 const envPath = args.includes('--env') ? args[args.indexOf('--env') + 1] : '.env'
 const lessons = []
 for (let index = 0; index < args.length; index += 1) {
   if (args[index] === '--lesson' && args[index + 1]) lessons.push(args[index + 1])
 }
-if (!bookDirArg || !lessons.length) {
-  console.error('用法: publish.mjs <bookDir> --lesson <lessonId>... [--dry] [--env <path>]')
+if (!bookDirArg || !editionName || !lessons.length) {
+  console.error('用法: publish.mjs <bookDir> --edition <name> --lesson <lessonId>... [--dry] [--env <path>]')
   process.exit(2)
 }
 
@@ -35,9 +36,19 @@ function dbUrl() {
 
 const bookDir = path.resolve(bookDirArg)
 const payloads = lessons.map((lesson) => {
-  const keyPath = path.join(bookDir, 'lessons', lesson, 'answer-keys.json')
+  const keyPath = path.join(
+    bookDir, 'editions', editionName, 'lessons', lesson, 'answer-keys.json',
+  )
+  const auditPath = path.join(
+    bookDir, 'editions', editionName, 'lessons', lesson, 'answer-keys.audit.json',
+  )
   const document = JSON.parse(fs.readFileSync(keyPath, 'utf8'))
+  const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'))
   if (document.status !== 'ready') throw new Error(`${keyPath} 尚未 finalize`)
+  if (document.edition !== editionName) throw new Error(`${keyPath} edition 不匹配`)
+  if (audit.status !== 'pass' || audit.edition !== editionName) {
+    throw new Error(`${auditPath} 尚未通过当前 edition 的审计`)
+  }
   return { lesson, document }
 })
 
@@ -65,6 +76,11 @@ try {
     const deck = rows[0].exercises
     if (!deck || !Array.isArray(deck.exercises)) {
       throw new Error(`${lesson} 的 exercises JSONB 不存在或结构错误`)
+    }
+    if (deck.edition !== editionName) {
+      throw new Error(
+        `${lesson} 数据库 edition=${deck.edition ?? '<missing>'}，拒绝写入 ${editionName} 答案`,
+      )
     }
     stored.set(lesson, deck)
   }

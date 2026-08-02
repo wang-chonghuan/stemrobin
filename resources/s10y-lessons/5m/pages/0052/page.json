@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 52,
+    "printed_page": 43,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 52
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "c601563cb300e690d65171958ca26aca469ee9f87139ae12969086e269a7f35f"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 22,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "对应点的距离.**"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "一个数的绝对值不能是负数. 正数和零的绝对值都是它",
+        "本身，而负数的绝对值是它的相反数."
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "例如，$|7|=7$；$\\left|\\frac{3}{4}\\right|=\\frac{3}{4}$；$|1.5|=1.5$；$|0|=0$；$|-7|=7$；",
+        "$\\left|-\\frac{3}{4}\\right|=\\frac{3}{4}$；$|-1.5|=1.5$."
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "用变量可以把数的绝对值的定义写作：",
+        "$|a|=\\begin{cases}a,&\\text{当 }a\\text{ 为正数或等于 }0\\text{ 时；}\\\\-a,&\\text{当 }a\\text{ 为负数时.}\\end{cases}$"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "数的绝对值的符号和线段长度的符号相同，这是因为数",
+        "的绝对值就是对应线段的长度."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "198",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求下列各数的绝对值：81，1.3，$-5.2$，$-1.5$，52，0. 分别",
+        "写出相应的等式."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "199",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "如果 $x=-12.3,12.3,-66,83,75$ 时，求 $|x|$ 式的值."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "200",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求从原点到下列各点的距离：$A(3.7)$，$B(-7.8)$，$C↵(-200)$，$D(315.6)$，$E(0)$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "201",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算下列各式的值：",
+        "1) $|-8|-|-5|$；　　3) $|240|:|-80|$；",
+        "2) $|-10|\\cdot|-15|$；　4) $|-710|+|-290|$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "202",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "点 $A$ 位于原点左侧 5.8 个单位，点 $B$ 位于右侧 9.8 个单",
+        "位. 各点的坐标等于几？每个坐标的绝对值等于几？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "203",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求出：1) 绝对值等于 25，4，7.4 的负数；2) 绝对值等",
+        "于 27，4.8，11.41 的正数."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 43 ·"
+      ]
+    }
+  ]
+}

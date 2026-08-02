@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" role="img" aria-labelledby="title desc">
+  <title id="title">Distances that define absolute value</title>
+  <desc id="desc">Point M at negative six is six units from zero, and point B at five is five units from zero.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round">
+    <line x1="55" y1="92" x2="845" y2="92"/>
+    <path d="M845 92l-18-10v20z" fill="currentColor" stroke="none"/>
+    <path d="M100 82v20M150 82v20M200 82v20M250 82v20M300 82v20M350 82v20M400 82v20M450 76v32M500 82v20M550 82v20M600 82v20M650 82v20M700 76v32M750 82v20M800 82v20"/>
+    <line x1="150" y1="142" x2="450" y2="142"/>
+    <path d="M150 142l15-8v16zM450 142l-15-8v16z" fill="currentColor" stroke="none"/>
+    <line x1="450" y1="190" x2="700" y2="190"/>
+    <path d="M450 190l15-8v16zM700 190l-15-8v16z" fill="currentColor" stroke="none"/>
+  </g>
+  <g fill="currentColor" font-family="Arial, sans-serif" font-size="25" text-anchor="middle">
+    <text x="150" y="54" font-weight="700">M(-6)</text>
+    <text x="450" y="54" font-weight="700">0</text>
+    <text x="700" y="54" font-weight="700">B(5)</text>
+    <text x="300" y="132">6 units</text>
+    <text x="575" y="180">5 units</text>
+  </g>
+</svg>

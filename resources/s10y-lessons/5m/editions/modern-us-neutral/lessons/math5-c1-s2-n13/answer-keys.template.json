@@ -1,0 +1,163 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n13",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "198",
+      "prompt": "求下列各数的绝对值：81，1.3，$-5.2$，$-1.5$，52，0. 分别写出相应的等式.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "199",
+      "prompt": "如果 $x=-12.3,12.3,-66,83,75$ 时，求 $|x|$ 式的值.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "200",
+      "prompt": "求从原点到下列各点的距离：$A(3.7)$，$B(-7.8)$，$C(-200)$，$D(315.6)$，$E(0)$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "201",
+      "prompt": "计算下列各式的值：1) $|-8|-|-5|$；　　3) $|240|:|-80|$；2) $|-10|\\cdot|-15|$；　4) $|-710|+|-290|$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "202",
+      "prompt": "点 $A$ 位于原点左侧 5.8 个单位，点 $B$ 位于右侧 9.8 个单位. 各点的坐标等于几？每个坐标的绝对值等于几？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "203",
+      "prompt": "求出：1) 绝对值等于 25，4，7.4 的负数；2) 绝对值等于 27，4.8，11.41 的正数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "204",
+      "prompt": "写出绝对值为 12，41，0 的两个相反数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "205",
+      "prompt": "已知 $|a|=7$，$|-a|$ 等于几？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "206",
+      "prompt": "解方程：1) $|x|=9$；　　　2) $|y|=20$；3) $|a|=0$；　　　4) $|m|=-3$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "207",
+      "prompt": "在大括号内写出下列不等式整数解的集合：1) $|x|<3.9$；　　　2) $|y|\\leqslant3.8$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "208",
+      "prompt": "如果 $-k=-3.5,6.8,-\\frac{3}{4},0$ 时，求 $k$ 的值.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "209",
+      "prompt": "解方程：1) $-y=-8.75$；　　　2) $-p=5.11$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "210",
+      "prompt": "解应用题：1) 一辆小汽车和一辆载重汽车从相距 280 公里的两个城市同时开出，相向而行. 小汽车的速度为 80 公里/小时，载重汽车的速度为小汽车速度的 75%. 几小时后二车相遇？2) 两个人骑自行车从相距 70 公里的两个村庄同时出发，相向而行. 一个人骑车的速度为 20 公里/小时，另一个人的速度为第一个人的 75%. 几小时后，两个骑自行车的人相遇？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 经过 2 小时；2) 经过 2 小时"
+    },
+    {
+      "exercise": "211",
+      "prompt": "在 $4.1a-2.2b$ 式中，以式 $7.82+1.28$ 代替字母 $a$，以式$6.41-2.36$ 代替 $b$，求所得数式的值.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "28.4"
+    },
+    {
+      "exercise": "212",
+      "prompt": "按下图计算（图 54）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "213",
+      "prompt": "下表列有 2020—2024 年间某州的太阳能发电量（以百万兆瓦时计）并注明了这几年内北部地区的太阳能发电量. 列表说明这几年内北部地区的太阳能发电量占全州太阳能发电量的百分比.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "214",
+      "prompt": "在数轴上标出绝对值为 3，8，1，2 的各数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "215",
+      "prompt": "写出能满足下列不等式的变量 $x$ 的整数值的集合：1) $|x|<5$；　　　　　2) $|x|\\leqslant6.3$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "216",
+      "prompt": "计算下列各式的值：1) $|-817|-|399|$；　　3) $|-564|+|-299|$；2) $|-6.8|:|-1.7|$；　4) $|-24|\\cdot|-125|$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    }
+  ]
+}

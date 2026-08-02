@@ -15,7 +15,7 @@
 | 目录 | 是什么 |
 |---|---|
 | `app/` | web 应用，**独立工程**（自己的 package.json / node_modules，仓库根没有） |
-| `page2class/` | 教材抽取产物：页级底稿、全书图库、按单元成课的成品 |
+| `resources/s10y-lessons/` | 教材抽取产物：按书存放页级底稿、全书图库和课程成品 |
 | `ssot-resources/` | 教材目录（TOC）等真源；app 的课程目录就是读它 |
 | `ssot-schemas/` | 数据库 schema 真源 |
 | `.claude/skills/` | 本仓库自己的教材技能（`ld-s10y-lesson`、`ld-s10y-answer`） |
@@ -70,7 +70,13 @@ $P $S finalize --book 5m --page 15        # ③ 吸附裁图 + 规范化 + 页�
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
 $P $S vectorize --book 5m                 # 插图 PNG → SVG（描摹 + 保真自检）
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
-node .claude/skills/ld-s10y-lesson/tools/publish.mjs page2class/5m \
+$P $S adapt-prepare --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s1-n5
+# 编辑现代版 JSON，并在 edition 图库中重新创作 SVG
+$P $S adapt-finalize --book 5m --edition modern-us-neutral \
+  --lesson math5-c1-s1-n5
+node .claude/skills/ld-s10y-lesson/tools/publish.mjs resources/s10y-lessons/5m \
+  --edition modern-us-neutral \
   --lesson math5-c1-s1-n5                 # 只写已完整的目标单元
 ```
 
@@ -102,7 +108,7 @@ node .claude/skills/ld-s10y-lesson/tools/publish.mjs page2class/5m \
 - `answer`：一个 exercise 对应的答案。
 
 书后答案由独立技能 `ld-s10y-answer` 抄录，稳定产物是
-`page2class/<book>/answers.json`。该技能目前只忠实抄录原书明确印出的 answer，不做
+`resources/s10y-lessons/<book>/answers.json`。该技能目前只忠实抄录原书明确印出的 answer，不做
 exercise 对齐、数学验算、略答补充或判题规则生成。
 
 ### 它能保证什么

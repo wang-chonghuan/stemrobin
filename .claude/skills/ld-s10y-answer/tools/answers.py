@@ -10,7 +10,7 @@ import subprocess
 from pathlib import Path
 
 DEFAULT_BOOKS = Path(".tmp/ori-books")
-DEFAULT_ROOT = Path("page2class")
+DEFAULT_ROOT = Path("resources/s10y-lessons")
 DEFAULT_WORK = Path(".tmp/ld-s10y-answer")
 SCHEMA = "ld-s10y-answer/book@1"
 

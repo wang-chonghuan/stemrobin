@@ -1,0 +1,11 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "tbl-p0049-01",
+  "description": "A clean two-row table preserving the original x and -x exercise values and blanks.",
+  "constraints": [
+    "The table has two rows and eight columns.",
+    "Given x values are 3, 5, 0, and -6.",
+    "Given -x values are 4, -2, and -1.",
+    "All remaining value cells are intentionally blank."
+  ]
+}

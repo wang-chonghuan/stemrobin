@@ -1,0 +1,11 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-54",
+  "description": "A newly authored bottom-up arithmetic flow diagram with blank result boxes.",
+  "constraints": [
+    "The left branch computes (7.1 - 5.4) times (6.9 divided by 2.3).",
+    "The right branch computes (8.2 - 6.5) times (4.2 divided by 1.4).",
+    "The two branch results are added in the top box.",
+    "All intermediate and final result boxes remain blank for the learner."
+  ]
+}

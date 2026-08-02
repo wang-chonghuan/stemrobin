@@ -1,0 +1,11 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "tbl-p0054-02",
+  "description": "A newly authored table reframing the source values as fictional statewide and northern-region solar-energy data.",
+  "constraints": [
+    "Columns are labeled 2020 through 2024.",
+    "Statewide values are 353, 377, 400, 429, and 459.",
+    "Northern-region values are 31, 45, 63, 88, and 116.",
+    "The numerical ratios remain identical to the source exercise."
+  ]
+}

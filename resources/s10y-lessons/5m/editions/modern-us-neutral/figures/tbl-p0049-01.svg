@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 210" role="img" aria-labelledby="title desc">
+  <title id="title">Opposite-number table</title>
+  <desc id="desc">A two-row table for x and negative x with alternating given and blank values.</desc>
+  <g fill="none" stroke="currentColor" stroke-width="3">
+    <rect x="2" y="2" width="896" height="206"/>
+    <line x1="2" y1="105" x2="898" y2="105"/>
+    <path d="M130 2v206M240 2v206M350 2v206M460 2v206M570 2v206M680 2v206M790 2v206"/>
+  </g>
+  <g fill="currentColor" font-family="Arial, sans-serif" font-size="32" text-anchor="middle" dominant-baseline="middle">
+    <text x="66" y="54" font-style="italic">x</text>
+    <text x="185" y="54">3</text>
+    <text x="405" y="54">5</text>
+    <text x="625" y="54">0</text>
+    <text x="845" y="54">-6</text>
+    <text x="66" y="158" font-style="italic">-x</text>
+    <text x="295" y="158">4</text>
+    <text x="515" y="158">-2</text>
+    <text x="735" y="158">-1</text>
+  </g>
+</svg>

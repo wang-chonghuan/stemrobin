@@ -1,0 +1,28 @@
+{
+  "page": 48,
+  "lines_printed": 23,
+  "lines_md": 23,
+  "figures": [
+    {
+      "id": "fig-51",
+      "label": "图 51",
+      "box": [
+        884,
+        573,
+        448,
+        347
+      ],
+      "components": 17,
+      "from": [
+        895,
+        570,
+        430,
+        340
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

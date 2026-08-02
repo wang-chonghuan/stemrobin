@@ -1,0 +1,754 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n12",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "179",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "依次为：276，-124，321，-62，-9，1，-1，7.8，9，-0.5，2/3，-4又1/5。",
+      "parts": [
+        {
+          "label": "-276 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "276"
+          ]
+        },
+        {
+          "label": "124 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "-124"
+          ]
+        },
+        {
+          "label": "-321 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "321"
+          ]
+        },
+        {
+          "label": "62 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "-62"
+          ]
+        },
+        {
+          "label": "9 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "-9"
+          ]
+        },
+        {
+          "label": "-1 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "label": "1 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "-1"
+          ]
+        },
+        {
+          "label": "-7.8 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "7.8"
+          ]
+        },
+        {
+          "label": "-9 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "9"
+          ]
+        },
+        {
+          "label": "0.5 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "-0.5"
+          ]
+        },
+        {
+          "label": "-2/3 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "2/3"
+          ]
+        },
+        {
+          "label": "4又1/5 的相反数",
+          "judge": "numeric",
+          "expected": [
+            "-21/5",
+            "-4.2"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "180",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) 80；2) -3.5；3) 247；4) -8.2。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "80"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "-3.5"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "numeric",
+          "expected": [
+            "247"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "numeric",
+          "expected": [
+            "-8.2"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "181",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) 8.25，1.6，13；2) -27，35，-7.1，6.9，-80，90；3) 41，-3.6，0。",
+      "parts": [
+        {
+          "label": "1) m=-8.25",
+          "judge": "numeric",
+          "expected": [
+            "8.25"
+          ]
+        },
+        {
+          "label": "1) m=-1.6",
+          "judge": "numeric",
+          "expected": [
+            "1.6"
+          ]
+        },
+        {
+          "label": "1) m=-13",
+          "judge": "numeric",
+          "expected": [
+            "13"
+          ]
+        },
+        {
+          "label": "2) -k=27",
+          "judge": "numeric",
+          "expected": [
+            "-27"
+          ]
+        },
+        {
+          "label": "2) -k=-35",
+          "judge": "numeric",
+          "expected": [
+            "35"
+          ]
+        },
+        {
+          "label": "2) -k=7.1",
+          "judge": "numeric",
+          "expected": [
+            "-7.1"
+          ]
+        },
+        {
+          "label": "2) -k=-6.9",
+          "judge": "numeric",
+          "expected": [
+            "6.9"
+          ]
+        },
+        {
+          "label": "2) -k=80",
+          "judge": "numeric",
+          "expected": [
+            "-80"
+          ]
+        },
+        {
+          "label": "2) -k=-90",
+          "judge": "numeric",
+          "expected": [
+            "90"
+          ]
+        },
+        {
+          "label": "3) t=41",
+          "judge": "numeric",
+          "expected": [
+            "41"
+          ]
+        },
+        {
+          "label": "3) t=-3.6",
+          "judge": "numeric",
+          "expected": [
+            "-3.6"
+          ]
+        },
+        {
+          "label": "3) t=0",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "182",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) x 为负数时，-x 为正数；2) x=0 时，-x=0；3) x 为正数时，-x 为负数。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "正数"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "负数"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "183",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "表中空格从左到右依次填：-3，-4，-5，2，0，1，6。数轴上应标出 -6、-5、-4、-3、0、1、2、3、4、5、6，其中每一对 x 与 -x 关于原点对称。",
+      "parts": []
+    },
+    {
+      "exercise": "184",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "A(1)，B(-5)，C(-1.5)。",
+      "parts": [
+        {
+          "label": "A",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "label": "B",
+          "judge": "numeric",
+          "expected": [
+            "-5"
+          ]
+        },
+        {
+          "label": "C",
+          "judge": "numeric",
+          "expected": [
+            "-1.5"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "185",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) x=-607；2) a=30.04。",
+      "parts": [
+        {
+          "label": "1) x",
+          "judge": "numeric",
+          "expected": [
+            "-607"
+          ]
+        },
+        {
+          "label": "2) a",
+          "judge": "numeric",
+          "expected": [
+            "30.04"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "186",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) 真；2) 真；3) 假；4) 真；5) 真；6) 假；7) 假；8) 假。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "真",
+            "正确"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "真",
+            "正确"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "假",
+            "错误"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            "真",
+            "正确"
+          ]
+        },
+        {
+          "label": "5)",
+          "judge": "exact",
+          "expected": [
+            "真",
+            "正确"
+          ]
+        },
+        {
+          "label": "6)",
+          "judge": "exact",
+          "expected": [
+            "假",
+            "错误"
+          ]
+        },
+        {
+          "label": "7)",
+          "judge": "exact",
+          "expected": [
+            "假",
+            "错误"
+          ]
+        },
+        {
+          "label": "8)",
+          "judge": "exact",
+          "expected": [
+            "假",
+            "错误"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "187",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1) -7，-6；2) -2，-1；3) -1，0，1；4) -3，-2，-1，0，1，2，3，4。",
+      "parts": [
+        {
+          "label": "1) 第1个整数",
+          "judge": "numeric",
+          "expected": [
+            "-7"
+          ]
+        },
+        {
+          "label": "1) 第2个整数",
+          "judge": "numeric",
+          "expected": [
+            "-6"
+          ]
+        },
+        {
+          "label": "2) 第1个整数",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "2) 第2个整数",
+          "judge": "numeric",
+          "expected": [
+            "-1"
+          ]
+        },
+        {
+          "label": "3) 第1个整数",
+          "judge": "numeric",
+          "expected": [
+            "-1"
+          ]
+        },
+        {
+          "label": "3) 第2个整数",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "3) 第3个整数",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "label": "4) 第1个整数",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "4) 第2个整数",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "4) 第3个整数",
+          "judge": "numeric",
+          "expected": [
+            "-1"
+          ]
+        },
+        {
+          "label": "4) 第4个整数",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "4) 第5个整数",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "label": "4) 第6个整数",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        },
+        {
+          "label": "4) 第7个整数",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "4) 第8个整数",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "188",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "先作半径为 2 厘米的圆，取其圆心为 C；在距 C 为 4 厘米处取点 O。作 C 关于 O 的对称点 C'，即 O 是 CC' 的中点，再以 C' 为圆心、2 厘米为半径作圆。所得圆就是原圆关于点 O 的对称图形。",
+      "parts": []
+    },
+    {
+      "exercise": "189",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "较小角为 60°，较大角为 120°；四个角依次交替为 60°、120°、60°、120°。",
+      "parts": [
+        {
+          "label": "较小角",
+          "judge": "numeric",
+          "expected": [
+            "60"
+          ],
+          "unit": "°"
+        },
+        {
+          "label": "较大角",
+          "judge": "numeric",
+          "expected": [
+            "120"
+          ],
+          "unit": "°"
+        }
+      ]
+    },
+    {
+      "exercise": "190",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 0.13 公里/分；2) 10.4 公里/小时",
+      "displayAnswer": "1) 狗 5 分钟跑 3.75 公里，徒步者同期走 3.75-3.1=0.65 公里，所以速度为 0.65÷5=0.13 公里/分。2) 训练犬 15 分钟跑 5 公里，跑步者跑 5-2.4=2.6 公里，所以速度为 2.6÷0.25=10.4 公里/小时。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "0.13"
+          ],
+          "unit": "公里/分"
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "10.4"
+          ],
+          "unit": "公里/小时"
+        }
+      ]
+    },
+    {
+      "exercise": "191",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "第二个五年周期增长 800+140=940 亿美元，所以 2025 年为 4540-940=3600 亿美元；2020 年为 3600-800=2800 亿美元。",
+      "parts": [
+        {
+          "label": "2025 年",
+          "judge": "numeric",
+          "expected": [
+            "3600"
+          ],
+          "unit": "亿美元"
+        },
+        {
+          "label": "2020 年",
+          "judge": "numeric",
+          "expected": [
+            "2800"
+          ],
+          "unit": "亿美元"
+        }
+      ]
+    },
+    {
+      "exercise": "192",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "四个值分别是 3又2/3、2又2/3、4、5/7。递增顺序为：5/7，2又2/3，3又2/3，4。",
+      "parts": [
+        {
+          "label": "第1个",
+          "judge": "numeric",
+          "expected": [
+            "5/7"
+          ]
+        },
+        {
+          "label": "第2个",
+          "judge": "numeric",
+          "expected": [
+            "8/3"
+          ]
+        },
+        {
+          "label": "第3个",
+          "judge": "numeric",
+          "expected": [
+            "11/3"
+          ]
+        },
+        {
+          "label": "第4个",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "193",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 46.108；2) 1.304",
+      "displayAnswer": "1) 46.108；2) 1.304。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "46.108"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "1.304"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "194",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "依次为：-124，124，-37，38，-3，4，0。",
+      "parts": [
+        {
+          "label": "124",
+          "judge": "numeric",
+          "expected": [
+            "-124"
+          ]
+        },
+        {
+          "label": "-124",
+          "judge": "numeric",
+          "expected": [
+            "124"
+          ]
+        },
+        {
+          "label": "37",
+          "judge": "numeric",
+          "expected": [
+            "-37"
+          ]
+        },
+        {
+          "label": "-38",
+          "judge": "numeric",
+          "expected": [
+            "38"
+          ]
+        },
+        {
+          "label": "3",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "-4",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        },
+        {
+          "label": "0",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "195",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "较小角为 65°，较大角为 115°；四个角依次交替为 65°、115°、65°、115°。",
+      "parts": [
+        {
+          "label": "较小角",
+          "judge": "numeric",
+          "expected": [
+            "65"
+          ],
+          "unit": "°"
+        },
+        {
+          "label": "较大角",
+          "judge": "numeric",
+          "expected": [
+            "115"
+          ],
+          "unit": "°"
+        }
+      ]
+    },
+    {
+      "exercise": "196",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "72.5 公里/小时",
+      "displayAnswer": "两列火车行驶时间相差 9-5=4 小时，所以速度为 290÷4=72.5 公里/小时。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "72.5"
+          ],
+          "unit": "公里/小时"
+        }
+      ]
+    },
+    {
+      "exercise": "197",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "2.84",
+      "displayAnswer": "8.12×0.25+3.24×0.25=(8.12+3.24)×0.25=11.36×0.25=2.84。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "2.84"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 19
+}

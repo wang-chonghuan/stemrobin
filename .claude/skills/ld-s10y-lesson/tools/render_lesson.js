@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * cap4：每个小节出两张自包含 HTML —— 课文页 + 习题页，白底。
+ * cap5：每个小节出两张自包含 HTML —— 课文页 + 习题页，白底。
  *
  * 自包含 = 不依赖网络也不依赖同级文件：KaTeX 服务端渲染成静态 HTML（页面不需要
  * JS），KaTeX 的 CSS 与 woff2 字体以 data URI 内联，插图 SVG 直接内联。
@@ -9,7 +9,7 @@
  * 按 ; 匹配会一个字体都替换不到，页面看着能用（系统字体兜底）但并不自包含。
  * 所以内联数为 0 直接抛错，不允许静默降级。
  *
- * 用法: render_lesson.js <bookDir> [lessonId]
+ * 用法: render_lesson.js <bookDir> [--edition <name>] [--lesson <lessonId>]
  */
 const fs = require("fs");
 const path = require("path");
@@ -17,8 +17,14 @@ const katex = require("katex");
 
 const SKILL = path.resolve(__dirname, "..");
 const KATEX_DIST = path.join(SKILL, "node_modules", "katex", "dist");
-const [, , bookDir, onlyLesson] = process.argv;
-if (!bookDir) { console.error("用法: render_lesson.js <bookDir> [lessonId]"); process.exit(2); }
+const args = process.argv.slice(2);
+const bookDir = args.find((arg) => !arg.startsWith("--"));
+const editionName = args.includes("--edition") ? args[args.indexOf("--edition") + 1] : null;
+const onlyLesson = args.includes("--lesson") ? args[args.indexOf("--lesson") + 1] : null;
+if (!bookDir) {
+  console.error("用法: render_lesson.js <bookDir> [--edition <name>] [--lesson <lessonId>]");
+  process.exit(2);
+}
 
 function katexCss() {
   let css = fs.readFileSync(path.join(KATEX_DIST, "katex.min.css"), "utf8");
@@ -59,13 +65,14 @@ function inline(text) {
   return strong(out + esc(text.slice(last)));
 }
 
-function figure(book, id, label) {
-  const svg = path.join(book, "figures", `${id}.svg`);
-  const png = path.join(book, "figures", `${id}.png`);
+function figure(contentRoot, id, label, strictSvg) {
+  const svg = path.join(contentRoot, "figures", `${id}.svg`);
+  const png = path.join(contentRoot, "figures", `${id}.png`);
   if (fs.existsSync(svg)) {
     return `<figure class="fig" id="${id}" aria-label="${esc(label || id)}">`
       + fs.readFileSync(svg, "utf8").replace(/<\?xml[^>]*\?>/, "") + `</figure>`;
   }
+  if (strictSvg) return `<p class="err">缺少现代 SVG ${esc(id)}</p>`;
   if (fs.existsSync(png)) {
     const b64 = fs.readFileSync(png).toString("base64");
     return `<figure class="fig" id="${id}"><img alt="${esc(label || id)}" `
@@ -115,12 +122,13 @@ function page(title, crumb, bodyHtml) {
 }
 
 const book = path.resolve(bookDir);
-const lessonDirs = fs.readdirSync(path.join(book, "lessons"))
+const contentRoot = editionName ? path.join(book, "editions", editionName) : book;
+const lessonDirs = fs.readdirSync(path.join(contentRoot, "lessons"))
   .filter((d) => !onlyLesson || d === onlyLesson).sort();
 const done = [];
 
 for (const lid of lessonDirs) {
-  const dir = path.join(book, "lessons", lid);
+  const dir = path.join(contentRoot, "lessons", lid);
   const L = JSON.parse(fs.readFileSync(path.join(dir, "lesson.json"), "utf8"));
   const X = JSON.parse(fs.readFileSync(path.join(dir, "exercises.json"), "utf8"));
   const crumb = [L.chapter, L.section, `印刷页 ${L.start_printed ?? "?"}`]
@@ -129,7 +137,7 @@ for (const lid of lessonDirs) {
   // ---- 课文页
   let body = "";
   for (const b of L.prose) {
-    if (b.kind === "fig") body += figure(book, b.id, b.label);
+    if (b.kind === "fig") body += figure(contentRoot, b.id, b.label, !!editionName);
     else if (b.kind === "cap") body += `<div class="figcap">${inline(b.text)}</div>`;
     else body += `<p class="para">${inline(b.text)}</p>`;
   }
@@ -145,7 +153,8 @@ for (const lid of lessonDirs) {
       group = e.group;
       out += `<div class="exgroup">${esc(group || "练习")}</div><ol class="ex">`;
     }
-    const figs = (e.figures || []).map((f) => figure(book, f.id, f.label)).join("");
+    const figs = (e.figures || [])
+      .map((f) => figure(contentRoot, f.id, f.label, !!editionName)).join("");
     out += `<li class="ex" id="ex-${esc(e.number)}"><div class="no">${esc(e.number)}.</div>`
       + `<div class="body">${inline(e.text)}${figs}</div></li>`;
   }

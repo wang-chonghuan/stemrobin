@@ -1,0 +1,65 @@
+{
+  "schema": "ld-s10y-lesson/edition-figures@1",
+  "edition": "modern-us-neutral",
+  "lesson": "math5-c1-s2-n13",
+  "status": "draft",
+  "figures": [
+    {
+      "id": "fig-53",
+      "label": "图 53",
+      "svg": "figures/fig-53.svg",
+      "spec": "figures/fig-53.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-53.png",
+          "sha256": "c6284bc305b66371077c2c6da7c78f22533964dc586c5591d1649d7218e0da1c"
+        },
+        "svg": {
+          "path": "figures/fig-53.svg",
+          "sha256": "e4f51ef19b205fa91b3a7901a7f87a9bfa0dbbcba6fb5baa6acc2491aa1185b7"
+        }
+      }
+    },
+    {
+      "id": "fig-54",
+      "label": "图 54",
+      "svg": "figures/fig-54.svg",
+      "spec": "figures/fig-54.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/fig-54.png",
+          "sha256": "736052d3e0e70b5e3037cd91b2f5ea72be1c0f443dafb10272618a46d3ea6b21"
+        },
+        "svg": {
+          "path": "figures/fig-54.svg",
+          "sha256": "9d6a4fd090956ba956d2e2aabb51593fd5f55aca16c312be2f1fc8ab975b2997"
+        }
+      }
+    },
+    {
+      "id": "tbl-p0054-02",
+      "label": "表",
+      "svg": "figures/tbl-p0054-02.svg",
+      "spec": "figures/tbl-p0054-02.spec.json",
+      "changes": [
+        "redrawn"
+      ],
+      "source": {
+        "png": {
+          "path": "figures/tbl-p0054-02.png",
+          "sha256": "ebc26ee74427192079980135d006b578582ec0dbfbd1473fe59cc78ec1df9113"
+        },
+        "svg": {
+          "path": "figures/tbl-p0054-02.svg",
+          "sha256": "9cf7f56653e5cf7c121a5c730f84db650177b4ca11b34262b480a75915c05e1b"
+        }
+      }
+    }
+  ]
+}

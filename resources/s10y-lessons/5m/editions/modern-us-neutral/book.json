@@ -1,0 +1,32 @@
+{
+  "schema": "ld-s10y-lesson/edition-book@1",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "profile": {
+    "id": "modern-us-neutral",
+    "path": "/Users/yong/work/stemrobin-ws/stemrobin/.claude/skills/ld-s10y-lesson/profiles/modern-us-neutral.json",
+    "sha256": "e04006dc2242ce3ebd8ed036d3f0fb387c4ac1399a9a0927d04e7f853f5ed8ed"
+  },
+  "lessons": [
+    {
+      "id": "math5-c1-s2-n12",
+      "number": "12",
+      "title": "相反数",
+      "prose_blocks": 3,
+      "exercises": 19,
+      "figures": 3,
+      "source_lesson_sha256": "049afaebc5334fd207607ecf23206febcfd7c041f1e31b0b7327c2dc0e34efff",
+      "source_exercises_sha256": "64ed69557be8681a22bf46f796d156ed0aa15b384aaeddc39ed9b798469583d0"
+    },
+    {
+      "id": "math5-c1-s2-n13",
+      "number": "13",
+      "title": "绝对值",
+      "prose_blocks": 8,
+      "exercises": 19,
+      "figures": 3,
+      "source_lesson_sha256": "6de83630b30d5b5db91746fddc17b0fa78ea0efa56c5c83fd221ce5eaca4483c",
+      "source_exercises_sha256": "01cbebc996df7874c984c4c130bc90018bc509fb48c654f85aad130c5cf2f3c8"
+    }
+  ]
+}

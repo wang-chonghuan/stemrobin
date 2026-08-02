@@ -162,6 +162,29 @@ def claim_figures(lessons: list[dict], stream: list[dict]) -> list[str]:
 
     referenced = set()
     for lesson in lessons:
+        exercises_by_number = {
+            str(exercise["number"]): exercise
+            for exercise in lesson["exercises"]
+        }
+        explicitly_owned = set()
+        for figure in (block for block in lesson["blocks"] if block["kind"] == "fig"):
+            owner_number = figure.get("owner_exercise")
+            if not owner_number:
+                continue
+            owner = exercises_by_number.get(str(owner_number))
+            if owner is None:
+                warn.append(
+                    f"{figure['id']} 指定给第 {owner_number} 题，但本小节没有这道题")
+                continue
+            explicitly_owned.add(figure["id"])
+            if figure["id"] not in owner["figure_refs"]:
+                owner["figure_refs"].append(figure["id"])
+            if figure["id"] not in {item["id"] for item in owner["figures"]}:
+                owner["figures"].append({
+                    "id": figure["id"],
+                    "label": figure.get("label"),
+                })
+
         real_prose_refs = {
             n
             for block in lesson["prose"]
@@ -190,6 +213,8 @@ def claim_figures(lessons: list[dict], stream: list[dict]) -> list[str]:
         exercise_refs = set(exercise_users)
         kept_prose = []
         for block in lesson["prose"]:
+            if block["kind"] == "fig" and block.get("id") in explicitly_owned:
+                continue
             label_text = " ".join(filter(None, (block.get("label"), B.text_of(block))))
             nums = set(FIGREF.findall(label_text))
             exercise_only = (

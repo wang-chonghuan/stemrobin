@@ -1,0 +1,177 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 53,
+    "printed_page": 44,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 53
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "e7be580c95312921765e7f6babcb5d1172c9f2f01d683c0584522175ee96107b"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 24,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "204",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "写出绝对值为 12，41，0 的两个相反数."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "205",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "已知 $|a|=7$，$|-a|$ 等于几？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "206",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解方程：",
+        "1) $|x|=9$；　　　2) $|y|=20$；",
+        "3) $|a|=0$；　　　4) $|m|=-3$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "207",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在大括号内写出下列不等式整数解的集合：",
+        "1) $|x|<3.9$；　　　2) $|y|\\leqslant3.8$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "复习题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "208",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "如果 $-k=-3.5,6.8,-\\frac{3}{4},0$ 时，求 $k$ 的值."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "209",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解方程：",
+        "1) $-y=-8.75$；　　　2) $-p=5.11$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "210",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解应用题：",
+        "1) 一辆小汽车和一辆载重汽车从相距 280 公里的两个",
+        "城市同时开出，相向而行. 小汽车的速度为 80 公里",
+        "/小时，载重汽车的速度为小汽车速度的 75%. 几小",
+        "时后二车相遇？",
+        "2) 两个人骑自行车从相距 70 公里的两个村庄同时出",
+        "发，相向而行. 一个人骑车的速度为 20 公里/小时，",
+        "另一个人的速度为第一个人的 75%. 几小时后，两",
+        "个骑自行车的人相遇？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "211",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在 $4.1a-2.2b$ 式中，以式 $7.82+1.28$ 代替字母 $a$，以式",
+        "$6.41-2.36$ 代替 $b$，求所得数式的值."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "212",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "按下图计算（图 54）."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 44 ·"
+      ]
+    }
+  ]
+}

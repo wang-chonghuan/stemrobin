@@ -1,0 +1,45 @@
+{
+  "page": 49,
+  "lines_printed": 19,
+  "lines_md": 19,
+  "figures": [
+    {
+      "id": "tbl-p0049-01",
+      "label": "表",
+      "box": [
+        225,
+        1089,
+        1016,
+        246
+      ],
+      "components": 26,
+      "from": [
+        210,
+        1080,
+        1040,
+        270
+      ]
+    },
+    {
+      "id": "fig-52",
+      "label": "图 52",
+      "box": [
+        144,
+        1465,
+        1169,
+        83
+      ],
+      "components": 10,
+      "from": [
+        130,
+        1440,
+        1190,
+        150
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

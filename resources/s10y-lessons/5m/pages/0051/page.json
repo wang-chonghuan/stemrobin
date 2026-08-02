@@ -1,0 +1,212 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 51,
+    "printed_page": 42,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 51
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "ac3d06805bb41a5d504fe940fafc8783f20310fb9c4d45c981594a5fcb71a44c"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 21,
+    "figures": [
+      {
+        "id": "fig-53",
+        "label": "图 53",
+        "box": [
+          142,
+          1388,
+          1158,
+          155
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "193",
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "1) $[203-20.809-(150-83.079)]:(1.3472+1.1528)$；",
+        "2) $11.509:8.5-(0.3744:12.48+0.229:11.45)$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "194",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "哪些数是 124，$-124$，37，$-38$，3，$-4$，0 等数的相反数？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "195",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "二直线相交，有一个角比它的邻角大 $50^\\circ$. 形成的四个",
+        "角各是多少度？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "196",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "两列火车同速行驶. 一列已经行驶了 9 小时，另一列 5",
+        "小时. 假如第二列火车比第一列少走了 290 公里，那么",
+        "火车的行驶速度是多少？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "197",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "$8.12\\cdot0.25+3.24\\cdot0.25$."
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "13. 绝对值"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "在数轴上，$-6$ 的对应点是 $M(-6)$（图 53）. 从这个点到",
+        "原点的距离等于 6 个单位线段. 6 叫做 $-6$ 的**绝对值**. 也就"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 53",
+      "box": [
+        142,
+        1388,
+        1158,
+        155
+      ],
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-53"
+    },
+    {
+      "kind": "cap",
+      "label": "图 53",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 53"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "是说，$-6$ 的绝对值等于 6. 写作 $|-6|=6$. 因为点 $B(5)$ 距原",
+        "点 5 个单位线段，所以 5 的绝对值等于 5. 0 的绝对值等于 0，",
+        "因为 0 的对应点和原点重合，就是说 0 点和原点的距离为 0",
+        "个单位线段（图 53），$|0|=0$."
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "**求数的绝对值，必须以单位线段度量从原点到这个数的"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 42 ·"
+      ]
+    }
+  ]
+}

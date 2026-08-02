@@ -11,7 +11,8 @@ import assemble
 
 
 def block(kind: str, ref: str, *, label: str | None = None,
-          text: str = "", figure_id: str | None = None) -> dict:
+          text: str = "", figure_id: str | None = None,
+          owner_exercise: str | None = None) -> dict:
     return {
         "kind": kind,
         "ref": ref,
@@ -19,6 +20,7 @@ def block(kind: str, ref: str, *, label: str | None = None,
         "printed_page": int(ref[1:5]),
         "label": label,
         "id": figure_id,
+        "owner_exercise": owner_exercise,
         "lines": [text] if text else [],
     }
 
@@ -90,6 +92,32 @@ class ClaimFiguresTest(unittest.TestCase):
 
         self.assertEqual(lesson["prose"], [paragraph, figure, caption])
         self.assertEqual(ex20["figures"], [{"id": "fig-06", "label": "图 6"}])
+
+    def test_explicit_owner_attaches_unlabelled_table_to_exercise(self) -> None:
+        table = block(
+            "fig",
+            "p0049#8",
+            label="表",
+            figure_id="tbl-p0049-01",
+            owner_exercise="183",
+        )
+        ex183 = exercise("183", "p0049#7", "填写下表")
+        lesson = {
+            "title": "相反数",
+            "blocks": [table],
+            "prose": [table],
+            "exercises": [ex183],
+        }
+
+        warnings = assemble.claim_figures([lesson], [table])
+
+        self.assertEqual(warnings, [])
+        self.assertEqual(lesson["prose"], [])
+        self.assertEqual(ex183["figure_refs"], ["tbl-p0049-01"])
+        self.assertEqual(
+            ex183["figures"],
+            [{"id": "tbl-p0049-01", "label": "表"}],
+        )
 
 
 if __name__ == "__main__":

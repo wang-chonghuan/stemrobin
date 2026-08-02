@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-51",
+  "description": "A newly authored number line showing -5 and 5 at equal distances from 0.",
+  "constraints": [
+    "-5, 0, and 5 are collinear.",
+    "The distance from -5 to 0 equals the distance from 0 to 5.",
+    "The two student figures are decorative and do not encode additional values."
+  ]
+}

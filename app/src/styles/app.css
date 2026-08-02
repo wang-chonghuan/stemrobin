@@ -715,9 +715,15 @@ details[open] > summary > .sr-out-caret {
   padding-top: 3px;
 }
 .sr-ex-body {
+  min-width: 0;
   font-size: 16px;
   line-height: 1.9;
   color: var(--sr-ink);
+}
+.sr-ex-body > div:first-child {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .sr-ex-fig { margin: 10px 0 0; }
 .sr-ex-fig svg { margin: 0; max-width: min(100%, 22em); }

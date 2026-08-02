@@ -177,4 +177,4 @@ __pycache__/
 *.pyc
 
 # ld-s10y-lesson：读图用的坐标网格图是脚手架，prepare 随时可重生成
-page2class/*/pages/*/page.grid.png
+resources/s10y-lessons/*/pages/*/page.grid.png
