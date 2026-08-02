@@ -64,7 +64,7 @@ function Learn() {
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const availableLessons = getAvailableTextbookLessons(lessonIds, locale)
   // Curriculum order is ascending, so the newest live content is at the tail.
-  const newLessons = availableLessons.slice(-6)
+  const newLessons = availableLessons.slice(-5)
   const pct = deckPercentages(stats)
 
   return (
@@ -85,7 +85,7 @@ function Learn() {
       <div className="sr-d-scroll" data-scroll-restoration-id="app-detail">
         {/* Coverage, a rate, and a state — different kinds of number, which is
             why each carries its own denominator rather than a bare percentage. */}
-        <section className="sr-overview-cards">
+        <section className="sr-learn-layout">
           <div className="sr-stats">
             <div className="sr-stats-top">
               <span className="sr-stats-title">{t(locale, 'deck.stats')}</span>
@@ -112,48 +112,47 @@ function Learn() {
                 tone="mastery"
                 sub={t(locale, 'deck.stats.mastery.sub', { n: stats.passedCards })}
               />
+              <Link to="/mistakes" className="sr-stat sr-stat-link">
+                <div className="sr-stat-top">
+                  <span className="sr-stat-label">
+                    <BookOpenCheck size={14} aria-hidden />
+                    {t(locale, 'mistakes.summary')}
+                  </span>
+                  <span className="sr-stat-pct sr-num" data-mistake-summary>
+                    {t(locale, 'mistakes.summary.ratio', mistakeSummary)}
+                  </span>
+                </div>
+                <p className="sr-stat-sub">{t(locale, 'mistakes.summary.sub')}</p>
+              </Link>
             </div>
           </div>
 
-          <Link to="/mistakes" className="sr-mistake-summary-card">
-            <span className="sr-mistake-summary-icon">
-              <BookOpenCheck size={19} aria-hidden />
-            </span>
-            <span className="sr-mistake-summary-copy">
-              <span className="sr-stats-title">{t(locale, 'mistakes.summary')}</span>
-              <strong className="sr-num" data-mistake-summary>
-                {t(locale, 'mistakes.summary.ratio', mistakeSummary)}
-              </strong>
-              <span>{t(locale, 'mistakes.summary.sub')}</span>
-            </span>
-          </Link>
+          {/* Lessons that have content, newest last. Nothing renders while the
+              deck is still an outline — the catalog rail is the way in then. */}
+          {newLessons.length > 0 && (
+            <section className="sr-new-lessons">
+              <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
+              <div className="sr-grid">
+                {newLessons.map((l) => (
+                  <Link
+                    key={l.id}
+                    to="/card/$id"
+                    params={{ id: l.id }}
+                    className="sr-card sr-lesson-card"
+                  >
+                    <span className="sr-lesson-card-ico">
+                      <FileText size={17} />
+                    </span>
+                    <span className="sr-lesson-card-body">
+                      <span className="sr-card-title">{l.title}</span>
+                      <span className="sr-note">{l.subject}</span>
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
         </section>
-
-        {/* Lessons that have content, newest last. Nothing renders while the
-            deck is still an outline — the catalog rail is the way in then. */}
-        {newLessons.length > 0 && (
-          <section className="sr-section-gap">
-            <div className="sr-eyebrow">{t(locale, 'ov.new', { n: newLessons.length })}</div>
-            <div className="sr-grid">
-              {newLessons.map((l) => (
-                <Link
-                  key={l.id}
-                  to="/card/$id"
-                  params={{ id: l.id }}
-                  className="sr-card sr-lesson-card"
-                >
-                  <span className="sr-lesson-card-ico">
-                    <FileText size={17} />
-                  </span>
-                  <span className="sr-lesson-card-body">
-                    <span className="sr-card-title">{l.title}</span>
-                    <span className="sr-note">{l.subject}</span>
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
       </div>
     </main>
   )

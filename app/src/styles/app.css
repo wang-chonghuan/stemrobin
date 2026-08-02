@@ -468,59 +468,23 @@ details[open] > summary > .sr-out-caret {
    blue for coverage, green for what is held (the app's mastery colour), and a
    neutral for the rate, which is not an achievement and should not read as one. */
 .sr-stats {
-  flex: 0 0 auto;
-  width: 232px;
+  width: 100%;
   padding: 16px 18px;
   background: var(--sr-card);
   border: 1px solid var(--sr-line);
   border-radius: 14px;
 }
-.sr-overview-cards {
-  display: flex;
-  align-items: stretch;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.sr-mistake-summary-card {
-  width: min(280px, 100%);
-  min-height: 132px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 18px;
-  border: 1px solid var(--sr-line);
-  border-radius: var(--sr-radius);
-  background: var(--sr-card);
-  color: inherit;
-  text-decoration: none;
-}
-.sr-mistake-summary-card:hover {
-  border-color: var(--sr-blue);
-}
-.sr-mistake-summary-icon {
-  width: 38px;
-  height: 38px;
-  flex: none;
+.sr-learn-layout {
   display: grid;
-  place-items: center;
-  border-radius: var(--sr-radius-sm);
-  background: var(--sr-green-tint);
-  color: var(--sr-green-deep);
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  align-items: start;
+  gap: 20px;
 }
-.sr-mistake-summary-copy {
+.sr-new-lessons {
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
 }
-.sr-mistake-summary-copy strong {
-  color: var(--sr-green-deep);
-  font-size: 24px;
-  line-height: 1.2;
-}
-.sr-mistake-summary-copy > span:last-child {
-  color: var(--sr-ink-dim);
-  font-size: 11.5px;
+.sr-new-lessons .sr-eyebrow {
+  margin-bottom: 8px;
 }
 .sr-stats-top {
   display: flex;
@@ -558,6 +522,9 @@ details[open] > summary > .sr-out-caret {
   margin-bottom: 6px;
 }
 .sr-stat-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--sr-ink-soft);
   font-size: 12.5px;
   font-weight: 600;
@@ -585,6 +552,18 @@ details[open] > summary > .sr-out-caret {
   margin: 6px 0 0;
   color: var(--sr-ink-dim);
   font-size: 11px;
+}
+.sr-stat-link {
+  padding-top: 14px;
+  border-top: 1px solid var(--sr-line-soft);
+  color: inherit;
+  text-decoration: none;
+}
+.sr-stat-link .sr-stat-pct {
+  color: var(--sr-green-deep);
+}
+.sr-stat-link:hover .sr-stat-label {
+  color: var(--sr-green-deep);
 }
 
 /* ---- one card ---- */
@@ -1373,6 +1352,13 @@ a.sr-out-lesson.active {
 /* Responsive: below 1200px the catalog becomes a slide-in drawer with a scrim
    (houserobin's breakpoint + behavior). At/above 1200px it is always visible. */
 @media (max-width: 1199px) {
+  .sr-app.mobile {
+    position: fixed;
+    inset: 0;
+    width: auto;
+    height: auto;
+    min-height: 0;
+  }
   .sr-catalog {
     position: absolute;
     inset: 0 auto 0 0;
@@ -1386,6 +1372,9 @@ a.sr-out-lesson.active {
   }
   .sr-catalog.open {
     transform: none;
+  }
+  .sr-cat-head {
+    padding-top: calc(14px + env(safe-area-inset-top));
   }
   .sr-scrim.show {
     display: block;
@@ -1404,11 +1393,12 @@ a.sr-out-lesson.active {
   }
 }
 
-@media (max-width: 520px) {
-  .sr-overview-cards,
-  .sr-stats,
-  .sr-mistake-summary-card {
-    width: 100%;
+@media (max-width: 760px) {
+  .sr-learn-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .sr-stats-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1557,15 +1547,20 @@ a.sr-out-lesson.active {
 .sr-login-field input:focus { outline: 2px solid var(--sr-blue); outline-offset: 1px; border-color: var(--sr-blue); }
 .sr-login-error { color: var(--sr-green-deep); font-size: 13px; }
 .sr-login-submit { margin-top: 4px; align-self: stretch; }
+.sr-login-submit:disabled,
+.sr-register-submit:disabled { opacity: 0.55; cursor: default; }
 
 /* ── Bare login page (top-level /login route, no app shell) ── */
 .sr-auth {
   width: 100vw;
-  min-height: 100dvh;
+  height: 100dvh;
+  position: fixed;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
+  overflow-y: auto;
   background: var(--sr-panel);
   color: var(--sr-ink);
   font-family: var(--sr-body);
@@ -1582,6 +1577,36 @@ a.sr-out-lesson.active {
 .sr-auth-brand { display: flex; align-items: center; gap: 10px; }
 .sr-auth-title { margin: 16px 0 2px; font-family: var(--sr-display); font-size: 20px; font-weight: 700; }
 .sr-auth .sr-login { max-width: none; margin: 6px 0 0; }
+.sr-auth-divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+.sr-auth-divider span {
+  width: 100%;
+  border-top: 1px solid var(--sr-line-soft);
+}
+.sr-register {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.sr-register-lead {
+  color: var(--sr-ink-soft);
+  font-size: 13px;
+}
+.sr-register-success {
+  color: var(--sr-green-deep);
+  font-size: 13px;
+}
+.sr-register-submit {
+  align-self: stretch;
+}
+@media (max-height: 720px) {
+  .sr-auth {
+    align-items: flex-start;
+  }
+}
 
 /* ── Catalog footer: account menu (avatar + name → upward popover) ── */
 .sr-usermenu {
@@ -1860,8 +1885,6 @@ a.sr-out-lesson.active {
   /* Too narrow to carry both: the numbers drop below the pitch and spread out
      again across the full width. */
   .sr-home-top { flex-direction: column; }
-  .sr-stats { width: auto; }
-  .sr-stats-row { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; }
 }
 
 
@@ -2039,11 +2062,6 @@ a.sr-out-lesson.active {
 }
 .sr-textbtn:hover {
   color: var(--sr-blue);
-}
-.sr-login-free {
-  align-self: center; margin: -2px 0 6px; padding: 3px 10px; border-radius: 999px;
-  background: var(--sr-green-tint); color: var(--sr-green-deep);
-  font-size: 12.5px; font-weight: 600;
 }
 .sr-progress-guest { margin-top: 8px; font-size: 13px; color: var(--sr-ink-soft); }
 .sr-modal-scrim {

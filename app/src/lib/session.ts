@@ -9,6 +9,21 @@ import {
 } from '~/lib/session.server'
 
 export type CurrentUser = { userId: number; email: string }
+type RegisterEmailResult =
+  | { ok: true }
+  | { error: 'invalid_email' | 'unavailable' }
+
+function normalizeRegistrationEmail(value: string): string | null {
+  const email = value.trim().toLowerCase()
+  if (
+    email.length === 0 ||
+    email.length > 320 ||
+    !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+  ) {
+    return null
+  }
+  return email
+}
 
 // GET current user (for the UI to show logged-in state / gate the quiz).
 export const getCurrentUser = createServerFn({ method: 'GET' }).handler(
@@ -36,6 +51,26 @@ export const login = createServerFn({ method: 'POST' })
     }
     setSessionCookie(rows[0].user_id)
     return { userId: rows[0].user_id, email: rows[0].email }
+  })
+
+// POST registration interest: keep only a normalized email. Account creation is
+// intentionally separate; this table is the server-side registration queue.
+export const registerEmail = createServerFn({ method: 'POST' })
+  .validator((d: { email: string }) => d)
+  .handler(async ({ data }): Promise<RegisterEmailResult> => {
+    const email = normalizeRegistrationEmail(data.email)
+    if (!email) return { error: 'invalid_email' }
+
+    try {
+      await sql()`
+        insert into ld_user_emails (email)
+        values (${email})
+        on conflict (email) do nothing
+      `
+      return { ok: true }
+    } catch {
+      return { error: 'unavailable' }
+    }
   })
 
 // POST logout: clear the cookie.

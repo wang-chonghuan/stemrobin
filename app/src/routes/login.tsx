@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { createFileRoute, redirect, useRouter } from '@tanstack/react-router'
 
 import { BrandMark } from '~/components/brand-mark'
-import { getCurrentUser, login } from '~/lib/session'
+import { getCurrentUser, login, registerEmail } from '~/lib/session'
 import { getLocale } from '~/lib/locale'
 import { t } from '~/lib/i18n'
 
@@ -27,6 +27,10 @@ function LoginView() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  const [registrationEmail, setRegistrationEmail] = useState('')
+  const [registrationMessage, setRegistrationMessage] = useState<string | null>(null)
+  const [registrationError, setRegistrationError] = useState<string | null>(null)
+  const [registrationBusy, setRegistrationBusy] = useState(false)
 
   async function submit(e: React.FormEvent) {
     e.preventDefault()
@@ -41,6 +45,30 @@ function LoginView() {
       }
     } finally {
       setBusy(false)
+    }
+  }
+
+  async function register(e: React.FormEvent) {
+    e.preventDefault()
+    setRegistrationBusy(true)
+    setRegistrationError(null)
+    setRegistrationMessage(null)
+    try {
+      const result = await registerEmail({ data: { email: registrationEmail } })
+      if ('error' in result) {
+        setRegistrationError(
+          t(
+            locale,
+            result.error === 'invalid_email'
+              ? 'login.register.invalid'
+              : 'login.register.error',
+          ),
+        )
+      } else {
+        setRegistrationMessage(t(locale, 'login.register.success'))
+      }
+    } finally {
+      setRegistrationBusy(false)
     }
   }
 
@@ -64,7 +92,6 @@ function LoginView() {
         <h1 className="sr-auth-title">{t(locale, 'login.title')}</h1>
         <form className="sr-login" onSubmit={submit}>
           <p className="sr-login-lead">{t(locale, 'login.lead')}</p>
-          <p className="sr-login-free">{t(locale, 'login.free')}</p>
           <label className="sr-login-field">
             <span>{t(locale, 'login.email')}</span>
             <input
@@ -88,6 +115,37 @@ function LoginView() {
           {error && <p className="sr-login-error">{error}</p>}
           <button type="submit" className="sr-btn primary sr-login-submit" disabled={busy}>
             {busy ? t(locale, 'login.submitting') : t(locale, 'login.submit')}
+          </button>
+        </form>
+        <div className="sr-auth-divider" aria-hidden>
+          <span />
+        </div>
+        <form className="sr-register" onSubmit={register}>
+          <p className="sr-register-lead">{t(locale, 'login.register.prompt')}</p>
+          <label className="sr-login-field">
+            <span>{t(locale, 'login.email')}</span>
+            <input
+              type="email"
+              autoComplete="email"
+              value={registrationEmail}
+              onChange={(e) => setRegistrationEmail(e.target.value)}
+              required
+            />
+          </label>
+          {registrationError && (
+            <p className="sr-login-error" role="alert">{registrationError}</p>
+          )}
+          {registrationMessage && (
+            <p className="sr-register-success" role="status">{registrationMessage}</p>
+          )}
+          <button
+            type="submit"
+            className="sr-btn ghost sr-register-submit"
+            disabled={registrationBusy}
+          >
+            {registrationBusy
+              ? t(locale, 'login.register.submitting')
+              : t(locale, 'login.register.submit')}
           </button>
         </form>
       </div>

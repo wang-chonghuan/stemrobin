@@ -41,7 +41,12 @@ export function CatalogSidebar({
     <aside className={`sr-catalog${drawerOpen ? ' open' : ''}`} ref={railRef}>
       <div {...gripProps} />
       <div className="sr-cat-head">
-        <Link className="sr-brand-link" to="/" onClick={onNavigate} aria-label={t(locale, 'ov.title')}>
+        <Link
+          className="sr-brand-link"
+          to={user ? '/learn' : '/'}
+          onClick={onNavigate}
+          aria-label={t(locale, 'ov.title')}
+        >
           <BrandMark className="sr-brand-img" />
           <div>
             <span className={'sr-brand-name' + (locale === 'en' ? '' : ' sr-brand-name-zh')}>
