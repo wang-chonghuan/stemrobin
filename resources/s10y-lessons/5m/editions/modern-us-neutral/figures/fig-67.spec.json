@@ -1,0 +1,8 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-67",
+  "description": "A newly authored movement grid with points O, M, K, P, and N.",
+  "constraints": [
+    "Relative to O: M is (3,5), K is (4,1), P is (1,3), and N is (5,4)."
+  ]
+}

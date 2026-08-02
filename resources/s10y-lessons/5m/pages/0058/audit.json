@@ -1,0 +1,28 @@
+{
+  "page": 58,
+  "lines_printed": 21,
+  "lines_md": 21,
+  "figures": [
+    {
+      "id": "tbl-p0058-01",
+      "label": "表",
+      "box": [
+        279,
+        1720,
+        1009,
+        254
+      ],
+      "components": 55,
+      "from": [
+        280,
+        1720,
+        1010,
+        270
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

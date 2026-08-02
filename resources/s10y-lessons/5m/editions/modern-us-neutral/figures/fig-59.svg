@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Translated segment</title>
+  <desc id="desc">Segment AB is shifted to segment A1B1.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round">
+        <line x1="170" y1="100" x2="300" y2="350"/>
+        <line x1="570" y1="100" x2="700" y2="350"/>
+        <line x1="170" y1="100" x2="570" y2="100" marker-end="url(#arrow)"/>
+        <line x1="300" y1="350" x2="700" y2="350" marker-end="url(#arrow)"/>
+      </g>
+      <g fill="currentColor" font-family="Arial, sans-serif" font-size="30">
+        <text x="145" y="90">A</text><text x="275" y="390">B</text>
+        <text x="575" y="90">A1</text><text x="705" y="390">B1</text>
+      </g>
+</svg>

@@ -1,0 +1,313 @@
+{
+  "id": "math5-c1-s2-n15",
+  "card_id": "math5-c1-s2-n15",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "15",
+  "title": "平移",
+  "printed_title": "15. 平移",
+  "start_page": 60,
+  "start_printed": 51,
+  "figures": [
+    {
+      "id": "fig-58",
+      "label": "图 58",
+      "page": 60
+    },
+    {
+      "id": "fig-59",
+      "label": "图 59",
+      "page": 61
+    },
+    {
+      "id": "fig-60",
+      "label": "图 60",
+      "page": 61
+    },
+    {
+      "id": "fig-61",
+      "label": "图 61",
+      "page": 61
+    },
+    {
+      "id": "fig-62",
+      "label": "图 62",
+      "page": 62
+    },
+    {
+      "id": "fig-63",
+      "label": "图 63",
+      "page": 62
+    },
+    {
+      "id": "fig-64",
+      "label": "图 64",
+      "page": 62
+    }
+  ],
+  "exercise_count": 18,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "过去我们作平行线是沿直尺移动三角板（图 12）. 这时三角板的所有点都向同一个方向移动相同的距离. 图形的这种位移就叫做平移.",
+      "id": null,
+      "label": null,
+      "printed_page": 51,
+      "source_text": "过去我们作平行线是沿直尺移动三角板（图 12）. 这时三角板的所有点都向同一个方向移动相同的距离. 图形的这种位移就叫做平移.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "为了给定图形的平移，只要知道这个图形的一个点移动到哪里就足够了. 假如在平移时，点 $A$ 移到点 $A_1$（图 58）. 要想知道这个图形的 $B$ 点移到哪里，作法如下：联结点 $A$ 和点 $A_1$，并且从 $B$ 点作和 $AA_1$ 线段平行的线段 $BB_1$，使它与 $AA_1$ 长度相等、方向相同，于是点 $B$ 移到点 $B_1$.",
+      "id": null,
+      "label": null,
+      "printed_page": 51,
+      "source_text": "为了给定图形的平移，只要知道这个图形的一个点移动到哪里就足够了. 假如在平移时，点 $A$ 移到点 $A_1$（图 58）. 要想知道这个图形的 $B$ 点移到哪里，作法如下：联结点 $A$ 和点 $A_1$，并且从 $B$ 点作和 $AA_1$ 线段平行的线段 $BB_1$，使它与 $AA_1$ 长度相等、方向相同，于是点 $B$ 移到点 $B_1$.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-58",
+      "label": "图 58",
+      "printed_page": 51,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 58",
+      "id": null,
+      "label": "图 58",
+      "printed_page": 51,
+      "source_text": "图 58",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "当三角板沿直尺移动时，三角板的尺寸不变. 一般说来，在平移时，如果图形 $M$ 移到图形 $P$，那么图形 $M$ 和 $P$ 合同.",
+      "id": null,
+      "label": null,
+      "printed_page": 51,
+      "source_text": "当三角板沿直尺移动时，三角板的尺寸不变. 一般说来，在平移时，如果图形 $M$ 移到图形 $P$，那么图形 $M$ 和 $P$ 合同.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "例 1. 让我们来完成 $AB$ 线段的平移，使点 $A$ 移到点 $A_1$.联结点 $A$ 和点 $A_1$（图 59）. 从点 $B$ 引和 $AA_1$ 平行并且长度相等、方向相同的线段 $BB_1$. 联结$A_1$ 和 $B_1$ 二点. 线段 $A_1B_1$ 就是线段 $AB$ 在平移时移到的线段.例 2. 我们来完成圆心为点$A$、半径为 1 厘米的圆周的平移，使点 $A$ 移到点 $A_1$.因为平移时，圆周的大小不变，所以只要作以点 $A_1$ 为圆心、半径为 1 厘米的圆周即可（图 60）.用花样模板作花纹时应用了平移原理（图 61）.",
+      "id": null,
+      "label": null,
+      "printed_page": 52,
+      "source_text": "例 1. 让我们来完成 $AB$ 线段的平移，使点 $A$ 移到点 $A_1$.联结点 $A$ 和点 $A_1$（图 59）. 从点 $B$ 引和 $AA_1$ 平行并且长度相等、方向相同的线段 $BB_1$. 联结$A_1$ 和 $B_1$ 二点. 线段 $A_1B_1$ 就是线段 $AB$ 在平移时移到的线段.例 2. 我们来完成圆心为点$A$、半径为 1 厘米的圆周的平移，使点 $A$ 移到点 $A_1$.因为平移时，圆周的大小不变，所以只要作以点 $A_1$ 为圆心、半径为 1 厘米的圆周即可（图 60）.用花样模板作花纹时应用了平移原理（图 61）.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-59",
+      "label": "图 59",
+      "printed_page": 52,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 59",
+      "id": null,
+      "label": "图 59",
+      "printed_page": 52,
+      "source_text": "图 59",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-60",
+      "label": "图 60",
+      "printed_page": 52,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 60",
+      "id": null,
+      "label": "图 60",
+      "printed_page": 52,
+      "source_text": "图 60",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-61",
+      "label": "图 61",
+      "printed_page": 52,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 61",
+      "id": null,
+      "label": "图 61",
+      "printed_page": 52,
+      "source_text": "图 61",
+      "changes": [],
+      "numeric_changes": []
+    }
+  ],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "source": {
+    "path": "lessons/math5-c1-s2-n15/lesson.json",
+    "sha256": "7ea9c179976aa5f0d567fef36595d998c6f4e7cc75a2403e215ce9d66536a7fa",
+    "data": {
+      "id": "math5-c1-s2-n15",
+      "card_id": "math5-c1-s2-n15",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "15",
+      "title": "平移",
+      "printed_title": "15. 平移",
+      "start_page": 60,
+      "start_printed": 51,
+      "figures": [
+        {
+          "id": "fig-58",
+          "label": "图 58",
+          "page": 60
+        },
+        {
+          "id": "fig-59",
+          "label": "图 59",
+          "page": 61
+        },
+        {
+          "id": "fig-60",
+          "label": "图 60",
+          "page": 61
+        },
+        {
+          "id": "fig-61",
+          "label": "图 61",
+          "page": 61
+        },
+        {
+          "id": "fig-62",
+          "label": "图 62",
+          "page": 62
+        },
+        {
+          "id": "fig-63",
+          "label": "图 63",
+          "page": 62
+        },
+        {
+          "id": "fig-64",
+          "label": "图 64",
+          "page": 62
+        }
+      ],
+      "exercise_count": 18,
+      "prose": [
+        {
+          "kind": "p",
+          "text": "过去我们作平行线是沿直尺移动三角板（图 12）. 这时三角板的所有点都向同一个方向移动相同的距离. 图形的这种位移就叫做平移.",
+          "id": null,
+          "label": null,
+          "printed_page": 51
+        },
+        {
+          "kind": "p",
+          "text": "为了给定图形的平移，只要知道这个图形的一个点移动到哪里就足够了. 假如在平移时，点 $A$ 移到点 $A_1$（图 58）. 要想知道这个图形的 $B$ 点移到哪里，作法如下：联结点 $A$ 和点 $A_1$，并且从 $B$ 点作和 $AA_1$ 线段平行的线段 $BB_1$，使它与 $AA_1$ 长度相等、方向相同，于是点 $B$ 移到点 $B_1$.",
+          "id": null,
+          "label": null,
+          "printed_page": 51
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-58",
+          "label": "图 58",
+          "printed_page": 51
+        },
+        {
+          "kind": "cap",
+          "text": "图 58",
+          "id": null,
+          "label": "图 58",
+          "printed_page": 51
+        },
+        {
+          "kind": "p",
+          "text": "当三角板沿直尺移动时，三角板的尺寸不变. 一般说来，在平移时，如果图形 $M$ 移到图形 $P$，那么图形 $M$ 和 $P$ 合同.",
+          "id": null,
+          "label": null,
+          "printed_page": 51
+        },
+        {
+          "kind": "p",
+          "text": "例 1. 让我们来完成 $AB$ 线段的平移，使点 $A$ 移到点 $A_1$.联结点 $A$ 和点 $A_1$（图 59）. 从点 $B$ 引和 $AA_1$ 平行并且长度相等、方向相同的线段 $BB_1$. 联结$A_1$ 和 $B_1$ 二点. 线段 $A_1B_1$ 就是线段 $AB$ 在平移时移到的线段.例 2. 我们来完成圆心为点$A$、半径为 1 厘米的圆周的平移，使点 $A$ 移到点 $A_1$.因为平移时，圆周的大小不变，所以只要作以点 $A_1$ 为圆心、半径为 1 厘米的圆周即可（图 60）.用花样模板作花纹时应用了平移原理（图 61）.",
+          "id": null,
+          "label": null,
+          "printed_page": 52
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-59",
+          "label": "图 59",
+          "printed_page": 52
+        },
+        {
+          "kind": "cap",
+          "text": "图 59",
+          "id": null,
+          "label": "图 59",
+          "printed_page": 52
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-60",
+          "label": "图 60",
+          "printed_page": 52
+        },
+        {
+          "kind": "cap",
+          "text": "图 60",
+          "id": null,
+          "label": "图 60",
+          "printed_page": 52
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-61",
+          "label": "图 61",
+          "printed_page": 52
+        },
+        {
+          "kind": "cap",
+          "text": "图 61",
+          "id": null,
+          "label": "图 61",
+          "printed_page": 52
+        }
+      ]
+    }
+  }
+}

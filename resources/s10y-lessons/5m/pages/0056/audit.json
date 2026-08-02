@@ -1,0 +1,45 @@
+{
+  "page": 56,
+  "lines_printed": 20,
+  "lines_md": 20,
+  "figures": [
+    {
+      "id": "fig-57",
+      "label": "图 57",
+      "box": [
+        889,
+        422,
+        470,
+        121
+      ],
+      "components": 8,
+      "from": [
+        889,
+        422,
+        470,
+        121
+      ]
+    },
+    {
+      "id": "tbl-p0056-02",
+      "label": "表",
+      "box": [
+        224,
+        1576,
+        1080,
+        290
+      ],
+      "components": 132,
+      "from": [
+        224,
+        1576,
+        1080,
+        290
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Which shapes are translations</title>
+  <desc id="desc">Four shape pairs show either a pure translation or a rotation.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <rect x="80" y="330" width="120" height="120"/><rect x="310" y="220" width="120" height="120"/>
+        <line x1="205" y1="325" x2="295" y2="270" marker-end="url(#arrow)"/>
+        <path d="M100 80a70 70 0 1 0 70 110a45 45 0 0 1-15-85a70 70 0 0 0-55-25z"/>
+        <path d="M335 55a70 70 0 1 1-70 110a45 45 0 0 0 15-85a70 70 0 0 1 55-25z"/>
+        <line x1="190" y1="115" x2="250" y2="115" marker-end="url(#arrow)"/>
+        <polygon points="570,120 640,240 500,240"/><polygon points="730,40 800,160 660,160"/>
+        <line x1="620" y1="105" x2="700" y2="65" marker-end="url(#arrow)"/>
+        <circle cx="590" cy="385" r="60"/><circle cx="790" cy="315" r="60"/>
+        <line x1="650" y1="365" x2="720" y2="340" marker-end="url(#arrow)"/>
+      </g>
+      <g fill="currentColor" font-family="Arial, sans-serif" font-size="26">
+        <text x="95" y="475">ABCD</text><text x="330" y="365">MNPK</text>
+        <text x="80" y="55">F</text><text x="350" y="55">P</text>
+        <text x="490" y="270">D</text><text x="805" y="155">E</text>
+        <text x="560" y="395">O</text><text x="765" y="325">P</text>
+      </g>
+</svg>

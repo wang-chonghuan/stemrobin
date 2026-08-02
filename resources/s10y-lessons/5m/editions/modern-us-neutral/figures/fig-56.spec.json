@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-56",
+  "description": "A newly authored number line comparing negative and positive values.",
+  "constraints": [
+    "The marked values are -8, -3, 0, and 5.",
+    "The relative order is unchanged."
+  ]
+}

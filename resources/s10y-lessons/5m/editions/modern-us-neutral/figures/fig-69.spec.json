@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-69",
+  "description": "A newly authored coordinate plane with the origin and four labeled points.",
+  "constraints": [
+    "O is (0,0).",
+    "A is (2,4), B is (-4,3), C is (-2,-3), and D is (4,-4)."
+  ]
+}

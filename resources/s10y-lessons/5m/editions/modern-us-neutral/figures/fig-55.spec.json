@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-55",
+  "description": "A newly authored number line comparing negative fifteen and negative nine.",
+  "constraints": [
+    "Point A is at -15.",
+    "Point B is at -9.",
+    "A is left of B."
+  ]
+}

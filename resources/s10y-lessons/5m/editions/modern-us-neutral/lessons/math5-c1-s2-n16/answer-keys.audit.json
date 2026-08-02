@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-answer/lesson-audit@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n16",
+  "edition": "modern-us-neutral",
+  "status": "pass",
+  "answerCount": 24,
+  "auto": 20,
+  "ungraded": 4
+}

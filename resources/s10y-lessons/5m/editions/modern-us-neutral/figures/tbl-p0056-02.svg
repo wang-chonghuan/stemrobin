@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 336" role="img" aria-labelledby="title desc">
+  <title id="title">December temperatures</title>
+  <desc id="desc">Temperatures for Harbor City and Hill City on six December dates.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="3"><line x1="70" y1="45" x2="70" y2="291"/><line x1="260" y1="45" x2="260" y2="291"/><line x1="355" y1="45" x2="355" y2="291"/><line x1="450" y1="45" x2="450" y2="291"/><line x1="545" y1="45" x2="545" y2="291"/><line x1="640" y1="45" x2="640" y2="291"/><line x1="735" y1="45" x2="735" y2="291"/><line x1="830" y1="45" x2="830" y2="291"/><line x1="70" y1="45" x2="830" y2="45"/><line x1="70" y1="127" x2="830" y2="127"/><line x1="70" y1="209" x2="830" y2="209"/><line x1="70" y1="291" x2="830" y2="291"/></g>
+     <g fill="currentColor" font-family="Arial, sans-serif" font-size="24" text-anchor="middle"><text x="165" y="95">City / Date</text><text x="307.5" y="95">1</text><text x="402.5" y="95">6</text><text x="497.5" y="95">11</text><text x="592.5" y="95">16</text><text x="687.5" y="95">21</text><text x="782.5" y="95">26</text><text x="165" y="177">Harbor City</text><text x="307.5" y="177">9.2</text><text x="402.5" y="177">3.5</text><text x="497.5" y="177">-2.6</text><text x="592.5" y="177">-3.1</text><text x="687.5" y="177">-7.8</text><text x="782.5" y="177">-19</text><text x="165" y="259">Hill City</text><text x="307.5" y="259">6.4</text><text x="402.5" y="259">0</text><text x="497.5" y="259">0</text><text x="592.5" y="259">-1.5</text><text x="687.5" y="259">-3.6</text><text x="782.5" y="259">-21</text></g>
+</svg>

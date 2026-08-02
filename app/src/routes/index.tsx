@@ -228,7 +228,7 @@ function LandingLight() {
   )
 
   return (
-    <div className="lw-page">
+    <div className="lw-page" data-scroll-restoration-id="landing-page">
       <button
         type="button"
         className={'lw-scrim' + (navOpen ? ' show' : '')}

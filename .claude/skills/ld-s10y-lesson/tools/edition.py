@@ -20,7 +20,11 @@ AUDIT_SCHEMA = "ld-s10y-lesson/edition-audit@1"
 BOOK_SCHEMA = "ld-s10y-lesson/edition-book@1"
 MATH = re.compile(r"\$\$(.+?)\$\$|\$([^$]+?)\$", re.S)
 NUMBER = re.compile(r"(?<![\w.])-?\d+(?:\.\d+)?(?![\w.])")
+NUMBERED_PART = re.compile(r"(?<![\w.])(\d{1,2})\)")
 CYRILLIC = re.compile(r"[\u0400-\u04ff]")
+NON_ENGLISH_FIGURE_SCRIPT = re.compile(
+    r"[\u0400-\u04ff\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff]"
+)
 GRAPHIC_TAGS = {
     "path", "line", "polyline", "polygon", "rect", "circle", "ellipse", "text",
 }
@@ -92,15 +96,19 @@ def modern_prose(source: dict) -> list[dict]:
 
 
 def modern_exercises(source: dict) -> list[dict]:
-    return [
-        {
+    result = []
+    for exercise in source.get("exercises", []):
+        source_text = exercise.get("text", "")
+        modern_text = normalize_numbered_subparts(source_text)
+        result.append({
             **copy.deepcopy(exercise),
-            "source_text": exercise.get("text", ""),
-            "changes": [],
+            "text": modern_text,
+            "lines": modern_text.splitlines(),
+            "source_text": source_text,
+            "changes": ["layout"] if modern_text != source_text else [],
             "numeric_changes": [],
-        }
-        for exercise in source.get("exercises", [])
-    ]
+        })
+    return result
 
 
 def figure_sources(book: Path, figures: list[dict]) -> list[dict]:
@@ -204,6 +212,57 @@ def number_signature(text: str) -> list[str]:
     return NUMBER.findall(without_math)
 
 
+def normalize_numbered_subparts(text: str) -> str:
+    """Sort a complete 1)..N) sequence and put every subpart on its own line."""
+    if not isinstance(text, str):
+        return text
+    masked = list(text)
+    for match in MATH.finditer(text):
+        masked[match.start():match.end()] = " " * (match.end() - match.start())
+    masked_text = "".join(masked)
+    depths = []
+    depth = 0
+    for char in masked_text:
+        depths.append(depth)
+        if char in "(（":
+            depth += 1
+        elif char in ")）":
+            depth = max(0, depth - 1)
+    markers = [
+        marker
+        for marker in NUMBERED_PART.finditer(masked_text)
+        if depths[marker.start()] == 0
+    ]
+    if len(markers) < 2:
+        return text
+    numbers = [int(marker.group(1)) for marker in markers]
+    if len(numbers) != len(set(numbers)) or sorted(numbers) != list(range(1, len(numbers) + 1)):
+        return text
+
+    prefix = text[:markers[0].start()].rstrip()
+    parts = []
+    for index, marker in enumerate(markers):
+        end = markers[index + 1].start() if index + 1 < len(markers) else len(text)
+        part = text[marker.start():end]
+        part = re.sub(r"[\t \u3000]+", " ", part).strip()
+        parts.append((int(marker.group(1)), part))
+    ordered = [part for _, part in sorted(parts)]
+    return "\n".join(([prefix] if prefix else []) + ordered)
+
+
+def normalize_exercise_layout(exercises: dict) -> None:
+    for exercise in exercises.get("exercises", []):
+        text = exercise.get("text")
+        normalized = normalize_numbered_subparts(text)
+        if normalized == text:
+            continue
+        exercise["text"] = normalized
+        exercise["lines"] = normalized.splitlines()
+        changes = exercise.get("changes")
+        if isinstance(changes, list) and "layout" not in changes:
+            changes.append("layout")
+
+
 def validate_text(
     source: str,
     modern: object,
@@ -222,10 +281,12 @@ def validate_text(
         errors.append(f"{label} 已改写但 changes 为空")
     if modern == source and changes:
         errors.append(f"{label} 未改写但 changes 非空")
-    if math_signature(modern) != math_signature(source):
+    canonical_source = normalize_numbered_subparts(source)
+    canonical_modern = normalize_numbered_subparts(modern)
+    if math_signature(canonical_modern) != math_signature(canonical_source):
         errors.append(f"{label} 的数学公式发生变化")
-    source_numbers = number_signature(source)
-    modern_numbers = number_signature(modern)
+    source_numbers = number_signature(canonical_source)
+    modern_numbers = number_signature(canonical_modern)
     if not isinstance(numeric_changes, list):
         errors.append(f"{label}.numeric_changes 必须是数组")
         numeric_changes = []
@@ -266,7 +327,12 @@ def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
-def validate_svg(path: Path, spec_path: Path, figure: dict) -> list[str]:
+def validate_svg(
+    path: Path,
+    spec_path: Path,
+    figure: dict,
+    figure_text_language: str | None = None,
+) -> list[str]:
     errors = []
     if not path.exists():
         return [f"缺少现代 SVG: {path}"]
@@ -290,6 +356,15 @@ def validate_svg(path: Path, spec_path: Path, figure: dict) -> list[str]:
         errors.append(f"{path}: 禁止节点 {banned}")
     if not (set(tags) & GRAPHIC_TAGS):
         errors.append(f"{path}: 没有可见矢量图元")
+    if figure_text_language == "English":
+        for node in root.iter():
+            if local_name(node.tag) not in {"text", "title", "desc"}:
+                continue
+            value = "".join(node.itertext()).strip()
+            if NON_ENGLISH_FIGURE_SCRIPT.search(value):
+                errors.append(
+                    f"{path}: {local_name(node.tag)} 必须使用英文，发现 {value!r}"
+                )
     spec = load(spec_path)
     if spec.get("schema") != FIGURE_SPEC_SCHEMA:
         errors.append(f"{spec_path}: schema 必须是 {FIGURE_SPEC_SCHEMA}")
@@ -328,6 +403,7 @@ def validate_lesson(
     figures_path = target / "figures.json"
     lesson = load(lesson_path)
     exercises = load(exercises_path)
+    normalize_exercise_layout(exercises)
     figures = load(figures_path)
     raw_lesson_path = book / "lessons" / lesson_id / "lesson.json"
     raw_exercises_path = book / "lessons" / lesson_id / "exercises.json"
@@ -403,7 +479,12 @@ def validate_lesson(
     for figure in figure_items:
         svg_path = edition / figure.get("svg", "")
         spec_path = edition / figure.get("spec", "")
-        errors += validate_svg(svg_path, spec_path, figure)
+        errors += validate_svg(
+            svg_path,
+            spec_path,
+            figure,
+            profile.get("figure_text_language"),
+        )
         raw_figure = book / "figures" / f"{figure.get('id')}.svg"
         recorded = figure.get("source", {}).get("svg", {}).get("sha256")
         if raw_figure.exists() and recorded != sha256(raw_figure):

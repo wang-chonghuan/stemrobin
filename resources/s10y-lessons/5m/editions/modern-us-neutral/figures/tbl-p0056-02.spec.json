@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "tbl-p0056-02",
+  "description": "A newly authored temperature comparison table for two fictional cities.",
+  "constraints": [
+    "Dates are 1, 6, 11, 16, 21, and 26.",
+    "All source temperature values are preserved."
+  ]
+}

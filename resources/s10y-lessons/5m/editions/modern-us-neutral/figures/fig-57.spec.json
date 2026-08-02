@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-57",
+  "description": "A newly authored closed interval on a number line.",
+  "constraints": [
+    "The interval begins at -4.",
+    "The interval ends at 1.",
+    "Both endpoints are included."
+  ]
+}

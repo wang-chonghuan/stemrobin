@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Translating a shape</title>
+  <desc id="desc">An irregular shape is shifted right without changing size or orientation.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round">
+        <path d="M120 130L260 100L300 180L250 300L130 270Z"/>
+        <path d="M520 130L660 100L700 180L650 300L530 270Z"/>
+        <line x1="260" y1="100" x2="660" y2="100" marker-end="url(#arrow)"/>
+        <line x1="130" y1="270" x2="530" y2="270" marker-end="url(#arrow)"/>
+      </g>
+      <g fill="currentColor" font-family="Arial, sans-serif" font-size="28">
+        <text x="270" y="85">A</text><text x="105" y="305">B</text>
+        <text x="668" y="85">A1</text><text x="535" y="305">B1</text>
+      </g>
+</svg>

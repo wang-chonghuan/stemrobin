@@ -1,0 +1,824 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n16",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "262",
+      "grading": "auto",
+      "displayAnswer": "M：右3格、上5格；K：右4格、上1格；P：右1格、上3格；N：右5格、上4格。",
+      "parts": [
+        {
+          "label": "M 向右",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "M 向上",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "K 向右",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "K 向上",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "P 向右",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "P 向上",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "N 向右",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ],
+          "unit": "格"
+        },
+        {
+          "label": "N 向上",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ],
+          "unit": "格"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "263",
+      "grading": "auto",
+      "displayAnswer": "B(5,4)：东5、北4；C(3,6)：东3、北6；D(-4,6)：西4、北6；E(-2,-5)：西2、南5。",
+      "parts": [
+        {
+          "label": "B 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ]
+        },
+        {
+          "label": "B 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        },
+        {
+          "label": "C 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "C 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "label": "D 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        },
+        {
+          "label": "D 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "label": "E 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "E 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-5"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "264",
+      "grading": "ungraded",
+      "displayAnswer": "在直角坐标系中标出 A(2,8)、B(3,-4)、C(-4,5)、D(-3,-7)、E(0,5)、M(0,-4)、K(6,0)、P(-7,0)。E、M 在 y 轴上，K、P 在 x 轴上。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "265",
+      "grading": "auto",
+      "displayAnswer": "A(2,4)，B(-4,3)，C(-2,-3)，D(4,-4)。",
+      "parts": [
+        {
+          "label": "A 的横坐标",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        },
+        {
+          "label": "A 的纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        },
+        {
+          "label": "B 的横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        },
+        {
+          "label": "B 的纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "C 的横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "C 的纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "D 的横坐标",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        },
+        {
+          "label": "D 的纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "266",
+      "grading": "auto",
+      "displayAnswer": "坐标为 (0,0) 的点是 O。",
+      "parts": [
+        {
+          "label": "点名",
+          "judge": "exact",
+          "expected": [
+            "O"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "267",
+      "grading": "ungraded",
+      "displayAnswer": "依次标出 A(-10,2)、B(-2,-2)、C(-2,-6)、D(-10,-6)，再按 A-B-C-D-A 连接。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "268",
+      "grading": "auto",
+      "displayAnswer": "A(-3,1.5)，B(0,3)，C(2.5,1.5)，D(2.5,-1.5)，E(0,-3)，F(-3,-1.5)。",
+      "parts": [
+        {
+          "label": "A 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "A 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "1.5"
+          ]
+        },
+        {
+          "label": "B 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "B 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "C 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "2.5"
+          ]
+        },
+        {
+          "label": "C 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "1.5"
+          ]
+        },
+        {
+          "label": "D 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "2.5"
+          ]
+        },
+        {
+          "label": "D 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-1.5"
+          ]
+        },
+        {
+          "label": "E 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "E 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "F 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "F 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-1.5"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "269",
+      "grading": "auto",
+      "displayAnswer": "A(3,3)，B(-3,3)，C(-4,2)，D(-5,0)，E(-4,-4)，F(-3,-3)，K(0,-5)，M(3,-3)。",
+      "parts": [
+        {
+          "label": "A 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "A 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "B 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "B 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "C 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        },
+        {
+          "label": "C 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        },
+        {
+          "label": "D 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-5"
+          ]
+        },
+        {
+          "label": "D 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "E 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        },
+        {
+          "label": "E 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-4"
+          ]
+        },
+        {
+          "label": "F 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "F 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        },
+        {
+          "label": "K 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "K 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-5"
+          ]
+        },
+        {
+          "label": "M 横坐标",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ]
+        },
+        {
+          "label": "M 纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "270",
+      "grading": "ungraded",
+      "displayAnswer": "这是一道按图作辅助线并读取近似坐标的作图题。对每个给定横坐标作竖线、对每个给定纵坐标作横线，读取它们与曲线交点的另一坐标；答案允许有作图误差。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "271",
+      "grading": "auto",
+      "displayAnswer": "1) {A,B,D}；2) {B,E}。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "{A,B,D}",
+            "A,B,D"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "{B,E}",
+            "B,E"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "272",
+      "grading": "auto",
+      "displayAnswer": "直线 OE 与线段 AB 的交点是 (2,2)。",
+      "parts": [
+        {
+          "label": "横坐标",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        },
+        {
+          "label": "纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "273",
+      "grading": "ungraded",
+      "displayAnswer": "按向量 AC 平移长方形的四个顶点，使 A' 与 C 重合；所得长方形边长仍为3厘米和5厘米，对应边与原图形平行。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "274",
+      "grading": "auto",
+      "displayAnswer": "平均速度为 63.35 公里/小时。",
+      "parts": [
+        {
+          "label": "平均速度",
+          "judge": "numeric",
+          "expected": [
+            "63.35"
+          ],
+          "unit": "公里/小时"
+        }
+      ],
+      "source": "book",
+      "bookRaw": "63.35 公里/小时"
+    },
+    {
+      "exercise": "275",
+      "grading": "auto",
+      "displayAnswer": "混合食品每100克的价格约为 0.95 美元。",
+      "parts": [
+        {
+          "label": "每100克价格",
+          "judge": "numeric",
+          "expected": [
+            "0.95"
+          ],
+          "unit": "美元"
+        }
+      ],
+      "source": "book",
+      "bookRaw": "95 戈比"
+    },
+    {
+      "exercise": "276",
+      "grading": "auto",
+      "displayAnswer": "1) 设第二天用 x 吨，则 2.4x+x=38-9.1，第一天用 20.4 吨。2) 设午饭后运出 y 吨，则 2y+y=4.64-0.64，午饭前运出 8/3 吨（约2.67吨）。",
+      "parts": [
+        {
+          "label": "1) 第一天用量",
+          "judge": "numeric",
+          "expected": [
+            "20.4"
+          ],
+          "unit": "吨"
+        },
+        {
+          "label": "2) 午饭前运出量",
+          "judge": "numeric",
+          "expected": [
+            "8/3",
+            "2.6666666667"
+          ],
+          "unit": "吨",
+          "tolerance": 1e-06
+        }
+      ],
+      "source": "reviewed",
+      "notes": "原书答案第2问为3吨，但与当前题面“午饭前是午饭后的2倍”不符；按题面验算为8/3吨。",
+      "bookRaw": "1) 20.4 吨；2) 3 吨"
+    },
+    {
+      "exercise": "277",
+      "grading": "auto",
+      "displayAnswer": "1) 15%；2) 95%。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "15"
+          ],
+          "unit": "%"
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "95"
+          ],
+          "unit": "%"
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 15%；2) 95%"
+    },
+    {
+      "exercise": "278",
+      "grading": "auto",
+      "displayAnswer": "1) 8.4375；2) 36.04；3) 17.825；4) 3.69。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "8.4375"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "36.04"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "numeric",
+          "expected": [
+            "17.825"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "numeric",
+          "expected": [
+            "3.69"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "279",
+      "grading": "auto",
+      "displayAnswer": "1) 7.05；2) 6.05。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "7.05"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "6.05"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 7.05；2) 6.05"
+    },
+    {
+      "exercise": "280",
+      "grading": "auto",
+      "displayAnswer": "第一小队：(5,1)；第二小队：(-2,4)；第三小队：(1,-3)。",
+      "parts": [
+        {
+          "label": "第一小队横坐标",
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ]
+        },
+        {
+          "label": "第一小队纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "label": "第二小队横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "第二小队纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        },
+        {
+          "label": "第三小队横坐标",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "label": "第三小队纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "-3"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "281",
+      "grading": "auto",
+      "displayAnswer": "两条折线的交点是 (-2,4)。",
+      "parts": [
+        {
+          "label": "横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-2"
+          ]
+        },
+        {
+          "label": "纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "282",
+      "grading": "auto",
+      "displayAnswer": "线段 AC 与 BD 的交点是 (-67/17, 33/17)。",
+      "parts": [
+        {
+          "label": "横坐标",
+          "judge": "numeric",
+          "expected": [
+            "-67/17"
+          ]
+        },
+        {
+          "label": "纵坐标",
+          "judge": "numeric",
+          "expected": [
+            "33/17"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "283",
+      "grading": "auto",
+      "displayAnswer": "1公斤饼干为 1.40 美元。",
+      "parts": [
+        {
+          "label": "饼干单价",
+          "judge": "numeric",
+          "expected": [
+            "1.4"
+          ],
+          "unit": "美元/公斤"
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1.4 卢布"
+    },
+    {
+      "exercise": "284",
+      "grading": "auto",
+      "displayAnswer": "长24分米，宽18分米，面积432平方分米。",
+      "parts": [
+        {
+          "label": "长",
+          "judge": "numeric",
+          "expected": [
+            "24"
+          ],
+          "unit": "分米"
+        },
+        {
+          "label": "宽",
+          "judge": "numeric",
+          "expected": [
+            "18"
+          ],
+          "unit": "分米"
+        },
+        {
+          "label": "面积",
+          "judge": "numeric",
+          "expected": [
+            "432"
+          ],
+          "unit": "平方分米"
+        }
+      ],
+      "source": "book",
+      "bookRaw": "18 分米，24 分米，432 平方分米"
+    },
+    {
+      "exercise": "285",
+      "grading": "auto",
+      "displayAnswer": "1) 76070；2) 57179。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "76070"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "57179"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 76 070；2) 57 179"
+    }
+  ],
+  "count": 24
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "tbl-p0058-01",
+  "description": "A newly authored five-year production table for a solar component factory.",
+  "constraints": [
+    "The five production values are preserved.",
+    "Years are shown as Year 1 through Year 5."
+  ]
+}

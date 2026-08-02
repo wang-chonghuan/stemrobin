@@ -1,0 +1,209 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n16",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "262",
+      "prompt": "按图 67 确定从点 $O$ 到点 $M,K,P$ 和 $N$ 要从左向右走几格，从下向上走几格？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "263",
+      "prompt": "夏令营举行“坐标寻宝”活动. 开始时，小队位于点 $O$（图68）. 指导员宣读路线：“向东走 5 公里，然后再向北走 4 公里”. 说出小队应到的点 $B$ 的坐标. 为其它小队写出分别到 $C,D,E$ 各点的路线，并说出这三个点的坐标.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "264",
+      "prompt": "作坐标轴 $Ox,Oy$ 并且标出下列各点：$A(2,8)$，$B(3,-4),C(-4,5)$，$D(-3,-7),E(0,5)$，$M(0,-4),K(6,0)$，$P(-7,0)$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "265",
+      "prompt": "求出 $A,B,C,D$ 各点的坐标（图 69）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "266",
+      "prompt": "说出坐标为 $0,0$ 的点（参看图 69）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "267",
+      "prompt": "作直角坐标系并且按下列已知顶点坐标作四边形$ABCD$：$A(-10,2),B(-2,-2),C(-2,-6),D(-10,-6)$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "268",
+      "prompt": "说出六边形顶点的坐标（图 70）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "269",
+      "prompt": "在坐标纸上（图 71）标出 $A,B,C,D,E,F,K,M$ 各点. 找出各点的坐标.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "270",
+      "prompt": "在坐标平面上作一条线（图 72），找出这条线上的以下各点：\n1) 横坐标为 $2,1.7,-1.8$；\n2) 纵坐标为 $1.8,2.1,-1.3,-3.1,-2.5$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "271",
+      "prompt": "已知点的集合 $\\{A,B,C,D,E\\}$，其中 $A(1,3),B(-1,4)$，$C(7,-5),D(0,6),E(-4,0)$. 在大括号内写出由下列各点组成的子集：\n1) 位于 $Ox$ 轴以上，\n2) 在 $Oy$ 轴的左边.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "272",
+      "prompt": "标出坐标为 $A(6,-2),B(-2,6),E(5,5)$ 的各点. 找出直线 $OE$ 和线段 $AB$ 的交点的坐标.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "273",
+      "prompt": "作一个边长为 3 厘米和 5 厘米的长方形 $ABCD$. 把它平移，使顶点 $A$ 移到顶点 $C$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "274",
+      "prompt": "汽车头 4 小时的行速是 62.5 公里/小时，以后 2.5 小时的行速是 53.4 公里/小时，最后 1.5 小时的速度是82.2 公里/小时. 求汽车在全部行驶时间内的平均速度.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "63.35 公里/小时"
+    },
+    {
+      "exercise": "275",
+      "prompt": "把三种谷物混合在一起：每 100 克售价 96 美分的燕麦混合物 300 克，每 100 克售价 1 美元 4 美分的坚果混合物 450 克，还有每 100 克售价 76 美分的水果混合物 250 克. 求混合后每 100 克食品的价格. 答数不满 1 美分的小数四舍五入.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "95 戈比"
+    },
+    {
+      "exercise": "276",
+      "prompt": "列出方程解应用题：\n1) 油罐中有煤油 38 吨. 第一天用掉油罐中的煤油是 第二天的 2.4 倍，油罐中还剩煤油 9.1 吨. 第一天用 掉多少吨煤油？\n2) 早晨仓库里有面粉 4.64 吨. 午饭前运出的面粉是 午饭后的 2 倍. 傍晚前，仓库里还剩面粉 0.64 吨. 午 饭前从仓库运出多少吨面粉？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 20.4 吨；2) 3 吨"
+    },
+    {
+      "exercise": "277",
+      "prompt": "解应用题：\n1) 五年级有 40 名学生. 考试时，6 个学生得“5”分. 得“5”分的学生占全体学生的百分之几？\n2) 社区青少年小组在星期六绿化活动中植树 60 棵. 冬天死掉 3 棵. 成活率是多少？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 15%；2) 95%"
+    },
+    {
+      "exercise": "278",
+      "prompt": "把下列各数化成小数后，求各式的值：\n1) $12\\frac{3}{4}-2\\frac{7}{8}\\cdot1\\frac{1}{2}$；\n2) $\\left(17\\frac{19}{20}-8\\frac{47}{50}\\right):\\frac{1}{4}$；\n3) $25\\frac{5}{8}-3\\frac{1}{4}\\cdot2\\frac{2}{5}$；\n4) $\\left(2\\frac{23}{40}+6\\frac{13}{20}\\right):2\\frac{1}{2}$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "279",
+      "prompt": "计算：\n1) $(28.376+35.99:5.9-3.45\\cdot2.8):3.52$；\n2) $(6.4\\cdot8.25-32.396+35.51:5.3):4.48$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 7.05；2) 6.05"
+    },
+    {
+      "exercise": "280",
+      "prompt": "夏令营进行“坐标寻宝”活动. 开始时全队位于 $O$ 点（参看图 68）. 然后第一小队到坐标为 5 和 1 的点去，第二小队到点 $(-2,4)$ 去，第三小队去点 $(1,-3)$. 各小队在这些点留下标志旗. 找出留下标志旗的各点.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "281",
+      "prompt": "作折线 $ABCDE$ 和 $MNK$，其顶点坐标为：$A(-6,2),B(-4,6),C(1,1),D(2,-5)$，$E(8,-1)$ 和 $M(-5,-5),N(-1,7),K(8,4)$.求出折线 $ABCDE$ 和 $MNK$ 的交点坐标.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "282",
+      "prompt": "作顶点坐标为：$A(-8,6),B(6,5),C(1,-3),D(-7,1)$的四边形 $ABCD$. 求出线段 $AC$ 和 $BD$ 的交点坐标.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "283",
+      "prompt": "买 4 公斤糖果和 3 公斤饼干共付 12 美元 20 美分. 买2公斤同样糖果和 3 公斤同样饼干付 8 美元 20 美分. 1公斤饼干要多少钱？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1.4 卢布"
+    },
+    {
+      "exercise": "284",
+      "prompt": "一长方形周长 84 分米. 它的宽比长短 6 分米. 求这个长方形的边长和面积.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "18 分米，24 分米，432 平方分米"
+    },
+    {
+      "exercise": "285",
+      "prompt": "计算：\n1) $27\\,784:46\\cdot208-41\\,419-(5078+3065)$；\n2) $185\\cdot216:37+58\\,602-(31\\,600-29\\,097)$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 76 070；2) 57 179"
+    }
+  ]
+}

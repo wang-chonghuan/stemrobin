@@ -1,0 +1,68 @@
+{
+  "id": "math5-c1-s3-n17",
+  "card_id": "math5-c1-s3-n17",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 3. 加法和减法",
+  "number": "17",
+  "title": "量的变化",
+  "printed_title": "17. 量的变化",
+  "start_page": 71,
+  "start_printed": 62,
+  "figures": [
+    {
+      "id": "fig-73",
+      "label": "图 73",
+      "page": 71
+    },
+    {
+      "id": "fig-74",
+      "label": "图 74",
+      "page": 71
+    }
+  ],
+  "exercise_count": 0,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "气温可以往两个方向变化：升高或降低. 例如，设早晨的气温是 $3^\\circ\\mathrm{C}$，中午 $9^\\circ\\mathrm{C}$，晚上 $7^\\circ\\mathrm{C}$. 上午气温升高 $6^\\circ\\mathrm{C}$，下午降低 $2^\\circ\\mathrm{C}$. 气温的升高用正数表示，降低就用负数表示. 假如温度上升 $6^\\circ\\mathrm{C}$，我们可以说它变化了 $6^\\circ\\mathrm{C}$. 如果气温降低了$2^\\circ\\mathrm{C}$，可以说它变化了 $-2^\\circ\\mathrm{C}$.",
+      "id": null,
+      "label": null,
+      "printed_page": 62
+    },
+    {
+      "kind": "p",
+      "text": "弹簧的长度能往两个方向变化：延长或缩短（图 73）. 延长用正数表示，缩短用负数表示. 假如说弹簧的长度变化了 $-6$ 毫米，这就是说它缩短了 6 毫米. 如果说弹簧的长度变化了 10 毫米，这就意味着它延长了 10毫米.假设数 $a$ 变化了 6 个单位，那么点 $A(a)$ 就是向右移动了 6 个单位. 如果数 $a$ 变化了 $-6$，就是点 $A(a)$ 向左移动了 6 个单位（图 74）.",
+      "id": null,
+      "label": null,
+      "printed_page": 62
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-73",
+      "label": "图 73",
+      "printed_page": 62
+    },
+    {
+      "kind": "cap",
+      "text": "图 73",
+      "id": null,
+      "label": "图 73",
+      "printed_page": 62
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-74",
+      "label": "图 74",
+      "printed_page": 62
+    },
+    {
+      "kind": "cap",
+      "text": "图 74",
+      "id": null,
+      "label": "图 74",
+      "printed_page": 62
+    }
+  ]
+}

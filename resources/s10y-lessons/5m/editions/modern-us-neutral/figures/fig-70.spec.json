@@ -1,0 +1,8 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-70",
+  "description": "A newly authored hexagon on a coordinate plane.",
+  "constraints": [
+    "Vertices are A(-3,1.5), B(0,3), C(2.5,1.5), D(2.5,-1.5), E(0,-3), and F(-3,-1.5)."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-59",
+  "description": "A newly authored translated line segment.",
+  "constraints": [
+    "Segment AB and segment A1B1 are equal.",
+    "The endpoint translation vectors are parallel and equal."
+  ]
+}

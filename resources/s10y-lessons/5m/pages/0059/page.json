@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 59,
+    "printed_page": 50,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 59
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "07f0200a09135c0c631e85dd2197cd98d397cce59d06080f30e26f97556dbd97"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 25,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "233",
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "求出一个工人的石油产量平均一年增加多少吨？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "234",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解方程：",
+        "1) $(387.5-x):2.5=168.75-41.25$；",
+        "2) $280.44:(y-42.6)=121.62-51.51$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "235",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1) $111-[(0.9744:0.24+1.02)\\cdot2.5-2.75]$；",
+        "2) $200-[(9.08-2.6828:0.38)\\cdot8.5+0.84]$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "236",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "以 $>$ 号或 $<$ 号代替星号，使成真不等式：",
+        "1) $-999*-1000$；　　　　4) $-836*-834$；",
+        "2) $-3542*-2763$；　　　5) $-9999*-9998$；",
+        "3) $-6543*-7831$；　　　6) $100*-100$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "237",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "用适当的数字代替星号，使成真不等式：",
+        "1) $-3841<-384*$；　　　3) $-*5.44>-25.44$；",
+        "2) $-5*83>-5183$；　　　4) $-999.*>-999.1$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "238",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "1) 按递增顺序；2) 按递减顺序排列下列各数：",
+        "$2.8,-3.7,0.5,0,-1.6,-1.1$ 和 $0.1$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "239",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "一个工人月薪 150 卢布. 他用月薪的 15% 购买了皮鞋",
+        "和衬衫. 假设皮鞋的价格是 17 卢布，衬衫的价格是",
+        "多少？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "240",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在一列货车中有 60 节蓬车、油槽车和敞车. 油槽车比",
+        "敞车少 4 节，敞车比蓬车少 22 节. 这列货车中有几节",
+        "油槽车？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "241",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "利用下表计算商店一个营业日的售肉总金额."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 50 ·"
+      ]
+    }
+  ]
+}

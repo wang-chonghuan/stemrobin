@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-64",
+  "description": "A newly authored grid triangle for a two-step translation.",
+  "constraints": [
+    "Triangle ABC is shown on a square grid.",
+    "The learner translates it seven cells down and four cells right."
+  ]
+}

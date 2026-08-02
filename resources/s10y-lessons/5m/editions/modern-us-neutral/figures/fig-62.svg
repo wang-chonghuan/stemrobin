@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Rectangle translation grid</title>
+  <desc id="desc">A rectangle ABCD and an external point K appear on a square grid.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="70" y="40" width="760" height="440" fill="url(#grid)" stroke="currentColor" stroke-width="4"/>
+       <polygon points="190,300 420,100 650,270 420,450" fill="#0f766e" fill-opacity=".18" stroke="#0f766e" stroke-width="6"/>
+       <circle cx="760" cy="280" r="8" fill="#16a34a"/>
+       <g fill="currentColor" font-family="Arial, sans-serif" font-size="28">
+         <text x="150" y="315">A</text><text x="415" y="85">B</text><text x="665" y="275">C</text><text x="410" y="475">D</text><text x="775" y="272">K</text>
+       </g>
+</svg>

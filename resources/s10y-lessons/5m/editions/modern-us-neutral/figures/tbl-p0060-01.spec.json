@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "tbl-p0060-01",
+  "description": "A newly authored meat sales table.",
+  "constraints": [
+    "Quantities and unit prices are preserved.",
+    "Currency is shown in dollars."
+  ]
+}

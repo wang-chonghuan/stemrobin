@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-68",
+  "description": "A newly authored summer-camp coordinate map.",
+  "constraints": [
+    "B is at (5,4).",
+    "C is at (3,6), D at (-4,6), and E at (-2,-5)."
+  ]
+}

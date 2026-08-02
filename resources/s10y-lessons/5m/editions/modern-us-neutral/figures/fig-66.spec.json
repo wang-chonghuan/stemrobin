@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-66",
+  "description": "A newly authored coordinate plane marking M at negative four, negative three.",
+  "constraints": [
+    "M is at (-4, -3).",
+    "Axes are labeled x and y."
+  ]
+}

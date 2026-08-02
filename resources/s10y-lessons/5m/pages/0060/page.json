@@ -1,0 +1,204 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 60,
+    "printed_page": 51,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 60
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "d1a94eb891214bcb280c818d2c6aecaeca33d9027a191a8a8c367fc1ec4e6758"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 19,
+    "figures": [
+      {
+        "id": "tbl-p0060-01",
+        "label": "表",
+        "box": [
+          360,
+          197,
+          856,
+          378
+        ]
+      },
+      {
+        "id": "fig-58",
+        "label": "图 58",
+        "box": [
+          767,
+          1391,
+          578,
+          211
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "fig",
+      "label": "表",
+      "box": [
+        360,
+        197,
+        856,
+        378
+      ],
+      "owner_exercise": "241",
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "tbl-p0060-01"
+    },
+    {
+      "kind": "ex",
+      "label": "242",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "解方程：",
+        "1) $9.5x-(3.2x+1.8x)+3.75=6.9$；",
+        "2) $11.3y-(9.7y-0.8y)+7.4=1.7$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "243",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "在数轴上表示出下列不等式解的集合：",
+        "1) $-2\\leqslant x\\leqslant5$；　　　3) $-6\\leqslant x\\leqslant-1$；",
+        "2) $0\\leqslant x\\leqslant7$；　　　 4) $-1\\leqslant x\\leqslant6$."
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "15. 平移"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "过去我们作平行线是沿直尺移动三角板（图 12）. 这时三",
+        "角板的所有点都向同一个方向移动相同的距离. 图形的这种",
+        "位移就叫做平移."
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "为了给定图形的平移，",
+        "只要知道这个图形的一个点",
+        "移动到哪里就足够了. 假如",
+        "在平移时，点 $A$ 移到点 $A_1$"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 58",
+      "box": [
+        767,
+        1391,
+        578,
+        211
+      ],
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-58"
+    },
+    {
+      "kind": "cap",
+      "label": "图 58",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": true,
+      "lines": [
+        "图 58"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "（图 58）. 要想知道这个图形的 $B$ 点移到哪里，作法如下：联",
+        "结点 $A$ 和点 $A_1$，并且从 $B$ 点作和 $AA_1$ 线段平行的线段 $BB_1$，",
+        "使它与 $AA_1$ 长度相等、方向相同，于是点 $B$ 移到点 $B_1$."
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "当三角板沿直尺移动时，三角板的尺寸不变. 一般说来，"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 51 ·"
+      ]
+    }
+  ]
+}

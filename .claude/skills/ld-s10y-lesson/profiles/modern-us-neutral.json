@@ -1,6 +1,7 @@
 {
   "id": "modern-us-neutral",
   "description": "Contemporary, culturally light US-facing edition for Chinese-language lessons",
+  "figure_text_language": "English",
   "forbidden_terms": [
     "苏联",
     "俄罗斯",
@@ -21,7 +22,12 @@
     "Use fictional or generic institutions and datasets instead of unsourced modern real-world claims.",
     "Replace rubles and kopecks with dollars and cents without changing the underlying values.",
     "Replace Cyrillic enumeration markers with Latin a), b), c), and so on.",
+    "Sort complete numbered subparts such as 1), 2), 3) into ascending order and place every subpart on its own line; remove print-column alignment spaces.",
     "Leave culture-neutral mathematical text unchanged.",
-    "Every published figure must be a newly authored SVG and must not embed raster images."
+    "Draw simple diagrams, charts, tables, and simple objects directly as newly authored SVG.",
+    "Create complex objects such as animals, people, and trees as original semantic SVG illustrations.",
+    "Do not trace source screenshots or assemble figures from external vector-asset websites.",
+    "Every published figure must be a newly authored SVG and must not embed raster images.",
+    "All visible figure labels, titles, and descriptions must be in English; numbers and mathematical symbols are allowed."
   ]
 }

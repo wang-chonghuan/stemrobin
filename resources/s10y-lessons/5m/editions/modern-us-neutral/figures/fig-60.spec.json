@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-60",
+  "description": "A newly authored translation of a circle.",
+  "constraints": [
+    "The two circles have equal radii.",
+    "Center A moves to center A1."
+  ]
+}

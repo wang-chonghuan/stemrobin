@@ -1,0 +1,45 @@
+{
+  "page": 68,
+  "lines_printed": 14,
+  "lines_md": 14,
+  "figures": [
+    {
+      "id": "fig-71",
+      "label": "图 71",
+      "box": [
+        240,
+        371,
+        528,
+        835
+      ],
+      "components": 15,
+      "from": [
+        235,
+        370,
+        530,
+        830
+      ]
+    },
+    {
+      "id": "fig-72",
+      "label": "图 72",
+      "box": [
+        826,
+        368,
+        531,
+        830
+      ],
+      "components": 15,
+      "from": [
+        825,
+        370,
+        530,
+        830
+      ]
+    }
+  ],
+  "normalizations": [],
+  "unknown_chars": [],
+  "katex_warnings": [],
+  "errors": []
+}

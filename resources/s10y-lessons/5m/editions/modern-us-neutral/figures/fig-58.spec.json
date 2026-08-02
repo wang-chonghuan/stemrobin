@@ -1,0 +1,10 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-58",
+  "description": "A newly authored translation of an irregular shape.",
+  "constraints": [
+    "A moves to A1.",
+    "B moves to B1.",
+    "AA1 and BB1 are parallel, equal, and point in the same direction."
+  ]
+}

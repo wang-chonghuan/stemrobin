@@ -120,7 +120,7 @@ function ReciteView() {
         </Link>
       </div>
 
-      <div className="sr-d-scroll">
+      <div className="sr-d-scroll" data-scroll-restoration-id="app-detail">
         <header className="sr-en-head">
           <h1><span className="sr-en-seq">{reading.seq}.</span> {reading.title}</h1>
         </header>

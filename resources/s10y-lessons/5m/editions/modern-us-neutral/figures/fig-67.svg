@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Moves from point O</title>
+  <desc id="desc">A grid shows four destination points relative to O.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="#cbd5e1" stroke-width="1.5"><line x1="70" y1="40" x2="70" y2="480"/><line x1="154.44444444444446" y1="40" x2="154.44444444444446" y2="480"/><line x1="238.88888888888889" y1="40" x2="238.88888888888889" y2="480"/><line x1="323.3333333333333" y1="40" x2="323.3333333333333" y2="480"/><line x1="407.77777777777777" y1="40" x2="407.77777777777777" y2="480"/><line x1="492.22222222222223" y1="40" x2="492.22222222222223" y2="480"/><line x1="576.6666666666666" y1="40" x2="576.6666666666666" y2="480"/><line x1="661.1111111111111" y1="40" x2="661.1111111111111" y2="480"/><line x1="745.5555555555555" y1="40" x2="745.5555555555555" y2="480"/><line x1="830" y1="40" x2="830" y2="480"/><line x1="70" y1="480" x2="830" y2="480"/><line x1="70" y1="425" x2="830" y2="425"/><line x1="70" y1="370" x2="830" y2="370"/><line x1="70" y1="315" x2="830" y2="315"/><line x1="70" y1="260" x2="830" y2="260"/><line x1="70" y1="205" x2="830" y2="205"/><line x1="70" y1="150" x2="830" y2="150"/><line x1="70" y1="95" x2="830" y2="95"/><line x1="70" y1="40" x2="830" y2="40"/></g>
+     <g fill="none" stroke="currentColor" stroke-width="4">
+       <line x1="70" y1="425" x2="838" y2="425" marker-end="url(#arrow)"/>
+       <line x1="238.88888888888889" y1="480" x2="238.88888888888889" y2="32" marker-end="url(#arrow)"/>
+       
+       
+     </g>
+     <g fill="currentColor" font-family="Arial, sans-serif" font-size="22" text-anchor="middle">
+       <text x="855" y="433">x</text>
+       <text x="220.88888888888889" y="35">y</text>
+       <g font-size="15"><text x="70" y="445">-2</text><text x="154.44444444444446" y="445">-1</text><text x="323.3333333333333" y="445">1</text><text x="407.77777777777777" y="445">2</text><text x="492.22222222222223" y="445">3</text><text x="576.6666666666666" y="445">4</text><text x="661.1111111111111" y="445">5</text><text x="745.5555555555555" y="445">6</text><text x="830" y="445">7</text><text x="223.88888888888889" y="486">-1</text><text x="223.88888888888889" y="376">1</text><text x="223.88888888888889" y="321">2</text><text x="223.88888888888889" y="266">3</text><text x="223.88888888888889" y="211">4</text><text x="223.88888888888889" y="156">5</text><text x="223.88888888888889" y="101">6</text><text x="223.88888888888889" y="46">7</text><text x="224.88888888888889" y="445">0</text></g>
+       <circle cx="238.88888888888889" cy="425" r="7" fill="#0f766e"/>
+      <text x="250.88888888888889" y="413" fill="#0f766e">O</text><circle cx="492.22222222222223" cy="150" r="7" fill="#0f766e"/>
+      <text x="504.22222222222223" y="138" fill="#0f766e">M</text><circle cx="576.6666666666666" cy="370" r="7" fill="#0f766e"/>
+      <text x="588.6666666666666" y="358" fill="#0f766e">K</text><circle cx="323.3333333333333" cy="260" r="7" fill="#0f766e"/>
+      <text x="335.3333333333333" y="248" fill="#0f766e">P</text><circle cx="661.1111111111111" cy="205" r="7" fill="#0f766e"/>
+      <text x="673.1111111111111" y="193" fill="#0f766e">N</text>
+     </g>
+</svg>

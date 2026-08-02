@@ -1,0 +1,154 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 70,
+    "printed_page": 61,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 70
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "d97260ebdbb58eb1ba5a55ab10a6f32b92523addeedf5763c90913e03d8bf435"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 23,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "278",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "把下列各数化成小数后，求各式的值：",
+        "1) $12\\frac{3}{4}-2\\frac{7}{8}\\cdot1\\frac{1}{2}$；　3) $25\\frac{5}{8}-3\\frac{1}{4}\\cdot2\\frac{2}{5}$；",
+        "2) $\\left(17\\frac{19}{20}-8\\frac{47}{50}\\right):\\frac{1}{4}$；　4) $\\left(2\\frac{23}{40}+6\\frac{13}{20}\\right):2\\frac{1}{2}$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "279",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1) $(28.376+35.99:5.9-3.45\\cdot2.8):3.52$；",
+        "2) $(6.4\\cdot8.25-32.396+35.51:5.3):4.48$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "280",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "少先队员进行军事游戏“找情报”. 开始时全中队位于 $O$",
+        "点（参看图 68）. 然后第一小队到坐标为 5 和 1 的点去，",
+        "第二小队到点 $(-2,4)$ 去，第三小队去点 $(1,-3)$. 各小",
+        "队在这些点留下通信筒. 找出留下通信筒的各点."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "281",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作折线 $ABCDE$ 和 $MNK$，其顶点坐标为：",
+        "$A(-6,2),B(-4,6),C(1,1),D(2,-5)$，",
+        "$E(8,-1)$ 和 $M(-5,-5),N(-1,7),K(8,4)$.",
+        "求出折线 $ABCDE$ 和 $MNK$ 的交点坐标."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "282",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作顶点坐标为：$A(-8,6),B(6,5),C(1,-3),D(-7,1)$",
+        "的四边形 $ABCD$. 求出线段 $AC$ 和 $BD$ 的交点坐标."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "283",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "买 4 公斤糖果和 3 公斤饼干共付 12 卢布 20 戈比. 买 2",
+        "公斤同样糖果和 3 公斤同样饼干付 8 卢布 20 戈比. 1",
+        "公斤饼干要多少钱？"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "284",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "一长方形周长 84 分米. 它的宽比长短 6 分米. 求这个",
+        "长方形的边长和面积."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 61 ·"
+      ]
+    }
+  ]
+}

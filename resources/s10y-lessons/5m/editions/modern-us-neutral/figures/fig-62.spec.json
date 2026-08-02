@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-62",
+  "description": "A newly authored grid with rectangle ABCD and point K.",
+  "constraints": [
+    "The rectangle keeps its size and orientation.",
+    "Point K is outside the rectangle."
+  ]
+}

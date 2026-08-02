@@ -1,0 +1,279 @@
+{
+  "id": "math5-c1-s2-n14",
+  "card_id": "math5-c1-s2-n14",
+  "chapter": "第一章　正数和负数",
+  "section": "§ 2. 方向和数",
+  "number": "14",
+  "title": "比较数的大小",
+  "printed_title": "14. 比较数的大小",
+  "start_page": 55,
+  "start_printed": 46,
+  "figures": [
+    {
+      "id": "fig-55",
+      "label": "图 55",
+      "page": 55
+    },
+    {
+      "id": "fig-56",
+      "label": "图 56",
+      "page": 55
+    },
+    {
+      "id": "fig-57",
+      "label": "图 57",
+      "page": 56
+    },
+    {
+      "id": "tbl-p0056-02",
+      "label": "表",
+      "page": 56
+    },
+    {
+      "id": "tbl-p0057-01",
+      "label": "表",
+      "page": 57
+    },
+    {
+      "id": "tbl-p0058-01",
+      "label": "表",
+      "page": 58
+    },
+    {
+      "id": "tbl-p0060-01",
+      "label": "表",
+      "page": 60
+    }
+  ],
+  "exercise_count": 24,
+  "prose": [
+    {
+      "kind": "p",
+      "text": "昨天室内温度计的读数是 $18^\\circ\\mathrm{C}$，今天的读数是 $21^\\circ\\mathrm{C}$. 昨天比今天稍冷. 18 小于 21，可以写成 $18<21$. 在数轴上，点$A(18)$ 位于点 $B(21)$ 的左边.",
+      "id": null,
+      "label": null,
+      "printed_page": 46,
+      "source_text": "昨天室内温度计的读数是 $18^\\circ\\mathrm{C}$，今天的读数是 $21^\\circ\\mathrm{C}$. 昨天比今天稍冷. 18 小于 21，可以写成 $18<21$. 在数轴上，点$A(18)$ 位于点 $B(21)$ 的左边.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "昨天室外的温度计的读数是 $-15^\\circ\\mathrm{C}$，而今天的读数是$-9^\\circ\\mathrm{C}$. 昨天比今天冷一些. 所以认为，$-15$ 小于 $-9$. 在数轴上，点 $A(-15)$ 位于点 $B(-9)$ 的左边（图 55）. 可以写成$-15<-9$.在两个数中，在数轴上位于左边的数较小，位于右边的数较大. 例如 $-7.5<3$，因为 $A(-7.5)$ 位于 $B(3)$ 的左边；$5>-41$，因为 $C(5)$ 位于 $D(-41)$ 的右边.",
+      "id": null,
+      "label": null,
+      "printed_page": 46,
+      "source_text": "昨天室外的温度计的读数是 $-15^\\circ\\mathrm{C}$，而今天的读数是$-9^\\circ\\mathrm{C}$. 昨天比今天冷一些. 所以认为，$-15$ 小于 $-9$. 在数轴上，点 $A(-15)$ 位于点 $B(-9)$ 的左边（图 55）. 可以写成$-15<-9$.在两个数中，在数轴上位于左边的数较小，位于右边的数较大. 例如 $-7.5<3$，因为 $A(-7.5)$ 位于 $B(3)$ 的左边；$5>-41$，因为 $C(5)$ 位于 $D(-41)$ 的右边.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-55",
+      "label": "图 55",
+      "printed_page": 46,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 55",
+      "id": null,
+      "label": "图 55",
+      "printed_page": 46,
+      "source_text": "图 55",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "在数轴上，正数都在零的右边，负数在零的左边. 就是说任何正数都大于零，而任何负数都小于零. 所以任何负数都小于任何正数（图 56）.假如在数轴上表示两个负数，那么左边的数绝对值较大.所以在两个负数中，绝对值大的数较小，而绝对值小的数较大（图 56）.",
+      "id": null,
+      "label": null,
+      "printed_page": 46,
+      "source_text": "在数轴上，正数都在零的右边，负数在零的左边. 就是说任何正数都大于零，而任何负数都小于零. 所以任何负数都小于任何正数（图 56）.假如在数轴上表示两个负数，那么左边的数绝对值较大.所以在两个负数中，绝对值大的数较小，而绝对值小的数较大（图 56）.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-56",
+      "label": "图 56",
+      "printed_page": 46,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 56",
+      "id": null,
+      "label": "图 56",
+      "printed_page": 46,
+      "source_text": "图 56",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "p",
+      "text": "在数轴上取端点坐标为 $-4$ 和$1$ 的线段（图 57）. 这个线段上所有点的坐标都满足不等式 $-4\\leqslant x\\leqslant1$.这个不等式没有其它解. 就是说，这个线段表示不等式$-4\\leqslant x\\leqslant1$ 解的集合. 这个解的集合表示为 $[-4,1]$.",
+      "id": null,
+      "label": null,
+      "printed_page": 47,
+      "source_text": "在数轴上取端点坐标为 $-4$ 和$1$ 的线段（图 57）. 这个线段上所有点的坐标都满足不等式 $-4\\leqslant x\\leqslant1$.这个不等式没有其它解. 就是说，这个线段表示不等式$-4\\leqslant x\\leqslant1$ 解的集合. 这个解的集合表示为 $[-4,1]$.",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "fig",
+      "text": "",
+      "id": "fig-57",
+      "label": "图 57",
+      "printed_page": 47,
+      "source_text": "",
+      "changes": [],
+      "numeric_changes": []
+    },
+    {
+      "kind": "cap",
+      "text": "图 57",
+      "id": null,
+      "label": "图 57",
+      "printed_page": 47,
+      "source_text": "图 57",
+      "changes": [],
+      "numeric_changes": []
+    }
+  ],
+  "schema": "ld-s10y-lesson/edition-lesson@1",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "source": {
+    "path": "lessons/math5-c1-s2-n14/lesson.json",
+    "sha256": "229d1702ea2bdbf50c672fdb29a6bc3f69e568e3da545491f6aad268f98333b6",
+    "data": {
+      "id": "math5-c1-s2-n14",
+      "card_id": "math5-c1-s2-n14",
+      "chapter": "第一章　正数和负数",
+      "section": "§ 2. 方向和数",
+      "number": "14",
+      "title": "比较数的大小",
+      "printed_title": "14. 比较数的大小",
+      "start_page": 55,
+      "start_printed": 46,
+      "figures": [
+        {
+          "id": "fig-55",
+          "label": "图 55",
+          "page": 55
+        },
+        {
+          "id": "fig-56",
+          "label": "图 56",
+          "page": 55
+        },
+        {
+          "id": "fig-57",
+          "label": "图 57",
+          "page": 56
+        },
+        {
+          "id": "tbl-p0056-02",
+          "label": "表",
+          "page": 56
+        },
+        {
+          "id": "tbl-p0057-01",
+          "label": "表",
+          "page": 57
+        },
+        {
+          "id": "tbl-p0058-01",
+          "label": "表",
+          "page": 58
+        },
+        {
+          "id": "tbl-p0060-01",
+          "label": "表",
+          "page": 60
+        }
+      ],
+      "exercise_count": 24,
+      "prose": [
+        {
+          "kind": "p",
+          "text": "昨天室内温度计的读数是 $18^\\circ\\mathrm{C}$，今天的读数是 $21^\\circ\\mathrm{C}$. 昨天比今天稍冷. 18 小于 21，可以写成 $18<21$. 在数轴上，点$A(18)$ 位于点 $B(21)$ 的左边.",
+          "id": null,
+          "label": null,
+          "printed_page": 46
+        },
+        {
+          "kind": "p",
+          "text": "昨天室外的温度计的读数是 $-15^\\circ\\mathrm{C}$，而今天的读数是$-9^\\circ\\mathrm{C}$. 昨天比今天冷一些. 所以认为，$-15$ 小于 $-9$. 在数轴上，点 $A(-15)$ 位于点 $B(-9)$ 的左边（图 55）. 可以写成$-15<-9$.在两个数中，在数轴上位于左边的数较小，位于右边的数较大. 例如 $-7.5<3$，因为 $A(-7.5)$ 位于 $B(3)$ 的左边；$5>-41$，因为 $C(5)$ 位于 $D(-41)$ 的右边.",
+          "id": null,
+          "label": null,
+          "printed_page": 46
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-55",
+          "label": "图 55",
+          "printed_page": 46
+        },
+        {
+          "kind": "cap",
+          "text": "图 55",
+          "id": null,
+          "label": "图 55",
+          "printed_page": 46
+        },
+        {
+          "kind": "p",
+          "text": "在数轴上，正数都在零的右边，负数在零的左边. 就是说任何正数都大于零，而任何负数都小于零. 所以任何负数都小于任何正数（图 56）.假如在数轴上表示两个负数，那么左边的数绝对值较大.所以在两个负数中，绝对值大的数较小，而绝对值小的数较大（图 56）.",
+          "id": null,
+          "label": null,
+          "printed_page": 46
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-56",
+          "label": "图 56",
+          "printed_page": 46
+        },
+        {
+          "kind": "cap",
+          "text": "图 56",
+          "id": null,
+          "label": "图 56",
+          "printed_page": 46
+        },
+        {
+          "kind": "p",
+          "text": "在数轴上取端点坐标为 $-4$ 和$1$ 的线段（图 57）. 这个线段上所有点的坐标都满足不等式 $-4\\leqslant x\\leqslant1$.这个不等式没有其它解. 就是说，这个线段表示不等式$-4\\leqslant x\\leqslant1$ 解的集合. 这个解的集合表示为 $[-4,1]$.",
+          "id": null,
+          "label": null,
+          "printed_page": 47
+        },
+        {
+          "kind": "fig",
+          "text": "",
+          "id": "fig-57",
+          "label": "图 57",
+          "printed_page": 47
+        },
+        {
+          "kind": "cap",
+          "text": "图 57",
+          "id": null,
+          "label": "图 57",
+          "printed_page": 47
+        }
+      ]
+    }
+  }
+}

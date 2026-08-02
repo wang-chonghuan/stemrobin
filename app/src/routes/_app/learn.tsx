@@ -79,7 +79,7 @@ function Learn() {
         <span className="sr-d-title">{t(locale, 'ov.title')}</span>
       </div>
 
-      <div className="sr-d-scroll">
+      <div className="sr-d-scroll" data-scroll-restoration-id="app-detail">
         {/* Coverage, a rate, and a state — different kinds of number, which is
             why each carries its own denominator rather than a bare percentage. */}
         <section className="sr-stats">

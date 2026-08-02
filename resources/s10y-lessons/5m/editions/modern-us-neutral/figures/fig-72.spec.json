@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-72",
+  "description": "A newly authored increasing S-shaped curve on a coordinate plane.",
+  "constraints": [
+    "The curve spans negative and positive x and y values.",
+    "It is smooth and monotone increasing."
+  ]
+}

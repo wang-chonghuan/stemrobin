@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Closed interval</title>
+  <desc id="desc">The shaded segment represents all x from negative four through one.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g font-family="Arial, sans-serif" font-size="28" text-anchor="middle" fill="currentColor">
+      <line x1="244.44444444444443" y1="230" x2="655.5555555555555" y2="230" stroke="#16a34a" stroke-width="16" stroke-linecap="round" opacity=".45"/>
+       <circle cx="244.44444444444443" cy="230" r="10" fill="white" stroke="#0f766e" stroke-width="5"/>
+       <circle cx="655.5555555555555" cy="230" r="10" fill="white" stroke="#0f766e" stroke-width="5"/>
+       <text x="450" y="150" fill="#166534">-4 ≤ x ≤ 1</text>
+      <line x1="60" y1="230" x2="842" y2="230" stroke="currentColor" stroke-width="5" marker-end="url(#arrow)"/>
+      <line x1="244.44444444444443" y1="230" x2="244.44444444444443" y2="258"/>
+      <text x="244.44444444444443" y="292">-4</text>
+<line x1="573.3333333333333" y1="230" x2="573.3333333333333" y2="258"/>
+      <text x="573.3333333333333" y="292">0</text>
+<line x1="655.5555555555555" y1="230" x2="655.5555555555555" y2="258"/>
+      <text x="655.5555555555555" y="292">1</text>
+      
+    </g>
+</svg>

@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-65",
+  "description": "A newly authored city-block grid locating O, M, and C.",
+  "constraints": [
+    "M is two blocks right and three blocks up from O.",
+    "C is two blocks left and one block down from O."
+  ]
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 418" role="img" aria-labelledby="title desc">
+  <title id="title">City elevations</title>
+  <desc id="desc">Six fictional cities and their elevations in meters.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g fill="none" stroke="currentColor" stroke-width="3"><line x1="70" y1="45" x2="70" y2="373"/><line x1="300" y1="45" x2="300" y2="373"/><line x1="450" y1="45" x2="450" y2="373"/><line x1="680" y1="45" x2="680" y2="373"/><line x1="830" y1="45" x2="830" y2="373"/><line x1="70" y1="45" x2="830" y2="45"/><line x1="70" y1="127" x2="830" y2="127"/><line x1="70" y1="209" x2="830" y2="209"/><line x1="70" y1="291" x2="830" y2="291"/><line x1="70" y1="373" x2="830" y2="373"/></g>
+     <g fill="currentColor" font-family="Arial, sans-serif" font-size="24" text-anchor="middle"><text x="185" y="95">City</text><text x="375" y="95">Elevation</text><text x="565" y="95">City</text><text x="755" y="95">Elevation</text><text x="185" y="177">Harbor City</text><text x="375" y="177">150 m</text><text x="565" y="177">Mesa City</text><text x="755" y="177">1100 m</text><text x="185" y="259">Lake City</text><text x="375" y="259">5 m</text><text x="565" y="259">Summit City</text><text x="755" y="259">2280 m</text><text x="185" y="341">Valley City</text><text x="375" y="341">-25 m</text><text x="565" y="341">River City</text><text x="755" y="341">130 m</text></g>
+</svg>

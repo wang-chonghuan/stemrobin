@@ -1,0 +1,797 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n14",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "220",
+      "grading": "ungraded",
+      "displayAnswer": "数轴上依次标出 0、1、3、-5、8、-7、-2、-10、-3。比较结果：1) 0<3；2) 0>-5；3) 8>0；4) -7<0；5) -2<3；6) -7<1；7) 1>-10；8) 3>-3；9) 1<8；10) -5<-3；11) -5>-10；12) -2>-5。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "221",
+      "grading": "auto",
+      "displayAnswer": "12月1日和6日海港城较高；11日、16日和21日山景城较高；26日海港城较高。",
+      "parts": [
+        {
+          "label": "12月1日",
+          "judge": "exact",
+          "expected": [
+            "海港城"
+          ]
+        },
+        {
+          "label": "12月6日",
+          "judge": "exact",
+          "expected": [
+            "海港城"
+          ]
+        },
+        {
+          "label": "12月11日",
+          "judge": "exact",
+          "expected": [
+            "山景城"
+          ]
+        },
+        {
+          "label": "12月16日",
+          "judge": "exact",
+          "expected": [
+            "山景城"
+          ]
+        },
+        {
+          "label": "12月21日",
+          "judge": "exact",
+          "expected": [
+            "山景城"
+          ]
+        },
+        {
+          "label": "12月26日",
+          "judge": "exact",
+          "expected": [
+            "海港城"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "222",
+      "grading": "auto",
+      "displayAnswer": "1) <；2) <；3) >；4) >；5) <；6) <。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "5)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "6)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "223",
+      "grading": "ungraded",
+      "displayAnswer": "在数轴上分别画出闭区间 [-3,2]、[-4,6]、[-3.5,4]、[-0.5,7.5]，各端点都用实心点表示。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "224",
+      "grading": "auto",
+      "displayAnswer": "递增：Valley City、Lake City、River City、Harbor City、Mesa City、Summit City。递减顺序相反。",
+      "parts": [
+        {
+          "label": "递增第1个",
+          "judge": "exact",
+          "expected": [
+            "Valley City"
+          ]
+        },
+        {
+          "label": "递增第2个",
+          "judge": "exact",
+          "expected": [
+            "Lake City"
+          ]
+        },
+        {
+          "label": "递增第3个",
+          "judge": "exact",
+          "expected": [
+            "River City"
+          ]
+        },
+        {
+          "label": "递增第4个",
+          "judge": "exact",
+          "expected": [
+            "Harbor City"
+          ]
+        },
+        {
+          "label": "递增第5个",
+          "judge": "exact",
+          "expected": [
+            "Mesa City"
+          ]
+        },
+        {
+          "label": "递增第6个",
+          "judge": "exact",
+          "expected": [
+            "Summit City"
+          ]
+        },
+        {
+          "label": "递减第1个",
+          "judge": "exact",
+          "expected": [
+            "Summit City"
+          ]
+        },
+        {
+          "label": "递减第2个",
+          "judge": "exact",
+          "expected": [
+            "Mesa City"
+          ]
+        },
+        {
+          "label": "递减第3个",
+          "judge": "exact",
+          "expected": [
+            "Harbor City"
+          ]
+        },
+        {
+          "label": "递减第4个",
+          "judge": "exact",
+          "expected": [
+            "River City"
+          ]
+        },
+        {
+          "label": "递减第5个",
+          "judge": "exact",
+          "expected": [
+            "Lake City"
+          ]
+        },
+        {
+          "label": "递减第6个",
+          "judge": "exact",
+          "expected": [
+            "Valley City"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "225",
+      "grading": "auto",
+      "displayAnswer": "1) -3<-2.73<-2；2) -10<-9.5<-9；3) -1<-0.63<0；4) 0<0.87<1。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "-3<-2.73<-2"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "-10<-9.5<-9"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "-1<-0.63<0"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            "0<0.87<1"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "226",
+      "grading": "auto",
+      "displayAnswer": "1) <；2) >；3) <；4) >；5) >；6) <；7) >；8) <。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "5)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "6)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "7)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "8)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "227",
+      "grading": "auto",
+      "displayAnswer": "1) 当 x<0 时，-x 是正数；2) 当 x>0 时，-x 是负数。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "正数"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "负数"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "228",
+      "grading": "auto",
+      "displayAnswer": "1) -4.3<0；2) 27.1>0；3) a<0；4) b>0。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "-4.3<0"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "27.1>0"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "a<0"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            "b>0"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "229",
+      "grading": "auto",
+      "displayAnswer": "两者相距 7 个单位；松鼠离树洞更远。",
+      "parts": [
+        {
+          "label": "距离",
+          "judge": "numeric",
+          "expected": [
+            "7"
+          ],
+          "unit": "个单位"
+        },
+        {
+          "label": "离树洞更远的动物",
+          "judge": "exact",
+          "expected": [
+            "松鼠"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "230",
+      "grading": "auto",
+      "displayAnswer": "1) 11.3；2) 62.1。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "11.3"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "62.1"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "231",
+      "grading": "ungraded",
+      "displayAnswer": "以 K 为中心把三角形 ABM 旋转 180°，得到对称三角形 ABM'。两个三角形的交集是线段 AB，并集是以 A、M、B、M' 为顶点的菱形。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "232",
+      "grading": "auto",
+      "displayAnswer": "1) s=130t，2小时45分钟行驶357.5公里；2) s=60t，60小时行驶3600公里。",
+      "parts": [
+        {
+          "label": "1) 路程公式",
+          "judge": "expression",
+          "expected": [
+            "130t"
+          ]
+        },
+        {
+          "label": "1) 2小时45分钟的路程",
+          "judge": "numeric",
+          "expected": [
+            "357.5"
+          ],
+          "unit": "公里"
+        },
+        {
+          "label": "2) 路程公式",
+          "judge": "expression",
+          "expected": [
+            "60t"
+          ]
+        },
+        {
+          "label": "2) 60小时的路程",
+          "judge": "numeric",
+          "expected": [
+            "3600"
+          ],
+          "unit": "公里"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "233",
+      "grading": "auto",
+      "displayAnswer": "平均每年增加 2823 件。",
+      "parts": [
+        {
+          "label": "平均每年增加量",
+          "judge": "numeric",
+          "expected": [
+            "2823"
+          ],
+          "unit": "件"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "234",
+      "grading": "auto",
+      "displayAnswer": "1) x=68.75；2) y=46.6。",
+      "parts": [
+        {
+          "label": "1) x",
+          "judge": "numeric",
+          "expected": [
+            "68.75"
+          ]
+        },
+        {
+          "label": "2) y",
+          "judge": "numeric",
+          "expected": [
+            "46.6"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 68.75；2) 46.6"
+    },
+    {
+      "exercise": "235",
+      "grading": "auto",
+      "displayAnswer": "1) 101.05；2) 181.99。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "101.05"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "181.99"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 101.05；2) 181.99"
+    },
+    {
+      "exercise": "236",
+      "grading": "auto",
+      "displayAnswer": "1) >；2) <；3) >；4) <；5) <；6) >。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "5)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "6)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "237",
+      "grading": "auto",
+      "displayAnswer": "1) 0；2) 0；3) 0或1；4) 0。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "numeric",
+          "expected": [
+            "0",
+            "1"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "238",
+      "grading": "auto",
+      "displayAnswer": "递增：-3.7、-1.6、-1.1、0、0.1、0.5、2.8；递减顺序相反。",
+      "parts": [
+        {
+          "label": "递增第1个",
+          "judge": "numeric",
+          "expected": [
+            "-3.7"
+          ]
+        },
+        {
+          "label": "递增第2个",
+          "judge": "numeric",
+          "expected": [
+            "-1.6"
+          ]
+        },
+        {
+          "label": "递增第3个",
+          "judge": "numeric",
+          "expected": [
+            "-1.1"
+          ]
+        },
+        {
+          "label": "递增第4个",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "递增第5个",
+          "judge": "numeric",
+          "expected": [
+            "0.1"
+          ]
+        },
+        {
+          "label": "递增第6个",
+          "judge": "numeric",
+          "expected": [
+            "0.5"
+          ]
+        },
+        {
+          "label": "递增第7个",
+          "judge": "numeric",
+          "expected": [
+            "2.8"
+          ]
+        },
+        {
+          "label": "递减第1个",
+          "judge": "numeric",
+          "expected": [
+            "2.8"
+          ]
+        },
+        {
+          "label": "递减第2个",
+          "judge": "numeric",
+          "expected": [
+            "0.5"
+          ]
+        },
+        {
+          "label": "递减第3个",
+          "judge": "numeric",
+          "expected": [
+            "0.1"
+          ]
+        },
+        {
+          "label": "递减第4个",
+          "judge": "numeric",
+          "expected": [
+            "0"
+          ]
+        },
+        {
+          "label": "递减第5个",
+          "judge": "numeric",
+          "expected": [
+            "-1.1"
+          ]
+        },
+        {
+          "label": "递减第6个",
+          "judge": "numeric",
+          "expected": [
+            "-1.6"
+          ]
+        },
+        {
+          "label": "递减第7个",
+          "judge": "numeric",
+          "expected": [
+            "-3.7"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "239",
+      "grading": "auto",
+      "displayAnswer": "衬衫价格为 5.50 美元。",
+      "parts": [
+        {
+          "label": "衬衫价格",
+          "judge": "numeric",
+          "expected": [
+            "5.5"
+          ],
+          "unit": "美元"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "240",
+      "grading": "auto",
+      "displayAnswer": "有 10 节油槽车。",
+      "parts": [
+        {
+          "label": "油槽车数量",
+          "judge": "numeric",
+          "expected": [
+            "10"
+          ],
+          "unit": "节"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "241",
+      "grading": "auto",
+      "displayAnswer": "营业日售肉总金额为 2831 美元。",
+      "parts": [
+        {
+          "label": "总金额",
+          "judge": "numeric",
+          "expected": [
+            "2831"
+          ],
+          "unit": "美元"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "242",
+      "grading": "auto",
+      "displayAnswer": "1) x=0.7；2) y=4。",
+      "parts": [
+        {
+          "label": "1) x",
+          "judge": "numeric",
+          "expected": [
+            "0.7"
+          ]
+        },
+        {
+          "label": "2) y",
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 0.7；2) 4"
+    },
+    {
+      "exercise": "243",
+      "grading": "ungraded",
+      "displayAnswer": "在数轴上分别画出闭区间 [-2,5]、[0,7]、[-6,-1]、[-1,6]，各端点都用实心点表示。",
+      "parts": [],
+      "source": "derived"
+    }
+  ],
+  "count": 24
+}

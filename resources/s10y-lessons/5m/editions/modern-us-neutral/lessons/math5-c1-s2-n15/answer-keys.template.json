@@ -1,0 +1,156 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n15",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "244",
+      "prompt": "作长 4 厘米的线段 $AB$，在线段外取点 $C_1$. 平移线段$AB$，使其中点 $C$ 移到点 $C_1$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "245",
+      "prompt": "作边长 4 厘米的正方形 $ABCD$，并且在这个正方形外取点 $A_1$. 平移正方形，使点 $A$ 移到点 $A_1$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "246",
+      "prompt": "图 62 中画有长方形 $ABCD$ 和点 $K$. 平移这个长方形，使点 $A$ 与点 $K$ 重合. 平移同一长方形，使点 $C$ 与点 $K$重合.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "247",
+      "prompt": "图 63 中哪些图形是由另一个图形平移得来的？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "248",
+      "prompt": "图 64 中画有三角形 $ABC$. 在自己的练习本上作同样的三角形并且使它向下平移七个格. 再把所得的三角形向右移 4 个格.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "249",
+      "prompt": "假设松鼠在树上停留点的坐标为 $x$，而啄木鸟落的点的坐标为 $y$. 如果：\n1) $x=2.4,\\ y=6.1$；\n2) $x=3,\\ y=-4$；\n3) $x=-3,\\ y=4$；\n4) $x=-3,\\ y=-6$，哪一个停留的位置更高些？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "250",
+      "prompt": "比较下列各数的大小：\n1) $0$ 和 $-800$；\n2) $-68$ 和 $0$；\n3) $-39$ 和 $201$；\n4) $59$ 和 $-80$；\n5) $-45$ 和 $-20$；\n6) $-2$ 和 $-30$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "251",
+      "prompt": "下列每两个数之间包括哪些整数：\n1) $-8.8$ 和 $3.85$；\n2) $-3.11$ 和 $3.11$；\n3) $-9.2$ 和 $4.73$；\n4) $-3.22$ 和 $3.22$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "252",
+      "prompt": "在数轴上标出下列不等式解的集合：\n1) $-3.2\\leqslant y\\leqslant5.5$；\n2) $-9.8\\leqslant y\\leqslant-4.8$；\n3) $x\\geqslant-3$；\n4) $x\\leqslant5$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "253",
+      "prompt": "解应用题：\n1) 一旅行者乘汽艇逆流航行 3 小时，返回时乘木筏. 如 果汽艇的速度是 24 公里/小时，河水流速为 3 公里 /小时，那么旅行者返回途中用了多少时间？\n2) 旅行者乘木筏在 25 小时内顺流航行 75 公里. 返回 时乘汽艇，汽艇的速度为 28 公里/小时. 旅行者在 返回途中用了多少时间？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 21 小时；2) 3 小时"
+    },
+    {
+      "exercise": "254",
+      "prompt": "2024 年某地区生产了 98 亿 2500 万平方米各种织物. 该地区每人平均有几平方米织物（人口按 2 亿 5 千万计）？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "255",
+      "prompt": "社区农场为灌溉面积为 2.7 公顷的菜园，安装了喷灌装置. 为了代替 5 毫米的降水，喷灌装置应给水多少？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "256",
+      "prompt": "解方程：\n1) $97.5\\cdot(a-45.9)=126.75$；\n2) $(309.01-b):6.05=0.6$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 47.2；2) 305.38"
+    },
+    {
+      "exercise": "257",
+      "prompt": "设 $|AB|=|BC|=5$ 厘米，$|AC|=3$ 厘米，作三角形$ABC$. 平移三角形，使顶点 $B$ 移到顶点 $C$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "258",
+      "prompt": "作正方形 $ABCD$ 和它的两条对角线. 在正方形外取点$M$. 平移这个正方形，使对角线交点 $O$ 移到点 $M$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "259",
+      "prompt": "供应站有西瓜 16 吨. 早晨从供应站运出 6 吨西瓜，以后又运出 4 吨，晚上供应站又运进 12 吨西瓜. 在数轴上表示出这些变化.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "260",
+      "prompt": "某基金第三阶段的收入是 11 780 亿美元. 这是第二阶段收入的 142%，是第一阶段的 213%. 求第一阶段和第二阶段的收入（结果保留到十亿）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "261",
+      "prompt": "计算：\n1) $87\\cdot(5769-5632)+16\\,317:(4401-4068)$；\n2) $26\\,752:(2724-2306)+62\\cdot(7762-7345)$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 11 968；2) 25 918"
+    }
+  ]
+}

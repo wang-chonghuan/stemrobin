@@ -126,11 +126,9 @@ function CardPage() {
     document.fonts?.ready.then(park).catch(() => {})
   }, [cardId])
 
-  // A new card starts at its 課文, and at the top — otherwise a learner who was
-  // on the exercises tab lands part-way into the next card's problems.
+  // A new card starts at its 課文 rather than inheriting the previous card's tab.
   useEffect(() => {
     setTab('read')
-    document.querySelector('.sr-d-scroll')?.scrollTo({ top: 0 })
   }, [cardId])
 
   const top = (title: string) => (
@@ -152,7 +150,7 @@ function CardPage() {
     return (
       <main className="sr-detail">
         {top(t(locale, 'deck.missing'))}
-        <div className="sr-d-scroll">
+        <div className="sr-d-scroll" data-scroll-restoration-id="app-detail">
           <p className="sr-note">{t(locale, 'deck.missing')}</p>
         </div>
       </main>
@@ -165,7 +163,7 @@ function CardPage() {
   return (
     <main className="sr-detail">
       {top(card.trail[card.trail.length - 1])}
-      <div className="sr-d-scroll">
+      <div className="sr-d-scroll" data-scroll-restoration-id="app-detail">
         <article className="sr-deck">
           <nav
             className="sr-deck-where"

@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-63",
+  "description": "A newly authored comparison of translated and non-translated shape pairs.",
+  "constraints": [
+    "Squares, triangles, and circles keep orientation when translated.",
+    "The crescent pair changes orientation and is not a translation."
+  ]
+}

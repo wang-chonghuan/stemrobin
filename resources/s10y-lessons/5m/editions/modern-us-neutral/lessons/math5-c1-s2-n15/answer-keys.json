@@ -1,0 +1,322 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n15",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "244",
+      "grading": "ungraded",
+      "displayAnswer": "连接 C 与 C₁，按向量 CC₁ 平移线段 AB；平移后的中点应与 C₁ 重合，线段长度仍为4厘米且方向不变。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "245",
+      "grading": "ungraded",
+      "displayAnswer": "按向量 AA₁ 平移正方形 ABCD；所得正方形的对应顶点 A' 与 A₁ 重合，边长仍为4厘米，各边方向不变。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "246",
+      "grading": "ungraded",
+      "displayAnswer": "第一次按向量 AK 平移长方形，第二次按向量 CK 平移同一个长方形；两次所得图形都与原长方形全等且对应边平行。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "247",
+      "grading": "auto",
+      "displayAnswer": "正方形、三角形和圆形的两图互为平移；月牙形不是平移。",
+      "parts": [
+        {
+          "label": "正方形",
+          "judge": "exact",
+          "expected": [
+            "是"
+          ]
+        },
+        {
+          "label": "月牙形",
+          "judge": "exact",
+          "expected": [
+            "否"
+          ]
+        },
+        {
+          "label": "三角形",
+          "judge": "exact",
+          "expected": [
+            "是"
+          ]
+        },
+        {
+          "label": "圆形",
+          "judge": "exact",
+          "expected": [
+            "是"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "248",
+      "grading": "ungraded",
+      "displayAnswer": "先把 A、B、C 三个顶点各向下移动7格，再各向右移动4格并依次连接；合成平移向量为“右4格、下7格”。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "249",
+      "grading": "auto",
+      "displayAnswer": "1) 啄木鸟；2) 松鼠；3) 啄木鸟；4) 松鼠。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            "啄木鸟"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "松鼠"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "啄木鸟"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            "松鼠"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "250",
+      "grading": "auto",
+      "displayAnswer": "1) >；2) <；3) <；4) >；5) <；6) >。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "3)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "4)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        },
+        {
+          "label": "5)",
+          "judge": "exact",
+          "expected": [
+            "<"
+          ]
+        },
+        {
+          "label": "6)",
+          "judge": "exact",
+          "expected": [
+            ">"
+          ]
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "251",
+      "grading": "ungraded",
+      "displayAnswer": "1) -8，-7，-6，-5，-4，-3，-2，-1，0，1，2，3；2) -3，-2，-1，0，1，2，3；3) -9，-8，-7，-6，-5，-4，-3，-2，-1，0，1，2，3，4；4) -3，-2，-1，0，1，2，3。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "252",
+      "grading": "ungraded",
+      "displayAnswer": "1) 闭区间 [-3.2,5.5]；2) 闭区间 [-9.8,-4.8]；3) 从 -3 起向右的射线，含 -3；4) 到 5 为止向左的射线，含 5。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "253",
+      "grading": "auto",
+      "displayAnswer": "1) 21小时；2) 3小时。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "21"
+          ],
+          "unit": "小时"
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ],
+          "unit": "小时"
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 21 小时；2) 3 小时"
+    },
+    {
+      "exercise": "254",
+      "grading": "auto",
+      "displayAnswer": "平均每人 39.3 平方米。",
+      "parts": [
+        {
+          "label": "人均织物面积",
+          "judge": "numeric",
+          "expected": [
+            "39.3"
+          ],
+          "unit": "平方米"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "255",
+      "grading": "auto",
+      "displayAnswer": "需要给水 135 立方米。",
+      "parts": [
+        {
+          "label": "给水量",
+          "judge": "numeric",
+          "expected": [
+            "135"
+          ],
+          "unit": "立方米"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "256",
+      "grading": "auto",
+      "displayAnswer": "1) a=47.2；2) b=305.38。",
+      "parts": [
+        {
+          "label": "1) a",
+          "judge": "numeric",
+          "expected": [
+            "47.2"
+          ]
+        },
+        {
+          "label": "2) b",
+          "judge": "numeric",
+          "expected": [
+            "305.38"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 47.2；2) 305.38"
+    },
+    {
+      "exercise": "257",
+      "grading": "ungraded",
+      "displayAnswer": "先按三边5厘米、5厘米、3厘米作三角形 ABC，再按向量 BC 平移三个顶点；平移后的 B' 与 C 重合，所得三角形与原三角形全等。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "258",
+      "grading": "ungraded",
+      "displayAnswer": "作出正方形及两条对角线，交点为 O；再按向量 OM 平移四个顶点，使平移后的对角线交点与 M 重合。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "259",
+      "grading": "ungraded",
+      "displayAnswer": "从16开始，依次表示 -6、-4、+12：16→10→6→18。晚上最后有18吨西瓜。",
+      "parts": [],
+      "source": "derived"
+    },
+    {
+      "exercise": "260",
+      "grading": "auto",
+      "displayAnswer": "第一阶段约 5531 亿美元，第二阶段约 8296 亿美元。",
+      "parts": [
+        {
+          "label": "第一阶段",
+          "judge": "numeric",
+          "expected": [
+            "5531"
+          ],
+          "unit": "亿美元"
+        },
+        {
+          "label": "第二阶段",
+          "judge": "numeric",
+          "expected": [
+            "8296"
+          ],
+          "unit": "亿美元"
+        }
+      ],
+      "source": "derived"
+    },
+    {
+      "exercise": "261",
+      "grading": "auto",
+      "displayAnswer": "1) 11968；2) 25918。",
+      "parts": [
+        {
+          "label": "1)",
+          "judge": "numeric",
+          "expected": [
+            "11968"
+          ]
+        },
+        {
+          "label": "2)",
+          "judge": "numeric",
+          "expected": [
+            "25918"
+          ]
+        }
+      ],
+      "source": "book",
+      "bookRaw": "1) 11 968；2) 25 918"
+    }
+  ],
+  "count": 18
+}

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">Triangle on a grid</title>
+  <desc id="desc">Triangle ABC is ready to be translated on a square grid.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="70" y="40" width="760" height="440" fill="url(#grid)" stroke="currentColor" stroke-width="4"/>
+       <polygon points="250,380 180,100 700,330" fill="#16a34a" fill-opacity=".18" stroke="#0f766e" stroke-width="6"/>
+       <g fill="currentColor" font-family="Arial, sans-serif" font-size="28">
+         <text x="235" y="415">A</text><text x="155" y="90">B</text><text x="715" y="340">C</text>
+       </g>
+</svg>

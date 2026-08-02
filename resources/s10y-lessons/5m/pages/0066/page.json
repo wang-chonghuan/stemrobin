@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 66,
+    "printed_page": 57,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 66
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "21e5a856c04e61b9b66fa892ba6f07ceb76c592593bdb3c2360d4b7a40051a50"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 19,
+    "figures": [
+      {
+        "id": "fig-67",
+        "label": "图 67",
+        "box": [
+          497,
+          790,
+          580,
+          441
+        ]
+      },
+      {
+        "id": "fig-68",
+        "label": "图 68",
+        "box": [
+          778,
+          1315,
+          573,
+          562
+        ]
+      }
+    ],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "$M$ 的坐标. 具有选定的方向和单位长度的直线 $Ox$ 和 $Oy$ 形",
+        "成坐标系. 选定了坐标系的平面叫做坐标平面."
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "常常用两个数确定点的位置. 例如电影票上有两个数：",
+        "排数和座位号码. 知道这两个数以后，就能找到自己的座位",
+        "（参看附页插图）."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "262",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "按图 67 确定从点 $O$ 到点 $M,K,P$ 和 $N$ 要从左向右走几",
+        "格，从下向上走几格？"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 67",
+      "box": [
+        497,
+        790,
+        580,
+        441
+      ],
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-67"
+    },
+    {
+      "kind": "cap",
+      "label": "图 67",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "图 67"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "263",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "少先队员作军事游戏",
+        "“找情报”. 在游戏开始",
+        "时，小队位于点 $O$（图",
+        "68）. 小队指挥员拆开",
+        "信封并宣读命令：“向",
+        "东走 5 公里，然后再向",
+        "北走 4 公里”. 说出少",
+        "先队员应到的点 $B$ 的",
+        "坐标. 作出给其它各",
+        "小队的命令，他们应该分头到 $C,D,E$ 各点去. 说出这"
+      ]
+    },
+    {
+      "kind": "fig",
+      "label": "图 68",
+      "box": [
+        778,
+        1315,
+        573,
+        562
+      ],
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [],
+      "id": "fig-68"
+    },
+    {
+      "kind": "cap",
+      "label": "图 68",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": true,
+      "lines": [
+        "图 68"
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 57 ·"
+      ]
+    }
+  ]
+}

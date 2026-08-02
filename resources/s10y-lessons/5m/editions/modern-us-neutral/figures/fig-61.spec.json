@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-61",
+  "description": "An original semantic SVG illustration of a student using a flower stencil.",
+  "constraints": [
+    "A repeating floral border demonstrates translation.",
+    "The student and workspace are newly drawn and not traced."
+  ]
+}

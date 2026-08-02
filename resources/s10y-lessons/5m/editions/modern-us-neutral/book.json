@@ -5,7 +5,7 @@
   "profile": {
     "id": "modern-us-neutral",
     "path": "/Users/yong/work/stemrobin-ws/stemrobin/.claude/skills/ld-s10y-lesson/profiles/modern-us-neutral.json",
-    "sha256": "e04006dc2242ce3ebd8ed036d3f0fb387c4ac1399a9a0927d04e7f853f5ed8ed"
+    "sha256": "92add206ed79cd33c8edea9fd9af3341b10ea3261716593bb5f612fe43e50a98"
   },
   "lessons": [
     {
@@ -27,6 +27,36 @@
       "figures": 3,
       "source_lesson_sha256": "6de83630b30d5b5db91746fddc17b0fa78ea0efa56c5c83fd221ce5eaca4483c",
       "source_exercises_sha256": "01cbebc996df7874c984c4c130bc90018bc509fb48c654f85aad130c5cf2f3c8"
+    },
+    {
+      "id": "math5-c1-s2-n14",
+      "number": "14",
+      "title": "比较数的大小",
+      "prose_blocks": 10,
+      "exercises": 24,
+      "figures": 7,
+      "source_lesson_sha256": "229d1702ea2bdbf50c672fdb29a6bc3f69e568e3da545491f6aad268f98333b6",
+      "source_exercises_sha256": "7b069a35fa283b681ddc0f79a1546db2e3593cad0d2317e089fa24826d999aac"
+    },
+    {
+      "id": "math5-c1-s2-n15",
+      "number": "15",
+      "title": "平移",
+      "prose_blocks": 12,
+      "exercises": 18,
+      "figures": 7,
+      "source_lesson_sha256": "7ea9c179976aa5f0d567fef36595d998c6f4e7cc75a2403e215ce9d66536a7fa",
+      "source_exercises_sha256": "684c374c57d557160c3b1c13176833b02932c55f9a992c688e50dfcd2eeb3bd0"
+    },
+    {
+      "id": "math5-c1-s2-n16",
+      "number": "16",
+      "title": "坐标平面",
+      "prose_blocks": 7,
+      "exercises": 24,
+      "figures": 8,
+      "source_lesson_sha256": "530409bc317fdef1f85137895790f0fdfb9ba695c60badd4acdf1a0a25633941",
+      "source_exercises_sha256": "9aedc5fedea7418dd8e3eda97dcd6c4dffbd0031fb06211b95e42bb2520e1424"
     }
   ]
 }

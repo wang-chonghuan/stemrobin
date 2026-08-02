@@ -11,6 +11,7 @@ const path = require("path")
 const katex = require("katex")
 
 const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+const escText = (s) => esc(s).replace(/\r?\n/g, "<br>")
 // 原书用黑体排定义句，转写时记成 **…**
 const strong = (h) => h.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
 const MATH = /\$\$(.+?)\$\$|\$([^$]+?)\$/gs
@@ -20,7 +21,7 @@ const TRAIL = /^[;,.、，。：:！!？?)）\]]+/
 function inline(text) {
   let out = "", last = 0
   for (const m of text.matchAll(MATH)) {
-    out += esc(text.slice(last, m.index))
+    out += escText(text.slice(last, m.index))
     const tex = m[1] ?? m[2]
     let html
     try {
@@ -33,7 +34,7 @@ function inline(text) {
     last += t.length
     out += `<span class="sr-nb">${html}${esc(t)}</span>`
   }
-  return strong(out + esc(text.slice(last)))
+  return strong(out + escText(text.slice(last)))
 }
 
 /** 插图取矢量优先；SVG 直接内联，宿主可用 CSS 换色（fill 是 currentColor）。 */

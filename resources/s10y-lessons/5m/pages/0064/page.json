@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "schema": "ld-s10y-lesson/page@3",
+    "book": "5m",
+    "page": 64,
+    "printed_page": 55,
+    "source": {
+      "pdf": "5m 苏联十年制学校教材 数学 五年级.pdf",
+      "pdf_sha256": "63de04ad3638091845160482903031cef4728857ad41aac477ffb473222cbe84",
+      "pdf_page": 64
+    },
+    "render": {
+      "dpi": 300,
+      "w": 1504,
+      "h": 2172,
+      "sha256": "83b6f5b480fd4a24e36c7d7186b67204ddbbb996f1283091c6da9f1a2c1d75db"
+    },
+    "profile": {
+      "id": "soviet-cn",
+      "sha256": "dad8d974ba16880482f359073263269de8c405ccf8cb17dc4215fad11da44849"
+    },
+    "notes": [],
+    "printed_lines": 23,
+    "figures": [],
+    "provenance": {
+      "cap": "1",
+      "normalized": true
+    }
+  },
+  "blocks": [
+    {
+      "kind": "ex",
+      "label": "256",
+      "box": null,
+      "owner_exercise": null,
+      "cont": true,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "1) $97.5\\cdot(a-45.9)=126.75$；",
+        "2) $(309.01-b):6.05=0.6$."
+      ]
+    },
+    {
+      "kind": "exhead",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "家庭作业题"
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "257",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "设 $|AB|=|BC|=5$ 厘米，$|AC|=3$ 厘米，作三角形",
+        "$ABC$. 平移三角形，使顶点 $B$ 移到顶点 $C$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "258",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "作正方形 $ABCD$ 和它的两条对角线. 在正方形外取点",
+        "$M$. 平移这个正方形，使对角线交点 $O$ 移到点 $M$."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "259",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "供应站有西瓜 16 吨. 早晨从供应站运出 6 吨西瓜，以",
+        "后又运出 4 吨，晚上供应站又运进 12 吨西瓜. 在数轴",
+        "上表示出这些变化."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "260",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "第九个五年计划的国民货币收入是 11 780 亿卢布. 这",
+        "是第八个五年计划货币收入的 142%，是第七个五年计",
+        "划的 213%. 求第七个和第八个五年计划的国民货币",
+        "收入（结果保留到十亿）."
+      ]
+    },
+    {
+      "kind": "ex",
+      "label": "261",
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "计算：",
+        "1) $87\\cdot(5769-5632)+16\\,317:(4401-4068)$；",
+        "2) $26\\,752:(2724-2306)+62\\cdot(7762-7345)$."
+      ]
+    },
+    {
+      "kind": "h3",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "16. 坐标平面"
+      ]
+    },
+    {
+      "kind": "p",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": true,
+      "samerow": false,
+      "lines": [
+        "图 65 是某城市规划的略图. 街道把市区划分成叫做街",
+        "坊的许多部分. 为了从点 $O$ 到点 $M$，必须向右走两个街坊，",
+        "然后再向上走三个街坊. 若想知道如何从点 $O$ 到点 $M$，只要",
+        "记住 2，3 两数就足够了."
+      ]
+    },
+    {
+      "kind": "foot",
+      "label": null,
+      "box": null,
+      "owner_exercise": null,
+      "cont": false,
+      "open": false,
+      "samerow": false,
+      "lines": [
+        "· 55 ·"
+      ]
+    }
+  ]
+}

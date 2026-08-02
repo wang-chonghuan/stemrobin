@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" role="img" aria-labelledby="title desc">
+  <title id="title">City blocks and coordinates</title>
+  <desc id="desc">A city-block grid shows O, M, and C at relative positions.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="currentColor"/>
+    </marker>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#cbd5e1" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="150" y="55" width="600" height="400" fill="url(#grid)" stroke="currentColor" stroke-width="4"/>
+       <g fill="#0f766e"><circle cx="430" cy="255" r="9"/><circle cx="510" cy="135" r="9"/><circle cx="350" cy="295" r="9"/></g>
+       <g fill="currentColor" font-family="Arial, sans-serif" font-size="30">
+         <text x="445" y="250">O</text><text x="525" y="130">M</text><text x="315" y="325">C</text>
+       </g>
+</svg>

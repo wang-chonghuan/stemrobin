@@ -1,0 +1,9 @@
+{
+  "schema": "ld-s10y-lesson/figure-spec@1",
+  "id": "fig-71",
+  "description": "A newly authored coordinate exercise with eight labeled points.",
+  "constraints": [
+    "All point labels are English letters.",
+    "Points lie on integer coordinates for clear reading."
+  ]
+}
