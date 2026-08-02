@@ -1,9 +1,529 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-61",
-  "description": "An original semantic SVG illustration of a student using a flower stencil.",
-  "constraints": [
-    "A repeating floral border demonstrates translation.",
-    "The student and workspace are newly drawn and not traced."
-  ]
+  "mode": "hybrid",
+  "description": "A student paints a border made from four exact copies of one flower motif translated at equal intervals.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-61.png",
+      "sha256": "532d68426cc549967aec50228c00a676eb13b23b4fb823175f4d6166368ab549"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "用花样模板作花纹时应用了平移原理（图 61）."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 1024,
+    "boundingBox": [
+      0,
+      8,
+      12,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0",
+    "petal": "#58a942",
+    "center": "#0f8b8d"
+  },
+  "assets": [
+    {
+      "id": "student",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-61-student.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-61-student.generated.png.json",
+      "role": "artwork"
+    }
+  ],
+  "objects": [
+    {
+      "id": "student-art",
+      "type": "image",
+      "asset": "student",
+      "at": [
+        8.35,
+        0.35
+      ],
+      "size": [
+        3.4,
+        7.1
+      ]
+    },
+    {
+      "id": "border-top",
+      "type": "segment",
+      "from": [
+        0.4,
+        6.65
+      ],
+      "to": [
+        8.8,
+        6.65
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5
+    },
+    {
+      "id": "border-bottom",
+      "type": "segment",
+      "from": [
+        0.4,
+        4.25
+      ],
+      "to": [
+        8.8,
+        4.25
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5
+    },
+    {
+      "id": "flower-center-1",
+      "type": "point",
+      "at": [
+        1.4,
+        5.45
+      ],
+      "visible": false
+    },
+    {
+      "id": "flower-center-2",
+      "type": "point",
+      "at": [
+        3.45,
+        5.45
+      ],
+      "visible": false
+    },
+    {
+      "id": "flower-center-3",
+      "type": "point",
+      "at": [
+        5.5,
+        5.45
+      ],
+      "visible": false
+    },
+    {
+      "id": "flower-center-4",
+      "type": "point",
+      "at": [
+        7.55,
+        5.45
+      ],
+      "visible": false
+    },
+    {
+      "id": "flower-1-center",
+      "type": "circle",
+      "center": [
+        1.4,
+        5.45
+      ],
+      "radius": 0.22,
+      "stroke": "center",
+      "strokeWidth": 2,
+      "fill": "center",
+      "fillOpacity": 1
+    },
+    {
+      "id": "flower-1-petal-n",
+      "type": "circle",
+      "center": [
+        1.4,
+        5.98
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-1-petal-ne",
+      "type": "circle",
+      "center": [
+        1.86,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-1-petal-se",
+      "type": "circle",
+      "center": [
+        1.86,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-1-petal-s",
+      "type": "circle",
+      "center": [
+        1.4,
+        4.92
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-1-petal-sw",
+      "type": "circle",
+      "center": [
+        0.94,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-1-petal-nw",
+      "type": "circle",
+      "center": [
+        0.94,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-2-center",
+      "type": "circle",
+      "center": [
+        3.45,
+        5.45
+      ],
+      "radius": 0.22,
+      "stroke": "center",
+      "strokeWidth": 2,
+      "fill": "center",
+      "fillOpacity": 1
+    },
+    {
+      "id": "flower-2-petal-n",
+      "type": "circle",
+      "center": [
+        3.45,
+        5.98
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-2-petal-ne",
+      "type": "circle",
+      "center": [
+        3.91,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-2-petal-se",
+      "type": "circle",
+      "center": [
+        3.91,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-2-petal-s",
+      "type": "circle",
+      "center": [
+        3.45,
+        4.92
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-2-petal-sw",
+      "type": "circle",
+      "center": [
+        2.99,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-2-petal-nw",
+      "type": "circle",
+      "center": [
+        2.99,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-3-center",
+      "type": "circle",
+      "center": [
+        5.5,
+        5.45
+      ],
+      "radius": 0.22,
+      "stroke": "center",
+      "strokeWidth": 2,
+      "fill": "center",
+      "fillOpacity": 1
+    },
+    {
+      "id": "flower-3-petal-n",
+      "type": "circle",
+      "center": [
+        5.5,
+        5.98
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-3-petal-ne",
+      "type": "circle",
+      "center": [
+        5.96,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-3-petal-se",
+      "type": "circle",
+      "center": [
+        5.96,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-3-petal-s",
+      "type": "circle",
+      "center": [
+        5.5,
+        4.92
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-3-petal-sw",
+      "type": "circle",
+      "center": [
+        5.04,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-3-petal-nw",
+      "type": "circle",
+      "center": [
+        5.04,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-4-center",
+      "type": "circle",
+      "center": [
+        7.55,
+        5.45
+      ],
+      "radius": 0.22,
+      "stroke": "center",
+      "strokeWidth": 2,
+      "fill": "center",
+      "fillOpacity": 1
+    },
+    {
+      "id": "flower-4-petal-n",
+      "type": "circle",
+      "center": [
+        7.55,
+        5.98
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-4-petal-ne",
+      "type": "circle",
+      "center": [
+        8.01,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-4-petal-se",
+      "type": "circle",
+      "center": [
+        8.01,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-4-petal-s",
+      "type": "circle",
+      "center": [
+        7.55,
+        4.92
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-4-petal-sw",
+      "type": "circle",
+      "center": [
+        7.09,
+        5.18
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "flower-4-petal-nw",
+      "type": "circle",
+      "center": [
+        7.09,
+        5.72
+      ],
+      "radius": 0.27,
+      "stroke": "petal",
+      "strokeWidth": 2,
+      "fill": "petal",
+      "fillOpacity": 0.92
+    }
+  ],
+  "assertions": [
+    {
+      "type": "equalDistance",
+      "a": "flower-center-1",
+      "b": "flower-center-2",
+      "c": "flower-center-2",
+      "d": "flower-center-3"
+    },
+    {
+      "type": "equalDistance",
+      "a": "flower-center-2",
+      "b": "flower-center-3",
+      "c": "flower-center-3",
+      "d": "flower-center-4"
+    },
+    {
+      "type": "collinear",
+      "a": "flower-center-1",
+      "b": "flower-center-2",
+      "c": "flower-center-4"
+    },
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 28
+    },
+    {
+      "type": "objectCount",
+      "objectType": "image",
+      "count": 1
+    }
+  ],
+  "layout": {
+    "minLabelGap": 4,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "The student is generated artwork; one deterministic flower motif is repeated four times by equal horizontal translation."
+  }
 }

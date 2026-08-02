@@ -1,0 +1,200 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n9",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "126",
+      "prompt": "点 $O$ 为原点. 写出点 $O$、$A$、$B$、$C$、$D$、$P$、$K$、$M$、$E$ 等的坐标（图 36）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "127",
+      "prompt": "在数轴上标出下列各点：$A(1)$，$B(8.3)$，$C(-6)$，$D(6)$，$M(-2.4)$，$K(2.4)$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "128",
+      "prompt": "三角形小旗位于坐标为 $-2$ 的点上，长方形的小旗在坐标为 $2$ 的点上（图 37）. 标出原点和单位线段. 写出点$B$、$C$、$D$ 的坐标.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "129",
+      "prompt": "设：$x=-7,3.3,-5.2,-1,2,-1.8,\\frac{5}{3},-\\frac{7}{2}$ 时，在数轴上标出坐标为 $x$ 的点.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "130",
+      "prompt": "设：\n1) $a=-6,3,-5,-8,10,-11,9,7,-7$；\n2) $a=2,-1,-3,-5,4,\\frac{7}{8},\\frac{5}{6}$，用数轴上的点表示数 $a$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "131",
+      "prompt": "按刻度（见图 38）求出山的高度和海洋的深度.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "132",
+      "prompt": "在数轴上标出点 $A(-2)$ 和点 $B(7)$. 求出 $A$、$B$ 两点间的距离（以单位线段计）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "133",
+      "prompt": "说出数轴上合于以下条件的任意三个数：\n1) 在 11 的右边；\n2) 在 $-8$ 的左边；\n3) 在 $-820$ 的左边；\n4) 在 $-72$ 的右边.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "134",
+      "prompt": "调节演示温度计的水银柱，使它表示出下列温度：\n1) $-12^\\circ\\mathrm{C}$；\n2) $-11^\\circ\\mathrm{C}$；\n3) $-7^\\circ\\mathrm{C}$；\n4) $3^\\circ\\mathrm{C}$；\n5) $-8.5^\\circ\\mathrm{C}$；\n6) $7.3^\\circ\\mathrm{C}$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "135",
+      "prompt": "在社区科学中心的建筑物上安装有一个带指针的温度计. 这个温度计指示的温度是多少度（图39）？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "136",
+      "prompt": "从集合 $\\{-1.2,\\frac{3}{5},-\\frac{12}{4},0,6,-3\\frac{7}{8},7.2,-10,8\\}$ 中选出以下子集：\n1) 负数；\n2) 正数；\n3) 自然数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "137",
+      "prompt": "说出等边三角形集合和等腰三角形集合的并集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "138",
+      "prompt": "作用在每平方厘米地球表面的空气柱的质量为 1.033 公斤. 作用于每平方公里上的空气柱的质量是多少？计算亚速海上的空气柱的质量，该海的面积为 38 000 平方公里.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "139",
+      "prompt": "在 $37*5$ 的写法中，用什么数字代替 $*$ 号才能使所得的数1) 被 3 整除？和 2) 被 5 整除？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "140",
+      "prompt": "解应用题：\n1) 互相竞赛的两个植棉突击队一天共收获棉花 10.2 公担. 第一队比第二队多收获 0.76 公担. 每队各收获多少公担？\n2) 互相竞赛的两个联合收割机手一天共收割了 64.2 公顷. 如果一个收割机手比另一个少收割 2.8 公顷，那么这两个收割机手各收割多少公顷？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 5.48 公担，4.72 公担；2) 30.7 公顷，33.5 公顷"
+    },
+    {
+      "exercise": "141",
+      "prompt": "解应用题：1) 两个邻补角中，一角是另一角的三倍，两个角各多少度？作出这两个邻补角.2) 二邻补角中，一角是另一角的四倍，求出每个角的大小. 作出这两个邻补角.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 45°，135°；2) 36°，144°"
+    },
+    {
+      "exercise": "142",
+      "prompt": "计算：\n1) $0.5632:5.12+42.56:3.8-(11-3.9:1.5)$；\n2) $(5.98+5.36):2.8:(5\\cdot0.003+15\\cdot0.029)$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 2.91；2) 9"
+    },
+    {
+      "exercise": "143",
+      "prompt": "在数轴上标出以下各点：$M(-3)$，$N(4)$，$P(-8.1)$，$K(3.3)$，$T(-7)$，$C(7)$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "144",
+      "prompt": "划出从 $-60^\\circ\\mathrm{C}$ 到 $60^\\circ\\mathrm{C}$ 的温度刻度，取每个刻度为 $5^\\circ\\mathrm{C}$，在刻度上标出水银的冰点（$-39^\\circ\\mathrm{C}$），人体的正常温度（$36.6^\\circ\\mathrm{C}$），汽油的冰点（$-60^\\circ\\mathrm{C}$）.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "145",
+      "prompt": "互相竞赛的两个拖拉机手共翻耕了 12.32 公顷土地，其中一个拖拉机手翻耕的土地是另一个翻耕的 1.2 倍. 每个拖拉机手翻耕了多少公顷土地？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "5.6 公顷，6.72 公顷"
+    },
+    {
+      "exercise": "146",
+      "prompt": "某先进挤奶员一年从一头奶牛挤奶 6500 公斤. 如果牛奶的含脂量为 $3.9\\%$，从这些牛奶中能制取多少奶油？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "253.5 公斤"
+    },
+    {
+      "exercise": "147",
+      "prompt": "当 $k=3.06,30.6$ 时，计算 $4.7k+3.6k-0.83$ 的值.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "24.568；253.15"
+    },
+    {
+      "exercise": "148",
+      "prompt": "计算：\n1) $907+613\\cdot(80\\cdot11-42\\,558:519)$；\n2) $120\\,000-119\\,340:(684\\cdot245-675\\cdot246)$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 490 081；2) 119 922"
+    }
+  ]
+}

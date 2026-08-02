@@ -1,10 +1,234 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-45",
+  "mode": "deterministic",
   "description": "Square ABCD with diagonals intersecting at O.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-45.png",
+      "sha256": "9d72e6ad9bb08dc6725e9a05d31edf6acdf4c05aedc5c931e1bd1418f7439801"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 44"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都是合同的."
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "正方形 $ABCD$（图 45）关于 $AC$、$BD$ 二线段（正方形的对角线）的交点 $O$ 对称. 点 $O$ 叫做正方形的对称中心.圆心（图 46）是圆的对称中心.机器的旋转部分（齿轮、螺旋桨、车轮、滑轮机等）一般都做成中心对称的（图 47）. 它围绕着通过对称中心的轴旋转."
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 45"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 46"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          75.0,
+          185.0
+        ],
+        [
+          285.0,
+          185.0
+        ],
+        [
+          285.0,
+          25.0
+        ],
+        [
+          75.0,
+          25.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        75.0,
+        185.0
+      ],
+      "to": [
+        285.0,
+        25.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        285.0,
+        185.0
+      ],
+      "to": [
+        75.0,
+        25.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        65.0,
+        188.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        295.0,
+        188.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        295.0,
+        10.0
+      ],
+      "text": "C",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        65.0,
+        10.0
+      ],
+      "text": "D",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        180.0,
+        112.0
+      ],
+      "text": "O",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "centralSymmetry",
+      "center": [180.0, 105.0],
+      "pairs": [
+        {"a": [75.0, 185.0], "b": [285.0, 25.0]},
+        {"a": [285.0, 185.0], "b": [75.0, 25.0]}
+      ]
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 5
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

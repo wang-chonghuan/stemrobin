@@ -1,0 +1,23 @@
+{
+  "schema": "ld-s10y-image/render@1",
+  "figure": "fig-01",
+  "mode": "deterministic",
+  "renderer": {
+    "name": "JSXGraph",
+    "version": "1.13.1"
+  },
+  "spec": {
+    "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-01.spec.json",
+    "sha256": "34f8628082d4faa8e06d9766812497852175d3edd7e6ba4e77f53cff9d0debf5"
+  },
+  "output": {
+    "svg": {
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-01.svg",
+      "sha256": "7f0bb66a8e4a821e9f276ac4c6256c7f05b3b7de79a642b30fe08f667c0b9ed5"
+    }
+  },
+  "objects": 8,
+  "labels": 6,
+  "collisions": [],
+  "status": "pass"
+}

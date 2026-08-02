@@ -1,10 +1,189 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-52",
+  "mode": "deterministic",
   "description": "A newly authored half-unit number line used to read the coordinates of A, B, and C.",
-  "constraints": [
-    "Adjacent ticks differ by 0.5.",
-    "The labeled reference ticks are -3 and 3.",
-    "B is at -5, C is at -1.5, and A is at 1."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-52.png",
+      "sha256": "05d39cc27600dcf1404bc035aa2d7e7179da778d70856ece83d6378a1947585e"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n12",
+        "exercise": "184",
+        "text": "求出 $A,B,C$ 三点的坐标（图 52）."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1707,
+    "height": 320,
+    "boundingBox": [
+      0,
+      180.0,
+      960.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        40.0,
+        80.0
+      ],
+      "to": [
+        920.0,
+        80.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 7.111111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M920 100l-18-10v20z",
+      "stroke": "none",
+      "fill": "primary",
+      "strokeWidth": 7.111111111111111,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "svgPath-2",
+      "type": "svgPath",
+      "d": "M40 87v26M80 91v18M120 82v36M160 91v18M200 91v18M240 91v18M280 82v36M320 91v18M360 91v18M400 82v36M440 91v18M480 91v18M520 91v18M560 91v18M600 82v36M640 91v18M680 91v18M720 91v18M760 82v36M800 91v18M840 91v18M880 91v18",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 7.111111111111111,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        280.0,
+        114.0
+      ],
+      "text": "-3",
+      "fontSize": 44.44444444444444,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        760.0,
+        114.0
+      ],
+      "text": "3",
+      "fontSize": 44.44444444444444,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        120.0,
+        26.0
+      ],
+      "text": "B",
+      "fontSize": 44.44444444444444,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        400.0,
+        26.0
+      ],
+      "text": "C",
+      "fontSize": 44.44444444444444,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        600.0,
+        26.0
+      ],
+      "text": "A",
+      "fontSize": 44.44444444444444,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 5
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

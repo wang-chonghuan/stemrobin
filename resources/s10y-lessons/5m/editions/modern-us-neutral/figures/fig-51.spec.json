@@ -1,10 +1,250 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-51",
-  "description": "A newly authored number line showing -5 and 5 at equal distances from 0.",
-  "constraints": [
-    "-5, 0, and 5 are collinear.",
-    "The distance from -5 to 0 equals the distance from 0 to 5.",
-    "The two student figures are decorative and do not encode additional values."
-  ]
+  "mode": "hybrid",
+  "description": "Two child figures stand at -5 and 5, equally far from origin O on a number line.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-51.png",
+      "sha256": "25e6e65572b5304699b4291fc3569877538d6b8e9c9f7471602ab36c69935c7f"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n12",
+        "text": "坐标为 5 和 $-5$ 的两点（图 51）和点 $O$ 的距离相等并且位于点 $O$ 的两侧. 这两点关于点 $O$ 对称. 从点$O$ 到这两个点，必须经过相等的距离，但方向相反. 所以像 5 和 $-5$这两个数叫做相反数. 5 和 $-5$ 相反，而 $-5$ 和 5 相反. 每个数都有一个和它相反的数. 在数轴上，两个相反数用关于原点的两个对称点表示."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 768,
+    "boundingBox": [
+      -7,
+      7,
+      7,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "assets": [
+    {
+      "id": "child",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-51-child.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-51-child.generated.png.json",
+      "role": "artwork"
+    }
+  ],
+  "objects": [
+    {
+      "id": "child-negative-art",
+      "type": "image",
+      "asset": "child",
+      "at": [
+        -6.35,
+        1.45
+      ],
+      "size": [
+        2.7,
+        4.85
+      ]
+    },
+    {
+      "id": "child-positive-art",
+      "type": "image",
+      "asset": "child",
+      "at": [
+        3.65,
+        1.45
+      ],
+      "size": [
+        2.7,
+        4.85
+      ]
+    },
+    {
+      "id": "negative-five",
+      "type": "point",
+      "at": [
+        -5,
+        1.25
+      ],
+      "visible": false
+    },
+    {
+      "id": "origin",
+      "type": "point",
+      "at": [
+        0,
+        1.25
+      ],
+      "visible": false
+    },
+    {
+      "id": "positive-five",
+      "type": "point",
+      "at": [
+        5,
+        1.25
+      ],
+      "visible": false
+    },
+    {
+      "id": "number-line",
+      "type": "axis",
+      "from": [
+        -6.6,
+        1.25
+      ],
+      "to": [
+        6.6,
+        1.25
+      ],
+      "stroke": "ink",
+      "strokeWidth": 4,
+      "ticks": []
+    },
+    {
+      "id": "tick-negative-five",
+      "type": "segment",
+      "from": [
+        -5,
+        1.05
+      ],
+      "to": [
+        -5,
+        1.45
+      ],
+      "stroke": "ink",
+      "strokeWidth": 2
+    },
+    {
+      "id": "tick-origin",
+      "type": "segment",
+      "from": [
+        0,
+        1.05
+      ],
+      "to": [
+        0,
+        1.45
+      ],
+      "stroke": "ink",
+      "strokeWidth": 2
+    },
+    {
+      "id": "tick-positive-five",
+      "type": "segment",
+      "from": [
+        5,
+        1.05
+      ],
+      "to": [
+        5,
+        1.45
+      ],
+      "stroke": "ink",
+      "strokeWidth": 2
+    },
+    {
+      "id": "label-negative-five",
+      "type": "text",
+      "at": [
+        -5,
+        0.76
+      ],
+      "text": "-5",
+      "fontSize": 32,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    },
+    {
+      "id": "label-zero",
+      "type": "text",
+      "at": [
+        0,
+        0.76
+      ],
+      "text": "0",
+      "fontSize": 32,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    },
+    {
+      "id": "label-positive-five",
+      "type": "text",
+      "at": [
+        5,
+        0.76
+      ],
+      "text": "5",
+      "fontSize": 32,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    },
+    {
+      "id": "origin-label",
+      "type": "text",
+      "at": [
+        0,
+        0.25
+      ],
+      "text": "O",
+      "fontSize": 30,
+      "fontWeight": 700,
+      "labelColor": "primary",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "equalDistance",
+      "a": "negative-five",
+      "b": "origin",
+      "c": "origin",
+      "d": "positive-five"
+    },
+    {
+      "type": "collinear",
+      "a": "negative-five",
+      "b": "origin",
+      "c": "positive-five"
+    },
+    {
+      "type": "distance",
+      "a": "negative-five",
+      "b": "origin",
+      "value": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "image",
+      "count": 2
+    }
+  ],
+  "layout": {
+    "minLabelGap": 4,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "The child artwork is reused at exact coordinates -5 and 5; the number line and equal-distance relation are deterministic."
+  }
 }

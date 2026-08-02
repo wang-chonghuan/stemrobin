@@ -24,12 +24,15 @@
     "Replace Cyrillic enumeration markers with Latin a), b), c), and so on.",
     "Sort complete numbered subparts such as 1), 2), 3) into ascending order and place every subpart on its own line; remove print-column alignment spaces.",
     "Leave culture-neutral mathematical text unchanged.",
-    "Draw simple diagrams, charts, tables, and simple objects directly as newly authored SVG.",
-    "For complex objects such as animals, people, and trees, call n-azure capability-4-image-generation to create one isolated text-free concept asset, then deterministically vectorize its silhouette and compose the final SVG.",
-    "Use image generation only for semantic appearance; create counts, coordinates, measurements, axes, labels, and object placement deterministically in SVG.",
-    "Keep generated PNG concept assets and metadata under .tmp; never publish or commit them.",
-    "Do not trace source screenshots or assemble figures from external vector-asset websites.",
-    "Every published figure must be a newly authored SVG and must not embed raster images.",
-    "All visible figure labels, titles, and descriptions must be in English; numbers and mathematical symbols are allowed."
+    "Delegate every modern-edition figure to the project skill ld-s10y-image and use its canonical FigureSpec contract.",
+    "Use deterministic JSXGraph geometry for points, lines, grids, axes, ticks, dimensions, coordinates, transformations, mathematical labels, tables, and charts.",
+    "Use Azure gpt-image-2 for semantic artwork. For hybrid figures, place generated artwork below the deterministic mathematical overlay.",
+    "Give gpt-image-2 both the complete relevant modern-edition text and the original extracted figure PNG. The text is authoritative; the PNG is visual and structural context only.",
+    "Do not use answer keys or add derived solution annotations that are absent from the original figure.",
+    "Do not hand-edit renderer output or ask gpt-image-2 to draw exact mathematical labels and measurements.",
+    "Use teal and green as app accents with natural object colors; reject monochrome or mostly black silhouette output.",
+    "Do not copy Chinese, Japanese, Cyrillic, Soviet symbols, uniforms, flags, handwriting, old-book texture, or cultural wording from the source image.",
+    "All visible figure labels must be in English; numbers and mathematical symbols are allowed.",
+    "For preview batches, keep generated assets and render metadata under .tmp. Promote them into the edition only after mathematical and visual review."
   ]
 }

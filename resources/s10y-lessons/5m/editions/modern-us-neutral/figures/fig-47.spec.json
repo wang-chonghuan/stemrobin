@@ -1,10 +1,518 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-47",
+  "mode": "deterministic",
   "description": "Two meshing gears and a propeller illustrate central symmetry.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-47.png",
+      "sha256": "37ce3b67d3dc6370afaa4d24fc271d1a2942e7ae86452bc0ec803826414ca440"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "正方形 $ABCD$（图 45）关于 $AC$、$BD$ 二线段（正方形的对角线）的交点 $O$ 对称. 点 $O$ 叫做正方形的对称中心.圆心（图 46）是圆的对称中心.机器的旋转部分（齿轮、螺旋桨、车轮、滑轮机等）一般都做成中心对称的（图 47）. 它围绕着通过对称中心的轴旋转."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        120.0,
+        145.0
+      ],
+      "radius": 48.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "circle-2",
+      "type": "circle",
+      "center": [
+        120.0,
+        145.0
+      ],
+      "radius": 15.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "circle-3",
+      "type": "circle",
+      "center": [
+        220.0,
+        145.0
+      ],
+      "radius": 35.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "circle-4",
+      "type": "circle",
+      "center": [
+        220.0,
+        145.0
+      ],
+      "radius": 11.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        168.0,
+        145.0
+      ],
+      "to": [
+        178.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        161.56921938165306,
+        121.0
+      ],
+      "to": [
+        170.22947341949745,
+        116.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        144.0,
+        103.43078061834694
+      ],
+      "to": [
+        149.0,
+        94.77052658050256
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        120.0,
+        97.0
+      ],
+      "to": [
+        120.0,
+        87.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        96.00000000000001,
+        103.43078061834694
+      ],
+      "to": [
+        91.00000000000001,
+        94.77052658050255
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        78.43078061834694,
+        121.0
+      ],
+      "to": [
+        69.77052658050255,
+        116.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        72.0,
+        145.0
+      ],
+      "to": [
+        62.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        78.43078061834694,
+        169.0
+      ],
+      "to": [
+        69.77052658050255,
+        174.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        95.99999999999997,
+        186.56921938165306
+      ],
+      "to": [
+        90.99999999999997,
+        195.22947341949742
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        119.99999999999999,
+        193.0
+      ],
+      "to": [
+        119.99999999999999,
+        203.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        144.0,
+        186.56921938165306
+      ],
+      "to": [
+        149.0,
+        195.22947341949742
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        161.56921938165306,
+        169.00000000000003
+      ],
+      "to": [
+        170.22947341949742,
+        174.00000000000003
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        255.0,
+        145.0
+      ],
+      "to": [
+        264.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-14",
+      "type": "segment",
+      "from": [
+        248.31559480312316,
+        124.42751616976344
+      ],
+      "to": [
+        255.5967477524977,
+        119.13744889913119
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-15",
+      "type": "segment",
+      "from": [
+        230.81559480312316,
+        111.71302192966962
+      ],
+      "to": [
+        233.5967477524977,
+        103.15351328301324
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-16",
+      "type": "segment",
+      "from": [
+        209.18440519687684,
+        111.71302192966962
+      ],
+      "to": [
+        206.4032522475023,
+        103.15351328301324
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-17",
+      "type": "segment",
+      "from": [
+        191.68440519687684,
+        124.42751616976344
+      ],
+      "to": [
+        184.4032522475023,
+        119.13744889913117
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-18",
+      "type": "segment",
+      "from": [
+        185.0,
+        145.0
+      ],
+      "to": [
+        176.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-19",
+      "type": "segment",
+      "from": [
+        191.68440519687684,
+        165.57248383023656
+      ],
+      "to": [
+        184.4032522475023,
+        170.8625511008688
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-20",
+      "type": "segment",
+      "from": [
+        209.18440519687684,
+        178.28697807033038
+      ],
+      "to": [
+        206.4032522475023,
+        186.84648671698676
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-21",
+      "type": "segment",
+      "from": [
+        230.81559480312316,
+        178.28697807033038
+      ],
+      "to": [
+        233.59674775249766,
+        186.84648671698676
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-22",
+      "type": "segment",
+      "from": [
+        248.31559480312316,
+        165.57248383023656
+      ],
+      "to": [
+        255.5967477524977,
+        170.8625511008688
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "propeller-blade-a",
+      "type": "polygon",
+      "points": [
+        [300.0, 70.0],
+        [310.0, 76.0],
+        [344.0, 104.0],
+        [352.0, 98.0],
+        [346.0, 86.0],
+        [312.0, 64.0]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "fill": "secondary",
+      "fillOpacity": 0.3
+    },
+    {
+      "id": "propeller-blade-b",
+      "type": "polygon",
+      "points": [
+        [300.0, 70.0],
+        [290.0, 64.0],
+        [256.0, 36.0],
+        [248.0, 42.0],
+        [254.0, 54.0],
+        [288.0, 76.0]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "fill": "secondary",
+      "fillOpacity": 0.3
+    },
+    {
+      "id": "propeller-hub",
+      "type": "circle",
+      "center": [300.0, 70.0],
+      "radius": 9.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "fill": "white",
+      "fillOpacity": 1
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 22
+    },
+    {
+      "type": "centralSymmetry",
+      "center": [120.0, 145.0],
+      "pairs": [
+        {"a": [168.0, 145.0], "b": [72.0, 145.0]},
+        {"a": [120.0, 97.0], "b": [120.0, 193.0]}
+      ]
+    },
+    {
+      "type": "centralSymmetry",
+      "center": [220.0, 145.0],
+      "pairs": [
+        {"a": [255.0, 145.0], "b": [185.0, 145.0]},
+        {"a": [230.81559480312316, 111.71302192966962], "b": [209.18440519687684, 178.28697807033038]}
+      ]
+    },
+    {
+      "type": "centralSymmetry",
+      "center": [300.0, 70.0],
+      "pairs": [
+        {"a": [310.0, 76.0], "b": [290.0, 64.0]},
+        {"a": [344.0, 104.0], "b": [256.0, 36.0]},
+        {"a": [352.0, 98.0], "b": [248.0, 42.0]},
+        {"a": [346.0, 86.0], "b": [254.0, 54.0]},
+        {"a": [312.0, 64.0], "b": [288.0, 76.0]}
+      ]
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

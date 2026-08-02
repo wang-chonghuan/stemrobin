@@ -1,10 +1,155 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-24",
+  "mode": "deterministic",
   "description": "Three sticks connected loosely in an open triangular arrangement.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-24.png",
+      "sha256": "2a5fd2e5c0eaf1f13a0366cf1102b45b1b6bda6b79f521742b2b7c80ac5e1f79"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "问题. 用直尺和圆规作 $\\triangle XOY$，使 $|XO|=3.5$ 厘米，$|OY|=4$ 厘米，$|YX|=3$ 厘米."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 24"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 25"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        70.0,
+        45.0
+      ],
+      "to": [
+        180.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 34.13333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        70.0,
+        45.0
+      ],
+      "to": [
+        145.0,
+        165.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 34.13333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        180.0,
+        45.0
+      ],
+      "to": [
+        230.0,
+        140.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 34.13333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        70.0,
+        45.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        180.0,
+        45.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        145.0,
+        165.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-4",
+      "type": "point",
+      "at": [
+        230.0,
+        140.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 4
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

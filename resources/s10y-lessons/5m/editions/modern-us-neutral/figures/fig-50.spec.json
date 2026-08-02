@@ -1,10 +1,191 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-50",
+  "mode": "deterministic",
   "description": "A triangle, hexagon, diamond, and parallelogram.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-50.png",
+      "sha256": "3ed8b284a2f8ca75759aa0dbd34693aa23b7ead4dde68e87676854bcdd977520"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "exercise": "164",
+        "text": "图 50 中哪个图形有对称中心？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 736,
+    "boundingBox": [
+      0,
+      230.0,
+      320.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          40.0,
+          140.0
+        ],
+        [
+          85.0,
+          205.0
+        ],
+        [
+          130.0,
+          140.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.4,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          190.0,
+          200.0
+        ],
+        [
+          240.0,
+          200.0
+        ],
+        [
+          270.0,
+          160.0
+        ],
+        [
+          240.0,
+          120.0
+        ],
+        [
+          190.0,
+          120.0
+        ],
+        [
+          160.0,
+          160.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.4,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          45.0,
+          60.0
+        ],
+        [
+          80.0,
+          110.0
+        ],
+        [
+          115.0,
+          60.0
+        ],
+        [
+          80.0,
+          10.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.4,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "polygon-4",
+      "type": "polygon",
+      "points": [
+        [
+          175.0,
+          90.0
+        ],
+        [
+          260.0,
+          90.0
+        ],
+        [
+          235.0,
+          30.0
+        ],
+        [
+          150.0,
+          30.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.4,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    }
+  ],
+  "assertions": [
+    {
+      "type": "centralSymmetry",
+      "center": [215.0, 160.0],
+      "pairs": [
+        {"a": [190.0, 200.0], "b": [240.0, 120.0]},
+        {"a": [240.0, 200.0], "b": [190.0, 120.0]},
+        {"a": [270.0, 160.0], "b": [160.0, 160.0]}
+      ]
+    },
+    {
+      "type": "centralSymmetry",
+      "center": [80.0, 60.0],
+      "pairs": [
+        {"a": [45.0, 60.0], "b": [115.0, 60.0]},
+        {"a": [80.0, 110.0], "b": [80.0, 10.0]}
+      ]
+    },
+    {
+      "type": "centralSymmetry",
+      "center": [205.0, 60.0],
+      "pairs": [
+        {"a": [175.0, 90.0], "b": [235.0, 30.0]},
+        {"a": [260.0, 90.0], "b": [150.0, 30.0]}
+      ]
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

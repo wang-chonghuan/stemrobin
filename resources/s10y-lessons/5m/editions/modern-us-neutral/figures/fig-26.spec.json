@@ -1,10 +1,152 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-26",
+  "mode": "deterministic",
   "description": "A triangular frame made from three connected bars.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-26.png",
+      "sha256": "10f6ada2c00b84078cdb6c9af388913c137e699bd3c24e02abbabe2734424835"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 24"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 25"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 26"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "假如用活动接头把三根各长 3 厘米、3.5 厘米和 4 厘米的木条连接起来，如图 24 所示，转动两边的两根木条，可以构成一个三角形. 可以用圆规来代替旋转木条."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "首先作长 4 厘米的线段 $OY$（图 25）. 然后划两个圆弧：一个弧的圆心为 $O$，半径长 3.5 厘米，另一个弧的圆心为 $Y$，半径长 3 厘米. 交点 $X$ 是三角形的第三顶点. 联结 $X$ 和 $O$、$Y$，即得 $\\triangle XOY$."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        65.0,
+        45.0
+      ],
+      "to": [
+        180.0,
+        175.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 39.82222222222222,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        180.0,
+        175.0
+      ],
+      "to": [
+        295.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 39.82222222222222,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        65.0,
+        45.0
+      ],
+      "to": [
+        295.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 39.82222222222222,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        65.0,
+        45.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        180.0,
+        175.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        295.0,
+        45.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

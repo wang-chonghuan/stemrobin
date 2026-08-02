@@ -1,10 +1,204 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-29",
-  "description": "A stylized tree with a hollow and marked vertical distances.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "mode": "hybrid",
+  "description": "A squirrel can be three meters above or below a tree hollow on an exact one-meter vertical grid.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-29.png",
+      "sha256": "1f3b6301c2ce4f4c3712c00b14792926ab69364ec31968dac31053622f60c9b6"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "105",
+        "text": "一只松鼠从树洞钻出，沿着树干跑上跑下（图 29）. 如果松鼠离开树洞 3 米，松鼠在哪里？这个问题能有几个答案？"
+      },
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "106",
+        "text": "为了确定松鼠在树上的位置，只知道它和树洞的距离是不够的，还必须了解它在树洞的上边还是下边.如果松鼠在：\n1) 树洞上方 2 米；\n2) 树洞下方 3 米；\n3) 树洞下方 1.5 米；\n4) 树洞上方 2.5 米，在图 29 上指出松鼠的位置."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 1536,
+    "boundingBox": [
+      0,
+      12,
+      8,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "assets": [
+    {
+      "id": "tree",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-29-tree.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-29-tree.generated.png.json",
+      "role": "artwork"
+    },
+    {
+      "id": "squirrel",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-29-squirrel.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-29-squirrel.generated.png.json",
+      "role": "artwork"
+    }
+  ],
+  "objects": [
+    {
+      "id": "tree-art",
+      "type": "image",
+      "asset": "tree",
+      "at": [
+        1.85,
+        0.15
+      ],
+      "size": [
+        4.3,
+        11.65
+      ]
+    },
+    {
+      "id": "squirrel-above-art",
+      "type": "image",
+      "asset": "squirrel",
+      "at": [
+        4.05,
+        8.25
+      ],
+      "size": [
+        1.75,
+        1.75
+      ]
+    },
+    {
+      "id": "squirrel-below-art",
+      "type": "image",
+      "asset": "squirrel",
+      "at": [
+        2.15,
+        2.2
+      ],
+      "size": [
+        1.75,
+        1.75
+      ]
+    },
+    {
+      "id": "meter-grid",
+      "type": "grid",
+      "xStep": 8,
+      "yStep": 1,
+      "bounds": [
+        0.55,
+        11.5,
+        7.45,
+        0.5
+      ],
+      "stroke": "grid",
+      "strokeWidth": 2,
+      "opacity": 0.72
+    },
+    {
+      "id": "hollow",
+      "type": "circle",
+      "center": [
+        4,
+        6
+      ],
+      "radius": 0.22,
+      "stroke": "ink",
+      "strokeWidth": 3,
+      "fill": "ink",
+      "fillOpacity": 0.92
+    },
+    {
+      "id": "hollow-position",
+      "type": "point",
+      "at": [
+        4,
+        6
+      ],
+      "visible": false
+    },
+    {
+      "id": "above-position",
+      "type": "point",
+      "at": [
+        4,
+        9
+      ],
+      "visible": false
+    },
+    {
+      "id": "below-position",
+      "type": "point",
+      "at": [
+        4,
+        3
+      ],
+      "visible": false
+    },
+    {
+      "id": "scale-label",
+      "type": "text",
+      "at": [
+        0.72,
+        1
+      ],
+      "text": "1 m",
+      "fontSize": 30,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "W",
+        "offset": [
+          6,
+          0
+        ]
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "distance",
+      "a": "hollow-position",
+      "b": "above-position",
+      "value": 3
+    },
+    {
+      "type": "distance",
+      "a": "hollow-position",
+      "b": "below-position",
+      "value": 3
+    },
+    {
+      "type": "collinear",
+      "a": "below-position",
+      "b": "hollow-position",
+      "c": "above-position"
+    },
+    {
+      "type": "objectCount",
+      "objectType": "image",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 4,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Natural objects are generated; the hollow, one-meter grid, and both three-meter positions are deterministic."
+  }
 }

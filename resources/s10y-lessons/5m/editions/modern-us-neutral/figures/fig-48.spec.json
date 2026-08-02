@@ -1,10 +1,237 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-48",
+  "mode": "deterministic",
   "description": "Two intersecting lines form equal opposite angles.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-48.png",
+      "sha256": "43294265650883f6ebd6282cf0803848a07c23f6c49cd1334d7129a9a754337a"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 47"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 48 中，角 $AOB$ 和角 $COD$ 关于公共顶点 $O$ 对称. 这样的角叫做对顶角. 同任何关于某点对称的两个图形一样，对顶角也合同. 所以这两个角相等，也就是 $\\angle AOB=\\angle COD$. 对顶角中的一个角的两个边是另一个角的两个边的反向射线. 图 48中，射线 $OC$ 和射线 $OB$ 反向，而射线 $OD$ 和射线 $OA$ 反向."
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 48"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        35.0,
+        175.0
+      ],
+      "to": [
+        325.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        35.0,
+        45.0
+      ],
+      "to": [
+        325.0,
+        175.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          35.0,
+          175.0
+        ],
+        [
+          35.0,
+          45.0
+        ],
+        [
+          180.0,
+          110.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#c7d8d5",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          325.0,
+          175.0
+        ],
+        [
+          325.0,
+          45.0
+        ],
+        [
+          180.0,
+          110.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#c7d8d5",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        25.0,
+        178.0
+      ],
+      "text": "C",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        25.0,
+        30.0
+      ],
+      "text": "D",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        335.0,
+        178.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        335.0,
+        30.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        180.0,
+        90.0
+      ],
+      "text": "O",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 5
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

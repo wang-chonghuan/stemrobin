@@ -1,10 +1,599 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-31",
+  "mode": "deterministic",
   "description": "A road grid from camp with labeled points P, K, and M.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-31.png",
+      "sha256": "d3379dc128f7a77312d1a89302ce9d94445a06f7391833c28abb6abbc2f4c0b0"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "109",
+        "text": "一个夏令营徒步小组从营地出发沿公路前进（图 31）. 指出：\n1) 如果行速是 3 公里/小时，3 小时后这个小组将在哪里？\n2) 如果行速是 4 公里/小时，2 小时后这个小组将在哪里？为使以上每个问题只有一个答案，还必须知道什么条件？"
+      },
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "110",
+        "text": "营员在徒步途中，在 $K$、$M$、$P$ 三个地方留下了感谢信（图 31）. 留信的地点在营地的什么位置上？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          25.0,
+          185.0
+        ],
+        [
+          335.0,
+          185.0
+        ],
+        [
+          335.0,
+          35.0
+        ],
+        [
+          25.0,
+          35.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        45.0,
+        185.0
+      ],
+      "to": [
+        45.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        65.0,
+        185.0
+      ],
+      "to": [
+        65.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        85.0,
+        185.0
+      ],
+      "to": [
+        85.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        105.0,
+        185.0
+      ],
+      "to": [
+        105.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        125.0,
+        185.0
+      ],
+      "to": [
+        125.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        145.0,
+        185.0
+      ],
+      "to": [
+        145.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        165.0,
+        185.0
+      ],
+      "to": [
+        165.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        185.0,
+        185.0
+      ],
+      "to": [
+        185.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        205.0,
+        185.0
+      ],
+      "to": [
+        205.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        225.0,
+        185.0
+      ],
+      "to": [
+        225.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        245.0,
+        185.0
+      ],
+      "to": [
+        245.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        265.0,
+        185.0
+      ],
+      "to": [
+        265.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        285.0,
+        185.0
+      ],
+      "to": [
+        285.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-14",
+      "type": "segment",
+      "from": [
+        305.0,
+        185.0
+      ],
+      "to": [
+        305.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-15",
+      "type": "segment",
+      "from": [
+        325.0,
+        185.0
+      ],
+      "to": [
+        325.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-16",
+      "type": "segment",
+      "from": [
+        25.0,
+        165.0
+      ],
+      "to": [
+        335.0,
+        165.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-17",
+      "type": "segment",
+      "from": [
+        25.0,
+        145.0
+      ],
+      "to": [
+        335.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-18",
+      "type": "segment",
+      "from": [
+        25.0,
+        125.0
+      ],
+      "to": [
+        335.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-19",
+      "type": "segment",
+      "from": [
+        25.0,
+        105.0
+      ],
+      "to": [
+        335.0,
+        105.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-20",
+      "type": "segment",
+      "from": [
+        25.0,
+        85.0
+      ],
+      "to": [
+        335.0,
+        85.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-21",
+      "type": "segment",
+      "from": [
+        25.0,
+        65.0
+      ],
+      "to": [
+        335.0,
+        65.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-22",
+      "type": "segment",
+      "from": [
+        25.0,
+        45.0
+      ],
+      "to": [
+        335.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-23",
+      "type": "segment",
+      "from": [
+        35.0,
+        110.0
+      ],
+      "to": [
+        325.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          200.0,
+          110.0
+        ],
+        [
+          175.0,
+          122.0
+        ],
+        [
+          175.0,
+          98.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-24",
+      "type": "segment",
+      "from": [
+        80.0,
+        120.0
+      ],
+      "to": [
+        80.0,
+        100.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-25",
+      "type": "segment",
+      "from": [
+        120.0,
+        120.0
+      ],
+      "to": [
+        120.0,
+        100.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-26",
+      "type": "segment",
+      "from": [
+        260.0,
+        120.0
+      ],
+      "to": [
+        260.0,
+        100.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        80.0,
+        80.0
+      ],
+      "text": "P",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        120.0,
+        80.0
+      ],
+      "text": "K",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        260.0,
+        80.0
+      ],
+      "text": "M",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        195.0,
+        155.0
+      ],
+      "text": "CAMP",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        55.0,
+        60.0
+      ],
+      "text": "1 km",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 26
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 5
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

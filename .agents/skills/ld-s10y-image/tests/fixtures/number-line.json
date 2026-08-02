@@ -1,0 +1,132 @@
+{
+  "schema": "ld-s10y-image/figure-spec@1",
+  "id": "fig-test-number-line",
+  "mode": "deterministic",
+  "description": "Three collinear points with equal five-unit intervals.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-29.png",
+      "sha256": "1f3b6301c2ce4f4c3712c00b14792926ab69364ec31968dac31053622f60c9b6"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "test",
+        "text": "Show -5, 0, and 5 at equal intervals on a number line."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 600,
+    "boundingBox": [-7, 3, 7, -3],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "left",
+      "type": "point",
+      "at": [-5, 0],
+      "fill": "primary"
+    },
+    {
+      "id": "origin",
+      "type": "point",
+      "at": [0, 0],
+      "fill": "secondary"
+    },
+    {
+      "id": "right",
+      "type": "point",
+      "at": [5, 0],
+      "fill": "primary"
+    },
+    {
+      "id": "number-line",
+      "type": "axis",
+      "from": [-6.3, 0],
+      "to": [6.3, 0],
+      "stroke": "ink",
+      "strokeWidth": 5,
+      "tickSize": 0.18,
+      "fontSize": 38,
+      "ticks": [
+        {
+          "at": 0.1031746032,
+          "label": "-5",
+          "labelPlacement": {"position": "S", "gap": 54}
+        },
+        {
+          "at": 0.5,
+          "label": "0",
+          "labelPlacement": {"position": "S", "gap": 54}
+        },
+        {
+          "at": 0.8968253968,
+          "label": "5",
+          "labelPlacement": {"position": "S", "gap": 54}
+        }
+      ]
+    },
+    {
+      "id": "left-name",
+      "type": "text",
+      "at": "left",
+      "text": "A",
+      "labelPlacement": {"position": "N", "gap": 34}
+    },
+    {
+      "id": "right-name",
+      "type": "text",
+      "at": "right",
+      "text": "B",
+      "labelPlacement": {"position": "N", "gap": 34}
+    }
+  ],
+  "assertions": [
+    {
+      "type": "distance",
+      "a": "left",
+      "b": "origin",
+      "value": 5
+    },
+    {
+      "type": "distance",
+      "a": "origin",
+      "b": "right",
+      "value": 5
+    },
+    {
+      "type": "equalDistance",
+      "a": "left",
+      "b": "origin",
+      "c": "origin",
+      "d": "right"
+    },
+    {
+      "type": "collinear",
+      "a": "left",
+      "b": "origin",
+      "c": "right"
+    },
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 4,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "draft",
+    "notes": "Renderer fixture."
+  }
+}

@@ -1,0 +1,223 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n3",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "39",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "X∪Y 是图5中所有属于 X 或属于 Y（包括同时属于二者）的元素组成的集合。所给题面未包含图5，无法列出具体元素。",
+      "parts": []
+    },
+    {
+      "exercise": "40",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "A∪B={b, c, d, e, f, i, l}；A∩B={b, d, f}；B∩A={b, d, f}；B∪A={b, c, d, e, f, i, l}；A∩C={c, e}；A∪C={b, c, d, e, f, g}；B∩C=∅（题中记作 φ）；B∪C={b, c, d, e, f, g, i, l}。",
+      "parts": [
+        {
+          "id": "A∪B",
+          "judge": "expression",
+          "expected": [
+            "{b,c,d,e,f,i,l}"
+          ]
+        },
+        {
+          "id": "A∩B",
+          "judge": "expression",
+          "expected": [
+            "{b,d,f}"
+          ]
+        },
+        {
+          "id": "B∩A",
+          "judge": "expression",
+          "expected": [
+            "{b,d,f}"
+          ]
+        },
+        {
+          "id": "B∪A",
+          "judge": "expression",
+          "expected": [
+            "{b,c,d,e,f,i,l}"
+          ]
+        },
+        {
+          "id": "A∩C",
+          "judge": "expression",
+          "expected": [
+            "{c,e}"
+          ]
+        },
+        {
+          "id": "A∪C",
+          "judge": "expression",
+          "expected": [
+            "{b,c,d,e,f,g}"
+          ]
+        },
+        {
+          "id": "B∩C",
+          "judge": "expression",
+          "expected": [
+            "∅",
+            "φ",
+            "{}"
+          ]
+        },
+        {
+          "id": "B∪C",
+          "judge": "expression",
+          "expected": [
+            "{b,c,d,e,f,g,i,l}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "41",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在射线上依次标出 A(3)、B(6)、C(10)。1）[AB]∪[BC]=[AC]；2）[AC]∪[BC]=[AC]。",
+      "parts": []
+    },
+    {
+      "exercise": "42",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "A∪B 表示全班学生的集合，因为每名学生都属于“11岁以上”或“12岁以下”这两个集合中的至少一个。",
+      "parts": []
+    },
+    {
+      "exercise": "43",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "A={25, 45, 90}，B={45, 48, 90}，所以 A∩B={45, 90}。",
+      "parts": [
+        {
+          "id": "A",
+          "judge": "expression",
+          "expected": [
+            "{25,45,90}"
+          ]
+        },
+        {
+          "id": "B",
+          "judge": "expression",
+          "expected": [
+            "{45,48,90}"
+          ]
+        },
+        {
+          "id": "A∩B",
+          "judge": "expression",
+          "expected": [
+            "{45,90}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "44",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "M∩N 表示班上既参加科学社团又参加夏令营徒步活动的学生集合。",
+      "parts": []
+    },
+    {
+      "exercise": "45",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) ≈66.7%；2) ≈33.3%",
+      "displayAnswer": "1）（15-9）÷9×100%≈66.7%；2）（30-20）÷30×100%≈33.3%。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "66.7"
+          ],
+          "unit": "%"
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "33.3"
+          ],
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "exercise": "46",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）K∪M={1, 2, 3, 5, 6, 9, 15, 18}；2）K∩M={1, 3}；3）M∪P={1, 2, 3, 6, 9, 18}；4）M∩P={1, 3, 9}。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "expression",
+          "expected": [
+            "{1,2,3,5,6,9,15,18}"
+          ]
+        },
+        {
+          "id": "2",
+          "judge": "expression",
+          "expected": [
+            "{1,3}"
+          ]
+        },
+        {
+          "id": "3",
+          "judge": "expression",
+          "expected": [
+            "{1,2,3,6,9,18}"
+          ]
+        },
+        {
+          "id": "4",
+          "judge": "expression",
+          "expected": [
+            "{1,3,9}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "47",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）A∩C={9, 10}；2）A∪C={7, 8, 9, 10, 11, 12, 13}。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "expression",
+          "expected": [
+            "{9,10}"
+          ]
+        },
+        {
+          "id": "2",
+          "judge": "expression",
+          "expected": [
+            "{7,8,9,10,11,12,13}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "48",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "应从图10中判断：与直线 m 不相交且方向相同的直线平行于 m；与 m 有公共点的直线和 m 相交。所给题面未包含图10，无法确定相应直线的名称。",
+      "parts": []
+    }
+  ],
+  "count": 10
+}

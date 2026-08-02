@@ -1,0 +1,99 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n10",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "149",
+      "prompt": "在数轴上标出点 $A(2)$. 向右移动 6 个单位时，这个点变成哪点？向左移动 6 个单位呢？当移动 7 时，$A$ 点将变到哪点？移动 $-7$ 呢？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "150",
+      "prompt": "点 $P(4)$ 在移动以后和点 $K(-2)$ 重合，点 $P$ 移动了几个单位？如果它和点 $T(6)$ 相重合，又是移动了几个单位？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "151",
+      "prompt": "读出图 41 中温度计的读数. 如果：\n1) 升高 $1^\\circ\\mathrm{C}$；\n2) 降低 $1^\\circ\\mathrm{C}$；\n3) 升高 $2^\\circ\\mathrm{C}$；\n4) 降低 $2^\\circ\\mathrm{C}$，每个温度计表示的温度为几度？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "152",
+      "prompt": "我看到室外温度计的读数是 $5^\\circ\\mathrm{C}$，我要不要找同学去溜冰场呢？如果明天气温下降 $11^\\circ\\mathrm{C}$ 时，我们能不能溜冰呢？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "153",
+      "prompt": "求在数轴上的以下各数：\n1) 和 $-8$ 相距 6 个单位；\n2) 和 4 相距 10 个单位；\n3) 和 $-4$ 相距 10 个单位；\n4) 和 0 相距 100 个单位.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "154",
+      "prompt": "写出和 $-11$ 等距离的两个数. 再写三对这样的数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "155",
+      "prompt": "一个采用了先进农业技术的生产队在面积为 45 公顷的土地上收获了 4275 吨马铃薯，在 35 公顷的一块土地上收获了 3290 吨. 这个生产队平均从每公顷土地收获多少马铃薯？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "94.5 吨"
+    },
+    {
+      "exercise": "156",
+      "prompt": "1974 年全国收得籽棉 840 万吨. 其中 530 万吨是在主要产棉地区收的. 其它产棉地区提供的籽棉占百分之几？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "157",
+      "prompt": "在数轴上标出点 $A(-3)$. 当它向右移动 5 个单位时，将变成哪个点？当它向左移动 2 个单位时，又将变为哪点呢？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "158",
+      "prompt": "在数轴上标出点 $M(-4)$. 在移动以后，这个点和点$C(3)$ 重合. 点 $M$ 移动了几个单位？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "159",
+      "prompt": "根据某市的发展计划，要建设一座新工厂. 该厂需要 660 名工人—车工、钳工和铣工. 所需要的车工是铣工的 3 倍，而钳工是铣工的 2 倍. 该厂需要多少名车工？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "330 人"
+    }
+  ]
+}

@@ -1,9 +1,163 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-64",
+  "mode": "deterministic",
   "description": "A newly authored grid triangle for a two-step translation.",
-  "constraints": [
-    "Triangle ABC is shown on a square grid.",
-    "The learner translates it seven cells down and four cells right."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-64.png",
+      "sha256": "e18a096e3c8db9e95aaf4061b5a849961f9649dd4b9477b9a863ee73823eccff"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n15",
+        "exercise": "248",
+        "text": "图 64 中画有三角形 $ABC$. 在自己的练习本上作同样的三角形并且使它向下平移七个格. 再把所得的三角形向右移 4 个格."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          70.0,
+          480.0
+        ],
+        [
+          830.0,
+          480.0
+        ],
+        [
+          830.0,
+          40.0
+        ],
+        [
+          70.0,
+          40.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.551111111111111,
+      "opacity": 1,
+      "fill": "#e8efed",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          250.0,
+          140.0
+        ],
+        [
+          180.0,
+          420.0
+        ],
+        [
+          700.0,
+          190.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1,
+      "fill": "secondary",
+      "fillOpacity": 0.18
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        235.0,
+        105.0
+      ],
+      "text": "A",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        155.0,
+        430.0
+      ],
+      "text": "B",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        715.0,
+        180.0
+      ],
+      "text": "C",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

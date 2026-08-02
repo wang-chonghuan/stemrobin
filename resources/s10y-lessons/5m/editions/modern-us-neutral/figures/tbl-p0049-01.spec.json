@@ -1,11 +1,283 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "tbl-p0049-01",
+  "mode": "deterministic",
   "description": "A clean two-row table preserving the original x and -x exercise values and blanks.",
-  "constraints": [
-    "The table has two rows and eight columns.",
-    "Given x values are 3, 5, 0, and -6.",
-    "Given -x values are 4, -2, and -1.",
-    "All remaining value cells are intentionally blank."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/tbl-p0049-01.png",
+      "sha256": "90ab10db0ee59e6d54b6addae5ff57316284cb18ab5f9248e1356f5cb2ce40ad"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n12",
+        "exercise": "183",
+        "text": "填写下表中的空格，并在数轴上标出表中的各数."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1371,
+    "height": 320,
+    "boundingBox": [
+      0,
+      210.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          2.0,
+          208.0
+        ],
+        [
+          898.0,
+          208.0
+        ],
+        [
+          898.0,
+          2.0
+        ],
+        [
+          2.0,
+          2.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.571428571428571,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        2.0,
+        105.0
+      ],
+      "to": [
+        898.0,
+        105.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.571428571428571,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M130 2v206M240 2v206M350 2v206M460 2v206M570 2v206M680 2v206M790 2v206",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 4.571428571428571,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        66.0,
+        156.0
+      ],
+      "text": "x",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        185.0,
+        156.0
+      ],
+      "text": "3",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        405.0,
+        156.0
+      ],
+      "text": "5",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        625.0,
+        156.0
+      ],
+      "text": "0",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        845.0,
+        156.0
+      ],
+      "text": "-6",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        66.0,
+        52.0
+      ],
+      "text": "-x",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        295.0,
+        52.0
+      ],
+      "text": "4",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        515.0,
+        52.0
+      ],
+      "text": "-2",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        735.0,
+        52.0
+      ],
+      "text": "-1",
+      "fontSize": 48.76190476190476,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 9
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

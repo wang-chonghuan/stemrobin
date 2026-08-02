@@ -1,10 +1,192 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-17",
+  "mode": "deterministic",
   "description": "A mixed collection of polygons and circles.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-17.png",
+      "sha256": "3686e2ca02d6af1a45e4102867661e9ac6e100e326ce976bf0ed2f7f1d9df4d3"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n5",
+        "exercise": "68",
+        "text": "图 17 中的图形的集合是不是可以分成：\n1) 两类——三角形和四边形；\n2) 三类——三角形、四边形和带阴影图形；\n3) 三类——三角形、四边形和圆；\n4) 两类——带阴影图形和白色图形？"
+      },
+      {
+        "lesson": "math5-c1-s1-n5",
+        "exercise": "69",
+        "text": "按图 17 填写下表：作条形图，表示出三角形、四边形和圆的数量（图 17）."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          35.0,
+          145.0
+        ],
+        [
+          105.0,
+          145.0
+        ],
+        [
+          95.0,
+          185.0
+        ],
+        [
+          50.0,
+          190.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          135.0,
+          190.0
+        ],
+        [
+          185.0,
+          165.0
+        ],
+        [
+          170.0,
+          130.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        245.0,
+        165.0
+      ],
+      "radius": 32.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#d5e3e0",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          55.0,
+          75.0
+        ],
+        [
+          115.0,
+          110.0
+        ],
+        [
+          155.0,
+          90.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "circle-2",
+      "type": "circle",
+      "center": [
+        65.0,
+        35.0
+      ],
+      "radius": 25.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#d5e3e0",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-4",
+      "type": "polygon",
+      "points": [
+        [
+          210.0,
+          95.0
+        ],
+        [
+          295.0,
+          115.0
+        ],
+        [
+          320.0,
+          40.0
+        ],
+        [
+          235.0,
+          55.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

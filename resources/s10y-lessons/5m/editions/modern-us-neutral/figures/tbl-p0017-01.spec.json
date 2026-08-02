@@ -1,10 +1,467 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "tbl-p0017-01",
+  "mode": "deterministic",
   "description": "An English class schedule for Monday and Tuesday.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/tbl-p0017-01.png",
+      "sha256": "a1eacd6ff6a8d836bb45804244fd4f4f2a75064a65915b49657c2a1c11137e68"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n3",
+        "text": "右面列有星期一和星期二的课程表. 用 $A$ 表示星期一的课程的集合. 用 $B$ 表示星期二的课程的集合. 在这两天里学习的课程计有：{语文、数学、历史、生物、技术、地理、英语、体育}. 所得课程的集合叫做集合 $A$={语文，数学，生物，历史，技术}和 $B$={数学，语文，地理，英语，体育}的**并集**. 集合 $A$ 和 $B$ 的并集写作 $A \\cup B$. 就是说，$A \\cup B$={语文，数学，历史，生物，技术，地理，英语，体育}."
+      },
+      {
+        "lesson": "math5-c1-s1-n3",
+        "text": "图 9"
+      },
+      {
+        "lesson": "math5-c1-s1-n3",
+        "text": "**由至少属于两个集合之一的元素组成的集合叫做这两个****集合的并集.**"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          25.0,
+          200.0
+        ],
+        [
+          335.0,
+          200.0
+        ],
+        [
+          335.0,
+          20.0
+        ],
+        [
+          25.0,
+          20.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        25.0,
+        165.0
+      ],
+      "to": [
+        335.0,
+        165.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        75.0,
+        200.0
+      ],
+      "to": [
+        75.0,
+        20.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        205.0,
+        200.0
+      ],
+      "to": [
+        205.0,
+        20.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        50.0,
+        177.0
+      ],
+      "text": "No.",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        140.0,
+        177.0
+      ],
+      "text": "Monday",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        270.0,
+        177.0
+      ],
+      "text": "Tuesday",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        140.0,
+        142.0
+      ],
+      "text": "Language Arts",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        140.0,
+        115.0
+      ],
+      "text": "Math",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        140.0,
+        88.0
+      ],
+      "text": "History",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        140.0,
+        61.0
+      ],
+      "text": "Biology",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        140.0,
+        34.0
+      ],
+      "text": "Technology",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        270.0,
+        142.0
+      ],
+      "text": "Math",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        270.0,
+        115.0
+      ],
+      "text": "Language Arts",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        270.0,
+        88.0
+      ],
+      "text": "Geography",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        270.0,
+        61.0
+      ],
+      "text": "English",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-13",
+      "type": "text",
+      "at": [
+        270.0,
+        34.0
+      ],
+      "text": "PE",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-14",
+      "type": "text",
+      "at": [
+        50.0,
+        142.0
+      ],
+      "text": "1",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-15",
+      "type": "text",
+      "at": [
+        50.0,
+        115.0
+      ],
+      "text": "2",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-16",
+      "type": "text",
+      "at": [
+        50.0,
+        88.0
+      ],
+      "text": "3",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-17",
+      "type": "text",
+      "at": [
+        50.0,
+        61.0
+      ],
+      "text": "4",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-18",
+      "type": "text",
+      "at": [
+        50.0,
+        34.0
+      ],
+      "text": "5",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 18
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

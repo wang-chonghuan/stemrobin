@@ -1,0 +1,31 @@
+{
+  "schema": "n-azure/image-generation@1",
+  "created_at": "2026-08-02T16:23:56.555869+00:00",
+  "endpoint": "https://finleyswedencentralinstance.openai.azure.com",
+  "api_version": "preview",
+  "model": "gpt-image-2",
+  "mode": "edit",
+  "auth_method": "api-key",
+  "prompt": "Create a polished full-color educational classification illustration for a modern US-neutral grade 5 math lesson.\n\nAuthoritative lesson text: \"Divide the set shown in Figure 18 into two classes: plants and animals. Draw a bar chart.\"\n\nShow exactly eight separate, clearly countable objects arranged in two loose rows on a clean white background:\n- exactly three plants: one pine tree, one leafy deciduous tree, and one sunflower\n- exactly five animals: one wolf, one rabbit, one bear, one goat, and one elephant\n\nEach object must appear once, fully visible, separated from the others, and easy for a child to recognize and count. Use friendly naturalistic flat textbook illustration, natural colors, subtle teal and green accents, crisp edges, and no shadows that merge objects.\n\nThe prompt text is authoritative. The reference image supplies only the idea of a mixed set of plants and animals. Do not copy its engraving style or any old cultural content.\n\nNo text, letters, numbers, labels, captions, bars, axes, borders, flags, uniforms, Soviet symbols, Cyrillic, Chinese characters, handwriting, book texture, or monochrome engraving.",
+  "references": [
+    {
+      "path": "resources/s10y-lessons/5m/figures/fig-18.png",
+      "bytes": 37115,
+      "sha256": "4d2d95c20256a4e2be7091660058b0e9f45ff31f9ba350dc5212ad7c8fd883b0"
+    }
+  ],
+  "request": {
+    "size": "1536x1024",
+    "quality": "high",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1
+  },
+  "output": {
+    "path": ".tmp/batch-runs/2a398867-3fa8-4abe-894a-ec6e47c501ea/semantic/fig-18/fig-18.png",
+    "width": 1536,
+    "height": 1024,
+    "bytes": 1295632,
+    "sha256": "3d941f440b39006c5ff82b8a597e228c6bfa49c981a21d104753c92a7747250d"
+  }
+}

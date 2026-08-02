@@ -1,0 +1,90 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n3",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "39",
+      "prompt": "按图 5 写出 $X$ 和 $Y$ 的并集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "40",
+      "prompt": "已知三个集合：$A$={b, c, d, e, f}; $B$={b, d, f, i, l};$C$={c, e, g}. 用大括号或符号 $\\phi$ 写出下列集合：$A \\cup B$,$A \\cap B, B \\cap A, B \\cup A, A \\cap C, A \\cup C, B \\cap C, B \\cup C$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "41",
+      "prompt": "在射线上标出 3, 6, 10 的对应点 $A, B, C$. 求下列集合的并集：1）$[AB]$ 和 $[BC]$；  2）$[AC]$ 和 $[BC]$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "42",
+      "prompt": "用 $A$ 表示我们班上 11 岁以上的学生的集合，用 $B$ 表示我们班 12 岁以下的学生的集合. 求这两个集合的并集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "43",
+      "prompt": "从集合 $X$={67, 48, 90, 45, 76, 25}中挑出由 5 的倍数组成的子集 $A$ 和由 3 的倍数组成的子集 $B$. 求出这两个子集的交集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "44",
+      "prompt": "$M$ 是我们班参加科学社团的学生集合，$N$ 是夏令营徒步活动参加者的集合. $M \\cap N$ 表示什么？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "45",
+      "prompt": "解应用题：\n1）1965 年某教育基金发放大学生奖学金 9 亿美元，1972 年发放 15 亿美元. 从 1965 年到 1972 年，奖学金增加了百分之几？\n2）1972 年，甲地区每 10 000 人中有 30 名医生，乙地区每10 000 人中有 20 名医生. 乙地区的医生比甲地区少百分之几(按 10 000 人计).",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) ≈66.7%；2) ≈33.3%"
+    },
+    {
+      "exercise": "46",
+      "prompt": "$K$ 是 15 的约数的集合，$M$ 是 18 的约数的集合，$P$ 是 9 的约数的集合. 在大括号内写出下列各集合：1）$K \\cup M$；2）$K \\cap M$；3）$M \\cup P$；4）$M \\cap P$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "47",
+      "prompt": "$A$={7, 8, 9, 10}，$C$={9, 10, 11, 12, 13}. 在大括号内写出下列集合：1）$A \\cap C$；  2）$A \\cup C$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "48",
+      "prompt": "按图 10 回答：1）哪条直线平行于直线$m$？2）哪条直线与直线 $m$ 相交？",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    }
+  ]
+}

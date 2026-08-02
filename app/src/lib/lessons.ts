@@ -5,12 +5,23 @@ import { sql } from '~/lib/db'
 // Postgres (`sr_lessons`); the app serves them through these server functions —
 // there is no static public/lessons/* path. The DB connection stays server-side.
 // One card's readable content: the 課文 blocks and its exercises. Both are stored
-// as HTML fragments (KaTeX pre-rendered, figures inline SVG) so the page lays them
+// as HTML fragments (KaTeX pre-rendered, figures inline) so the page lays them
 // out with the app's own typography instead of hosting a whole document.
 export type ProseBlock =
   | { kind: 'p' | 'cap'; html: string }
-  | { kind: 'fig'; id: string; label: string | null; svg: string | null }
-export type CardFigure = { id: string; label: string | null; svg: string | null }
+  | {
+      kind: 'fig'
+      id: string
+      label: string | null
+      image?: string | null
+      svg?: string | null
+    }
+export type CardFigure = {
+  id: string
+  label: string | null
+  image?: string | null
+  svg?: string | null
+}
 export type ExerciseAnswerSpec = {
   grading: 'auto' | 'ungraded'
   parts: { label?: string; unit?: string }[]
@@ -64,6 +75,7 @@ export const getCardContent = createServerFn({ method: 'GET' })
           ? exercise.figures.map((figure) => ({
               id: figure.id,
               label: figure.label ?? null,
+              image: figure.image ?? null,
               svg: figure.svg ?? null,
             }))
           : [],
@@ -92,8 +104,8 @@ export const getLessonPdf = createServerFn({ method: 'GET' })
 // locale". That model tied readability to a per-node translation ledger and to
 // authored practice items; textbook pages transcribed from a scan have neither,
 // so nothing from the scans could ever surface. Content now travels as prose
-// blocks + exercises (HTML fragments with KaTeX already rendered and figures as
-// inline SVG), which the app lays out itself — see card.$id.tsx.
+// blocks + exercises (HTML fragments with KaTeX already rendered and inline
+// figures), which the app lays out itself — see card.$id.tsx.
 export const listAvailableLessonIds = createServerFn({ method: 'GET' }).handler(
   async (): Promise<string[]> => {
     const rows = await sql()`

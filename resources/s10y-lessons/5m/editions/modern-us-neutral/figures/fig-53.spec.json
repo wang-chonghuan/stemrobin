@@ -1,10 +1,250 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-53",
+  "mode": "deterministic",
   "description": "A newly authored number line illustrating absolute value as distance from zero.",
-  "constraints": [
-    "M(-6) is six equal unit intervals left of 0.",
-    "B(5) is five equal unit intervals right of 0.",
-    "Distance arrows are labeled 6 units and 5 units."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-53.png",
+      "sha256": "c6284bc305b66371077c2c6da7c78f22533964dc586c5591d1649d7218e0da1c"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n13",
+        "text": "在数轴上，$-6$ 的对应点是 $M(-6)$（图 53）. 从这个点到原点的距离等于 6 个单位线段. 6 叫做 $-6$ 的**绝对值**. 也就是说，$-6$ 的绝对值等于 6. 写作 $|-6|=6$. 因为点 $B(5)$ 距原点 5 个单位线段，所以 5 的绝对值等于 5. 0 的绝对值等于 0，因为 0 的对应点和原点重合，就是说 0 点和原点的距离为 0个单位线段（图 53），$|0|=0$."
+      },
+      {
+        "lesson": "math5-c1-s2-n13",
+        "text": "图 53"
+      },
+      {
+        "lesson": "math5-c1-s2-n13",
+        "text": "**求数的绝对值，必须以单位线段度量从原点到这个数的对应点的距离.**"
+      },
+      {
+        "lesson": "math5-c1-s2-n13",
+        "text": "一个数的绝对值不能是负数. 正数和零的绝对值都是它本身，而负数的绝对值是它的相反数."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 320,
+    "boundingBox": [
+      0,
+      240.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        55.0,
+        148.0
+      ],
+      "to": [
+        845.0,
+        148.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.333333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M845 92l-18-10v20z",
+      "stroke": "none",
+      "fill": "primary",
+      "strokeWidth": 5.333333333333333,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "svgPath-2",
+      "type": "svgPath",
+      "d": "M100 82v20M150 82v20M200 82v20M250 82v20M300 82v20M350 82v20M400 82v20M450 76v32M500 82v20M550 82v20M600 82v20M650 82v20M700 76v32M750 82v20M800 82v20",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.333333333333333,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        150.0,
+        98.0
+      ],
+      "to": [
+        450.0,
+        98.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.333333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-3",
+      "type": "svgPath",
+      "d": "M150 142l15-8v16zM450 142l-15-8v16z",
+      "stroke": "none",
+      "fill": "primary",
+      "strokeWidth": 5.333333333333333,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        450.0,
+        50.0
+      ],
+      "to": [
+        700.0,
+        50.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.333333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-4",
+      "type": "svgPath",
+      "d": "M450 190l15-8v16zM700 190l-15-8v16z",
+      "stroke": "none",
+      "fill": "primary",
+      "strokeWidth": 5.333333333333333,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        150.0,
+        186.0
+      ],
+      "text": "M(-6)",
+      "fontSize": 33.33333333333333,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        450.0,
+        186.0
+      ],
+      "text": "0",
+      "fontSize": 33.33333333333333,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        700.0,
+        186.0
+      ],
+      "text": "B(5)",
+      "fontSize": 33.33333333333333,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        300.0,
+        108.0
+      ],
+      "text": "6 units",
+      "fontSize": 33.33333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        575.0,
+        60.0
+      ],
+      "text": "5 units",
+      "fontSize": 33.33333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 4
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 5
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

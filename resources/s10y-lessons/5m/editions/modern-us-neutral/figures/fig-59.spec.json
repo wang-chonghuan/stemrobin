@@ -1,9 +1,206 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-59",
+  "mode": "deterministic",
   "description": "A newly authored translated line segment.",
-  "constraints": [
-    "Segment AB and segment A1B1 are equal.",
-    "The endpoint translation vectors are parallel and equal."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-59.png",
+      "sha256": "f7c0b40d878ce83d46f348613e1a049e77cd88b8ad40a2da0750d1b23530dddd"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 58"
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "当三角板沿直尺移动时，三角板的尺寸不变. 一般说来，在平移时，如果图形 $M$ 移到图形 $P$，那么图形 $M$ 和 $P$ 合同."
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "例 1. 让我们来完成 $AB$ 线段的平移，使点 $A$ 移到点 $A_1$.联结点 $A$ 和点 $A_1$（图 59）. 从点 $B$ 引和 $AA_1$ 平行并且长度相等、方向相同的线段 $BB_1$. 联结$A_1$ 和 $B_1$ 二点. 线段 $A_1B_1$ 就是线段 $AB$ 在平移时移到的线段.例 2. 我们来完成圆心为点$A$、半径为 1 厘米的圆周的平移，使点 $A$ 移到点 $A_1$.因为平移时，圆周的大小不变，所以只要作以点 $A_1$ 为圆心、半径为 1 厘米的圆周即可（图 60）.用花样模板作花纹时应用了平移原理（图 61）."
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 59"
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 60"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        170.0,
+        420.0
+      ],
+      "to": [
+        300.0,
+        170.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        570.0,
+        420.0
+      ],
+      "to": [
+        700.0,
+        170.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        170.0,
+        420.0
+      ],
+      "to": [
+        570.0,
+        420.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        300.0,
+        170.0
+      ],
+      "to": [
+        700.0,
+        170.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        145.0,
+        430.0
+      ],
+      "text": "A",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        275.0,
+        130.0
+      ],
+      "text": "B",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        575.0,
+        430.0
+      ],
+      "text": "A1",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        705.0,
+        130.0
+      ],
+      "text": "B1",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 4
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

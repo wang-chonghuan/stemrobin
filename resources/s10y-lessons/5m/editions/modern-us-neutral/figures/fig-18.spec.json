@@ -1,10 +1,45 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-18",
-  "description": "Original symbolic illustrations of plants and animals for classification.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "mode": "generated",
+  "description": "A mixed set of exactly three plants and five animals for a classification exercise.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-18.png",
+      "sha256": "4d2d95c20256a4e2be7091660058b0e9f45ff31f9ba350dc5212ad7c8fd883b0"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n5",
+        "exercise": "74",
+        "text": "把图 18 中的集合分成植物和动物两类. 画出条形图."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 1024,
+    "boundingBox": [
+      0,
+      1024,
+      1536,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "assets": [
+    {
+      "id": "final-artwork",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-18.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-18.png.json",
+      "role": "final"
+    }
+  ],
+  "objects": [],
+  "assertions": [],
+  "review": {
+    "status": "pass",
+    "notes": "Verified exactly three plants and five animals, each shown once, with no text or cultural carryover."
+  }
 }

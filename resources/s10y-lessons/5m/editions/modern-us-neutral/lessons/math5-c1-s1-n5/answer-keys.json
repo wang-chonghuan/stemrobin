@@ -1,0 +1,174 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n5",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "67",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "第一类：3，6，9，12，15，18；第二类：1，4，7，10，13，16，19；第三类：2，5，8，11，14，17，20。",
+      "parts": [
+        {
+          "id": "第一类",
+          "judge": "exact",
+          "expected": [
+            "3，6，9，12，15，18",
+            "3,6,9,12,15,18",
+            "{3，6，9，12，15，18}",
+            "{3,6,9,12,15,18}"
+          ]
+        },
+        {
+          "id": "第二类",
+          "judge": "exact",
+          "expected": [
+            "1，4，7，10，13，16，19",
+            "1,4,7,10,13,16,19",
+            "{1，4，7，10，13，16，19}",
+            "{1,4,7,10,13,16,19}"
+          ]
+        },
+        {
+          "id": "第三类",
+          "judge": "exact",
+          "expected": [
+            "2，5，8，11，14，17，20",
+            "2,5,8,11,14,17,20",
+            "{2，5，8，11，14，17，20}",
+            "{2,5,8,11,14,17,20}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "68",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）不可以，因为图中还有圆，没有被分入这两类。2）不可以，因为带阴影图形可能同时是三角形或四边形，类别有重叠。3）可以，三角形、四边形和圆互不重叠，并包含图中的全部图形。4）可以，每个图形恰好属于带阴影图形或白色图形中的一类。",
+      "parts": []
+    },
+    {
+      "exercise": "69",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "逐个清点图17中的图形，按边界形状分别统计三角形、四边形和圆的数量，阴影不改变图形类别。作图时横轴依次标“三角形、四边形、圆”，纵轴表示数量，画三根等宽直条，使各直条的高度分别等于表中对应的数量。",
+      "parts": []
+    },
+    {
+      "exercise": "70",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "先画线段AB=5.6厘米；在AB的同一侧，以A为顶点、AB为一边作40°角，以B为顶点、BA为一边作65°角，两条射线的交点记作C，即得三角形ABC。再用三角尺过C画直线，使它与AB平行。验算：∠C=180°−40°−65°=75°。",
+      "parts": []
+    },
+    {
+      "exercise": "71",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）1/2+1/4=0.5+0.25=0.75；2）1/5+1/10=0.2+0.1=0.3。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "0.75"
+          ]
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "0.3"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "72",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "8756 亿度，增加 585 亿度",
+      "displayAnswer": "五年的年平均发电量为875.6×10亿千瓦时；发电量平均每年增长58.5×10亿千瓦时。",
+      "parts": [
+        {
+          "id": "年平均发电量",
+          "judge": "numeric",
+          "expected": [
+            "875.6"
+          ],
+          "unit": "10亿千瓦时"
+        },
+        {
+          "id": "平均每年增长量",
+          "judge": "numeric",
+          "expected": [
+            "58.5"
+          ],
+          "unit": "10亿千瓦时/年"
+        }
+      ],
+      "notes": "验算：五年总发电量为4378×10亿千瓦时，4378÷5=875.6；第一年至第五年的增量为234×10亿千瓦时，234÷4=58.5。bookRaw中的8756亿千瓦时和585亿千瓦时分别等于875.6×10亿千瓦时和58.5×10亿千瓦时，答案正确。"
+    },
+    {
+      "exercise": "73",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "元音字母：a，e，i；辅音字母：b，c，d，f，g，h，j。",
+      "parts": [
+        {
+          "id": "元音字母",
+          "judge": "exact",
+          "expected": [
+            "a，e，i",
+            "a,e,i",
+            "{a，e，i}",
+            "{a,e,i}"
+          ]
+        },
+        {
+          "id": "辅音字母",
+          "judge": "exact",
+          "expected": [
+            "b，c，d，f，g，h，j",
+            "b,c,d,f,g,h,j",
+            "{b，c，d，f，g，h，j}",
+            "{b,c,d,f,g,h,j}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "74",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "逐个观察图18，把树木、花草等归入植物类，把鸟、兽、虫、鱼等归入动物类，并分别统计数量。作条形图时横轴标“植物”和“动物”，纵轴表示数量，画两根等宽直条，柱高分别等于两类的数量。",
+      "parts": []
+    },
+    {
+      "exercise": "75",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）3/4−1/8=0.75−0.125=0.625；2）13/25−2/5=0.52−0.4=0.12。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "0.625"
+          ]
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "0.12"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 9
+}

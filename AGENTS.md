@@ -25,8 +25,8 @@ Read the routed file directly; don't duplicate its content here.
 | Machine-current module facts (reverse-engineered) | `.evodocs/modules/` |
 | Ticket spec / test basis | the ticket in the backend (plane) + its `refs/` |
 | UI design tokens & rules | `resources/reference/DESIGN.md` (+ `resources/reference/DESIGN.guide.md`) |
-| Content-generation skills | `.agents/skills/` (`sr-story`, `sr-voa1500`, `ld-galaxy`) |
-| Soviet 10 Years 教材 → lesson / exercise | `.claude/skills/ld-s10y-lesson/`（产物在 `resources/s10y-lessons/`） |
+| Content-generation skills | `.agents/skills/` (`sr-story`, `sr-voa1500`, `ld-galaxy`, `ld-s10y-image`) |
+| Soviet 10 Years 教材 → lesson / exercise | `.claude/skills/ld-s10y-lesson/`（现代图委托 `ld-s10y-image`；产物在 `resources/s10y-lessons/`） |
 | Soviet 10 Years 书后答案 → answer | `.claude/skills/ld-s10y-answer/` |
 
 ## Frozen directories

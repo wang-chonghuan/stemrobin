@@ -1,10 +1,289 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-39",
+  "mode": "deterministic",
   "description": "A circular temperature dial with negative and positive sides.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-39.png",
+      "sha256": "4e7b02266256d1c54c211129437c14e983176b756ac1747b945a8a6ae4d01cec"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n9",
+        "exercise": "135",
+        "text": "在社区科学中心的建筑物上安装有一个带指针的温度计. 这个温度计指示的温度是多少度（图39）？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        180.0,
+        110.0
+      ],
+      "radius": 85.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        180.0,
+        110.0
+      ],
+      "to": [
+        245.0,
+        60.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 22.755555555555556,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        180.0,
+        110.0
+      ],
+      "size": 11.520000000000001,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        180.0,
+        185.0
+      ],
+      "text": "40",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        245.0,
+        165.0
+      ],
+      "text": "30",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        270.0,
+        110.0
+      ],
+      "text": "20",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        255.0,
+        38.0
+      ],
+      "text": "10",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        180.0,
+        15.0
+      ],
+      "text": "0",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        105.0,
+        42.0
+      ],
+      "text": "-10",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        85.0,
+        110.0
+      ],
+      "text": "-20",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        110.0,
+        165.0
+      ],
+      "text": "-30",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        200.0,
+        130.0
+      ],
+      "text": "+",
+      "fontSize": 68.26666666666667,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        145.0,
+        130.0
+      ],
+      "text": "−",
+      "fontSize": 68.26666666666667,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 10
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

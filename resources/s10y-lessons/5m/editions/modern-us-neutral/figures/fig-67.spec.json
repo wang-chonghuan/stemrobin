@@ -1,8 +1,884 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-67",
+  "mode": "deterministic",
   "description": "A newly authored movement grid with points O, M, K, P, and N.",
-  "constraints": [
-    "Relative to O: M is (3,5), K is (4,1), P is (1,3), and N is (5,4)."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-67.png",
+      "sha256": "46809d21c59b9e6b5489cc2a56da5c5260e8a68c43a7f41799787273da669a56"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n16",
+        "exercise": "262",
+        "text": "按图 67 确定从点 $O$ 到点 $M,K,P$ 和 $N$ 要从左向右走几格，从下向上走几格？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520,
+      900,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        70,
+        480
+      ],
+      "to": [
+        70,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        154.44444444444446,
+        480
+      ],
+      "to": [
+        154.44444444444446,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        238.88888888888889,
+        480
+      ],
+      "to": [
+        238.88888888888889,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        323.3333333333333,
+        480
+      ],
+      "to": [
+        323.3333333333333,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        407.77777777777777,
+        480
+      ],
+      "to": [
+        407.77777777777777,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        492.22222222222223,
+        480
+      ],
+      "to": [
+        492.22222222222223,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        576.6666666666666,
+        480
+      ],
+      "to": [
+        576.6666666666666,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        661.1111111111111,
+        480
+      ],
+      "to": [
+        661.1111111111111,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        745.5555555555555,
+        480
+      ],
+      "to": [
+        745.5555555555555,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        830,
+        480
+      ],
+      "to": [
+        830,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        70,
+        40
+      ],
+      "to": [
+        830,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        70,
+        95
+      ],
+      "to": [
+        830,
+        95
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        70,
+        150
+      ],
+      "to": [
+        830,
+        150
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-14",
+      "type": "segment",
+      "from": [
+        70,
+        205
+      ],
+      "to": [
+        830,
+        205
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-15",
+      "type": "segment",
+      "from": [
+        70,
+        260
+      ],
+      "to": [
+        830,
+        260
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-16",
+      "type": "segment",
+      "from": [
+        70,
+        315
+      ],
+      "to": [
+        830,
+        315
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-17",
+      "type": "segment",
+      "from": [
+        70,
+        370
+      ],
+      "to": [
+        830,
+        370
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-18",
+      "type": "segment",
+      "from": [
+        70,
+        425
+      ],
+      "to": [
+        830,
+        425
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-19",
+      "type": "segment",
+      "from": [
+        70,
+        480
+      ],
+      "to": [
+        830,
+        480
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-20",
+      "type": "segment",
+      "from": [
+        70,
+        95
+      ],
+      "to": [
+        838,
+        95
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.551111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-21",
+      "type": "segment",
+      "from": [
+        238.88888888888889,
+        40
+      ],
+      "to": [
+        238.88888888888889,
+        488
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.551111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        855,
+        87
+      ],
+      "text": "x",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        220.88888888888889,
+        485
+      ],
+      "text": "y",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        70,
+        75
+      ],
+      "text": "-2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        154.44444444444446,
+        75
+      ],
+      "text": "-1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        323.3333333333333,
+        75
+      ],
+      "text": "1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        407.77777777777777,
+        75
+      ],
+      "text": "2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        492.22222222222223,
+        75
+      ],
+      "text": "3",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        576.6666666666666,
+        75
+      ],
+      "text": "4",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        661.1111111111111,
+        75
+      ],
+      "text": "5",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        745.5555555555555,
+        75
+      ],
+      "text": "6",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        830,
+        75
+      ],
+      "text": "7",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        34
+      ],
+      "text": "-1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-13",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        144
+      ],
+      "text": "1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-14",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        199
+      ],
+      "text": "2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-15",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        254
+      ],
+      "text": "3",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-16",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        309
+      ],
+      "text": "4",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-17",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        364
+      ],
+      "text": "5",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-18",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        419
+      ],
+      "text": "6",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-19",
+      "type": "text",
+      "at": [
+        223.88888888888889,
+        464
+      ],
+      "text": "7",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-20",
+      "type": "text",
+      "at": [
+        224.88888888888889,
+        75
+      ],
+      "text": "0",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        238.88888888888889,
+        95
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-21",
+      "type": "text",
+      "at": [
+        238.88888888888889,
+        95
+      ],
+      "text": "O",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        492.22222222222223,
+        370
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-22",
+      "type": "text",
+      "at": [
+        492.22222222222223,
+        370
+      ],
+      "text": "M",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        576.6666666666666,
+        150
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-23",
+      "type": "text",
+      "at": [
+        576.6666666666666,
+        150
+      ],
+      "text": "K",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-4",
+      "type": "point",
+      "at": [
+        323.3333333333333,
+        260
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-24",
+      "type": "text",
+      "at": [
+        323.3333333333333,
+        260
+      ],
+      "text": "P",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-5",
+      "type": "point",
+      "at": [
+        661.1111111111111,
+        315
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-25",
+      "type": "text",
+      "at": [
+        661.1111111111111,
+        315
+      ],
+      "text": "N",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 21
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 25
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

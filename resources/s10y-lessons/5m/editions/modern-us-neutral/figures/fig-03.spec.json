@@ -1,10 +1,322 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-03",
+  "mode": "deterministic",
   "description": "A collection of six labeled polygons.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-03.png",
+      "sha256": "9cd8cdd5b43d6b0097bc285d246c65b077f98980f94d0d29dd410bae893af814"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n1",
+        "exercise": "1",
+        "text": "从图 3 的各图形的集合中把下列各子集选出来：1）四边形；  4）带阴影的图形；2）三角形；  5）白色三角形；3）多边形；  6）圆."
+      },
+      {
+        "lesson": "math5-c1-s1-n1",
+        "exercise": "3",
+        "text": "从图 3 的各图形的集合中选出子集 $\\{A, K, P\\}$，要按照什么样的特征？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          35.0,
+          145.0
+        ],
+        [
+          65.0,
+          190.0
+        ],
+        [
+          95.0,
+          145.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        65.0,
+        158.0
+      ],
+      "text": "A",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          120.0,
+          145.0
+        ],
+        [
+          180.0,
+          182.0
+        ],
+        [
+          190.0,
+          142.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        158.0,
+        155.0
+      ],
+      "text": "B",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          225.0,
+          182.0
+        ],
+        [
+          255.0,
+          195.0
+        ],
+        [
+          270.0,
+          140.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        252.0,
+        166.0
+      ],
+      "text": "P",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "polygon-4",
+      "type": "polygon",
+      "points": [
+        [
+          30.0,
+          55.0
+        ],
+        [
+          80.0,
+          100.0
+        ],
+        [
+          105.0,
+          50.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        70.0,
+        67.0
+      ],
+      "text": "M",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "polygon-5",
+      "type": "polygon",
+      "points": [
+        [
+          135.0,
+          80.0
+        ],
+        [
+          170.0,
+          110.0
+        ],
+        [
+          215.0,
+          90.0
+        ],
+        [
+          185.0,
+          50.0
+        ],
+        [
+          145.0,
+          55.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        175.0,
+        75.0
+      ],
+      "text": "K",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "polygon-6",
+      "type": "polygon",
+      "points": [
+        [
+          245.0,
+          95.0
+        ],
+        [
+          330.0,
+          100.0
+        ],
+        [
+          315.0,
+          40.0
+        ],
+        [
+          255.0,
+          45.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        290.0,
+        67.0
+      ],
+      "text": "C",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 6
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 6
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

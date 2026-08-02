@@ -1,10 +1,103 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-21",
+  "mode": "deterministic",
   "description": "A triangle with one obtuse angle.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-21.png",
+      "sha256": "23fe4a0065eee7546bcb051974904b7d6207b65f9fb2088f4a1fad4aacfa8439"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 19"
+      },
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 20"
+      },
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 21"
+      },
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 22"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          45.0,
+          45.0
+        ],
+        [
+          255.0,
+          45.0
+        ],
+        [
+          320.0,
+          185.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M255 175 A38 38 0 0 1 274 142",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 1
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

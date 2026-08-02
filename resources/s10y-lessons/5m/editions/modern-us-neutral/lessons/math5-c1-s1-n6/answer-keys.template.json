@@ -1,0 +1,156 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n6",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "76",
+      "prompt": "图 23 中画有若干个三角形. 按照这个图填写下表：",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "77",
+      "prompt": "作长方形 $ABCD$，它的长、宽分别为 5 厘米和 3 厘米. 引线段 $AC$ 与 $BD$（长方形的对角线）. 这个长方形被分成几个三角形？其中哪些是锐角三角形，哪些是钝角三角形？再把所得的每个三角形分成二个直角三角形.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "78",
+      "prompt": "作正方形并把它分成两个直角三角形.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "79",
+      "prompt": "在圆心为 $O$ 的圆中，引半径 $OA$ 和 $OB$，使它们的夹角等于 $140^\\circ$. 判定三角形 $AOB$ 的类型.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "80",
+      "prompt": "以 $K$ 点为圆心，作半径长 3 厘米的圆. 在圆周上取点 $M$和 $T$，使它们之间的距离为 3 厘米. 用线段联结点 $K$、$M$和 $T$. 证明，三角形 $MKT$ 为等边三角形.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "81",
+      "prompt": "把 13 和 23 之间的自然数的集合分为两个不相交的子集，其中一个子集包括 7 的倍数，另一个子集包括 7 的倍数以外的各数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "82",
+      "prompt": "下列分类是不是正确？\n1) 把全部角的集合分成三个子集：直角的集合，锐角的集合和钝角的集合；\n2) 把三角形的集合分为三个子集：不等边三角形的集合，等腰三角形的集合以及等边三角形的集合；\n3) 把马腿的集合分成四类：两条前腿，两条后腿，两条左腿，两条右腿.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "83",
+      "prompt": "$M$ 为不等式 $124\\leqslant x<130$ 的自然数解的集合. $K$ 为不等式 $126<x\\leqslant133$ 的自然数解的集合. 求 $K$ 和 $M$ 的交集和并集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "84",
+      "prompt": "作 $\\triangle ABC$，使：\n1) $|AB|=3.5$ 厘米，$|AC|=5$ 厘米，$\\widehat{BAC}=135^\\circ$；\n2) $|AB|=4$ 厘米，$\\widehat{CAB}=72^\\circ$，$\\widehat{CBA}=72^\\circ$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "85",
+      "prompt": "根据下列已知条件，作 $\\angle B$ 为直角的直角三角形 $ABC$：\n1) $|AB|=3$ 厘米，$|CB|=5$ 厘米；\n2) $|AB|=4.5$ 厘米，$\\widehat{BAC}=40^\\circ$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "86",
+      "prompt": "解应用题：\n1) 一个夏令营小组进行了一次自行车远足. 全程 140.4 公里. 在前 48.6 公里，队员骑车速度为 12.15 公里/小时，以后的速度为 15.3 公里/小时. 小组在路上共用了多少时间？\n2) 一个徒步小组完成了 32.4 公里的路线. 前4.5 小时他们在大路上行走，速度为 5.2 公里/小时，其余时间沿湿地步道前进，速度为 2.5 公里/小时. 这次徒步共用了多少时间？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 10 小时；2) 8.1 小时"
+    },
+    {
+      "exercise": "87",
+      "prompt": "把下列各数化成小数并计算：\n1) $\\frac{1}{4}+\\frac{1}{10}$；\n2) $\\frac{1}{4}+\\frac{4}{5}$；\n3) $\\frac{3}{4}-\\frac{3}{8}$；\n4) $\\frac{3}{20}:\\frac{3}{50}$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "88",
+      "prompt": "作一圆. 引直径 $MP$，在圆周上取一点 $H$，把点 $H$ 与点 $M$和 $P$ 联结起来. 找出所得三角形中的直角，量出这个三角形的两个锐角.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "89",
+      "prompt": "作一直角边长为 2.8 厘米的等腰直角三角形，比较这个三角形的两个锐角的大小.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "90",
+      "prompt": "在圆 $O$ 中，引直径 $AB$ 和半径 $OD$，使 $\\widehat{AOD}=50^\\circ$. 联结点$D$ 和点 $A$ 与 $B$. 判定所得的每个三角形的类型.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "91",
+      "prompt": "从一村庄到某市的公路穿过一个工人村. 一辆小汽车从村庄出发进城，行速为每分钟 1 公里 500 米. 与此同时，一辆载重汽车从工人村出发进城，行速为 1 公里/分. 20分钟后小汽车赶上了载重汽车. 求村庄与工人村之间的距离.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "10 公里"
+    },
+    {
+      "exercise": "92",
+      "prompt": "哥哥的年龄是妹妹年龄的 4 倍，妹妹比哥哥小 9 岁. 妹妹和哥哥各几岁？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "3 岁，12 岁"
+    },
+    {
+      "exercise": "93",
+      "prompt": "计算：\n1) $2\\frac{1}{7}-(3\\frac{5}{7}-2\\frac{4}{7})$；\n2) $6\\frac{2}{5}+(4\\frac{4}{5}-\\frac{4}{5})$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    }
+  ]
+}

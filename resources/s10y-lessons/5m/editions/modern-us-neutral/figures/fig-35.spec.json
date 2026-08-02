@@ -1,10 +1,249 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-35",
+  "mode": "deterministic",
   "description": "Points A, B, and C located at negative and positive coordinates.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-35.png",
+      "sha256": "d492d0024ddcd828ef162792d9e4d3efc9a399b6d9f23b3e1a13dbc19b80b3a8"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n9",
+        "text": "图 34"
+      },
+      {
+        "lesson": "math5-c1-s2-n9",
+        "text": "在直线上，表示点的位置的数叫做这个点的坐标. 在图35 中，点 $A$ 的坐标为 $-1\\frac{2}{3}$，点 $B$ 的坐标是 $-2.8$，点 $C$ 的坐标为 $1.5$. 写作：$A(-1\\frac{2}{3})$，$B(-2.8)$，$C(1.5)$."
+      },
+      {
+        "lesson": "math5-c1-s2-n9",
+        "text": "图 35"
+      },
+      {
+        "lesson": "math5-c1-s2-n9",
+        "text": "规定有原点、单位线段和方向的直线叫做数轴. 在历史课中我们遇到过数轴. 不过在那里叫做“年代表”."
+      },
+      {
+        "lesson": "math5-c1-s2-n9",
+        "text": "温度计上的刻度表示不同的数—正数、负数和零. 原点相当于冰的融点. 在 $100^\\circ\\mathrm{C}$ 时，水沸腾，在 $-39^\\circ\\mathrm{C}$ 时，水银冻结."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        30.0,
+        100.0
+      ],
+      "to": [
+        330.0,
+        100.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          330.0,
+          100.0
+        ],
+        [
+          318.0,
+          106.0
+        ],
+        [
+          318.0,
+          94.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        90.0,
+        108.0
+      ],
+      "to": [
+        90.0,
+        92.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        135.0,
+        108.0
+      ],
+      "to": [
+        135.0,
+        92.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        210.0,
+        108.0
+      ],
+      "to": [
+        210.0,
+        92.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        270.0,
+        108.0
+      ],
+      "to": [
+        270.0,
+        92.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        90.0,
+        120.0
+      ],
+      "text": "B(-2.8)",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        135.0,
+        75.0
+      ],
+      "text": "A(-1⅔)",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        210.0,
+        120.0
+      ],
+      "text": "O",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        270.0,
+        75.0
+      ],
+      "text": "C(1.5)",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

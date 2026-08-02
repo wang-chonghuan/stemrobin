@@ -1,0 +1,365 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n4",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "49",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "设长方形为 ABCD。AB 和 CD 都垂直于 BC，所以 AB∥CD；AD 和 BC 都垂直于 AB，所以 AD∥BC。因此，长方形的两组对边分别平行。",
+      "parts": []
+    },
+    {
+      "exercise": "50",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "先画直线 l₁。将三角板的一边与 l₁ 重合，用直尺紧靠三角板的另一边；固定直尺并沿直尺平移三角板，依次再画出 l₂、l₃、l₄、l₅。所得 5 条直线互相平行。",
+      "parts": []
+    },
+    {
+      "exercise": "51",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "作直线 l，并在线外取点 M、K。把三角板的一边与 l 重合，用直尺固定平移方向；平移三角板至该边分别经过 M、K，画出直线 m、n。于是 m∥l、n∥l，且 m∥n。",
+      "parts": []
+    },
+    {
+      "exercise": "52",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "作三角形 ABC。过顶点 A 作直线平行于 BC，过顶点 B 作直线平行于 AC，过顶点 C 作直线平行于 AB。",
+      "parts": []
+    },
+    {
+      "exercise": "53",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "将三角板的一边与图中的一条直线重合，再沿直尺平移三角板；若该边能与另一条直线重合，这两条直线就平行。用此方法逐一检查，并标出图 13 中所有这样的直线对。",
+      "parts": []
+    },
+    {
+      "exercise": "54",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "A={3，6，9，12}，B={6，12，18}。因此 A∩B={6，12}，A∪B={3，6，9，12，18}。",
+      "parts": [
+        {
+          "judge": "exact",
+          "expected": [
+            "{6,12}",
+            "{6，12}"
+          ]
+        },
+        {
+          "judge": "exact",
+          "expected": [
+            "{3,6,9,12,18}",
+            "{3，6，9，12，18}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "55",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "X={7，8，9，10，11，12}，Y={5，6，7，8}。1）X∩Y={7，8}；2）X∪Y={5，6，7，8，9，10，11，12}。",
+      "parts": [
+        {
+          "judge": "exact",
+          "expected": [
+            "{7,8}",
+            "{7，8}"
+          ]
+        },
+        {
+          "judge": "exact",
+          "expected": [
+            "{5,6,7,8,9,10,11,12}",
+            "{5，6，7，8，9，10，11，12}"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "56",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "60 的约数集合是 {1，2，3，4，5，6，10，12，15，20，30，60}；24 的约数集合是 {1，2，3，4，6，8，12，24}。两个集合的交集是 {1，2，3，4，6，12}，所以 60 和 24 的最大公约数是 12。",
+      "parts": [
+        {
+          "judge": "exact",
+          "expected": [
+            "{1,2,3,4,5,6,10,12,15,20,30,60}",
+            "{1，2，3，4，5，6，10，12，15，20，30，60}"
+          ]
+        },
+        {
+          "judge": "exact",
+          "expected": [
+            "{1,2,3,4,6,8,12,24}",
+            "{1，2，3，4，6，8，12，24}"
+          ]
+        },
+        {
+          "judge": "exact",
+          "expected": [
+            "{1,2,3,4,6,12}",
+            "{1，2，3，4，6，12}"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "12"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "57",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）作凸四边形 ABCD 并连接对角线 AC，取三角形 ABC 和三角形 ACD。它们的交集是线段 AC，并集是四边形 ABCD。2）作三角形 ABC，在边 BC 上取点 D，连接 AD，取三角形 ABD 和三角形 ACD。它们的交集是线段 AD，并集是三角形 ABC。",
+      "parts": []
+    },
+    {
+      "exercise": "58",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 经过 6 小时；2) 经过 4 小时",
+      "displayAnswer": "1）900÷（65+85）=6（小时），经过 6 小时相遇。2）236÷（32+27）=4（小时），经过 4 小时相遇。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ],
+          "unit": "小时"
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "4"
+          ],
+          "unit": "小时"
+        }
+      ]
+    },
+    {
+      "exercise": "59",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 37 件；2) 42 人",
+      "displayAnswer": "1）设第一年有 x 种，则第二年有 x+23 种，第三年有 2x 种。x+（x+23）+2x=171，解得 x=37，所以第一年有 37 种。2）设第二车间有 x 名，则第一车间有 2x 名，第三车间有 x+7 名。2x+x+（x+7）=91，解得 x=21，所以第一车间有 42 名。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "37"
+          ],
+          "unit": "种"
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "42"
+          ],
+          "unit": "名"
+        }
+      ]
+    },
+    {
+      "exercise": "60",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "依次化为：0.5，0.25，0.75，0.2，0.8，0.1，0.7，0.15，2.5，3.75，5.35。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.5"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.25"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.2"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.8"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.1"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.7"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "0.15"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "2.5"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "3.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "5.35"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "61",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 127.75；2) 16.5；3) 2.4；4) 6.8",
+      "displayAnswer": "1）4n=511，n=127.75；2）2a=33，a=16.5；3）9x=21.6，x=2.4；4）9y=61.2，y=6.8。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "127.75"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "16.5"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "2.4"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "6.8"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "62",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "把三角板的一边与直线 a 重合，用直尺紧靠三角板的另一边；固定直尺并平移三角板，直到原来与 a 重合的边经过点 K，沿该边画直线。所得直线经过 K 且平行于 a。",
+      "parts": []
+    },
+    {
+      "exercise": "63",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "使三角板的一条直角边与直线 l 重合，沿 l 平移三角板，直到另一条直角边经过点 M，画出过 M 的垂线；再平移至另一条直角边经过点 P，画出过 P 的垂线。所得两条直线都垂直于 l。",
+      "parts": []
+    },
+    {
+      "exercise": "64",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "5 公里/小时",
+      "displayAnswer": "两人的速度和为 36÷4=9（公里/小时），另一个行人的速度为 9−4=5（公里/小时）。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "5"
+          ],
+          "unit": "公里/小时"
+        }
+      ]
+    },
+    {
+      "exercise": "65",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "17 公斤，34 公斤，25 公斤",
+      "displayAnswer": "设第一箱装 x 公斤，则第二箱装 2x 公斤，第三箱装 x+8 公斤。x+2x+（x+8）=76，解得 x=17。因此第一、第二、第三箱分别装 17 公斤、34 公斤、25 公斤。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "17"
+          ],
+          "unit": "公斤"
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "34"
+          ],
+          "unit": "公斤"
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "25"
+          ],
+          "unit": "公斤"
+        }
+      ]
+    },
+    {
+      "exercise": "66",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 6；2) 35 200",
+      "displayAnswer": "1）13200÷x=20+2180=2200，所以 x=13200÷2200=6。2）y÷320=79+31=110，所以 y=110×320=35200。",
+      "parts": [
+        {
+          "judge": "numeric",
+          "expected": [
+            "6"
+          ]
+        },
+        {
+          "judge": "numeric",
+          "expected": [
+            "35200"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 18
+}

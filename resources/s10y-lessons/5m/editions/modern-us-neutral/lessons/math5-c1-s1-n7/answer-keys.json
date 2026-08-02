@@ -1,0 +1,203 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n7",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "94",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）以A为圆心、3厘米为半径画圆，以B为圆心、4厘米为半径画圆；两圆的交点就是C点，共有两个，分别在直线AB两侧。2）在指向B的射线AB上取AC=2厘米，此时BC=3厘米；C点唯一，位于线段AB上。",
+      "parts": []
+    },
+    {
+      "exercise": "95",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）先作AB=4厘米，再分别以A、B为圆心，以2厘米、3厘米为半径画弧，交于C，连接AC、BC。2）先作AB=6厘米，再分别以A、B为圆心，以5厘米、3厘米为半径画弧，交于C，连接AC、BC。每题在AB两侧各可作出一个全等的三角形。",
+      "parts": []
+    },
+    {
+      "exercise": "96",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "先作底边AB=3.2厘米，再分别以A、B为圆心、4.9厘米为半径画弧，两弧交于C；连接AC、BC，即得腰长4.9厘米、底边长3.2厘米的等腰三角形。",
+      "parts": []
+    },
+    {
+      "exercise": "97",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "三角形内角和是180°，三个角相等，所以每个角是180°÷3=60°。",
+      "parts": [
+        {
+          "id": "A",
+          "label": "∠A",
+          "judge": "numeric",
+          "expected": [
+            "60"
+          ],
+          "unit": "度"
+        },
+        {
+          "id": "B",
+          "label": "∠B",
+          "judge": "numeric",
+          "expected": [
+            "60"
+          ],
+          "unit": "度"
+        },
+        {
+          "id": "C",
+          "label": "∠C",
+          "judge": "numeric",
+          "expected": [
+            "60"
+          ],
+          "unit": "度"
+        }
+      ]
+    },
+    {
+      "exercise": "98",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "设较小的锐角为x，则另一个锐角为2x。x+2x=90°，所以x=30°，2x=60°。两个锐角分别是30°和60°。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "较小的锐角",
+          "judge": "numeric",
+          "expected": [
+            "30"
+          ],
+          "unit": "度"
+        },
+        {
+          "id": "2",
+          "label": "较大的锐角",
+          "judge": "numeric",
+          "expected": [
+            "60"
+          ],
+          "unit": "度"
+        }
+      ]
+    },
+    {
+      "exercise": "99",
+      "grading": "auto",
+      "source": "reviewed",
+      "bookRaw": "1) 48 万卢布；2) ≈18 000 列火车；≈2 列火车",
+      "displayAnswer": "1）5份比3份多2份，每份是12÷2=6（万美元），总收入是6×8=48（万美元）。2）每列火车可装100×65=6500（吨）。11600万吨=116000000吨，116000000÷6500≈17846.15，因此至少需要17847列火车，约为1.8万列。全年有365×24=8760小时，平均每小时约发出17847÷8760≈2（列）火车。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "农场总收入",
+          "judge": "numeric",
+          "expected": [
+            "48"
+          ],
+          "unit": "万美元"
+        },
+        {
+          "id": "2a",
+          "label": "至少需要的火车列数",
+          "judge": "numeric",
+          "expected": [
+            "17847"
+          ],
+          "unit": "列"
+        },
+        {
+          "id": "2b",
+          "label": "平均每小时发出的火车列数（约）",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ],
+          "unit": "列/时"
+        }
+      ],
+      "notes": "bookRaw第1问的货币单位“万卢布”与现代题面的“万美元”不符，数值48正确；第2问的约数正确，精确计算时至少需要17847列火车。"
+    },
+    {
+      "exercise": "100",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 16.77；2) 47.954",
+      "displayAnswer": "1）9.728÷3.2=3.04，32.52－[(6+3.04)×2.5－1.6]×0.75=16.77。2）9.744÷2.4=4.06，60.32－[(20+4.06)×0.4－1.38]×1.5=47.954。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "16.77"
+          ],
+          "unit": ""
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "47.954"
+          ],
+          "unit": ""
+        }
+      ]
+    },
+    {
+      "exercise": "101",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）分别以M、K为圆心、2.5厘米为半径画圆，两圆的交点即为所求点，共有两个。2）以M为圆心、5厘米为半径画圆，以K为圆心、1厘米为半径画圆；两圆内切，切点即为所求点。该点在射线MK上并位于K的外侧。",
+      "parts": []
+    },
+    {
+      "exercise": "102",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）作AC=6厘米，再分别以A、C为圆心、4厘米为半径画弧，交于B，连接AB、BC。2）作AB=4厘米，再以A为圆心、3厘米为半径，以B为圆心、5厘米为半径画弧，交于C，连接AC、BC。3）作AB=3厘米，再分别以A、B为圆心、3厘米为半径画弧，交于C，连接AC、BC。",
+      "parts": []
+    },
+    {
+      "exercise": "103",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "40 名学生",
+      "displayAnswer": "其余学生占1－75%=25%。全班人数是10÷25%=40（名）。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "全班学生人数",
+          "judge": "numeric",
+          "expected": [
+            "40"
+          ],
+          "unit": "名"
+        }
+      ]
+    },
+    {
+      "exercise": "104",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "78.04",
+      "displayAnswer": "11.7÷1.8=6.5，80.08－[(13－6.5)×0.8+1.6]×0.3=80.08－2.04=78.04。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "78.04"
+          ],
+          "unit": ""
+        }
+      ]
+    }
+  ],
+  "count": 11
+}

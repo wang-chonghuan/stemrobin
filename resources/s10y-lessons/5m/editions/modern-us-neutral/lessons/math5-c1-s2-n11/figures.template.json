@@ -21,7 +21,8 @@
           "path": "figures/fig-42.svg",
           "sha256": "e65dfacd04194babeee8f5056b42738bedeef8e97a02ea2913e2e0d7f8436461"
         }
-      }
+      },
+      "render": "figures/fig-42.svg.json"
     },
     {
       "id": "fig-43",
@@ -40,12 +41,12 @@
           "path": "figures/fig-43.svg",
           "sha256": "0c9e47c6c33cbf473596ea4d40ed0a20e2b43cf3705ce69a974788bcb3d66638"
         }
-      }
+      },
+      "render": "figures/fig-43.svg.json"
     },
     {
       "id": "fig-44",
       "label": "图 44",
-      "svg": "figures/fig-44.svg",
       "spec": "figures/fig-44.spec.json",
       "changes": [
         "redrawn"
@@ -59,7 +60,9 @@
           "path": "figures/fig-44.svg",
           "sha256": "aee7b617138c5648ee6889685a4e592dc4007dba36986c92fbdd81ff31107786"
         }
-      }
+      },
+      "png": "figures/fig-44.png",
+      "generation": "figures/fig-44.png.json"
     },
     {
       "id": "fig-45",
@@ -78,7 +81,8 @@
           "path": "figures/fig-45.svg",
           "sha256": "5845ebda66bd498642a1b08647b520301c291be7f44b7db84eb2dcc7a00bc773"
         }
-      }
+      },
+      "render": "figures/fig-45.svg.json"
     },
     {
       "id": "fig-46",
@@ -97,7 +101,8 @@
           "path": "figures/fig-46.svg",
           "sha256": "64e6275f7f0888b62858f97db7dc28ccbeeae03233aee5f98c9917cccc58c90d"
         }
-      }
+      },
+      "render": "figures/fig-46.svg.json"
     },
     {
       "id": "fig-47",
@@ -116,7 +121,8 @@
           "path": "figures/fig-47.svg",
           "sha256": "f1a13890f661551a2d3b5abdabe39d070e25ab2c01c727cda32888cdb18640b4"
         }
-      }
+      },
+      "render": "figures/fig-47.svg.json"
     },
     {
       "id": "fig-48",
@@ -135,7 +141,8 @@
           "path": "figures/fig-48.svg",
           "sha256": "4e42f9053189fb30c00adfeba235ad0448944810bd9ae524afd26a75fc021e48"
         }
-      }
+      },
+      "render": "figures/fig-48.svg.json"
     },
     {
       "id": "fig-49",
@@ -154,7 +161,8 @@
           "path": "figures/fig-49.svg",
           "sha256": "86d1110f1959c1e306ed4c8a3868c91b76017d303b2a9c325532f210c6ade947"
         }
-      }
+      },
+      "render": "figures/fig-49.svg.json"
     },
     {
       "id": "fig-50",
@@ -173,7 +181,8 @@
           "path": "figures/fig-50.svg",
           "sha256": "9e4ab697761759a837c6e28e7c1ca3e09eef7aefa2f8962bf99ad24a039946ab"
         }
-      }
+      },
+      "render": "figures/fig-50.svg.json"
     }
   ]
 }

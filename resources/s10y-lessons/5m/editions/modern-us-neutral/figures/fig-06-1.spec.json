@@ -1,10 +1,176 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-06-1",
+  "mode": "deterministic",
   "description": "A circle and square with their overlapping region shaded.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-06-1.png",
+      "sha256": "476aed8f6dc33f07f7aa0cf4f4b8e19caae0023c84feb682614bff0c1ac6aed2"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n2",
+        "text": "**由两个集合的公共元素组成的集合叫作这两个集合的****交集.**"
+      },
+      {
+        "lesson": "math5-c1-s1-n2",
+        "text": "图 5 中有阴影图形的集合和无阴影图形的集合之间没有公共元素. 所以这两个集合的交集是空的. 如果两个集合的交集是空的，就是说，这两个集合不相交."
+      },
+      {
+        "lesson": "math5-c1-s1-n2",
+        "text": "假如 $A$ 和 $B$ 是两个几何图形的点的集合，那么，$A \\cap B$ 就是这两个图形交点的集合. 例如，$A$ 是圆的点的集合(图 6.1)，$B$ 是正方形的点的集合，那么 $A \\cap B$ 就是有阴影的半圆的点的集合."
+      },
+      {
+        "lesson": "math5-c1-s1-n2",
+        "text": "1）  2）"
+      },
+      {
+        "lesson": "math5-c1-s1-n2",
+        "text": "图 6"
+      },
+      {
+        "lesson": "math5-c1-s1-n2",
+        "exercise": "20",
+        "text": "照图 6.2 写出集合 $M$ 和集合 $N$ 以及它们的交集."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        125.0,
+        110.0
+      ],
+      "radius": 65.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          125.0,
+          175.0
+        ],
+        [
+          275.0,
+          175.0
+        ],
+        [
+          275.0,
+          45.0
+        ],
+        [
+          125.0,
+          45.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M125 45 A65 65 0 0 1 125 175 Z",
+      "stroke": "primary",
+      "fill": "#c7d8d5",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        92.0,
+        184.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        205.0,
+        184.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 2
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

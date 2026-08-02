@@ -1,10 +1,528 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-37",
+  "mode": "deterministic",
   "description": "A coordinate strip with a flag and labeled points.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-37.png",
+      "sha256": "00e745ccfde4ffaec560e753208d9e612aa02d3344dc3a45701929714e46c828"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n9",
+        "exercise": "128",
+        "text": "三角形小旗位于坐标为 $-2$ 的点上，长方形的小旗在坐标为 $2$ 的点上（图 37）. 标出原点和单位线段. 写出点$B$、$C$、$D$ 的坐标."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          25.0,
+          185.0
+        ],
+        [
+          335.0,
+          185.0
+        ],
+        [
+          335.0,
+          35.0
+        ],
+        [
+          25.0,
+          35.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        45.0,
+        185.0
+      ],
+      "to": [
+        45.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        65.0,
+        185.0
+      ],
+      "to": [
+        65.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        85.0,
+        185.0
+      ],
+      "to": [
+        85.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        105.0,
+        185.0
+      ],
+      "to": [
+        105.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        125.0,
+        185.0
+      ],
+      "to": [
+        125.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        145.0,
+        185.0
+      ],
+      "to": [
+        145.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        165.0,
+        185.0
+      ],
+      "to": [
+        165.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        185.0,
+        185.0
+      ],
+      "to": [
+        185.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        205.0,
+        185.0
+      ],
+      "to": [
+        205.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        225.0,
+        185.0
+      ],
+      "to": [
+        225.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        245.0,
+        185.0
+      ],
+      "to": [
+        245.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        265.0,
+        185.0
+      ],
+      "to": [
+        265.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        285.0,
+        185.0
+      ],
+      "to": [
+        285.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-14",
+      "type": "segment",
+      "from": [
+        305.0,
+        185.0
+      ],
+      "to": [
+        305.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-15",
+      "type": "segment",
+      "from": [
+        325.0,
+        185.0
+      ],
+      "to": [
+        325.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-16",
+      "type": "segment",
+      "from": [
+        25.0,
+        165.0
+      ],
+      "to": [
+        335.0,
+        165.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-17",
+      "type": "segment",
+      "from": [
+        25.0,
+        145.0
+      ],
+      "to": [
+        335.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-18",
+      "type": "segment",
+      "from": [
+        25.0,
+        125.0
+      ],
+      "to": [
+        335.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-19",
+      "type": "segment",
+      "from": [
+        25.0,
+        105.0
+      ],
+      "to": [
+        335.0,
+        105.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-20",
+      "type": "segment",
+      "from": [
+        25.0,
+        85.0
+      ],
+      "to": [
+        335.0,
+        85.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-21",
+      "type": "segment",
+      "from": [
+        25.0,
+        65.0
+      ],
+      "to": [
+        335.0,
+        65.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-22",
+      "type": "segment",
+      "from": [
+        25.0,
+        45.0
+      ],
+      "to": [
+        335.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-23",
+      "type": "segment",
+      "from": [
+        30.0,
+        110.0
+      ],
+      "to": [
+        330.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          330.0,
+          110.0
+        ],
+        [
+          315.0,
+          118.0
+        ],
+        [
+          315.0,
+          102.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        80.0,
+        85.0
+      ],
+      "text": "C",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        160.0,
+        85.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        260.0,
+        85.0
+      ],
+      "text": "D",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M180 110 V70 h28 l-28 15",
+      "stroke": "primary",
+      "fill": "#b9d1cc",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 23
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

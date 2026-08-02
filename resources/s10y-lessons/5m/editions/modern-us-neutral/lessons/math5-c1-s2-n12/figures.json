@@ -7,7 +7,6 @@
     {
       "id": "fig-51",
       "label": "图 51",
-      "svg": "figures/fig-51.svg",
       "spec": "figures/fig-51.spec.json",
       "changes": [
         "redrawn"
@@ -21,7 +20,9 @@
           "path": "figures/fig-51.svg",
           "sha256": "b0c260271dc1b117154460c78d433e7442c339573cf0135329021242c9659b04"
         }
-      }
+      },
+      "png": "figures/fig-51.png",
+      "generation": "figures/fig-51.png.json"
     },
     {
       "id": "tbl-p0049-01",
@@ -40,7 +41,8 @@
           "path": "figures/tbl-p0049-01.svg",
           "sha256": "9bfdaa3c6ea9b11585fb5d7352fd2381d1f2191f4ccd25ec54e59e4e502de815"
         }
-      }
+      },
+      "render": "figures/tbl-p0049-01.svg.json"
     },
     {
       "id": "fig-52",
@@ -59,7 +61,8 @@
           "path": "figures/fig-52.svg",
           "sha256": "b539d9314df94b8a77d45c7514c0bfe15209f4ffd05fe647f90f29d5314d5b37"
         }
-      }
+      },
+      "render": "figures/fig-52.svg.json"
     }
   ]
 }

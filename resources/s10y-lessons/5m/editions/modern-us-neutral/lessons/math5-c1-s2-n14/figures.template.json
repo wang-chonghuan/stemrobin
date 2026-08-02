@@ -21,7 +21,8 @@
           "path": "figures/fig-55.svg",
           "sha256": "fb1dd07213383c4d9d283de7d10985cf448a7e236e1d91413fb38bae6c932632"
         }
-      }
+      },
+      "render": "figures/fig-55.svg.json"
     },
     {
       "id": "fig-56",
@@ -40,7 +41,8 @@
           "path": "figures/fig-56.svg",
           "sha256": "178a61b1fac8d72c4da5a7952da1cc064a063652d29762184922b9389efdb960"
         }
-      }
+      },
+      "render": "figures/fig-56.svg.json"
     },
     {
       "id": "fig-57",
@@ -59,7 +61,8 @@
           "path": "figures/fig-57.svg",
           "sha256": "55e1c67d259066c5bcefef5124a17fbef73bc5d2957526283ae5111fd90b0bb5"
         }
-      }
+      },
+      "render": "figures/fig-57.svg.json"
     },
     {
       "id": "tbl-p0056-02",
@@ -78,7 +81,8 @@
           "path": "figures/tbl-p0056-02.svg",
           "sha256": "25376e28a84a637b80e397adf54ef10b7c695e8cb7b42eb0ff3cbcb0b259082d"
         }
-      }
+      },
+      "render": "figures/tbl-p0056-02.svg.json"
     },
     {
       "id": "tbl-p0057-01",
@@ -97,7 +101,8 @@
           "path": "figures/tbl-p0057-01.svg",
           "sha256": "32eed00bec1735038321ba53eafc784180c71038fc19f7e13312606d7040dac6"
         }
-      }
+      },
+      "render": "figures/tbl-p0057-01.svg.json"
     },
     {
       "id": "tbl-p0058-01",
@@ -116,7 +121,8 @@
           "path": "figures/tbl-p0058-01.svg",
           "sha256": "edb1e90ec4e286ed5573636ef622a8444f691def078b83e393064ec26098e4d2"
         }
-      }
+      },
+      "render": "figures/tbl-p0058-01.svg.json"
     },
     {
       "id": "tbl-p0060-01",
@@ -135,7 +141,8 @@
           "path": "figures/tbl-p0060-01.svg",
           "sha256": "f280830f0ab60a51435d67dbeb1f44167635a24a5cca65b2c02eff6bfaad0859"
         }
-      }
+      },
+      "render": "figures/tbl-p0060-01.svg.json"
     }
   ]
 }

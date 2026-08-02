@@ -1,10 +1,284 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-30",
+  "mode": "deterministic",
   "description": "A simple route between four towns with distances in kilometers.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-30.png",
+      "sha256": "90f5d98a080fedb42d57d7de2b9546b554566da42e234ec411111201667e6f83"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "107",
+        "text": "一列火车从彼得罗巴甫洛夫斯克车站驶出（图 30），行速 90 公里/小时. 三小时后，火车将到达那个城市？"
+      },
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "108",
+        "text": "为了确定火车在铁路上的位置，只知道它和彼得罗巴甫洛夫斯克车站之间的距离是不够的，还必须了解火车开往哪里，是开往新西伯利亚，还是开向车里雅宾斯克？如果它是开往新西伯利亚城，那么三小时以后它将抵达鄂木斯克车站. 如果是开往车里雅宾斯克，就将到达库尔干. 按图 30 说明：\n1) 如果火车开往新西伯利亚，10 小时后，火车将在哪里；\n2) 如果火车开往车里雅宾斯克，5 小时后，火车将在哪里？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        45.0,
+        165.0
+      ],
+      "to": [
+        155.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        155.0,
+        110.0
+      ],
+      "to": [
+        255.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        155.0,
+        110.0
+      ],
+      "to": [
+        305.0,
+        55.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        45.0,
+        165.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        155.0,
+        110.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        255.0,
+        145.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-4",
+      "type": "point",
+      "at": [
+        305.0,
+        55.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        40.0,
+        182.0
+      ],
+      "text": "Lakeview",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        145.0,
+        88.0
+      ],
+      "text": "Riverton",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        265.0,
+        162.0
+      ],
+      "text": "Pine Ridge",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        300.0,
+        30.0
+      ],
+      "text": "New Haven",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        90.0,
+        150.0
+      ],
+      "text": "260 km",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        205.0,
+        132.0
+      ],
+      "text": "270 km",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        245.0,
+        92.0
+      ],
+      "text": "630 km",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 4
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 7
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

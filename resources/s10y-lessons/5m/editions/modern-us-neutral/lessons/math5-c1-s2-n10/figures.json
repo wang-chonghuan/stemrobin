@@ -21,7 +21,8 @@
           "path": "figures/fig-40.svg",
           "sha256": "6554d57877903ca01f7a0fd3327f527d78a1dde2f85fc6243142f7ead32e4323"
         }
-      }
+      },
+      "render": "figures/fig-40.svg.json"
     },
     {
       "id": "fig-41",
@@ -40,7 +41,8 @@
           "path": "figures/fig-41.svg",
           "sha256": "61264f91899330423c811f78a970e64cb3a6888d8407c8feae65ffd75f6b11bc"
         }
-      }
+      },
+      "render": "figures/fig-41.svg.json"
     }
   ]
 }

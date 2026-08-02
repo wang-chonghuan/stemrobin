@@ -1,10 +1,185 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-38",
+  "mode": "deterministic",
   "description": "A stylized elevation and depth profile with English labels.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-38.png",
+      "sha256": "1da51b661aa187598626480ba9f07b68c1d55638def7ddfca0f6120d2082d6b4"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n9",
+        "exercise": "131",
+        "text": "按刻度（见图 38）求出山的高度和海洋的深度."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          25.0,
+          195.0
+        ],
+        [
+          335.0,
+          195.0
+        ],
+        [
+          335.0,
+          25.0
+        ],
+        [
+          25.0,
+          25.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        25.0,
+        110.0
+      ],
+      "to": [
+        335.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M25 110 L65 80 L95 95 L130 45 L160 90 L195 30 L225 105 L260 75 L300 100 L335 110",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 8.533333333333333,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "svgPath-2",
+      "type": "svgPath",
+      "d": "M25 110 L90 130 L150 120 L215 185 L260 125 L335 110",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 8.533333333333333,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        130.0,
+        182.0
+      ],
+      "text": "Peak A",
+      "fontSize": 28.444444444444446,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        198.0,
+        197.0
+      ],
+      "text": "Peak B",
+      "fontSize": 28.444444444444446,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        215.0,
+        15.0
+      ],
+      "text": "Trench",
+      "fontSize": 28.444444444444446,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

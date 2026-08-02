@@ -1,10 +1,165 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-46",
+  "mode": "deterministic",
   "description": "A circle with diameter AB through center O.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-46.png",
+      "sha256": "f592f9bbc6177bdd597e126d19013bde23fa1fae37a472a17e43f802bf064798"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "正方形 $ABCD$（图 45）关于 $AC$、$BD$ 二线段（正方形的对角线）的交点 $O$ 对称. 点 $O$ 叫做正方形的对称中心.圆心（图 46）是圆的对称中心.机器的旋转部分（齿轮、螺旋桨、车轮、滑轮机等）一般都做成中心对称的（图 47）. 它围绕着通过对称中心的轴旋转."
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 45"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 46"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 47"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        180.0,
+        110.0
+      ],
+      "radius": 85.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        115.0,
+        45.0
+      ],
+      "to": [
+        245.0,
+        175.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        250.0,
+        178.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        110.0,
+        30.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        180.0,
+        115.0
+      ],
+      "text": "O",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "centralSymmetry",
+      "center": [180.0, 110.0],
+      "pairs": [
+        {"a": [115.0, 45.0], "b": [245.0, 175.0]}
+      ]
+    },
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

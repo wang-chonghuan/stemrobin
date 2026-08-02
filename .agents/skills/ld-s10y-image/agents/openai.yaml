@@ -1,0 +1,4 @@
+interface:
+  display_name: "S10Y Image"
+  short_description: "Generate precise modern textbook figures"
+  default_prompt: "Create or repair a Soviet 10 Years modern-edition figure with deterministic math geometry and GPT Image artwork where appropriate."

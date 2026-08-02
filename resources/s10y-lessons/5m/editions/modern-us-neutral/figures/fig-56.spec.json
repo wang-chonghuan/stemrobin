@@ -1,9 +1,271 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-56",
+  "mode": "deterministic",
   "description": "A newly authored number line comparing negative and positive values.",
-  "constraints": [
-    "The marked values are -8, -3, 0, and 5.",
-    "The relative order is unchanged."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-56.png",
+      "sha256": "29d7b5cc07ebb7cf34912def7f3843037be0b23e78fe017d1e67350570b41e7e"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "图 55"
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "在数轴上，正数都在零的右边，负数在零的左边. 就是说任何正数都大于零，而任何负数都小于零. 所以任何负数都小于任何正数（图 56）.假如在数轴上表示两个负数，那么左边的数绝对值较大.所以在两个负数中，绝对值大的数较小，而绝对值小的数较大（图 56）."
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "图 56"
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "在数轴上取端点坐标为 $-4$ 和$1$ 的线段（图 57）. 这个线段上所有点的坐标都满足不等式 $-4\\leqslant x\\leqslant1$.这个不等式没有其它解. 就是说，这个线段表示不等式$-4\\leqslant x\\leqslant1$ 解的集合. 这个解的集合表示为 $[-4,1]$."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        60.0,
+        290.0
+      ],
+      "to": [
+        842.0,
+        290.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        162.22222222222223,
+        290.0
+      ],
+      "to": [
+        162.22222222222223,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        162.22222222222223,
+        228.0
+      ],
+      "text": "-8",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        367.77777777777777,
+        290.0
+      ],
+      "to": [
+        367.77777777777777,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        367.77777777777777,
+        228.0
+      ],
+      "text": "-3",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        491.11111111111114,
+        290.0
+      ],
+      "to": [
+        491.11111111111114,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        491.11111111111114,
+        228.0
+      ],
+      "text": "0",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        696.6666666666667,
+        290.0
+      ],
+      "to": [
+        696.6666666666667,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        696.6666666666667,
+        228.0
+      ],
+      "text": "5",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        260.0,
+        140.0
+      ],
+      "text": "-8 < 5",
+      "fontSize": 29.58222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        450.0,
+        140.0
+      ],
+      "text": "-8 < -3",
+      "fontSize": 29.58222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        650.0,
+        140.0
+      ],
+      "text": "-3 > -8",
+      "fontSize": 29.58222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 7
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

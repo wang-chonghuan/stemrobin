@@ -1,9 +1,181 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-60",
+  "mode": "deterministic",
   "description": "A newly authored translation of a circle.",
-  "constraints": [
-    "The two circles have equal radii.",
-    "Center A moves to center A1."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-60.png",
+      "sha256": "4ec783c103396ae51e389e24f12fddf6e54ebe4ff5431aa2d9cd22c4d03a1be7"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "例 1. 让我们来完成 $AB$ 线段的平移，使点 $A$ 移到点 $A_1$.联结点 $A$ 和点 $A_1$（图 59）. 从点 $B$ 引和 $AA_1$ 平行并且长度相等、方向相同的线段 $BB_1$. 联结$A_1$ 和 $B_1$ 二点. 线段 $A_1B_1$ 就是线段 $AB$ 在平移时移到的线段.例 2. 我们来完成圆心为点$A$、半径为 1 厘米的圆周的平移，使点 $A$ 移到点 $A_1$.因为平移时，圆周的大小不变，所以只要作以点 $A_1$ 为圆心、半径为 1 厘米的圆周即可（图 60）.用花样模板作花纹时应用了平移原理（图 61）."
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 59"
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 60"
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 61"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        260.0,
+        250.0
+      ],
+      "radius": 120.0,
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "circle-2",
+      "type": "circle",
+      "center": [
+        640.0,
+        370.0
+      ],
+      "radius": 120.0,
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        260.0,
+        250.0
+      ],
+      "to": [
+        640.0,
+        370.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        260.0,
+        250.0
+      ],
+      "size": 4.096,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        640.0,
+        370.0
+      ],
+      "size": 4.096,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        225.0,
+        205.0
+      ],
+      "text": "A",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        655.0,
+        385.0
+      ],
+      "text": "A1",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 2
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

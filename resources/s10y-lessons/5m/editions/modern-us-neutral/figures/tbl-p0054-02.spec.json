@@ -1,11 +1,417 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "tbl-p0054-02",
+  "mode": "deterministic",
   "description": "A newly authored table reframing the source values as fictional statewide and northern-region solar-energy data.",
-  "constraints": [
-    "Columns are labeled 2020 through 2024.",
-    "Statewide values are 353, 377, 400, 429, and 459.",
-    "Northern-region values are 31, 45, 63, 88, and 116.",
-    "The numerical ratios remain identical to the source exercise."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/tbl-p0054-02.png",
+      "sha256": "ebc26ee74427192079980135d006b578582ec0dbfbd1473fe59cc78ec1df9113"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n13",
+        "exercise": "213",
+        "text": "下表列有 2020—2024 年间某州的太阳能发电量（以百万兆瓦时计）并注明了这几年内北部地区的太阳能发电量. 列表说明这几年内北部地区的太阳能发电量占全州太阳能发电量的百分比."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1108,
+    "height": 320,
+    "boundingBox": [
+      0,
+      260.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          2.0,
+          258.0
+        ],
+        [
+          898.0,
+          258.0
+        ],
+        [
+          898.0,
+          2.0
+        ],
+        [
+          2.0,
+          2.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.6923076923076925,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M210 2v256M348 2v256M486 2v256M624 2v256M762 2v256",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 3.6923076923076925,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "svgPath-2",
+      "type": "svgPath",
+      "d": "M2 86h896M2 172h896",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 3.6923076923076925,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        279.0,
+        216.0
+      ],
+      "text": "2020",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        417.0,
+        216.0
+      ],
+      "text": "2021",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        555.0,
+        216.0
+      ],
+      "text": "2022",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        693.0,
+        216.0
+      ],
+      "text": "2023",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        831.0,
+        216.0
+      ],
+      "text": "2024",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        106.0,
+        130.0
+      ],
+      "text": "Statewide",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        279.0,
+        130.0
+      ],
+      "text": "353",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        417.0,
+        130.0
+      ],
+      "text": "377",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        555.0,
+        130.0
+      ],
+      "text": "400",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        693.0,
+        130.0
+      ],
+      "text": "429",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        831.0,
+        130.0
+      ],
+      "text": "459",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        106.0,
+        44.0
+      ],
+      "text": "Northern region",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-13",
+      "type": "text",
+      "at": [
+        279.0,
+        44.0
+      ],
+      "text": "31",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-14",
+      "type": "text",
+      "at": [
+        417.0,
+        44.0
+      ],
+      "text": "45",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-15",
+      "type": "text",
+      "at": [
+        555.0,
+        44.0
+      ],
+      "text": "63",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-16",
+      "type": "text",
+      "at": [
+        693.0,
+        44.0
+      ],
+      "text": "88",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-17",
+      "type": "text",
+      "at": [
+        831.0,
+        44.0
+      ],
+      "text": "116",
+      "fontSize": 30.76923076923077,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 17
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

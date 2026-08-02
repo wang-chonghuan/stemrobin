@@ -1,0 +1,372 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n9",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "126",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "O(0)，A(-2)，B(3)，C(5)，D(6)，P(-6)，K(-7)，M(-9)，E(-12)。",
+      "parts": []
+    },
+    {
+      "exercise": "127",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "按数轴从左到右依次标出：C(-6)、M(-2.4)、A(1)、K(2.4)、D(6)、B(8.3)。",
+      "parts": []
+    },
+    {
+      "exercise": "128",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "原点在两面小旗之间的中点；相邻两条竖网格线表示0.5个单位。B(-1.5)，C(-4)，D(1)。",
+      "parts": []
+    },
+    {
+      "exercise": "129",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在数轴上标出各点。从左到右依次为：-7、-5.2、-7/2（即-3.5）、-1.8、-1、5/3、2、3.3。",
+      "parts": []
+    },
+    {
+      "exercise": "130",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）从左到右依次标出：-11、-8、-7、-6、-5、3、7、9、10。2）从左到右依次标出：-5、-3、-1、5/6、7/8、2、4。",
+      "parts": []
+    },
+    {
+      "exercise": "131",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "按图中刻度读取：Peak A约高7000米，Peak B约高9000米，Trench约深10000米。",
+      "parts": []
+    },
+    {
+      "exercise": "132",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在数轴上标出A(-2)和B(7)。两点间的距离为7-(-2)=9个单位线段。",
+      "parts": []
+    },
+    {
+      "exercise": "133",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "答案不唯一。例如：1）12、13、20；2）-9、-10、-100；3）-821、-900、-1000；4）-71、0、100。",
+      "parts": []
+    },
+    {
+      "exercise": "134",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "把水银柱顶端依次调到温标的：1）-12℃；2）-11℃；3）-7℃；4）3℃；5）-8.5℃（在-9℃和-8℃正中间）；6）7.3℃（在7℃右侧0.3℃处）。",
+      "parts": []
+    },
+    {
+      "exercise": "135",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "指针指在正温区的10刻度处，温度是10℃。",
+      "parts": []
+    },
+    {
+      "exercise": "136",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）负数：{-1.2，-12/4，-3又7/8，-10}；2）正数：{3/5，6，7.2，8}；3）自然数：{0，6，8}。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "负数",
+          "judge": "exact",
+          "expected": [
+            "{-1.2,-12/4,-3又7/8,-10}",
+            "-1.2,-12/4,-3又7/8,-10",
+            "{-1.2,-12/4,-3 7/8,-10}"
+          ]
+        },
+        {
+          "id": "2",
+          "label": "正数",
+          "judge": "exact",
+          "expected": [
+            "{3/5,6,7.2,8}",
+            "3/5,6,7.2,8"
+          ]
+        },
+        {
+          "id": "3",
+          "label": "自然数",
+          "judge": "exact",
+          "expected": [
+            "{0,6,8}",
+            "0,6,8"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "137",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "等边三角形也是等腰三角形，因此两个集合的并集是等腰三角形集合。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "并集",
+          "judge": "exact",
+          "expected": [
+            "等腰三角形集合",
+            "所有等腰三角形组成的集合"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "138",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1平方公里=10¹⁰平方厘米，所以每平方公里上的空气柱质量为1.033×10¹⁰=10,330,000,000千克。亚速海上的空气柱质量为10,330,000,000×38,000=392,540,000,000,000千克。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "每平方公里上的空气柱质量",
+          "judge": "numeric",
+          "expected": [
+            "10330000000"
+          ],
+          "unit": "千克"
+        },
+        {
+          "id": "2",
+          "label": "亚速海上的空气柱质量",
+          "judge": "numeric",
+          "expected": [
+            "392540000000000"
+          ],
+          "unit": "千克"
+        }
+      ]
+    },
+    {
+      "exercise": "139",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "37*5的各位数字和是15+*。1）被3整除时，*可填0、3、6、9；2）末位已经是5，所以被5整除时，*可填0至9中的任意数字。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "被3整除时可填的数字",
+          "judge": "exact",
+          "expected": [
+            "0,3,6,9",
+            "0，3，6，9"
+          ]
+        },
+        {
+          "id": "2",
+          "label": "被5整除时可填的数字",
+          "judge": "exact",
+          "expected": [
+            "0,1,2,3,4,5,6,7,8,9",
+            "0，1，2，3，4，5，6，7，8，9"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "140",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 5.48 公担，4.72 公担；2) 30.7 公顷，33.5 公顷",
+      "displayAnswer": "1）第二队收获（10.2-0.76）÷2=4.72公担，第一队收获4.72+0.76=5.48公担。2）收割较少者收割（64.2-2.8）÷2=30.7公顷，较多者收割30.7+2.8=33.5公顷。",
+      "parts": [
+        {
+          "id": "1a",
+          "label": "第一队收获量",
+          "judge": "numeric",
+          "expected": [
+            "5.48"
+          ],
+          "unit": "公担"
+        },
+        {
+          "id": "1b",
+          "label": "第二队收获量",
+          "judge": "numeric",
+          "expected": [
+            "4.72"
+          ],
+          "unit": "公担"
+        },
+        {
+          "id": "2a",
+          "label": "收割较少者的收割量",
+          "judge": "numeric",
+          "expected": [
+            "30.7"
+          ],
+          "unit": "公顷"
+        },
+        {
+          "id": "2b",
+          "label": "收割较多者的收割量",
+          "judge": "numeric",
+          "expected": [
+            "33.5"
+          ],
+          "unit": "公顷"
+        }
+      ]
+    },
+    {
+      "exercise": "141",
+      "grading": "ungraded",
+      "source": "book",
+      "bookRaw": "1) 45°，135°；2) 36°，144°",
+      "displayAnswer": "邻补角的和是180°。1）较小角为180°÷(1+3)=45°，另一角为135°。作一直线AOC，再从O引射线OB，使∠AOB=45°，则∠BOC=135°。2）较小角为180°÷(1+4)=36°，另一角为144°。作一直线AOC，再从O引射线OB，使∠AOB=36°，则∠BOC=144°。",
+      "parts": []
+    },
+    {
+      "exercise": "142",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 2.91；2) 9",
+      "displayAnswer": "1）0.5632÷5.12+42.56÷3.8-(11-3.9÷1.5)=0.11+11.2-8.4=2.91；2）(5.98+5.36)÷2.8÷(5×0.003+15×0.029)=4.05÷0.45=9。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "第1题计算结果",
+          "judge": "numeric",
+          "expected": [
+            "2.91"
+          ]
+        },
+        {
+          "id": "2",
+          "label": "第2题计算结果",
+          "judge": "numeric",
+          "expected": [
+            "9"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "143",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "在数轴上从左到右依次标出：P(-8.1)、T(-7)、M(-3)、K(3.3)、N(4)、C(7)。",
+      "parts": []
+    },
+    {
+      "exercise": "144",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "画出从-60℃到60℃的温度刻度，相邻刻度相差5℃。汽油冰点标在-60℃；水银冰点-39℃标在-40℃右侧1℃处；人体正常温度36.6℃标在35℃与40℃之间、35℃右侧1.6℃处。",
+      "parts": []
+    },
+    {
+      "exercise": "145",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "5.6 公顷，6.72 公顷",
+      "displayAnswer": "把较少者翻耕的面积看作1份，则较多者是1.2份。较少者翻耕12.32÷(1+1.2)=5.6公顷，较多者翻耕5.6×1.2=6.72公顷。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "较少者翻耕面积",
+          "judge": "numeric",
+          "expected": [
+            "5.6"
+          ],
+          "unit": "公顷"
+        },
+        {
+          "id": "2",
+          "label": "较多者翻耕面积",
+          "judge": "numeric",
+          "expected": [
+            "6.72"
+          ],
+          "unit": "公顷"
+        }
+      ]
+    },
+    {
+      "exercise": "146",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "253.5 公斤",
+      "displayAnswer": "6500×3.9%=253.5（公斤），能制取253.5公斤奶油。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "可制取的奶油质量",
+          "judge": "numeric",
+          "expected": [
+            "253.5"
+          ],
+          "unit": "公斤"
+        }
+      ]
+    },
+    {
+      "exercise": "147",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "24.568；253.15",
+      "displayAnswer": "4.7k+3.6k-0.83=8.3k-0.83。当k=3.06时，值为24.568；当k=30.6时，值为253.15。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "k=3.06时的值",
+          "judge": "numeric",
+          "expected": [
+            "24.568"
+          ]
+        },
+        {
+          "id": "2",
+          "label": "k=30.6时的值",
+          "judge": "numeric",
+          "expected": [
+            "253.15"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "148",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 490 081；2) 119 922",
+      "displayAnswer": "1）42,558÷519=82，907+613×(880-82)=490,081；2）684×245-675×246=1,530，120,000-119,340÷1,530=119,922。",
+      "parts": [
+        {
+          "id": "1",
+          "label": "第1题计算结果",
+          "judge": "numeric",
+          "expected": [
+            "490081"
+          ]
+        },
+        {
+          "id": "2",
+          "label": "第2题计算结果",
+          "judge": "numeric",
+          "expected": [
+            "119922"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 23
+}

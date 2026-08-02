@@ -21,7 +21,8 @@
           "path": "figures/tbl-p0017-01.svg",
           "sha256": "55027dec8a71ad104db95cccb1192f24bc30b59a5dbf48a2bc7c5df659a31092"
         }
-      }
+      },
+      "render": "figures/tbl-p0017-01.svg.json"
     },
     {
       "id": "fig-09",
@@ -40,7 +41,8 @@
           "path": "figures/fig-09.svg",
           "sha256": "6d5a75c51845963e5b68ebe7263624f7273dc75d56d05aceefbd1c0cef69dc39"
         }
-      }
+      },
+      "render": "figures/fig-09.svg.json"
     },
     {
       "id": "fig-10",
@@ -59,7 +61,8 @@
           "path": "figures/fig-10.svg",
           "sha256": "63c3754ef2d263b9812ae4686b20ed1514106b3544af35852f62d32975c521dc"
         }
-      }
+      },
+      "render": "figures/fig-10.svg.json"
     }
   ]
 }

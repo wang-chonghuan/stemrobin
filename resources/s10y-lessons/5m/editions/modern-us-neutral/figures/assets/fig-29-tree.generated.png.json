@@ -1,0 +1,31 @@
+{
+  "schema": "n-azure/image-generation@1",
+  "created_at": "2026-08-02T16:24:45.817261+00:00",
+  "endpoint": "https://finleyswedencentralinstance.openai.azure.com",
+  "api_version": "preview",
+  "model": "gpt-image-2",
+  "mode": "edit",
+  "auth_method": "api-key",
+  "prompt": "Create one isolated tall deciduous tree for a modern grade 5 math diagram.\n\nAuthoritative lesson context: a squirrel moves up or down a tree trunk relative to a hollow; exact one-meter grid lines, the hollow marker, squirrels, distances, and labels will be added later by code.\n\nDraw a front-facing tall tree with a broad but compact green crown, a straight visible brown trunk, and small roots. Keep the central trunk unobstructed from roots to crown so exact overlays can be placed over it. Do not draw a hollow and do not draw any animals.\n\nThe prompt text is authoritative. The reference image supplies only the tall vertical tree composition. Do not copy old print texture.\n\nTransparent background. Full object visible with generous empty margin. Natural colors with restrained teal and green accents. No text, numbers, labels, grid, ruler, measurement marks, arrows, axes, answer annotations, Cyrillic, Chinese characters, Soviet symbols, or book texture.",
+  "references": [
+    {
+      "path": "resources/s10y-lessons/5m/figures/fig-29.png",
+      "bytes": 14792,
+      "sha256": "1f3b6301c2ce4f4c3712c00b14792926ab69364ec31968dac31053622f60c9b6"
+    }
+  ],
+  "request": {
+    "size": "1024x1536",
+    "quality": "high",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1
+  },
+  "output": {
+    "path": ".tmp/batch-runs/2a398867-3fa8-4abe-894a-ec6e47c501ea/semantic/fig-29/tree-opaque.png",
+    "width": 1024,
+    "height": 1536,
+    "bytes": 1957156,
+    "sha256": "6f6308d6051efde3789a63336cf1f11d6a749e35b8ae8527186ee71c1964e59f"
+  }
+}

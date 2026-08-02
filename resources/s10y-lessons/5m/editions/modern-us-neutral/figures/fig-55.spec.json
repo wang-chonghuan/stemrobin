@@ -1,10 +1,313 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-55",
+  "mode": "deterministic",
   "description": "A newly authored number line comparing negative fifteen and negative nine.",
-  "constraints": [
-    "Point A is at -15.",
-    "Point B is at -9.",
-    "A is left of B."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-55.png",
+      "sha256": "74d72b414dfbee1fe67f8817e6e018de0dc30b85ead74a1c879b12ef0dd04373"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "昨天室内温度计的读数是 $18^\\circ\\mathrm{C}$，今天的读数是 $21^\\circ\\mathrm{C}$. 昨天比今天稍冷. 18 小于 21，可以写成 $18<21$. 在数轴上，点$A(18)$ 位于点 $B(21)$ 的左边."
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "昨天室外的温度计的读数是 $-15^\\circ\\mathrm{C}$，而今天的读数是$-9^\\circ\\mathrm{C}$. 昨天比今天冷一些. 所以认为，$-15$ 小于 $-9$. 在数轴上，点 $A(-15)$ 位于点 $B(-9)$ 的左边（图 55）. 可以写成$-15<-9$.在两个数中，在数轴上位于左边的数较小，位于右边的数较大. 例如 $-7.5<3$，因为 $A(-7.5)$ 位于 $B(3)$ 的左边；$5>-41$，因为 $C(5)$ 位于 $D(-41)$ 的右边."
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "图 55"
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "在数轴上，正数都在零的右边，负数在零的左边. 就是说任何正数都大于零，而任何负数都小于零. 所以任何负数都小于任何正数（图 56）.假如在数轴上表示两个负数，那么左边的数绝对值较大.所以在两个负数中，绝对值大的数较小，而绝对值小的数较大（图 56）."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        60.0,
+        290.0
+      ],
+      "to": [
+        842.0,
+        290.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        80.0,
+        290.0
+      ],
+      "to": [
+        80.0,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        80.0,
+        228.0
+      ],
+      "text": "-18",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        265.0,
+        290.0
+      ],
+      "to": [
+        265.0,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        265.0,
+        228.0
+      ],
+      "text": "-15",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        450.0,
+        290.0
+      ],
+      "to": [
+        450.0,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        450.0,
+        228.0
+      ],
+      "text": "-12",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        635.0,
+        290.0
+      ],
+      "to": [
+        635.0,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        635.0,
+        228.0
+      ],
+      "text": "-9",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        820.0,
+        290.0
+      ],
+      "to": [
+        820.0,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        820.0,
+        228.0
+      ],
+      "text": "-6",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        265.0,
+        290.0
+      ],
+      "size": 4.096,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        265.0,
+        328.0
+      ],
+      "text": "A",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        635.0,
+        290.0
+      ],
+      "size": 4.096,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        635.0,
+        328.0
+      ],
+      "text": "B",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 6
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 7
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

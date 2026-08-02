@@ -1,10 +1,206 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-12",
+  "mode": "deterministic",
   "description": "A ruler and set square shown in two parallel positions.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-12.png",
+      "sha256": "f892423e72b2ea892fe515e3ffb10bdd6269ce7eed285c0e33e145b2a01575e8"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n4",
+        "text": "图 11 中的直线 $m$ 与 $n$ 垂直于直线 $l$. $m$ 和 $n$ 两条直线不相交，而是互相平行. 为了作平行于直线 $m$ 的直线，如图 12所示，先靠紧直线 $m$ 放一三角板，再靠紧三角板的另一边放一直尺. 然后沿直尺移动三角板并作平行于直线 $m$ 的直线 $n$.这样就可以过平面上的任一点作直线 $m$ 的平行线."
+      },
+      {
+        "lesson": "math5-c1-s1-n4",
+        "text": "图 11  图 12"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          40.0,
+          60.0
+        ],
+        [
+          305.0,
+          150.0
+        ],
+        [
+          320.0,
+          125.0
+        ],
+        [
+          55.0,
+          35.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#e6e6e6",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          105.0,
+          90.0
+        ],
+        [
+          135.0,
+          165.0
+        ],
+        [
+          175.0,
+          115.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#c7d8d5",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          205.0,
+          125.0
+        ],
+        [
+          235.0,
+          200.0
+        ],
+        [
+          275.0,
+          150.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#c7d8d5",
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        115.0,
+        173.0
+      ],
+      "to": [
+        170.0,
+        108.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        215.0,
+        208.0
+      ],
+      "to": [
+        270.0,
+        143.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        118.0,
+        185.0
+      ],
+      "text": "n",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        200.0,
+        202.0
+      ],
+      "text": "m",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 2
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

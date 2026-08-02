@@ -1,0 +1,35 @@
+{
+  "schema": "ld-s10y-image/render@1",
+  "figure": "fig-51",
+  "mode": "hybrid",
+  "renderer": {
+    "name": "JSXGraph",
+    "version": "1.13.1"
+  },
+  "spec": {
+    "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-51.spec.json",
+    "sha256": "4c23ff29ebc3132d51088f5c51721b635c4da071a01e7351cb6c931523ea19b4"
+  },
+  "output": {
+    "png": {
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-51.png",
+      "sha256": "fdea3c358e6a24ed9efcf320eddef6cf492ebc9f72e36eb012960c9611efec5f"
+    }
+  },
+  "objects": 13,
+  "labels": 4,
+  "collisions": [],
+  "imageFits": [
+    {
+      "id": "child-negative-art",
+      "status": "pass",
+      "preserveAspectRatio": "xMidYMid meet"
+    },
+    {
+      "id": "child-positive-art",
+      "status": "pass",
+      "preserveAspectRatio": "xMidYMid meet"
+    }
+  ],
+  "status": "pass"
+}

@@ -1,10 +1,218 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-33",
-  "description": "Three stylized birds sit at -3, 2, and 5 decimeters from a knot.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "mode": "hybrid",
+  "description": "Three birds occupy exact signed positions relative to a knot on a one-decimeter grid.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-33.png",
+      "sha256": "d7822dd70343b4cea4df2d1d8eb7fb8f8f2163c200b28cb3f5caa2a721270af4"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n8",
+        "exercise": "121",
+        "text": "每只鸟都在绳结的什么位置上（图 33）？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 768,
+    "boundingBox": [
+      0,
+      6,
+      12,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "assets": [
+    {
+      "id": "bird",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-33-bird.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-33-bird.generated.png.json",
+      "role": "artwork"
+    }
+  ],
+  "objects": [
+    {
+      "id": "bird-left-art",
+      "type": "image",
+      "asset": "bird",
+      "at": [
+        1.25,
+        2.78
+      ],
+      "size": [
+        1.5,
+        1.5
+      ]
+    },
+    {
+      "id": "bird-middle-art",
+      "type": "image",
+      "asset": "bird",
+      "at": [
+        6.25,
+        2.78
+      ],
+      "size": [
+        1.5,
+        1.5
+      ]
+    },
+    {
+      "id": "bird-right-art",
+      "type": "image",
+      "asset": "bird",
+      "at": [
+        9.25,
+        2.78
+      ],
+      "size": [
+        1.5,
+        1.5
+      ]
+    },
+    {
+      "id": "position-grid",
+      "type": "grid",
+      "xStep": 1,
+      "yStep": 1.5,
+      "bounds": [
+        0.5,
+        5.25,
+        11.5,
+        0.75
+      ],
+      "stroke": "grid",
+      "strokeWidth": 2,
+      "opacity": 0.7
+    },
+    {
+      "id": "rope",
+      "type": "segment",
+      "from": [
+        0.35,
+        3
+      ],
+      "to": [
+        11.65,
+        3
+      ],
+      "stroke": "secondary",
+      "strokeWidth": 12
+    },
+    {
+      "id": "knot",
+      "type": "circle",
+      "center": [
+        5,
+        3
+      ],
+      "radius": 0.16,
+      "stroke": "ink",
+      "strokeWidth": 3,
+      "fill": "ink",
+      "fillOpacity": 1
+    },
+    {
+      "id": "knot-position",
+      "type": "point",
+      "at": [
+        5,
+        3
+      ],
+      "visible": false
+    },
+    {
+      "id": "bird-left-position",
+      "type": "point",
+      "at": [
+        2,
+        3
+      ],
+      "visible": false
+    },
+    {
+      "id": "bird-middle-position",
+      "type": "point",
+      "at": [
+        7,
+        3
+      ],
+      "visible": false
+    },
+    {
+      "id": "bird-right-position",
+      "type": "point",
+      "at": [
+        10,
+        3
+      ],
+      "visible": false
+    },
+    {
+      "id": "scale-label",
+      "type": "text",
+      "at": [
+        8.6,
+        0.7
+      ],
+      "text": "1 square = 1 dm",
+      "fontSize": 30,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "distance",
+      "a": "knot-position",
+      "b": "bird-left-position",
+      "value": 3
+    },
+    {
+      "type": "distance",
+      "a": "knot-position",
+      "b": "bird-middle-position",
+      "value": 2
+    },
+    {
+      "type": "distance",
+      "a": "knot-position",
+      "b": "bird-right-position",
+      "value": 5
+    },
+    {
+      "type": "collinear",
+      "a": "bird-left-position",
+      "b": "knot-position",
+      "c": "bird-right-position"
+    },
+    {
+      "type": "objectCount",
+      "objectType": "image",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 4,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "The same generated bird is reused three times; the knot, rope, grid, and signed distances are deterministic."
+  }
 }

@@ -1,10 +1,957 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-14",
+  "mode": "deterministic",
   "description": "Three grid panels show a line and a point for parallel construction.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-14.png",
+      "sha256": "41d0a391050738f79c0e500865a42021c746ba02d45c82ec7dea201df606891c"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n4",
+        "exercise": "62",
+        "text": "把图 14 画在练习本上. 过 $K$ 点引一直线平行于直线 $a$."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          10.0,
+          185.0
+        ],
+        [
+          115.0,
+          185.0
+        ],
+        [
+          115.0,
+          35.0
+        ],
+        [
+          10.0,
+          35.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        25.0,
+        185.0
+      ],
+      "to": [
+        25.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        40.0,
+        185.0
+      ],
+      "to": [
+        40.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        55.0,
+        185.0
+      ],
+      "to": [
+        55.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        70.0,
+        185.0
+      ],
+      "to": [
+        70.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        85.0,
+        185.0
+      ],
+      "to": [
+        85.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        100.0,
+        185.0
+      ],
+      "to": [
+        100.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        10.0,
+        170.0
+      ],
+      "to": [
+        115.0,
+        170.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        10.0,
+        155.0
+      ],
+      "to": [
+        115.0,
+        155.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        10.0,
+        140.0
+      ],
+      "to": [
+        115.0,
+        140.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        10.0,
+        125.0
+      ],
+      "to": [
+        115.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        10.0,
+        110.0
+      ],
+      "to": [
+        115.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        10.0,
+        95.0
+      ],
+      "to": [
+        115.0,
+        95.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        10.0,
+        80.0
+      ],
+      "to": [
+        115.0,
+        80.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-14",
+      "type": "segment",
+      "from": [
+        10.0,
+        65.0
+      ],
+      "to": [
+        115.0,
+        65.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-15",
+      "type": "segment",
+      "from": [
+        10.0,
+        50.0
+      ],
+      "to": [
+        115.0,
+        50.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          128.0,
+          185.0
+        ],
+        [
+          233.0,
+          185.0
+        ],
+        [
+          233.0,
+          35.0
+        ],
+        [
+          128.0,
+          35.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-16",
+      "type": "segment",
+      "from": [
+        143.0,
+        185.0
+      ],
+      "to": [
+        143.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-17",
+      "type": "segment",
+      "from": [
+        158.0,
+        185.0
+      ],
+      "to": [
+        158.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-18",
+      "type": "segment",
+      "from": [
+        173.0,
+        185.0
+      ],
+      "to": [
+        173.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-19",
+      "type": "segment",
+      "from": [
+        188.0,
+        185.0
+      ],
+      "to": [
+        188.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-20",
+      "type": "segment",
+      "from": [
+        203.0,
+        185.0
+      ],
+      "to": [
+        203.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-21",
+      "type": "segment",
+      "from": [
+        218.0,
+        185.0
+      ],
+      "to": [
+        218.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-22",
+      "type": "segment",
+      "from": [
+        128.0,
+        170.0
+      ],
+      "to": [
+        233.0,
+        170.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-23",
+      "type": "segment",
+      "from": [
+        128.0,
+        155.0
+      ],
+      "to": [
+        233.0,
+        155.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-24",
+      "type": "segment",
+      "from": [
+        128.0,
+        140.0
+      ],
+      "to": [
+        233.0,
+        140.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-25",
+      "type": "segment",
+      "from": [
+        128.0,
+        125.0
+      ],
+      "to": [
+        233.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-26",
+      "type": "segment",
+      "from": [
+        128.0,
+        110.0
+      ],
+      "to": [
+        233.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-27",
+      "type": "segment",
+      "from": [
+        128.0,
+        95.0
+      ],
+      "to": [
+        233.0,
+        95.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-28",
+      "type": "segment",
+      "from": [
+        128.0,
+        80.0
+      ],
+      "to": [
+        233.0,
+        80.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-29",
+      "type": "segment",
+      "from": [
+        128.0,
+        65.0
+      ],
+      "to": [
+        233.0,
+        65.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-30",
+      "type": "segment",
+      "from": [
+        128.0,
+        50.0
+      ],
+      "to": [
+        233.0,
+        50.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          246.0,
+          185.0
+        ],
+        [
+          351.0,
+          185.0
+        ],
+        [
+          351.0,
+          35.0
+        ],
+        [
+          246.0,
+          35.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "segment-31",
+      "type": "segment",
+      "from": [
+        261.0,
+        185.0
+      ],
+      "to": [
+        261.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-32",
+      "type": "segment",
+      "from": [
+        276.0,
+        185.0
+      ],
+      "to": [
+        276.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-33",
+      "type": "segment",
+      "from": [
+        291.0,
+        185.0
+      ],
+      "to": [
+        291.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-34",
+      "type": "segment",
+      "from": [
+        306.0,
+        185.0
+      ],
+      "to": [
+        306.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-35",
+      "type": "segment",
+      "from": [
+        321.0,
+        185.0
+      ],
+      "to": [
+        321.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-36",
+      "type": "segment",
+      "from": [
+        336.0,
+        185.0
+      ],
+      "to": [
+        336.0,
+        35.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-37",
+      "type": "segment",
+      "from": [
+        246.0,
+        170.0
+      ],
+      "to": [
+        351.0,
+        170.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-38",
+      "type": "segment",
+      "from": [
+        246.0,
+        155.0
+      ],
+      "to": [
+        351.0,
+        155.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-39",
+      "type": "segment",
+      "from": [
+        246.0,
+        140.0
+      ],
+      "to": [
+        351.0,
+        140.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-40",
+      "type": "segment",
+      "from": [
+        246.0,
+        125.0
+      ],
+      "to": [
+        351.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-41",
+      "type": "segment",
+      "from": [
+        246.0,
+        110.0
+      ],
+      "to": [
+        351.0,
+        110.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-42",
+      "type": "segment",
+      "from": [
+        246.0,
+        95.0
+      ],
+      "to": [
+        351.0,
+        95.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-43",
+      "type": "segment",
+      "from": [
+        246.0,
+        80.0
+      ],
+      "to": [
+        351.0,
+        80.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-44",
+      "type": "segment",
+      "from": [
+        246.0,
+        65.0
+      ],
+      "to": [
+        351.0,
+        65.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-45",
+      "type": "segment",
+      "from": [
+        246.0,
+        50.0
+      ],
+      "to": [
+        351.0,
+        50.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.991111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-46",
+      "type": "segment",
+      "from": [
+        25.0,
+        165.0
+      ],
+      "to": [
+        95.0,
+        75.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        80.0,
+        165.0
+      ],
+      "size": 3.84,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        80.0,
+        165.0
+      ],
+      "text": "K",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.28888888888889
+      }
+    },
+    {
+      "id": "segment-47",
+      "type": "segment",
+      "from": [
+        145.0,
+        155.0
+      ],
+      "to": [
+        215.0,
+        75.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        190.0,
+        135.0
+      ],
+      "size": 3.84,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        190.0,
+        135.0
+      ],
+      "text": "K",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.28888888888889
+      }
+    },
+    {
+      "id": "segment-48",
+      "type": "segment",
+      "from": [
+        265.0,
+        70.0
+      ],
+      "to": [
+        335.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        315.0,
+        75.0
+      ],
+      "size": 3.84,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        315.0,
+        75.0
+      ],
+      "text": "K",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.28888888888889
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 48
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

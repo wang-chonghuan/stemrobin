@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ld-s10y-image/figure-spec@1",
+  "title": "Soviet 10 Years modern-edition FigureSpec",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "id",
+    "mode",
+    "description",
+    "source",
+    "canvas",
+    "objects",
+    "assertions",
+    "review"
+  ],
+  "properties": {
+    "schema": {
+      "const": "ld-s10y-image/figure-spec@1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^(fig|tbl)-[A-Za-z0-9-]+$"
+    },
+    "mode": {
+      "enum": ["deterministic", "hybrid", "generated"]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["image", "authoritativeText"],
+      "properties": {
+        "image": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "sha256"],
+          "properties": {
+            "path": {"type": "string", "minLength": 1},
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        },
+        "authoritativeText": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["text"],
+            "properties": {
+              "lesson": {"type": "string"},
+              "exercise": {"type": "string"},
+              "text": {"type": "string", "minLength": 1}
+            }
+          }
+        }
+      }
+    },
+    "canvas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height", "boundingBox"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 320, "maximum": 4096},
+        "height": {"type": "integer", "minimum": 320, "maximum": 4096},
+        "boundingBox": {
+          "type": "array",
+          "prefixItems": [
+            {"type": "number"},
+            {"type": "number"},
+            {"type": "number"},
+            {"type": "number"}
+          ],
+          "minItems": 4,
+          "maxItems": 4
+        },
+        "background": {"type": "string", "default": "#ffffff"},
+        "keepAspectRatio": {"type": "boolean", "default": true}
+      }
+    },
+    "palette": {
+      "type": "object",
+      "additionalProperties": {"type": "string"}
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "path", "role"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "metadata": {"type": "string"},
+          "role": {"enum": ["artwork", "final"]}
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "type"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "type": {
+            "enum": [
+              "point",
+              "segment",
+              "line",
+              "arrow",
+              "circle",
+              "polygon",
+              "arc",
+              "grid",
+              "axis",
+              "measure",
+              "text",
+              "image",
+              "svgPath"
+            ]
+          }
+        }
+      }
+    },
+    "assertions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": {
+            "enum": [
+              "distance",
+              "equalDistance",
+              "collinear",
+              "parallel",
+              "perpendicular",
+              "pointOnLine",
+              "centralSymmetry",
+              "objectCount"
+            ]
+          },
+          "center": {},
+          "pairs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["a", "b"],
+              "properties": {
+                "a": {},
+                "b": {}
+              }
+            }
+          },
+          "tolerance": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "properties": {
+        "minLabelGap": {"type": "number", "minimum": 0},
+        "avoidRegions": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "prefixItems": [
+              {"type": "number"},
+              {"type": "number"},
+              {"type": "number"},
+              {"type": "number"}
+            ],
+            "minItems": 4,
+            "maxItems": 4
+          }
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {"enum": ["draft", "pass", "fail"]},
+        "notes": {"type": "string"}
+      }
+    }
+  }
+}

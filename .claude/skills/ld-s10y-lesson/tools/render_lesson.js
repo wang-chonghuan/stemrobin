@@ -3,7 +3,7 @@
  * cap5：每个小节出两张自包含 HTML —— 课文页 + 习题页，白底。
  *
  * 自包含 = 不依赖网络也不依赖同级文件：KaTeX 服务端渲染成静态 HTML（页面不需要
- * JS），KaTeX 的 CSS 与 woff2 字体以 data URI 内联，插图 SVG 直接内联。
+ * JS），KaTeX 的 CSS 与 woff2 字体以 data URI 内联，插图 SVG 或 PNG 直接内联。
  *
  * 坑：katex.min.css 里 src 是 @font-face 的最后一条声明，以 } 结尾而非 ;。
  * 按 ; 匹配会一个字体都替换不到，页面看着能用（系统字体兜底）但并不自包含。
@@ -66,19 +66,24 @@ function inline(text) {
   return strong(out + escText(text.slice(last)));
 }
 
-function figure(contentRoot, id, label, strictSvg) {
+function figure(contentRoot, id, label, strictEdition) {
   const svg = path.join(contentRoot, "figures", `${id}.svg`);
   const png = path.join(contentRoot, "figures", `${id}.png`);
+  if (strictEdition && fs.existsSync(png)) {
+    const b64 = fs.readFileSync(png).toString("base64");
+    return `<figure class="fig" id="${id}"><img alt="${esc(label || id)}" `
+      + `src="data:image/png;base64,${b64}"></figure>`;
+  }
   if (fs.existsSync(svg)) {
     return `<figure class="fig" id="${id}" aria-label="${esc(label || id)}">`
       + fs.readFileSync(svg, "utf8").replace(/<\?xml[^>]*\?>/, "") + `</figure>`;
   }
-  if (strictSvg) return `<p class="err">缺少现代 SVG ${esc(id)}</p>`;
   if (fs.existsSync(png)) {
     const b64 = fs.readFileSync(png).toString("base64");
     return `<figure class="fig" id="${id}"><img alt="${esc(label || id)}" `
       + `src="data:image/png;base64,${b64}"></figure>`;
   }
+  if (strictEdition) return `<p class="err">缺少现代图片 ${esc(id)}</p>`;
   return `<p class="err">缺图 ${esc(id)}</p>`;
 }
 

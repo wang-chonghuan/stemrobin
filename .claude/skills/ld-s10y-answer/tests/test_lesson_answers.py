@@ -31,7 +31,18 @@ class LessonAnswersTest(unittest.TestCase):
                 / "lessons" / lesson_id
             )
             dump(lesson_dir / "exercises.json", {
-                "exercises": [{"number": "1", "text": "求答案."}],
+                "exercises": [{
+                    "number": "1",
+                    "text": "求答案.",
+                    "figure_refs": ["fig-01"],
+                }],
+            })
+            dump(lesson_dir / "figures.json", {
+                "figures": [{
+                    "id": "fig-01",
+                    "svg": "figures/fig-01.svg",
+                    "spec": "figures/fig-01.spec.json",
+                }],
             })
             args = Namespace(
                 root=str(root),
@@ -46,6 +57,10 @@ class LessonAnswersTest(unittest.TestCase):
             )
             self.assertEqual(template["edition"], "modern-us-neutral")
             self.assertEqual(template["answers"][0]["bookRaw"], "42")
+            evidence = template["answers"][0]["figureEvidence"][0]
+            self.assertTrue(evidence["originalPng"].endswith("figures/fig-01.png"))
+            self.assertTrue(evidence["editionAsset"].endswith("figures/fig-01.svg"))
+            self.assertTrue(evidence["figureSpec"].endswith("figures/fig-01.spec.json"))
             self.assertFalse(
                 (root / "5m" / "lessons" / lesson_id / "answer-keys.template.json").exists()
             )

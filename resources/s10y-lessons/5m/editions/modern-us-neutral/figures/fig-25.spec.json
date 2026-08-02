@@ -1,10 +1,194 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-25",
+  "mode": "deterministic",
   "description": "A base OY and two compass arcs intersecting at X.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-25.png",
+      "sha256": "d9646541b5977d70967852af1b9b1e37d75cf82c76423a2d5a59e56ebb9cd898"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "问题. 用直尺和圆规作 $\\triangle XOY$，使 $|XO|=3.5$ 厘米，$|OY|=4$ 厘米，$|YX|=3$ 厘米."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 24"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 25"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 26"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        65.0,
+        45.0
+      ],
+      "to": [
+        295.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M65 175 A135 135 0 0 1 180 45",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "svgPath-2",
+      "type": "svgPath",
+      "d": "M295 175 A135 135 0 0 0 180 45",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        65.0,
+        45.0
+      ],
+      "to": [
+        180.0,
+        175.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        295.0,
+        45.0
+      ],
+      "to": [
+        180.0,
+        175.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        55.0,
+        36.0
+      ],
+      "text": "O",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        305.0,
+        36.0
+      ],
+      "text": "Y",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        180.0,
+        185.0
+      ],
+      "text": "X",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

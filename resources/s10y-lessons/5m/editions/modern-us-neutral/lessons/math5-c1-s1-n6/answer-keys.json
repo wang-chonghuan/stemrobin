@@ -1,0 +1,277 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n6",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "76",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "按角分类统计：锐角三角形5个，直角三角形1个，钝角三角形1个。",
+      "parts": []
+    },
+    {
+      "exercise": "77",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "作长方形ABCD并连接对角线AC、BD，设交点为O。长方形被分成4个三角形：△AOB、△BOC、△COD、△DOA。其中△AOB、△COD是钝角三角形，△BOC、△DOA是锐角三角形。过O分别向AB、BC、CD、DA作垂线，即可把每个三角形分成两个直角三角形。",
+      "parts": []
+    },
+    {
+      "exercise": "78",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "作正方形ABCD，连接一条对角线AC（或BD），正方形就被分成两个全等的直角三角形。",
+      "parts": []
+    },
+    {
+      "exercise": "79",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "因为OA＝OB，所以△AOB是等腰三角形；又因为∠AOB＝140°，所以它是钝角等腰三角形。",
+      "parts": [
+        {
+          "id": "类型",
+          "judge": "exact",
+          "expected": [
+            "钝角等腰三角形",
+            "等腰钝角三角形"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "80",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "KM和KT都是半径，所以KM＝KT＝3厘米；已知MT＝3厘米，因此KM＝KT＝MT。三边相等，所以△MKT是等边三角形。",
+      "parts": []
+    },
+    {
+      "exercise": "81",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "13和23之间的自然数为14至22。可分为：7的倍数集合{14，21}；其余各数的集合{15，16，17，18，19，20，22}。",
+      "parts": [
+        {
+          "id": "7的倍数集合",
+          "judge": "exact",
+          "expected": [
+            "{14，21}",
+            "{14,21}",
+            "14，21",
+            "14,21"
+          ]
+        },
+        {
+          "id": "其余各数集合",
+          "judge": "exact",
+          "expected": [
+            "{15，16，17，18，19，20，22}",
+            "{15,16,17,18,19,20,22}",
+            "15，16，17，18，19，20，22",
+            "15,16,17,18,19,20,22"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "82",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）不正确，平角等没有被归入这三个子集。2）不正确，按现代定义，等边三角形也是特殊的等腰三角形，因此两个子集有重合。3）不正确，四类互相重合，例如左前腿既属于前腿又属于左腿，不能构成四个不相交的子集。",
+      "parts": []
+    },
+    {
+      "exercise": "83",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "M＝{124，125，126，127，128，129}，K＝{127，128，129，130，131，132，133}。交集K∩M＝{127，128，129}；并集K∪M＝{124，125，126，127，128，129，130，131，132，133}。",
+      "parts": [
+        {
+          "id": "交集",
+          "judge": "exact",
+          "expected": [
+            "{127，128，129}",
+            "{127,128,129}",
+            "127，128，129",
+            "127,128,129"
+          ]
+        },
+        {
+          "id": "并集",
+          "judge": "exact",
+          "expected": [
+            "{124，125，126，127，128，129，130，131，132，133}",
+            "{124,125,126,127,128,129,130,131,132,133}",
+            "124，125，126，127，128，129，130，131，132，133",
+            "124,125,126,127,128,129,130,131,132,133"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "84",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）先作AB＝3.5厘米；在A点作与AB成135°的射线，在射线上截取AC＝5厘米；连接BC。2）先作AB＝4厘米；在A点作与AB成72°的射线，在B点作与BA成72°的射线；两条射线的交点为C，得到△ABC。",
+      "parts": []
+    },
+    {
+      "exercise": "85",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "1）作AB＝3厘米；过B作AB的垂线，在垂线上截取BC＝5厘米；连接AC。2）作AB＝4.5厘米；过B作AB的垂线；在A点作与AB成40°的射线，该射线与垂线的交点为C；连接AC。",
+      "parts": []
+    },
+    {
+      "exercise": "86",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 10 小时；2) 8.1 小时",
+      "displayAnswer": "1）48.6÷12.15＋（140.4－48.6）÷15.3＝4＋6＝10（小时）。2）4.5＋（32.4－5.2×4.5）÷2.5＝4.5＋3.6＝8.1（小时）。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "10"
+          ],
+          "unit": "小时"
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "8.1"
+          ],
+          "unit": "小时"
+        }
+      ]
+    },
+    {
+      "exercise": "87",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）0.25＋0.1＝0.35；2）0.25＋0.8＝1.05；3）0.75－0.375＝0.375；4）0.15÷0.06＝2.5。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "0.35"
+          ]
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "1.05"
+          ]
+        },
+        {
+          "id": "3",
+          "judge": "numeric",
+          "expected": [
+            "0.375"
+          ]
+        },
+        {
+          "id": "4",
+          "judge": "numeric",
+          "expected": [
+            "2.5"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "88",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "作圆和直径MP，在圆周上任取一点H，连接HM、HP。因为MP是直径，所以∠MHP＝90°。用量角器量出∠HMP和∠HPM；具体度数随H的位置而变，但两个锐角的和一定是90°。",
+      "parts": []
+    },
+    {
+      "exercise": "89",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "作互相垂直的两条射线，在两条射线上分别截取2.8厘米长的线段，再连接两个端点，即得等腰直角三角形。它的两个锐角相等，都是45°。",
+      "parts": []
+    },
+    {
+      "exercise": "90",
+      "grading": "ungraded",
+      "source": "derived",
+      "displayAnswer": "OA＝OD，且∠AOD＝50°，所以△AOD是锐角等腰三角形，其余两角各为65°。∠BOD＝180°－50°＝130°，且OB＝OD，所以△BOD是钝角等腰三角形，其余两角各为25°。因为AB是直径，所以∠ADB＝90°，△ADB是直角三角形。",
+      "parts": []
+    },
+    {
+      "exercise": "91",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "10 公里",
+      "displayAnswer": "两车每分钟的速度差为1.5－1＝0.5（公里），村庄与工人村之间的距离为0.5×20＝10（公里）。",
+      "parts": [
+        {
+          "id": "距离",
+          "judge": "numeric",
+          "expected": [
+            "10"
+          ],
+          "unit": "公里"
+        }
+      ]
+    },
+    {
+      "exercise": "92",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "3 岁，12 岁",
+      "displayAnswer": "设妹妹x岁，则哥哥4x岁。4x－x＝9，解得x＝3，哥哥为4×3＝12（岁）。答：妹妹3岁，哥哥12岁。",
+      "parts": [
+        {
+          "id": "妹妹年龄",
+          "judge": "numeric",
+          "expected": [
+            "3"
+          ],
+          "unit": "岁"
+        },
+        {
+          "id": "哥哥年龄",
+          "judge": "numeric",
+          "expected": [
+            "12"
+          ],
+          "unit": "岁"
+        }
+      ]
+    },
+    {
+      "exercise": "93",
+      "grading": "auto",
+      "source": "derived",
+      "displayAnswer": "1）2又1/7－（3又5/7－2又4/7）＝2又1/7－1又1/7＝1；2）6又2/5＋（4又4/5－4/5）＝6又2/5＋4＝10又2/5。",
+      "parts": [
+        {
+          "id": "1",
+          "judge": "numeric",
+          "expected": [
+            "1"
+          ]
+        },
+        {
+          "id": "2",
+          "judge": "numeric",
+          "expected": [
+            "10.4"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 18
+}

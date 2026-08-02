@@ -61,13 +61,35 @@ def cmd_prepare(args: argparse.Namespace) -> int:
     for lesson in selected_lessons(args):
         lesson_dir = lessons_dir(args) / lesson
         exercise_doc = load(lesson_dir / "exercises.json")
+        figure_doc = load(lesson_dir / "figures.json")
+        figures = {
+            figure["id"]: figure
+            for figure in figure_doc.get("figures", [])
+        }
         answers = []
         for exercise in exercise_doc.get("exercises", []):
             number = int(exercise["number"])
             book_answer = captured.get(number)
+            evidence = []
+            for figure_id in exercise.get("figure_refs", []):
+                figure = figures.get(figure_id, {})
+                edition_asset = figure.get("png") or figure.get("svg")
+                evidence.append({
+                    "id": figure_id,
+                    "originalPng": (
+                        root / "figures" / f"{figure_id}.png"
+                    ).as_posix(),
+                    "editionAsset": (
+                        root / "editions" / args.edition / edition_asset
+                    ).as_posix() if edition_asset else None,
+                    "figureSpec": (
+                        root / "editions" / args.edition / figure["spec"]
+                    ).as_posix() if figure.get("spec") else None,
+                })
             item = {
                 "exercise": str(exercise["number"]),
                 "prompt": exercise["text"],
+                "figureEvidence": evidence,
                 "grading": None,
                 "source": "book" if book_answer else "derived",
                 "displayAnswer": "",
@@ -136,6 +158,11 @@ def validate_lesson(
             errors.append(f"{label}.source 非法")
         if not isinstance(display, str) or not display.strip():
             errors.append(f"{label}.displayAnswer 不能为空")
+        elif any(
+            phrase in display
+            for phrase in ("题面未附图", "题面未提供图", "无法可靠确定")
+        ):
+            errors.append(f"{label}.displayAnswer 不得声称题图缺失")
         if not isinstance(parts, list):
             errors.append(f"{label}.parts 必须是数组")
             parts = []

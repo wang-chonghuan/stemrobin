@@ -1,0 +1,31 @@
+{
+  "schema": "n-azure/image-generation@1",
+  "created_at": "2026-08-02T16:27:51.290755+00:00",
+  "endpoint": "https://finleyswedencentralinstance.openai.azure.com",
+  "api_version": "preview",
+  "model": "gpt-image-2",
+  "mode": "edit",
+  "auth_method": "api-key",
+  "prompt": "Create one isolated child walking in side view for reuse in a modern grade 5 number-line diagram.\n\nAuthoritative lesson context: the points -5 and 5 lie on opposite sides of 0 at equal distances. Code will place two copies of this child exactly at -5 and 5 on a number line.\n\nShow one elementary-school-age child walking energetically to the right, with a readable side-view silhouette, modern casual clothes, and sneakers. No school uniform, hat, flag, or cultural emblem.\n\nThe prompt text is authoritative. The reference image supplies only the walking-child subject and must not contribute old cultural details.\n\nTransparent background. Full body visible and centered. Full-color flat educational illustration with teal/green accents. No text, numbers, labels, number line, ticks, axes, arrows, answer annotations, Cyrillic, Chinese characters, Soviet symbols, or book texture.",
+  "references": [
+    {
+      "path": "resources/s10y-lessons/5m/figures/fig-51.png",
+      "bytes": 7329,
+      "sha256": "25e6e65572b5304699b4291fc3569877538d6b8e9c9f7471602ab36c69935c7f"
+    }
+  ],
+  "request": {
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1
+  },
+  "output": {
+    "path": ".tmp/batch-runs/2a398867-3fa8-4abe-894a-ec6e47c501ea/semantic/fig-51/child-opaque.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 865072,
+    "sha256": "6a00e6ba58c3e2577bba7ec43ae3aa3fe734bd38548a45e0b3eedfac83e70afe"
+  }
+}

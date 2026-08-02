@@ -1,0 +1,40 @@
+{
+  "schema": "ld-s10y-image/render@1",
+  "figure": "fig-33",
+  "mode": "hybrid",
+  "renderer": {
+    "name": "JSXGraph",
+    "version": "1.13.1"
+  },
+  "spec": {
+    "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-33.spec.json",
+    "sha256": "29034f3d73a0bcbef446bc198bcbc9b2bb26c2b8451f7155f2cb6deaad1a2f8b"
+  },
+  "output": {
+    "png": {
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-33.png",
+      "sha256": "cc99c38b82d260c847d0806e82cd3dcb480e7f8a2ba83534fedbe958a07f34d0"
+    }
+  },
+  "objects": 11,
+  "labels": 1,
+  "collisions": [],
+  "imageFits": [
+    {
+      "id": "bird-left-art",
+      "status": "pass",
+      "preserveAspectRatio": "xMidYMid meet"
+    },
+    {
+      "id": "bird-middle-art",
+      "status": "pass",
+      "preserveAspectRatio": "xMidYMid meet"
+    },
+    {
+      "id": "bird-right-art",
+      "status": "pass",
+      "preserveAspectRatio": "xMidYMid meet"
+    }
+  ],
+  "status": "pass"
+}

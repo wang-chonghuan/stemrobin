@@ -21,7 +21,8 @@
           "path": "figures/fig-16.svg",
           "sha256": "bf3c93ae95bbfa9ca781561ee570dd9eec850420855bdb0e408dbeb36bf75ffa"
         }
-      }
+      },
+      "render": "figures/fig-16.svg.json"
     },
     {
       "id": "fig-17",
@@ -40,7 +41,8 @@
           "path": "figures/fig-17.svg",
           "sha256": "b4958c7d95291c6669bbc43f8ea7155d26d239f392719089d603fb6b998c74a9"
         }
-      }
+      },
+      "render": "figures/fig-17.svg.json"
     },
     {
       "id": "tbl-p0024-02",
@@ -59,7 +61,8 @@
           "path": "figures/tbl-p0024-02.svg",
           "sha256": "7e5abb5163a0e9ddea2731905709633c5337ef245dae68d8ce2bdfaa0dd807bb"
         }
-      }
+      },
+      "render": "figures/tbl-p0024-02.svg.json"
     },
     {
       "id": "tbl-p0025-01",
@@ -78,12 +81,12 @@
           "path": "figures/tbl-p0025-01.svg",
           "sha256": "1905c364efa93961b998efabd75e83bf77543fc97a04104cfd4bd5e92d54c3e3"
         }
-      }
+      },
+      "render": "figures/tbl-p0025-01.svg.json"
     },
     {
       "id": "fig-18",
       "label": "图 18",
-      "svg": "figures/fig-18.svg",
       "spec": "figures/fig-18.spec.json",
       "changes": [
         "redrawn"
@@ -97,7 +100,9 @@
           "path": "figures/fig-18.svg",
           "sha256": "70d729a6736c86bee6a8eb2d15cc5bdeec0c2d0f6e86d961ffaa06319d68d6dd"
         }
-      }
+      },
+      "png": "figures/fig-18.png",
+      "generation": "figures/fig-18.png.json"
     }
   ]
 }

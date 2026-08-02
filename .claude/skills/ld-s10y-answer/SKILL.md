@@ -110,13 +110,16 @@ node .claude/skills/ld-s10y-answer/tools/publish.mjs resources/s10y-lessons/5m \
 1. 每个已抽取 exercise 必须恰有一个 answer key。
 2. 题面必须读取指定 edition；`resources/s10y-lessons/<book>/answers.json` 有书后答案时
    优先参考并保留为 `bookRaw`。
-3. 书后未列答案时，由执行技能的模型根据题面和插图现场求解，`source` 写 `derived`。
-4. 原书答案不完整或有误时不得照错；给出正确标准答案，保留 `bookRaw` 并说明 `notes`。
-5. 能用确定性方法判定的题标记 `grading: "auto"`，拆成一个或多个 `parts`。
-6. 作图、证明、开放说理等当前无法可靠自动判定的题标记 `grading: "ungraded"`。
-7. `ungraded` 仍必须提供 `displayAnswer`。用户提交完成后不显示对错，只显示“该题不判定正误”和标准答案。
-8. 当前运行时不调用 LLM 判题；LLM 只在 cap2 的离线生产阶段生成缺失标准答案。
-9. 现代版改了人物、地点、单位或年份时，`displayAnswer` 和单位必须跟随现代题面；
+3. `prepare` 提供 `figureEvidence` 时，必须实际查看现代图、原始 PNG 和 FigureSpec 后
+   作答。现代题面是语义权威，原图用于核对数值、位置与构图；禁止写“题面未附图”或
+   用通用判定方法代替具体标准答案。
+4. 书后未列答案时，由执行技能的模型根据题面和插图现场求解，`source` 写 `derived`。
+5. 原书答案不完整或有误时不得照错；给出正确标准答案，保留 `bookRaw` 并说明 `notes`。
+6. 能用确定性方法判定的题标记 `grading: "auto"`，拆成一个或多个 `parts`。
+7. 作图、证明、开放说理等当前无法可靠自动判定的题标记 `grading: "ungraded"`。
+8. `ungraded` 仍必须提供 `displayAnswer`。用户提交完成后不显示对错，只显示“该题不判定正误”和标准答案。
+9. 当前运行时不调用 LLM 判题；LLM 只在 cap2 的离线生产阶段生成缺失标准答案。
+10. 现代版改了人物、地点、单位或年份时，`displayAnswer` 和单位必须跟随现代题面；
    `bookRaw` 仍原样保留，不能反向污染原始答案。
 
 稳定产物为每个 lesson 一份：

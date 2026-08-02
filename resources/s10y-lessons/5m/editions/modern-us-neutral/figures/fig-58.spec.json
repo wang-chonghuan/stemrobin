@@ -1,10 +1,201 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-58",
+  "mode": "deterministic",
   "description": "A newly authored translation of an irregular shape.",
-  "constraints": [
-    "A moves to A1.",
-    "B moves to B1.",
-    "AA1 and BB1 are parallel, equal, and point in the same direction."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-58.png",
+      "sha256": "d18e9c3cbfeafb1bdea36c387446c5d200a41dc4d3bf44a0ad3b6085abc086b4"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "过去我们作平行线是沿直尺移动三角板（图 12）. 这时三角板的所有点都向同一个方向移动相同的距离. 图形的这种位移就叫做平移."
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "为了给定图形的平移，只要知道这个图形的一个点移动到哪里就足够了. 假如在平移时，点 $A$ 移到点 $A_1$（图 58）. 要想知道这个图形的 $B$ 点移到哪里，作法如下：联结点 $A$ 和点 $A_1$，并且从 $B$ 点作和 $AA_1$ 线段平行的线段 $BB_1$，使它与 $AA_1$ 长度相等、方向相同，于是点 $B$ 移到点 $B_1$."
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "图 58"
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "当三角板沿直尺移动时，三角板的尺寸不变. 一般说来，在平移时，如果图形 $M$ 移到图形 $P$，那么图形 $M$ 和 $P$ 合同."
+      },
+      {
+        "lesson": "math5-c1-s2-n15",
+        "text": "例 1. 让我们来完成 $AB$ 线段的平移，使点 $A$ 移到点 $A_1$.联结点 $A$ 和点 $A_1$（图 59）. 从点 $B$ 引和 $AA_1$ 平行并且长度相等、方向相同的线段 $BB_1$. 联结$A_1$ 和 $B_1$ 二点. 线段 $A_1B_1$ 就是线段 $AB$ 在平移时移到的线段.例 2. 我们来完成圆心为点$A$、半径为 1 厘米的圆周的平移，使点 $A$ 移到点 $A_1$.因为平移时，圆周的大小不变，所以只要作以点 $A_1$ 为圆心、半径为 1 厘米的圆周即可（图 60）.用花样模板作花纹时应用了平移原理（图 61）."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M120 130L260 100L300 180L250 300L130 270Z",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "svgPath-2",
+      "type": "svgPath",
+      "d": "M520 130L660 100L700 180L650 300L530 270Z",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        260.0,
+        420.0
+      ],
+      "to": [
+        660.0,
+        420.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        130.0,
+        250.0
+      ],
+      "to": [
+        530.0,
+        250.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        270.0,
+        435.0
+      ],
+      "text": "A",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        105.0,
+        215.0
+      ],
+      "text": "B",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        668.0,
+        435.0
+      ],
+      "text": "A1",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        535.0,
+        215.0
+      ],
+      "text": "B1",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "start",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

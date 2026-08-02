@@ -1,10 +1,198 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-44",
-  "description": "Two simple human figures are related by a half-turn about O.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "mode": "hybrid",
+  "description": "One asymmetric child figure and its exact half-turn image about center O.",
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-44.png",
+      "sha256": "8dc32d8d2a5492b876a90dddba57a6537ca4a5f75a3428df2307533f8c428a73"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "作图形 $F$ 和点 $O$，然后取这个图形每个点关于点 $O$ 的对称点. 结果得出一个新图形 $F_1$，它和图形 $F$ 关于点 $O$ 对称（图 44）. 点 $O$ 叫做对称中心. 任何两个成中心对称的图形都是合同的."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1536,
+    "height": 1024,
+    "boundingBox": [
+      0,
+      8,
+      12,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "assets": [
+    {
+      "id": "child",
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-44-child.png",
+      "metadata": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/assets/fig-44-child.generated.png.json",
+      "role": "artwork"
+    }
+  ],
+  "objects": [
+    {
+      "id": "figure-f-art",
+      "type": "image",
+      "asset": "child",
+      "at": [
+        1.45,
+        1.15
+      ],
+      "size": [
+        3.2,
+        5.7
+      ]
+    },
+    {
+      "id": "figure-f1-art",
+      "type": "image",
+      "asset": "child",
+      "at": [
+        1.45,
+        1.15
+      ],
+      "size": [
+        3.2,
+        5.7
+      ],
+      "rotation": {
+        "angleDegrees": 180,
+        "center": [
+          6,
+          4
+        ]
+      }
+    },
+    {
+      "id": "guide-start",
+      "type": "point",
+      "at": [
+        4.2,
+        1.75
+      ],
+      "visible": false
+    },
+    {
+      "id": "center-o",
+      "type": "point",
+      "at": [
+        6,
+        4
+      ],
+      "size": 5,
+      "stroke": "primary",
+      "fill": "primary"
+    },
+    {
+      "id": "guide-end",
+      "type": "point",
+      "at": [
+        7.8,
+        6.25
+      ],
+      "visible": false
+    },
+    {
+      "id": "symmetry-guide",
+      "type": "segment",
+      "from": "guide-start",
+      "to": "guide-end",
+      "stroke": "primary",
+      "strokeWidth": 3,
+      "dash": 2,
+      "opacity": 0.85
+    },
+    {
+      "id": "label-f",
+      "type": "text",
+      "at": [
+        3.05,
+        7.25
+      ],
+      "text": "F",
+      "fontSize": 38,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    },
+    {
+      "id": "label-o",
+      "type": "text",
+      "at": [
+        5.62,
+        4.42
+      ],
+      "text": "O",
+      "fontSize": 32,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    },
+    {
+      "id": "label-f1",
+      "type": "text",
+      "at": [
+        8.95,
+        0.72
+      ],
+      "text": "F1",
+      "fontSize": 38,
+      "fontWeight": 700,
+      "labelColor": "ink",
+      "labelPlacement": {
+        "position": "CENTER"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "pointOnLine",
+      "point": "center-o",
+      "a": "guide-start",
+      "b": "guide-end"
+    },
+    {
+      "type": "equalDistance",
+      "a": "guide-start",
+      "b": "center-o",
+      "c": "center-o",
+      "d": "guide-end"
+    },
+    {
+      "type": "centralSymmetry",
+      "center": "center-o",
+      "pairs": [
+        {"a": "guide-start", "b": "guide-end"}
+      ]
+    },
+    {
+      "type": "objectCount",
+      "objectType": "image",
+      "count": 2
+    }
+  ],
+  "layout": {
+    "minLabelGap": 4,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "The second figure reuses the same artwork and is produced by an exact 180-degree JSXGraph rotation about O."
+  }
 }

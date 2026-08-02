@@ -1,6 +1,6 @@
 ---
 name: ld-s10y-lesson
-description: 按书名、章、节、连续编号单元或页码，把纯扫描的教材 PDF 抽成课程单元——每个最小单元一份完整课文 + 一组独立编号的题，插图和表格是矢量 SVG；正文图留正文，共享练习图只展示一次。模型看图认对象，机器吸附像素、跨页装订、全书对账。用于无文字层的老教材数字化。
+description: 按书名、章、节、连续编号单元或页码，把纯扫描的教材 PDF 抽成课程单元——每个最小单元一份完整课文 + 一组独立编号的题；原始图忠实抽取，现代 edition 图委托项目技能 ld-s10y-image 生成。正文图留正文，共享练习图只展示一次。用于无文字层的老教材数字化。
 ---
 
 # ld-s10y-lesson
@@ -41,8 +41,8 @@ $P $S vectorize --book 5m
 $P $S assemble  --book 5m --toc ssot-resources/soviet10year-textbooks/toc/5m/zh.json
 $P $S adapt-prepare --book 5m --edition modern-us-neutral \
   --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
-# ④ 只编辑 editions/modern-us-neutral 下的模板，改写主题并重画 SVG；
-#    复杂对象先调用 n-azure cap4 生成轮廓底稿，再确定性矢量化
+# ④ 只编辑 editions/modern-us-neutral 下的模板，改写主题；
+#    所有现代图委托 ld-s10y-image，按 deterministic / hybrid / generated 路由
 $P $S adapt-finalize --book 5m --edition modern-us-neutral \
   --lesson math5-c1-s1-n5 --lesson math5-c1-s1-n6 --lesson math5-c1-s1-n7
 $P $S render --book 5m --edition modern-us-neutral \
@@ -57,14 +57,14 @@ cd app && npm run dev
 - ③ 和 `assemble` 的对账**不通过就是没做完**，回到 ② 修，不允许放行
 - `vectorize` 后必须再跑一次 `assemble`，把页目录中新生成的 SVG 同步到全书图库
 - 原始 `pages/`、`figures/`、`lessons/` 和 `book.json` 是忠实抽取层，生成现代版时不得修改
-- `adapt-prepare` 后只编辑 `editions/<edition>/`；改写后的 JSON 和新画 SVG 必须通过
+- `adapt-prepare` 后只编辑 `editions/<edition>/`；改写后的 JSON 和新图必须通过
   `adapt-finalize`，生产发布器不接受原始抽取层
 - `render` 不是发布门禁，但必须用于离线视觉检查；它读取指定 edition，不得回退原书
 - 边界页常会带出下一节开头；它必须完整转写以通过页级对账，但**不得发布未完成的下一节**。
   用可重复的 `--lesson <cardId>` 只发布本次已完成的单元
 - **不允许以 `--dry` 作为交付终点**。dry-run 只能用于发布前检查，之后必须真实写库
 - 写库后查询 `sr_lessons` 核对目标 id 的正文块数和题数，再启动 app，用浏览器逐节确认
-  目录可点、正文准确（原书无正文时允许为空）、插图是 SVG、习题数量正确、控制台无错误
+  目录可点、正文准确（原书无正文时允许为空）、插图清晰、习题数量正确、控制台无错误
 
 ## 交付的是对象，不是页
 
@@ -123,7 +123,7 @@ resources/s10y-lessons/5m/
 │   ├── text.html            自包含课文页（白底）
 │   └── exercises.html       自包含习题页
 ├── editions/modern-us-neutral/
-│   ├── figures/             ★ 新创作 SVG + 每图一份 *.spec.json；禁止截图、描摹和位图
+│   ├── figures/             ★ ld-s10y-image 产物 + 每图一份 FigureSpec
 │   ├── lessons/<card-id>/   ★ 可发布的现代 lesson/exercises/figures JSON + 审计
 │   └── book.json            edition 索引
 └── book.json                全书索引 + 审计报告
@@ -252,7 +252,7 @@ SVG 用 `fill="currentColor"`，HTML 里可直接用 CSS 换色。
 p2c.py adapt-prepare --book 5m --edition modern-us-neutral \
   --lesson math5-c1-s2-n12 --lesson math5-c1-s2-n13
 # 编辑 editions/modern-us-neutral/lessons/<id>/*.json，
-# 并在 editions/modern-us-neutral/figures/ 新画 SVG 和 *.spec.json
+# 并用 ld-s10y-image 生成图像产物和 *.spec.json
 p2c.py adapt-finalize --book 5m --edition modern-us-neutral \
   --lesson math5-c1-s2-n12 --lesson math5-c1-s2-n13
 ```
@@ -266,51 +266,27 @@ p2c.py adapt-finalize --book 5m --edition modern-us-neutral \
 4. 原始层继续按印刷视觉行忠实保存；现代版中若一道题含完整的 `1)..N)` 数字小问，
    必须按编号升序排列，**每个小问独占一行**，并移除原书多栏对齐所用的全角空格。
    `adapt-finalize` 会确定性执行该排版规范，禁止手改原始 `pages/` 或原始 lesson JSON。
-5. 每张产品图都要从语义约束重新创作 SVG，并配 `*.spec.json`：
-   - 数轴、几何图、图表、表格和简单物体直接手写 SVG
-   - 大象、长颈鹿、人物、树木等复杂对象，先加载 `n-azure` 并调用
-     `capability-4-image-generation`，生成**单个、无文字、白底或透明底、适合描摹的平面
-     轮廓底稿**；底稿放 `.tmp/s10y-image-assets/<lesson-id>/`，不得提交或发布
-   - 用本技能 `tools/vectorize.py` 的确定性 potrace 流程把合格底稿转成路径；再由 SVG
-     精确设置对象数量、复用次数、位置、尺寸、刻度、箭头和标签。不要让图片模型生成
-     完整数学图
-   - 禁止 `<image>`、截图、原图描摹、外部向量素材拼贴、data URI、外链和脚本
-6. **图内语言固定为英文**：所有可见标签以及 `<title>`、`<desc>` 使用英文；数字、
-   拉丁字母和数学符号可直接使用，禁止中文、日文和西里尔文字。课程正文仍为中文。
-7. `adapt-finalize` 校验原始快照未变、数学未变、数字变化已声明、SVG 为纯矢量且图内
-   语言合规；失败不能发布。
+5. 每张产品图委托项目技能 `ld-s10y-image`，并配
+   `ld-s10y-image/figure-spec@1`：
+   - 数轴、几何、网格、刻度、坐标、变换、图表和数学标签用 JSXGraph 确定性生成
+   - 动物、人物、树木和场景等语义素材用 Azure `gpt-image-2`
+   - 同时需要自然对象与精确数学关系时，用 GPT artwork + JSXGraph overlay 的 hybrid 模式
+   - 输入必须包含完整相关 edition 题面/正文与原始抽取图 PNG；edition 文本是语义真相
+   - 禁止使用答案键或添加原图没有的解答标注，不能让题图泄露答案
+   - 禁止手改渲染器产物、直接发布原书截图，或让 GPT Image 猜精确刻度和标签位置
+6. **图内语言固定为英文**：数字、拉丁字母和数学符号可直接使用；禁止中文、日文、
+   西里尔文字、苏联文化符号、旧书纹理和手写体。课程正文仍为中文。
+7. 先按 [现代图生成流程](references/figure-generation.md) 完成 FigureSpec、数学断言、
+   渲染碰撞检测和目视验收；任一不符时最多针对缺陷修复一次。
+8. `adapt-finalize` 校验原始快照、数学、FigureSpec、渲染或生成元数据；失败不能发布。
 
 原始层 cap3 的 potrace 只用于保存教材抽取事实；现代 edition 的图必须重新创作，两者用途不同。
 
-### 复杂插图的混合流程
+### 完整图生成流程
 
-图片模型只负责“对象长什么样”，机器负责“对象在哪里、出现几次、与数学结构如何对应”：
-
-1. 从 `*.spec.json` 提炼一个独立对象提示词，不包含题目答案、坐标、刻度或中文文字。
-2. 调用 `n-azure` cap4 直连 `gpt-image-2`，输出到
-   `.tmp/s10y-image-assets/<lesson-id>/<figure-id>-<object>.png`。
-3. 目视拒绝错误对象、裁切、文字、水印、复杂背景；最多针对真实缺陷重试一次。
-4. 将合格底稿阈值化并用 `tools/vectorize.py` 矢量化，抽取可复用的 `<path>`。
-5. 在最终 SVG 中用 `<defs>`/`<use>` 和显式坐标完成排版；数轴、刻度、数字、英文标签、
-   连线及几何关系全部手写并复核。
-6. 最终 edition 仍只保存纯 SVG 和 `*.spec.json`；Azure PNG 及其元数据只留在 `.tmp/`。
-
-命令形状如下；`<n-azure-skill>` 是宿主加载 `n-azure` 后解析出的技能目录，不得在技能
-或仓库里写死某个用户的绝对路径：
-
-```bash
-python <n-azure-skill>/scripts/generate_image.py \
-  --prompt-file .tmp/s10y-image-assets/<lesson-id>/<figure-id>.prompt.txt \
-  --output .tmp/s10y-image-assets/<lesson-id>/<figure-id>-object.png \
-  --quality medium
-
-$P .claude/skills/ld-s10y-lesson/tools/vectorize.py \
-  --input .tmp/s10y-image-assets/<lesson-id>/<figure-id>-object.png \
-  --output .tmp/s10y-image-assets/<lesson-id>/<figure-id>-object.svg
-```
-
-例如三只鸟位于数轴 `-3, 2, 5`：Azure 只生成一只侧视鸟的干净轮廓；最终 SVG 复用该
-轮廓三次，并由代码把锚点严格放在 `-3, 2, 5`，禁止让图片模型直接画整条数轴。
+context package、渲染路由、FigureSpec、`n-azure` 和视觉门禁见
+[references/figure-generation.md](references/figure-generation.md)。预览批次只写 `.tmp/`；
+用户验收后才提升到 edition。
 
 ---
 
@@ -323,7 +299,7 @@ p2c.py render --book 5m --edition modern-us-neutral [--lesson <cardId>]...
 每个单元两张白底页：`text.html`（课文，原书无正文时为空）+ `exercises.html`
 （每题独立编号，共享练习图只展示一次）。
 自包含指不依赖网络也不依赖同级文件：KaTeX 服务端渲染成静态 HTML（页面不要 JS）、
-CSS 与 20 个 woff2 字体内联成 data URI、插图 SVG 直接内联。
+CSS 与 20 个 woff2 字体内联成 data URI，插图 SVG 或 PNG 都内联。
 
 > 坑：`katex.min.css` 里 `src` 是 `@font-face` 的**最后一条**声明，以 `}` 结尾而非 `;`。
 > 按 `;` 匹配会一个字体都替换不到，页面看着能用（系统字体兜底）但并不自包含。
@@ -340,15 +316,15 @@ node .claude/skills/ld-s10y-lesson/tools/publish.mjs resources/s10y-lessons/5m \
 
 一个单元 = `sr_lessons` 一行，**id 就是 cap2 从 TOC 认领的卡片 id**——这是 app 定的
 （见 `app/src/lib/deck-stats.ts`），所以不建新表。`content` 放课文块、`exercises` 放每道题，
-两者都是可直接嵌入的 HTML 片段（KaTeX 已渲染、插图内联 SVG），由产品自己排版；
+两者都是可直接嵌入的 HTML 片段（KaTeX 已渲染、插图为内联图片数据），由产品自己排版；
 `html` 列不再写入。幂等 upsert，重复跑不会伤到别的课。
 
 `--lesson` 可重复，用于只写本次已经完整闭合的单元。跨页抽取为了完成上一单元而读到了
 下一单元开头时，必须指定它，禁止把只有标题或一道题的半个单元写进生产。
 
-发布器只读取 `editions/<edition>/lessons/`，要求 adaptation audit 为 `pass`，并再次拒绝
-含位图、脚本、data URI 或外链的 SVG。写入 DB 时只保留现代正文、现代题目、现代 SVG、
-edition 名和原始 SHA；完整原始快照不入库。
+发布器只读取 `editions/<edition>/lessons/`，要求 adaptation audit 为 `pass`，并验证
+现代图、FigureSpec 与生成/渲染元数据。写入 DB 时只保留现代正文、现代题目、现代图片、edition 名和原始
+SHA；完整原始快照不入库。重发课文或图片时必须保留同题号已有的 `answerKey`。
 
 连接串取仓库根 `.env` 的 `LEMMADECK_DATABASE_URL`（Supabase，schema `lemmadeck-schema`）。
 **不要用 psql**：这个串的密码含 `@`，psql 会当成主机名分隔符而解析失败。
@@ -361,7 +337,7 @@ edition 名和原始 SHA；完整原始快照不入库。
    `content.edition`、`exercises.edition`、`content.prose` 和 `exercises.count`；
    edition 必须等于本次发布值，只有练习的单元允许 `content.prose=[]`
 2. `cd app && npm run dev`，固定端口 3200
-3. 浏览器打开每个目标 `/card/<cardId>`，确认正文没有混入练习专用图、SVG 插图、
+3. 浏览器打开每个目标 `/card/<cardId>`，确认正文没有混入练习专用图、插图清晰、
    习题入口与题数
 4. 打开每节的习题视图，确认所有题都能渲染，并按 `figure id` 检查同一张共享图
    在该练习区只出现一次

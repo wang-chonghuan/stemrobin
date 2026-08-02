@@ -8,14 +8,19 @@ import copy
 import hashlib
 import json
 import re
+import subprocess
+import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
+
+from PIL import Image
 
 
 LESSON_SCHEMA = "ld-s10y-lesson/edition-lesson@1"
 EXERCISES_SCHEMA = "ld-s10y-lesson/edition-exercises@1"
 FIGURES_SCHEMA = "ld-s10y-lesson/edition-figures@1"
 FIGURE_SPEC_SCHEMA = "ld-s10y-lesson/figure-spec@1"
+IMAGE_FIGURE_SPEC_SCHEMA = "ld-s10y-image/figure-spec@1"
 AUDIT_SCHEMA = "ld-s10y-lesson/edition-audit@1"
 BOOK_SCHEMA = "ld-s10y-lesson/edition-book@1"
 MATH = re.compile(r"\$\$(.+?)\$\$|\$([^$]+?)\$", re.S)
@@ -117,9 +122,8 @@ def figure_sources(book: Path, figures: list[dict]) -> list[dict]:
         item = {
             "id": figure["id"],
             "label": figure.get("label"),
-            "svg": f"figures/{figure['id']}.svg",
             "spec": f"figures/{figure['id']}.spec.json",
-            "changes": ["redrawn"],
+            "changes": ["modernized"],
             "source": {},
         }
         for suffix in (".png", ".svg"):
@@ -327,11 +331,78 @@ def local_name(tag: str) -> str:
     return tag.rsplit("}", 1)[-1]
 
 
+def validate_figure_spec(
+    spec_path: Path,
+    figure_id: str,
+    require_review: bool,
+    legacy_require_review: bool = True,
+) -> tuple[dict, list[str]]:
+    if not spec_path.exists():
+        return {}, [f"缺少 figure spec: {spec_path}"]
+    spec = load(spec_path)
+    errors = []
+    if spec.get("id") != figure_id:
+        errors.append(f"{spec_path}: id 与 figure 不一致")
+    schema = spec.get("schema")
+    if schema == IMAGE_FIGURE_SPEC_SCHEMA:
+        repo = Path(__file__).resolve().parents[4]
+        validator = (
+            repo
+            / ".agents"
+            / "skills"
+            / "ld-s10y-image"
+            / "scripts"
+            / "validate_spec.py"
+        )
+        result = subprocess.run(
+            [
+                sys.executable,
+                str(validator),
+                str(spec_path),
+                "--stage",
+                "approved" if require_review else "draft",
+                "--json",
+            ],
+            cwd=repo,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        try:
+            payload = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            errors.append(
+                f"{spec_path}: ld-s10y-image validator 输出异常: "
+                f"{(result.stderr or result.stdout).strip()[:300]}"
+            )
+        else:
+            errors += [
+                f"{spec_path}: {error}"
+                for error in payload.get("errors", [])
+            ]
+        return spec, errors
+    if schema != FIGURE_SPEC_SCHEMA:
+        errors.append(
+            f"{spec_path}: schema 必须是 {IMAGE_FIGURE_SPEC_SCHEMA}"
+        )
+        return spec, errors
+    if not isinstance(spec.get("description"), str) or not spec["description"].strip():
+        errors.append(f"{spec_path}: description 不能为空")
+    if not isinstance(spec.get("constraints"), list):
+        errors.append(f"{spec_path}: constraints 必须是数组")
+    if require_review and legacy_require_review:
+        review = spec.get("visualReview")
+        if not isinstance(review, dict) or review.get("status") != "pass":
+            errors.append(f"{spec_path}: visualReview.status 必须是 pass")
+    return spec, errors
+
+
 def validate_svg(
     path: Path,
     spec_path: Path,
     figure: dict,
     figure_text_language: str | None = None,
+    metadata_path: Path | None = None,
 ) -> list[str]:
     errors = []
     if not path.exists():
@@ -365,15 +436,169 @@ def validate_svg(
                 errors.append(
                     f"{path}: {local_name(node.tag)} 必须使用英文，发现 {value!r}"
                 )
-    spec = load(spec_path)
-    if spec.get("schema") != FIGURE_SPEC_SCHEMA:
-        errors.append(f"{spec_path}: schema 必须是 {FIGURE_SPEC_SCHEMA}")
-    if spec.get("id") != figure["id"]:
-        errors.append(f"{spec_path}: id 与 figure 不一致")
-    if not isinstance(spec.get("description"), str) or not spec["description"].strip():
-        errors.append(f"{spec_path}: description 不能为空")
-    if not isinstance(spec.get("constraints"), list):
-        errors.append(f"{spec_path}: constraints 必须是数组")
+    spec, spec_errors = validate_figure_spec(
+        spec_path,
+        figure["id"],
+        require_review=True,
+        legacy_require_review=False,
+    )
+    errors += spec_errors
+    if (
+        spec.get("schema") == IMAGE_FIGURE_SPEC_SCHEMA
+        and spec.get("mode") != "deterministic"
+    ):
+        errors.append(f"{spec_path}: SVG 只允许 deterministic mode")
+    if (
+        spec.get("schema") == IMAGE_FIGURE_SPEC_SCHEMA
+        and spec.get("mode") == "deterministic"
+    ):
+        if metadata_path is None or not metadata_path.exists():
+            errors.append(f"{path}: 缺 JSXGraph 渲染报告")
+        else:
+            metadata = load(metadata_path)
+            if metadata.get("schema") != "ld-s10y-image/render@1":
+                errors.append(f"{metadata_path}: render schema 非法")
+            if metadata.get("mode") != "deterministic":
+                errors.append(f"{metadata_path}: mode 必须是 deterministic")
+            if metadata.get("renderer", {}).get("name") != "JSXGraph":
+                errors.append(f"{metadata_path}: renderer 必须是 JSXGraph")
+            if metadata.get("status") != "pass":
+                errors.append(f"{metadata_path}: render status 必须是 pass")
+            if metadata.get("output", {}).get("svg", {}).get("sha256") != sha256(path):
+                errors.append(f"{metadata_path}: output SVG SHA 不一致")
+            if metadata.get("spec", {}).get("sha256") != sha256(spec_path):
+                errors.append(f"{metadata_path}: FigureSpec SHA 不一致")
+    return errors
+
+
+def validate_png(
+    path: Path,
+    metadata_path: Path,
+    spec_path: Path,
+    figure: dict,
+) -> list[str]:
+    errors = []
+    if not path.exists():
+        return [f"缺少现代 PNG: {path}"]
+    if not metadata_path.exists():
+        errors.append(f"缺少 PNG 生成元数据: {metadata_path}")
+    if not spec_path.exists():
+        errors.append(f"缺少 PNG spec: {spec_path}")
+    try:
+        with Image.open(path) as image:
+            image.verify()
+        with Image.open(path) as image:
+            if image.format != "PNG":
+                errors.append(f"{path}: 必须是 PNG")
+            width, height = image.size
+            if width < 768 or height < 768:
+                errors.append(f"{path}: 分辨率过低 {width}x{height}")
+            sample = image.convert("RGB")
+            sample.thumbnail((128, 128))
+            pixels = list(sample.get_flattened_data())
+            nonwhite = [pixel for pixel in pixels if min(pixel) < 245]
+            colorful = [
+                pixel for pixel in nonwhite
+                if max(pixel) - min(pixel) >= 18
+            ]
+            if not nonwhite or len(colorful) / len(nonwhite) < 0.01:
+                errors.append(f"{path}: 图像近似黑白，必须是完整彩色图")
+    except (OSError, ValueError) as error:
+        errors.append(f"{path}: PNG 无效: {error}")
+
+    spec, spec_errors = validate_figure_spec(
+        spec_path,
+        figure["id"],
+        require_review=True,
+    )
+    errors += spec_errors
+    if metadata_path.exists():
+        metadata = load(metadata_path)
+        if spec.get("schema") == IMAGE_FIGURE_SPEC_SCHEMA:
+            mode = spec.get("mode")
+            if mode == "generated":
+                if metadata.get("schema") != "n-azure/image-generation@1":
+                    errors.append(f"{metadata_path}: generated mode 必须使用 n-azure 元数据")
+                if metadata.get("model") != "gpt-image-2":
+                    errors.append(f"{metadata_path}: model 必须是 gpt-image-2")
+                if metadata.get("mode") != "edit":
+                    errors.append(f"{metadata_path}: 必须通过 image edit 读取原图")
+                references = metadata.get("references")
+                expected_source = figure.get("source", {}).get("png", {}).get("sha256")
+                reference_shas = {
+                    item.get("sha256")
+                    for item in references
+                    if isinstance(item, dict)
+                } if isinstance(references, list) else set()
+                if not expected_source or expected_source not in reference_shas:
+                    errors.append(f"{metadata_path}: 未记录当前原图 PNG SHA")
+                if metadata.get("output", {}).get("sha256") != sha256(path):
+                    errors.append(f"{metadata_path}: output SHA 与 PNG 不一致")
+                if (
+                    not isinstance(metadata.get("prompt"), str)
+                    or not metadata["prompt"].strip()
+                ):
+                    errors.append(f"{metadata_path}: prompt 不能为空")
+            elif mode == "hybrid":
+                if metadata.get("schema") != "ld-s10y-image/render@1":
+                    errors.append(f"{metadata_path}: hybrid mode 缺 JSXGraph 渲染报告")
+                if metadata.get("mode") != "hybrid":
+                    errors.append(f"{metadata_path}: mode 必须是 hybrid")
+                if metadata.get("renderer", {}).get("name") != "JSXGraph":
+                    errors.append(f"{metadata_path}: renderer 必须是 JSXGraph")
+                if metadata.get("status") != "pass":
+                    errors.append(f"{metadata_path}: render status 必须是 pass")
+                expected_image_ids = [
+                    item.get("id")
+                    for item in spec.get("objects", [])
+                    if isinstance(item, dict) and item.get("type") == "image"
+                ]
+                image_fits = metadata.get("imageFits")
+                if not isinstance(image_fits, list):
+                    errors.append(f"{metadata_path}: 缺少 hybrid 图片比例保护报告")
+                else:
+                    reported = {
+                        item.get("id"): item
+                        for item in image_fits
+                        if isinstance(item, dict) and isinstance(item.get("id"), str)
+                    }
+                    if set(reported) != set(expected_image_ids):
+                        errors.append(f"{metadata_path}: imageFits 与 FigureSpec 图片对象不一致")
+                    for image_id in expected_image_ids:
+                        fit = reported.get(image_id, {})
+                        if (
+                            fit.get("status") != "pass"
+                            or fit.get("preserveAspectRatio") != "xMidYMid meet"
+                        ):
+                            errors.append(
+                                f"{metadata_path}: {image_id} 未通过图片比例保护"
+                            )
+                if metadata.get("output", {}).get("png", {}).get("sha256") != sha256(path):
+                    errors.append(f"{metadata_path}: output PNG SHA 不一致")
+                if metadata.get("spec", {}).get("sha256") != sha256(spec_path):
+                    errors.append(f"{metadata_path}: FigureSpec SHA 不一致")
+            else:
+                errors.append(f"{spec_path}: deterministic mode 必须发布 SVG")
+        else:
+            if metadata.get("schema") != "n-azure/image-generation@1":
+                errors.append(f"{metadata_path}: schema 非法")
+            if metadata.get("model") != "gpt-image-2":
+                errors.append(f"{metadata_path}: model 必须是 gpt-image-2")
+            if metadata.get("mode") != "edit":
+                errors.append(f"{metadata_path}: 必须通过 image edit 读取原图")
+            references = metadata.get("references")
+            expected_source = figure.get("source", {}).get("png", {}).get("sha256")
+            reference_shas = {
+                item.get("sha256")
+                for item in references
+                if isinstance(item, dict)
+            } if isinstance(references, list) else set()
+            if not expected_source or expected_source not in reference_shas:
+                errors.append(f"{metadata_path}: 未记录当前原图 PNG SHA")
+            if metadata.get("output", {}).get("sha256") != sha256(path):
+                errors.append(f"{metadata_path}: output SHA 与 PNG 不一致")
+            if not isinstance(metadata.get("prompt"), str) or not metadata["prompt"].strip():
+                errors.append(f"{metadata_path}: prompt 不能为空")
     return errors
 
 
@@ -477,18 +702,41 @@ def validate_lesson(
     if [item.get("id") for item in figure_items] != raw_figure_ids:
         errors.append("现代图 id 或顺序与原书不一致")
     for figure in figure_items:
-        svg_path = edition / figure.get("svg", "")
         spec_path = edition / figure.get("spec", "")
-        errors += validate_svg(
-            svg_path,
-            spec_path,
-            figure,
-            profile.get("figure_text_language"),
-        )
-        raw_figure = book / "figures" / f"{figure.get('id')}.svg"
-        recorded = figure.get("source", {}).get("svg", {}).get("sha256")
-        if raw_figure.exists() and recorded != sha256(raw_figure):
-            errors.append(f"{figure.get('id')}: 原书 SVG 来源已过期")
+        if figure.get("png"):
+            generation = figure.get("generation")
+            if not isinstance(generation, str) or not generation:
+                errors.append(f"{figure.get('id')}: 缺 generation 元数据路径")
+                generation = f"figures/{figure.get('id')}.png.json"
+            errors += validate_png(
+                edition / figure["png"],
+                edition / generation,
+                spec_path,
+                figure,
+            )
+            raw_figure = book / "figures" / f"{figure.get('id')}.png"
+            recorded = figure.get("source", {}).get("png", {}).get("sha256")
+            if raw_figure.exists() and recorded != sha256(raw_figure):
+                errors.append(f"{figure.get('id')}: 原书 PNG 来源已过期")
+        else:
+            # Transitional compatibility until legacy specs are migrated to
+            # ld-s10y-image/figure-spec@1.
+            svg_path = edition / figure.get("svg", "")
+            render_path = edition / figure.get(
+                "render",
+                f"{figure.get('svg', '')}.json",
+            )
+            errors += validate_svg(
+                svg_path,
+                spec_path,
+                figure,
+                profile.get("figure_text_language"),
+                render_path,
+            )
+            raw_figure = book / "figures" / f"{figure.get('id')}.svg"
+            recorded = figure.get("source", {}).get("svg", {}).get("sha256")
+            if raw_figure.exists() and recorded != sha256(raw_figure):
+                errors.append(f"{figure.get('id')}: 原书 SVG 来源已过期")
     return lesson, exercises, figures, errors
 
 
@@ -577,7 +825,7 @@ def cmd_finalize(args: argparse.Namespace) -> int:
             f"[adapt-finalize] {lesson_id}: PASS "
             f"正文改写 {changed_prose}/{len(lesson['prose'])}, "
             f"题改写 {changed_exercises}/{len(exercises['exercises'])}, "
-            f"新 SVG {len(figures['figures'])}"
+            f"新图 {len(figures['figures'])}"
         )
     if not failed:
         update_book_index(edition, profile_path, index_rows)

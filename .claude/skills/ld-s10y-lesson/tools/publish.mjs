@@ -6,7 +6,7 @@
  * **一张卡片的内容写入时，它在 sr_lessons 的行就用卡片自己的 id**，所以这里不建新表，
  * 一个小节 = 一行，id 就是 cap2 从 TOC 认领来的卡片 id（math5-c1-s1-n1）。
  *
- *   content   ← 课文块，每块一段**可直接嵌入的 HTML 片段**（KaTeX 已渲染，插图内联 SVG）
+ *   content   ← 课文块，每块一段**可直接嵌入的 HTML 片段**（KaTeX 已渲染，插图内联）
  *   exercises ← 每道题一条：题号、所属栏目、题干片段、自己的图
  *   html      ← 留空。整份自包含文档只适合单独打开；塞进产品会变成"文档中的文档"，
  *               字体版式与宿主两套，高度还得靠 JS 猜。产品侧用上面两列原生渲染。
@@ -57,15 +57,22 @@ if (!fs.existsSync(lessonsDir)) {
   throw new Error(`edition 不存在或没有 lessons: ${lessonsDir}`)
 }
 
-function figureSvgStrict(id) {
+function figureAssetStrict(id) {
+  const pngPath = path.join(edition, 'figures', `${id}.png`)
+  if (fs.existsSync(pngPath)) {
+    return {
+      image: `data:image/png;base64,${fs.readFileSync(pngPath).toString('base64')}`,
+      svg: null,
+    }
+  }
   const svgPath = path.join(edition, 'figures', `${id}.svg`)
-  if (!fs.existsSync(svgPath)) throw new Error(`现代版缺少 SVG: ${svgPath}`)
+  if (!fs.existsSync(svgPath)) throw new Error(`现代版缺少图片: ${id}`)
   const svg = fs.readFileSync(svgPath, 'utf8').replace(/<\?xml[^>]*\?>/, '').trim()
   const linkScan = svg.replace(/\sxmlns(?::\w+)?="[^"]+"/g, '')
   if (/<(?:image|foreignObject|script)\b/i.test(svg) || /(?:data:|https?:\/\/)/i.test(linkScan)) {
     throw new Error(`${svgPath} 含位图、脚本、data URI 或外链`)
   }
-  return svg
+  return { image: null, svg }
 }
 
 const rows = []
@@ -88,7 +95,7 @@ for (const lid of fs.readdirSync(lessonsDir).sort()) {
   }
   const prose = L.prose.map((b) =>
     b.kind === 'fig'
-      ? { kind: 'fig', id: b.id, label: b.label, svg: figureSvgStrict(b.id) }
+      ? { kind: 'fig', id: b.id, label: b.label, ...figureAssetStrict(b.id) }
       : { kind: b.kind, html: inline(b.text) })
   const exercises = X.exercises.map((e) => ({
     number: e.number,
@@ -98,7 +105,7 @@ for (const lid of fs.readdirSync(lessonsDir).sort()) {
     figures: (e.figures ?? []).map((f) => ({
       id: f.id,
       label: f.label,
-      svg: figureSvgStrict(f.id),
+      ...figureAssetStrict(f.id),
     })),
   }))
   // stage/lesson_order 是 (subject, stage, lesson_order) 唯一约束的一半：年级 +
@@ -157,6 +164,21 @@ const sql = postgres(url, {
 })
 try {
   for (const r of rows) {
+    const existingRows = await sql`
+      select exercises from sr_lessons where id = ${r.id}
+    `
+    const existingDeck = existingRows[0]?.exercises
+    if (existingDeck?.edition === editionName && Array.isArray(existingDeck.exercises)) {
+      const keys = new Map(
+        existingDeck.exercises
+          .filter((exercise) => exercise?.answerKey)
+          .map((exercise) => [String(exercise.number), exercise.answerKey]),
+      )
+      r.exercises.exercises = r.exercises.exercises.map((exercise) => {
+        const answerKey = keys.get(String(exercise.number))
+        return answerKey ? { ...exercise, answerKey } : exercise
+      })
+    }
     await sql`
       insert into sr_lessons
         (id, subject, stage, lesson_order, title, concept, content, exercises, status)

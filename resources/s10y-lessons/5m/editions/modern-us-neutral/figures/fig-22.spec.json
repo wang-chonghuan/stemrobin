@@ -1,10 +1,147 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-22",
+  "mode": "deterministic",
   "description": "An isosceles triangle labeled with two legs and a base.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-22.png",
+      "sha256": "83d64da85414642f67f83ce81a3f81f99f7c12c92b1c0ca5d0c762db1024efe2"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 20"
+      },
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 21"
+      },
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "图 22"
+      },
+      {
+        "lesson": "math5-c1-s1-n6",
+        "text": "直角三角形的三个边有专门的名称，如图 20 所示.三角形也可以按边长分类. 如果三角形中有两边相等，则把这种三角形叫做等腰三角形. 其余所有三角形（三个边没有等长的）构成由不等边三角形组成的子集.三角形的集合分为二类：等腰三角形的集合和不等边三角形的集合.等腰三角形的三个边有专门名称，如图 22 所示.三边相等的三角形叫做等边三角形. 等边三角形的集合是等腰三角形的集合的子集."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          75.0,
+          40.0
+        ],
+        [
+          180.0,
+          185.0
+        ],
+        [
+          285.0,
+          40.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "none",
+      "fillOpacity": 0
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        180.0,
+        15.0
+      ],
+      "text": "Base",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        105.0,
+        110.0
+      ],
+      "text": "Leg",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        255.0,
+        110.0
+      ],
+      "text": "Leg",
+      "fontSize": 34.13333333333333,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

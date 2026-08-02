@@ -1,9 +1,410 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "tbl-p0060-01",
+  "mode": "deterministic",
   "description": "A newly authored meat sales table.",
-  "constraints": [
-    "Quantities and unit prices are preserved.",
-    "Currency is shown in dollars."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/tbl-p0060-01.png",
+      "sha256": "9c46f5cb477118de6a5ab8802f0a6490175a904e5fce5ca27fe4323729e583e7"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n14",
+        "exercise": "241",
+        "text": "利用下表计算商店一个营业日的售肉总金额."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 476,
+    "boundingBox": [
+      0,
+      418.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        70.0,
+        373.0
+      ],
+      "to": [
+        70.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        350.0,
+        373.0
+      ],
+      "to": [
+        350.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        590.0,
+        373.0
+      ],
+      "to": [
+        590.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        830.0,
+        373.0
+      ],
+      "to": [
+        830.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        70.0,
+        373.0
+      ],
+      "to": [
+        830.0,
+        373.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        70.0,
+        291.0
+      ],
+      "to": [
+        830.0,
+        291.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        70.0,
+        209.0
+      ],
+      "to": [
+        830.0,
+        209.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        70.0,
+        127.0
+      ],
+      "to": [
+        830.0,
+        127.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        70.0,
+        45.0
+      ],
+      "to": [
+        830.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        210.0,
+        323.0
+      ],
+      "text": "Item",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        470.0,
+        323.0
+      ],
+      "text": "Quantity",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        710.0,
+        323.0
+      ],
+      "text": "Unit price",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        210.0,
+        241.0
+      ],
+      "text": "Beef",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        470.0,
+        241.0
+      ],
+      "text": "720 kg",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        710.0,
+        241.0
+      ],
+      "text": "$1.60",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        210.0,
+        159.0
+      ],
+      "text": "Pork",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        470.0,
+        159.0
+      ],
+      "text": "510 kg",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        710.0,
+        159.0
+      ],
+      "text": "$2.10",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        210.0,
+        77.0
+      ],
+      "text": "Lamb",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        470.0,
+        77.0
+      ],
+      "text": "320 kg",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        710.0,
+        77.0
+      ],
+      "text": "$1.90",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 9
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 12
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

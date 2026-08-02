@@ -21,7 +21,7 @@ import { findCard } from '~/lib/textbooks'
 //
 // The body is what the scan actually says — 課文 blocks and the book's own
 // numbered exercises, transcribed by ld-s10y-lesson. Both arrive as HTML fragments
-// with the formulas already rendered and the figures as inline SVG, so this page
+// with the formulas already rendered and the figures inline, so this page
 // lays them out with the app's own typography. It deliberately does NOT host a
 // self-contained document in an iframe: that made the text a second document
 // inside the product (its own fonts, its own measure) and left its height to be
@@ -42,14 +42,16 @@ function Prose({ blocks }: { blocks: ProseBlock[] }) {
     <div className="sr-read">
       {blocks.map((b, i) =>
         b.kind === 'fig' ? (
-          // Traced from the scan: fill=currentColor, so a figure inks itself with
-          // the surrounding text rather than staying pure black.
           <figure
             key={i}
             className="sr-read-fig"
             aria-label={b.label ?? undefined}
-            dangerouslySetInnerHTML={{ __html: b.svg ?? '' }}
-          />
+            {...(!b.image
+              ? { dangerouslySetInnerHTML: { __html: b.svg ?? '' } }
+              : {})}
+          >
+            {b.image ? <img src={b.image} alt={b.label ?? ''} /> : null}
+          </figure>
         ) : b.kind === 'cap' ? (
           <p key={i} className="sr-read-cap" dangerouslySetInnerHTML={{ __html: b.html }} />
         ) : (
@@ -88,8 +90,12 @@ function Exercises({
                     key={f.id}
                     className="sr-ex-fig"
                     aria-label={f.label ?? undefined}
-                    dangerouslySetInnerHTML={{ __html: f.svg ?? '' }}
-                  />
+                    {...(!f.image
+                      ? { dangerouslySetInnerHTML: { __html: f.svg ?? '' } }
+                      : {})}
+                  >
+                    {f.image ? <img src={f.image} alt={f.label ?? ''} /> : null}
+                  </figure>
                 ))}
                 <MathAnswerField
                   lessonId={cardId}

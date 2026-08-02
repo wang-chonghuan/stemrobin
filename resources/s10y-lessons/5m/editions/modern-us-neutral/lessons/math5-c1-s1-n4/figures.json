@@ -21,7 +21,8 @@
           "path": "figures/fig-11.svg",
           "sha256": "e4fd7a0afd7882eb6409e4797529554998ef4d2b6fe7e4b18e8bf8af6ce53c0b"
         }
-      }
+      },
+      "render": "figures/fig-11.svg.json"
     },
     {
       "id": "fig-12",
@@ -40,7 +41,8 @@
           "path": "figures/fig-12.svg",
           "sha256": "54e5e9b2d6df0056bde155fe96c457286291b37c8273f16ffd0215b67b682a0e"
         }
-      }
+      },
+      "render": "figures/fig-12.svg.json"
     },
     {
       "id": "fig-13",
@@ -59,7 +61,8 @@
           "path": "figures/fig-13.svg",
           "sha256": "3f18192094653899beb7efcf2331e121c416fa46f435c407661d731ee5028c8f"
         }
-      }
+      },
+      "render": "figures/fig-13.svg.json"
     },
     {
       "id": "fig-14",
@@ -78,7 +81,8 @@
           "path": "figures/fig-14.svg",
           "sha256": "52c1238830ef7aaacce2762875d5bf10cbad33240d4816d7dbcdbff0c2acb6bc"
         }
-      }
+      },
+      "render": "figures/fig-14.svg.json"
     },
     {
       "id": "fig-15",
@@ -97,7 +101,8 @@
           "path": "figures/fig-15.svg",
           "sha256": "22ba5ae228b26639352908e733736030f9a1650d49114f900a326b0f8c34e289"
         }
-      }
+      },
+      "render": "figures/fig-15.svg.json"
     }
   ]
 }

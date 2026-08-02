@@ -1,9 +1,374 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "tbl-p0058-01",
+  "mode": "deterministic",
   "description": "A newly authored five-year production table for a solar component factory.",
-  "constraints": [
-    "The five production values are preserved.",
-    "Years are shown as Year 1 through Year 5."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/tbl-p0058-01.png",
+      "sha256": "ff75f33daa968debff305a1e9209524f3fec66d08e97a9215b91ed443fe4c6ad"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n14",
+        "exercise": "233",
+        "text": "下表列有一家太阳能组件工厂一名员工连续五年的年产量（以件计）：求出这名员工的产量平均一年增加多少件？"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1134,
+    "height": 320,
+    "boundingBox": [
+      0,
+      254.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        70.0,
+        209.0
+      ],
+      "to": [
+        70.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        222.0,
+        209.0
+      ],
+      "to": [
+        222.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        374.0,
+        209.0
+      ],
+      "to": [
+        374.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        526.0,
+        209.0
+      ],
+      "to": [
+        526.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        678.0,
+        209.0
+      ],
+      "to": [
+        678.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        830.0,
+        209.0
+      ],
+      "to": [
+        830.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        70.0,
+        209.0
+      ],
+      "to": [
+        830.0,
+        209.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        70.0,
+        127.0
+      ],
+      "to": [
+        830.0,
+        127.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        70.0,
+        45.0
+      ],
+      "to": [
+        830.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.779527559055118,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        146.0,
+        159.0
+      ],
+      "text": "Year 1",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        298.0,
+        159.0
+      ],
+      "text": "Year 2",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        450.0,
+        159.0
+      ],
+      "text": "Year 3",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        602.0,
+        159.0
+      ],
+      "text": "Year 4",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        754.0,
+        159.0
+      ],
+      "text": "Year 5",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        146.0,
+        77.0
+      ],
+      "text": "9,532",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        298.0,
+        77.0
+      ],
+      "text": "11,864",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        450.0,
+        77.0
+      ],
+      "text": "14,139",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        602.0,
+        77.0
+      ],
+      "text": "17,313",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        754.0,
+        77.0
+      ],
+      "text": "20,824",
+      "fontSize": 30.236220472440944,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 9
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 10
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

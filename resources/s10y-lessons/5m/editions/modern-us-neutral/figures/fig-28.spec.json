@@ -1,10 +1,232 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-28",
+  "mode": "deterministic",
   "description": "Two short sticks cannot meet above a longer base.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-28.png",
+      "sha256": "4213fef6259eb23ccfebc63a49d87ccb87602be65f187828be5278183081a564"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 27"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "作三角形用的线段的长度不能随意给定. 在图 28 中，两根短木条的长度的和小于长木条的长度. 因而当围绕 $A$ 点和 $B$ 点转动两根短木条时，两个端点 $C$、$D$ 任何时候都不能重合，结果也就作不成三角形. 总之，如果大边的长度小于其它两边长度的和，就可以按给定的三边作出三角形."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 28"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        45.0,
+        45.0
+      ],
+      "to": [
+        315.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 34.13333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        45.0,
+        45.0
+      ],
+      "to": [
+        100.0,
+        150.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 34.13333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        315.0,
+        45.0
+      ],
+      "to": [
+        260.0,
+        150.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 34.13333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        45.0,
+        45.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        315.0,
+        45.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        100.0,
+        150.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-4",
+      "type": "point",
+      "at": [
+        260.0,
+        150.0
+      ],
+      "size": 8.96,
+      "fill": "white",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        35.0,
+        20.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        325.0,
+        20.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        100.0,
+        165.0
+      ],
+      "text": "C",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        260.0,
+        165.0
+      ],
+      "text": "D",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 4
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

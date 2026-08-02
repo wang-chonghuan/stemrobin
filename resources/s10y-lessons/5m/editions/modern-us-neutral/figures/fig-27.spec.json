@@ -1,10 +1,264 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-27",
+  "mode": "deterministic",
   "description": "A bridge truss and tower crane using triangular bracing.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-27.png",
+      "sha256": "47fe44644ad0bc22a2c65cea101288f60ad59d2139e2812885e4545526358f3b"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "假如用活动接头把三根各长 3 厘米、3.5 厘米和 4 厘米的木条连接起来，如图 24 所示，转动两边的两根木条，可以构成一个三角形. 可以用圆规来代替旋转木条."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "首先作长 4 厘米的线段 $OY$（图 25）. 然后划两个圆弧：一个弧的圆心为 $O$，半径长 3.5 厘米，另一个弧的圆心为 $Y$，半径长 3 厘米. 交点 $X$ 是三角形的第三顶点. 联结 $X$ 和 $O$、$Y$，即得 $\\triangle XOY$."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "假如按图 26 所示联结三根木条，那么只要木条不伸长，不缩短，不弯曲，三角形的形状就不能改变. 所以说三角形是稳定的图形. 在实践中常常用到三角形的这个特性（图 27）."
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "图 27"
+      },
+      {
+        "lesson": "math5-c1-s1-n7",
+        "text": "作三角形用的线段的长度不能随意给定. 在图 28 中，两根短木条的长度的和小于长木条的长度. 因而当围绕 $A$ 点和 $B$ 点转动两根短木条时，两个端点 $C$、$D$ 任何时候都不能重合，结果也就作不成三角形. 总之，如果大边的长度小于其它两边长度的和，就可以按给定的三边作出三角形."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        30.0,
+        150.0
+      ],
+      "to": [
+        160.0,
+        150.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 17.066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        40.0,
+        150.0
+      ],
+      "to": [
+        60.0,
+        185.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        60.0,
+        185.0
+      ],
+      "to": [
+        85.0,
+        150.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        85.0,
+        150.0
+      ],
+      "to": [
+        110.0,
+        185.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        110.0,
+        185.0
+      ],
+      "to": [
+        145.0,
+        150.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        215.0,
+        30.0
+      ],
+      "to": [
+        215.0,
+        155.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 22.755555555555556,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        165.0,
+        125.0
+      ],
+      "to": [
+        325.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 19.91111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        215.0,
+        155.0
+      ],
+      "to": [
+        170.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        215.0,
+        155.0
+      ],
+      "to": [
+        265.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        165.0,
+        125.0
+      ],
+      "to": [
+        215.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        215.0,
+        125.0
+      ],
+      "to": [
+        265.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        215.0,
+        155.0
+      ],
+      "to": [
+        305.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 8.533333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        305.0,
+        125.0
+      ],
+      "to": [
+        305.0,
+        85.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 13
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

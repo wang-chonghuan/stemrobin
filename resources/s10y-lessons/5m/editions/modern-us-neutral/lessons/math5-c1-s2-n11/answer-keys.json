@@ -1,0 +1,242 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s2-n11",
+  "edition": "modern-us-neutral",
+  "status": "ready",
+  "answers": [
+    {
+      "exercise": "160",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "在直线MO上取点M′，使O在线段MM′上且OM′=OM；在直线PO上取点P′，使O在线段PP′上且OP′=OP。连接M′P′，线段M′P′就是所求的中心对称图形。",
+      "parts": []
+    },
+    {
+      "exercise": "161",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "点B保持不动，分别作A、C、D关于点B的对称点A′、C′、D′，连接A′、B、C′、D′。所得图形A′BC′D′仍是一个与原正方形全等的正方形。",
+      "parts": []
+    },
+    {
+      "exercise": "162",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "设原圆周的圆心为C。在直线CP上取点C′，使P为CC′的中点；再以C′为圆心、原圆的半径为半径画圆周。这个圆周就是所求图形，并且也经过点P。",
+      "parts": []
+    },
+    {
+      "exercise": "163",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "图49的三组都给出了中心对称图形：1）两个三角形关于公共顶点中心对称；2）上下两个图形关于中间标出的点中心对称；3）左下与右上的大圆、左上与右下的小圆组成的两个复合图形关于斜线中点中心对称。",
+      "parts": []
+    },
+    {
+      "exercise": "164",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "有对称中心的是六边形、菱形和平行四边形；它们的对称中心都是两条对角线的交点。三角形没有对称中心。",
+      "parts": []
+    },
+    {
+      "exercise": "165",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "作边长为4厘米的等边三角形ABC，取边AB的中点O。点A、B关于O互相对称，再作点C关于O的对称点C′，连接AC′、BC′。所得对称三角形是ABC′；两个三角形的并集是菱形ACBC′，它有对称中心O。",
+      "parts": []
+    },
+    {
+      "exercise": "166",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "分别反向延长射线OM、OP，所得两条反向射线组成∠MOP的对顶角。对顶角相等，因此所作角是135°。",
+      "parts": []
+    },
+    {
+      "exercise": "167",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "画两条相交直线，交点周围形成4个角，其中相对的角互为对顶角，所以共形成2对对顶角。",
+      "parts": []
+    },
+    {
+      "exercise": "168",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "画两条相交直线，并把其中一个角标为72°。它的对顶角也是72°；两个邻角分别为180°－72°=108°。因此4个角依次为72°、108°、72°、108°。",
+      "parts": []
+    },
+    {
+      "exercise": "169",
+      "grading": "auto",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "B点的坐标是－3＋5=2，C点的坐标是－3－4=－7。",
+      "parts": [
+        {
+          "part": "B点坐标",
+          "judge": "numeric",
+          "expected": [
+            "2"
+          ]
+        },
+        {
+          "part": "C点坐标",
+          "judge": "numeric",
+          "expected": [
+            "-7"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "170",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 66 匹马；2) 54 筒",
+      "displayAnswer": "1）灰色马有（250－30）×0.7=154（匹），枣红色马有250－30－154=66（匹）。\n2）酪素胶有（120－30）×0.4=36（筒），硅酸盐胶有120－30－36=54（筒）。",
+      "parts": [
+        {
+          "part": "1",
+          "judge": "numeric",
+          "expected": [
+            "66"
+          ],
+          "unit": "匹"
+        },
+        {
+          "part": "2",
+          "judge": "numeric",
+          "expected": [
+            "54"
+          ],
+          "unit": "筒"
+        }
+      ]
+    },
+    {
+      "exercise": "171",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 39.6；2) 20.8",
+      "displayAnswer": "1）51－（3.75÷3＋86.45÷24.7）×2.4=51－（1.25＋3.5）×2.4=39.6。\n2）11.1＋（56.28÷6－108.9÷19.8）×2.5=11.1＋（9.38－5.5）×2.5=20.8。",
+      "parts": [
+        {
+          "part": "1",
+          "judge": "numeric",
+          "expected": [
+            "39.6"
+          ]
+        },
+        {
+          "part": "2",
+          "judge": "numeric",
+          "expected": [
+            "20.8"
+          ]
+        }
+      ]
+    },
+    {
+      "exercise": "172",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "画AB=3.2厘米，过点B作AB的垂线，并在垂线上取BC=4.1厘米，连接AC。点A保持不动，分别作B、C关于点A的对称点B′、C′，使A为BB′、CC′的中点；连接AB′、B′C′、C′A，三角形AB′C′即为所求。",
+      "parts": []
+    },
+    {
+      "exercise": "173",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "因为K是半径AB的中点，所以点A关于K的对称点正好是B。中心对称不改变半径，因此以B为圆心、4厘米为半径画圆周，就是原圆周关于点K的对称图形。",
+      "parts": []
+    },
+    {
+      "exercise": "174",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "1）把纸沿任意两条相交的直线分别折叠并展开，两条折痕相交后，相对的两个角就是一对对顶角。\n2）先折出一条直线，在这条折痕上取两点，再折纸使这两点重合，第二条折痕是这两点连线的垂直平分线。展开后两条折痕互相垂直，相对的两个直角就是直角对顶角。",
+      "parts": []
+    },
+    {
+      "exercise": "175",
+      "grading": "ungraded",
+      "source": "derived",
+      "bookRaw": null,
+      "displayAnswer": "先作一个36°角，再反向延长它的一边，得到与它相邻的补角：180°－36°=144°。分别反向延长36°角的两边可作出它的对顶角，其大小仍为36°；另一个邻角的对顶角与144°角相等，所以是144°。",
+      "parts": []
+    },
+    {
+      "exercise": "176",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "55%",
+      "displayAnswer": "还要收割500－225=275（公顷），占全部面积的275÷500×100%=55%。",
+      "parts": [
+        {
+          "part": "还要收割的百分比",
+          "judge": "numeric",
+          "expected": [
+            "55"
+          ],
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "exercise": "177",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "25%",
+      "displayAnswer": "每个工人增加25－20=5（台），超额完成原计划的5÷20×100%=25%。",
+      "parts": [
+        {
+          "part": "超额完成的百分比",
+          "judge": "numeric",
+          "expected": [
+            "25"
+          ],
+          "unit": "%"
+        }
+      ]
+    },
+    {
+      "exercise": "178",
+      "grading": "auto",
+      "source": "book",
+      "bookRaw": "1) 10.6；2) 0.45",
+      "displayAnswer": "1）m－8.8=4.41÷2.45=1.8，所以m=10.6。\n2）3.6k=7.54－5.92=1.62，所以k=0.45。",
+      "parts": [
+        {
+          "part": "1",
+          "judge": "numeric",
+          "expected": [
+            "10.6"
+          ]
+        },
+        {
+          "part": "2",
+          "judge": "numeric",
+          "expected": [
+            "0.45"
+          ]
+        }
+      ]
+    }
+  ],
+  "count": 19
+}

@@ -1,0 +1,101 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n7",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "94",
+      "prompt": "取点 $A$ 和 $B$，其距离为 5 厘米. 求 $C$ 点：\n1) 它距 $A$ 点 3厘米，距 $B$ 点 4 厘米；\n2) 它距 $A$ 点 2 厘米，距 $B$ 点 3 厘米.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "95",
+      "prompt": "按照下列条件，作 $\\triangle ABC$：\n1) $|AB|=4$ 厘米，$|BC|=3$ 厘米，$|AC|=2$ 厘米；\n2) $|AB|=6$ 厘米，$|BC|=3$ 厘米，$|AC|=5$ 厘米.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "96",
+      "prompt": "作等腰三角形，使其腰长 4.9 厘米，底边长 3.2 厘米.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "97",
+      "prompt": "等边三角形的三个角都相等，求各角的大小.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "98",
+      "prompt": "直角三角形的一个锐角的大小是另一个锐角的二倍. 求这个直角三角形的每个锐角的大小.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "99",
+      "prompt": "解应用题：\n1) 某社区农场一年的收入分成 8 等分，其中 3 份支付工作人员报酬，5 份用于发展公共设施. 如果发展公共设施的费用比工作人员报酬多 12 万美元，那么农场的收入共多少？\n2) 1974 年，某沿海油田开采了 11600 万吨石油. 如果一列火车由 100 辆油槽车组成，每节油槽车装油 65吨，为了把全部石油运出，需要多少列火车？假如在一年（按 365 天计算）把全部石油都已运出，每小时连续发出了多少列火车？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 48 万卢布；2) ≈18 000 列火车；≈2 列火车"
+    },
+    {
+      "exercise": "100",
+      "prompt": "计算：\n1) $32.52-[(6+9.728:3.2)\\cdot2.5-1.6]\\cdot0.75$；\n2) $60.32-[(20+9.744:2.4)\\cdot0.4-1.38]\\cdot1.5$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 16.77；2) 47.954"
+    },
+    {
+      "exercise": "101",
+      "prompt": "$M$、$K$ 两点间距离为 4 厘米. 求作一点：\n1) 和 $M$、$K$ 二点相距 2.5 厘米；\n2) 和 $M$ 点相距 5 厘米，和 $K$ 点相距 1 厘米.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "102",
+      "prompt": "按照下列条件，作 $\\triangle ABC$：\n1) $|AB|=|CB|=4$ 厘米，$|AC|=6$ 厘米；\n2) $|AB|=4$ 厘米，$|BC|=5$ 厘米，$|AC|=3$ 厘米；\n3) $|AB|=|BC|=|AC|=3$ 厘米.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "103",
+      "prompt": "全班学生的 $75\\%$ 考试成绩是 5 分和 4 分，其余 10 个学生得 3 分. 全班共有多少学生？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "40 名学生"
+    },
+    {
+      "exercise": "104",
+      "prompt": "计算：$80.08-[(13-11.7:1.8)\\cdot0.8+1.6]\\cdot0.3$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "78.04"
+    }
+  ]
+}

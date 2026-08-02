@@ -1,0 +1,31 @@
+{
+  "schema": "n-azure/image-generation@1",
+  "created_at": "2026-08-02T16:27:47.172249+00:00",
+  "endpoint": "https://finleyswedencentralinstance.openai.azure.com",
+  "api_version": "preview",
+  "model": "gpt-image-2",
+  "mode": "edit",
+  "auth_method": "api-key",
+  "prompt": "Create one isolated small songbird for reuse in a modern grade 5 coordinate diagram.\n\nAuthoritative lesson text: \"Where is each bird located relative to the knot in Figure 33?\" The same bird will be duplicated and positioned by code at exact locations on a horizontal branch and grid.\n\nShow one side-view songbird perched naturally, facing right, with feet visible and a distinct tail. Do not include a branch, rope, knot, grid, or additional birds.\n\nThe prompt text is authoritative. The reference image supplies only the perched-bird subject.\n\nTransparent background. Full bird visible and centered. Friendly natural-color textbook illustration with crisp silhouette. No text, numbers, labels, dimensions, arrows, axes, answer annotations, Cyrillic, Chinese characters, Soviet symbols, or book texture.",
+  "references": [
+    {
+      "path": "resources/s10y-lessons/5m/figures/fig-33.png",
+      "bytes": 11098,
+      "sha256": "d7822dd70343b4cea4df2d1d8eb7fb8f8f2163c200b28cb3f5caa2a721270af4"
+    }
+  ],
+  "request": {
+    "size": "1024x1024",
+    "quality": "high",
+    "background": "opaque",
+    "output_format": "png",
+    "n": 1
+  },
+  "output": {
+    "path": ".tmp/batch-runs/2a398867-3fa8-4abe-894a-ec6e47c501ea/semantic/fig-33/bird-opaque.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 1123629,
+    "sha256": "c28bf9330f1dcb23b5cc921d5dedcfd495745b0d829a4ace8d26393cce2070da"
+  }
+}

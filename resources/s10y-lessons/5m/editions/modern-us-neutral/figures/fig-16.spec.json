@@ -1,10 +1,428 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-16",
+  "mode": "deterministic",
   "description": "A pie chart and bar chart for three roof categories.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-16.png",
+      "sha256": "cbe5169140d49c0b0c950dbd70e23adf232f22fe45427ce536f277d704f36f77"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s1-n5",
+        "text": "某村有 90 幢房屋. 其中 15 幢是铁皮屋顶，45 幢是瓦屋顶，30 幢为石板瓦屋顶. 全部房屋的集合 $X$ 由三个子集——铁皮屋顶房屋的集合 $A$、瓦屋顶房屋的集合 $B$ 和石板瓦屋顶房屋的集合 $C$ 组成. $X=A\\cup B\\cup C$. 在 $A$，$B$，$C$ 三个集合中，任何两个之间都没有公共元素：$A\\cap B=\\phi$，$A\\cap C=\\phi$ 和 $B\\cap C$$=\\phi$. 在这种情况下就说：房屋的集合 $X$ 分成三类（铁皮屋顶的、瓦屋顶的和石板瓦屋顶的）."
+      },
+      {
+        "lesson": "math5-c1-s1-n5",
+        "text": "用圆形图（图 16.1）表示每类房屋的数量. 也可以用条形图（图 16.2）表示每类房屋的数量. 为此要画三个柱，每个柱高的毫米数分别等于三种房屋的数量. 第一个柱高 15 毫米，第二个 45 毫米，第三个 30 毫米.把集合划分成不同的类别叫做分类. 在分类时，不能把同一个元素分在不同的两类里，也不得漏掉一个元素. 应该把每个元素都分在它自己的一类里."
+      },
+      {
+        "lesson": "math5-c1-s1-n5",
+        "text": "图 16"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-pie-tile",
+      "type": "polygon",
+      "points": [
+        [
+          85,
+          110
+        ],
+        [
+          150,
+          110
+        ],
+        [
+          147.785,
+          126.823
+        ],
+        [
+          141.292,
+          142.5
+        ],
+        [
+          130.962,
+          155.962
+        ],
+        [
+          117.5,
+          166.292
+        ],
+        [
+          101.823,
+          172.785
+        ],
+        [
+          85,
+          175
+        ],
+        [
+          68.177,
+          172.785
+        ],
+        [
+          52.5,
+          166.292
+        ],
+        [
+          39.038,
+          155.962
+        ],
+        [
+          28.708,
+          142.5
+        ],
+        [
+          22.215,
+          126.823
+        ],
+        [
+          20,
+          110
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#b9d1cc",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-pie-slate",
+      "type": "polygon",
+      "points": [
+        [
+          85,
+          110
+        ],
+        [
+          20,
+          110
+        ],
+        [
+          22.215,
+          93.177
+        ],
+        [
+          28.708,
+          77.5
+        ],
+        [
+          39.038,
+          64.038
+        ],
+        [
+          52.5,
+          53.708
+        ],
+        [
+          68.177,
+          47.215
+        ],
+        [
+          85,
+          45
+        ],
+        [
+          101.823,
+          47.215
+        ],
+        [
+          117.5,
+          53.708
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#e8efed",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-pie-metal",
+      "type": "polygon",
+      "points": [
+        [
+          85,
+          110
+        ],
+        [
+          117.5,
+          53.708
+        ],
+        [
+          130.962,
+          64.038
+        ],
+        [
+          141.292,
+          77.5
+        ],
+        [
+          147.785,
+          93.177
+        ],
+        [
+          150,
+          110
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#d5e3e0",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        85.0,
+        142.0
+      ],
+      "text": "Tile",
+      "fontSize": 27,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        126.0,
+        84.0
+      ],
+      "text": "Metal",
+      "fontSize": 24,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        62.0,
+        76.0
+      ],
+      "text": "Slate",
+      "fontSize": 27,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        185.0,
+        40.0
+      ],
+      "to": [
+        340.0,
+        40.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          205.0,
+          85.0
+        ],
+        [
+          235.0,
+          85.0
+        ],
+        [
+          235.0,
+          40.0
+        ],
+        [
+          205.0,
+          40.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#d5e3e0",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          255.0,
+          175.0
+        ],
+        [
+          285.0,
+          175.0
+        ],
+        [
+          285.0,
+          40.0
+        ],
+        [
+          255.0,
+          40.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#b9d1cc",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          305.0,
+          130.0
+        ],
+        [
+          335.0,
+          130.0
+        ],
+        [
+          335.0,
+          40.0
+        ],
+        [
+          305.0,
+          40.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "#e8efed",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        220.0,
+        92.0
+      ],
+      "text": "15",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        270.0,
+        182.0
+      ],
+      "text": "45",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        320.0,
+        137.0
+      ],
+      "text": "30",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 6
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 6
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

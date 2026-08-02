@@ -1,9 +1,1136 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-71",
+  "mode": "deterministic",
   "description": "A newly authored coordinate exercise with eight labeled points.",
-  "constraints": [
-    "All point labels are English letters.",
-    "Points lie on integer coordinates for clear reading."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-71.png",
+      "sha256": "90cceed15ba5d19a45020ba98f98f737ae0f3d459fb52d487b26130639a9391e"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n16",
+        "exercise": "269",
+        "text": "在坐标纸上（图 71）标出 $A,B,C,D,E,F,K,M$ 各点. 找出各点的坐标."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520,
+      900,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        70,
+        480
+      ],
+      "to": [
+        70,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        139.0909090909091,
+        480
+      ],
+      "to": [
+        139.0909090909091,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        208.1818181818182,
+        480
+      ],
+      "to": [
+        208.1818181818182,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        277.27272727272725,
+        480
+      ],
+      "to": [
+        277.27272727272725,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        346.3636363636364,
+        480
+      ],
+      "to": [
+        346.3636363636364,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        415.45454545454544,
+        480
+      ],
+      "to": [
+        415.45454545454544,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        484.5454545454545,
+        480
+      ],
+      "to": [
+        484.5454545454545,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        553.6363636363636,
+        480
+      ],
+      "to": [
+        553.6363636363636,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        622.7272727272727,
+        480
+      ],
+      "to": [
+        622.7272727272727,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        691.8181818181819,
+        480
+      ],
+      "to": [
+        691.8181818181819,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        760.9090909090909,
+        480
+      ],
+      "to": [
+        760.9090909090909,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        830,
+        480
+      ],
+      "to": [
+        830,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-13",
+      "type": "segment",
+      "from": [
+        70,
+        40
+      ],
+      "to": [
+        830,
+        40
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-14",
+      "type": "segment",
+      "from": [
+        70,
+        80
+      ],
+      "to": [
+        830,
+        80
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-15",
+      "type": "segment",
+      "from": [
+        70,
+        120
+      ],
+      "to": [
+        830,
+        120
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-16",
+      "type": "segment",
+      "from": [
+        70,
+        160
+      ],
+      "to": [
+        830,
+        160
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-17",
+      "type": "segment",
+      "from": [
+        70,
+        200
+      ],
+      "to": [
+        830,
+        200
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-18",
+      "type": "segment",
+      "from": [
+        70,
+        240
+      ],
+      "to": [
+        830,
+        240
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-19",
+      "type": "segment",
+      "from": [
+        70,
+        280
+      ],
+      "to": [
+        830,
+        280
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-20",
+      "type": "segment",
+      "from": [
+        70,
+        320
+      ],
+      "to": [
+        830,
+        320
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-21",
+      "type": "segment",
+      "from": [
+        70,
+        360
+      ],
+      "to": [
+        830,
+        360
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-22",
+      "type": "segment",
+      "from": [
+        70,
+        400
+      ],
+      "to": [
+        830,
+        400
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-23",
+      "type": "segment",
+      "from": [
+        70,
+        440
+      ],
+      "to": [
+        830,
+        440
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-24",
+      "type": "segment",
+      "from": [
+        70,
+        480
+      ],
+      "to": [
+        830,
+        480
+      ],
+      "stroke": "#cbd5e1",
+      "strokeWidth": 1.7066666666666666,
+      "opacity": 1
+    },
+    {
+      "id": "segment-25",
+      "type": "segment",
+      "from": [
+        70,
+        280
+      ],
+      "to": [
+        838,
+        280
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.551111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "segment-26",
+      "type": "segment",
+      "from": [
+        484.5454545454545,
+        40
+      ],
+      "to": [
+        484.5454545454545,
+        488
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.551111111111111,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        855,
+        272
+      ],
+      "text": "x",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        466.5454545454545,
+        485
+      ],
+      "text": "y",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        70,
+        260
+      ],
+      "text": "-6",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        139.0909090909091,
+        260
+      ],
+      "text": "-5",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        208.1818181818182,
+        260
+      ],
+      "text": "-4",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        277.27272727272725,
+        260
+      ],
+      "text": "-3",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        346.3636363636364,
+        260
+      ],
+      "text": "-2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        415.45454545454544,
+        260
+      ],
+      "text": "-1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        553.6363636363636,
+        260
+      ],
+      "text": "1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        622.7272727272727,
+        260
+      ],
+      "text": "2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        691.8181818181819,
+        260
+      ],
+      "text": "3",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        760.9090909090909,
+        260
+      ],
+      "text": "4",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-13",
+      "type": "text",
+      "at": [
+        830,
+        260
+      ],
+      "text": "5",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-14",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        34
+      ],
+      "text": "-6",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-15",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        74
+      ],
+      "text": "-5",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-16",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        114
+      ],
+      "text": "-4",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-17",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        154
+      ],
+      "text": "-3",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-18",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        194
+      ],
+      "text": "-2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-19",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        234
+      ],
+      "text": "-1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-20",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        314
+      ],
+      "text": "1",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-21",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        354
+      ],
+      "text": "2",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-22",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        394
+      ],
+      "text": "3",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-23",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        434
+      ],
+      "text": "4",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-24",
+      "type": "text",
+      "at": [
+        469.5454545454545,
+        464
+      ],
+      "text": "5",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-25",
+      "type": "text",
+      "at": [
+        470.5454545454545,
+        260
+      ],
+      "text": "0",
+      "fontSize": 17.066666666666666,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        691.8181818181819,
+        400
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-26",
+      "type": "text",
+      "at": [
+        691.8181818181819,
+        400
+      ],
+      "text": "A",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        277.27272727272725,
+        400
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-27",
+      "type": "text",
+      "at": [
+        277.27272727272725,
+        400
+      ],
+      "text": "B",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        208.1818181818182,
+        360
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-28",
+      "type": "text",
+      "at": [
+        208.1818181818182,
+        360
+      ],
+      "text": "C",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-4",
+      "type": "point",
+      "at": [
+        139.0909090909091,
+        280
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-29",
+      "type": "text",
+      "at": [
+        139.0909090909091,
+        280
+      ],
+      "text": "D",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-5",
+      "type": "point",
+      "at": [
+        208.1818181818182,
+        120
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-30",
+      "type": "text",
+      "at": [
+        208.1818181818182,
+        120
+      ],
+      "text": "E",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-6",
+      "type": "point",
+      "at": [
+        277.27272727272725,
+        160
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-31",
+      "type": "text",
+      "at": [
+        277.27272727272725,
+        160
+      ],
+      "text": "F",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-7",
+      "type": "point",
+      "at": [
+        484.5454545454545,
+        80
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-32",
+      "type": "text",
+      "at": [
+        484.5454545454545,
+        80
+      ],
+      "text": "K",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    },
+    {
+      "id": "point-8",
+      "type": "point",
+      "at": [
+        691.8181818181819,
+        160
+      ],
+      "size": 3.584,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-33",
+      "type": "text",
+      "at": [
+        691.8181818181819,
+        160
+      ],
+      "text": "M",
+      "fontSize": 25.031111111111112,
+      "fontWeight": 600,
+      "labelColor": "primary",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 25.031111111111112
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 8
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 26
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 33
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

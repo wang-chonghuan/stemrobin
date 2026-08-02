@@ -1,10 +1,532 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-40",
+  "mode": "deterministic",
   "description": "A point moves from A at zero to B at four and C at negative two.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-40.png",
+      "sha256": "1760d118dd24795ef997eebf5f4df46eb8f548bfaa6ad245ab6f8303f10b0d09"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n10",
+        "text": "利用正数和负数不仅可以表示点在数轴上的位置，同时还能表示点在数轴上的移动. 例如把点向右移动 3 个单位，就说是移动 3 个单位，向左移动 3 个单位就说是移动 $-3$ 个单位. 点 $A(1)$ 移动 3 个单位，就变成点 $B(4)$，而点 $A$ 移 $-3$个单位，就变成点 $C(-2)$（图 40）."
+      },
+      {
+        "lesson": "math5-c1-s2-n10",
+        "text": "图 40"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        35.0,
+        75.0
+      ],
+      "to": [
+        325.0,
+        75.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          325.0,
+          75.0
+        ],
+        [
+          315.0,
+          80.0
+        ],
+        [
+          315.0,
+          70.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        35.0,
+        80.0
+      ],
+      "to": [
+        35.0,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        35.0,
+        53.0
+      ],
+      "text": "-3",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        71.25,
+        80.0
+      ],
+      "to": [
+        71.25,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        71.25,
+        53.0
+      ],
+      "text": "-2",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        107.5,
+        80.0
+      ],
+      "to": [
+        107.5,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        107.5,
+        53.0
+      ],
+      "text": "-1",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        143.75,
+        80.0
+      ],
+      "to": [
+        143.75,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        143.75,
+        53.0
+      ],
+      "text": "0",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        180.0,
+        80.0
+      ],
+      "to": [
+        180.0,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        180.0,
+        53.0
+      ],
+      "text": "1",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        216.25,
+        80.0
+      ],
+      "to": [
+        216.25,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        216.25,
+        53.0
+      ],
+      "text": "2",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        252.5,
+        80.0
+      ],
+      "to": [
+        252.5,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        252.5,
+        53.0
+      ],
+      "text": "3",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        288.75,
+        80.0
+      ],
+      "to": [
+        288.75,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        288.75,
+        53.0
+      ],
+      "text": "4",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        325.0,
+        80.0
+      ],
+      "to": [
+        325.0,
+        70.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 2.8444444444444446,
+      "opacity": 1
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        325.0,
+        53.0
+      ],
+      "text": "5",
+      "fontSize": 31.28888888888889,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-11",
+      "type": "segment",
+      "from": [
+        180.0,
+        125.0
+      ],
+      "to": [
+        290.0,
+        125.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          290.0,
+          125.0
+        ],
+        [
+          280.0,
+          130.0
+        ],
+        [
+          280.0,
+          120.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "segment-12",
+      "type": "segment",
+      "from": [
+        180.0,
+        145.0
+      ],
+      "to": [
+        105.0,
+        145.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "polygon-3",
+      "type": "polygon",
+      "points": [
+        [
+          105.0,
+          145.0
+        ],
+        [
+          115.0,
+          150.0
+        ],
+        [
+          115.0,
+          140.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        180.0,
+        90.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        290.0,
+        90.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        105.0,
+        90.0
+      ],
+      "text": "C",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 12
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 12
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

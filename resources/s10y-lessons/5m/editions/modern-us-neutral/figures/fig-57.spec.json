@@ -1,10 +1,246 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-57",
+  "mode": "deterministic",
   "description": "A newly authored closed interval on a number line.",
-  "constraints": [
-    "The interval begins at -4.",
-    "The interval ends at 1.",
-    "Both endpoints are included."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-57.png",
+      "sha256": "1a3fe0a0637ad61e442e4eb6e14aac7af1f01f658b329b95950ce5586fabd768"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "图 56"
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "在数轴上取端点坐标为 $-4$ 和$1$ 的线段（图 57）. 这个线段上所有点的坐标都满足不等式 $-4\\leqslant x\\leqslant1$.这个不等式没有其它解. 就是说，这个线段表示不等式$-4\\leqslant x\\leqslant1$ 解的集合. 这个解的集合表示为 $[-4,1]$."
+      },
+      {
+        "lesson": "math5-c1-s2-n14",
+        "text": "图 57"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        244.44444444444443,
+        290.0
+      ],
+      "to": [
+        655.5555555555555,
+        290.0
+      ],
+      "stroke": "secondary",
+      "strokeWidth": 18.204444444444444,
+      "opacity": 1
+    },
+    {
+      "id": "circle-1",
+      "type": "circle",
+      "center": [
+        244.44444444444443,
+        290.0
+      ],
+      "radius": 10.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "white",
+      "fillOpacity": 1
+    },
+    {
+      "id": "circle-2",
+      "type": "circle",
+      "center": [
+        655.5555555555555,
+        290.0
+      ],
+      "radius": 10.0,
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1,
+      "fill": "white",
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        450.0,
+        370.0
+      ],
+      "text": "-4 ≤ x ≤ 1",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "secondary",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        60.0,
+        290.0
+      ],
+      "to": [
+        842.0,
+        290.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 5.688888888888889,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        244.44444444444443,
+        290.0
+      ],
+      "to": [
+        244.44444444444443,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        244.44444444444443,
+        228.0
+      ],
+      "text": "-4",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        573.3333333333333,
+        290.0
+      ],
+      "to": [
+        573.3333333333333,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        573.3333333333333,
+        228.0
+      ],
+      "text": "0",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        655.5555555555555,
+        290.0
+      ],
+      "to": [
+        655.5555555555555,
+        262.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 1.1377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        655.5555555555555,
+        228.0
+      ],
+      "text": "1",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "circle",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 4
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

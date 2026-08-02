@@ -1,9 +1,497 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "tbl-p0057-01",
+  "mode": "deterministic",
   "description": "A newly authored elevation table for six fictional cities.",
-  "constraints": [
-    "The elevations are 150, 5, -25, 1100, 2280, and 130 meters.",
-    "Labels are English."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/tbl-p0057-01.png",
+      "sha256": "53f02d9b86f572d3b96fdf1f8e51b95a22f7bcf79110763799c7660161280bea"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n14",
+        "exercise": "224",
+        "text": "利用下表，先按海拔高度递增顺序，后按递减顺序说出下列各城市."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 476,
+    "boundingBox": [
+      0,
+      418.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        70.0,
+        373.0
+      ],
+      "to": [
+        70.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-2",
+      "type": "segment",
+      "from": [
+        300.0,
+        373.0
+      ],
+      "to": [
+        300.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-3",
+      "type": "segment",
+      "from": [
+        450.0,
+        373.0
+      ],
+      "to": [
+        450.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-4",
+      "type": "segment",
+      "from": [
+        680.0,
+        373.0
+      ],
+      "to": [
+        680.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-5",
+      "type": "segment",
+      "from": [
+        830.0,
+        373.0
+      ],
+      "to": [
+        830.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-6",
+      "type": "segment",
+      "from": [
+        70.0,
+        373.0
+      ],
+      "to": [
+        830.0,
+        373.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-7",
+      "type": "segment",
+      "from": [
+        70.0,
+        291.0
+      ],
+      "to": [
+        830.0,
+        291.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-8",
+      "type": "segment",
+      "from": [
+        70.0,
+        209.0
+      ],
+      "to": [
+        830.0,
+        209.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-9",
+      "type": "segment",
+      "from": [
+        70.0,
+        127.0
+      ],
+      "to": [
+        830.0,
+        127.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "segment-10",
+      "type": "segment",
+      "from": [
+        70.0,
+        45.0
+      ],
+      "to": [
+        830.0,
+        45.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 3.413333333333333,
+      "opacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        185.0,
+        323.0
+      ],
+      "text": "City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        375.0,
+        323.0
+      ],
+      "text": "Elevation",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        565.0,
+        323.0
+      ],
+      "text": "City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        755.0,
+        323.0
+      ],
+      "text": "Elevation",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        185.0,
+        241.0
+      ],
+      "text": "Harbor City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-6",
+      "type": "text",
+      "at": [
+        375.0,
+        241.0
+      ],
+      "text": "150 m",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-7",
+      "type": "text",
+      "at": [
+        565.0,
+        241.0
+      ],
+      "text": "Mesa City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-8",
+      "type": "text",
+      "at": [
+        755.0,
+        241.0
+      ],
+      "text": "1100 m",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-9",
+      "type": "text",
+      "at": [
+        185.0,
+        159.0
+      ],
+      "text": "Lake City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-10",
+      "type": "text",
+      "at": [
+        375.0,
+        159.0
+      ],
+      "text": "5 m",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-11",
+      "type": "text",
+      "at": [
+        565.0,
+        159.0
+      ],
+      "text": "Summit City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-12",
+      "type": "text",
+      "at": [
+        755.0,
+        159.0
+      ],
+      "text": "2280 m",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-13",
+      "type": "text",
+      "at": [
+        185.0,
+        77.0
+      ],
+      "text": "Valley City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-14",
+      "type": "text",
+      "at": [
+        375.0,
+        77.0
+      ],
+      "text": "-25 m",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-15",
+      "type": "text",
+      "at": [
+        565.0,
+        77.0
+      ],
+      "text": "River City",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    },
+    {
+      "id": "text-16",
+      "type": "text",
+      "at": [
+        755.0,
+        77.0
+      ],
+      "text": "130 m",
+      "fontSize": 27.306666666666665,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "alphabetic",
+      "labelPlacement": {
+        "position": "CENTER",
+        "fallback": true
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 10
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 16
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

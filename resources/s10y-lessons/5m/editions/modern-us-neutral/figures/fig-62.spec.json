@@ -1,9 +1,263 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-62",
+  "mode": "deterministic",
   "description": "A newly authored grid with rectangle ABCD and point K.",
-  "constraints": [
-    "The rectangle keeps its size and orientation.",
-    "Point K is outside the rectangle."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-62.png",
+      "sha256": "750217a5a2955beea3c68485e3c73cd177921b9962fd146ea0fac6b7bf4d94e0"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n15",
+        "exercise": "246",
+        "text": "图 62 中画有长方形 $ABCD$ 和点 $K$. 平移这个长方形，使点 $A$ 与点 $K$ 重合. 平移同一长方形，使点 $C$ 与点 $K$重合."
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 592,
+    "boundingBox": [
+      0,
+      520.0,
+      900.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "polygon-1",
+      "type": "polygon",
+      "points": [
+        [
+          70.0,
+          480.0
+        ],
+        [
+          830.0,
+          480.0
+        ],
+        [
+          830.0,
+          40.0
+        ],
+        [
+          70.0,
+          40.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 4.551111111111111,
+      "opacity": 1,
+      "fill": "#e8efed",
+      "fillOpacity": 1
+    },
+    {
+      "id": "polygon-2",
+      "type": "polygon",
+      "points": [
+        [
+          190.0,
+          220.0
+        ],
+        [
+          420.0,
+          420.0
+        ],
+        [
+          650.0,
+          250.0
+        ],
+        [
+          420.0,
+          70.0
+        ]
+      ],
+      "stroke": "primary",
+      "strokeWidth": 6.826666666666666,
+      "opacity": 1,
+      "fill": "primary",
+      "fillOpacity": 0.18
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        760.0,
+        240.0
+      ],
+      "size": 4.096,
+      "fill": "secondary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-declared-1",
+      "type": "point",
+      "at": [
+        150.0,
+        205.0
+      ],
+      "size": 3,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-declared-2",
+      "type": "point",
+      "at": [
+        415.0,
+        435.0
+      ],
+      "size": 3,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-declared-3",
+      "type": "point",
+      "at": [
+        410.0,
+        45.0
+      ],
+      "size": 3,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-declared-4",
+      "type": "point",
+      "at": [
+        775.0,
+        248.0
+      ],
+      "size": 3,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        150.0,
+        205.0
+      ],
+      "text": "A",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.857777777777777
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        415.0,
+        435.0
+      ],
+      "text": "B",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.857777777777777
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        760.0,
+        240.0
+      ],
+      "text": "C",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.857777777777777
+      }
+    },
+    {
+      "id": "text-4",
+      "type": "text",
+      "at": [
+        410.0,
+        45.0
+      ],
+      "text": "D",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.857777777777777
+      }
+    },
+    {
+      "id": "text-5",
+      "type": "text",
+      "at": [
+        775.0,
+        248.0
+      ],
+      "text": "K",
+      "fontSize": 31.857777777777777,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 31.857777777777777
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 5
+    },
+    {
+      "type": "objectCount",
+      "objectType": "polygon",
+      "count": 2
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 5
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

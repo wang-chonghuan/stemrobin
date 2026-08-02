@@ -1,10 +1,192 @@
 {
-  "schema": "ld-s10y-lesson/figure-spec@1",
+  "schema": "ld-s10y-image/figure-spec@1",
   "id": "fig-43",
+  "mode": "deterministic",
   "description": "A ray from A through O reaches symmetric point B.",
-  "constraints": [
-    "Preserve the mathematical relationships shown by the source figure.",
-    "Use English for every visible label.",
-    "Use only newly authored SVG vector primitives."
-  ]
+  "source": {
+    "image": {
+      "path": "resources/s10y-lessons/5m/figures/fig-43.png",
+      "sha256": "2f4ef32e1972130ef8e3a6ad76a1ac51fad2d96876d36fc060056d411f086cf1"
+    },
+    "authoritativeText": [
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "假如点 $O$ 是线段 $AB$ 的中点，那么 $A$、$B$ 两点叫做关于点$O$ 的对称点（图 42）. 为了作点 $A$ 关于点 $O$ 的对称点 $B$，必须引直线 $AO$，并在直线 $AO$ 上，在点 $O$ 的另一侧作长度和 $AO$ 相等的线段 $OB$（图 43）."
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 42"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 43"
+      },
+      {
+        "lesson": "math5-c1-s2-n11",
+        "text": "图 44"
+      }
+    ]
+  },
+  "canvas": {
+    "width": 1024,
+    "height": 626,
+    "boundingBox": [
+      0,
+      220.0,
+      360.0,
+      0
+    ],
+    "background": "#ffffff",
+    "keepAspectRatio": true
+  },
+  "palette": {
+    "primary": "#0f8b8d",
+    "secondary": "#58a942",
+    "ink": "#172526",
+    "grid": "#9acfd0"
+  },
+  "objects": [
+    {
+      "id": "segment-1",
+      "type": "segment",
+      "from": [
+        45.0,
+        45.0
+      ],
+      "to": [
+        315.0,
+        180.0
+      ],
+      "stroke": "primary",
+      "strokeWidth": 11.377777777777778,
+      "opacity": 1
+    },
+    {
+      "id": "point-1",
+      "type": "point",
+      "at": [
+        45.0,
+        45.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-2",
+      "type": "point",
+      "at": [
+        175.0,
+        110.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "point-3",
+      "type": "point",
+      "at": [
+        305.0,
+        175.0
+      ],
+      "size": 6.4,
+      "fill": "primary",
+      "stroke": "primary"
+    },
+    {
+      "id": "svgPath-1",
+      "type": "svgPath",
+      "d": "M292 25 Q315 45 292 65",
+      "stroke": "primary",
+      "fill": "none",
+      "strokeWidth": 5.688888888888889,
+      "strokeOpacity": 1,
+      "fillOpacity": 1
+    },
+    {
+      "id": "text-1",
+      "type": "text",
+      "at": [
+        45.0,
+        45.0
+      ],
+      "text": "A",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 39.82222222222222
+      }
+    },
+    {
+      "id": "text-2",
+      "type": "text",
+      "at": [
+        175.0,
+        110.0
+      ],
+      "text": "O",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 39.82222222222222
+      }
+    },
+    {
+      "id": "text-3",
+      "type": "text",
+      "at": [
+        305.0,
+        175.0
+      ],
+      "text": "B",
+      "fontSize": 39.82222222222222,
+      "fontWeight": 600,
+      "labelColor": "ink",
+      "textAnchor": "middle",
+      "dominantBaseline": "middle",
+      "labelPlacement": {
+        "fallback": true,
+        "gap": 39.82222222222222
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "type": "objectCount",
+      "objectType": "point",
+      "count": 3
+    },
+    {
+      "type": "objectCount",
+      "objectType": "segment",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "svgPath",
+      "count": 1
+    },
+    {
+      "type": "objectCount",
+      "objectType": "text",
+      "count": 3
+    }
+  ],
+  "layout": {
+    "minLabelGap": 2,
+    "avoidRegions": []
+  },
+  "review": {
+    "status": "pass",
+    "notes": "Mathematical relationships, labels, counts, clipping, and cultural neutrality verified against the edition text and source composition."
+  }
 }

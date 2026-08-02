@@ -676,7 +676,12 @@ details[open] > summary > .sr-out-caret {
   color: var(--sr-ink);
 }
 .sr-read-fig img,
-.sr-ex-fig img { max-width: min(100%, 30em); height: auto; }
+.sr-ex-fig img {
+  display: block;
+  margin: 0 auto;
+  max-width: min(100%, 30em);
+  height: auto;
+}
 
 /* ---- 習題 ---- */
 .sr-ex-list { margin: 20px 0 8px; }
@@ -716,6 +721,7 @@ details[open] > summary > .sr-out-caret {
 }
 .sr-ex-fig { margin: 10px 0 0; }
 .sr-ex-fig svg { margin: 0; max-width: min(100%, 22em); }
+.sr-ex-fig img { margin: 0; max-width: min(100%, 22em); }
 .sr-math-answer {
   margin-top: 14px;
   padding-top: 12px;

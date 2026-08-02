@@ -1,0 +1,159 @@
+{
+  "schema": "ld-s10y-answer/lesson-answers@1",
+  "book": "5m",
+  "lesson": "math5-c1-s1-n4",
+  "edition": "modern-us-neutral",
+  "status": "draft",
+  "answers": [
+    {
+      "exercise": "49",
+      "prompt": "求证长方形的对边平行.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "50",
+      "prompt": "作 5 条互相平行的直线.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "51",
+      "prompt": "作直线 $l$ 并取线外两点 $M$ 和 $K$，过点 $M$ 和 $K$ 作平行于 $l$的两条直线.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "52",
+      "prompt": "作三角形并过每一顶点作一条平行于对边的直线.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "53",
+      "prompt": "利用直尺和三角板找出图 13 中的每对平行线.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "54",
+      "prompt": "集合 $A$ 由前四个 3 的倍数的自然数组成，集合 $B$ 由前三个 6 的倍数的自然数组成. 在大括号内写出 $A$、$B$ 的交集和并集.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "55",
+      "prompt": "$X$ 是不等式 $7 \\leqslant X \\leqslant 12$ 的自然数解的集合；$Y$ 是不等式$5 \\leqslant Y \\leqslant 8$ 的自然数解的集合.求：\n1) $X \\cap Y$；\n2) $X \\cup Y$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "56",
+      "prompt": "写出 60 和 24 的约数的集合并求出这两个集合的交集.求出 60 和 24 的最大公约数.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "57",
+      "prompt": "作两个三角形，使：\n1) 交集是一个线段，而并集为四边形；\n2) 交集为一线段，而并集为三角形.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "58",
+      "prompt": "解应用题：\n1) 相向而行的两列火车相距 900 公里，两车行速分别为65 公里/小时和 85 公里/小时. 经过几小时后，这两列火车相遇？\n2) 相向航行的两艘轮船相距 236 公里. 两船的航速分别为 32 公里/小时和 27 公里/小时. 几小时后两船相遇？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 经过 6 小时；2) 经过 4 小时"
+    },
+    {
+      "exercise": "59",
+      "prompt": "列出方程解应用题：\n1) 某市各工厂在三年内有 171 种产品获得创新奖.第一年获奖的产品比第三年少一半，第二年比第一年多 23 种产品. 第一年获奖的产品有多少种？\n2) 某厂三个车间共有 91 名优秀技术员. 第一车间的优秀技术员人数是第二车间的 2 倍，第三车间比第二车间多 7 人. 第一车间有多少名优秀技术员？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 37 件；2) 42 人"
+    },
+    {
+      "exercise": "60",
+      "prompt": "把下列各数化成小数：$\\frac{1}{2}$，$\\frac{1}{4}$，$\\frac{3}{4}$，$\\frac{1}{5}$，$\\frac{4}{5}$，$\\frac{1}{10}$，$\\frac{7}{10}$，$\\frac{3}{20}$，$2\\frac{1}{2}$，$3\\frac{3}{4}$，$5\\frac{7}{20}$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "61",
+      "prompt": "解方程：\n1) $14n-8n-2n=511$；\n2) $25a-7a-16a=33$；\n3) $4x+6x-x=21.6$；\n4) $5y-y+5y=61.2$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 127.75；2) 16.5；3) 2.4；4) 6.8"
+    },
+    {
+      "exercise": "62",
+      "prompt": "把图 14 画在练习本上. 过 $K$ 点引一直线平行于直线 $a$.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "63",
+      "prompt": "把图 15 画在练习本上. 过 $M$ 和 $P$ 两点向直线 $l$ 作两条垂线.",
+      "grading": null,
+      "source": "derived",
+      "displayAnswer": "",
+      "parts": []
+    },
+    {
+      "exercise": "64",
+      "prompt": "有两个行人从两个村庄同时出发相向而行，于 4 小时后相遇. 两村相距 36 公里. 一个行人的速度为 4 公里/小时. 求另一个行人的速度.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "5 公里/小时"
+    },
+    {
+      "exercise": "65",
+      "prompt": "在三个箱子中共装樱桃 76 公斤. 第二箱装的樱桃是第一箱的 2 倍，第三箱比第一箱多 8 公斤. 每箱各装樱桃多少公斤？",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "17 公斤，34 公斤，25 公斤"
+    },
+    {
+      "exercise": "66",
+      "prompt": "解方程：\n1) $13200:x-2180=20$；\n2) $y:320-31=79$.",
+      "grading": null,
+      "source": "book",
+      "displayAnswer": "",
+      "parts": [],
+      "bookRaw": "1) 6；2) 35 200"
+    }
+  ]
+}

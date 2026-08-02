@@ -7,7 +7,6 @@
     {
       "id": "fig-29",
       "label": "图 29",
-      "svg": "figures/fig-29.svg",
       "spec": "figures/fig-29.spec.json",
       "changes": [
         "redrawn"
@@ -21,7 +20,9 @@
           "path": "figures/fig-29.svg",
           "sha256": "45aebef495544b236c6f554abf10f8eee3ccb53fd6fc2d1dc7ecd3e99ac7d71f"
         }
-      }
+      },
+      "png": "figures/fig-29.png",
+      "generation": "figures/fig-29.png.json"
     },
     {
       "id": "fig-30",
@@ -40,7 +41,8 @@
           "path": "figures/fig-30.svg",
           "sha256": "fc83cedfc2e8ec0157cf13a59cb75536a601f879cf35ddeb311cf91167014f83"
         }
-      }
+      },
+      "render": "figures/fig-30.svg.json"
     },
     {
       "id": "fig-31",
@@ -59,7 +61,8 @@
           "path": "figures/fig-31.svg",
           "sha256": "59c3ab863e37d8c16dbea426f0b6e6b7876ec4c8df5110b588af16fd40332ff9"
         }
-      }
+      },
+      "render": "figures/fig-31.svg.json"
     },
     {
       "id": "fig-32",
@@ -78,12 +81,12 @@
           "path": "figures/fig-32.svg",
           "sha256": "6eba3c823f650a5cdc45bf643a5dd78f47df276c2384469444eb050611f6656c"
         }
-      }
+      },
+      "render": "figures/fig-32.svg.json"
     },
     {
       "id": "fig-33",
       "label": "图 33",
-      "svg": "figures/fig-33.svg",
       "spec": "figures/fig-33.spec.json",
       "changes": [
         "redrawn"
@@ -97,7 +100,9 @@
           "path": "figures/fig-33.svg",
           "sha256": "bc1492161741f08bdd78e2d470f52de55b5ece1c1e6b9f47b0ce4d0c6ed6524a"
         }
-      }
+      },
+      "png": "figures/fig-33.png",
+      "generation": "figures/fig-33.png.json"
     }
   ]
 }

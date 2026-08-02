@@ -1,0 +1,30 @@
+{
+  "schema": "ld-s10y-image/render@1",
+  "figure": "fig-61",
+  "mode": "hybrid",
+  "renderer": {
+    "name": "JSXGraph",
+    "version": "1.13.1"
+  },
+  "spec": {
+    "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-61.spec.json",
+    "sha256": "590947f99b0fabf76ae56e88f629be8e76f33ab8ae098e621af04b1850323848"
+  },
+  "output": {
+    "png": {
+      "path": "resources/s10y-lessons/5m/editions/modern-us-neutral/figures/fig-61.png",
+      "sha256": "97e69fd9202e47d49fc2e180708c224ab91307c74a39a202a5be23cf3d209299"
+    }
+  },
+  "objects": 35,
+  "labels": 0,
+  "collisions": [],
+  "imageFits": [
+    {
+      "id": "student-art",
+      "status": "pass",
+      "preserveAspectRatio": "xMidYMid meet"
+    }
+  ],
+  "status": "pass"
+}
