@@ -22,9 +22,13 @@ export type CardFigure = {
   image?: string | null
   svg?: string | null
 }
+// What the browser is allowed to know about one blank: how to label it, what
+// unit it is measured in, and which kind of input it takes. Never the expected
+// value — that stays server-side (see textbook-answer.ts).
+export type PartInputKind = 'number' | 'math'
 export type ExerciseAnswerSpec = {
   grading: 'auto' | 'ungraded'
-  parts: { label?: string; unit?: string }[]
+  parts: { label?: string; unit?: string; input: PartInputKind }[]
 }
 export type CardExercise = {
   number: string
@@ -42,10 +46,21 @@ export const getCardContent = createServerFn({ method: 'GET' })
     const rows = await sql()`select content, exercises from sr_lessons where id = ${id}`
     if (!rows.length || !rows[0].content) return null
     const prose = ((rows[0].content as { prose?: ProseBlock[] }).prose ?? []) as ProseBlock[]
+    // The stored key's part label went out under two different names: the
+    // documented `label` (ld-s10y-answer/lesson-answers@1) and an older `id`
+    // that predates it. Both mean the same thing, so both are read; writing one
+    // canonical name back into the corpus is the answer skill's job, not this
+    // projection's.
+    type StoredPart = {
+      label?: string
+      id?: string
+      unit?: string
+      judge?: 'exact' | 'numeric' | 'expression'
+    }
     type StoredExercise = CardExercise & {
       answerKey?: {
         grading?: 'auto' | 'ungraded'
-        parts?: { label?: string; unit?: string }[]
+        parts?: StoredPart[]
       }
     }
     const stored =
@@ -57,10 +72,22 @@ export const getCardContent = createServerFn({ method: 'GET' })
           ? {
               grading: answerKey.grading,
               parts: Array.isArray(answerKey.parts)
-                ? answerKey.parts.map((part) => ({
-                    ...(typeof part.label === 'string' ? { label: part.label } : {}),
-                    ...(typeof part.unit === 'string' ? { unit: part.unit } : {}),
-                  }))
+                ? answerKey.parts.map((part) => {
+                    const label =
+                      typeof part.label === 'string'
+                        ? part.label
+                        : typeof part.id === 'string'
+                          ? part.id
+                          : undefined
+                    return {
+                      ...(label ? { label } : {}),
+                      ...(typeof part.unit === 'string' ? { unit: part.unit } : {}),
+                      // A blank whose answer is a plain number needs a number
+                      // pad, not a formula editor. Everything else keeps the
+                      // math field, which is the only thing that can express it.
+                      input: (part.judge === 'numeric' ? 'number' : 'math') as PartInputKind,
+                    }
+                  })
                 : [],
             }
           : undefined
