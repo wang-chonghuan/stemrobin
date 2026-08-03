@@ -10,9 +10,11 @@
 
 export type Locale = 'zh' | 'en'
 export const LOCALES: Locale[] = ['zh', 'en']
-// The site opens in English (STEMROBIN-111); zh stays the source locale for
-// authoring/fallback, and the learner can switch to it at any time.
-export const DEFAULT_LOCALE: Locale = 'en'
+// The site opens in Chinese (STEMROBIN-117, reversing STEMROBIN-111): the whole
+//课文/习题/答案 corpus is authored in zh, so an English shell over Chinese content
+// put two languages on one screen. zh is both the source locale and the opening
+// one; en stays a switchable choice the learner can pick at any time.
+export const DEFAULT_LOCALE: Locale = 'zh'
 
 export function isLocale(v: unknown): v is Locale {
   return v === 'zh' || v === 'en'

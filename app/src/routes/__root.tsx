@@ -22,7 +22,10 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       { name: 'theme-color', content: '#FFFFFF' },
-      // Static head (locale-unaware); the site now opens in English (STEMROBIN-111).
+      // Static head (locale-unaware). The shell now opens in Chinese
+      // (STEMROBIN-117), but title/description stay English: they are what search
+      // engines index, which is a separate decision from the language the learner
+      // reads the app in — this ticket did not carry it.
       { title: 'LemmaDeck · Secondary math & physics' },
       { name: 'description', content: 'LemmaDeck — from arithmetic to calculus, from the lever to the nucleus: one secondary course in mathematics and physics, heir to the ten-year system edited by Andrey Kolmogorov, arranged into a deck for understanding and practice, with an AI to guide you through to real mastery.' },
     ],
