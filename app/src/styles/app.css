@@ -865,6 +865,14 @@ input.sr-num-field:focus {
 input.sr-num-field:read-only {
   background: var(--sr-paper, #f7f9f9);
 }
+
+/* Shown in place of the standard answer after a first wrong attempt. */
+.sr-math-retry {
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--sr-ink-soft, #55666a);
+}
 .sr-math-actions {
   display: flex;
   justify-content: flex-end;
