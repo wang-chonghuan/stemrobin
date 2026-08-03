@@ -19,6 +19,7 @@ description: Load when the user asks to extract Soviet ten-year-school textbook 
 - **cap1：答案抄录**，忠实保存书后答案页。
 - **cap2：edition lesson 答案生产**，为指定现代版 lesson 的每个 exercise 生成可展示、
   可判题的答案键并写库。
+- **cap3：交互规格生产**，为同一批 exercise 声明「这道题怎么答」，并写库。
 
 原始 `answers.json` 只作为书后答案证据，永不直接入库。答案键只允许生成到
 `editions/<edition>/lessons/`，并且只能附加到数据库中同一 edition 的课程。
@@ -164,3 +165,65 @@ resources/s10y-lessons/<book>/editions/<edition>/lessons/<lesson-id>/answer-keys
 cap2 产物必须通过 [gate-2-lesson-answers](references/gate-2-lesson-answers/gate.md)，再
 `finalize` 和真实 `publish`。发布器会验证答案审计和数据库课程的 edition 完全一致；
 原始 lesson 或不同 edition 均拒绝写入。`--dry` 只能检查，不能作为交付终点。
+
+## cap3 — 交互规格生产
+
+答案键回答了「答案是什么」，回答不了「这道题该怎么答」。缺了后者，产品端只能把每一个
+作答框都渲染成公式编辑器——那是 app 的兜底，不是管线的决定。cap3 补的就是这一层。
+
+规格与答案键**逐题一一对应**，独立成 `interactions.json`：`answer-keys.json` 的 schema
+已在产、已入库、已有 gate-2 校验，往里加字段会让一个 schema 版本承载两种含义。
+
+```bash
+I=.claude/skills/ld-s10y-answer/tools/lesson_interactions.py
+
+python3 $I prepare  --book 5m --edition modern-us-neutral --lesson math5-c1-s2-n16
+python3 $I finalize --book 5m --edition modern-us-neutral --lesson math5-c1-s2-n16
+
+node .claude/skills/ld-s10y-answer/tools/publish-interactions.mjs resources/s10y-lessons/5m \
+  --edition modern-us-neutral --lesson math5-c1-s2-n16
+```
+
+### widget 词汇表（v1）
+
+| widget | 含义 | 能否机械推导 |
+|---|---|---|
+| `number` | 一个数，用数字键盘 | 是 |
+| `math` | 需要公式编辑器 | 是（也是维持现状的落点） |
+| `grid-point` | 在坐标网格上点格点 | 是，且自带交叉校验 |
+| `free` | 不判分的自由作答 | 是 |
+| `choice-one` / `choice-many` | 单选 / 多选 | 否，只能标记待补 |
+
+`choice-*` 暂不推导：产品端还没有消费它们，现在定死选项形状等于凭空猜。
+
+### 推导规则（全部机械，模型不参与）
+
+1. `grading=ungraded` → `free`
+2. 任一小问 `judge=expression` → `math`
+3. 全部小问 `judge=numeric` 且 expected 均为普通数字 → 先试 `grid-point`，不成则 `number`
+4. 全部小问 `judge=exact` → `math` + `needsAuthoring`（正确形态多半是点选）
+5. 其余 → `math` + `needsAuthoring`
+
+每一条规格都必须带 `derivation` 写明依据。**不允许静默兜底**：落到 `math` 只是维持现状，
+但必须让人一眼看出哪些题只是维持现状、原因是什么。
+
+### grid-point 的交叉校验（这条是 cap3 的核心）
+
+FigureSpec 是**渲染**规格不是**几何**规格：网格是一堆独立线段，刻度是散落的文字，没有
+一处声明过原点和单位。所以坐标系是从图元反推出来的**假说**，判据在别处——
+
+> 从 FigureSpec 复原出的每个具名点坐标，必须出现在该题答案键的 `expected` 里，
+> 且小问数 = 2 × 具名点数。
+
+推错了当场被答案键抓住。校验不过即**失败并拒绝产出**，不是警告。
+
+刻度拟合用中位数稳健拟合（值为 0 的刻度按印刷惯例挪到原点旁，不参与拟合），偏离等距的
+刻度不阻断推导，但会写进 `frameWarnings`——那是图本身的缺陷，静默吞掉就没人会去修。
+实测 5m 的 `fig-67` 就有一处：y 轴刻度 7 画在 464，等距应为 474。
+
+### 入库
+
+并进 `sr_lessons.exercises` 里每道题的对象，与 `answerKey` 同级，**不改表结构**。
+发布器逐题保留已有的 `answerKey`、题面与图——它只加一个 `interaction` 键。
+规格只带作答形态与参数，不带 `expected`、不带 `displayAnswer`：判分仍然只在服务端做。
+
