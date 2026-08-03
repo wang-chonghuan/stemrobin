@@ -9,7 +9,7 @@
   {
    "exercise": "262",
    "widget": "grid-point",
-   "derivation": "引用的 fig-67 是 deterministic 图，复原出直角坐标系与 4 个具名点；小问数 8 = 2 × 4，且每个复原坐标都出现在答案键的 expected 中",
+   "derivation": "引用的 fig-67 是 deterministic 图，复原出直角坐标系与 4 个具名点；小问数 8 = 2 × 4，且逐个小问与「某点某轴」有序对应、其 expected 与该坐标一致",
    "figure": "fig-67",
    "frame": {
     "origin": [
@@ -39,6 +39,56 @@
      4
     ]
    },
+   "parts": [
+    {
+     "point": "M",
+     "axis": "x",
+     "label": "M 向右",
+     "unit": "格"
+    },
+    {
+     "point": "M",
+     "axis": "y",
+     "label": "M 向上",
+     "unit": "格"
+    },
+    {
+     "point": "K",
+     "axis": "x",
+     "label": "K 向右",
+     "unit": "格"
+    },
+    {
+     "point": "K",
+     "axis": "y",
+     "label": "K 向上",
+     "unit": "格"
+    },
+    {
+     "point": "P",
+     "axis": "x",
+     "label": "P 向右",
+     "unit": "格"
+    },
+    {
+     "point": "P",
+     "axis": "y",
+     "label": "P 向上",
+     "unit": "格"
+    },
+    {
+     "point": "N",
+     "axis": "x",
+     "label": "N 向右",
+     "unit": "格"
+    },
+    {
+     "point": "N",
+     "axis": "y",
+     "label": "N 向上",
+     "unit": "格"
+    }
+   ],
    "frameWarnings": [
     "y: 刻度 7 落在 464，等距应为 474"
    ]
@@ -82,7 +132,7 @@
   {
    "exercise": "265",
    "widget": "grid-point",
-   "derivation": "引用的 fig-69 是 deterministic 图，复原出直角坐标系与 4 个具名点；小问数 8 = 2 × 4，且每个复原坐标都出现在答案键的 expected 中",
+   "derivation": "引用的 fig-69 是 deterministic 图，复原出直角坐标系与 4 个具名点；小问数 8 = 2 × 4，且逐个小问与「某点某轴」有序对应、其 expected 与该坐标一致",
    "figure": "fig-69",
    "frame": {
     "origin": [
@@ -112,6 +162,48 @@
      -4
     ]
    },
+   "parts": [
+    {
+     "point": "A",
+     "axis": "x",
+     "label": "A 的横坐标"
+    },
+    {
+     "point": "A",
+     "axis": "y",
+     "label": "A 的纵坐标"
+    },
+    {
+     "point": "B",
+     "axis": "x",
+     "label": "B 的横坐标"
+    },
+    {
+     "point": "B",
+     "axis": "y",
+     "label": "B 的纵坐标"
+    },
+    {
+     "point": "C",
+     "axis": "x",
+     "label": "C 的横坐标"
+    },
+    {
+     "point": "C",
+     "axis": "y",
+     "label": "C 的纵坐标"
+    },
+    {
+     "point": "D",
+     "axis": "x",
+     "label": "D 的横坐标"
+    },
+    {
+     "point": "D",
+     "axis": "y",
+     "label": "D 的纵坐标"
+    }
+   ],
    "frameWarnings": [
     "y: 刻度 7 落在 454，等距应为 474"
    ]
@@ -173,7 +265,7 @@
   {
    "exercise": "269",
    "widget": "grid-point",
-   "derivation": "引用的 fig-71 是 deterministic 图，复原出直角坐标系与 8 个具名点；小问数 16 = 2 × 8，且每个复原坐标都出现在答案键的 expected 中",
+   "derivation": "引用的 fig-71 是 deterministic 图，复原出直角坐标系与 8 个具名点；小问数 16 = 2 × 8，且逐个小问与「某点某轴」有序对应、其 expected 与该坐标一致",
    "figure": "fig-71",
    "frame": {
     "origin": [
@@ -219,6 +311,88 @@
      -3
     ]
    },
+   "parts": [
+    {
+     "point": "A",
+     "axis": "x",
+     "label": "A 横坐标"
+    },
+    {
+     "point": "A",
+     "axis": "y",
+     "label": "A 纵坐标"
+    },
+    {
+     "point": "B",
+     "axis": "x",
+     "label": "B 横坐标"
+    },
+    {
+     "point": "B",
+     "axis": "y",
+     "label": "B 纵坐标"
+    },
+    {
+     "point": "C",
+     "axis": "x",
+     "label": "C 横坐标"
+    },
+    {
+     "point": "C",
+     "axis": "y",
+     "label": "C 纵坐标"
+    },
+    {
+     "point": "D",
+     "axis": "x",
+     "label": "D 横坐标"
+    },
+    {
+     "point": "D",
+     "axis": "y",
+     "label": "D 纵坐标"
+    },
+    {
+     "point": "E",
+     "axis": "x",
+     "label": "E 横坐标"
+    },
+    {
+     "point": "E",
+     "axis": "y",
+     "label": "E 纵坐标"
+    },
+    {
+     "point": "F",
+     "axis": "x",
+     "label": "F 横坐标"
+    },
+    {
+     "point": "F",
+     "axis": "y",
+     "label": "F 纵坐标"
+    },
+    {
+     "point": "K",
+     "axis": "x",
+     "label": "K 横坐标"
+    },
+    {
+     "point": "K",
+     "axis": "y",
+     "label": "K 纵坐标"
+    },
+    {
+     "point": "M",
+     "axis": "x",
+     "label": "M 横坐标"
+    },
+    {
+     "point": "M",
+     "axis": "y",
+     "label": "M 纵坐标"
+    }
+   ],
    "frameWarnings": [
     "y: 刻度 5 落在 464，等距应为 474"
    ]
