@@ -118,6 +118,7 @@ function Exercises({
                   storageKey={`sr_math_answer:${cardId}:${e.number}`}
                   locale={locale}
                   answerSpec={e.answerSpec}
+                  grid={e.grid}
                 />
               </div>
             </article>

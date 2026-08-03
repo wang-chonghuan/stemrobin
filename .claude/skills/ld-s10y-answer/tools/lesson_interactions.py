@@ -28,12 +28,14 @@ SCHEMA = "ld-s10y-answer/lesson-interactions@1"
 
 # v1 词汇表。只有前三个允许机械推导；后三个只能被标记为待补 —— 产品端还没有消费它们，
 # 现在就定死选项形状等于凭空猜。
-WIDGETS = {"number", "math", "grid-point", "choice-one", "choice-many", "free"}
-DERIVABLE = {"number", "math", "grid-point", "free"}
+WIDGETS = {"number", "math", "grid-point", "grid-plot", "choice-one", "choice-many", "free"}
+DERIVABLE = {"number", "math", "grid-point", "grid-plot", "free"}
 
 PLAIN_NUMBER = re.compile(r"^-?\d+(?:[.,]\d+)?$")
 # 具名点的标签：单个拉丁大写字母（原书用 A/B/C/K/M/N/O/P…）
 POINT_NAME = re.compile(r"^[A-Z]$")
+# 题面里直接印出来的目标坐标，形如 A(2,8) —— 「作坐标系并标出下列各点」那一类题。
+PROMPT_POINT = re.compile(r"([A-Z])\s*\(\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*\)")
 
 
 def die(msg: str) -> None:
@@ -159,10 +161,17 @@ def recover_frame(spec: dict) -> dict | None:
 
     if len(named) < 2:
         return None
+    x_values = [float(t["text"]) for t in x_ticks_raw]
+    y_values = [float(t["text"]) for t in y_ticks_raw]
     return {
         "origin": [round(x_zero, 3), round(y_zero, 3)],
         "unit": [round(x_unit, 3), round(y_unit, 3)],
         "points": named,
+        # 学习者要在上面点的那张网格的范围，取自图上真实画出的刻度。
+        "domain": {
+            "x": [int(min(x_values)), int(max(x_values))],
+            "y": [int(min(y_values)), int(max(y_values))],
+        },
         "warnings": [f"x: {w}" for w in x_warnings] + [f"y: {w}" for w in y_warnings],
     }
 
@@ -202,6 +211,9 @@ def derive(exercise: dict, answer: dict, figures: dict, spec_dir: Path) -> dict:
         grid = try_grid_point(exercise, parts, figures, spec_dir)
         if grid:
             return spec("grid-point", grid.pop("derivation"), **grid)
+        plot = try_grid_plot(exercise, parts)
+        if plot:
+            return spec("grid-plot", plot.pop("derivation"), **plot)
         return spec(
             "number",
             "全部小问 judge=numeric 且 expected 均为普通数字",
@@ -226,6 +238,58 @@ def derive(exercise: dict, answer: dict, figures: dict, spec_dir: Path) -> dict:
         f"混合判据 {sorted(j for j in judges if j)}：无单一形态可推",
         needsAuthoring="需要逐小问拆分形态",
     )
+
+
+def try_grid_plot(exercise, parts) -> dict | None:
+    """这道题是不是「作坐标系并标出下列各点」？
+
+    这一类的目标坐标**直接印在题面里**，所以不需要图，也不需要求解 —— 从题面读出来即可。
+    判据与 grid-point 同构：小问数 = 2 × 点数，且逐个小问有序对应该点的横/纵坐标。
+    对不上就不产出。
+    """
+    html = exercise.get("html") or exercise.get("text") or ""
+    seen: set[str] = set()
+    points: list[tuple[str, str, str]] = []
+    for name, x, y in PROMPT_POINT.findall(html):
+        if name in seen:
+            continue
+        seen.add(name)
+        points.append((name, x, y))
+    if len(points) < 2 or len(parts) != 2 * len(points):
+        return None
+
+    mapping = []
+    targets: dict[str, list[float]] = {}
+    for name, x, y in points:
+        for axis, coordinate in (("x", x), ("y", y)):
+            part = parts[len(mapping)]
+            expected = {str(v).strip() for v in (part.get("expected") or [])}
+            if str(coordinate) not in expected:
+                return None
+            entry = {"point": name, "axis": axis}
+            label = part_label(part)
+            if label:
+                entry["label"] = label
+            mapping.append(entry)
+        targets[name] = [float(x), float(y)]
+
+    xs = [v[0] for v in targets.values()]
+    ys = [v[1] for v in targets.values()]
+    pad = 1
+    return {
+        "derivation": (
+            f"题面里直接印出 {len(points)} 个目标坐标；小问数 {len(parts)} = 2 × {len(points)}，"
+            f"且逐个小问与「某点某轴」有序对应、其 expected 与题面坐标一致"
+        ),
+        "frame": {
+            "domain": {
+                "x": [int(min(xs)) - pad, int(max(xs)) + pad],
+                "y": [int(min(ys)) - pad, int(max(ys)) + pad],
+            }
+        },
+        "points": {k: [int(v[0]), int(v[1])] for k, v in targets.items()},
+        "parts": mapping,
+    }
 
 
 def try_grid_point(exercise, parts, figures, spec_dir: Path) -> dict | None:
@@ -273,7 +337,7 @@ def try_grid_point(exercise, parts, figures, spec_dir: Path) -> dict | None:
             f"其 expected 与该坐标一致"
         ),
         "figure": refs[0],
-        "frame": {"origin": frame["origin"], "unit": frame["unit"]},
+        "frame": {"origin": frame["origin"], "unit": frame["unit"], "domain": frame["domain"]},
         "points": named,
         "parts": mapping,
     }
@@ -363,6 +427,20 @@ def validate(doc: dict, book: str, edition: str, lesson: str) -> list[str]:
             if recomputed["parts"] != item.get("parts"):
                 errors.append(
                     f"第 {number} 题：grid-point 的小问对应关系与从 FigureSpec 复原的不一致"
+                )
+        if widget == "grid-plot":
+            answer = answers.get(number) or {}
+            recomputed = try_grid_plot(by_number[number], answer.get("parts") or [])
+            if not recomputed:
+                errors.append(
+                    f"第 {number} 题：grid-plot 交叉校验失败 —— 题面里的坐标与答案键的 expected 对不上"
+                )
+            elif (
+                recomputed["points"] != item.get("points")
+                or recomputed["parts"] != item.get("parts")
+            ):
+                errors.append(
+                    f"第 {number} 题：grid-plot 的目标点或小问对应关系与从题面复原的不一致"
                 )
     return errors
 

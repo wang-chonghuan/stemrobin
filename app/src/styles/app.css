@@ -873,6 +873,29 @@ input.sr-num-field:read-only {
   line-height: 1.5;
   color: var(--sr-ink-soft, #55666a);
 }
+
+/* 坐标网格作答 —— 点格点代替填两个数 */
+.sr-grid-answer { margin-top: 10px; }
+.sr-grid-prompt { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.sr-grid-chip {
+  display: inline-flex; align-items: baseline; gap: 5px;
+  padding: 5px 10px; border: 1px solid var(--sr-line); border-radius: 999px;
+  background: var(--sr-white); color: var(--sr-ink); font-size: 14px; cursor: pointer;
+}
+.sr-grid-chip.on { border-color: var(--sr-blue); box-shadow: 0 0 0 2px var(--sr-blue-tint); }
+.sr-grid-chip.done { background: var(--sr-blue-tint); }
+.sr-grid-chip span { font-size: 13px; opacity: .75; }
+.sr-grid-svg { display: block; width: 100%; max-width: 520px; height: auto; }
+.sr-grid-line { stroke: var(--sr-line); stroke-width: 1; }
+.sr-grid-axis { stroke: var(--sr-blue); stroke-width: 1.6; }
+.sr-grid-tick { font-size: 11px; fill: var(--sr-ink-soft, #55666a); }
+.sr-grid-hit { fill: transparent; cursor: pointer; }
+.sr-grid-hit:hover { fill: var(--sr-blue-tint); }
+.sr-grid-placed circle { fill: var(--sr-blue); }
+.sr-grid-placed text { font-size: 12px; font-weight: 600; fill: var(--sr-blue); }
+.sr-grid-standard circle { fill: none; stroke: var(--sr-green, #58a942); stroke-width: 2; }
+.sr-grid-standard text { font-size: 12px; font-weight: 600; fill: var(--sr-green, #58a942); }
+.sr-grid-legend { margin: 6px 0 0; font-size: 13px; color: var(--sr-ink-soft, #55666a); }
 .sr-math-actions {
   display: flex;
   justify-content: flex-end;

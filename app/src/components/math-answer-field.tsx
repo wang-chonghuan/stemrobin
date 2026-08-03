@@ -3,7 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 
 import { t, type Locale } from '~/lib/i18n'
-import type { ExerciseAnswerSpec, PartInputKind } from '~/lib/lessons'
+import type { ExerciseAnswerSpec, ExerciseGridSpec, PartInputKind } from '~/lib/lessons'
+import { GridAnswerField } from '~/components/grid-answer-field'
 import {
   checkTextbookAnswer,
   type TextbookAnswerResult,
@@ -261,12 +262,14 @@ export function MathAnswerField({
   storageKey,
   locale,
   answerSpec,
+  grid,
 }: {
   lessonId: string
   exercise: string
   storageKey: string
   locale: Locale
   answerSpec?: ExerciseAnswerSpec
+  grid?: ExerciseGridSpec
 }) {
   const fieldCount = answerSpec?.grading === 'auto' ? answerSpec.parts.length : 1
   const [values, setValues] = useState<string[]>(() => Array(fieldCount).fill(''))
@@ -336,7 +339,20 @@ export function MathAnswerField({
 
   return (
     <div className="sr-math-answer">
-      {Array.from({ length: fieldCount }, (_, index) => {
+      {grid ? (
+        <GridAnswerField
+          grid={grid}
+          locale={locale}
+          locked={finished}
+          standard={
+            finished && graded && result.verdict !== 'ungraded'
+              ? result.parts.map((part) => part.standard)
+              : undefined
+          }
+          onValues={onValue}
+        />
+      ) : (
+      Array.from({ length: fieldCount }, (_, index) => {
         const part = answerSpec?.parts[index]
         // No part spec means an ungraded exercise's single free blank — it can
         // hold anything, so it keeps the math field.
@@ -361,7 +377,7 @@ export function MathAnswerField({
             }
           />
         )
-      })}
+      }))}
 
       {answerSpec && !finished && (
         <div className="sr-math-actions">

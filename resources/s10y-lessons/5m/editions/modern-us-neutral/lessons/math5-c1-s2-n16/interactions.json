@@ -19,7 +19,17 @@
     "unit": [
      84.444,
      55.0
-    ]
+    ],
+    "domain": {
+     "x": [
+      -2,
+      7
+     ],
+     "y": [
+      -1,
+      7
+     ]
+    }
    },
    "points": {
     "M": [
@@ -126,8 +136,136 @@
   },
   {
    "exercise": "264",
-   "widget": "free",
-   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+   "widget": "grid-plot",
+   "derivation": "题面里直接印出 8 个目标坐标；小问数 16 = 2 × 8，且逐个小问与「某点某轴」有序对应、其 expected 与题面坐标一致",
+   "frame": {
+    "domain": {
+     "x": [
+      -8,
+      7
+     ],
+     "y": [
+      -8,
+      9
+     ]
+    }
+   },
+   "points": {
+    "A": [
+     2,
+     8
+    ],
+    "B": [
+     3,
+     -4
+    ],
+    "C": [
+     -4,
+     5
+    ],
+    "D": [
+     -3,
+     -7
+    ],
+    "E": [
+     0,
+     5
+    ],
+    "M": [
+     0,
+     -4
+    ],
+    "K": [
+     6,
+     0
+    ],
+    "P": [
+     -7,
+     0
+    ]
+   },
+   "parts": [
+    {
+     "point": "A",
+     "axis": "x",
+     "label": "A 横坐标"
+    },
+    {
+     "point": "A",
+     "axis": "y",
+     "label": "A 纵坐标"
+    },
+    {
+     "point": "B",
+     "axis": "x",
+     "label": "B 横坐标"
+    },
+    {
+     "point": "B",
+     "axis": "y",
+     "label": "B 纵坐标"
+    },
+    {
+     "point": "C",
+     "axis": "x",
+     "label": "C 横坐标"
+    },
+    {
+     "point": "C",
+     "axis": "y",
+     "label": "C 纵坐标"
+    },
+    {
+     "point": "D",
+     "axis": "x",
+     "label": "D 横坐标"
+    },
+    {
+     "point": "D",
+     "axis": "y",
+     "label": "D 纵坐标"
+    },
+    {
+     "point": "E",
+     "axis": "x",
+     "label": "E 横坐标"
+    },
+    {
+     "point": "E",
+     "axis": "y",
+     "label": "E 纵坐标"
+    },
+    {
+     "point": "M",
+     "axis": "x",
+     "label": "M 横坐标"
+    },
+    {
+     "point": "M",
+     "axis": "y",
+     "label": "M 纵坐标"
+    },
+    {
+     "point": "K",
+     "axis": "x",
+     "label": "K 横坐标"
+    },
+    {
+     "point": "K",
+     "axis": "y",
+     "label": "K 纵坐标"
+    },
+    {
+     "point": "P",
+     "axis": "x",
+     "label": "P 横坐标"
+    },
+    {
+     "point": "P",
+     "axis": "y",
+     "label": "P 纵坐标"
+    }
+   ]
   },
   {
    "exercise": "265",
@@ -142,7 +280,17 @@
     "unit": [
      58.462,
      33.846
-    ]
+    ],
+    "domain": {
+     "x": [
+      -6,
+      7
+     ],
+     "y": [
+      -6,
+      7
+     ]
+    }
    },
    "points": {
     "A": [
@@ -216,8 +364,80 @@
   },
   {
    "exercise": "267",
-   "widget": "free",
-   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+   "widget": "grid-plot",
+   "derivation": "题面里直接印出 4 个目标坐标；小问数 8 = 2 × 4，且逐个小问与「某点某轴」有序对应、其 expected 与题面坐标一致",
+   "frame": {
+    "domain": {
+     "x": [
+      -11,
+      -1
+     ],
+     "y": [
+      -7,
+      3
+     ]
+    }
+   },
+   "points": {
+    "A": [
+     -10,
+     2
+    ],
+    "B": [
+     -2,
+     -2
+    ],
+    "C": [
+     -2,
+     -6
+    ],
+    "D": [
+     -10,
+     -6
+    ]
+   },
+   "parts": [
+    {
+     "point": "A",
+     "axis": "x",
+     "label": "A 横坐标"
+    },
+    {
+     "point": "A",
+     "axis": "y",
+     "label": "A 纵坐标"
+    },
+    {
+     "point": "B",
+     "axis": "x",
+     "label": "B 横坐标"
+    },
+    {
+     "point": "B",
+     "axis": "y",
+     "label": "B 纵坐标"
+    },
+    {
+     "point": "C",
+     "axis": "x",
+     "label": "C 横坐标"
+    },
+    {
+     "point": "C",
+     "axis": "y",
+     "label": "C 纵坐标"
+    },
+    {
+     "point": "D",
+     "axis": "x",
+     "label": "D 横坐标"
+    },
+    {
+     "point": "D",
+     "axis": "y",
+     "label": "D 纵坐标"
+    }
+   ]
   },
   {
    "exercise": "268",
@@ -275,7 +495,17 @@
     "unit": [
      69.091,
      40.0
-    ]
+    ],
+    "domain": {
+     "x": [
+      -6,
+      5
+     ],
+     "y": [
+      -6,
+      5
+     ]
+    }
    },
    "points": {
     "A": [
