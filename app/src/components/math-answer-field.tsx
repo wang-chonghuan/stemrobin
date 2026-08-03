@@ -3,7 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import type { ReactNode } from 'react'
 
 import { t, type Locale } from '~/lib/i18n'
-import type { ExerciseAnswerSpec } from '~/lib/lessons'
+import type { ExerciseAnswerSpec, PartInputKind } from '~/lib/lessons'
 import {
   checkTextbookAnswer,
   type TextbookAnswerResult,
@@ -68,6 +68,73 @@ function revealField(field: MathField | null) {
   }, 180)
 }
 
+// One blank whose answer is a plain number. A formula editor can express these
+// too, but it makes the learner assemble a digit out of a symbol palette; a
+// number pad is what the phone already has. `inputMode="decimal"` opens it, and
+// the sign toggle supplies the minus that pad does not carry.
+function NumberInput({
+  index,
+  storageKey,
+  locale,
+  locked,
+  label,
+  onValue,
+}: {
+  index: number
+  storageKey: string
+  locale: Locale
+  locked: boolean
+  label: ReactNode
+  onValue: (index: number, value: string) => void
+}) {
+  const [value, setValue] = useState('')
+
+  useEffect(() => {
+    const stored = localStorage.getItem(storageKey) ?? ''
+    setValue(stored)
+    onValue(index, stored)
+  }, [index, onValue, storageKey])
+
+  function commit(next: string) {
+    setValue(next)
+    localStorage.setItem(storageKey, next)
+    onValue(index, next)
+  }
+
+  return (
+    <div className="sr-math-part">
+      <div className="sr-math-answer-head">
+        <span className="sr-math-answer-label">{label}</span>
+        <div className="sr-math-modes" role="group">
+          <button
+            type="button"
+            disabled={locked}
+            aria-label={t(locale, 'exercise.sign')}
+            onClick={() =>
+              commit(value.startsWith('-') ? value.slice(1) : `-${value}`)
+            }
+          >
+            ±
+          </button>
+        </div>
+      </div>
+      <div className="sr-math-field-host">
+        <input
+          className="sr-num-field"
+          type="text"
+          inputMode="decimal"
+          autoComplete="off"
+          readOnly={locked}
+          value={value}
+          aria-label={t(locale, 'exercise.answer')}
+          placeholder={t(locale, 'exercise.answer.placeholder')}
+          onChange={(e) => commit(e.target.value)}
+        />
+      </div>
+    </div>
+  )
+}
+
 function MathInput({
   index,
   storageKey,
@@ -113,8 +180,7 @@ function MathInput({
       field.smartFence = true
       field.readOnly = locked
       field.mathVirtualKeyboardPolicy = 'manual'
-      field.placeholder =
-        locale === 'zh' ? '\\text{填写答案}' : '\\text{Enter your answer}'
+      field.placeholder = `\\text{${t(locale, 'exercise.answer.placeholder')}}`
       field.setAttribute('aria-label', t(locale, 'exercise.answer'))
       field.value = localStorage.getItem(storageKey) ?? ''
       onValue(index, field.value)
@@ -262,8 +328,12 @@ export function MathAnswerField({
     <div className="sr-math-answer">
       {Array.from({ length: fieldCount }, (_, index) => {
         const part = answerSpec?.parts[index]
+        // No part spec means an ungraded exercise's single free blank — it can
+        // hold anything, so it keeps the math field.
+        const kind: PartInputKind = part?.input ?? 'math'
+        const Input = kind === 'number' ? NumberInput : MathInput
         return (
-          <MathInput
+          <Input
             key={index}
             index={index}
             storageKey={`${storageKey}:${index}`}
@@ -272,9 +342,10 @@ export function MathAnswerField({
             onValue={onValue}
             label={
               <>
-                {part?.label
-                  ? `${part.label} ${t(locale, 'exercise.answer')}`
-                  : t(locale, 'exercise.answer')}
+                {/* The part's own name IS the label ("M 向右", "1)"). Appending
+                    "my answer" to it just says the same thing twice; the generic
+                    wording is only for a blank that has no name of its own. */}
+                {part?.label || t(locale, 'exercise.answer')}
                 {part?.unit && <span className="sr-math-unit"> · {part.unit}</span>}
               </>
             }

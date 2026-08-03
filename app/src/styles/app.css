@@ -841,6 +841,30 @@ math-field.sr-math-field:focus-within {
   outline: 2px solid var(--sr-blue-tint);
   outline-offset: 1px;
 }
+
+/* A plain-number blank. Same box as the math field so a mixed exercise does not
+   look like two different forms; the type is what differs, not the styling. */
+input.sr-num-field {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 9px 11px;
+  border: 1px solid var(--sr-line);
+  border-radius: var(--sr-radius-sm);
+  background: var(--sr-white);
+  color: var(--sr-ink);
+  font-family: var(--sr-font-num, inherit);
+  font-size: 18px;
+  line-height: 1.4;
+}
+input.sr-num-field:focus {
+  border-color: var(--sr-blue);
+  outline: 2px solid var(--sr-blue-tint);
+  outline-offset: 1px;
+}
+input.sr-num-field:read-only {
+  background: var(--sr-paper, #f7f9f9);
+}
 .sr-math-actions {
   display: flex;
   justify-content: flex-end;
