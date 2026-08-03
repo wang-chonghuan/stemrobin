@@ -120,3 +120,46 @@ def test_number_needs_every_expected_to_be_a_bare_number():
         Path("."),
     )
     assert mixed["widget"] == "math"
+
+
+def _grid_case(expected_pairs):
+    """一道引用 fig-x 的坐标题：两个具名点、四个小问。"""
+    exercise = {"number": "262", "figureRefs": ["fig-x"]}
+    parts = []
+    for label, value in expected_pairs:
+        parts.append({"label": label, "judge": "numeric", "expected": [value], "unit": "格"})
+    return exercise, parts
+
+
+def test_grid_point_declares_ordered_part_to_point_mapping(tmp_path=None):
+    import json as _json
+
+    frame_spec = _spec_with({"M": [3, 5], "K": [4, 1]})
+    directory = Path(__file__).resolve().parent / "_tmp_specs"
+    directory.mkdir(exist_ok=True)
+    (directory / "fig-x.spec.json").write_text(
+        _json.dumps(frame_spec), encoding="utf-8"
+    )
+    figures = {"fig-x": {"id": "fig-x", "spec": "figures/fig-x.spec.json"}}
+
+    exercise, parts = _grid_case(
+        [("M 向右", "3"), ("M 向上", "5"), ("K 向右", "4"), ("K 向上", "1")]
+    )
+    out = li.try_grid_point(exercise, parts, figures, directory)
+    assert out is not None
+    assert out["parts"] == [
+        {"point": "M", "axis": "x", "label": "M 向右", "unit": "格"},
+        {"point": "M", "axis": "y", "label": "M 向上", "unit": "格"},
+        {"point": "K", "axis": "x", "label": "K 向右", "unit": "格"},
+        {"point": "K", "axis": "y", "label": "K 向上", "unit": "格"},
+    ]
+
+    # 把两个小问的 expected 互换：集合里的值一个没变，只有顺序错了。
+    # 旧的成员关系校验发现不了，有序校验必须发现。
+    exercise, swapped = _grid_case(
+        [("M 向右", "5"), ("M 向上", "3"), ("K 向右", "4"), ("K 向上", "1")]
+    )
+    assert li.try_grid_point(exercise, swapped, figures, directory) is None
+
+    (directory / "fig-x.spec.json").unlink()
+    directory.rmdir()

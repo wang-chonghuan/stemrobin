@@ -7,8 +7,9 @@
 分工与本技能其余部分一致：**能机械推导的一律机械推导，模型不参与**。推导不出来的题
 不许静默兜底，必须写清 `derivation` 与 `needsAuthoring`，让下一轮知道从哪儿下手。
 
-`grid-point` 是这里唯一一个「从图里读出语义」的形态，因此它自带交叉校验：从 FigureSpec
-复原出的每个具名点坐标，必须出现在该题答案键的 expected 里，且小问数 = 2 × 具名点数。
+`grid-point` 是这里唯一一个「从图里读出语义」的形态，因此它自带交叉校验：小问数必须等于
+2 × 具名点数，且**逐个小问**与「某个具名点的某条轴」有序对应 —— 第 n 个小问的 expected
+必须就是它所声明的那个坐标。对应关系写进规格的 `parts`，消费方不必再假设任何顺序。
 校验不过就是失败，拒绝产出 —— 不是警告。
 
 用法:
@@ -246,24 +247,35 @@ def try_grid_point(exercise, parts, figures, spec_dir: Path) -> dict | None:
     if not named or len(parts) != 2 * len(named):
         return None
 
-    # 交叉校验：复原出的每个坐标都必须出现在答案键的 expected 里。这是这条推导路径
-    # 的唯一凭据 —— 推错了当场就被答案键抓住。
-    expected: list[str] = []
-    for p in parts:
-        expected.extend(str(v).strip() for v in (p.get("expected") or []))
-    for name, (gx, gy) in named.items():
-        for coordinate in (gx, gy):
+    # 交叉校验：**有序**对应。只验「每个坐标都出现在某个 expected 里」是不够的 —— 那样
+    # 消费方仍然得自己假设「第 2i 个小问是第 i 个点的横坐标」，而消灭这类假设正是规格
+    # 这一层存在的理由。所以这里把对应关系逐个小问声明出来，并逐个小问验过去：第 n 个
+    # 小问的 expected 必须就是它所声明的那个点、那条轴的坐标。对不上就不产出。
+    mapping = []
+    for index, (name, (gx, gy)) in enumerate(named.items()):
+        for axis, coordinate in (("x", gx), ("y", gy)):
+            part = parts[len(mapping)]
+            expected = {str(v).strip() for v in (part.get("expected") or [])}
             if str(coordinate) not in expected:
                 return None
+            entry = {"point": name, "axis": axis}
+            label = part_label(part)
+            if label:
+                entry["label"] = label
+            if isinstance(part.get("unit"), str):
+                entry["unit"] = part["unit"]
+            mapping.append(entry)
 
     out = {
         "derivation": (
             f"引用的 {refs[0]} 是 deterministic 图，复原出直角坐标系与 {len(named)} 个具名点；"
-            f"小问数 {len(parts)} = 2 × {len(named)}，且每个复原坐标都出现在答案键的 expected 中"
+            f"小问数 {len(parts)} = 2 × {len(named)}，且逐个小问与「某点某轴」有序对应、"
+            f"其 expected 与该坐标一致"
         ),
         "figure": refs[0],
         "frame": {"origin": frame["origin"], "unit": frame["unit"]},
         "points": named,
+        "parts": mapping,
     }
     if frame["warnings"]:
         # 交叉校验已经过了，所以坐标系是对的 —— 但图上有刻度没画在等距位置上。
@@ -347,6 +359,10 @@ def validate(doc: dict, book: str, edition: str, lesson: str) -> list[str]:
             if recomputed["points"] != item.get("points"):
                 errors.append(
                     f"第 {number} 题：grid-point 的 points 与从 FigureSpec 复原的不一致"
+                )
+            if recomputed["parts"] != item.get("parts"):
+                errors.append(
+                    f"第 {number} 题：grid-point 的小问对应关系与从 FigureSpec 复原的不一致"
                 )
     return errors
 
