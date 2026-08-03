@@ -1,0 +1,328 @@
+{
+ "schema": "ld-s10y-answer/lesson-interactions@1",
+ "book": "5m",
+ "lesson": "math5-c1-s2-n13",
+ "edition": "modern-us-neutral",
+ "status": "ready",
+ "count": 22,
+ "interactions": [
+  {
+   "exercise": "198",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "|81|"
+    },
+    {
+     "label": "|1.3|"
+    },
+    {
+     "label": "|-5.2|"
+    },
+    {
+     "label": "|-1.5|"
+    },
+    {
+     "label": "|52|"
+    },
+    {
+     "label": "|0|"
+    }
+   ]
+  },
+  {
+   "exercise": "199",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "x=-12.3"
+    },
+    {
+     "label": "x=12.3"
+    },
+    {
+     "label": "x=-66"
+    },
+    {
+     "label": "x=83"
+    },
+    {
+     "label": "x=75"
+    }
+   ]
+  },
+  {
+   "exercise": "200",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "A",
+     "unit": "单位"
+    },
+    {
+     "label": "B",
+     "unit": "单位"
+    },
+    {
+     "label": "C",
+     "unit": "单位"
+    },
+    {
+     "label": "D",
+     "unit": "单位"
+    },
+    {
+     "label": "E",
+     "unit": "单位"
+    }
+   ]
+  },
+  {
+   "exercise": "201",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1)"
+    },
+    {
+     "label": "2)"
+    },
+    {
+     "label": "3)"
+    },
+    {
+     "label": "4)"
+    }
+   ]
+  },
+  {
+   "exercise": "202",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "A 的坐标"
+    },
+    {
+     "label": "A 坐标的绝对值"
+    },
+    {
+     "label": "B 的坐标"
+    },
+    {
+     "label": "B 坐标的绝对值"
+    }
+   ]
+  },
+  {
+   "exercise": "203",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1) |x|=25"
+    },
+    {
+     "label": "1) |x|=4"
+    },
+    {
+     "label": "1) |x|=7.4"
+    },
+    {
+     "label": "2) |x|=27"
+    },
+    {
+     "label": "2) |x|=4.8"
+    },
+    {
+     "label": "2) |x|=11.41"
+    }
+   ]
+  },
+  {
+   "exercise": "204",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "|x|=12 的负数"
+    },
+    {
+     "label": "|x|=12 的正数"
+    },
+    {
+     "label": "|x|=41 的负数"
+    },
+    {
+     "label": "|x|=41 的正数"
+    },
+    {
+     "label": "|x|=0"
+    }
+   ]
+  },
+  {
+   "exercise": "205",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {}
+   ]
+  },
+  {
+   "exercise": "206",
+   "widget": "math",
+   "derivation": "混合判据 ['exact', 'numeric']：无单一形态可推",
+   "needsAuthoring": "需要逐小问拆分形态"
+  },
+  {
+   "exercise": "207",
+   "widget": "math",
+   "derivation": "全部小问 judge=exact：正确形态多半是点选或多选，但选项形状需要人或模型来定",
+   "needsAuthoring": "待补 choice-one / choice-many 的选项"
+  },
+  {
+   "exercise": "208",
+   "widget": "math",
+   "derivation": "混合判据 ['numeric']：无单一形态可推",
+   "needsAuthoring": "需要逐小问拆分形态"
+  },
+  {
+   "exercise": "209",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1) y"
+    },
+    {
+     "label": "2) p"
+    }
+   ]
+  },
+  {
+   "exercise": "210",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1)",
+     "unit": "小时"
+    },
+    {
+     "label": "2)",
+     "unit": "小时"
+    }
+   ]
+  },
+  {
+   "exercise": "211",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {}
+   ]
+  },
+  {
+   "exercise": "212",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "左侧减法"
+    },
+    {
+     "label": "左侧除法"
+    },
+    {
+     "label": "右侧减法"
+    },
+    {
+     "label": "右侧除法"
+    },
+    {
+     "label": "左侧乘积"
+    },
+    {
+     "label": "右侧乘积"
+    },
+    {
+     "label": "最终结果"
+    }
+   ]
+  },
+  {
+   "exercise": "213",
+   "widget": "math",
+   "derivation": "混合判据 ['numeric']：无单一形态可推",
+   "needsAuthoring": "需要逐小问拆分形态"
+  },
+  {
+   "exercise": "214",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "215",
+   "widget": "math",
+   "derivation": "全部小问 judge=exact：正确形态多半是点选或多选，但选项形状需要人或模型来定",
+   "needsAuthoring": "待补 choice-one / choice-many 的选项"
+  },
+  {
+   "exercise": "216",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1)"
+    },
+    {
+     "label": "2)"
+    },
+    {
+     "label": "3)"
+    },
+    {
+     "label": "4)"
+    }
+   ]
+  },
+  {
+   "exercise": "217",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "糖",
+     "unit": "公斤"
+    },
+    {
+     "label": "浆果",
+     "unit": "公斤"
+    }
+   ]
+  },
+  {
+   "exercise": "218",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "unit": "%"
+    }
+   ]
+  },
+  {
+   "exercise": "219",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {}
+   ]
+  }
+ ]
+}

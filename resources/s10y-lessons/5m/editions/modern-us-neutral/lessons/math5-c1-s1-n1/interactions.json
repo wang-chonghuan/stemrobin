@@ -1,0 +1,188 @@
+{
+ "schema": "ld-s10y-answer/lesson-interactions@1",
+ "book": "5m",
+ "lesson": "math5-c1-s1-n1",
+ "edition": "modern-us-neutral",
+ "status": "ready",
+ "count": 19,
+ "interactions": [
+  {
+   "exercise": "1",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "2",
+   "widget": "math",
+   "derivation": "全部小问 judge=exact：正确形态多半是点选或多选，但选项形状需要人或模型来定",
+   "needsAuthoring": "待补 choice-one / choice-many 的选项"
+  },
+  {
+   "exercise": "3",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "4",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "5",
+   "widget": "math",
+   "derivation": "全部小问 judge=exact：正确形态多半是点选或多选，但选项形状需要人或模型来定",
+   "needsAuthoring": "待补 choice-one / choice-many 的选项"
+  },
+  {
+   "exercise": "6",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "7",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "8",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "顺流",
+     "unit": "公里/小时"
+    },
+    {
+     "label": "逆流",
+     "unit": "公里/小时"
+    }
+   ]
+  },
+  {
+   "exercise": "9",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "百货商店用去的钱",
+     "unit": "美元"
+    }
+   ]
+  },
+  {
+   "exercise": "10",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "所想的数"
+    }
+   ]
+  },
+  {
+   "exercise": "11",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "所想的数"
+    }
+   ]
+  },
+  {
+   "exercise": "12",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "多出的质量",
+     "unit": "吨"
+    }
+   ]
+  },
+  {
+   "exercise": "13",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "少的质量",
+     "unit": "吨"
+    }
+   ]
+  },
+  {
+   "exercise": "14",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1"
+    },
+    {
+     "label": "2"
+    },
+    {
+     "label": "3"
+    },
+    {
+     "label": "4"
+    }
+   ]
+  },
+  {
+   "exercise": "15",
+   "widget": "math",
+   "derivation": "全部小问 judge=exact：正确形态多半是点选或多选，但选项形状需要人或模型来定",
+   "needsAuthoring": "待补 choice-one / choice-many 的选项"
+  },
+  {
+   "exercise": "16",
+   "widget": "free",
+   "derivation": "grading=ungraded：无判据可自动判分，保留自由作答"
+  },
+  {
+   "exercise": "17",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "苹果树",
+     "unit": "棵"
+    },
+    {
+     "label": "樱桃树",
+     "unit": "棵"
+    }
+   ]
+  },
+  {
+   "exercise": "18",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "第一个班",
+     "unit": "吨"
+    },
+    {
+     "label": "第二个班",
+     "unit": "吨"
+    }
+   ]
+  },
+  {
+   "exercise": "19",
+   "widget": "number",
+   "derivation": "全部小问 judge=numeric 且 expected 均为普通数字",
+   "parts": [
+    {
+     "label": "1"
+    },
+    {
+     "label": "2"
+    }
+   ]
+  }
+ ]
+}
