@@ -1,20 +1,31 @@
 {
-  "status": "ready",
-  "seed": "STEMROBIN-116",
-  "started_at": "2026-08-03",
-  "tickets": [
-    "STEMROBIN-117",
-    "STEMROBIN-118",
-    "STEMROBIN-119",
-    "STEMROBIN-120",
-    "STEMROBIN-121"
-  ],
-  "blocked_on": {
-    "STEMROBIN-117": [],
-    "STEMROBIN-118": [],
-    "STEMROBIN-119": [],
-    "STEMROBIN-120": [],
-    "STEMROBIN-121": ["STEMROBIN-120"]
-  },
-  "note": "Seed 116 是人发起、全权委托发布。blocked_on 只存在于本文件与 story-list.md：Plane 公有 v1 API 无 issue-relation 端点。"
+ "status": "running",
+ "seed": "STEMROBIN-116",
+ "started_at": "2026-08-03",
+ "tickets": [
+  "STEMROBIN-117",
+  "STEMROBIN-118",
+  "STEMROBIN-119",
+  "STEMROBIN-120",
+  "STEMROBIN-121"
+ ],
+ "blocked_on": {
+  "STEMROBIN-117": [],
+  "STEMROBIN-118": [],
+  "STEMROBIN-119": [],
+  "STEMROBIN-120": [],
+  "STEMROBIN-121": [
+   "STEMROBIN-120"
+  ]
+ },
+ "note": "Seed 116 是人发起、全权委托发布。117/118/119/120 已合并、已部署、已登记。121 未开工：开发前发现它需要一个前置——交互规格的 grid-point 目前只声明具名点，没有声明「哪个小问对应哪个点的哪条轴」，交叉校验也只验成员关系不验顺序。产品端要据此判分就得假设顺序，那正是规格该消灭的假设。blocked_on 只存在于本文件与 story-list.md：Plane 公有 v1 API 无 issue-relation 端点。",
+ "done": [
+  "STEMROBIN-117",
+  "STEMROBIN-118",
+  "STEMROBIN-119",
+  "STEMROBIN-120"
+ ],
+ "open": [
+  "STEMROBIN-121"
+ ]
 }
