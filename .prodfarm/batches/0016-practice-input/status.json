@@ -1,5 +1,5 @@
 {
- "status": "running",
+ "status": "done",
  "seed": "STEMROBIN-116",
  "started_at": "2026-08-03",
  "tickets": [
@@ -7,6 +7,7 @@
   "STEMROBIN-118",
   "STEMROBIN-119",
   "STEMROBIN-120",
+  "STEMROBIN-122",
   "STEMROBIN-121"
  ],
  "blocked_on": {
@@ -18,14 +19,14 @@
    "STEMROBIN-120"
   ]
  },
- "note": "Seed 116 是人发起、全权委托发布。117/118/119/120 已合并、已部署、已登记。121 未开工：开发前发现它需要一个前置——交互规格的 grid-point 目前只声明具名点，没有声明「哪个小问对应哪个点的哪条轴」，交叉校验也只验成员关系不验顺序。产品端要据此判分就得假设顺序，那正是规格该消灭的假设。blocked_on 只存在于本文件与 story-list.md：Plane 公有 v1 API 无 issue-relation 端点。",
+ "note": "Seed 116 人发起、全权委托。6 张全部 done（草案 5 + 批内自建 fix 1，STEMROBIN-122），无中止。120/121/122 按 standard：express 六条准入谓词分别不成立（120/122 违反谓词 2 契约变更，121 违反谓词 3 未定 UI 选择），非对称规则不允许在谓词不成立时设 express。blocked_on 只存在于本文件与 story-list.md：Plane 公有 v1 API 无 issue-relation 端点。",
  "done": [
   "STEMROBIN-117",
   "STEMROBIN-118",
   "STEMROBIN-119",
-  "STEMROBIN-120"
- ],
- "open": [
+  "STEMROBIN-120",
+  "STEMROBIN-122",
   "STEMROBIN-121"
- ]
+ ],
+ "closed_at": "2026-08-03"
 }
