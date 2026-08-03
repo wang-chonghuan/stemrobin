@@ -273,11 +273,16 @@ export function MathAnswerField({
   const [result, setResult] = useState<TextbookAnswerResult | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  // How many times this learner has submitted a wrong answer to THIS exercise.
+  // The first wrong one is not the end of the exercise — it is the moment the
+  // learner is most able to find their own slip, so the standard answer waits.
+  const [wrongTries, setWrongTries] = useState(0)
 
   useEffect(() => {
     setValues(Array(fieldCount).fill(''))
     setResult(null)
     setError('')
+    setWrongTries(0)
   }, [exercise, fieldCount, lessonId])
 
   const onValue = useCallback((index: number, value: string) => {
@@ -289,7 +294,7 @@ export function MathAnswerField({
   }, [])
 
   async function submit() {
-    if (!answerSpec || submitting || (result && !('error' in result))) return
+    if (!answerSpec || submitting || finished) return
     if (answerSpec.grading === 'auto' && values.some((value) => !value.trim())) {
       setError(t(locale, 'exercise.completeAll'))
       return
@@ -304,6 +309,7 @@ export function MathAnswerField({
         setError(response.error)
       } else {
         setResult(response)
+        if (response.verdict === 'incorrect') setWrongTries((n) => n + 1)
         keyboard()?.hide({ animate: true })
       }
     } catch {
@@ -313,7 +319,11 @@ export function MathAnswerField({
     }
   }
 
-  const completed = result != null && !('error' in result)
+  const graded = result != null && !('error' in result)
+  // A first wrong answer leaves the exercise open: fields stay editable and the
+  // submit button stays. Right, self-checked, or wrong twice — that closes it.
+  const finished = graded && !(result.verdict === 'incorrect' && wrongTries < 2)
+  const retrying = graded && !finished
 
   if (!answerSpec) {
     return (
@@ -338,7 +348,7 @@ export function MathAnswerField({
             index={index}
             storageKey={`${storageKey}:${index}`}
             locale={locale}
-            locked={completed}
+            locked={finished}
             onValue={onValue}
             label={
               <>
@@ -353,7 +363,7 @@ export function MathAnswerField({
         )
       })}
 
-      {answerSpec && !completed && (
+      {answerSpec && !finished && (
         <div className="sr-math-actions">
           <button
             type="button"
@@ -372,14 +382,16 @@ export function MathAnswerField({
               ? t(locale, 'exercise.submitting')
               : answerSpec.grading === 'ungraded'
                 ? t(locale, 'exercise.reveal')
-                : t(locale, 'exercise.submit')}
+                : retrying
+                  ? t(locale, 'exercise.resubmit')
+                  : t(locale, 'exercise.submit')}
           </button>
         </div>
       )}
 
       {error && <p className="sr-math-error">{error}</p>}
 
-      {completed && (
+      {graded && (
         <div className={`sr-math-result ${result.verdict}`}>
           <div className="sr-math-verdict">
             {result.verdict === 'correct' ? (
@@ -411,10 +423,16 @@ export function MathAnswerField({
                 .join(' · ')}
             </p>
           )}
-          <div className="sr-math-standard">
-            <span>{t(locale, 'exercise.standard')}</span>
-            <p>{result.displayAnswer}</p>
-          </div>
+          {retrying ? (
+            // Pacing, not secrecy: this learner is allowed to see the standard
+            // answer for this exercise — just not before their second try.
+            <p className="sr-math-retry">{t(locale, 'exercise.tryAgain')}</p>
+          ) : (
+            <div className="sr-math-standard">
+              <span>{t(locale, 'exercise.standard')}</span>
+              <p>{result.displayAnswer}</p>
+            </div>
+          )}
         </div>
       )}
     </div>
