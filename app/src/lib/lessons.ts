@@ -30,6 +30,17 @@ export type ExerciseAnswerSpec = {
   grading: 'auto' | 'ungraded'
   parts: { label?: string; unit?: string; input: PartInputKind }[]
 }
+// A coordinate exercise answered by clicking cells instead of typing pairs of
+// numbers. Deliberately carries NO coordinates: the grid the learner draws on,
+// the names of the points to place, and which blank each click feeds — nothing
+// that would give the answer away. Grading stays server-side and unchanged,
+// because a click still lands in the same numeric blanks.
+export type ExerciseGridSpec = {
+  kind: 'grid-point' | 'grid-plot'
+  domain: { x: [number, number]; y: [number, number] }
+  points: string[]
+  parts: { point: string; axis: 'x' | 'y' }[]
+}
 export type CardExercise = {
   number: string
   group: string | null
@@ -37,6 +48,7 @@ export type CardExercise = {
   figureRefs: string[]
   figures: CardFigure[]
   answerSpec?: ExerciseAnswerSpec
+  grid?: ExerciseGridSpec
 }
 export type CardContent = { prose: ProseBlock[]; exercises: CardExercise[] }
 
@@ -57,11 +69,18 @@ export const getCardContent = createServerFn({ method: 'GET' })
       unit?: string
       judge?: 'exact' | 'numeric' | 'expression'
     }
+    type StoredInteraction = {
+      widget?: string
+      frame?: { domain?: { x?: number[]; y?: number[] } }
+      points?: Record<string, number[]>
+      parts?: { point?: string; axis?: string }[]
+    }
     type StoredExercise = CardExercise & {
       answerKey?: {
         grading?: 'auto' | 'ungraded'
         parts?: StoredPart[]
       }
+      interaction?: StoredInteraction
     }
     const stored =
       (rows[0].exercises as { exercises?: StoredExercise[] } | null)?.exercises ?? []
@@ -91,6 +110,36 @@ export const getCardContent = createServerFn({ method: 'GET' })
                 : [],
             }
           : undefined
+      const interaction = exercise.interaction
+      const domain = interaction?.frame?.domain
+      const gridParts = interaction?.parts
+      const grid: ExerciseGridSpec | undefined =
+        (interaction?.widget === 'grid-point' || interaction?.widget === 'grid-plot') &&
+        domain?.x?.length === 2 &&
+        domain?.y?.length === 2 &&
+        Array.isArray(gridParts) &&
+        gridParts.length > 0
+          ? {
+              kind: interaction.widget,
+              domain: {
+                x: [domain.x[0], domain.x[1]],
+                y: [domain.y[0], domain.y[1]],
+              },
+              // Point order comes from the parts list, not from the coordinate
+              // map — the map is the answer and never leaves the server.
+              points: gridParts
+                .map((part) => part.point)
+                .filter((name, index, all): name is string =>
+                  typeof name === 'string' && all.indexOf(name) === index,
+                ),
+              parts: gridParts.flatMap((part) =>
+                typeof part.point === 'string' && (part.axis === 'x' || part.axis === 'y')
+                  ? [{ point: part.point, axis: part.axis }]
+                  : [],
+              ),
+            }
+          : undefined
+
       return {
         number: String(exercise.number),
         group: exercise.group ?? null,
@@ -107,6 +156,7 @@ export const getCardContent = createServerFn({ method: 'GET' })
             }))
           : [],
         ...(answerSpec ? { answerSpec } : {}),
+        ...(grid ? { grid } : {}),
       }
     })
     return { prose, exercises }

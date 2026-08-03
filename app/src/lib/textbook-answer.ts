@@ -44,7 +44,9 @@ export type TextbookAnswerResult =
   | {
       verdict: 'correct' | 'incorrect'
       displayAnswer: string
-      parts: { label?: string; isCorrect: boolean }[]
+      // `standard` 与 displayAnswer 同级：都是判完之后才有意义的参考答案。
+      // 网格题要把标准位置画到图上，光有一段文字不够。
+      parts: { label?: string; isCorrect: boolean; standard?: string }[]
     }
   | { verdict: 'ungraded'; displayAnswer: string; parts: [] }
   | { error: string }
@@ -187,6 +189,7 @@ export const checkTextbookAnswer = createServerFn({ method: 'POST' })
         parts: key.parts.map((part, index) => ({
           ...(part.label ? { label: part.label } : {}),
           isCorrect: judged[index],
+          ...(part.expected?.[0] != null ? { standard: part.expected[0] } : {}),
         })),
       }
     }
