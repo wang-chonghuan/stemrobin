@@ -19,6 +19,7 @@ type MathField = HTMLElement & {
 }
 type MathKeyboard = {
   layouts: string
+  boundingRect?: { top: number; height: number }
   show: (options?: { animate: boolean }) => void
   hide: (options?: { animate: boolean }) => void
 }
@@ -38,7 +39,33 @@ function setKeyboardMode(mode: KeyboardMode) {
 }
 
 function revealField(field: MathField | null) {
-  window.setTimeout(() => field?.scrollIntoView({ block: 'center', behavior: 'smooth' }), 180)
+  window.setTimeout(() => {
+    const scroller = field?.closest<HTMLElement>('.sr-d-scroll')
+    if (!field || !scroller) return
+    const fieldRect = field.getBoundingClientRect()
+    const scrollerRect = scroller.getBoundingClientRect()
+    const viewport = window.visualViewport
+    const viewportBottom = viewport
+      ? viewport.offsetTop + viewport.height
+      : window.innerHeight
+    const keyboardRect = keyboard()?.boundingRect
+    const keyboardTop =
+      keyboardRect && keyboardRect.height > 0 ? keyboardRect.top : viewportBottom
+    const visibleTop = scrollerRect.top + 12
+    const visibleBottom =
+      Math.min(scrollerRect.bottom, viewportBottom, keyboardTop) - 12
+    if (fieldRect.bottom > visibleBottom) {
+      scroller.scrollBy({
+        top: fieldRect.bottom - visibleBottom,
+        behavior: 'smooth',
+      })
+    } else if (fieldRect.top < visibleTop) {
+      scroller.scrollBy({
+        top: fieldRect.top - visibleTop,
+        behavior: 'smooth',
+      })
+    }
+  }, 180)
 }
 
 function MathInput({
@@ -127,7 +154,7 @@ function MathInput({
     modeRef.current = next
     setMode(next)
     setKeyboardMode(next)
-    fieldRef.current?.focus()
+    fieldRef.current?.focus({ preventScroll: true })
     keyboard()?.show({ animate: true })
     revealField(fieldRef.current)
   }

@@ -1354,10 +1354,14 @@ a.sr-out-lesson.active {
 @media (max-width: 1199px) {
   .sr-app.mobile {
     position: fixed;
-    inset: 0;
-    width: auto;
-    height: auto;
+    inset: 0 auto auto 0;
+    width: var(--sr-visual-width, 100vw);
+    height: var(--sr-visual-height, 100dvh);
     min-height: 0;
+    transform: translate(
+      var(--sr-visual-left, 0px),
+      var(--sr-visual-top, 0px)
+    );
   }
   .sr-catalog {
     position: absolute;

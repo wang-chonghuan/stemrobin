@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
 import { CatalogSidebar } from '~/components/catalog'
@@ -9,6 +9,7 @@ import { getLocale } from '~/lib/locale'
 import { useLayoutStore } from '~/lib/layout-store'
 import { getCurrentUser } from '~/lib/session'
 import { t } from '~/lib/i18n'
+import { visualViewportVariables } from '~/lib/visual-viewport'
 
 export const Route = createFileRoute('/_app')({
   // Open access (STEMROBIN-68): the learner surfaces (/, /card/$id) are PUBLIC —
@@ -35,6 +36,7 @@ function AppShell() {
   const drawerOpen = useLayoutStore((s) => s.drawerOpen)
   const setDrawer = useLayoutStore((s) => s.setDrawer)
   const [isMobile, setIsMobile] = useState(false)
+  const shellRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 1199px)')
@@ -47,8 +49,44 @@ function AppShell() {
     return () => media.removeEventListener('change', update)
   }, [setDrawer])
 
+  useEffect(() => {
+    const shell = shellRef.current
+    if (!shell || !isMobile) return
+    const viewport = window.visualViewport
+    const sync = () => {
+      const variables = visualViewportVariables(
+        viewport ?? {
+          offsetLeft: 0,
+          offsetTop: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        },
+      )
+      for (const [name, value] of Object.entries(variables)) {
+        shell.style.setProperty(name, value)
+      }
+    }
+    sync()
+    viewport?.addEventListener('resize', sync)
+    viewport?.addEventListener('scroll', sync)
+    window.addEventListener('resize', sync)
+    return () => {
+      viewport?.removeEventListener('resize', sync)
+      viewport?.removeEventListener('scroll', sync)
+      window.removeEventListener('resize', sync)
+      for (const name of Object.keys(visualViewportVariables({
+        offsetLeft: 0,
+        offsetTop: 0,
+        width: 1,
+        height: 1,
+      }))) {
+        shell.style.removeProperty(name)
+      }
+    }
+  }, [isMobile])
+
   return (
-    <div className={`sr-app${isMobile ? ' mobile' : ''}`}>
+    <div className={`sr-app${isMobile ? ' mobile' : ''}`} ref={shellRef}>
       <button
         aria-label={t(locale, 'cat.close')}
         className={`sr-scrim${drawerOpen ? ' show' : ''}`}
