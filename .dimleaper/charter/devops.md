@@ -92,7 +92,7 @@ Deployment writes to external systems, so this is the section cap4 looks up befo
    service has no existing revision.
 3. **A deploy that is not a plain image swap** — not without the human's explicit approval. The
    concrete shapes, so this is looked up and not judged: the diff touches
-   `ssot-schemas/db-schemas/stemrobin.sql`, the root `Dockerfile`, anything under `infra/`, or adds a
+   `ssot-schemas/db-schemas/lemmadeck.sql`, the root `Dockerfile`, anything under `infra/`, or adds a
    new required env key. **"Is this destructive?" is not a question to answer at deploy time** — if
    you cannot tell from this list, that itself is the stop.
 4. **Moving the root `Dockerfile`, or changing its build context away from the repo root** —

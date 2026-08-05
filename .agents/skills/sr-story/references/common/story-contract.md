@@ -52,9 +52,9 @@ Example skeleton (chapter c02, continuing after c01 ended at §4):
 ## Ids & DB (persistence contract)
 
 - story id: `<slug>` (lowercase, e.g. `ford`, `carnegie`). chapter id: `<story>-c<order2>` (e.g. `ford-c01`).
-- Persistence is ONLY via `scripts/save-story.mjs` (never hand-write rows). It targets the Azure easy-app Postgres, schema `stemrobin-schema`, using the server-only connection string from repo-root `.env` (`EASYAPP_DATABASE_URL`, or `DATABASE_URL` in the Container App).
+- Persistence is ONLY via `scripts/save-story.mjs` (never hand-write rows). It connects through `.agents/skills/lib/content-db.mjs` — the one place the content DB is defined — which targets the shared Supabase project, schema `lemmadeck-schema`, via `LEMMADECK_DATABASE_URL` from the repo-root `.env`. Never open a connection of your own.
 
-Tables — `sr_stories`, `sr_story_chapters`, `sr_story_questions`, `sr_story_answer_events` — are defined in `ssot-schemas/db-schemas/stemrobin.sql` (the SSOT). Key point for this format:
+Tables — `sr_stories`, `sr_story_chapters`, `sr_story_questions`, `sr_story_answer_events` — are defined in `ssot-schemas/db-schemas/lemmadeck.sql` (the SSOT). Key point for this format:
 
 - `sr_story_chapters(id, story_id, ord, title, **md**, stage, stage_ord, section_start, section_end, pdf, status)` — the chapter body is stored as **Markdown** in `md` (app renders md → html). `stage`/`stage_ord` group chapters into a named **阶段** (pass `--stage`/`--stage-ord` to the saver; chapters of one stage share the label). `section_start`/`section_end` are the chapter's first/last global 节 numbers (computed by the saver from the `## <num>` headings — do not set by hand). `pdf` is a per-chapter print PDF **pre-rendered by the saver** (like `sr_lessons.pdf`), so the reader can download/print a chapter the same way math lessons print.
 - `sr_story_questions(id, chapter_id, ord, type, prompt, answer_mode, options, correct_index, answer)`.

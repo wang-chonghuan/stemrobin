@@ -11,23 +11,15 @@
 //   node .agents/skills/sr-voa1500/scripts/coverage.mjs [--json <out.json>]
 import { writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
-import postgres from 'postgres'
 import { loadVocab, checkPassage, repoRoot } from './vocab.mjs'
+import { contentSql, readRepoEnv } from '../../lib/content-db.mjs'
 
 const args = {}
 const argv = process.argv.slice(2)
 for (let i = 0; i < argv.length; i++) { const a = argv[i]; if (a.startsWith('--')) { args[a.slice(2)] = argv[i + 1]; i++ } }
 
 const root = repoRoot()
-const envPath = join(root, '.env')
-if (!existsSync(envPath)) { console.error('✗ .env not found'); process.exit(1) }
-const env = {}
-for (const line of readFileSync(envPath, 'utf8').split('\n')) {
-  const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m) env[m[1]] = m[2]
-}
-const sql = postgres(env.EASYAPP_DATABASE_URL || env.DATABASE_URL, {
-  ssl: 'require', max: 2, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' },
-})
+const sql = contentSql({ max: 2, env: readRepoEnv(root) })
 
 const vocab = loadVocab()
 const rows = await sql`

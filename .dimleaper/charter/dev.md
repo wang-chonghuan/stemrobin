@@ -31,9 +31,9 @@ cd app && npm run test && npm run build
 the `sr-math-lesson` / `sr-story` skills and persisted only via their `save-*.mjs` scripts, which read
 the repo-root `.env` and resolve `node_modules` from `.agents/skills/`.
 
-**DB schema** — `ssot-schemas/db-schemas/stemrobin.sql` is the SSOT by charter but is currently
-**stale and not to be applied**; see `arch.md`'s Key decisions. Inspect the live schema with the
-command in `runbook.md` instead.
+**DB schema** — `ssot-schemas/db-schemas/lemmadeck.sql` describes the live schema. It is generated
+from the database, never hand-edited and never applied to it; inspect the live schema with the
+command in `runbook.md`.
 
 ## Guidance
 

@@ -176,17 +176,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   if (!lessonId) { console.error('用法: --lesson <id> | --rehome w=lesson,… | --defer w,… | --status'); process.exit(1) }
 
   // Reconciling out of band reads what the lesson really teaches from the DB.
-  const root = repoRoot()
-  const envPath = join(root, '.env')
-  if (!existsSync(envPath)) { console.error('✗ .env not found at repo root'); process.exit(1) }
-  const env = {}
-  for (const line of readFileSync(envPath, 'utf8').split('\n')) {
-    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m) env[m[1]] = m[2]
-  }
-  const postgres = (await import('postgres')).default
-  const sql = postgres(env.EASYAPP_DATABASE_URL || env.DATABASE_URL, {
-    ssl: 'require', max: 2, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' },
-  })
+  const { contentSql, readRepoEnv } = await import('../../lib/content-db.mjs')
+  const sql = contentSql({ max: 2, env: readRepoEnv(repoRoot()) })
   try {
     const rows = await sql`select id, content from sr_lessons where subject = 'english'`
     const row = rows.find((r) => r.id === lessonId)

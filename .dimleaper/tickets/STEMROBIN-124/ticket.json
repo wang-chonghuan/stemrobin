@@ -1,0 +1,9 @@
+{
+  "ticket": "STEMROBIN-124",
+  "status": "open",
+  "worktree": "/Users/yong/work/stemrobin-ws/stemrobin--STEMROBIN-124",
+  "branch": "STEMROBIN-124-db-target",
+  "base": "e8a5c27",
+  "ports": { "web": 52124 },
+  "pr": null
+}

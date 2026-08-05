@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // sr-story cap5 — deterministic persistence for a 名人传记 chapter (Markdown) +
-// questions into the Azure easy-app Postgres (schema stemrobin-schema): upsert
+// questions into the shared content Postgres (schema lemmadeck-schema): upsert
 // sr_stories + sr_story_chapters (md + staged/section structure + print PDF), and
 // replace sr_story_questions for the chapter. Validates the Markdown shape, 正文
 // length, the numbered-节 structure, and GLOBAL section-number continuity (the gate
@@ -22,8 +22,8 @@
 import { execFileSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
-import postgres from 'postgres'
 import { marked } from 'marked'
+import { contentSql, readRepoEnv } from '../../lib/content-db.mjs'
 import { countHanzi, MIN_HANZI } from './wordcount.mjs'
 
 function fail(m) { console.error(`✗ ${m}`); process.exit(1) }
@@ -125,13 +125,8 @@ async function renderPdf(html) {
 }
 
 // --- DB ---
-const envPath = join(repoRoot, '.env')
-if (!existsSync(envPath)) fail('.env not found at repo root')
-const env = {}
-for (const line of readFileSync(envPath, 'utf8').split('\n')) { const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m) env[m[1]] = m[2] }
-const url = env.EASYAPP_DATABASE_URL || env.DATABASE_URL
-if (!url) fail('no EASYAPP_DATABASE_URL / DATABASE_URL in .env')
-const sql = postgres(url, { ssl: 'require', max: 3, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' } })
+const env = readRepoEnv(repoRoot)
+const sql = contentSql({ max: 3, env })
 
 async function main() {
   // Global section-number continuity: this chapter's first 节 must be the prior
