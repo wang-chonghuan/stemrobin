@@ -1,0 +1,109 @@
+{
+  "id": "english-u02-14",
+  "unit": 2,
+  "order": 14,
+  "title": "A Busy Day",
+  "scene": "从出门过马路到放学，串起路上、教室、上课、科目",
+  "theme": "忙碌的一天〔综合〕",
+  "form": "narrative",
+  "properNames": [
+    "Ana",
+    "Ben"
+  ],
+  "patterns": [
+    {
+      "id": "p1",
+      "template": "Today was a busy ___.",
+      "zh": "今天是忙碌的一___。"
+    },
+    {
+      "id": "p2",
+      "template": "First ___, then ___.",
+      "zh": "先___，然后___。"
+    },
+    {
+      "id": "p3",
+      "template": "Finally I ___.",
+      "zh": "最后我___。"
+    }
+  ],
+  "vocab": {
+    "today": "今天",
+    "talk": "说话；交谈",
+    "laugh": "笑",
+    "full": "满的",
+    "finally": "最后；终于",
+    "end": "结束；末尾"
+  },
+  "sentences": [
+    {
+      "text": "Today was a busy day for me.",
+      "gloss": "今天对我来说是忙碌的一天。",
+      "pattern": "p1",
+      "slots": [
+        "day"
+      ],
+      "targets": [
+        "today"
+      ]
+    },
+    {
+      "text": "First I got up early and washed my face, then I ate with my family.",
+      "gloss": "我先早早起床洗了脸，然后和家人一起吃饭。",
+      "pattern": "p2",
+      "slots": [
+        "got",
+        "ate"
+      ],
+      "targets": []
+    },
+    {
+      "text": "Ben and I walked to school, and we waited for the green light before we crossed the road.",
+      "gloss": "本和我走路去学校，过马路之前我们等了绿灯。",
+      "targets": []
+    },
+    {
+      "text": "We arrived at the gate, and we went up the stairs to our classroom.",
+      "gloss": "我们到了大门，走楼梯上去我们的教室。",
+      "targets": []
+    },
+    {
+      "text": "We had math and English, and I raised my hand to answer a question.",
+      "gloss": "我们上了数学和英语，我举手回答了一个问题。",
+      "targets": []
+    },
+    {
+      "text": "In the art lesson we talked and laughed, because our pictures were funny.",
+      "gloss": "美术课上我们又说又笑，因为我们的画很好笑。",
+      "targets": [
+        "talk",
+        "laugh"
+      ]
+    },
+    {
+      "text": "After school the bus was full, so I stood near the window.",
+      "gloss": "放学后公交车很满，所以我站在窗边。",
+      "targets": [
+        "full"
+      ]
+    },
+    {
+      "text": "Finally I got off near my home, and I was very tired.",
+      "gloss": "最后我在家附近下了车，我非常累。",
+      "pattern": "p3",
+      "slots": [
+        "got"
+      ],
+      "targets": [
+        "finally"
+      ]
+    },
+    {
+      "text": "At the end of the day I went to bed and thought about tomorrow.",
+      "gloss": "一天结束的时候，我上床睡觉，想着明天。",
+      "targets": [
+        "end"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "id": "english-u02-08",
+  "unit": 2,
+  "order": 8,
+  "title": "Crossing the Road",
+  "scene": "走去学校，过马路左右看、走人行道、等红灯",
+  "theme": "上学路上，过马路要小心〔对话〕",
+  "form": "dialogue",
+  "properNames": ["Ana", "Ben"],
+  "patterns": [
+    { "id": "p1", "template": "Look left and right before you ___.", "zh": "在你___之前，先看左看右。" },
+    { "id": "p2", "template": "Wait for the ___ light.", "zh": "等___灯。" },
+    { "id": "p3", "template": "Be careful!", "zh": "小心！" },
+    { "id": "p4", "template": "Cross at the ___.", "zh": "在___过马路。" }
+  ],
+  "vocab": {
+    "stop": "停下",
+    "road": "马路；道路",
+    "cross": "穿过；过（马路）",
+    "side": "边；一侧",
+    "street": "街道",
+    "danger": "危险（名词）",
+    "dangerous": "危险的",
+    "car": "小汽车",
+    "corner": "拐角；街角",
+    "traffic": "交通；车流",
+    "look": "看",
+    "red": "红色的",
+    "wait": "等",
+    "green": "绿色的",
+    "left": "左；左边的",
+    "right": "右；右边的",
+    "before": "在…之前",
+    "careful": "小心的",
+    "hold": "握住；抓着",
+    "slow": "慢的",
+    "sidewalk": "人行道",
+    "safe": "安全的"
+  },
+  "sentences": [
+    {
+      "text": "Stop, Ana! Do not walk into the road.",
+      "gloss": "停下，安娜！别走到马路上去。",
+      "speaker": "Ben",
+      "targets": ["stop", "road"]
+    },
+    {
+      "text": "I want to cross to the other side.",
+      "gloss": "我想过到马路那一边。",
+      "speaker": "Ana",
+      "targets": ["cross", "side"]
+    },
+    {
+      "text": "Not here. This street is dangerous, and the danger is the cars.",
+      "gloss": "这里不行。这条街很危险，危险来自那些车。",
+      "speaker": "Ben",
+      "targets": ["street", "dangerous", "danger", "car"]
+    },
+    {
+      "text": "Then where do we cross?",
+      "gloss": "那我们在哪里过？",
+      "speaker": "Ana",
+      "pattern": "p4",
+      "targets": []
+    },
+    {
+      "text": "We cross at the corner. Look at the traffic light.",
+      "gloss": "我们在拐角过。看那个红绿灯。",
+      "speaker": "Ben",
+      "pattern": "p4",
+      "slots": ["corner"],
+      "targets": ["corner", "traffic", "look"]
+    },
+    {
+      "text": "It is red now, so we wait.",
+      "gloss": "现在是红灯，所以我们要等。",
+      "speaker": "Ana",
+      "targets": ["red", "wait"]
+    },
+    {
+      "text": "Yes. We wait for the green light, and then we walk.",
+      "gloss": "对。我们等绿灯，然后再走。",
+      "speaker": "Ben",
+      "pattern": "p2",
+      "slots": ["green"],
+      "targets": ["green"]
+    },
+    {
+      "text": "Look left and right before you cross. Be careful!",
+      "gloss": "过马路之前先看左看右。小心！",
+      "speaker": "Ben",
+      "pattern": "p1",
+      "slots": ["cross"],
+      "targets": ["left", "right", "before", "careful"]
+    },
+    {
+      "text": "Hold my hand. That car is slow, but it does not stop. Now we are on the sidewalk, and we are safe.",
+      "gloss": "抓着我的手。那辆车开得慢，但它不停。现在我们在人行道上，安全了。",
+      "speaker": "Ben",
+      "targets": ["hold", "slow", "sidewalk", "safe"]
+    }
+  ]
+}
