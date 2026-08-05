@@ -1,0 +1,93 @@
+{
+  "id": "english-u02-09",
+  "unit": 2,
+  "order": 9,
+  "title": "How I Go to School",
+  "scene": "走路 / 坐公交 / 骑车上学",
+  "theme": "坐车去学校",
+  "form": "narrative",
+  "properNames": ["Ana", "Ben"],
+  "patterns": [
+    { "id": "p1", "template": "I go to school by ___.", "zh": "我坐___去上学。" },
+    { "id": "p2", "template": "I get on the ___.", "zh": "我上___。" },
+    { "id": "p3", "template": "How do you go to school?", "zh": "你怎么去上学？" }
+  ],
+  "vocab": {
+    "usually": "通常",
+    "bus": "公共汽车",
+    "far": "远",
+    "near": "近；靠近",
+    "often": "常常",
+    "bike": "自行车",
+    "ride": "骑",
+    "fast": "快的；快地",
+    "arrive": "到达",
+    "walk": "走路",
+    "station": "车站",
+    "stand": "站着",
+    "number": "号码；数字",
+    "get": "上（车）；到达；得到",
+    "on": "在…上；（上车）",
+    "ticket": "票",
+    "seat": "座位",
+    "down": "向下；坐下",
+    "truck": "卡车",
+    "drive": "开（车）",
+    "up": "向上",
+    "way": "方式；路"
+  },
+  "sentences": [
+    {
+      "text": "I usually go to school by bus, because my home is far from school.",
+      "gloss": "我通常坐公交车去上学，因为我家离学校很远。",
+      "pattern": "p1",
+      "slots": ["bus"],
+      "targets": ["usually", "bus", "far"]
+    },
+    {
+      "text": "My friend Ben lives near the school, so he often goes by bike.",
+      "gloss": "我的朋友本住在学校附近，所以他常常骑自行车去。",
+      "pattern": "p1",
+      "slots": ["bike"],
+      "targets": ["near", "often", "bike"]
+    },
+    {
+      "text": "He can ride fast, and he arrives before me.",
+      "gloss": "他能骑得很快，他比我先到。",
+      "targets": ["ride", "fast", "arrive"]
+    },
+    {
+      "text": "In the morning I walk to the bus station at the end of my street.",
+      "gloss": "早上我走到我们街尽头的公交车站。",
+      "targets": ["walk", "station"]
+    },
+    {
+      "text": "I stand there and wait with the other children.",
+      "gloss": "我站在那里，和其他孩子一起等。",
+      "targets": ["stand"]
+    },
+    {
+      "text": "Bus number eight comes, and I get on and show my ticket.",
+      "gloss": "八路公交车来了，我上车，出示我的票。",
+      "pattern": "p2",
+      "slots": ["bus"],
+      "targets": ["number", "get", "on", "ticket"]
+    },
+    {
+      "text": "I find a seat by the window and sit down.",
+      "gloss": "我在窗边找到一个座位，坐下来。",
+      "targets": ["seat", "down"]
+    },
+    {
+      "text": "A big truck drives up the road, so our bus is slow today.",
+      "gloss": "一辆大卡车开上马路，所以我们的公交车今天很慢。",
+      "targets": ["truck", "drive", "up"]
+    },
+    {
+      "text": "That is my way to school. How do you go to school?",
+      "gloss": "这就是我上学的路。你是怎么去上学的呢？",
+      "pattern": "p3",
+      "targets": ["way"]
+    }
+  ]
+}

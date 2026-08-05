@@ -1,0 +1,87 @@
+{
+  "id": "english-u02-12",
+  "unit": 2,
+  "order": 12,
+  "title": "My School Week",
+  "scene": "学哪些科目，哪天上什么，擅长什么",
+  "theme": "我的功课和课程表",
+  "form": "narrative",
+  "properNames": ["Ana", "Ben"],
+  "patterns": [
+    { "id": "p1", "template": "We have ___ on Monday.", "zh": "我们星期一上___。" },
+    { "id": "p2", "template": "My favorite subject is ___.", "zh": "我最喜欢的科目是___。" },
+    { "id": "p3", "template": "I am good at ___.", "zh": "我擅长___。" }
+  ],
+  "vocab": {
+    "day": "天；日子",
+    "monday": "星期一",
+    "friday": "星期五",
+    "math": "数学",
+    "tuesday": "星期二",
+    "science": "科学",
+    "wednesday": "星期三",
+    "english": "英语",
+    "learn": "学",
+    "thursday": "星期四",
+    "art": "美术；艺术",
+    "music": "音乐",
+    "lesson": "课",
+    "easy": "容易的",
+    "history": "历史",
+    "sport": "体育；运动",
+    "favorite": "最喜欢的",
+    "subject": "科目",
+    "good": "好的；擅长的",
+    "hard": "难的",
+    "class": "班；课",
+    "best": "最好的"
+  },
+  "sentences": [
+    {
+      "text": "We have five school days, from Monday to Friday.",
+      "gloss": "我们一周上五天学，从星期一到星期五。",
+      "targets": ["day", "monday", "friday"]
+    },
+    {
+      "text": "We have math on Monday, and we have science on Tuesday.",
+      "gloss": "我们星期一上数学，星期二上科学。",
+      "pattern": "p1",
+      "slots": ["math"],
+      "targets": ["math", "tuesday", "science"]
+    },
+    {
+      "text": "On Wednesday we have English, and I learn many new words.",
+      "gloss": "星期三我们上英语，我学到很多新词。",
+      "targets": ["wednesday", "english", "learn"]
+    },
+    {
+      "text": "On Thursday we have art and music, and the lessons are easy for me.",
+      "gloss": "星期四我们上美术和音乐，那些课对我来说很轻松。",
+      "targets": ["thursday", "art", "music", "lesson", "easy"]
+    },
+    {
+      "text": "On Friday we have history and sport.",
+      "gloss": "星期五我们上历史和体育。",
+      "targets": ["history", "sport"]
+    },
+    {
+      "text": "My favorite subject is science, because I want to know how things work.",
+      "gloss": "我最喜欢的科目是科学，因为我想知道东西是怎么运作的。",
+      "pattern": "p2",
+      "slots": ["science"],
+      "targets": ["favorite", "subject"]
+    },
+    {
+      "text": "I am good at English, but math is hard for me.",
+      "gloss": "我英语很好，但数学对我来说很难。",
+      "pattern": "p3",
+      "slots": ["English"],
+      "targets": ["good", "hard"]
+    },
+    {
+      "text": "Ben is the best in our class at math, and he helps me every week.",
+      "gloss": "本是我们班数学最好的，他每周都帮我。",
+      "targets": ["class", "best"]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "english-u02-10",
+  "unit": 2,
+  "order": 10,
+  "title": "My School and My Classroom",
+  "scene": "学校长什么样，教室里有什么",
+  "theme": "我的学校和教室",
+  "form": "narrative",
+  "properNames": ["Ana", "Ben"],
+  "patterns": [
+    { "id": "p1", "template": "My school is ___.", "zh": "我的学校是___的。" },
+    { "id": "p2", "template": "There are ___ in my classroom.", "zh": "我的教室里有___。" },
+    { "id": "p3", "template": "It is on the ___ floor.", "zh": "它在第___层。" }
+  ],
+  "vocab": {
+    "school": "学校",
+    "new": "新的",
+    "high": "高的",
+    "building": "楼；建筑",
+    "gate": "大门",
+    "library": "图书馆",
+    "our": "我们的",
+    "classroom": "教室",
+    "stair": "楼梯",
+    "many": "许多",
+    "sit": "坐",
+    "between": "在…之间",
+    "place": "位置；地方",
+    "front": "前面",
+    "back": "后面",
+    "board": "黑板",
+    "clock": "钟",
+    "picture": "图画；照片",
+    "color": "颜色",
+    "computer": "电脑",
+    "show": "展示；给…看",
+    "bright": "明亮的"
+  },
+  "sentences": [
+    {
+      "text": "My school is new, and it is a high building.",
+      "gloss": "我的学校是新的，是一幢高楼。",
+      "pattern": "p1",
+      "slots": ["new"],
+      "targets": ["school", "new", "high", "building"]
+    },
+    {
+      "text": "We come in at the big gate, and the library is on the first floor.",
+      "gloss": "我们从大门进去，图书馆在第一层。",
+      "pattern": "p3",
+      "slots": ["first"],
+      "targets": ["gate", "library"]
+    },
+    {
+      "text": "Our classroom is on the second floor, so we walk up the stairs.",
+      "gloss": "我们的教室在第二层，所以我们要走楼梯上去。",
+      "pattern": "p3",
+      "slots": ["second"],
+      "targets": ["our", "classroom", "stair"]
+    },
+    {
+      "text": "There are many desks in our classroom, and I sit between Ben and the window.",
+      "gloss": "我们教室里有许多课桌，我坐在本和窗户中间。",
+      "pattern": "p2",
+      "slots": ["desks"],
+      "targets": ["many", "sit", "between"]
+    },
+    {
+      "text": "My place is in the front, and Ben sits at the back.",
+      "gloss": "我的位置在前面，本坐在后面。",
+      "targets": ["place", "front", "back"]
+    },
+    {
+      "text": "There is a board in front of us, and the teacher writes on it.",
+      "gloss": "我们前面有一块黑板，老师在上面写字。",
+      "targets": ["board"]
+    },
+    {
+      "text": "A clock and some pictures are on the wall, and the pictures have many colors.",
+      "gloss": "墙上有一个钟和一些图画，那些图画有很多颜色。",
+      "targets": ["clock", "picture", "color"]
+    },
+    {
+      "text": "We have one computer, and the teacher can show us things on it.",
+      "gloss": "我们有一台电脑，老师可以用它给我们看东西。",
+      "targets": ["computer", "show"]
+    },
+    {
+      "text": "Our classroom is bright, and I like this place.",
+      "gloss": "我们的教室很明亮，我喜欢这个地方。",
+      "targets": ["bright"]
+    }
+  ]
+}

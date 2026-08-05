@@ -1,0 +1,92 @@
+{
+  "id": "english-u02-11",
+  "unit": 2,
+  "order": 11,
+  "title": "In Class",
+  "scene": "上课听老师；举手；听不懂就问",
+  "theme": "上课：听讲和提问",
+  "form": "narrative",
+  "properNames": ["Ana"],
+  "patterns": [
+    { "id": "p1", "template": "Please raise your ___.", "zh": "请举起你的___。" },
+    { "id": "p2", "template": "I do not understand.", "zh": "我不懂。" },
+    { "id": "p3", "template": "Can you say that again?", "zh": "你能再说一遍吗？" },
+    { "id": "p4", "template": "What does this ___ mean?", "zh": "这个___是什么意思？" }
+  ],
+  "vocab": {
+    "listen": "听",
+    "understand": "懂；理解",
+    "word": "单词；话",
+    "voice": "嗓音；声音",
+    "loud": "大声的",
+    "ask": "问",
+    "speak": "说话",
+    "know": "知道",
+    "answer": "答案；回答",
+    "raise": "举起",
+    "please": "请",
+    "say": "说",
+    "repeat": "重复",
+    "slowly": "慢慢地",
+    "mean": "意思是",
+    "question": "问题",
+    "tell": "告诉",
+    "write": "写",
+    "read": "读",
+    "sure": "确定的",
+    "thank": "谢谢",
+    "sorry": "抱歉的；难过的"
+  },
+  "sentences": [
+    {
+      "text": "In class I listen to my teacher, and I try to understand every word.",
+      "gloss": "上课的时候我听老师讲，我努力听懂每一个词。",
+      "targets": ["listen", "understand", "word"]
+    },
+    {
+      "text": "Her voice is not loud, so sometimes I ask her to speak up.",
+      "gloss": "她的声音不大，所以有时候我请她说大声一点。",
+      "targets": ["voice", "loud", "ask", "speak"]
+    },
+    {
+      "text": "When I do not know the answer, I raise my hand.",
+      "gloss": "当我不知道答案的时候，我就举手。",
+      "pattern": "p1",
+      "slots": ["hand"],
+      "targets": ["know", "answer", "raise"]
+    },
+    {
+      "text": "Please say that again, I say to her.",
+      "gloss": "「请再说一遍」，我对她说。",
+      "pattern": "p3",
+      "targets": ["please", "say"]
+    },
+    {
+      "text": "She can repeat it slowly, and then I understand.",
+      "gloss": "她可以慢慢地再讲一遍，然后我就懂了。",
+      "targets": ["repeat", "slowly"]
+    },
+    {
+      "text": "What does this word mean? That is a good question.",
+      "gloss": "这个词是什么意思？那是个好问题。",
+      "pattern": "p4",
+      "slots": ["word"],
+      "targets": ["mean", "question"]
+    },
+    {
+      "text": "She tells us the answer, and we write it in our books.",
+      "gloss": "她告诉我们答案，我们把它写在本子上。",
+      "targets": ["tell", "write"]
+    },
+    {
+      "text": "Then we read it together, and I am sure I know it now.",
+      "gloss": "然后我们一起读，我确定我现在会了。",
+      "targets": ["read", "sure"]
+    },
+    {
+      "text": "Thank you, I say. I am sorry, I did not understand before, but now I do.",
+      "gloss": "「谢谢您」，我说。「不好意思，我之前没听懂，但现在懂了。」",
+      "targets": ["thank", "sorry"]
+    }
+  ]
+}
