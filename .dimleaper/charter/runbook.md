@@ -73,9 +73,11 @@ cd app && npm run e2e            # Playwright (config app/playwright.config.ts)
 
 **Environment**
 
-- One env file: the repo-root `.env`, git-ignored. Required keys: `EASYAPP_DATABASE_URL` (runtime DB;
-  obtain from the n-easyapp shared PostgreSQL contract), plus the `AZURE_TTS_*` keys for 短文学英语
-  朗读 and `LEMMADECK_DATABASE_URL` for the LemmaDeck content library. Never commit it.
+- One env file: the repo-root `.env`, git-ignored. Required keys: **`LEMMADECK_DATABASE_URL`** — the
+  live content DB (shared Supabase project, schema `lemmadeck-schema`) — plus the `AZURE_TTS_*` keys
+  for 短文学英语 朗读. `EASYAPP_DATABASE_URL` still sits in `.env` and still connects, but it points at
+  the **retired** `stemrobin-schema`; nothing may be written through it (`arch.md` redline 5). Never
+  commit this file.
 - The app's SSR runtime auto-loads `.env` from its own project dir, so a git-ignored symlink
   `app/.env → ../.env` shares the single root `.env`. Recreate it after a fresh clone:
 
@@ -88,11 +90,13 @@ ln -sf ../.env app/.env
 - The content skills' `scripts/*.mjs` run directly with node and read the repo-root `.env`, resolving
   `postgres` from `.agents/skills/node_modules`.
 
-**Database**
+**Database** — the live content schema, read-only inspection:
 
 ```bash
-psql "$EASYAPP_DATABASE_URL" -f ssot-schemas/db-schemas/stemrobin.sql
+psql "$LEMMADECK_DATABASE_URL" -c 'set search_path to "lemmadeck-schema"; \dt'
 ```
+
+There is no local database: this connects to the same shared Supabase project production uses.
 
 ## Guidance
 
@@ -113,7 +117,7 @@ Every entry says which of the two it is — **forbidden outright**, or **not wit
 explicit approval**. An entry that needs a read-through to apply is not a redline; write it as
 Guidance instead (`format.md`, test 2).
 
-1. **Running a destructive statement against `$EASYAPP_DATABASE_URL`** — `DROP`, `TRUNCATE`, or an
+1. **Running a destructive statement against `$LEMMADECK_DATABASE_URL`** — `DROP`, `TRUNCATE`, or an
    unfiltered `DELETE`/`UPDATE` on any `sr_*` table — not without the human's explicit approval. The
-   local runbook and production point at the **same shared server**; there is no separate local DB to
-   be safe in.
+   local runbook and production point at the **same Supabase project and the same schema**; there is
+   no separate local DB to be safe in.

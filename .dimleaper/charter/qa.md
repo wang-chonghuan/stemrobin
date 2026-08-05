@@ -59,10 +59,10 @@ full-width (`resources/reference/DESIGN.md`).
 
 **Test accounts and data**
 
-- The **test learner** is `edwinbiz+clerk_test@hotmail.com` — `sr_users.id = 2`, created 2026-07-12
-  for exactly this purpose. Every logged-in check uses it.
-- `edwinbiz@hotmail.com` — `sr_users.id = 1` — is the **real learner**. It is not a test account; see
-  the redlines.
+- The **test learner** is `edwinbiz+clerk_test@hotmail.com` — `sr_users.user_id = 2` in
+  `lemmadeck-schema`, created for exactly this purpose. Every logged-in check uses it.
+- `edwinbiz@hotmail.com` — `sr_users.user_id = 1` — is the **real learner**. It is not a test
+  account; see the redlines.
 - **Getting a logged-in session without a password.** The session is an HMAC-signed cookie
   `sr_session = "<userId>.<hmac_sha256(SESSION_SECRET, userId)>"` (`app/src/lib/session.server.ts`).
   `SESSION_SECRET` is not set in the repo `.env`, so the local app uses the in-code default. Mint the
@@ -79,11 +79,15 @@ node -e "const c=require('crypto');console.log('2.'+c.createHmac('sha256', proce
 - Any rows a check creates (`sr_answer_events` and the like) are cleaned up afterwards, in the same
   script that made them.
 
-**Non-UI observation** — the DB is remote and shared; read it with psql, scoped to the schema:
+**Non-UI observation** — the DB is remote and shared; read it with psql, scoped to the live schema:
 
 ```bash
-psql "$EASYAPP_DATABASE_URL" -c 'select ... from "stemrobin-schema".sr_answer_events where user_id = 2 order by id desc limit 10;'
+psql "$LEMMADECK_DATABASE_URL" -c 'select * from "lemmadeck-schema".sr_answer_events where user_id = 2 order by created_at desc limit 10;'
 ```
+
+**Observe the database the app actually reads.** `EASYAPP_DATABASE_URL` / `stemrobin-schema` still
+connects and still holds a stale copy of some content — a check pointed there can pass on data the
+product cannot see (this is exactly how STEMROBIN-123's seven lessons looked saved and were invisible).
 
 ## Guidance
 
