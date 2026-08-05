@@ -1,9 +1,11 @@
 {
   "ticket": "STEMROBIN-123",
-  "status": "open",
+  "status": "closed",
   "worktree": "/Users/yong/work/stemrobin-ws/stemrobin--STEMROBIN-123",
   "branch": "STEMROBIN-123-english-unit-02",
   "base": "0d172b9",
-  "ports": { "web": 52123 },
+  "ports": {
+    "web": 52123
+  },
   "pr": null
 }
