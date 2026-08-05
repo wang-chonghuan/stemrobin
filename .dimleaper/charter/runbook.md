@@ -8,61 +8,100 @@ This is the file acceptance verification uses to start the product, so an out-of
 silently blocks every ticket. **Read it at the moment you need it and run it as written** — never
 from memory, never restated into a plan or a ticket artifact. Keep it true.
 
+> Migrated 2026-08-05 from `.prodfarm/charter/runbook.md`. Its Deploy and container-log sections moved
+> to `devops.md`.
+
 ## Contract
 
-<What actually runs: the services, which of them are long-running, what each one serves. Two lines.
-Enough that "start the product" is unambiguous when the project has more than one process.>
+**One long-running service**: the tanstack-start web app in `app/`, SSR — it serves both pages and
+server functions, there is no separate API process. "Start the product" means the vite dev server on
+this project's fixed port **3200**. The DB it talks to is remote (Azure easy-app shared PostgreSQL),
+not something started locally.
+
+Content generation (`sr-math-lesson`, `sr-story`, `sr-lesson`) runs as one-off node scripts, not as a
+service.
 
 ## Tools
 
 **Install**
 
 ```bash
-<command>
+cd app && npm install
+```
+
+The content skills install separately, once:
+
+```bash
+cd .agents/skills && npm install
 ```
 
 **Run the dev server**
 
-Every long-running service starts on its fixed main port from `.dimleaper/project.json`:
+The fixed main port **3200** is set in `app/vite.config.ts`, which is the single source of truth —
+**do not pass `--port`** in the main checkout:
 
 ```bash
-<command>
+cd app && npm run dev     # http://localhost:3200
 ```
 
-For a ticket worktree, resolve every service's port with:
+For a ticket worktree, resolve the port with:
 
 ```bash
 python3 <n-dimleaper-skill>/scripts/ports.py .dimleaper/project.json ticket <ticket-id>
 ```
 
-State how each returned port is passed into its service — the env var or flag:
+and pass it to vite explicitly (this is the one case where `--port` is correct, because the worktree
+must not collide with the main checkout's 3200):
 
 ```bash
-<frontend command with the web port injected>
-<backend command with the api port injected>
+cd app && npm run dev -- --port <resolved-web-port>
 ```
 
 **Build**
 
 ```bash
-<command>
+cd app && npm run build          # output app/.output/
+cd app && npm run start          # serve the built output (app/.output/server/index.mjs)
 ```
 
 **Run tests**
 
 ```bash
-<command>
+cd app && npm run test           # vitest run
+cd app && npm run e2e            # Playwright (config app/playwright.config.ts)
 ```
 
 **Environment**
 
-<Which env files exist, which keys are required, and where to get their values. Never write actual
-secrets here.>
+- One env file: the repo-root `.env`, git-ignored. Required keys: `EASYAPP_DATABASE_URL` (runtime DB;
+  obtain from the n-easyapp shared PostgreSQL contract), plus the `AZURE_TTS_*` keys for 短文学英语
+  朗读 and `LEMMADECK_DATABASE_URL` for the LemmaDeck content library. Never commit it.
+- The app's SSR runtime auto-loads `.env` from its own project dir, so a git-ignored symlink
+  `app/.env → ../.env` shares the single root `.env`. Recreate it after a fresh clone:
+
+```bash
+ln -sf ../.env app/.env
+```
+
+  The deployed container gets its env from Azure, not from this file.
+
+- The content skills' `scripts/*.mjs` run directly with node and read the repo-root `.env`, resolving
+  `postgres` from `.agents/skills/node_modules`.
+
+**Database**
+
+```bash
+psql "$EASYAPP_DATABASE_URL" -f ssot-schemas/db-schemas/stemrobin.sql
+```
 
 ## Guidance
 
-**Troubleshooting** — <the failures that actually happen and what to do about them. A startup failure
-is a stop and a report, never an acceptance result.>
+**Troubleshooting**
+
+- A missing `app/.env` symlink shows up as the app starting but every DB-backed page failing. Recreate
+  it with the `ln -sf` above rather than copying `.env`.
+- A startup failure is a **stop and a report**, never an acceptance result. Do not run Playwright into
+  `ERR_CONNECTION_REFUSED` and record what comes back.
 
 ## Redlines
 
@@ -74,6 +113,7 @@ Every entry says which of the two it is — **forbidden outright**, or **not wit
 explicit approval**. An entry that needs a read-through to apply is not a redline; write it as
 Guidance instead (`format.md`, test 2).
 
-1. **<A command that must never be run against a shared or production environment>** — <which of the
-   two>. Delete the entry if the project has none — **keep the heading**, empty; the flow looks this
-   section up by name and an empty one is the answer "nothing forbidden here".
+1. **Running a destructive statement against `$EASYAPP_DATABASE_URL`** — `DROP`, `TRUNCATE`, or an
+   unfiltered `DELETE`/`UPDATE` on any `sr_*` table — not without the human's explicit approval. The
+   local runbook and production point at the **same shared server**; there is no separate local DB to
+   be safe in.

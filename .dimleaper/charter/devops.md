@@ -8,53 +8,71 @@ below right after merging, so this file has to be executable as written — an a
 without asking. Read the commands at the moment of deploying and run them as written; a deploy
 command recalled from earlier in the run is the one that is out of date.
 
+> Migrated 2026-08-05 from `.prodfarm/charter/runbook.md` (Deploy, Troubleshoot) and
+> `.prodfarm/charter/redlines.md` (the spend threshold).
+
 ## Contract
 
 **Environments**
 
-<What exists — production, staging, preview — and their URLs.>
+One environment: **production**. There is no staging and no preview environment.
+
+- **Live URL: https://lemmadeck.com** (`www` 301s to the apex).
+- Origin still answers at
+  `https://ca-stemrobin.kindsmoke-4d84c417.northeurope.azurecontainerapps.io`.
 
 **Where it runs**
 
-<The platform and the shape of the deployed thing: the service, the image, the domain that points at
-it. Enough that "deployed" is unambiguous.>
-
-**n-easyapp is not assumed.** Most projects deploy their own way; write that way here. Use n-easyapp
-(and the Azure resources behind it) only when the human explicitly asks for it — then record the
-easyapp project name here and in `.dimleaper/project.json` under `deploy`.
+- Azure Container Apps app **`ca-stemrobin`**, resource group `rg-easyapp-shared`, on the n-easyapp
+  substrate (shared environment `cae-easyapp-shared`). n-easyapp **is** this project's deploy path —
+  the easyapp project name is `stemrobin`, also recorded in `.dimleaper/project.json` under `deploy`.
+- Image `acreasyapp.azurecr.io/stemrobin:latest`, built by `az acr build`.
+- The app runs at **`--min-replicas 1`** — no scale-to-zero.
+- **Build invariant**: n-easyapp hard-codes the Dockerfile and the build context at the **repo root**.
+  The root `Dockerfile` builds the standalone app: `npm ci` from `app/`'s manifest, `npm run build`,
+  then ships only `app/.output`.
+- **Domain layout** (n-golive cap2, STEMROBIN-111): Cloudflare zone `lemmadeck.com` —
+  `A @ → 20.54.18.105` **DNS only (grey; the Azure managed cert needs to reach the origin)**,
+  `TXT asuid` = the container app's customDomainVerificationId, `CNAME www → lemmadeck.com`
+  **proxied (orange)** plus a redirect rule. Cert `mc-cae-easyapp-sh-lemmadeck-com-3571` (DigiCert,
+  auto-renewing) is bound `SniEnabled` on the shared environment.
+- Retired 2026-07-25: `mynatree.com` and `stemrobin.com` serve nothing — no DNS records, no hostname
+  binding. Their Cloudflare zones are still in the account (re-pointable).
 
 ## Tools
 
-**Deploy**
+**Deploy** — the routine and only path is an n-easyapp **redeploy** of project `stemrobin`: it builds
+`acreasyapp.azurecr.io/stemrobin:latest` via `az acr build` and updates the container app. Invoke the
+**n-easyapp** skill's redeploy capability for project `stemrobin`; do not hand-assemble the `az`
+commands.
 
-<The actual deploy command or pipeline, exactly as invoked. A first-time deploy and a redeploy are
-usually different — write both, and say which is the routine one.>
-
-```bash
-<command>
-```
-
-**Post-deploy check**
-
-<The URL to hit and what a healthy response looks like. "The deploy command exited 0" is not
-confirmation — the check below is what says a deploy took.>
+**Post-deploy check** — the deploy is confirmed by the live site answering, not by the command's exit
+code:
 
 ```bash
-<command>
+curl -sS -o /dev/null -w '%{http_code}\n' https://lemmadeck.com/
 ```
 
-**Secrets and configuration**
+Healthy is `200`. Then open the page and confirm the change that was deployed is visible.
 
-<Where runtime configuration lives and how it is changed. Never the values.>
+**Secrets and configuration** — runtime env comes from Azure (the container app's env vars/secrets),
+not from the repo `.env`. Change it through n-easyapp / `az containerapp`, never by baking a value
+into the image.
 
 **Operations**
 
-<Logs, monitoring, cron and scheduled jobs, rollback — each as the command that does it.>
+```bash
+az containerapp logs show -n ca-stemrobin -g rg-easyapp-shared --tail 50
+```
 
 ## Guidance
 
-<How to approach an operational change here: what to try before escalating, which failure means stop
-rather than retry, what a rollback must not do.>
+A deploy here is a plain image rebuild-and-swap. If the diff being deployed contains anything more
+than application code — a schema change, a Dockerfile or infra change, a new env var the container
+does not yet have — that is not a routine redeploy; see the redlines below and stop.
+
+An `az` command failing on authentication is a stop (re-auth is the human's), not something to retry
+with a different subscription or account.
 
 ## Redlines
 
@@ -68,14 +86,20 @@ Guidance instead (`format.md`, test 2).
 
 Deployment writes to external systems, so this is the section cap4 looks up before it deploys.
 
-1. **Creating or deleting cloud resources** — not without the human's explicit approval.
+1. **Creating or deleting cloud resources beyond the established n-easyapp redeploy path** — not
+   without the human's explicit approval.
 2. **Deploying for the first time** — not without the human's explicit approval. Lookupable: the
-   service has no existing revision / no prior deploy recorded here.
-3. **A deploy that is not a plain image swap** — <name the concrete shapes for this project, so this
-   is looked up and not judged: a schema migration in the diff, a change to the infrastructure files,
-   a changed ingress or scaling configuration, a changed secret name>. Not without the human's
-   explicit approval. **"Is this destructive?" is not a question to answer at deploy time** — if you
-   cannot tell from the list, that itself is the stop.
-4. **Pointing a production domain at anything new** — not without the human's explicit approval.
-5. **Reporting a deploy as done without running the post-deploy check** — forbidden outright.
-6. **<Anything about this project's infrastructure that must never happen>** — <which of the two>.
+   service has no existing revision.
+3. **A deploy that is not a plain image swap** — not without the human's explicit approval. The
+   concrete shapes, so this is looked up and not judged: the diff touches
+   `ssot-schemas/db-schemas/stemrobin.sql`, the root `Dockerfile`, anything under `infra/`, or adds a
+   new required env key. **"Is this destructive?" is not a question to answer at deploy time** — if
+   you cannot tell from this list, that itself is the stop.
+4. **Moving the root `Dockerfile`, or changing its build context away from the repo root** —
+   forbidden outright. n-easyapp hard-codes both; moving it breaks every deploy.
+5. **Setting the container app to scale to zero** (`--min-replicas 0`) — forbidden outright.
+6. **Pointing a production domain at anything new**, or changing the `lemmadeck.com` Cloudflare
+   records or the proxy (grey/orange) state — not without the human's explicit approval.
+7. **Reporting a deploy as done without running the post-deploy check** — forbidden outright.
+8. **Any action incurring new recurring cost, or a one-off cost above $5** — not without the human's
+   explicit approval.

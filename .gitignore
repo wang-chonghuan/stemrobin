@@ -156,12 +156,6 @@ tmp/
 /playwright/.auth/
 /.playwright-cli/
 
-# AutoQA
-.autoqa/.auth/
-.autoqa/test-results/
-.autoqa/playwright-report/
-.autoqa/blob-report/
-
 # Local-only source material (Soviet 10-year-school textbooks: 207 MB of scans)
 resources/soviet10years/
 

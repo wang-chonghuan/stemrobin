@@ -6,78 +6,94 @@ alternatives to what is written here. Section shape is fixed — see `format.md`
 Anything this file does not cover is still a design decision: it is settled at the **grill**, by the
 human, before implementation. Never invented while coding.
 
+> `.prodfarm/charter/` had no UI file — the design system lives in `resources/reference/DESIGN.md`
+> and has since before this harness. This file **points at it** rather than restating it, per
+> `format.md` ("a restated value is a stale value waiting to happen"). Filled in 2026-08-05; the
+> parts marked *observed* describe how the repo is today, not a decision the human has recorded.
+
 ## Contract
 
-**Styling stack — one of two, decided per project**
+**Styling stack — Tailwind**
 
-The default is **Astryx + StyleX**. **Tailwind is the alternative, and only when the human explicitly
-chose it for this project.** The two are exclusive — a project runs one stack, never a mixture. Under
-the default, custom components are styled with **StyleX**; under Tailwind, Astryx and StyleX are not
-used at all.
-
-<Delete the stack this project does not use, so the file states one answer rather than a choice.>
-
-**Component structure — atomic design, in a dedicated directory**
-
-```text
-<components-root>/
-  atoms/        # indivisible primitives — button, input, icon, label
-  molecules/    # small compositions of atoms with one job — field, search bar, card header
-  organisms/    # self-contained sections composed of molecules and atoms
-```
-
-<Fill in the actual `<components-root>` path for this project.>
-
-**Tokens**
-
-Every style value is a token: colours, spacing, typography, radii, shadows, z-index, motion — defined
-once and referenced by name.
-
-<List the registries by their real paths and the token names an agent may use, so it can reference
-them rather than approximate them. If the design system has a closed vocabulary — a fixed set of
-typography roles, a fixed palette — state it here in full, with the values. This is the section a
-static check is written against.>
-
-**Layout and responsive**
-
-<Breakpoints, grid, and the viewports every UI change must work at.>
+This project runs **Tailwind CSS 4** (+ tw-animate-css) with shadcn components. The n-dimleaper
+default (Astryx + StyleX) does **not** apply here: the two stacks are exclusive, and this project
+chose Tailwind. Astryx and StyleX are not used at all.
 
 **Design source of truth**
 
-<A prototype, design file, or reference implementation, and how to read it — if one exists beyond
-the component library. If a document has been superseded, say so here: a retired document that is
-still described as current gets cited for years.>
+`resources/reference/DESIGN.md` is the design system of record — palette, radii, layout metrics,
+typography, per-component specs, and lesson-section labelling. **Read
+`resources/reference/DESIGN.guide.md` first**; `DESIGN.md` itself says so, and it explains how the
+document is meant to be read and written.
+
+Where a value in `DESIGN.md` and the code disagree, **`app/src/styles/app.css` is the source of truth
+for the value** — that is where the tokens actually live — and the disagreement is drift to report.
+
+**Tokens**
+
+Every style value is a token. The registries, by path:
+
+- `app/src/styles/app.css` — the `--sr-*` CSS variables. The implementation SSOT.
+- `resources/reference/DESIGN.md` — the documented vocabulary the variables realize.
+
+The palette is closed: **exactly three colors carry the identity — teal-blue, green, and pure
+white — over a neutral ink scale. No additional hues.** The full list of names and values is in
+`DESIGN.md`; do not copy it here and do not approximate a colour that is not in it. `--sr-font` is
+the single global font token (Inter, system sans fallback); display, body and numeric roles reference
+it rather than defining their own family. The shadcn `--primary` token is mapped to the teal-blue so
+default `Button` components match.
+
+**Layout and responsive**
+
+App-shell layout, fixed 236px catalog, 860px mobile breakpoint, 100dvh shell, compact spacing scale —
+all specified in `DESIGN.md`. Every UI change is checked at both viewports named in `qa.md`.
+
+**Component structure** — *observed*: components are flat under `app/src/components/` (e.g.
+`catalog.tsx`, `card-reader.tsx`, `quiz-drawer.tsx`), with shadcn primitives alongside. The
+n-dimleaper template's atoms/molecules/organisms layout is **not** in use.
+TODO(human) — decide whether to keep the flat layout or move to atomic design. Until then, a new
+component goes next to its peers in `app/src/components/` and this file is not evidence for a
+restructure.
 
 ## Tools
 
-<The static check that enforces the contract above, by path, and the command that runs it. Naming it
-here is what lets every rule below stay short: a rule a script can fail is worth more than the same
-rule in bold.>
+There is no UI-specific static check today. The mechanical defence is the project-wide one in
+`dev.md`:
 
 ```bash
-<the command — usually the build or the test run the check hangs off>
+cd app && npm run test && npm run build
 ```
 
-<The component library's docs URL. The design reference's path.>
+TODO(human) — a check that fails on a raw hex colour or an off-palette hue in `app/src/` would be
+worth more than any of the prose above. Until it exists, the palette rule is Guidance enforced by the
+author.
+
+Design reference: `resources/reference/DESIGN.guide.md`, then `resources/reference/DESIGN.md`.
+shadcn/ui docs: https://ui.shadcn.com
 
 ## Guidance
 
 Binding. Followed while writing, judged by the author — nothing reviews a diff against this section.
 
-**Choosing components.** Reach for a custom component only when the library genuinely has nothing
-that fits — not because the official one needs configuring, and not because writing one looks faster.
+**Choosing components.** Reach for a custom component only when shadcn genuinely has nothing that
+fits — not because the official one needs configuring, and not because writing one looks faster.
 "There is no equivalent" is a claim to check against the docs, not to assume.
 
-**Placing a component.** Put a new one at the lowest atomic level that fits. An "organism" that is
-really one atom with props is a smell; so is an atom that reaches for page state.
+**Choosing a token.** Use the `--sr-*` variable, never a raw hex value and never a Tailwind palette
+colour that happens to look close. A missing token is a **stop**, not a reason to compose one out of
+primitives.
 
-**Choosing a token.** <Which role to use when two look plausible — the distinctions people get wrong.
-A missing token is a stop, not a reason to compose one out of primitives.>
+**The look this product is going for.** Compact, clean, school-serious: a pure white workspace, dense
+practical hierarchy, quiet focus. No mascots, no marketing layout, no decorative gradients beyond the
+single brand mark, no hero sections, no nested cards. Density over whitespace — but prose stays
+readable (line-height ~1.5–1.6). `DESIGN.md` has the specifics.
 
-**Interaction states.** <Loading, empty, error, disabled, focus. The states that get forgotten and
-then reported as bugs.>
+**Interaction states.** Loading, empty, error, disabled and focus are part of the change, not a
+follow-up. `DESIGN.md` specifies the empty state (centred icon tile, short display heading, one dim
+sentence).
 
-**Content and tone.** <How text in the product reads.>
+**Content and tone.** The reader is an 8-year-old working alone. Labels are plain and short; the four
+lesson-section labels are fixed per subject in `DESIGN.md` and are not reworded.
 
 ## Redlines
 
@@ -90,10 +106,12 @@ explicit approval**. An entry that needs a read-through to apply is not a redlin
 Guidance instead (`format.md`, test 2).
 
 1. **Changing a governed token registry** — adding, renaming, removing or retuning a value — not
-   without the human's explicit approval. The registries are, by path, so this can be matched against
-   a diff without judgement: `<path>`, `<path>`, `<path>` (the same paths listed in `## Contract`).
-   A missing token is a stop; reaching for the component library's own primitive instead of asking is
-   the evasion this entry exists to name.
-2. **<A styling mechanism this project forbids>** — forbidden outright.
-3. **<Overriding a governed value at a call site>** — forbidden outright. <Name the props or the
-   properties, so crossing it is visible without reading the component.>
+   without the human's explicit approval. The registries, by path, so this can be matched against a
+   diff without judgement: `app/src/styles/app.css`, `resources/reference/DESIGN.md`.
+2. **Introducing a colour outside the three-colour palette plus the ink scale** — forbidden outright.
+   Detectable as a raw hex or an `rgb(`/`hsl(` literal added under `app/src/` outside those two files.
+3. **Recreating the brand mark** — forbidden outright. It is `app/public/logo-mark.png` (derived from
+   `resources/lemmadeck-logo.png`); never substitute a Lucide glyph or a CSS shape, and never restretch
+   or re-crop it.
+4. **Introducing a second styling mechanism** — StyleX, Astryx, CSS-in-JS, or a new global stylesheet —
+   forbidden outright. Tailwind plus `app/src/styles/app.css` is the whole of it.
