@@ -17,8 +17,8 @@
 //     "sentences":[ { "text":"...", "gloss":"中文", "targets":["walk","school"] } ] }
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
-import postgres from 'postgres'
 import { loadVocab, checkPassage, words, resolve, repoRoot } from './vocab.mjs'
+import { contentSql, readRepoEnv } from '../../lib/content-db.mjs'
 import { reconcileLesson, printReconcileReport, planFor } from './reconcile.mjs'
 import { buildPracticeTrack, introText, PRACTICE_CONFIG, PRACTICE_NODE } from './practice-audio.mjs'
 import { synthesize } from './tts.mjs'
@@ -38,14 +38,7 @@ const root = repoRoot()
 const spec = JSON.parse(readFileSync(args.spec, 'utf8'))
 for (const k of ['id', 'unit', 'order', 'title', 'sentences']) if (spec[k] === undefined) fail(`spec missing "${k}"`)
 
-const envPath = join(root, '.env')
-if (!existsSync(envPath)) fail('.env not found at repo root')
-const env = {}
-for (const line of readFileSync(envPath, 'utf8').split('\n')) {
-  const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m) env[m[1]] = m[2]
-}
-const dbUrl = env.EASYAPP_DATABASE_URL || env.DATABASE_URL
-if (!dbUrl) fail('no EASYAPP_DATABASE_URL / DATABASE_URL in .env')
+const env = readRepoEnv(root)
 
 // ── validate ───────────────────────────────────────────────────────────────
 const vocab = loadVocab()
@@ -252,7 +245,7 @@ console.log(`  practice ${Math.round(practice.seconds)}s / ${Math.round(practice
 console.log(`· 单词发音 (全课程共享) …`)
 const wordAudio = []
 {
-  const sqlProbe = postgres(dbUrl, { ssl: 'require', max: 2, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' } })
+  const sqlProbe = contentSql({ max: 2, env })
   try {
     const have = new Set((await sqlProbe`select word from sr_word_audio`).map((r) => r.word))
     const need = vocabList.map((v) => v.en).filter((w) => !have.has(w.toLowerCase()))
@@ -262,7 +255,7 @@ const wordAudio = []
 }
 
 // ── persist ────────────────────────────────────────────────────────────────
-const sql = postgres(dbUrl, { ssl: 'require', max: 3, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' } })
+const sql = contentSql({ max: 3, env })
 try {
   await sql.begin(async (tx) => {
     await tx`

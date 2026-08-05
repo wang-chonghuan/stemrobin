@@ -4,7 +4,7 @@ Store a gated chapter (Markdown) and its questions into the story tables. Determ
 
 ## Prerequisite
 
-The story tables live in `ssot-schemas/db-schemas/stemrobin.sql` and are applied to the easy-app Postgres `stemrobin-schema`. `sr_story_chapters` stores the chapter body as Markdown in the **`md`** column. If the saver reports a missing table/column (fresh DB), re-apply once: `psql "$EASYAPP_DATABASE_URL" -f ssot-schemas/db-schemas/stemrobin.sql`, then rerun.
+The story tables are described by `ssot-schemas/db-schemas/lemmadeck.sql` and live in the shared Supabase schema `lemmadeck-schema`. `sr_story_chapters` stores the chapter body as Markdown in the **`md`** column. If the saver reports a missing table or column, that is a mismatch between the DDL file and the live schema — report it, do not apply the DDL to the shared database.
 
 ## Steps
 

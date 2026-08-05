@@ -101,17 +101,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     process.exit(1)
   }
 
-  const root = repoRoot()
-  const envPath = join(root, '.env')
-  if (!existsSync(envPath)) { console.error('✗ .env not found at repo root'); process.exit(1) }
-  const env = {}
-  for (const line of readFileSync(envPath, 'utf8').split('\n')) {
-    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/); if (m) env[m[1]] = m[2]
-  }
-  const postgres = (await import('postgres')).default
-  const sql = postgres(env.EASYAPP_DATABASE_URL || env.DATABASE_URL, {
-    ssl: 'require', max: 3, idle_timeout: 20, connection: { search_path: '"stemrobin-schema"' },
-  })
+  const { contentSql, readRepoEnv } = await import('../../lib/content-db.mjs')
+  const sql = contentSql({ max: 3, env: readRepoEnv(repoRoot()) })
   try {
     const lessons = await sql`
       select id, lesson_order, title, content from sr_lessons
