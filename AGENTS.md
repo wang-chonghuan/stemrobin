@@ -32,3 +32,9 @@ Read the routed file directly; don't duplicate its content here.
 ## Frozen directories
 
 - `.evodocs/constitution.md` and `.evodocs/index.json` are legacy read-only history. Add no new dependencies on them; route persistent intent to `.prodfarm/charter/` and machine-current module facts to `.evodocs/modules/`.
+
+## Project context
+
+Read `.dimleaper/readme.md` first — it routes to this project's intent (`.dimleaper/charter/`) and
+its ticket workflow. No product change without a ticket in the backend `.dimleaper/project.json` names;
+use the `n-dimleaper` skill.
