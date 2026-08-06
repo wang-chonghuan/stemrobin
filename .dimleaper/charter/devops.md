@@ -90,11 +90,20 @@ Deployment writes to external systems, so this is the section cap4 looks up befo
    without the human's explicit approval.
 2. **Deploying for the first time** — not without the human's explicit approval. Lookupable: the
    service has no existing revision.
-3. **A deploy that is not a plain image swap** — not without the human's explicit approval. The
-   concrete shapes, so this is looked up and not judged: the diff touches
-   `ssot-schemas/db-schemas/lemmadeck.sql`, the root `Dockerfile`, anything under `infra/`, or adds a
-   new required env key. **"Is this destructive?" is not a question to answer at deploy time** — if
-   you cannot tell from this list, that itself is the stop.
+3. **A deploy that changes the runtime by more than the image's application code** — not without the
+   human's explicit approval. The concrete shapes, so this is looked up and not judged:
+   - a **schema statement was run** against the live database as part of this work (the DDL file
+     `ssot-schemas/db-schemas/lemmadeck.sql` merely *describes* the schema and never ships — editing
+     it is not on this list; **applying** anything to the database is);
+   - the root `Dockerfile` or anything under `infra/` changed;
+   - the container needs an env key it does not already have (`az containerapp show … env[].name`);
+   - the ingress or the scaling configuration changed.
+
+   **"Is this destructive?" is not a question to answer at deploy time** — if you cannot tell from
+   this list, that itself is the stop. (Reworded 2026-08-06 after STEMROBIN-123: the old entry
+   triggered on *the diff touching* the DDL file, which stopped a deploy whose runtime effect was
+   nil. A redline that fires on a file nobody ships teaches people to wave it through, which is the
+   one thing a redline must never become.)
 4. **Moving the root `Dockerfile`, or changing its build context away from the repo root** —
    forbidden outright. n-easyapp hard-codes both; moving it breaks every deploy.
 5. **Setting the container app to scale to zero** (`--min-replicas 0`) — forbidden outright.

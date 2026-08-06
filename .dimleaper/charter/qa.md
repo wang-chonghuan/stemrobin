@@ -21,8 +21,12 @@ covering all of a ticket's criteria is the normal case, with a screenshot per cr
 the expected region renders · the action is accepted · the result appears in the right place ·
 loading resolves · no error state · the value has the right shape.
 
-**A chore has no port and no playwright check** — its proof is the observation command the ticket
-names.
+**A chore's proof is whatever settles its criterion** — usually the observation command the ticket
+names, and then it needs no port and no browser. But a criterion that is only visible in the running
+product is checked in the running product, chore or not. On this project that case is the normal
+one: content chores write rows the app renders, and a query proves the row landed while proving
+nothing about whether the product shows it — STEMROBIN-123 saved seven lessons that were invisible
+in the product, and only opening the page said so.
 
 **`app/tests/` is not this flow's business.** It holds the project's own long-lived Playwright specs
 (`cd app && npm run e2e`). A ticket's AC check is a throwaway script under the ticket's `tmp/`, not a
@@ -150,8 +154,13 @@ Guidance instead (`format.md`, test 2).
    environment or external limit that stopped the run goes into `handoff.md` exactly as it happened.
 2. **Writing to the real learner's data from a test** — forbidden outright. That is
    `sr_users.id = 1` / `edwinbiz@hotmail.com`; tests use `id = 2` and nothing else.
-3. **Running a check against https://lemmadeck.com** — forbidden outright. Acceptance runs against
-   localhost. Production is looked at, never driven.
+3. **Driving https://lemmadeck.com** — forbidden outright. That means signing in, clicking, sub­mitting,
+   or anything that writes. Acceptance always runs against localhost.
+   **A read-only GET is not driving** and is not on this list: `devops.md`'s post-deploy check
+   requires looking at the live site, and fetching a page or an asset to confirm a deploy took is
+   exactly that. (Narrowed 2026-08-06: the entry used to forbid "running a check against" production
+   outright, which contradicted the post-deploy check the same charter mandates. Two rules that
+   cannot both be obeyed get one of them ignored, and nobody decides which.)
 4. **Writing a real password, session secret, or DB connection string into a check script, a ticket
    artifact, or this file** — forbidden outright. The cookie-minting command above is the supported
    way in.
