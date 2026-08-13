@@ -1,17 +1,17 @@
-# .dimleaper
+# .intentfold
 
 Read this at the start of every session in this repo, and revisit it whenever you have been away from
 it for a while.
 
-*Machine-owned: `n-dimleaper` cap1 rewrites this file from its template. It says where things live, not
+*Machine-owned: `intentfold` cap1 rewrites this file from its template. It says where things live, not
 what this project wants — that is `charter/`, which is yours and which cap1 only creates when absent and never reopens once it exists. Do not
 hand-edit here; edits belong in the charter or in the skill.*
 
 ## Read in this order
 
-1. `.dimleaper/project.json` — project name, main branch, deploy target, ticket backend (`plane` or
+1. `.intentfold/project.json` — project name, main branch, deploy target, ticket backend (`plane` or
    `linear`) with its project URL, and each service's fixed main port plus ticket prefix.
-2. `.dimleaper/charter/` — **every dimension file in it**. This is binding intent, not background
+2. `.intentfold/charter/` — **every dimension file in it**. This is binding intent, not background
    reading:
    - `product.md` — what this product is and who it is for
    - `dev.md` — development rules a coding agent must obey
@@ -33,7 +33,7 @@ hand-edit here; edits belong in the charter or in the skill.*
 
    Hard prohibitions live at the end of the file they belong to. There is no separate redline file.
 3. The ticket you are working on, live from the ticket backend — never from a local copy.
-4. `.dimleaper/tickets/<ticket-id>/` — the artifacts of the ticket in hand.
+4. `.intentfold/tickets/<ticket-id>/` — the artifacts of the ticket in hand.
 
 ## What lives where
 
@@ -52,7 +52,7 @@ hand-edit here; edits belong in the charter or in the skill.*
 
 ## How work happens
 
-Through the **n-dimleaper** skill, which owns the workflow — this file does not repeat it. One ticket
+Through the **intentfold** skill, which owns the workflow — this file does not repeat it. One ticket
 at a time: worktree → plan/ac → grill → code → verify the acceptance criteria with playwright →
 handoff → merge.
 

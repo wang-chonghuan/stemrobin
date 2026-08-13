@@ -41,7 +41,7 @@ The dependency inventory is not written here; the lockfile is its source of trut
   `infra/` = deploy/substrate notes; `.agents/skills/` = content-generation skills (own
   `package.json` for their `postgres` dep). No top-level `jobs/` — this project has no
   independently-packaged jobs. Root holds only cross-cutting files: the deploy `Dockerfile`,
-  `.dimleaper/`, `AGENTS.md`, and tooling config.
+  `.intentfold/`, `AGENTS.md`, and tooling config.
 - **Routes**: SSR routes under `app/src/routes/_app/` — index = catalog, `lesson.$id`, `story.$id`,
   `login`.
 - **Domain libs** in `app/src/lib/`: `curriculum.ts` (course structure + lesson ordering/nav),

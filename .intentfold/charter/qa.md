@@ -5,7 +5,7 @@ running product and stops. No regression suite in the loop, by choice.
 Section shape is fixed — see `format.md`.
 
 This file is the **method**. A ticket's assertions live in its `ac.md`. The generic method below is
-the n-dimleaper template's; the project-specific parts were filled in 2026-08-05, when `.autoqa/` was
+the intentfold template's; the project-specific parts were filled in 2026-08-05, when `.autoqa/` was
 retired.
 
 ## Contract
@@ -14,7 +14,7 @@ retired.
 assertions someone can re-run. `playwright-cli open <url>` is fine for poking at a page while
 debugging; it is never the evidence that a criterion passed.
 
-Scripts and screenshots live in `.dimleaper/tickets/<ticket-id>/tmp/`, uncommitted. One script
+Scripts and screenshots live in `.intentfold/tickets/<ticket-id>/tmp/`, uncommitted. One script
 covering all of a ticket's criteria is the normal case, with a screenshot per criterion.
 
 **What a criterion check asserts.** The page or flow is reachable · the fixed controls are present ·
@@ -45,13 +45,13 @@ cd app && npx playwright install chromium
 playwright from the app's `node_modules`:
 
 ```bash
-cd app && node ../.dimleaper/tickets/<ticket-id>/tmp/ac-check.mjs
+cd app && node ../.intentfold/tickets/<ticket-id>/tmp/ac-check.mjs
 ```
 
 **Ports and base URL.** Ticket ports come from `project.json`:
 
 ```bash
-python3 <n-dimleaper-skill>/scripts/ports.py .dimleaper/project.json ticket <ticket-id>
+python3 <intentfold-skill>/scripts/ports.py .intentfold/project.json ticket <ticket-id>
 ```
 
 Express work uses the explicit `main` port from the same file (web = 3200). Start the product with

@@ -25,7 +25,7 @@ One environment: **production**. There is no staging and no preview environment.
 
 - Azure Container Apps app **`ca-stemrobin`**, resource group `rg-easyapp-shared`, on the n-easyapp
   substrate (shared environment `cae-easyapp-shared`). n-easyapp **is** this project's deploy path —
-  the easyapp project name is `stemrobin`, also recorded in `.dimleaper/project.json` under `deploy`.
+  the easyapp project name is `stemrobin`, also recorded in `.intentfold/project.json` under `deploy`.
 - Image `acreasyapp.azurecr.io/stemrobin:latest`, built by `az acr build`.
 - The app runs at **`--min-replicas 1`** — no scale-to-zero.
 - **Build invariant**: n-easyapp hard-codes the Dockerfile and the build context at the **repo root**.

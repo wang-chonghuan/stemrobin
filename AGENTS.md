@@ -6,23 +6,23 @@ Read the routed file directly; don't duplicate its content here.
 
 ## Behavioral baseline
 
-- Follow the development rules in `.dimleaper/charter/dev.md` (they are binding, not advisory).
-- This repo runs the **n-dimleaper** one-ticket-at-a-time loop: no product change without a ticket in the backend `.dimleaper/project.json` names. `.dimleaper/charter/` is human-owned — an agent reports drift, never edits it.
+- Follow the development rules in `.intentfold/charter/dev.md` (they are binding, not advisory).
+- This repo runs the **intentfold** one-ticket-at-a-time loop: no product change without a ticket in the backend `.intentfold/project.json` names. `.intentfold/charter/` is human-owned — an agent reports drift, never edits it.
 - Verify by actually running the product (browser / runbook commands), never by imagining from code.
 
 ## Where knowledge lives
 
 | Question | Home |
 |---|---|
-| Session entry — read this first | `.dimleaper/readme.md` |
-| Product intent / what good looks like | `.dimleaper/charter/product.md` (human-only) |
-| Hard boundaries needing human approval | the `## Redlines` section of each `.dimleaper/charter/` file |
-| Engineering norms a coder must obey | `.dimleaper/charter/dev.md` |
-| Architecture decisions + stack & constraints | `.dimleaper/charter/arch.md` |
-| Dev / build / test commands | `.dimleaper/charter/runbook.md` |
-| Deploy / ops commands | `.dimleaper/charter/devops.md` |
-| How the product is tested, test account | `.dimleaper/charter/qa.md` |
-| UI stack, tokens, design rules | `.dimleaper/charter/ui.md` → `resources/reference/DESIGN.md` |
+| Session entry — read this first | `.intentfold/readme.md` |
+| Product intent / what good looks like | `.intentfold/charter/product.md` (human-only) |
+| Hard boundaries needing human approval | the `## Redlines` section of each `.intentfold/charter/` file |
+| Engineering norms a coder must obey | `.intentfold/charter/dev.md` |
+| Architecture decisions + stack & constraints | `.intentfold/charter/arch.md` |
+| Dev / build / test commands | `.intentfold/charter/runbook.md` |
+| Deploy / ops commands | `.intentfold/charter/devops.md` |
+| How the product is tested, test account | `.intentfold/charter/qa.md` |
+| UI stack, tokens, design rules | `.intentfold/charter/ui.md` → `resources/reference/DESIGN.md` |
 | Machine-current module facts (reverse-engineered) | `.evodocs/modules/` |
 | Ticket spec / acceptance criteria | the ticket in plane, live — never a local copy |
 | Content-generation skills | `.agents/skills/` (`sr-story`, `sr-voa1500`, `ld-galaxy`, `ld-s10y-image`) |
@@ -31,16 +31,16 @@ Read the routed file directly; don't duplicate its content here.
 
 ## Frozen directories
 
-Read-only history. Add no new dependencies on them; persistent intent lives in `.dimleaper/charter/`
+Read-only history. Add no new dependencies on them; persistent intent lives in `.intentfold/charter/`
 and machine-current module facts in `.evodocs/modules/`.
 
-- `.prodfarm/` — the previous product loop, superseded by `.dimleaper/` on 2026-08-05. Its charter was
-  migrated into `.dimleaper/charter/`; `batches/`, `timeline/` and `features/` are kept as history.
+- `.prodfarm/` — the previous product loop, superseded by `.intentfold/` on 2026-08-05. Its charter was
+  migrated into `.intentfold/charter/`; `batches/`, `timeline/` and `features/` are kept as history.
 - `.intentmill/` — per-ticket artifacts from the earlier n-im flow.
 - `.evodocs/constitution.md` and `.evodocs/index.json`.
 
 ## Project context
 
-Read `.dimleaper/readme.md` first — it routes to this project's intent (`.dimleaper/charter/`) and
-its ticket workflow. No product change without a ticket in the backend `.dimleaper/project.json` names;
-use the `n-dimleaper` skill.
+Read `.intentfold/readme.md` first — it routes to this project's intent (`.intentfold/charter/`) and
+its ticket workflow. No product change without a ticket in the backend `.intentfold/project.json` names;
+use the `intentfold` skill.

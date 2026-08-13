@@ -47,7 +47,7 @@ cd app && npm run dev     # http://localhost:3200
 For a ticket worktree, resolve the port with:
 
 ```bash
-python3 <n-dimleaper-skill>/scripts/ports.py .dimleaper/project.json ticket <ticket-id>
+python3 <intentfold-skill>/scripts/ports.py .intentfold/project.json ticket <ticket-id>
 ```
 
 and pass it to vite explicitly (this is the one case where `--port` is correct, because the worktree

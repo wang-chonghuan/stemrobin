@@ -15,7 +15,7 @@ import postgres from 'postgres'
 import { repoRoot } from '../sr-voa1500/scripts/vocab.mjs'
 
 // The live content schema. The retired pair (EASYAPP_DATABASE_URL + "stemrobin-schema")
-// is never written to again — see .dimleaper/charter/arch.md.
+// is never written to again — see .intentfold/charter/arch.md.
 export const CONTENT_SCHEMA = 'lemmadeck-schema'
 
 // The repo-root .env, parsed the way every one of these scripts parsed it.

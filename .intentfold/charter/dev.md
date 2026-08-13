@@ -3,7 +3,7 @@
 Human-authored. Binding on every coding agent working in this repo.
 Section shape is fixed — see `format.md`.
 
-> The generic sections below are the n-dimleaper template's, kept as-is. The project-specific
+> The generic sections below are the intentfold template's, kept as-is. The project-specific
 > Guidance and Redlines were migrated 2026-08-05 from `.prodfarm/charter/engineering-rules.md`
 > ("Project specifics"); that file's five generic rules (Think Before Coding / Simplicity First /
 > Surgical Changes / Goal-Driven Execution / SSOT) were **not** copied — they say the same things as

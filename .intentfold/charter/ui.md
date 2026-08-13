@@ -15,7 +15,7 @@ human, before implementation. Never invented while coding.
 
 **Styling stack — Tailwind**
 
-This project runs **Tailwind CSS 4** (+ tw-animate-css) with shadcn components. The n-dimleaper
+This project runs **Tailwind CSS 4** (+ tw-animate-css) with shadcn components. The intentfold
 default (Astryx + StyleX) does **not** apply here: the two stacks are exclusive, and this project
 chose Tailwind. Astryx and StyleX are not used at all.
 
@@ -50,7 +50,7 @@ all specified in `DESIGN.md`. Every UI change is checked at both viewports named
 
 **Component structure** — *observed*: components are flat under `app/src/components/` (e.g.
 `catalog.tsx`, `card-reader.tsx`, `quiz-drawer.tsx`), with shadcn primitives alongside. The
-n-dimleaper template's atoms/molecules/organisms layout is **not** in use.
+intentfold template's atoms/molecules/organisms layout is **not** in use.
 TODO(human) — decide whether to keep the flat layout or move to atomic design. Until then, a new
 component goes next to its peers in `app/src/components/` and this file is not evidence for a
 restructure.

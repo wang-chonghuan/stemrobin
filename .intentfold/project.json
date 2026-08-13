@@ -3,7 +3,7 @@
   "main_branch": "main",
   "deploy": {
     "where": "Azure Container Apps app ca-stemrobin (n-easyapp substrate, shared env cae-easyapp-shared); live at https://lemmadeck.com",
-    "how": "See .dimleaper/charter/devops.md; routine redeploy uses n-easyapp redeploy cap for project stemrobin"
+    "how": "See .intentfold/charter/devops.md; routine redeploy uses n-easyapp redeploy cap for project stemrobin"
   },
   "tickets": {
     "system": "plane",
