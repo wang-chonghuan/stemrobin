@@ -2,21 +2,21 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "stemrobin-dev",
+      "name": "lemmadeck-dev",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "app", "run", "dev"],
       "port": 3200,
       "autoPort": false
     },
     {
-      "name": "stemrobin-dev-alt",
+      "name": "lemmadeck-dev-alt",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "app", "run", "dev", "--", "--port", "3210"],
       "port": 3210,
       "autoPort": false
     },
     {
-      "name": "stemrobin-dev-3220",
+      "name": "lemmadeck-dev-3220",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "app", "run", "dev", "--", "--port", "3220"],
       "port": 3220,

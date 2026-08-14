@@ -1,8 +1,8 @@
 Read `resources/reference/DESIGN.guide.md` before reading, writing, or using this `resources/reference/DESIGN.md`.
 
-# StemRobin Design System
+# LemmaDeck Design System
 
-StemRobin is a learning app that delivers middle-school-standard math and physics to a young, high-comprehension learner, one small concept at a time. The UI should feel **compact, clean, and school-serious**: a pure white workspace, dense practical hierarchy, and quiet focus rather than playful edutainment. No mascots, no marketing layout, no decorative gradients beyond the single brand mark.
+LemmaDeck is a learning app that delivers middle-school-standard math and physics to a young, high-comprehension learner, one small concept at a time. The UI should feel **compact, clean, and school-serious**: a pure white workspace, dense practical hierarchy, and quiet focus rather than playful edutainment. No mascots, no marketing layout, no decorative gradients beyond the single brand mark.
 
 ## Palette
 

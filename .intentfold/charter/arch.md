@@ -59,12 +59,16 @@ The dependency inventory is not written here; the lockfile is its source of trut
   deck json + print PDF); biographies via `sr-story` (public-domain book → narrative markdown
   chapters). The app renders stored html/md; PDFs are pre-rendered at save time. Reason: the content
   is authored by a pipeline, so the DB is the one place both the pipeline and the app agree on.
-- **The content DB moved off the Azure easy-app instance onto the shared Supabase project**
+- **The content DB lives on the shared Supabase project, not on the Azure easy-app instance**
   (schema `lemmadeck-schema`), because the Azure instance was intermittently refusing connections.
-  This is the decision that matters most to anyone writing content: the old
-  `EASYAPP_DATABASE_URL` / `stemrobin-schema` pair **still exists and still accepts writes**, and
-  writing there is invisible to the product. Confirmed 2026-08-06: `lemmadeck-schema` holds the live
-  content, `stemrobin-schema` is dead weight.
+  This is the decision that matters most to anyone writing content — and since the 2026-08-14 rename
+  it needs saying carefully: **tell the two apart by server, never by schema name.** The Azure
+  easy-app Postgres now *also* has a schema called `lemmadeck-schema` (created by n-easyapp cap1 for
+  project `lemmadeck`, empty, wired into the container as `DATABASE_URL`). The live one is the
+  Supabase project reached through `LEMMADECK_DATABASE_URL`; a write that lands anywhere else still
+  accepts, still succeeds, and never reaches the product. (Before the rename the dead pair was
+  `EASYAPP_DATABASE_URL` / `stemrobin-schema`; it was deleted along with `ca-stemrobin` on
+  2026-08-14.)
 - **`ssot-schemas/db-schemas/lemmadeck.sql` is the single source of truth for the DB tables** — 18
   of them, generated from the live schema by STEMROBIN-124 and regenerated the same way whenever the
   schema changes deliberately. Reason: schema changes applied ad hoc drift away from anything
@@ -124,9 +128,10 @@ Guidance instead (`format.md`, test 2).
    `app/.output/`.
 4. **Changing the DB schema anywhere other than `ssot-schemas/db-schemas/lemmadeck.sql`** — forbidden
    outright. Ad hoc `ALTER`/`CREATE` against the shared server is not a schema change, it is drift.
-5. **Writing content through `EASYAPP_DATABASE_URL` / `stemrobin-schema`** — forbidden outright.
-   That pair is retired; it still accepts writes, and a write that lands there never reaches the
-   product. Detectable as either string appearing in a script that writes.
+5. **Writing content through any connection other than `LEMMADECK_DATABASE_URL`** — forbidden
+   outright. `DATABASE_URL` and `EASYAPP_DATABASE_URL` point at the Azure easy-app Postgres, whose
+   schema is *also* named `lemmadeck-schema` and is empty; a write that lands there still succeeds
+   and never reaches the product. Detectable as either string appearing in a script that writes.
 6. **A content script under `.agents/skills/` calling `postgres(` directly** — forbidden outright.
    Every one of them connects through `.agents/skills/lib/content-db.mjs`, which is the single
    place the URL order and the schema are defined. Detectable by grepping the scripts for

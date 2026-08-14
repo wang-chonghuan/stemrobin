@@ -3,7 +3,7 @@
 // run `cd app && npx playwright test tests/galaxy-verify.spec.ts --reporter=list`,
 // then DELETE the spec and app/test-results/. Do not commit it.
 //
-// Requires the dev server on http://localhost:3200 (launch.json "stemrobin-dev").
+// Requires the dev server on http://localhost:3200 (launch.json "lemmadeck-dev").
 import { test, expect } from '@playwright/test';
 
 const EXPECTED_STARS = 1249; // build_galaxy.py: stars=

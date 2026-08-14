@@ -99,7 +99,7 @@ cd app && npx playwright test tests/galaxy-verify.spec.ts --reporter=list
 四个 project（chromium/chrome/firefox/webkit）应全绿。它断言：canvas 出现（懒加载成功）、
 枢纽标签数 = K、指定枢纽名在列、`/galaxy.json` 的 stars/hubs/分支计数精确匹配，并截图。
 跑完**删除 spec 和 test-results/**，不要留在仓库里。前提：dev server 在 3200
-（launch.json `stemrobin-dev`；别的会话开着也能直接用，public/ 下的 galaxy.json 是磁盘直读）。
+（launch.json `lemmadeck-dev`；别的会话开着也能直接用，public/ 下的 galaxy.json 是磁盘直读）。
 
 ## 前端侧知识（改视觉/交互时看）
 
@@ -126,7 +126,7 @@ cd app && npx playwright test tests/galaxy-verify.spec.ts --reporter=list
 2. **`npx tsc` 偶尔解析到假 tsc 包**，用 `./node_modules/.bin/tsc --noEmit`。
    `textbooks.ts:193` 有一个与星图无关的既有类型错误，忽略。
 3. **HMR 对 canvas 组件不可靠**：改了组件感觉没生效时，先硬刷新再排查。
-4. 上线需要 commit + push（n-git cap11）+ 重新部署（n-easyapp cap2，项目名 `stemrobin`）；
+4. 上线需要 commit + push（n-git cap11）+ 重新部署（n-easyapp cap2，项目名 `lemmadeck`）；
    galaxy.json 走镜像里的 `app/public/`，不改数据库。
 
 ## 明确排除 / 未来方向

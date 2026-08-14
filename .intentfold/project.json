@@ -1,14 +1,14 @@
 {
-  "project": "stemrobin",
+  "project": "lemmadeck",
   "main_branch": "main",
   "deploy": {
-    "where": "Azure Container Apps app ca-stemrobin (n-easyapp substrate, shared env cae-easyapp-shared); live at https://lemmadeck.com",
-    "how": "See .intentfold/charter/devops.md; routine redeploy uses n-easyapp redeploy cap for project stemrobin"
+    "where": "Azure Container Apps app ca-lemmadeck (n-easyapp substrate, shared env cae-easyapp-shared); live at https://lemmadeck.com",
+    "how": "See .intentfold/charter/devops.md; routine redeploy uses n-easyapp redeploy cap for project lemmadeck"
   },
   "tickets": {
     "system": "plane",
     "project_url": "https://app.plane.so/intentmill/projects/556c9df8-f5ac-435a-8abd-53bc522dd8a7/issues/",
-    "project": "stemrobin"
+    "project": "lemmadeck"
   },
   "ports": {
     "web": {

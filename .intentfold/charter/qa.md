@@ -89,9 +89,11 @@ node -e "const c=require('crypto');console.log('2.'+c.createHmac('sha256', proce
 psql "$LEMMADECK_DATABASE_URL" -c 'select * from "lemmadeck-schema".sr_answer_events where user_id = 2 order by created_at desc limit 10;'
 ```
 
-**Observe the database the app actually reads.** `EASYAPP_DATABASE_URL` / `stemrobin-schema` still
-connects and still holds a stale copy of some content — a check pointed there can pass on data the
-product cannot see (this is exactly how STEMROBIN-123's seven lessons looked saved and were invisible).
+**Observe the database the app actually reads** — the one behind `LEMMADECK_DATABASE_URL` (Supabase).
+`DATABASE_URL` / `EASYAPP_DATABASE_URL` reach the Azure easy-app Postgres, whose schema is *also*
+named `lemmadeck-schema` since the 2026-08-14 rename: same name, different server, and a check
+pointed there can pass on data the product cannot see (this is exactly how STEMROBIN-123's seven
+lessons looked saved and were invisible).
 
 ## Guidance
 

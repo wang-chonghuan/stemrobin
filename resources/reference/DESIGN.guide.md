@@ -4,7 +4,7 @@ Use this guide before reading, writing, or applying `resources/reference/DESIGN.
 
 ## Purpose
 
-`resources/reference/DESIGN.md` is the repository's plain-text design-system source for agents. It should describe stable visual identity, layout rules, component patterns, interaction conventions, and content tone clearly enough that future UI work can preserve StemRobin's design without rediscovering it from code.
+`resources/reference/DESIGN.md` is the repository's plain-text design-system source for agents. It should describe stable visual identity, layout rules, component patterns, interaction conventions, and content tone clearly enough that future UI work can preserve LemmaDeck's design without rediscovering it from code.
 
 This guide follows the Google Labs `design.md` format/spec principle that a design file should be structured, self-contained, and useful to coding agents as a persistent design-system contract.
 
@@ -30,7 +30,7 @@ When these links do not answer the question, do additional targeted research and
 
 ## How To Use resources/reference/DESIGN.md
 
-- Read `resources/reference/DESIGN.md` before changing StemRobin UI.
+- Read `resources/reference/DESIGN.md` before changing LemmaDeck UI.
 - Treat the implemented tokens in `app/src/styles/app.css` (the `--sr-*` variables) as the CSS source of truth when values conflict.
 - Use `resources/reference/DESIGN.md` to preserve visual language; do not use it to add product scope.
 - When a ticket changes layout or design rules, update `resources/reference/DESIGN.md` in the same ticket.

@@ -8,7 +8,7 @@ import { currentUserId } from '~/lib/session.server'
 // A short-text lesson is a memorizable passage the learner first READS (per-sentence
 // narration + L1 gloss) and then RECITES through a progressive cloze ladder.
 //
-// Where each half lives (see ssot-schemas/db-schemas/stemrobin.sql for the contract):
+// Where each half lives (see ssot-schemas/db-schemas/lemmadeck.sql for the contract):
 //   * the ENGLISH sentence is the artifact being learned, identical in every locale →
 //     neutral base (sr_lessons.content), never duplicated per locale;
 //   * the L1 GLOSS (中文, later others) is per-locale prose → sr_lesson_i18n overlay,

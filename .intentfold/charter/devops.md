@@ -19,14 +19,14 @@ One environment: **production**. There is no staging and no preview environment.
 
 - **Live URL: https://lemmadeck.com** (`www` 301s to the apex).
 - Origin still answers at
-  `https://ca-stemrobin.kindsmoke-4d84c417.northeurope.azurecontainerapps.io`.
+  `https://ca-lemmadeck.kindsmoke-4d84c417.northeurope.azurecontainerapps.io`.
 
 **Where it runs**
 
-- Azure Container Apps app **`ca-stemrobin`**, resource group `rg-easyapp-shared`, on the n-easyapp
+- Azure Container Apps app **`ca-lemmadeck`**, resource group `rg-easyapp-shared`, on the n-easyapp
   substrate (shared environment `cae-easyapp-shared`). n-easyapp **is** this project's deploy path —
-  the easyapp project name is `stemrobin`, also recorded in `.intentfold/project.json` under `deploy`.
-- Image `acreasyapp.azurecr.io/stemrobin:latest`, built by `az acr build`.
+  the easyapp project name is `lemmadeck`, also recorded in `.intentfold/project.json` under `deploy`.
+- Image `acreasyapp.azurecr.io/lemmadeck:latest`, built by `az acr build`.
 - The app runs at **`--min-replicas 1`** — no scale-to-zero.
 - **Build invariant**: n-easyapp hard-codes the Dockerfile and the build context at the **repo root**.
   The root `Dockerfile` builds the standalone app: `npm ci` from `app/`'s manifest, `npm run build`,
@@ -41,9 +41,9 @@ One environment: **production**. There is no staging and no preview environment.
 
 ## Tools
 
-**Deploy** — the routine and only path is an n-easyapp **redeploy** of project `stemrobin`: it builds
-`acreasyapp.azurecr.io/stemrobin:latest` via `az acr build` and updates the container app. Invoke the
-**n-easyapp** skill's redeploy capability for project `stemrobin`; do not hand-assemble the `az`
+**Deploy** — the routine and only path is an n-easyapp **redeploy** of project `lemmadeck`: it builds
+`acreasyapp.azurecr.io/lemmadeck:latest` via `az acr build` and updates the container app. Invoke the
+**n-easyapp** skill's redeploy capability for project `lemmadeck`; do not hand-assemble the `az`
 commands.
 
 **Post-deploy check** — the deploy is confirmed by the live site answering, not by the command's exit
@@ -62,7 +62,7 @@ into the image.
 **Operations**
 
 ```bash
-az containerapp logs show -n ca-stemrobin -g rg-easyapp-shared --tail 50
+az containerapp logs show -n ca-lemmadeck -g rg-easyapp-shared --tail 50
 ```
 
 ## Guidance

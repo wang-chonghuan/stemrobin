@@ -176,7 +176,7 @@ async function main() {
 }
 main().catch((e) => {
   if (/relation .* does not exist|column .* does not exist/i.test(String(e && e.message))) {
-    console.error('✗ story tables/columns missing — apply ssot-schemas/db-schemas/stemrobin.sql (sr_story_chapters needs md + stage/section/pdf columns).')
+    console.error('✗ story tables/columns missing — apply ssot-schemas/db-schemas/lemmadeck.sql (sr_story_chapters needs md + stage/section/pdf columns).')
   } else console.error(e)
   process.exit(1)
 })

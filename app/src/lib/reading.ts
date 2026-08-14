@@ -21,7 +21,7 @@ import { normalizeMathAnswer } from '~/lib/answer-normalize'
 // renders in a locale it is fully translated for — an under-covered overlay makes
 // getLessonReading return null (not-readable) rather than render half-translated.
 
-// ── Neutral JSONB shapes (subset this module reads; see ssot-schemas stemrobin.sql) ──
+// ── Neutral JSONB shapes (subset this module reads; see ssot-schemas lemmadeck.sql) ──
 type ProseNode = { id: string; kind: 'prose'; role: string }
 type SvgNode = { kind: 'svg'; svg: string; caption_id?: string }
 type BodyNode = ProseNode | SvgNode

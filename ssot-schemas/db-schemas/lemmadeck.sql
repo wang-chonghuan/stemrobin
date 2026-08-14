@@ -4,6 +4,8 @@
 -- LEMMADECK_DATABASE_URL) on 2026-08-06 by STEMROBIN-124. It replaces the former
 -- stemrobin.sql, which described the retired Azure easy-app schema "stemrobin-schema"
 -- and had drifted seven tables and several columns away from what actually runs.
+-- ("stemrobin-schema" was deleted with the ca-stemrobin app on 2026-08-14, when the
+-- project was renamed to lemmadeck.)
 --
 -- This file DESCRIBES the live schema; it is not a migration. Do not apply it to the
 -- shared database. A change here without a matching, deliberate change to the live

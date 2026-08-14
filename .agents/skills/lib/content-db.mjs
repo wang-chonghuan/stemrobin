@@ -14,8 +14,9 @@ import { join } from 'node:path'
 import postgres from 'postgres'
 import { repoRoot } from '../sr-voa1500/scripts/vocab.mjs'
 
-// The live content schema. The retired pair (EASYAPP_DATABASE_URL + "stemrobin-schema")
-// is never written to again — see .intentfold/charter/arch.md.
+// The live content schema — on Supabase, via LEMMADECK_DATABASE_URL. The Azure easy-app
+// Postgres has a schema of the same name; it is empty and is never written to. Tell them
+// apart by server, not by name — see .intentfold/charter/arch.md.
 export const CONTENT_SCHEMA = 'lemmadeck-schema'
 
 // The repo-root .env, parsed the way every one of these scripts parsed it.

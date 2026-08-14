@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { projectCards, judgeReadCheck } from '~/lib/reading'
 
-// Fixtures mirror the real JSONB shape (ssot-schemas/db-schemas/stemrobin.sql:222–240):
+// Fixtures mirror the real JSONB shape (ssot-schemas/db-schemas/lemmadeck.sql:222–240):
 // neutral content with prose/svg body nodes + read_check items carrying the KEY,
 // and a zh overlay mapping every node id to its prose text.
 const content = {

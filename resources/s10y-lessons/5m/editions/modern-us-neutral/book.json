@@ -4,7 +4,7 @@
   "status": "ready",
   "profile": {
     "id": "modern-us-neutral",
-    "path": "/Users/yong/work/stemrobin-ws/stemrobin/.claude/skills/ld-s10y-lesson/profiles/modern-us-neutral.json",
+    "path": "/Users/yong/work/lemmadeck-ws/lemmadeck/.claude/skills/ld-s10y-lesson/profiles/modern-us-neutral.json",
     "sha256": "96e17af777baa0d60bdc7dedea37d9a50bf15c7dfa4d34962857633271d01658"
   },
   "lessons": [

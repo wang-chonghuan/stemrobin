@@ -11,7 +11,7 @@ import json
 import glob
 import os
 
-ROOT = "/Users/yong/work/stemrobin-ws/stemrobin"
+ROOT = "/Users/yong/work/lemmadeck-ws/lemmadeck"
 TOC = f"{ROOT}/ssot-resources/soviet10year-textbooks/toc"
 OUT = os.path.join(os.path.dirname(__file__), "out")
 
