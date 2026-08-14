@@ -75,9 +75,9 @@ cd app && npm run e2e            # Playwright (config app/playwright.config.ts)
 
 - One env file: the repo-root `.env`, git-ignored. Required keys: **`LEMMADECK_DATABASE_URL`** — the
   live content DB (shared Supabase project, schema `lemmadeck-schema`) — plus the `AZURE_TTS_*` keys
-  for 短文学英语 朗读. `EASYAPP_DATABASE_URL` still sits in `.env` but points at the **Azure** easy-app
-  Postgres, whose schema is confusingly *also* called `lemmadeck-schema`; nothing may be written
-  through it (`arch.md` redline 5). Never commit this file.
+  for 短文学英语 朗读. `EASYAPP_DATABASE_URL` still sits in `.env` but is dead since 2026-08-14 — the
+  `stemrobin-schema` / `stemrobin-user` it names were deleted with the old app, so it only fails.
+  Nothing may be written through it (`arch.md` redline 5). Never commit this file.
 - The app's SSR runtime auto-loads `.env` from its own project dir, so a git-ignored symlink
   `app/.env → ../.env` shares the single root `.env`. Recreate it after a fresh clone:
 

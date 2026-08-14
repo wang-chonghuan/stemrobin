@@ -65,10 +65,10 @@ The dependency inventory is not written here; the lockfile is its source of trut
   it needs saying carefully: **tell the two apart by server, never by schema name.** The Azure
   easy-app Postgres now *also* has a schema called `lemmadeck-schema` (created by n-easyapp cap1 for
   project `lemmadeck`, empty, wired into the container as `DATABASE_URL`). The live one is the
-  Supabase project reached through `LEMMADECK_DATABASE_URL`; a write that lands anywhere else still
-  accepts, still succeeds, and never reaches the product. (Before the rename the dead pair was
-  `EASYAPP_DATABASE_URL` / `stemrobin-schema`; it was deleted along with `ca-stemrobin` on
-  2026-08-14.)
+  Supabase project reached through `LEMMADECK_DATABASE_URL`; a write that lands in the Azure one
+  still succeeds and never reaches the product. `EASYAPP_DATABASE_URL` still sits in `.env` but is
+  now inert: it names `stemrobin-schema` / `stemrobin-user`, both deleted with `ca-stemrobin` on
+  2026-08-14, so it fails to connect rather than writing somewhere invisible.
 - **`ssot-schemas/db-schemas/lemmadeck.sql` is the single source of truth for the DB tables** — 18
   of them, generated from the live schema by STEMROBIN-124 and regenerated the same way whenever the
   schema changes deliberately. Reason: schema changes applied ad hoc drift away from anything
@@ -129,9 +129,10 @@ Guidance instead (`format.md`, test 2).
 4. **Changing the DB schema anywhere other than `ssot-schemas/db-schemas/lemmadeck.sql`** — forbidden
    outright. Ad hoc `ALTER`/`CREATE` against the shared server is not a schema change, it is drift.
 5. **Writing content through any connection other than `LEMMADECK_DATABASE_URL`** — forbidden
-   outright. `DATABASE_URL` and `EASYAPP_DATABASE_URL` point at the Azure easy-app Postgres, whose
+   outright. `DATABASE_URL` (set on the container) points at the Azure easy-app Postgres, whose
    schema is *also* named `lemmadeck-schema` and is empty; a write that lands there still succeeds
-   and never reaches the product. Detectable as either string appearing in a script that writes.
+   and never reaches the product. `EASYAPP_DATABASE_URL` is dead since 2026-08-14 and only fails.
+   Detectable as either string appearing in a script that writes.
 6. **A content script under `.agents/skills/` calling `postgres(` directly** — forbidden outright.
    Every one of them connects through `.agents/skills/lib/content-db.mjs`, which is the single
    place the URL order and the schema are defined. Detectable by grepping the scripts for
